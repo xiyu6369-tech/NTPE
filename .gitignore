@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environment
+venv/
+.env/
+.venv/
+
+# Logs
+logs/*.log
+*.log
+
+# Cache
+cache/
+*.cache
+
+# Progress
+progress.json
+resume_state.json
+
+# API
+config/config.json
+
+# OS
+.DS_Store
+Thumbs.db
+
+# VSCode
+.vscode/
+
+# PyInstaller
+build/
+dist/
+*.spec
+
+# Testing
+.pytest_cache/
+
+# Temporary
+*.tmp
+*.bak

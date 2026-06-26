@@ -1,0 +1,8 @@
+{
+  "nvidia": {
+    "default": "meta/llama-3.3-70b-instruct",
+    "models": [
+      "meta/llama-3.3-70b-instruct"
+    ]
+  }
+}

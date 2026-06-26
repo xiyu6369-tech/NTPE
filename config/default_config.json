@@ -1,27 +1,38 @@
 {
   "app": {
-    "name": "NTPE",
-    "version": "0.1.0 Alpha",
-    "language": "zh-TW"
-  },
-  "api": {
-    "nvidia_api_key": "",
-    "gemini_api_key": "",
-    "nvidia_rpm_limit": 38,
-    "gemini_rpm_limit": 14,
-    "timeout_seconds": 120
+    "name": "Novel Translator Professional Edition",
+    "short_name": "NTPE",
+    "version": "0.1.1 Alpha"
   },
   "paths": {
-    "logs": "logs",
-    "user_data": "user_data",
-    "projects": "projects",
-    "database": "user_data/ntpe.db"
+    "logs_dir": "logs",
+    "user_data_dir": "user_data",
+    "projects_dir": "projects"
+  },
+  "api": {
+    "nvidia": {
+      "enabled": true,
+      "rpm_limit": 38,
+      "api_key": "",
+      "model": "meta/llama-3.3-70b-instruct",
+      "base_url": "https://integrate.api.nvidia.com/v1/chat/completions"
+    },
+    "gemini": {
+      "enabled": true,
+      "rpm_limit": 14,
+      "api_key": "",
+      "model": "gemini-2.5-flash",
+      "base_url": "https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
+    }
   },
   "translation": {
-    "source_language": "ko",
-    "target_language": "zh-TW",
+    "target_language": "繁體中文（台灣）",
     "mode": "novel",
     "chunk_size": 1200,
     "use_gemini_review": true
+  },
+  "logging": {
+    "level": "INFO",
+    "file_name": "ntpe.log"
   }
 }

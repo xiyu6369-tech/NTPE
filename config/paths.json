@@ -1,0 +1,7 @@
+{
+  "logs": "logs",
+  "input": "input",
+  "output": "output",
+  "cache": "cache",
+  "data": "data"
+}
