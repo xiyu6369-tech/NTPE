@@ -44,7 +44,7 @@ def load_config():
     config.setdefault("max_retry", 4)
     config.setdefault("opencc", True)
     config.setdefault("timeout", 180)
-    config.setdefault("self_check", True)
+    config.setdefault("self_check", False)
     config.setdefault("profile", "PASSION")
     return config
 
@@ -56,43 +56,61 @@ def read_text_auto(path: Path) -> str:
             return raw.decode(enc)
         except Exception:
             pass
+
     detected = chardet.detect(raw)
     encoding = detected.get("encoding") or "utf-8"
     return raw.decode(encoding, errors="replace")
 
 
 def split_chunks(text: str, size: int = 1800):
-    """Safe paragraph chunker. Smart Chunk will replace this later."""
+    """
+    Safe paragraph chunker.
+    M1 Base rule:
+    - Keep original paragraph blocks whenever possible.
+    - Only split long paragraphs at sentence endings.
+    - Do not try semantic chunking here.
+    """
     text = text.replace("\r\n", "\n").replace("\r", "\n")
     paragraphs = re.split(r"(\n\s*\n)", text)
+
     chunks = []
     current = ""
 
     for part in paragraphs:
         if not part:
             continue
+
         if len(current) + len(part) <= size:
             current += part
             continue
+
         if current.strip():
             chunks.append(current.strip())
             current = ""
+
         if len(part) <= size:
             current = part
-        else:
-            sentences = re.split(r"(?<=[.!?。！？다])\s+", part)
-            buf = ""
-            for s in sentences:
-                if len(buf) + len(s) <= size:
-                    buf += (" " if buf else "") + s
-                else:
-                    if buf.strip():
-                        chunks.append(buf.strip())
-                    buf = s
-            current = buf
+            continue
+
+        sentences = re.split(r"(?<=[。！？!?\.])\s*", part)
+        buf = ""
+
+        for sentence in sentences:
+            if not sentence:
+                continue
+
+            if len(buf) + len(sentence) <= size:
+                buf += sentence
+            else:
+                if buf.strip():
+                    chunks.append(buf.strip())
+                buf = sentence
+
+        current = buf
 
     if current.strip():
         chunks.append(current.strip())
+
     return chunks
 
 
@@ -171,13 +189,14 @@ def translate_file(path: Path, engine: NvidiaEngine, config: dict):
                 if not ok:
                     raise RuntimeError(reason)
 
-                if config.get("self_check", True):
+                if config.get("self_check", False):
                     passed, check_reason = self_check(engine, prompt_engine, chunk, candidate, glossary)
                     if not passed:
                         raise RuntimeError(f"Self Check 未通過：{check_reason}")
 
                 result = candidate
                 break
+
             except Exception as e:
                 last_error = e
                 wait = min(8 * (attempt + 1), 40)
