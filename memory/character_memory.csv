@@ -1,9 +1,11 @@
 ﻿source,translation,total_count,book_count,locked,status,books,aliases,notes
 게이블,蓋博,0,0,True,manual_locked,,,manual locked
+리그로우,里格勞,0,0,True,manual_locked,,,姓氏，單獨出現時不可翻成全名
 리차드,理查,0,0,True,manual_locked,,,manual locked
 리차드 타튼,理查・塔騰,0,0,True,manual_locked,,,manual locked
 리타,麗塔,0,0,True,manual_locked,,,manual locked
-일라이,伊萊・里格勞,0,0,True,manual_locked,,,manual locked
+일라이,伊萊,0,0,True,manual_locked,,,名字，單獨出現時不可翻成全名
+일라이 리그로우,伊萊・里格勞,0,0,True,manual_locked,,,全名
 정재의,鄭載義,0,0,True,manual_locked,,,manual locked
 정창인,鄭昌仁,0,0,True,manual_locked,,,manual locked
 정태의,鄭泰義,0,0,True,manual_locked,,,manual locked

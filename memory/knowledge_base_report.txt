@@ -1,0 +1,51 @@
+====================================
+NTPE Knowledge Base Builder v1.0
+====================================
+
+產生時間：2026-06-28T01:39:27
+
+【統計】
+角色數：174
+術語數：7
+別名索引數：193
+鎖定項目數：14
+角色已鎖定：12
+角色已有譯名：12
+術語已鎖定：2
+術語已有譯名：2
+
+【鎖定項目】
+- [glossary] CIA -> CIA
+- [glossary] VIP -> VIP
+- [character] 게이블 -> 蓋博
+- [character] 리그로우 -> 里格勞
+- [character] 리차드 -> 理查
+- [character] 리차드 타튼 -> 理查・塔騰
+- [character] 리타 -> 麗塔
+- [character] 일라이 -> 伊萊
+- [character] 일라이 리그로우 -> 伊萊・里格勞
+- [character] 정재의 -> 鄭載義
+- [character] 정창인 -> 鄭昌仁
+- [character] 정태의 -> 鄭泰義
+- [character] 카일 -> 凱爾
+- [character] 카일 리그로우 -> 凱爾・里格勞
+
+【Prompt Dictionary】
+- [character] 게이블 = 蓋博
+- [character] 리그로우 = 里格勞
+- [character] 리차드 = 理查
+- [character] 리차드 타튼 = 理查・塔騰
+- [character] 리타 = 麗塔
+- [character] 일라이 = 伊萊
+- [character] 일라이 리그로우 = 伊萊・里格勞
+- [character] 정재의 = 鄭載義
+- [character] 정창인 = 鄭昌仁
+- [character] 정태의 = 鄭泰義
+- [character] 카일 = 凱爾
+- [character] 카일 리그로우 = 凱爾・里格勞
+- [glossary] CIA = CIA
+- [glossary] VIP = VIP
+
+====================================
+完成
+====================================

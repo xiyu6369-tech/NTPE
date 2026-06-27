@@ -1,0 +1,138 @@
+{
+  "characters": [
+    {
+      "character_id": "CHAR000001",
+      "status": "main",
+      "locked": true,
+      "fullname": {
+        "ko": "일라이 리그로우",
+        "en": "Ilay Riegrow",
+        "zh_tw": "伊萊・里格勞"
+      },
+      "firstname": {
+        "ko": "일라이",
+        "en": "Ilay",
+        "zh_tw": "伊萊"
+      },
+      "lastname": {
+        "ko": "리그로우",
+        "en": "Riegrow",
+        "zh_tw": "里格勞"
+      },
+      "aliases": [],
+      "relations": [],
+      "note": "全名翻全名，名字翻名字，姓氏翻姓氏"
+    },
+    {
+      "character_id": "CHAR000002",
+      "status": "main",
+      "locked": true,
+      "single_name": {
+        "ko": "정태의",
+        "en": "Jeong Tae-ui",
+        "zh_tw": "鄭泰義"
+      },
+      "aliases": [],
+      "relations": [],
+      "note": "韓文三字姓名，不拆姓氏與名字"
+    },
+    {
+      "character_id": "CHAR000003",
+      "status": "supporting",
+      "locked": true,
+      "single_name": {
+        "ko": "정재의",
+        "en": "Jeong Jae-ui",
+        "zh_tw": "鄭載義"
+      },
+      "aliases": [],
+      "relations": [],
+      "note": "韓文三字姓名，不拆姓氏與名字"
+    },
+    {
+      "character_id": "CHAR000004",
+      "status": "supporting",
+      "locked": true,
+      "single_name": {
+        "ko": "정창인",
+        "en": "Jeong Chang-in",
+        "zh_tw": "鄭昌仁"
+      },
+      "aliases": [],
+      "relations": [],
+      "note": "韓文三字姓名，不拆姓氏與名字"
+    },
+    {
+      "character_id": "CHAR000005",
+      "status": "supporting",
+      "locked": true,
+      "fullname": {
+        "ko": "카일 리그로우",
+        "en": "Kyle Riegrow",
+        "zh_tw": "凱爾・里格勞"
+      },
+      "firstname": {
+        "ko": "카일",
+        "en": "Kyle",
+        "zh_tw": "凱爾"
+      },
+      "lastname": {
+        "ko": "리그로우",
+        "en": "Riegrow",
+        "zh_tw": "里格勞"
+      },
+      "aliases": [],
+      "relations": [],
+      "note": "與伊萊共用姓氏里格勞"
+    },
+    {
+      "character_id": "CHAR000006",
+      "status": "supporting",
+      "locked": true,
+      "fullname": {
+        "ko": "리차드 타튼",
+        "en": "Richard Tarten",
+        "zh_tw": "理查・塔騰"
+      },
+      "firstname": {
+        "ko": "리차드",
+        "en": "Richard",
+        "zh_tw": "理查"
+      },
+      "lastname": {
+        "ko": "타튼",
+        "en": "Tarten",
+        "zh_tw": "塔騰"
+      },
+      "aliases": [],
+      "relations": [],
+      "note": "全名翻全名，名字翻名字，姓氏翻姓氏"
+    },
+    {
+      "character_id": "CHAR000007",
+      "status": "supporting",
+      "locked": true,
+      "single_name": {
+        "ko": "게이블",
+        "en": "Gable",
+        "zh_tw": "蓋博"
+      },
+      "aliases": [],
+      "relations": [],
+      "note": "單名"
+    },
+    {
+      "character_id": "CHAR000008",
+      "status": "supporting",
+      "locked": true,
+      "single_name": {
+        "ko": "리타",
+        "en": "Rita",
+        "zh_tw": "麗塔"
+      },
+      "aliases": [],
+      "relations": [],
+      "note": "單名"
+    }
+  ]
+}

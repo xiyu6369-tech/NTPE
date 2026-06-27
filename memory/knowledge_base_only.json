@@ -1,22 +1,4 @@
 {
-  "summary": {
-    "ntpe_module": "Character Memory Engine",
-    "version": "1.0",
-    "generated_at": "2026-06-28T01:39:16",
-    "source_file_count": 6,
-    "source_files": [
-      "passion1_normalized_character_memory_auto.json",
-      "passion2_normalized_character_memory_auto.json",
-      "passion3_normalized_character_memory_auto.json",
-      "passion4_normalized_character_memory_auto.json",
-      "passion5_normalized_character_memory_auto.json",
-      "passion6_normalized_character_memory_auto.json"
-    ],
-    "character_total": 174,
-    "locked_count": 12,
-    "translated_count": 12,
-    "auto_count": 162
-  },
   "characters": {
     "게이블": {
       "source": "게이블",
@@ -2772,5 +2754,1043 @@
       "notes": [],
       "created_by": "NTPE Character Memory Engine v1.0"
     }
-  }
+  },
+  "glossary": {
+    "VIP": {
+      "source": "VIP",
+      "translation": "VIP",
+      "category": "abbreviation",
+      "total_count": 0,
+      "books": {},
+      "book_count": 0,
+      "locked": true,
+      "status": "manual_locked",
+      "aliases": [],
+      "notes": [
+        "manual locked"
+      ],
+      "confidence": 1.0,
+      "created_by": "NTPE Glossary Builder v1.0"
+    },
+    "CIA": {
+      "source": "CIA",
+      "translation": "CIA",
+      "category": "organization",
+      "total_count": 0,
+      "books": {},
+      "book_count": 0,
+      "locked": true,
+      "status": "manual_locked",
+      "aliases": [],
+      "notes": [
+        "manual locked"
+      ],
+      "confidence": 1.0,
+      "created_by": "NTPE Glossary Builder v1.0"
+    },
+    "PASSION": {
+      "source": "PASSION",
+      "translation": "",
+      "category": "abbreviation",
+      "total_count": 2,
+      "books": {
+        "passion2": 2
+      },
+      "book_count": 1,
+      "locked": false,
+      "status": "auto",
+      "aliases": [],
+      "notes": [],
+      "confidence": 0.2,
+      "created_by": "NTPE Glossary Builder v1.0"
+    },
+    "UNH": {
+      "source": "UNH",
+      "translation": "",
+      "category": "abbreviation",
+      "total_count": 2,
+      "books": {
+        "passion4": 2
+      },
+      "book_count": 1,
+      "locked": false,
+      "status": "auto",
+      "aliases": [],
+      "notes": [],
+      "confidence": 0.2,
+      "created_by": "NTPE Glossary Builder v1.0"
+    },
+    "UNHR": {
+      "source": "UNHR",
+      "translation": "",
+      "category": "abbreviation",
+      "total_count": 2,
+      "books": {
+        "passion4": 2
+      },
+      "book_count": 1,
+      "locked": false,
+      "status": "auto",
+      "aliases": [],
+      "notes": [],
+      "confidence": 0.2,
+      "created_by": "NTPE Glossary Builder v1.0"
+    },
+    "UNHRD": {
+      "source": "UNHRD",
+      "translation": "",
+      "category": "abbreviation",
+      "total_count": 2,
+      "books": {
+        "passion3": 2
+      },
+      "book_count": 1,
+      "locked": false,
+      "status": "auto",
+      "aliases": [],
+      "notes": [],
+      "confidence": 0.2,
+      "created_by": "NTPE Glossary Builder v1.0"
+    },
+    "UNHRDO": {
+      "source": "UNHRDO",
+      "translation": "",
+      "category": "organization",
+      "total_count": 64,
+      "books": {
+        "passion1": 10,
+        "passion2": 8,
+        "passion3": 20,
+        "passion4": 12,
+        "passion5": 14
+      },
+      "book_count": 5,
+      "locked": false,
+      "status": "manual_unlocked",
+      "aliases": [],
+      "notes": [
+        "manual editable"
+      ],
+      "confidence": 0.77,
+      "created_by": "NTPE Glossary Builder v1.0"
+    }
+  },
+  "aliases": {
+    "CIA": {
+      "target": "CIA",
+      "type": "glossary_translation"
+    },
+    "PASSION": {
+      "target": "PASSION",
+      "type": "glossary"
+    },
+    "UNH": {
+      "target": "UNH",
+      "type": "glossary"
+    },
+    "UNHR": {
+      "target": "UNHR",
+      "type": "glossary"
+    },
+    "UNHRD": {
+      "target": "UNHRD",
+      "type": "glossary"
+    },
+    "UNHRDO": {
+      "target": "UNHRDO",
+      "type": "glossary"
+    },
+    "VIP": {
+      "target": "VIP",
+      "type": "glossary_translation"
+    },
+    "伊萊": {
+      "target": "일라이",
+      "type": "character_translation"
+    },
+    "伊萊・里格勞": {
+      "target": "일라이 리그로우",
+      "type": "character_translation"
+    },
+    "凱爾": {
+      "target": "카일",
+      "type": "character_translation"
+    },
+    "凱爾・里格勞": {
+      "target": "카일 리그로우",
+      "type": "character_translation"
+    },
+    "理查": {
+      "target": "리차드",
+      "type": "character_translation"
+    },
+    "理查・塔騰": {
+      "target": "리차드 타튼",
+      "type": "character_translation"
+    },
+    "蓋博": {
+      "target": "게이블",
+      "type": "character_translation"
+    },
+    "鄭昌仁": {
+      "target": "정창인",
+      "type": "character_translation"
+    },
+    "鄭泰義": {
+      "target": "정태의",
+      "type": "character_translation"
+    },
+    "鄭載義": {
+      "target": "정재의",
+      "type": "character_translation"
+    },
+    "里格勞": {
+      "target": "리그로우",
+      "type": "character_translation"
+    },
+    "麗塔": {
+      "target": "리타",
+      "type": "character_translation"
+    },
+    "갑자기": {
+      "target": "갑자기",
+      "type": "character"
+    },
+    "같았다": {
+      "target": "같았다",
+      "type": "character"
+    },
+    "같은": {
+      "target": "같은",
+      "type": "character"
+    },
+    "같이": {
+      "target": "같이",
+      "type": "character"
+    },
+    "거다": {
+      "target": "거다",
+      "type": "character"
+    },
+    "거의": {
+      "target": "거의",
+      "type": "character"
+    },
+    "걸음을": {
+      "target": "걸음을",
+      "type": "character"
+    },
+    "것도": {
+      "target": "것도",
+      "type": "character"
+    },
+    "게다가": {
+      "target": "게다가",
+      "type": "character"
+    },
+    "게이블": {
+      "target": "게이블",
+      "type": "character"
+    },
+    "게이블은": {
+      "target": "게이블은",
+      "type": "character"
+    },
+    "고개를": {
+      "target": "고개를",
+      "type": "character"
+    },
+    "괜찮아요": {
+      "target": "괜찮아요",
+      "type": "character"
+    },
+    "굳이": {
+      "target": "굳이",
+      "type": "character"
+    },
+    "그가": {
+      "target": "그가",
+      "type": "character"
+    },
+    "그냥": {
+      "target": "그냥",
+      "type": "character"
+    },
+    "그대로": {
+      "target": "그대로",
+      "type": "character"
+    },
+    "그때": {
+      "target": "그때",
+      "type": "character"
+    },
+    "그래": {
+      "target": "그래",
+      "type": "character"
+    },
+    "그래도": {
+      "target": "그래도",
+      "type": "character"
+    },
+    "그러다가": {
+      "target": "그러다가",
+      "type": "character"
+    },
+    "그런데": {
+      "target": "그런데",
+      "type": "character"
+    },
+    "그럼": {
+      "target": "그럼",
+      "type": "character"
+    },
+    "그렇게": {
+      "target": "그렇게",
+      "type": "character"
+    },
+    "그를": {
+      "target": "그를",
+      "type": "character"
+    },
+    "그의": {
+      "target": "그의",
+      "type": "character"
+    },
+    "기분이": {
+      "target": "기분이",
+      "type": "character"
+    },
+    "남자가": {
+      "target": "남자가",
+      "type": "character"
+    },
+    "남자는": {
+      "target": "남자는",
+      "type": "character"
+    },
+    "남자를": {
+      "target": "남자를",
+      "type": "character"
+    },
+    "남자의": {
+      "target": "남자의",
+      "type": "character"
+    },
+    "내가": {
+      "target": "내가",
+      "type": "character"
+    },
+    "네가": {
+      "target": "네가",
+      "type": "character"
+    },
+    "놈이": {
+      "target": "놈이",
+      "type": "character"
+    },
+    "늘어져": {
+      "target": "늘어져",
+      "type": "character"
+    },
+    "다른": {
+      "target": "다른",
+      "type": "character"
+    },
+    "대단히": {
+      "target": "대단히",
+      "type": "character"
+    },
+    "동안": {
+      "target": "동안",
+      "type": "character"
+    },
+    "동양인이": {
+      "target": "동양인이",
+      "type": "character"
+    },
+    "두고": {
+      "target": "두고",
+      "type": "character"
+    },
+    "때문에": {
+      "target": "때문에",
+      "type": "character"
+    },
+    "라고": {
+      "target": "라고",
+      "type": "character"
+    },
+    "리그로우": {
+      "target": "리그로우",
+      "type": "character"
+    },
+    "리그로우는": {
+      "target": "리그로우는",
+      "type": "character"
+    },
+    "리차드": {
+      "target": "리차드",
+      "type": "character"
+    },
+    "리차드 타튼": {
+      "target": "리차드 타튼",
+      "type": "character"
+    },
+    "리타": {
+      "target": "리타",
+      "type": "character"
+    },
+    "마음에": {
+      "target": "마음에",
+      "type": "character"
+    },
+    "만한": {
+      "target": "만한",
+      "type": "character"
+    },
+    "말았다": {
+      "target": "말았다",
+      "type": "character"
+    },
+    "말을": {
+      "target": "말을",
+      "type": "character"
+    },
+    "말이": {
+      "target": "말이",
+      "type": "character"
+    },
+    "매우": {
+      "target": "매우",
+      "type": "character"
+    },
+    "머리를": {
+      "target": "머리를",
+      "type": "character"
+    },
+    "모러는": {
+      "target": "모러는",
+      "type": "character"
+    },
+    "모르게": {
+      "target": "모르게",
+      "type": "character"
+    },
+    "목소리가": {
+      "target": "목소리가",
+      "type": "character"
+    },
+    "몸을": {
+      "target": "몸을",
+      "type": "character"
+    },
+    "몹시": {
+      "target": "몹시",
+      "type": "character"
+    },
+    "무슨": {
+      "target": "무슨",
+      "type": "character"
+    },
+    "문득": {
+      "target": "문득",
+      "type": "character"
+    },
+    "문제가": {
+      "target": "문제가",
+      "type": "character"
+    },
+    "뭔가": {
+      "target": "뭔가",
+      "type": "character"
+    },
+    "바로": {
+      "target": "바로",
+      "type": "character"
+    },
+    "박준우가": {
+      "target": "박준우가",
+      "type": "character"
+    },
+    "박준우는": {
+      "target": "박준우는",
+      "type": "character"
+    },
+    "박준우를": {
+      "target": "박준우를",
+      "type": "character"
+    },
+    "박준우의": {
+      "target": "박준우의",
+      "type": "character"
+    },
+    "보고": {
+      "target": "보고",
+      "type": "character"
+    },
+    "보니": {
+      "target": "보니",
+      "type": "character"
+    },
+    "보면": {
+      "target": "보면",
+      "type": "character"
+    },
+    "보았다": {
+      "target": "보았다",
+      "type": "character"
+    },
+    "빌어먹을": {
+      "target": "빌어먹을",
+      "type": "character"
+    },
+    "사람을": {
+      "target": "사람을",
+      "type": "character"
+    },
+    "사람이": {
+      "target": "사람이",
+      "type": "character"
+    },
+    "상관은": {
+      "target": "상관은",
+      "type": "character"
+    },
+    "상관이": {
+      "target": "상관이",
+      "type": "character"
+    },
+    "생각을": {
+      "target": "생각을",
+      "type": "character"
+    },
+    "생각이": {
+      "target": "생각이",
+      "type": "character"
+    },
+    "생각해": {
+      "target": "생각해",
+      "type": "character"
+    },
+    "소리가": {
+      "target": "소리가",
+      "type": "character"
+    },
+    "손에": {
+      "target": "손에",
+      "type": "character"
+    },
+    "손이": {
+      "target": "손이",
+      "type": "character"
+    },
+    "수도": {
+      "target": "수도",
+      "type": "character"
+    },
+    "숙부가": {
+      "target": "숙부가",
+      "type": "character"
+    },
+    "숙부는": {
+      "target": "숙부는",
+      "type": "character"
+    },
+    "숙부의": {
+      "target": "숙부의",
+      "type": "character"
+    },
+    "순간": {
+      "target": "순간",
+      "type": "character"
+    },
+    "시선을": {
+      "target": "시선을",
+      "type": "character"
+    },
+    "시선이": {
+      "target": "시선이",
+      "type": "character"
+    },
+    "신루가": {
+      "target": "신루가",
+      "type": "character"
+    },
+    "신루는": {
+      "target": "신루는",
+      "type": "character"
+    },
+    "신루를": {
+      "target": "신루를",
+      "type": "character"
+    },
+    "신루의": {
+      "target": "신루의",
+      "type": "character"
+    },
+    "아무리": {
+      "target": "아무리",
+      "type": "character"
+    },
+    "않고": {
+      "target": "않고",
+      "type": "character"
+    },
+    "않는": {
+      "target": "않는",
+      "type": "character"
+    },
+    "않아": {
+      "target": "않아",
+      "type": "character"
+    },
+    "않았다": {
+      "target": "않았다",
+      "type": "character"
+    },
+    "않은": {
+      "target": "않은",
+      "type": "character"
+    },
+    "않을": {
+      "target": "않을",
+      "type": "character"
+    },
+    "알고": {
+      "target": "알고",
+      "type": "character"
+    },
+    "애인": {
+      "target": "애인",
+      "type": "character"
+    },
+    "약간": {
+      "target": "약간",
+      "type": "character"
+    },
+    "어느": {
+      "target": "어느",
+      "type": "character"
+    },
+    "어떻게": {
+      "target": "어떻게",
+      "type": "character"
+    },
+    "어쩌면": {
+      "target": "어쩌면",
+      "type": "character"
+    },
+    "어쩐지": {
+      "target": "어쩐지",
+      "type": "character"
+    },
+    "어차피": {
+      "target": "어차피",
+      "type": "character"
+    },
+    "얼굴로": {
+      "target": "얼굴로",
+      "type": "character"
+    },
+    "얼굴을": {
+      "target": "얼굴을",
+      "type": "character"
+    },
+    "없다": {
+      "target": "없다",
+      "type": "character"
+    },
+    "없어": {
+      "target": "없어",
+      "type": "character"
+    },
+    "없이": {
+      "target": "없이",
+      "type": "character"
+    },
+    "여전히": {
+      "target": "여전히",
+      "type": "character"
+    },
+    "역시": {
+      "target": "역시",
+      "type": "character"
+    },
+    "오래": {
+      "target": "오래",
+      "type": "character"
+    },
+    "위에": {
+      "target": "위에",
+      "type": "character"
+    },
+    "유럽": {
+      "target": "유럽",
+      "type": "character"
+    },
+    "이렇게": {
+      "target": "이렇게",
+      "type": "character"
+    },
+    "이야기를": {
+      "target": "이야기를",
+      "type": "character"
+    },
+    "이제": {
+      "target": "이제",
+      "type": "character"
+    },
+    "일도": {
+      "target": "일도",
+      "type": "character"
+    },
+    "일라이": {
+      "target": "일라이",
+      "type": "character"
+    },
+    "일라이 리그로우": {
+      "target": "일라이 리그로우",
+      "type": "character"
+    },
+    "일레이": {
+      "target": "일레이",
+      "type": "character"
+    },
+    "일레이가": {
+      "target": "일레이가",
+      "type": "character"
+    },
+    "일레이는": {
+      "target": "일레이는",
+      "type": "character"
+    },
+    "일레이를": {
+      "target": "일레이를",
+      "type": "character"
+    },
+    "일레이의": {
+      "target": "일레이의",
+      "type": "character"
+    },
+    "일이": {
+      "target": "일이",
+      "type": "character"
+    },
+    "입을": {
+      "target": "입을",
+      "type": "character"
+    },
+    "있던": {
+      "target": "있던",
+      "type": "character"
+    },
+    "있을": {
+      "target": "있을",
+      "type": "character"
+    },
+    "자신의": {
+      "target": "자신의",
+      "type": "character"
+    },
+    "자신이": {
+      "target": "자신이",
+      "type": "character"
+    },
+    "잠깐": {
+      "target": "잠깐",
+      "type": "character"
+    },
+    "잠시": {
+      "target": "잠시",
+      "type": "character"
+    },
+    "저도": {
+      "target": "저도",
+      "type": "character"
+    },
+    "전에": {
+      "target": "전에",
+      "type": "character"
+    },
+    "전화를": {
+      "target": "전화를",
+      "type": "character"
+    },
+    "정도로": {
+      "target": "정도로",
+      "type": "character"
+    },
+    "정말로": {
+      "target": "정말로",
+      "type": "character"
+    },
+    "정재의": {
+      "target": "정재의",
+      "type": "character"
+    },
+    "정창인": {
+      "target": "정창인",
+      "type": "character"
+    },
+    "정창인은": {
+      "target": "정창인은",
+      "type": "character"
+    },
+    "정태의": {
+      "target": "정태의",
+      "type": "character"
+    },
+    "정태의가": {
+      "target": "정태의가",
+      "type": "character"
+    },
+    "정태의는": {
+      "target": "정태의는",
+      "type": "character"
+    },
+    "정태의를": {
+      "target": "정태의를",
+      "type": "character"
+    },
+    "정태의의": {
+      "target": "정태의의",
+      "type": "character"
+    },
+    "제대로": {
+      "target": "제대로",
+      "type": "character"
+    },
+    "좋은": {
+      "target": "좋은",
+      "type": "character"
+    },
+    "중얼거렸다": {
+      "target": "중얼거렸다",
+      "type": "character"
+    },
+    "지금": {
+      "target": "지금",
+      "type": "character"
+    },
+    "지부": {
+      "target": "지부",
+      "type": "character"
+    },
+    "책을": {
+      "target": "책을",
+      "type": "character"
+    },
+    "천천히": {
+      "target": "천천히",
+      "type": "character"
+    },
+    "청년은": {
+      "target": "청년은",
+      "type": "character"
+    },
+    "카일": {
+      "target": "카일",
+      "type": "character"
+    },
+    "카일 리그로우": {
+      "target": "카일 리그로우",
+      "type": "character"
+    },
+    "카일은": {
+      "target": "카일은",
+      "type": "character"
+    },
+    "카일이": {
+      "target": "카일이",
+      "type": "character"
+    },
+    "태이": {
+      "target": "태이",
+      "type": "character"
+    },
+    "하나": {
+      "target": "하나",
+      "type": "character"
+    },
+    "하는": {
+      "target": "하는",
+      "type": "character"
+    },
+    "하면": {
+      "target": "하면",
+      "type": "character"
+    },
+    "하지": {
+      "target": "하지",
+      "type": "character"
+    },
+    "한숨을": {
+      "target": "한숨을",
+      "type": "character"
+    },
+    "합동": {
+      "target": "합동",
+      "type": "character"
+    },
+    "해도": {
+      "target": "해도",
+      "type": "character"
+    },
+    "혀를": {
+      "target": "혀를",
+      "type": "character"
+    },
+    "휴가": {
+      "target": "휴가",
+      "type": "character"
+    },
+    "휴가를": {
+      "target": "휴가를",
+      "type": "character"
+    }
+  },
+  "locked_index": {
+    "CIA": {
+      "type": "glossary",
+      "translation": "CIA",
+      "source": "CIA"
+    },
+    "VIP": {
+      "type": "glossary",
+      "translation": "VIP",
+      "source": "VIP"
+    },
+    "게이블": {
+      "type": "character",
+      "translation": "蓋博",
+      "source": "게이블"
+    },
+    "리그로우": {
+      "type": "character",
+      "translation": "里格勞",
+      "source": "리그로우"
+    },
+    "리차드": {
+      "type": "character",
+      "translation": "理查",
+      "source": "리차드"
+    },
+    "리차드 타튼": {
+      "type": "character",
+      "translation": "理查・塔騰",
+      "source": "리차드 타튼"
+    },
+    "리타": {
+      "type": "character",
+      "translation": "麗塔",
+      "source": "리타"
+    },
+    "일라이": {
+      "type": "character",
+      "translation": "伊萊",
+      "source": "일라이"
+    },
+    "일라이 리그로우": {
+      "type": "character",
+      "translation": "伊萊・里格勞",
+      "source": "일라이 리그로우"
+    },
+    "정재의": {
+      "type": "character",
+      "translation": "鄭載義",
+      "source": "정재의"
+    },
+    "정창인": {
+      "type": "character",
+      "translation": "鄭昌仁",
+      "source": "정창인"
+    },
+    "정태의": {
+      "type": "character",
+      "translation": "鄭泰義",
+      "source": "정태의"
+    },
+    "카일": {
+      "type": "character",
+      "translation": "凱爾",
+      "source": "카일"
+    },
+    "카일 리그로우": {
+      "type": "character",
+      "translation": "凱爾・里格勞",
+      "source": "카일 리그로우"
+    }
+  },
+  "prompt_dictionary": [
+    {
+      "source": "게이블",
+      "translation": "蓋博",
+      "type": "character"
+    },
+    {
+      "source": "리그로우",
+      "translation": "里格勞",
+      "type": "character"
+    },
+    {
+      "source": "리차드",
+      "translation": "理查",
+      "type": "character"
+    },
+    {
+      "source": "리차드 타튼",
+      "translation": "理查・塔騰",
+      "type": "character"
+    },
+    {
+      "source": "리타",
+      "translation": "麗塔",
+      "type": "character"
+    },
+    {
+      "source": "일라이",
+      "translation": "伊萊",
+      "type": "character"
+    },
+    {
+      "source": "일라이 리그로우",
+      "translation": "伊萊・里格勞",
+      "type": "character"
+    },
+    {
+      "source": "정재의",
+      "translation": "鄭載義",
+      "type": "character"
+    },
+    {
+      "source": "정창인",
+      "translation": "鄭昌仁",
+      "type": "character"
+    },
+    {
+      "source": "정태의",
+      "translation": "鄭泰義",
+      "type": "character"
+    },
+    {
+      "source": "카일",
+      "translation": "凱爾",
+      "type": "character"
+    },
+    {
+      "source": "카일 리그로우",
+      "translation": "凱爾・里格勞",
+      "type": "character"
+    },
+    {
+      "source": "CIA",
+      "translation": "CIA",
+      "type": "glossary"
+    },
+    {
+      "source": "VIP",
+      "translation": "VIP",
+      "type": "glossary"
+    }
+  ]
 }

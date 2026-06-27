@@ -1,0 +1,212 @@
+====================================
+NTPE Character Database v2.0
+====================================
+
+產生時間：2026-06-28T02:00:33
+角色數：170
+匹配規則數：26
+鎖定角色數：8
+自動候選數：162
+
+【核心規則】
+全名翻全名；名字翻名字；姓氏翻姓氏；韓文無空格姓名不拆。
+
+【角色】
+- CHAR000001｜伊萊・里格勞｜status=main｜locked=True
+- CHAR000002｜鄭泰義｜status=main｜locked=True
+- CHAR000003｜鄭載義｜status=supporting｜locked=True
+- CHAR000004｜鄭昌仁｜status=supporting｜locked=True
+- CHAR000005｜凱爾・里格勞｜status=supporting｜locked=True
+- CHAR000006｜理查・塔騰｜status=supporting｜locked=True
+- CHAR000007｜蓋博｜status=supporting｜locked=True
+- CHAR000008｜麗塔｜status=supporting｜locked=True
+- AUTO900001｜AUTO900001｜status=auto_candidate｜locked=False
+- AUTO900002｜AUTO900002｜status=auto_candidate｜locked=False
+- AUTO900003｜AUTO900003｜status=auto_candidate｜locked=False
+- AUTO900004｜AUTO900004｜status=auto_candidate｜locked=False
+- AUTO900005｜AUTO900005｜status=auto_candidate｜locked=False
+- AUTO900006｜AUTO900006｜status=auto_candidate｜locked=False
+- AUTO900007｜AUTO900007｜status=auto_candidate｜locked=False
+- AUTO900008｜AUTO900008｜status=auto_candidate｜locked=False
+- AUTO900009｜AUTO900009｜status=auto_candidate｜locked=False
+- AUTO900010｜AUTO900010｜status=auto_candidate｜locked=False
+- AUTO900011｜AUTO900011｜status=auto_candidate｜locked=False
+- AUTO900012｜AUTO900012｜status=auto_candidate｜locked=False
+- AUTO900013｜AUTO900013｜status=auto_candidate｜locked=False
+- AUTO900014｜AUTO900014｜status=auto_candidate｜locked=False
+- AUTO900015｜AUTO900015｜status=auto_candidate｜locked=False
+- AUTO900016｜AUTO900016｜status=auto_candidate｜locked=False
+- AUTO900017｜AUTO900017｜status=auto_candidate｜locked=False
+- AUTO900018｜AUTO900018｜status=auto_candidate｜locked=False
+- AUTO900019｜AUTO900019｜status=auto_candidate｜locked=False
+- AUTO900020｜AUTO900020｜status=auto_candidate｜locked=False
+- AUTO900021｜AUTO900021｜status=auto_candidate｜locked=False
+- AUTO900022｜AUTO900022｜status=auto_candidate｜locked=False
+- AUTO900023｜AUTO900023｜status=auto_candidate｜locked=False
+- AUTO900024｜AUTO900024｜status=auto_candidate｜locked=False
+- AUTO900025｜AUTO900025｜status=auto_candidate｜locked=False
+- AUTO900026｜AUTO900026｜status=auto_candidate｜locked=False
+- AUTO900027｜AUTO900027｜status=auto_candidate｜locked=False
+- AUTO900028｜AUTO900028｜status=auto_candidate｜locked=False
+- AUTO900029｜AUTO900029｜status=auto_candidate｜locked=False
+- AUTO900030｜AUTO900030｜status=auto_candidate｜locked=False
+- AUTO900031｜AUTO900031｜status=auto_candidate｜locked=False
+- AUTO900032｜AUTO900032｜status=auto_candidate｜locked=False
+- AUTO900033｜AUTO900033｜status=auto_candidate｜locked=False
+- AUTO900034｜AUTO900034｜status=auto_candidate｜locked=False
+- AUTO900035｜AUTO900035｜status=auto_candidate｜locked=False
+- AUTO900036｜AUTO900036｜status=auto_candidate｜locked=False
+- AUTO900037｜AUTO900037｜status=auto_candidate｜locked=False
+- AUTO900038｜AUTO900038｜status=auto_candidate｜locked=False
+- AUTO900039｜AUTO900039｜status=auto_candidate｜locked=False
+- AUTO900040｜AUTO900040｜status=auto_candidate｜locked=False
+- AUTO900041｜AUTO900041｜status=auto_candidate｜locked=False
+- AUTO900042｜AUTO900042｜status=auto_candidate｜locked=False
+- AUTO900043｜AUTO900043｜status=auto_candidate｜locked=False
+- AUTO900044｜AUTO900044｜status=auto_candidate｜locked=False
+- AUTO900045｜AUTO900045｜status=auto_candidate｜locked=False
+- AUTO900046｜AUTO900046｜status=auto_candidate｜locked=False
+- AUTO900047｜AUTO900047｜status=auto_candidate｜locked=False
+- AUTO900048｜AUTO900048｜status=auto_candidate｜locked=False
+- AUTO900049｜AUTO900049｜status=auto_candidate｜locked=False
+- AUTO900050｜AUTO900050｜status=auto_candidate｜locked=False
+- AUTO900051｜AUTO900051｜status=auto_candidate｜locked=False
+- AUTO900052｜AUTO900052｜status=auto_candidate｜locked=False
+- AUTO900053｜AUTO900053｜status=auto_candidate｜locked=False
+- AUTO900054｜AUTO900054｜status=auto_candidate｜locked=False
+- AUTO900055｜AUTO900055｜status=auto_candidate｜locked=False
+- AUTO900056｜AUTO900056｜status=auto_candidate｜locked=False
+- AUTO900057｜AUTO900057｜status=auto_candidate｜locked=False
+- AUTO900058｜AUTO900058｜status=auto_candidate｜locked=False
+- AUTO900059｜AUTO900059｜status=auto_candidate｜locked=False
+- AUTO900060｜AUTO900060｜status=auto_candidate｜locked=False
+- AUTO900061｜AUTO900061｜status=auto_candidate｜locked=False
+- AUTO900062｜AUTO900062｜status=auto_candidate｜locked=False
+- AUTO900063｜AUTO900063｜status=auto_candidate｜locked=False
+- AUTO900064｜AUTO900064｜status=auto_candidate｜locked=False
+- AUTO900065｜AUTO900065｜status=auto_candidate｜locked=False
+- AUTO900066｜AUTO900066｜status=auto_candidate｜locked=False
+- AUTO900067｜AUTO900067｜status=auto_candidate｜locked=False
+- AUTO900068｜AUTO900068｜status=auto_candidate｜locked=False
+- AUTO900069｜AUTO900069｜status=auto_candidate｜locked=False
+- AUTO900070｜AUTO900070｜status=auto_candidate｜locked=False
+- AUTO900071｜AUTO900071｜status=auto_candidate｜locked=False
+- AUTO900072｜AUTO900072｜status=auto_candidate｜locked=False
+- AUTO900073｜AUTO900073｜status=auto_candidate｜locked=False
+- AUTO900074｜AUTO900074｜status=auto_candidate｜locked=False
+- AUTO900075｜AUTO900075｜status=auto_candidate｜locked=False
+- AUTO900076｜AUTO900076｜status=auto_candidate｜locked=False
+- AUTO900077｜AUTO900077｜status=auto_candidate｜locked=False
+- AUTO900078｜AUTO900078｜status=auto_candidate｜locked=False
+- AUTO900079｜AUTO900079｜status=auto_candidate｜locked=False
+- AUTO900080｜AUTO900080｜status=auto_candidate｜locked=False
+- AUTO900081｜AUTO900081｜status=auto_candidate｜locked=False
+- AUTO900082｜AUTO900082｜status=auto_candidate｜locked=False
+- AUTO900083｜AUTO900083｜status=auto_candidate｜locked=False
+- AUTO900084｜AUTO900084｜status=auto_candidate｜locked=False
+- AUTO900085｜AUTO900085｜status=auto_candidate｜locked=False
+- AUTO900086｜AUTO900086｜status=auto_candidate｜locked=False
+- AUTO900087｜AUTO900087｜status=auto_candidate｜locked=False
+- AUTO900088｜AUTO900088｜status=auto_candidate｜locked=False
+- AUTO900089｜AUTO900089｜status=auto_candidate｜locked=False
+- AUTO900090｜AUTO900090｜status=auto_candidate｜locked=False
+- AUTO900091｜AUTO900091｜status=auto_candidate｜locked=False
+- AUTO900092｜AUTO900092｜status=auto_candidate｜locked=False
+- AUTO900093｜AUTO900093｜status=auto_candidate｜locked=False
+- AUTO900094｜AUTO900094｜status=auto_candidate｜locked=False
+- AUTO900095｜AUTO900095｜status=auto_candidate｜locked=False
+- AUTO900096｜AUTO900096｜status=auto_candidate｜locked=False
+- AUTO900097｜AUTO900097｜status=auto_candidate｜locked=False
+- AUTO900098｜AUTO900098｜status=auto_candidate｜locked=False
+- AUTO900099｜AUTO900099｜status=auto_candidate｜locked=False
+- AUTO900100｜AUTO900100｜status=auto_candidate｜locked=False
+- AUTO900101｜AUTO900101｜status=auto_candidate｜locked=False
+- AUTO900102｜AUTO900102｜status=auto_candidate｜locked=False
+- AUTO900103｜AUTO900103｜status=auto_candidate｜locked=False
+- AUTO900104｜AUTO900104｜status=auto_candidate｜locked=False
+- AUTO900105｜AUTO900105｜status=auto_candidate｜locked=False
+- AUTO900106｜AUTO900106｜status=auto_candidate｜locked=False
+- AUTO900107｜AUTO900107｜status=auto_candidate｜locked=False
+- AUTO900108｜AUTO900108｜status=auto_candidate｜locked=False
+- AUTO900109｜AUTO900109｜status=auto_candidate｜locked=False
+- AUTO900110｜AUTO900110｜status=auto_candidate｜locked=False
+- AUTO900111｜AUTO900111｜status=auto_candidate｜locked=False
+- AUTO900112｜AUTO900112｜status=auto_candidate｜locked=False
+- AUTO900113｜AUTO900113｜status=auto_candidate｜locked=False
+- AUTO900114｜AUTO900114｜status=auto_candidate｜locked=False
+- AUTO900115｜AUTO900115｜status=auto_candidate｜locked=False
+- AUTO900116｜AUTO900116｜status=auto_candidate｜locked=False
+- AUTO900117｜AUTO900117｜status=auto_candidate｜locked=False
+- AUTO900118｜AUTO900118｜status=auto_candidate｜locked=False
+- AUTO900119｜AUTO900119｜status=auto_candidate｜locked=False
+- AUTO900120｜AUTO900120｜status=auto_candidate｜locked=False
+- AUTO900121｜AUTO900121｜status=auto_candidate｜locked=False
+- AUTO900122｜AUTO900122｜status=auto_candidate｜locked=False
+- AUTO900123｜AUTO900123｜status=auto_candidate｜locked=False
+- AUTO900124｜AUTO900124｜status=auto_candidate｜locked=False
+- AUTO900125｜AUTO900125｜status=auto_candidate｜locked=False
+- AUTO900126｜AUTO900126｜status=auto_candidate｜locked=False
+- AUTO900127｜AUTO900127｜status=auto_candidate｜locked=False
+- AUTO900128｜AUTO900128｜status=auto_candidate｜locked=False
+- AUTO900129｜AUTO900129｜status=auto_candidate｜locked=False
+- AUTO900130｜AUTO900130｜status=auto_candidate｜locked=False
+- AUTO900131｜AUTO900131｜status=auto_candidate｜locked=False
+- AUTO900132｜AUTO900132｜status=auto_candidate｜locked=False
+- AUTO900133｜AUTO900133｜status=auto_candidate｜locked=False
+- AUTO900134｜AUTO900134｜status=auto_candidate｜locked=False
+- AUTO900135｜AUTO900135｜status=auto_candidate｜locked=False
+- AUTO900136｜AUTO900136｜status=auto_candidate｜locked=False
+- AUTO900137｜AUTO900137｜status=auto_candidate｜locked=False
+- AUTO900138｜AUTO900138｜status=auto_candidate｜locked=False
+- AUTO900139｜AUTO900139｜status=auto_candidate｜locked=False
+- AUTO900140｜AUTO900140｜status=auto_candidate｜locked=False
+- AUTO900141｜AUTO900141｜status=auto_candidate｜locked=False
+- AUTO900142｜AUTO900142｜status=auto_candidate｜locked=False
+- AUTO900143｜AUTO900143｜status=auto_candidate｜locked=False
+- AUTO900144｜AUTO900144｜status=auto_candidate｜locked=False
+- AUTO900145｜AUTO900145｜status=auto_candidate｜locked=False
+- AUTO900146｜AUTO900146｜status=auto_candidate｜locked=False
+- AUTO900147｜AUTO900147｜status=auto_candidate｜locked=False
+- AUTO900148｜AUTO900148｜status=auto_candidate｜locked=False
+- AUTO900149｜AUTO900149｜status=auto_candidate｜locked=False
+- AUTO900150｜AUTO900150｜status=auto_candidate｜locked=False
+- AUTO900151｜AUTO900151｜status=auto_candidate｜locked=False
+- AUTO900152｜AUTO900152｜status=auto_candidate｜locked=False
+- AUTO900153｜AUTO900153｜status=auto_candidate｜locked=False
+- AUTO900154｜AUTO900154｜status=auto_candidate｜locked=False
+- AUTO900155｜AUTO900155｜status=auto_candidate｜locked=False
+- AUTO900156｜AUTO900156｜status=auto_candidate｜locked=False
+- AUTO900157｜AUTO900157｜status=auto_candidate｜locked=False
+- AUTO900158｜AUTO900158｜status=auto_candidate｜locked=False
+- AUTO900159｜AUTO900159｜status=auto_candidate｜locked=False
+- AUTO900160｜AUTO900160｜status=auto_candidate｜locked=False
+- AUTO900161｜AUTO900161｜status=auto_candidate｜locked=False
+- AUTO900162｜AUTO900162｜status=auto_candidate｜locked=False
+
+【Match Dictionary】
+- P120 [fullname_ko] 일라이 리그로우 -> 伊萊・里格勞 (CHAR000001)
+- P120 [fullname_ko] 카일 리그로우 -> 凱爾・里格勞 (CHAR000005)
+- P120 [fullname_ko] 리차드 타튼 -> 理查・塔騰 (CHAR000006)
+- P110 [fullname_en] Richard Tarten -> 理查・塔騰 (CHAR000006)
+- P110 [fullname_en] Ilay Riegrow -> 伊萊・里格勞 (CHAR000001)
+- P110 [fullname_en] Kyle Riegrow -> 凱爾・里格勞 (CHAR000005)
+- P90 [single_name_ko] 게이블 -> 蓋博 (CHAR000007)
+- P90 [single_name_ko] 정재의 -> 鄭載義 (CHAR000003)
+- P90 [single_name_ko] 정창인 -> 鄭昌仁 (CHAR000004)
+- P90 [single_name_ko] 정태의 -> 鄭泰義 (CHAR000002)
+- P90 [single_name_ko] 리타 -> 麗塔 (CHAR000008)
+- P80 [single_name_en] Jeong Chang-in -> 鄭昌仁 (CHAR000004)
+- P80 [single_name_en] Jeong Jae-ui -> 鄭載義 (CHAR000003)
+- P80 [single_name_en] Jeong Tae-ui -> 鄭泰義 (CHAR000002)
+- P80 [single_name_en] Gable -> 蓋博 (CHAR000007)
+- P80 [single_name_en] Rita -> 麗塔 (CHAR000008)
+- P70 [firstname_ko] 리차드 -> 理查 (CHAR000006)
+- P70 [firstname_ko] 일라이 -> 伊萊 (CHAR000001)
+- P70 [firstname_ko] 카일 -> 凱爾 (CHAR000005)
+- P65 [firstname_en] Richard -> 理查 (CHAR000006)
+- P65 [firstname_en] Ilay -> 伊萊 (CHAR000001)
+- P65 [firstname_en] Kyle -> 凱爾 (CHAR000005)
+- P60 [lastname_ko] 리그로우 -> 里格勞 (CHAR000001)
+- P60 [lastname_ko] 타튼 -> 塔騰 (CHAR000006)
+- P55 [lastname_en] Riegrow -> 里格勞 (CHAR000001)
+- P55 [lastname_en] Tarten -> 塔騰 (CHAR000006)

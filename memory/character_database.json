@@ -1,0 +1,4420 @@
+{
+  "summary": {
+    "ntpe_module": "Character Database",
+    "version": "2.0",
+    "generated_at": "2026-06-28T02:00:33",
+    "character_count": 170,
+    "match_count": 26,
+    "locked_character_count": 8,
+    "auto_candidate_count": 162,
+    "rule": "全名翻全名；名字翻名字；姓氏翻姓氏；韓文無空格姓名不拆。"
+  },
+  "characters": [
+    {
+      "character_id": "CHAR000001",
+      "status": "main",
+      "locked": true,
+      "single_name": {},
+      "fullname": {
+        "ko": "일라이 리그로우",
+        "en": "Ilay Riegrow",
+        "zh_tw": "伊萊・里格勞"
+      },
+      "firstname": {
+        "ko": "일라이",
+        "en": "Ilay",
+        "zh_tw": "伊萊"
+      },
+      "lastname": {
+        "ko": "리그로우",
+        "en": "Riegrow",
+        "zh_tw": "里格勞"
+      },
+      "aliases": [],
+      "relations": [],
+      "confidence": 1.0,
+      "note": "全名翻全名，名字翻名字，姓氏翻姓氏",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "CHAR000002",
+      "status": "main",
+      "locked": true,
+      "single_name": {
+        "ko": "정태의",
+        "en": "Jeong Tae-ui",
+        "zh_tw": "鄭泰義"
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 1.0,
+      "note": "韓文三字姓名，不拆姓氏與名字",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "CHAR000003",
+      "status": "supporting",
+      "locked": true,
+      "single_name": {
+        "ko": "정재의",
+        "en": "Jeong Jae-ui",
+        "zh_tw": "鄭載義"
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 1.0,
+      "note": "韓文三字姓名，不拆姓氏與名字",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "CHAR000004",
+      "status": "supporting",
+      "locked": true,
+      "single_name": {
+        "ko": "정창인",
+        "en": "Jeong Chang-in",
+        "zh_tw": "鄭昌仁"
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 1.0,
+      "note": "韓文三字姓名，不拆姓氏與名字",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "CHAR000005",
+      "status": "supporting",
+      "locked": true,
+      "single_name": {},
+      "fullname": {
+        "ko": "카일 리그로우",
+        "en": "Kyle Riegrow",
+        "zh_tw": "凱爾・里格勞"
+      },
+      "firstname": {
+        "ko": "카일",
+        "en": "Kyle",
+        "zh_tw": "凱爾"
+      },
+      "lastname": {
+        "ko": "리그로우",
+        "en": "Riegrow",
+        "zh_tw": "里格勞"
+      },
+      "aliases": [],
+      "relations": [],
+      "confidence": 1.0,
+      "note": "與伊萊共用姓氏里格勞",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "CHAR000006",
+      "status": "supporting",
+      "locked": true,
+      "single_name": {},
+      "fullname": {
+        "ko": "리차드 타튼",
+        "en": "Richard Tarten",
+        "zh_tw": "理查・塔騰"
+      },
+      "firstname": {
+        "ko": "리차드",
+        "en": "Richard",
+        "zh_tw": "理查"
+      },
+      "lastname": {
+        "ko": "타튼",
+        "en": "Tarten",
+        "zh_tw": "塔騰"
+      },
+      "aliases": [],
+      "relations": [],
+      "confidence": 1.0,
+      "note": "全名翻全名，名字翻名字，姓氏翻姓氏",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "CHAR000007",
+      "status": "supporting",
+      "locked": true,
+      "single_name": {
+        "ko": "게이블",
+        "en": "Gable",
+        "zh_tw": "蓋博"
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 1.0,
+      "note": "單名",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "CHAR000008",
+      "status": "supporting",
+      "locked": true,
+      "single_name": {
+        "ko": "리타",
+        "en": "Rita",
+        "zh_tw": "麗塔"
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 1.0,
+      "note": "單名",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900001",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "정태의는",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900002",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "않았다",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900003",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "정태의가",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900004",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "고개를",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900005",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "정태의의",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900006",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "말을",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900007",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "그렇게",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900008",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "정태의를",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900009",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "그의",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900010",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "하는",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900011",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "같은",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900012",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "있던",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900013",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "있을",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900014",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "라고",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900015",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "얼굴로",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900016",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "남자는",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900017",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "그가",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900018",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "하나",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900019",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "않은",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900020",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "해도",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900021",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "없이",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900022",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "무슨",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900023",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "남자가",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900024",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "순간",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900025",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "한숨을",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900026",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "하지",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900027",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "바로",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900028",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "잠시",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900029",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "다른",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900030",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "내가",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900031",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "것도",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900032",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "그래",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900033",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "얼굴을",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900034",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "중얼거렸다",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900035",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "문득",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900036",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "자신의",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900037",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "사람이",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900038",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "그를",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900039",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "입을",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900040",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "않고",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900041",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "같았다",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900042",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "거다",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900043",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "보니",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900044",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "그래도",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900045",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "그냥",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900046",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "사람을",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900047",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "갑자기",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900048",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "역시",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900049",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "일레이는",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900050",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "일레이가",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900051",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "일레이의",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900052",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "신루는",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900053",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "보고",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900054",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "몸을",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900055",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "이렇게",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900056",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "보면",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900057",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "지금",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900058",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "자신이",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900059",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "시선을",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900060",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "말았다",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900061",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "뭔가",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900062",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "알고",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900063",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "숙부는",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900064",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "일레이를",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900065",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "않는",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900066",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "어느",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900067",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "그런데",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900068",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "만한",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900069",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "천천히",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900070",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "전에",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900071",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "게다가",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900072",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "생각을",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900073",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "동안",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900074",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "혀를",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900075",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "같이",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900076",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "말이",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900077",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "남자의",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900078",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "걸음을",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900079",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "머리를",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900080",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "약간",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900081",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "정도로",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900082",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "숙부가",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900083",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "신루가",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900084",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "일이",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900085",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "신루의",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900086",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "어쩌면",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900087",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "어떻게",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900088",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "네가",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900089",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "없다",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900090",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "책을",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900091",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "그럼",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900092",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "생각해",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900093",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "소리가",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900094",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "여전히",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900095",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "이제",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900096",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "목소리가",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900097",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "이야기를",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900098",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "않을",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900099",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "제대로",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900100",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "거의",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900101",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "카일은",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900102",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "게이블은",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900103",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "유럽",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900104",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "숙부의",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900105",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "지부",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900106",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "리그로우는",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900107",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "보았다",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900108",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "놈이",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900109",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "정말로",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900110",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "신루를",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900111",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "잠깐",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900112",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "모러는",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900113",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "좋은",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900114",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "태이",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900115",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "손에",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900116",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "기분이",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900117",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "손이",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900118",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "일레이",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900119",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "합동",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900120",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "않아",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900121",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "정창인은",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900122",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "그대로",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900123",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "생각이",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900124",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "전화를",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900125",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "하면",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900126",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "그러다가",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900127",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "오래",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900128",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "시선이",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900129",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "카일이",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900130",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "박준우는",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900131",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "박준우가",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900132",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "박준우의",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900133",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "어쩐지",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900134",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "휴가를",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900135",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "남자를",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900136",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "박준우를",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900137",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "대단히",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900138",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "상관이",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900139",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "굳이",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900140",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "마음에",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900141",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "문제가",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900142",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "상관은",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900143",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "휴가",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900144",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "괜찮아요",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900145",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "늘어져",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900146",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "동양인이",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900147",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "두고",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900148",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "몹시",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900149",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "빌어먹을",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900150",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "아무리",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900151",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "애인",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900152",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "일도",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900153",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "저도",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900154",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "청년은",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900155",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "그때",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900156",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "때문에",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900157",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "매우",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900158",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "모르게",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900159",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "수도",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900160",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "어차피",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900161",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "없어",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    },
+    {
+      "character_id": "AUTO900162",
+      "status": "auto_candidate",
+      "locked": false,
+      "single_name": {
+        "ko": "위에",
+        "en": "",
+        "zh_tw": ""
+      },
+      "fullname": {},
+      "firstname": {},
+      "lastname": {},
+      "aliases": [],
+      "relations": [],
+      "confidence": 0.75,
+      "note": "auto imported from character_memory.json",
+      "history": [
+        {
+          "at": "2026-06-28T02:00:33",
+          "action": "created_or_updated_by_character_database_v2"
+        }
+      ]
+    }
+  ],
+  "match_dictionary": {
+    "일라이 리그로우": {
+      "source": "일라이 리그로우",
+      "target": "伊萊・里格勞",
+      "character_id": "CHAR000001",
+      "match_type": "fullname_ko",
+      "priority": 120,
+      "locked": true,
+      "regex": "(?<![A-Za-z0-9가-힣一-龥])일라이\\ 리그로우(?![A-Za-z0-9가-힣一-龥])"
+    },
+    "카일 리그로우": {
+      "source": "카일 리그로우",
+      "target": "凱爾・里格勞",
+      "character_id": "CHAR000005",
+      "match_type": "fullname_ko",
+      "priority": 120,
+      "locked": true,
+      "regex": "(?<![A-Za-z0-9가-힣一-龥])카일\\ 리그로우(?![A-Za-z0-9가-힣一-龥])"
+    },
+    "리차드 타튼": {
+      "source": "리차드 타튼",
+      "target": "理查・塔騰",
+      "character_id": "CHAR000006",
+      "match_type": "fullname_ko",
+      "priority": 120,
+      "locked": true,
+      "regex": "(?<![A-Za-z0-9가-힣一-龥])리차드\\ 타튼(?![A-Za-z0-9가-힣一-龥])"
+    },
+    "Richard Tarten": {
+      "source": "Richard Tarten",
+      "target": "理查・塔騰",
+      "character_id": "CHAR000006",
+      "match_type": "fullname_en",
+      "priority": 110,
+      "locked": true,
+      "regex": "\\bRichard\\ Tarten\\b"
+    },
+    "Ilay Riegrow": {
+      "source": "Ilay Riegrow",
+      "target": "伊萊・里格勞",
+      "character_id": "CHAR000001",
+      "match_type": "fullname_en",
+      "priority": 110,
+      "locked": true,
+      "regex": "\\bIlay\\ Riegrow\\b"
+    },
+    "Kyle Riegrow": {
+      "source": "Kyle Riegrow",
+      "target": "凱爾・里格勞",
+      "character_id": "CHAR000005",
+      "match_type": "fullname_en",
+      "priority": 110,
+      "locked": true,
+      "regex": "\\bKyle\\ Riegrow\\b"
+    },
+    "게이블": {
+      "source": "게이블",
+      "target": "蓋博",
+      "character_id": "CHAR000007",
+      "match_type": "single_name_ko",
+      "priority": 90,
+      "locked": true,
+      "regex": "(?<![A-Za-z0-9가-힣一-龥])게이블(?![A-Za-z0-9가-힣一-龥])"
+    },
+    "정재의": {
+      "source": "정재의",
+      "target": "鄭載義",
+      "character_id": "CHAR000003",
+      "match_type": "single_name_ko",
+      "priority": 90,
+      "locked": true,
+      "regex": "(?<![A-Za-z0-9가-힣一-龥])정재의(?![A-Za-z0-9가-힣一-龥])"
+    },
+    "정창인": {
+      "source": "정창인",
+      "target": "鄭昌仁",
+      "character_id": "CHAR000004",
+      "match_type": "single_name_ko",
+      "priority": 90,
+      "locked": true,
+      "regex": "(?<![A-Za-z0-9가-힣一-龥])정창인(?![A-Za-z0-9가-힣一-龥])"
+    },
+    "정태의": {
+      "source": "정태의",
+      "target": "鄭泰義",
+      "character_id": "CHAR000002",
+      "match_type": "single_name_ko",
+      "priority": 90,
+      "locked": true,
+      "regex": "(?<![A-Za-z0-9가-힣一-龥])정태의(?![A-Za-z0-9가-힣一-龥])"
+    },
+    "리타": {
+      "source": "리타",
+      "target": "麗塔",
+      "character_id": "CHAR000008",
+      "match_type": "single_name_ko",
+      "priority": 90,
+      "locked": true,
+      "regex": "(?<![A-Za-z0-9가-힣一-龥])리타(?![A-Za-z0-9가-힣一-龥])"
+    },
+    "Jeong Chang-in": {
+      "source": "Jeong Chang-in",
+      "target": "鄭昌仁",
+      "character_id": "CHAR000004",
+      "match_type": "single_name_en",
+      "priority": 80,
+      "locked": true,
+      "regex": "\\bJeong\\ Chang\\-in\\b"
+    },
+    "Jeong Jae-ui": {
+      "source": "Jeong Jae-ui",
+      "target": "鄭載義",
+      "character_id": "CHAR000003",
+      "match_type": "single_name_en",
+      "priority": 80,
+      "locked": true,
+      "regex": "\\bJeong\\ Jae\\-ui\\b"
+    },
+    "Jeong Tae-ui": {
+      "source": "Jeong Tae-ui",
+      "target": "鄭泰義",
+      "character_id": "CHAR000002",
+      "match_type": "single_name_en",
+      "priority": 80,
+      "locked": true,
+      "regex": "\\bJeong\\ Tae\\-ui\\b"
+    },
+    "Gable": {
+      "source": "Gable",
+      "target": "蓋博",
+      "character_id": "CHAR000007",
+      "match_type": "single_name_en",
+      "priority": 80,
+      "locked": true,
+      "regex": "\\bGable\\b"
+    },
+    "Rita": {
+      "source": "Rita",
+      "target": "麗塔",
+      "character_id": "CHAR000008",
+      "match_type": "single_name_en",
+      "priority": 80,
+      "locked": true,
+      "regex": "\\bRita\\b"
+    },
+    "리차드": {
+      "source": "리차드",
+      "target": "理查",
+      "character_id": "CHAR000006",
+      "match_type": "firstname_ko",
+      "priority": 70,
+      "locked": true,
+      "regex": "(?<![A-Za-z0-9가-힣一-龥])리차드(?![A-Za-z0-9가-힣一-龥])"
+    },
+    "일라이": {
+      "source": "일라이",
+      "target": "伊萊",
+      "character_id": "CHAR000001",
+      "match_type": "firstname_ko",
+      "priority": 70,
+      "locked": true,
+      "regex": "(?<![A-Za-z0-9가-힣一-龥])일라이(?![A-Za-z0-9가-힣一-龥])"
+    },
+    "카일": {
+      "source": "카일",
+      "target": "凱爾",
+      "character_id": "CHAR000005",
+      "match_type": "firstname_ko",
+      "priority": 70,
+      "locked": true,
+      "regex": "(?<![A-Za-z0-9가-힣一-龥])카일(?![A-Za-z0-9가-힣一-龥])"
+    },
+    "Richard": {
+      "source": "Richard",
+      "target": "理查",
+      "character_id": "CHAR000006",
+      "match_type": "firstname_en",
+      "priority": 65,
+      "locked": true,
+      "regex": "\\bRichard\\b"
+    },
+    "Ilay": {
+      "source": "Ilay",
+      "target": "伊萊",
+      "character_id": "CHAR000001",
+      "match_type": "firstname_en",
+      "priority": 65,
+      "locked": true,
+      "regex": "\\bIlay\\b"
+    },
+    "Kyle": {
+      "source": "Kyle",
+      "target": "凱爾",
+      "character_id": "CHAR000005",
+      "match_type": "firstname_en",
+      "priority": 65,
+      "locked": true,
+      "regex": "\\bKyle\\b"
+    },
+    "리그로우": {
+      "source": "리그로우",
+      "target": "里格勞",
+      "character_id": "CHAR000001",
+      "match_type": "lastname_ko",
+      "priority": 60,
+      "locked": true,
+      "regex": "(?<![A-Za-z0-9가-힣一-龥])리그로우(?![A-Za-z0-9가-힣一-龥])"
+    },
+    "타튼": {
+      "source": "타튼",
+      "target": "塔騰",
+      "character_id": "CHAR000006",
+      "match_type": "lastname_ko",
+      "priority": 60,
+      "locked": true,
+      "regex": "(?<![A-Za-z0-9가-힣一-龥])타튼(?![A-Za-z0-9가-힣一-龥])"
+    },
+    "Riegrow": {
+      "source": "Riegrow",
+      "target": "里格勞",
+      "character_id": "CHAR000001",
+      "match_type": "lastname_en",
+      "priority": 55,
+      "locked": true,
+      "regex": "\\bRiegrow\\b"
+    },
+    "Tarten": {
+      "source": "Tarten",
+      "target": "塔騰",
+      "character_id": "CHAR000006",
+      "match_type": "lastname_en",
+      "priority": 55,
+      "locked": true,
+      "regex": "\\bTarten\\b"
+    }
+  },
+  "priority_rules": [
+    {
+      "source": "일라이 리그로우",
+      "target": "伊萊・里格勞",
+      "character_id": "CHAR000001",
+      "match_type": "fullname_ko",
+      "priority": 120,
+      "locked": true,
+      "regex": "(?<![A-Za-z0-9가-힣一-龥])일라이\\ 리그로우(?![A-Za-z0-9가-힣一-龥])"
+    },
+    {
+      "source": "카일 리그로우",
+      "target": "凱爾・里格勞",
+      "character_id": "CHAR000005",
+      "match_type": "fullname_ko",
+      "priority": 120,
+      "locked": true,
+      "regex": "(?<![A-Za-z0-9가-힣一-龥])카일\\ 리그로우(?![A-Za-z0-9가-힣一-龥])"
+    },
+    {
+      "source": "리차드 타튼",
+      "target": "理查・塔騰",
+      "character_id": "CHAR000006",
+      "match_type": "fullname_ko",
+      "priority": 120,
+      "locked": true,
+      "regex": "(?<![A-Za-z0-9가-힣一-龥])리차드\\ 타튼(?![A-Za-z0-9가-힣一-龥])"
+    },
+    {
+      "source": "Richard Tarten",
+      "target": "理查・塔騰",
+      "character_id": "CHAR000006",
+      "match_type": "fullname_en",
+      "priority": 110,
+      "locked": true,
+      "regex": "\\bRichard\\ Tarten\\b"
+    },
+    {
+      "source": "Ilay Riegrow",
+      "target": "伊萊・里格勞",
+      "character_id": "CHAR000001",
+      "match_type": "fullname_en",
+      "priority": 110,
+      "locked": true,
+      "regex": "\\bIlay\\ Riegrow\\b"
+    },
+    {
+      "source": "Kyle Riegrow",
+      "target": "凱爾・里格勞",
+      "character_id": "CHAR000005",
+      "match_type": "fullname_en",
+      "priority": 110,
+      "locked": true,
+      "regex": "\\bKyle\\ Riegrow\\b"
+    },
+    {
+      "source": "게이블",
+      "target": "蓋博",
+      "character_id": "CHAR000007",
+      "match_type": "single_name_ko",
+      "priority": 90,
+      "locked": true,
+      "regex": "(?<![A-Za-z0-9가-힣一-龥])게이블(?![A-Za-z0-9가-힣一-龥])"
+    },
+    {
+      "source": "정재의",
+      "target": "鄭載義",
+      "character_id": "CHAR000003",
+      "match_type": "single_name_ko",
+      "priority": 90,
+      "locked": true,
+      "regex": "(?<![A-Za-z0-9가-힣一-龥])정재의(?![A-Za-z0-9가-힣一-龥])"
+    },
+    {
+      "source": "정창인",
+      "target": "鄭昌仁",
+      "character_id": "CHAR000004",
+      "match_type": "single_name_ko",
+      "priority": 90,
+      "locked": true,
+      "regex": "(?<![A-Za-z0-9가-힣一-龥])정창인(?![A-Za-z0-9가-힣一-龥])"
+    },
+    {
+      "source": "정태의",
+      "target": "鄭泰義",
+      "character_id": "CHAR000002",
+      "match_type": "single_name_ko",
+      "priority": 90,
+      "locked": true,
+      "regex": "(?<![A-Za-z0-9가-힣一-龥])정태의(?![A-Za-z0-9가-힣一-龥])"
+    },
+    {
+      "source": "리타",
+      "target": "麗塔",
+      "character_id": "CHAR000008",
+      "match_type": "single_name_ko",
+      "priority": 90,
+      "locked": true,
+      "regex": "(?<![A-Za-z0-9가-힣一-龥])리타(?![A-Za-z0-9가-힣一-龥])"
+    },
+    {
+      "source": "Jeong Chang-in",
+      "target": "鄭昌仁",
+      "character_id": "CHAR000004",
+      "match_type": "single_name_en",
+      "priority": 80,
+      "locked": true,
+      "regex": "\\bJeong\\ Chang\\-in\\b"
+    },
+    {
+      "source": "Jeong Jae-ui",
+      "target": "鄭載義",
+      "character_id": "CHAR000003",
+      "match_type": "single_name_en",
+      "priority": 80,
+      "locked": true,
+      "regex": "\\bJeong\\ Jae\\-ui\\b"
+    },
+    {
+      "source": "Jeong Tae-ui",
+      "target": "鄭泰義",
+      "character_id": "CHAR000002",
+      "match_type": "single_name_en",
+      "priority": 80,
+      "locked": true,
+      "regex": "\\bJeong\\ Tae\\-ui\\b"
+    },
+    {
+      "source": "Gable",
+      "target": "蓋博",
+      "character_id": "CHAR000007",
+      "match_type": "single_name_en",
+      "priority": 80,
+      "locked": true,
+      "regex": "\\bGable\\b"
+    },
+    {
+      "source": "Rita",
+      "target": "麗塔",
+      "character_id": "CHAR000008",
+      "match_type": "single_name_en",
+      "priority": 80,
+      "locked": true,
+      "regex": "\\bRita\\b"
+    },
+    {
+      "source": "리차드",
+      "target": "理查",
+      "character_id": "CHAR000006",
+      "match_type": "firstname_ko",
+      "priority": 70,
+      "locked": true,
+      "regex": "(?<![A-Za-z0-9가-힣一-龥])리차드(?![A-Za-z0-9가-힣一-龥])"
+    },
+    {
+      "source": "일라이",
+      "target": "伊萊",
+      "character_id": "CHAR000001",
+      "match_type": "firstname_ko",
+      "priority": 70,
+      "locked": true,
+      "regex": "(?<![A-Za-z0-9가-힣一-龥])일라이(?![A-Za-z0-9가-힣一-龥])"
+    },
+    {
+      "source": "카일",
+      "target": "凱爾",
+      "character_id": "CHAR000005",
+      "match_type": "firstname_ko",
+      "priority": 70,
+      "locked": true,
+      "regex": "(?<![A-Za-z0-9가-힣一-龥])카일(?![A-Za-z0-9가-힣一-龥])"
+    },
+    {
+      "source": "Richard",
+      "target": "理查",
+      "character_id": "CHAR000006",
+      "match_type": "firstname_en",
+      "priority": 65,
+      "locked": true,
+      "regex": "\\bRichard\\b"
+    },
+    {
+      "source": "Ilay",
+      "target": "伊萊",
+      "character_id": "CHAR000001",
+      "match_type": "firstname_en",
+      "priority": 65,
+      "locked": true,
+      "regex": "\\bIlay\\b"
+    },
+    {
+      "source": "Kyle",
+      "target": "凱爾",
+      "character_id": "CHAR000005",
+      "match_type": "firstname_en",
+      "priority": 65,
+      "locked": true,
+      "regex": "\\bKyle\\b"
+    },
+    {
+      "source": "리그로우",
+      "target": "里格勞",
+      "character_id": "CHAR000001",
+      "match_type": "lastname_ko",
+      "priority": 60,
+      "locked": true,
+      "regex": "(?<![A-Za-z0-9가-힣一-龥])리그로우(?![A-Za-z0-9가-힣一-龥])"
+    },
+    {
+      "source": "타튼",
+      "target": "塔騰",
+      "character_id": "CHAR000006",
+      "match_type": "lastname_ko",
+      "priority": 60,
+      "locked": true,
+      "regex": "(?<![A-Za-z0-9가-힣一-龥])타튼(?![A-Za-z0-9가-힣一-龥])"
+    },
+    {
+      "source": "Riegrow",
+      "target": "里格勞",
+      "character_id": "CHAR000001",
+      "match_type": "lastname_en",
+      "priority": 55,
+      "locked": true,
+      "regex": "\\bRiegrow\\b"
+    },
+    {
+      "source": "Tarten",
+      "target": "塔騰",
+      "character_id": "CHAR000006",
+      "match_type": "lastname_en",
+      "priority": 55,
+      "locked": true,
+      "regex": "\\bTarten\\b"
+    }
+  ]
+}

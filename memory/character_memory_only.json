@@ -13,6 +13,20 @@
     ],
     "created_by": "NTPE Character Memory Engine v1.0"
   },
+  "리그로우": {
+    "source": "리그로우",
+    "translation": "里格勞",
+    "total_count": 0,
+    "books": {},
+    "book_count": 0,
+    "locked": true,
+    "status": "manual_locked",
+    "aliases": [],
+    "notes": [
+      "姓氏，單獨出現時不可翻成全名"
+    ],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
   "리차드": {
     "source": "리차드",
     "translation": "理查",
@@ -57,6 +71,20 @@
   },
   "일라이": {
     "source": "일라이",
+    "translation": "伊萊",
+    "total_count": 0,
+    "books": {},
+    "book_count": 0,
+    "locked": true,
+    "status": "manual_locked",
+    "aliases": [],
+    "notes": [
+      "名字，單獨出現時不可翻成全名"
+    ],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "일라이 리그로우": {
+    "source": "일라이 리그로우",
     "translation": "伊萊・里格勞",
     "total_count": 0,
     "books": {},
@@ -65,7 +93,7 @@
     "status": "manual_locked",
     "aliases": [],
     "notes": [
-      "manual locked"
+      "全名"
     ],
     "created_by": "NTPE Character Memory Engine v1.0"
   },

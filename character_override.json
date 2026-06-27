@@ -4,10 +4,20 @@
     "locked": true,
     "note": "manual locked"
   },
-  "일라이": {
+  "일라이 리그로우": {
     "translation": "伊萊・里格勞",
     "locked": true,
-    "note": "manual locked"
+    "note": "全名"
+  },
+  "일라이": {
+    "translation": "伊萊",
+    "locked": true,
+    "note": "名字，單獨出現時不可翻成全名"
+  },
+  "리그로우": {
+    "translation": "里格勞",
+    "locked": true,
+    "note": "姓氏，單獨出現時不可翻成全名"
   },
   "정재의": {
     "translation": "鄭載義",
