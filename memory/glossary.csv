@@ -1,0 +1,8 @@
+﻿source,translation,category,total_count,book_count,confidence,locked,status,books,aliases,notes
+VIP,VIP,abbreviation,0,0,1.0,True,manual_locked,,,manual locked
+CIA,CIA,organization,0,0,1.0,True,manual_locked,,,manual locked
+PASSION,,abbreviation,2,1,0.2,False,auto,passion2:2,,
+UNH,,abbreviation,2,1,0.2,False,auto,passion4:2,,
+UNHR,,abbreviation,2,1,0.2,False,auto,passion4:2,,
+UNHRD,,abbreviation,2,1,0.2,False,auto,passion3:2,,
+UNHRDO,,organization,64,5,0.77,False,manual_unlocked,passion1:10; passion2:8; passion3:20; passion4:12; passion5:14,,manual editable

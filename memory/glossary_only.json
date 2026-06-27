@@ -1,0 +1,120 @@
+{
+  "VIP": {
+    "source": "VIP",
+    "translation": "VIP",
+    "category": "abbreviation",
+    "total_count": 0,
+    "books": {},
+    "book_count": 0,
+    "locked": true,
+    "status": "manual_locked",
+    "aliases": [],
+    "notes": [
+      "manual locked"
+    ],
+    "confidence": 1.0,
+    "created_by": "NTPE Glossary Builder v1.0"
+  },
+  "CIA": {
+    "source": "CIA",
+    "translation": "CIA",
+    "category": "organization",
+    "total_count": 0,
+    "books": {},
+    "book_count": 0,
+    "locked": true,
+    "status": "manual_locked",
+    "aliases": [],
+    "notes": [
+      "manual locked"
+    ],
+    "confidence": 1.0,
+    "created_by": "NTPE Glossary Builder v1.0"
+  },
+  "PASSION": {
+    "source": "PASSION",
+    "translation": "",
+    "category": "abbreviation",
+    "total_count": 2,
+    "books": {
+      "passion2": 2
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "confidence": 0.2,
+    "created_by": "NTPE Glossary Builder v1.0"
+  },
+  "UNH": {
+    "source": "UNH",
+    "translation": "",
+    "category": "abbreviation",
+    "total_count": 2,
+    "books": {
+      "passion4": 2
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "confidence": 0.2,
+    "created_by": "NTPE Glossary Builder v1.0"
+  },
+  "UNHR": {
+    "source": "UNHR",
+    "translation": "",
+    "category": "abbreviation",
+    "total_count": 2,
+    "books": {
+      "passion4": 2
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "confidence": 0.2,
+    "created_by": "NTPE Glossary Builder v1.0"
+  },
+  "UNHRD": {
+    "source": "UNHRD",
+    "translation": "",
+    "category": "abbreviation",
+    "total_count": 2,
+    "books": {
+      "passion3": 2
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "confidence": 0.2,
+    "created_by": "NTPE Glossary Builder v1.0"
+  },
+  "UNHRDO": {
+    "source": "UNHRDO",
+    "translation": "",
+    "category": "organization",
+    "total_count": 64,
+    "books": {
+      "passion1": 10,
+      "passion2": 8,
+      "passion3": 20,
+      "passion4": 12,
+      "passion5": 14
+    },
+    "book_count": 5,
+    "locked": false,
+    "status": "manual_unlocked",
+    "aliases": [],
+    "notes": [
+      "manual editable"
+    ],
+    "confidence": 0.77,
+    "created_by": "NTPE Glossary Builder v1.0"
+  }
+}

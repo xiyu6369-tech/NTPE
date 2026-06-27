@@ -1,0 +1,23 @@
+{
+  "UNHRDO": {
+    "translation": "",
+    "category": "organization",
+    "locked": false,
+    "aliases": [],
+    "note": "manual editable"
+  },
+  "CIA": {
+    "translation": "CIA",
+    "category": "organization",
+    "locked": true,
+    "aliases": [],
+    "note": "manual locked"
+  },
+  "VIP": {
+    "translation": "VIP",
+    "category": "abbreviation",
+    "locked": true,
+    "aliases": [],
+    "note": "manual locked"
+  }
+}
