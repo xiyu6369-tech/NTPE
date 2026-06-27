@@ -1,38 +1,15 @@
 {
-  "app": {
-    "name": "Novel Translator Professional Edition",
-    "short_name": "NTPE",
-    "version": "0.1.1 Alpha"
-  },
-  "paths": {
-    "logs_dir": "logs",
-    "user_data_dir": "user_data",
-    "projects_dir": "projects"
-  },
-  "api": {
-    "nvidia": {
-      "enabled": true,
-      "rpm_limit": 38,
-      "api_key": "",
-      "model": "meta/llama-3.3-70b-instruct",
-      "base_url": "https://integrate.api.nvidia.com/v1/chat/completions"
-    },
-    "gemini": {
-      "enabled": true,
-      "rpm_limit": 14,
-      "api_key": "",
-      "model": "gemini-2.5-flash",
-      "base_url": "https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
-    }
-  },
-  "translation": {
-    "target_language": "繁體中文（台灣）",
-    "mode": "novel",
-    "chunk_size": 1200,
-    "use_gemini_review": true
-  },
-  "logging": {
-    "level": "INFO",
-    "file_name": "ntpe.log"
-  }
+  "provider": "nvidia",
+  "api_key": "",
+  "model": "meta/llama-3.3-70b-instruct",
+  "api_url": "https://integrate.api.nvidia.com/v1/chat/completions",
+  "timeout": 180,
+  "rpm_limit": 40,
+  "chunk_size": 1800,
+  "min_chunk_size": 350,
+  "context_size": 1000,
+  "max_retry": 5,
+  "opencc": true,
+  "polish_enabled": false,
+  "target_language": "自然繁體中文小說文體"
 }
