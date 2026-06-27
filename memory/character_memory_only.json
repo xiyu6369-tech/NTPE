@@ -1,0 +1,2728 @@
+{
+  "게이블": {
+    "source": "게이블",
+    "translation": "蓋博",
+    "total_count": 0,
+    "books": {},
+    "book_count": 0,
+    "locked": true,
+    "status": "manual_locked",
+    "aliases": [],
+    "notes": [
+      "manual locked"
+    ],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "리차드": {
+    "source": "리차드",
+    "translation": "理查",
+    "total_count": 0,
+    "books": {},
+    "book_count": 0,
+    "locked": true,
+    "status": "manual_locked",
+    "aliases": [],
+    "notes": [
+      "manual locked"
+    ],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "리차드 타튼": {
+    "source": "리차드 타튼",
+    "translation": "理查・塔騰",
+    "total_count": 0,
+    "books": {},
+    "book_count": 0,
+    "locked": true,
+    "status": "manual_locked",
+    "aliases": [],
+    "notes": [
+      "manual locked"
+    ],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "리타": {
+    "source": "리타",
+    "translation": "麗塔",
+    "total_count": 0,
+    "books": {},
+    "book_count": 0,
+    "locked": true,
+    "status": "manual_locked",
+    "aliases": [],
+    "notes": [
+      "manual locked"
+    ],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "일라이": {
+    "source": "일라이",
+    "translation": "伊萊・里格勞",
+    "total_count": 0,
+    "books": {},
+    "book_count": 0,
+    "locked": true,
+    "status": "manual_locked",
+    "aliases": [],
+    "notes": [
+      "manual locked"
+    ],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "정재의": {
+    "source": "정재의",
+    "translation": "鄭載義",
+    "total_count": 0,
+    "books": {},
+    "book_count": 0,
+    "locked": true,
+    "status": "manual_locked",
+    "aliases": [],
+    "notes": [
+      "manual locked"
+    ],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "정창인": {
+    "source": "정창인",
+    "translation": "鄭昌仁",
+    "total_count": 0,
+    "books": {},
+    "book_count": 0,
+    "locked": true,
+    "status": "manual_locked",
+    "aliases": [],
+    "notes": [
+      "manual locked"
+    ],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "정태의": {
+    "source": "정태의",
+    "translation": "鄭泰義",
+    "total_count": 0,
+    "books": {},
+    "book_count": 0,
+    "locked": true,
+    "status": "manual_locked",
+    "aliases": [],
+    "notes": [
+      "manual locked"
+    ],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "카일": {
+    "source": "카일",
+    "translation": "凱爾",
+    "total_count": 0,
+    "books": {},
+    "book_count": 0,
+    "locked": true,
+    "status": "manual_locked",
+    "aliases": [],
+    "notes": [
+      "manual locked"
+    ],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "카일 리그로우": {
+    "source": "카일 리그로우",
+    "translation": "凱爾・里格勞",
+    "total_count": 0,
+    "books": {},
+    "book_count": 0,
+    "locked": true,
+    "status": "manual_locked",
+    "aliases": [],
+    "notes": [
+      "manual locked"
+    ],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "정태의는": {
+    "source": "정태의는",
+    "translation": "",
+    "total_count": 4699,
+    "books": {
+      "passion1": 896,
+      "passion2": 918,
+      "passion3": 1064,
+      "passion4": 764,
+      "passion5": 1011,
+      "passion6": 46
+    },
+    "book_count": 6,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "않았다": {
+    "source": "않았다",
+    "translation": "",
+    "total_count": 970,
+    "books": {
+      "passion1": 159,
+      "passion2": 172,
+      "passion3": 234,
+      "passion4": 187,
+      "passion5": 203,
+      "passion6": 15
+    },
+    "book_count": 6,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "정태의가": {
+    "source": "정태의가",
+    "translation": "",
+    "total_count": 944,
+    "books": {
+      "passion1": 180,
+      "passion2": 202,
+      "passion3": 217,
+      "passion4": 143,
+      "passion5": 182,
+      "passion6": 20
+    },
+    "book_count": 6,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "고개를": {
+    "source": "고개를",
+    "translation": "",
+    "total_count": 877,
+    "books": {
+      "passion1": 185,
+      "passion2": 178,
+      "passion3": 166,
+      "passion4": 165,
+      "passion5": 168,
+      "passion6": 15
+    },
+    "book_count": 6,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "정태의의": {
+    "source": "정태의의",
+    "translation": "",
+    "total_count": 875,
+    "books": {
+      "passion1": 163,
+      "passion2": 157,
+      "passion3": 207,
+      "passion4": 135,
+      "passion5": 194,
+      "passion6": 19
+    },
+    "book_count": 6,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "말을": {
+    "source": "말을",
+    "translation": "",
+    "total_count": 833,
+    "books": {
+      "passion1": 132,
+      "passion2": 181,
+      "passion3": 198,
+      "passion4": 129,
+      "passion5": 177,
+      "passion6": 16
+    },
+    "book_count": 6,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "그렇게": {
+    "source": "그렇게",
+    "translation": "",
+    "total_count": 698,
+    "books": {
+      "passion1": 132,
+      "passion2": 152,
+      "passion3": 150,
+      "passion4": 117,
+      "passion5": 132,
+      "passion6": 15
+    },
+    "book_count": 6,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "정태의를": {
+    "source": "정태의를",
+    "translation": "",
+    "total_count": 629,
+    "books": {
+      "passion1": 127,
+      "passion2": 123,
+      "passion3": 146,
+      "passion4": 96,
+      "passion5": 122,
+      "passion6": 15
+    },
+    "book_count": 6,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "그의": {
+    "source": "그의",
+    "translation": "",
+    "total_count": 596,
+    "books": {
+      "passion1": 117,
+      "passion2": 91,
+      "passion3": 108,
+      "passion4": 123,
+      "passion5": 143,
+      "passion6": 14
+    },
+    "book_count": 6,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "하는": {
+    "source": "하는",
+    "translation": "",
+    "total_count": 523,
+    "books": {
+      "passion1": 107,
+      "passion2": 135,
+      "passion3": 88,
+      "passion4": 96,
+      "passion5": 87,
+      "passion6": 10
+    },
+    "book_count": 6,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "같은": {
+    "source": "같은",
+    "translation": "",
+    "total_count": 518,
+    "books": {
+      "passion1": 122,
+      "passion2": 128,
+      "passion3": 116,
+      "passion4": 83,
+      "passion5": 57,
+      "passion6": 12
+    },
+    "book_count": 6,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "있던": {
+    "source": "있던",
+    "translation": "",
+    "total_count": 497,
+    "books": {
+      "passion1": 114,
+      "passion2": 84,
+      "passion3": 89,
+      "passion4": 87,
+      "passion5": 109,
+      "passion6": 14
+    },
+    "book_count": 6,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "있을": {
+    "source": "있을",
+    "translation": "",
+    "total_count": 454,
+    "books": {
+      "passion1": 87,
+      "passion2": 95,
+      "passion3": 94,
+      "passion4": 82,
+      "passion5": 85,
+      "passion6": 11
+    },
+    "book_count": 6,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "라고": {
+    "source": "라고",
+    "translation": "",
+    "total_count": 435,
+    "books": {
+      "passion1": 84,
+      "passion2": 96,
+      "passion3": 97,
+      "passion4": 79,
+      "passion5": 69,
+      "passion6": 10
+    },
+    "book_count": 6,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "얼굴로": {
+    "source": "얼굴로",
+    "translation": "",
+    "total_count": 419,
+    "books": {
+      "passion1": 93,
+      "passion2": 99,
+      "passion3": 83,
+      "passion4": 79,
+      "passion5": 56,
+      "passion6": 9
+    },
+    "book_count": 6,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "남자는": {
+    "source": "남자는",
+    "translation": "",
+    "total_count": 418,
+    "books": {
+      "passion1": 76,
+      "passion2": 68,
+      "passion3": 50,
+      "passion4": 128,
+      "passion5": 72,
+      "passion6": 24
+    },
+    "book_count": 6,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "그가": {
+    "source": "그가",
+    "translation": "",
+    "total_count": 400,
+    "books": {
+      "passion1": 82,
+      "passion2": 81,
+      "passion3": 68,
+      "passion4": 72,
+      "passion5": 89,
+      "passion6": 8
+    },
+    "book_count": 6,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "하나": {
+    "source": "하나",
+    "translation": "",
+    "total_count": 391,
+    "books": {
+      "passion1": 75,
+      "passion2": 88,
+      "passion3": 67,
+      "passion4": 62,
+      "passion5": 92,
+      "passion6": 7
+    },
+    "book_count": 6,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "않은": {
+    "source": "않은",
+    "translation": "",
+    "total_count": 367,
+    "books": {
+      "passion1": 73,
+      "passion2": 65,
+      "passion3": 91,
+      "passion4": 67,
+      "passion5": 63,
+      "passion6": 8
+    },
+    "book_count": 6,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "해도": {
+    "source": "해도",
+    "translation": "",
+    "total_count": 362,
+    "books": {
+      "passion1": 69,
+      "passion2": 66,
+      "passion3": 79,
+      "passion4": 62,
+      "passion5": 79,
+      "passion6": 7
+    },
+    "book_count": 6,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "없이": {
+    "source": "없이",
+    "translation": "",
+    "total_count": 360,
+    "books": {
+      "passion1": 82,
+      "passion2": 77,
+      "passion3": 71,
+      "passion4": 48,
+      "passion5": 70,
+      "passion6": 12
+    },
+    "book_count": 6,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "무슨": {
+    "source": "무슨",
+    "translation": "",
+    "total_count": 358,
+    "books": {
+      "passion1": 75,
+      "passion2": 89,
+      "passion3": 73,
+      "passion4": 60,
+      "passion5": 55,
+      "passion6": 6
+    },
+    "book_count": 6,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "남자가": {
+    "source": "남자가",
+    "translation": "",
+    "total_count": 346,
+    "books": {
+      "passion1": 79,
+      "passion2": 73,
+      "passion3": 52,
+      "passion4": 71,
+      "passion5": 58,
+      "passion6": 13
+    },
+    "book_count": 6,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "순간": {
+    "source": "순간",
+    "translation": "",
+    "total_count": 341,
+    "books": {
+      "passion1": 80,
+      "passion2": 59,
+      "passion3": 61,
+      "passion4": 62,
+      "passion5": 73,
+      "passion6": 6
+    },
+    "book_count": 6,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "한숨을": {
+    "source": "한숨을",
+    "translation": "",
+    "total_count": 328,
+    "books": {
+      "passion1": 54,
+      "passion2": 60,
+      "passion3": 84,
+      "passion4": 53,
+      "passion5": 71,
+      "passion6": 6
+    },
+    "book_count": 6,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "하지": {
+    "source": "하지",
+    "translation": "",
+    "total_count": 316,
+    "books": {
+      "passion1": 58,
+      "passion2": 77,
+      "passion3": 68,
+      "passion4": 46,
+      "passion5": 56,
+      "passion6": 11
+    },
+    "book_count": 6,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "바로": {
+    "source": "바로",
+    "translation": "",
+    "total_count": 313,
+    "books": {
+      "passion1": 71,
+      "passion2": 57,
+      "passion3": 49,
+      "passion4": 49,
+      "passion5": 77,
+      "passion6": 10
+    },
+    "book_count": 6,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "잠시": {
+    "source": "잠시",
+    "translation": "",
+    "total_count": 546,
+    "books": {
+      "passion1": 101,
+      "passion2": 92,
+      "passion3": 124,
+      "passion4": 118,
+      "passion5": 111
+    },
+    "book_count": 5,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "다른": {
+    "source": "다른",
+    "translation": "",
+    "total_count": 539,
+    "books": {
+      "passion1": 121,
+      "passion2": 128,
+      "passion3": 104,
+      "passion4": 116,
+      "passion5": 70
+    },
+    "book_count": 5,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "내가": {
+    "source": "내가",
+    "translation": "",
+    "total_count": 473,
+    "books": {
+      "passion1": 80,
+      "passion2": 130,
+      "passion3": 94,
+      "passion4": 85,
+      "passion5": 84
+    },
+    "book_count": 5,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "것도": {
+    "source": "것도",
+    "translation": "",
+    "total_count": 448,
+    "books": {
+      "passion1": 98,
+      "passion2": 107,
+      "passion3": 99,
+      "passion4": 76,
+      "passion5": 68
+    },
+    "book_count": 5,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "그래": {
+    "source": "그래",
+    "translation": "",
+    "total_count": 444,
+    "books": {
+      "passion1": 104,
+      "passion2": 80,
+      "passion3": 88,
+      "passion4": 60,
+      "passion5": 112
+    },
+    "book_count": 5,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "얼굴을": {
+    "source": "얼굴을",
+    "translation": "",
+    "total_count": 442,
+    "books": {
+      "passion1": 85,
+      "passion2": 112,
+      "passion3": 88,
+      "passion4": 77,
+      "passion5": 80
+    },
+    "book_count": 5,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "중얼거렸다": {
+    "source": "중얼거렸다",
+    "translation": "",
+    "total_count": 436,
+    "books": {
+      "passion1": 73,
+      "passion2": 79,
+      "passion3": 103,
+      "passion4": 69,
+      "passion5": 112
+    },
+    "book_count": 5,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "문득": {
+    "source": "문득",
+    "translation": "",
+    "total_count": 400,
+    "books": {
+      "passion1": 64,
+      "passion2": 74,
+      "passion3": 67,
+      "passion4": 84,
+      "passion5": 111
+    },
+    "book_count": 5,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "자신의": {
+    "source": "자신의",
+    "translation": "",
+    "total_count": 400,
+    "books": {
+      "passion1": 71,
+      "passion2": 78,
+      "passion3": 98,
+      "passion4": 76,
+      "passion5": 77
+    },
+    "book_count": 5,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "사람이": {
+    "source": "사람이",
+    "translation": "",
+    "total_count": 385,
+    "books": {
+      "passion1": 77,
+      "passion2": 90,
+      "passion3": 78,
+      "passion4": 77,
+      "passion5": 63
+    },
+    "book_count": 5,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "그를": {
+    "source": "그를",
+    "translation": "",
+    "total_count": 366,
+    "books": {
+      "passion1": 61,
+      "passion2": 85,
+      "passion3": 75,
+      "passion4": 64,
+      "passion5": 81
+    },
+    "book_count": 5,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "입을": {
+    "source": "입을",
+    "translation": "",
+    "total_count": 358,
+    "books": {
+      "passion2": 67,
+      "passion3": 100,
+      "passion4": 77,
+      "passion5": 106,
+      "passion6": 8
+    },
+    "book_count": 5,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "않고": {
+    "source": "않고",
+    "translation": "",
+    "total_count": 353,
+    "books": {
+      "passion1": 77,
+      "passion2": 76,
+      "passion3": 86,
+      "passion4": 49,
+      "passion5": 65
+    },
+    "book_count": 5,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "같았다": {
+    "source": "같았다",
+    "translation": "",
+    "total_count": 349,
+    "books": {
+      "passion1": 58,
+      "passion2": 81,
+      "passion3": 73,
+      "passion4": 73,
+      "passion5": 64
+    },
+    "book_count": 5,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "거다": {
+    "source": "거다",
+    "translation": "",
+    "total_count": 347,
+    "books": {
+      "passion1": 52,
+      "passion2": 77,
+      "passion3": 77,
+      "passion4": 90,
+      "passion5": 51
+    },
+    "book_count": 5,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "보니": {
+    "source": "보니",
+    "translation": "",
+    "total_count": 338,
+    "books": {
+      "passion1": 70,
+      "passion2": 87,
+      "passion3": 71,
+      "passion4": 60,
+      "passion5": 50
+    },
+    "book_count": 5,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "그래도": {
+    "source": "그래도",
+    "translation": "",
+    "total_count": 307,
+    "books": {
+      "passion1": 67,
+      "passion2": 73,
+      "passion3": 84,
+      "passion4": 66,
+      "passion6": 17
+    },
+    "book_count": 5,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "그냥": {
+    "source": "그냥",
+    "translation": "",
+    "total_count": 292,
+    "books": {
+      "passion1": 55,
+      "passion2": 73,
+      "passion3": 56,
+      "passion4": 57,
+      "passion5": 51
+    },
+    "book_count": 5,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "사람을": {
+    "source": "사람을",
+    "translation": "",
+    "total_count": 288,
+    "books": {
+      "passion1": 55,
+      "passion2": 70,
+      "passion3": 55,
+      "passion4": 56,
+      "passion5": 52
+    },
+    "book_count": 5,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "갑자기": {
+    "source": "갑자기",
+    "translation": "",
+    "total_count": 278,
+    "books": {
+      "passion1": 58,
+      "passion2": 69,
+      "passion3": 50,
+      "passion4": 44,
+      "passion5": 57
+    },
+    "book_count": 5,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "역시": {
+    "source": "역시",
+    "translation": "",
+    "total_count": 247,
+    "books": {
+      "passion1": 59,
+      "passion2": 58,
+      "passion3": 63,
+      "passion4": 55,
+      "passion6": 12
+    },
+    "book_count": 5,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "일레이는": {
+    "source": "일레이는",
+    "translation": "",
+    "total_count": 711,
+    "books": {
+      "passion2": 167,
+      "passion3": 220,
+      "passion4": 145,
+      "passion5": 179
+    },
+    "book_count": 4,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "일레이가": {
+    "source": "일레이가",
+    "translation": "",
+    "total_count": 424,
+    "books": {
+      "passion2": 113,
+      "passion3": 135,
+      "passion4": 69,
+      "passion5": 107
+    },
+    "book_count": 4,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "일레이의": {
+    "source": "일레이의",
+    "translation": "",
+    "total_count": 344,
+    "books": {
+      "passion2": 69,
+      "passion3": 97,
+      "passion4": 84,
+      "passion5": 94
+    },
+    "book_count": 4,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "신루는": {
+    "source": "신루는",
+    "translation": "",
+    "total_count": 290,
+    "books": {
+      "passion1": 59,
+      "passion2": 103,
+      "passion3": 57,
+      "passion5": 71
+    },
+    "book_count": 4,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "보고": {
+    "source": "보고",
+    "translation": "",
+    "total_count": 273,
+    "books": {
+      "passion1": 87,
+      "passion2": 73,
+      "passion3": 56,
+      "passion4": 57
+    },
+    "book_count": 4,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "몸을": {
+    "source": "몸을",
+    "translation": "",
+    "total_count": 266,
+    "books": {
+      "passion2": 65,
+      "passion3": 69,
+      "passion4": 63,
+      "passion5": 69
+    },
+    "book_count": 4,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "이렇게": {
+    "source": "이렇게",
+    "translation": "",
+    "total_count": 256,
+    "books": {
+      "passion1": 60,
+      "passion2": 72,
+      "passion3": 69,
+      "passion4": 55
+    },
+    "book_count": 4,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "보면": {
+    "source": "보면",
+    "translation": "",
+    "total_count": 253,
+    "books": {
+      "passion1": 73,
+      "passion2": 65,
+      "passion3": 63,
+      "passion5": 52
+    },
+    "book_count": 4,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "지금": {
+    "source": "지금",
+    "translation": "",
+    "total_count": 244,
+    "books": {
+      "passion1": 50,
+      "passion3": 60,
+      "passion4": 80,
+      "passion5": 54
+    },
+    "book_count": 4,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "자신이": {
+    "source": "자신이",
+    "translation": "",
+    "total_count": 234,
+    "books": {
+      "passion1": 59,
+      "passion2": 74,
+      "passion3": 49,
+      "passion5": 52
+    },
+    "book_count": 4,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "시선을": {
+    "source": "시선을",
+    "translation": "",
+    "total_count": 218,
+    "books": {
+      "passion1": 70,
+      "passion3": 63,
+      "passion5": 78,
+      "passion6": 7
+    },
+    "book_count": 4,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "말았다": {
+    "source": "말았다",
+    "translation": "",
+    "total_count": 211,
+    "books": {
+      "passion1": 51,
+      "passion2": 61,
+      "passion3": 49,
+      "passion5": 50
+    },
+    "book_count": 4,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "뭔가": {
+    "source": "뭔가",
+    "translation": "",
+    "total_count": 200,
+    "books": {
+      "passion2": 71,
+      "passion4": 56,
+      "passion5": 63,
+      "passion6": 10
+    },
+    "book_count": 4,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "알고": {
+    "source": "알고",
+    "translation": "",
+    "total_count": 198,
+    "books": {
+      "passion1": 71,
+      "passion2": 59,
+      "passion4": 61,
+      "passion6": 7
+    },
+    "book_count": 4,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "숙부는": {
+    "source": "숙부는",
+    "translation": "",
+    "total_count": 308,
+    "books": {
+      "passion1": 123,
+      "passion2": 76,
+      "passion3": 109
+    },
+    "book_count": 3,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "일레이를": {
+    "source": "일레이를",
+    "translation": "",
+    "total_count": 216,
+    "books": {
+      "passion2": 66,
+      "passion3": 88,
+      "passion5": 62
+    },
+    "book_count": 3,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "않는": {
+    "source": "않는",
+    "translation": "",
+    "total_count": 194,
+    "books": {
+      "passion2": 57,
+      "passion3": 71,
+      "passion5": 66
+    },
+    "book_count": 3,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "어느": {
+    "source": "어느",
+    "translation": "",
+    "total_count": 190,
+    "books": {
+      "passion1": 62,
+      "passion2": 56,
+      "passion5": 72
+    },
+    "book_count": 3,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "그런데": {
+    "source": "그런데",
+    "translation": "",
+    "total_count": 179,
+    "books": {
+      "passion1": 57,
+      "passion2": 73,
+      "passion4": 49
+    },
+    "book_count": 3,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "만한": {
+    "source": "만한",
+    "translation": "",
+    "total_count": 176,
+    "books": {
+      "passion1": 53,
+      "passion2": 55,
+      "passion5": 68
+    },
+    "book_count": 3,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "천천히": {
+    "source": "천천히",
+    "translation": "",
+    "total_count": 176,
+    "books": {
+      "passion3": 60,
+      "passion4": 49,
+      "passion5": 67
+    },
+    "book_count": 3,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "전에": {
+    "source": "전에",
+    "translation": "",
+    "total_count": 170,
+    "books": {
+      "passion2": 55,
+      "passion3": 54,
+      "passion4": 61
+    },
+    "book_count": 3,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "게다가": {
+    "source": "게다가",
+    "translation": "",
+    "total_count": 164,
+    "books": {
+      "passion2": 62,
+      "passion3": 51,
+      "passion4": 51
+    },
+    "book_count": 3,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "생각을": {
+    "source": "생각을",
+    "translation": "",
+    "total_count": 161,
+    "books": {
+      "passion2": 53,
+      "passion4": 51,
+      "passion5": 57
+    },
+    "book_count": 3,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "동안": {
+    "source": "동안",
+    "translation": "",
+    "total_count": 160,
+    "books": {
+      "passion2": 61,
+      "passion3": 50,
+      "passion4": 49
+    },
+    "book_count": 3,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "혀를": {
+    "source": "혀를",
+    "translation": "",
+    "total_count": 159,
+    "books": {
+      "passion3": 62,
+      "passion4": 44,
+      "passion5": 53
+    },
+    "book_count": 3,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "같이": {
+    "source": "같이",
+    "translation": "",
+    "total_count": 140,
+    "books": {
+      "passion1": 58,
+      "passion2": 74,
+      "passion6": 8
+    },
+    "book_count": 3,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "말이": {
+    "source": "말이",
+    "translation": "",
+    "total_count": 132,
+    "books": {
+      "passion3": 70,
+      "passion4": 48,
+      "passion6": 14
+    },
+    "book_count": 3,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "남자의": {
+    "source": "남자의",
+    "translation": "",
+    "total_count": 124,
+    "books": {
+      "passion1": 66,
+      "passion5": 49,
+      "passion6": 9
+    },
+    "book_count": 3,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "걸음을": {
+    "source": "걸음을",
+    "translation": "",
+    "total_count": 123,
+    "books": {
+      "passion1": 55,
+      "passion5": 57,
+      "passion6": 11
+    },
+    "book_count": 3,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "머리를": {
+    "source": "머리를",
+    "translation": "",
+    "total_count": 113,
+    "books": {
+      "passion3": 51,
+      "passion5": 56,
+      "passion6": 6
+    },
+    "book_count": 3,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "약간": {
+    "source": "약간",
+    "translation": "",
+    "total_count": 110,
+    "books": {
+      "passion2": 54,
+      "passion3": 50,
+      "passion6": 6
+    },
+    "book_count": 3,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "정도로": {
+    "source": "정도로",
+    "translation": "",
+    "total_count": 106,
+    "books": {
+      "passion3": 56,
+      "passion4": 44,
+      "passion6": 6
+    },
+    "book_count": 3,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "숙부가": {
+    "source": "숙부가",
+    "translation": "",
+    "total_count": 140,
+    "books": {
+      "passion1": 86,
+      "passion3": 54
+    },
+    "book_count": 2,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "신루가": {
+    "source": "신루가",
+    "translation": "",
+    "total_count": 128,
+    "books": {
+      "passion1": 57,
+      "passion2": 71
+    },
+    "book_count": 2,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "일이": {
+    "source": "일이",
+    "translation": "",
+    "total_count": 125,
+    "books": {
+      "passion2": 61,
+      "passion3": 64
+    },
+    "book_count": 2,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "신루의": {
+    "source": "신루의",
+    "translation": "",
+    "total_count": 124,
+    "books": {
+      "passion1": 50,
+      "passion2": 74
+    },
+    "book_count": 2,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "어쩌면": {
+    "source": "어쩌면",
+    "translation": "",
+    "total_count": 121,
+    "books": {
+      "passion3": 59,
+      "passion5": 62
+    },
+    "book_count": 2,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "어떻게": {
+    "source": "어떻게",
+    "translation": "",
+    "total_count": 118,
+    "books": {
+      "passion2": 58,
+      "passion4": 60
+    },
+    "book_count": 2,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "네가": {
+    "source": "네가",
+    "translation": "",
+    "total_count": 112,
+    "books": {
+      "passion2": 57,
+      "passion4": 55
+    },
+    "book_count": 2,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "없다": {
+    "source": "없다",
+    "translation": "",
+    "total_count": 112,
+    "books": {
+      "passion1": 50,
+      "passion2": 62
+    },
+    "book_count": 2,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "책을": {
+    "source": "책을",
+    "translation": "",
+    "total_count": 108,
+    "books": {
+      "passion1": 60,
+      "passion4": 48
+    },
+    "book_count": 2,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "그럼": {
+    "source": "그럼",
+    "translation": "",
+    "total_count": 103,
+    "books": {
+      "passion1": 50,
+      "passion5": 53
+    },
+    "book_count": 2,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "생각해": {
+    "source": "생각해",
+    "translation": "",
+    "total_count": 101,
+    "books": {
+      "passion3": 50,
+      "passion5": 51
+    },
+    "book_count": 2,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "소리가": {
+    "source": "소리가",
+    "translation": "",
+    "total_count": 99,
+    "books": {
+      "passion1": 49,
+      "passion5": 50
+    },
+    "book_count": 2,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "여전히": {
+    "source": "여전히",
+    "translation": "",
+    "total_count": 62,
+    "books": {
+      "passion3": 56,
+      "passion6": 6
+    },
+    "book_count": 2,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "이제": {
+    "source": "이제",
+    "translation": "",
+    "total_count": 61,
+    "books": {
+      "passion3": 52,
+      "passion6": 9
+    },
+    "book_count": 2,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "목소리가": {
+    "source": "목소리가",
+    "translation": "",
+    "total_count": 60,
+    "books": {
+      "passion3": 52,
+      "passion6": 8
+    },
+    "book_count": 2,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "이야기를": {
+    "source": "이야기를",
+    "translation": "",
+    "total_count": 59,
+    "books": {
+      "passion4": 51,
+      "passion6": 8
+    },
+    "book_count": 2,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "않을": {
+    "source": "않을",
+    "translation": "",
+    "total_count": 56,
+    "books": {
+      "passion1": 50,
+      "passion6": 6
+    },
+    "book_count": 2,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "제대로": {
+    "source": "제대로",
+    "translation": "",
+    "total_count": 56,
+    "books": {
+      "passion5": 50,
+      "passion6": 6
+    },
+    "book_count": 2,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "거의": {
+    "source": "거의",
+    "translation": "",
+    "total_count": 55,
+    "books": {
+      "passion5": 48,
+      "passion6": 7
+    },
+    "book_count": 2,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "카일은": {
+    "source": "카일은",
+    "translation": "",
+    "total_count": 131,
+    "books": {
+      "passion4": 131
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "게이블은": {
+    "source": "게이블은",
+    "translation": "",
+    "total_count": 105,
+    "books": {
+      "passion5": 105
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "유럽": {
+    "source": "유럽",
+    "translation": "",
+    "total_count": 93,
+    "books": {
+      "passion1": 93
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "숙부의": {
+    "source": "숙부의",
+    "translation": "",
+    "total_count": 77,
+    "books": {
+      "passion1": 77
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "지부": {
+    "source": "지부",
+    "translation": "",
+    "total_count": 77,
+    "books": {
+      "passion1": 77
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "리그로우는": {
+    "source": "리그로우는",
+    "translation": "",
+    "total_count": 70,
+    "books": {
+      "passion1": 70
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "보았다": {
+    "source": "보았다",
+    "translation": "",
+    "total_count": 69,
+    "books": {
+      "passion5": 69
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "놈이": {
+    "source": "놈이",
+    "translation": "",
+    "total_count": 63,
+    "books": {
+      "passion1": 63
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "정말로": {
+    "source": "정말로",
+    "translation": "",
+    "total_count": 63,
+    "books": {
+      "passion5": 63
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "신루를": {
+    "source": "신루를",
+    "translation": "",
+    "total_count": 62,
+    "books": {
+      "passion2": 62
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "잠깐": {
+    "source": "잠깐",
+    "translation": "",
+    "total_count": 61,
+    "books": {
+      "passion5": 61
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "모러는": {
+    "source": "모러는",
+    "translation": "",
+    "total_count": 59,
+    "books": {
+      "passion4": 59
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "좋은": {
+    "source": "좋은",
+    "translation": "",
+    "total_count": 59,
+    "books": {
+      "passion2": 59
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "태이": {
+    "source": "태이",
+    "translation": "",
+    "total_count": 55,
+    "books": {
+      "passion5": 55
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "손에": {
+    "source": "손에",
+    "translation": "",
+    "total_count": 54,
+    "books": {
+      "passion1": 54
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "기분이": {
+    "source": "기분이",
+    "translation": "",
+    "total_count": 53,
+    "books": {
+      "passion3": 53
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "손이": {
+    "source": "손이",
+    "translation": "",
+    "total_count": 53,
+    "books": {
+      "passion1": 53
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "일레이": {
+    "source": "일레이",
+    "translation": "",
+    "total_count": 52,
+    "books": {
+      "passion5": 52
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "합동": {
+    "source": "합동",
+    "translation": "",
+    "total_count": 51,
+    "books": {
+      "passion1": 51
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "않아": {
+    "source": "않아",
+    "translation": "",
+    "total_count": 50,
+    "books": {
+      "passion1": 50
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "정창인은": {
+    "source": "정창인은",
+    "translation": "",
+    "total_count": 50,
+    "books": {
+      "passion4": 50
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "그대로": {
+    "source": "그대로",
+    "translation": "",
+    "total_count": 49,
+    "books": {
+      "passion5": 49
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "생각이": {
+    "source": "생각이",
+    "translation": "",
+    "total_count": 49,
+    "books": {
+      "passion4": 49
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "전화를": {
+    "source": "전화를",
+    "translation": "",
+    "total_count": 49,
+    "books": {
+      "passion4": 49
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "하면": {
+    "source": "하면",
+    "translation": "",
+    "total_count": 49,
+    "books": {
+      "passion4": 49
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "그러다가": {
+    "source": "그러다가",
+    "translation": "",
+    "total_count": 46,
+    "books": {
+      "passion4": 46
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "오래": {
+    "source": "오래",
+    "translation": "",
+    "total_count": 45,
+    "books": {
+      "passion4": 45
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "시선이": {
+    "source": "시선이",
+    "translation": "",
+    "total_count": 44,
+    "books": {
+      "passion4": 44
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "카일이": {
+    "source": "카일이",
+    "translation": "",
+    "total_count": 44,
+    "books": {
+      "passion4": 44
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "박준우는": {
+    "source": "박준우는",
+    "translation": "",
+    "total_count": 40,
+    "books": {
+      "passion6": 40
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "박준우가": {
+    "source": "박준우가",
+    "translation": "",
+    "total_count": 15,
+    "books": {
+      "passion6": 15
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "박준우의": {
+    "source": "박준우의",
+    "translation": "",
+    "total_count": 12,
+    "books": {
+      "passion6": 12
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "어쩐지": {
+    "source": "어쩐지",
+    "translation": "",
+    "total_count": 11,
+    "books": {
+      "passion6": 11
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "휴가를": {
+    "source": "휴가를",
+    "translation": "",
+    "total_count": 11,
+    "books": {
+      "passion6": 11
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "남자를": {
+    "source": "남자를",
+    "translation": "",
+    "total_count": 10,
+    "books": {
+      "passion6": 10
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "박준우를": {
+    "source": "박준우를",
+    "translation": "",
+    "total_count": 10,
+    "books": {
+      "passion6": 10
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "대단히": {
+    "source": "대단히",
+    "translation": "",
+    "total_count": 9,
+    "books": {
+      "passion6": 9
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "상관이": {
+    "source": "상관이",
+    "translation": "",
+    "total_count": 9,
+    "books": {
+      "passion6": 9
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "굳이": {
+    "source": "굳이",
+    "translation": "",
+    "total_count": 8,
+    "books": {
+      "passion6": 8
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "마음에": {
+    "source": "마음에",
+    "translation": "",
+    "total_count": 8,
+    "books": {
+      "passion6": 8
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "문제가": {
+    "source": "문제가",
+    "translation": "",
+    "total_count": 8,
+    "books": {
+      "passion6": 8
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "상관은": {
+    "source": "상관은",
+    "translation": "",
+    "total_count": 8,
+    "books": {
+      "passion6": 8
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "휴가": {
+    "source": "휴가",
+    "translation": "",
+    "total_count": 8,
+    "books": {
+      "passion6": 8
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "괜찮아요": {
+    "source": "괜찮아요",
+    "translation": "",
+    "total_count": 7,
+    "books": {
+      "passion6": 7
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "늘어져": {
+    "source": "늘어져",
+    "translation": "",
+    "total_count": 7,
+    "books": {
+      "passion6": 7
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "동양인이": {
+    "source": "동양인이",
+    "translation": "",
+    "total_count": 7,
+    "books": {
+      "passion6": 7
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "두고": {
+    "source": "두고",
+    "translation": "",
+    "total_count": 7,
+    "books": {
+      "passion6": 7
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "몹시": {
+    "source": "몹시",
+    "translation": "",
+    "total_count": 7,
+    "books": {
+      "passion6": 7
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "빌어먹을": {
+    "source": "빌어먹을",
+    "translation": "",
+    "total_count": 7,
+    "books": {
+      "passion6": 7
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "아무리": {
+    "source": "아무리",
+    "translation": "",
+    "total_count": 7,
+    "books": {
+      "passion6": 7
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "애인": {
+    "source": "애인",
+    "translation": "",
+    "total_count": 7,
+    "books": {
+      "passion6": 7
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "일도": {
+    "source": "일도",
+    "translation": "",
+    "total_count": 7,
+    "books": {
+      "passion6": 7
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "저도": {
+    "source": "저도",
+    "translation": "",
+    "total_count": 7,
+    "books": {
+      "passion6": 7
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "청년은": {
+    "source": "청년은",
+    "translation": "",
+    "total_count": 7,
+    "books": {
+      "passion6": 7
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "그때": {
+    "source": "그때",
+    "translation": "",
+    "total_count": 6,
+    "books": {
+      "passion6": 6
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "때문에": {
+    "source": "때문에",
+    "translation": "",
+    "total_count": 6,
+    "books": {
+      "passion6": 6
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "매우": {
+    "source": "매우",
+    "translation": "",
+    "total_count": 6,
+    "books": {
+      "passion6": 6
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "모르게": {
+    "source": "모르게",
+    "translation": "",
+    "total_count": 6,
+    "books": {
+      "passion6": 6
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "수도": {
+    "source": "수도",
+    "translation": "",
+    "total_count": 6,
+    "books": {
+      "passion6": 6
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "어차피": {
+    "source": "어차피",
+    "translation": "",
+    "total_count": 6,
+    "books": {
+      "passion6": 6
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "없어": {
+    "source": "없어",
+    "translation": "",
+    "total_count": 6,
+    "books": {
+      "passion6": 6
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  },
+  "위에": {
+    "source": "위에",
+    "translation": "",
+    "total_count": 6,
+    "books": {
+      "passion6": 6
+    },
+    "book_count": 1,
+    "locked": false,
+    "status": "auto",
+    "aliases": [],
+    "notes": [],
+    "created_by": "NTPE Character Memory Engine v1.0"
+  }
+}
