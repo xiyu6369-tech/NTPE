@@ -1,0 +1,94 @@
+{
+  "schema_name": "NTPE Prompt Package",
+  "version": "1.0",
+  "description": "Common interface between Prompt Builder, Translation Engine, QA Engine, and Context Manager.",
+  "required_top_level_fields": [
+    "package_id",
+    "project",
+    "session",
+    "model_profile",
+    "style_profile",
+    "source",
+    "context",
+    "knowledge",
+    "rules",
+    "prompt",
+    "token_estimate",
+    "qa_requirements",
+    "metadata"
+  ],
+  "fields": {
+    "package_id": "Unique prompt package id, e.g. PKG_000001.",
+    "project": {
+      "project_name": "Project name.",
+      "source_language": "Source language code, e.g. ko.",
+      "target_language": "Target language code, e.g. zh-TW."
+    },
+    "session": {
+      "session_id": "Translation session id.",
+      "file_name": "Current source file.",
+      "chunk_index": "Current chunk number.",
+      "chunk_total": "Total chunk count.",
+      "resume_key": "Stable resume key for continuation."
+    },
+    "model_profile": {
+      "engine": "NVIDIA / OpenAI / Gemini / Local / Other.",
+      "model": "Model id.",
+      "context_window": "Model context limit.",
+      "temperature": "Recommended temperature.",
+      "top_p": "Recommended top_p.",
+      "max_output_tokens": "Expected output limit."
+    },
+    "style_profile": {
+      "name": "Style profile name.",
+      "description": "Translation style description.",
+      "target_register": "Tone/register, e.g. publication-grade Taiwan Traditional Chinese."
+    },
+    "source": {
+      "chunk_text": "Text to translate.",
+      "source_hash": "Hash for resume and QA.",
+      "char_count": "Character count."
+    },
+    "context": {
+      "previous_summary": "Short summary of prior context.",
+      "previous_chunk_tail": "Optional previous chunk tail.",
+      "recent_characters": "Recently active characters.",
+      "recent_terms": "Recently active terms."
+    },
+    "knowledge": {
+      "character_matches": "Relevant Character Database matches found in this chunk.",
+      "glossary_matches": "Relevant glossary matches found in this chunk.",
+      "locked_dictionary": "Locked source->target translations required for this chunk."
+    },
+    "rules": {
+      "global_rules": "Always-on translation rules.",
+      "character_rules": "Name handling rules.",
+      "format_rules": "Output formatting rules.",
+      "negative_rules": "Things the model must not do."
+    },
+    "prompt": {
+      "system_prompt": "Final system message.",
+      "user_prompt": "Final user message.",
+      "prompt_mode": "translate / revise / qa_fix."
+    },
+    "token_estimate": {
+      "system_tokens": "Estimated system prompt tokens.",
+      "user_tokens": "Estimated user prompt tokens.",
+      "source_tokens": "Estimated source tokens.",
+      "total_input_tokens": "Estimated total input tokens.",
+      "estimated_output_tokens": "Estimated output tokens."
+    },
+    "qa_requirements": {
+      "check_korean_residue": "bool",
+      "check_name_rules": "bool",
+      "check_glossary": "bool",
+      "check_repetition": "bool",
+      "check_length_ratio": "bool"
+    },
+    "metadata": {
+      "created_at": "ISO timestamp.",
+      "created_by": "NTPE module name.",
+      "package_version": "Prompt Package spec version."
+    }
+  }
+}

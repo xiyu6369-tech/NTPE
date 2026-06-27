@@ -1,18 +1,20 @@
 ====================================
-NTPE Glossary Builder v1.0
+NTPE Glossary Builder v1.1.1
 ====================================
 
-產生時間：2026-06-28T00:27:02
+產生時間：2026-06-28T03:00:06
 來源檔案數：6
 術語總數：7
 已鎖定術語：2
 已有譯名：2
+角色別名數：0
+角色別名碰撞數：0
 
-【分類統計】
+〖分類統計〗
 - abbreviation: 5
 - organization: 2
 
-【來源檔案】
+〖來源檔案〗
 - passion1_normalized_glossary_auto.json
 - passion2_normalized_glossary_auto.json
 - passion3_normalized_glossary_auto.json
@@ -20,11 +22,11 @@ NTPE Glossary Builder v1.0
 - passion5_normalized_glossary_auto.json
 - passion6_normalized_glossary_auto.json
 
-【鎖定術語】
+〖鎖定術語〗
 - VIP -> VIP [abbreviation] (總次數：0，卷數：0)
 - CIA -> CIA [organization] (總次數：0，卷數：0)
 
-【自動候選 TOP 120】
+〖自動候選 TOP 120〗
 - UNHRDO [organization] (總次數：64，卷數：5，信心：0.77)
 - PASSION [abbreviation] (總次數：2，卷數：1，信心：0.2)
 - UNH [abbreviation] (總次數：2，卷數：1，信心：0.2)

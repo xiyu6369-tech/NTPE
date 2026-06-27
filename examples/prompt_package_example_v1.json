@@ -1,0 +1,101 @@
+{
+  "package_id": "PKG_000001",
+  "project": {
+    "project_name": "Passion",
+    "source_language": "ko",
+    "target_language": "zh-TW"
+  },
+  "session": {
+    "session_id": "SESSION_PASSION_001",
+    "file_name": "passion1_normalized.txt",
+    "chunk_index": 1,
+    "chunk_total": 120,
+    "resume_key": "passion1_normalized:chunk:000001"
+  },
+  "model_profile": {
+    "engine": "NVIDIA",
+    "model": "meta/llama-3.3-70b-instruct",
+    "context_window": 131072,
+    "temperature": 0.15,
+    "top_p": 0.85,
+    "max_output_tokens": 4000
+  },
+  "style_profile": {
+    "name": "Taiwan Novel",
+    "description": "出版級台灣繁體中文小說翻譯",
+    "target_register": "自然流暢、消除機器翻譯感、保留原文敘事節奏"
+  },
+  "source": {
+    "chunk_text": "일라이가 방 안으로 들어왔다.",
+    "source_hash": "demo_hash",
+    "char_count": 17
+  },
+  "context": {
+    "previous_summary": "",
+    "previous_chunk_tail": "",
+    "recent_characters": [
+      "일라이"
+    ],
+    "recent_terms": []
+  },
+  "knowledge": {
+    "character_matches": [
+      {
+        "source": "일라이",
+        "target": "伊萊",
+        "character_id": "CHAR000001",
+        "match_type": "firstname_ko",
+        "priority": 70,
+        "rule": "名字翻名字，不可擴展為全名"
+      }
+    ],
+    "glossary_matches": [],
+    "locked_dictionary": {
+      "일라이": "伊萊"
+    }
+  },
+  "rules": {
+    "global_rules": [
+      "完整翻譯，不可刪減、不可摘要、不可自行補劇情。",
+      "輸出只能是繁體中文譯文，不要加解釋。"
+    ],
+    "character_rules": [
+      "全名翻全名。",
+      "名字翻名字。",
+      "姓氏翻姓氏。",
+      "韓文無空格三字姓名不拆。"
+    ],
+    "format_rules": [
+      "對話使用「」。",
+      "保留段落結構。"
+    ],
+    "negative_rules": [
+      "不要把單獨名字擴展成全名。",
+      "不要留下大量韓文原文。"
+    ]
+  },
+  "prompt": {
+    "system_prompt": "你是專業小說翻譯系統，負責將韓文小說翻譯成出版級台灣繁體中文。",
+    "user_prompt": "請翻譯以下內容：\n\n일라이가 방 안으로 들어왔다.",
+    "prompt_mode": "translate"
+  },
+  "token_estimate": {
+    "system_tokens": 120,
+    "user_tokens": 80,
+    "source_tokens": 20,
+    "total_input_tokens": 220,
+    "estimated_output_tokens": 80
+  },
+  "qa_requirements": {
+    "check_korean_residue": true,
+    "check_name_rules": true,
+    "check_glossary": true,
+    "check_repetition": true,
+    "check_length_ratio": true
+  },
+  "metadata": {
+    "created_at": "2026-06-28T00:00:00",
+    "created_by": "NTPE Prompt Package Spec v1.0",
+    "package_version": "1.0"
+  }
+}

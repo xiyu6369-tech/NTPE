@@ -13,7 +13,7 @@
       "manual locked"
     ],
     "confidence": 1.0,
-    "created_by": "NTPE Glossary Builder v1.0"
+    "created_by": "NTPE Glossary Builder v1.1.1"
   },
   "CIA": {
     "source": "CIA",
@@ -29,7 +29,7 @@
       "manual locked"
     ],
     "confidence": 1.0,
-    "created_by": "NTPE Glossary Builder v1.0"
+    "created_by": "NTPE Glossary Builder v1.1.1"
   },
   "PASSION": {
     "source": "PASSION",
@@ -45,7 +45,7 @@
     "aliases": [],
     "notes": [],
     "confidence": 0.2,
-    "created_by": "NTPE Glossary Builder v1.0"
+    "created_by": "NTPE Glossary Builder v1.1.1"
   },
   "UNH": {
     "source": "UNH",
@@ -61,7 +61,7 @@
     "aliases": [],
     "notes": [],
     "confidence": 0.2,
-    "created_by": "NTPE Glossary Builder v1.0"
+    "created_by": "NTPE Glossary Builder v1.1.1"
   },
   "UNHR": {
     "source": "UNHR",
@@ -77,7 +77,7 @@
     "aliases": [],
     "notes": [],
     "confidence": 0.2,
-    "created_by": "NTPE Glossary Builder v1.0"
+    "created_by": "NTPE Glossary Builder v1.1.1"
   },
   "UNHRD": {
     "source": "UNHRD",
@@ -93,7 +93,7 @@
     "aliases": [],
     "notes": [],
     "confidence": 0.2,
-    "created_by": "NTPE Glossary Builder v1.0"
+    "created_by": "NTPE Glossary Builder v1.1.1"
   },
   "UNHRDO": {
     "source": "UNHRDO",
@@ -115,6 +115,6 @@
       "manual editable"
     ],
     "confidence": 0.77,
-    "created_by": "NTPE Glossary Builder v1.0"
+    "created_by": "NTPE Glossary Builder v1.1.1"
   }
 }

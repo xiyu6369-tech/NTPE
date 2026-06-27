@@ -1,8 +1,8 @@
 {
   "summary": {
     "ntpe_module": "Glossary Builder",
-    "version": "1.0",
-    "generated_at": "2026-06-28T00:27:02",
+    "version": "1.1.1",
+    "generated_at": "2026-06-28T03:00:06",
     "source_file_count": 6,
     "source_files": [
       "passion1_normalized_glossary_auto.json",
@@ -15,6 +15,8 @@
     "term_total": 7,
     "locked_count": 2,
     "translated_count": 2,
+    "character_alias_count": 0,
+    "character_collision_count": 0,
     "category_counts": {
       "abbreviation": 5,
       "organization": 2
@@ -35,7 +37,7 @@
         "manual locked"
       ],
       "confidence": 1.0,
-      "created_by": "NTPE Glossary Builder v1.0"
+      "created_by": "NTPE Glossary Builder v1.1.1"
     },
     "CIA": {
       "source": "CIA",
@@ -51,7 +53,7 @@
         "manual locked"
       ],
       "confidence": 1.0,
-      "created_by": "NTPE Glossary Builder v1.0"
+      "created_by": "NTPE Glossary Builder v1.1.1"
     },
     "PASSION": {
       "source": "PASSION",
@@ -67,7 +69,7 @@
       "aliases": [],
       "notes": [],
       "confidence": 0.2,
-      "created_by": "NTPE Glossary Builder v1.0"
+      "created_by": "NTPE Glossary Builder v1.1.1"
     },
     "UNH": {
       "source": "UNH",
@@ -83,7 +85,7 @@
       "aliases": [],
       "notes": [],
       "confidence": 0.2,
-      "created_by": "NTPE Glossary Builder v1.0"
+      "created_by": "NTPE Glossary Builder v1.1.1"
     },
     "UNHR": {
       "source": "UNHR",
@@ -99,7 +101,7 @@
       "aliases": [],
       "notes": [],
       "confidence": 0.2,
-      "created_by": "NTPE Glossary Builder v1.0"
+      "created_by": "NTPE Glossary Builder v1.1.1"
     },
     "UNHRD": {
       "source": "UNHRD",
@@ -115,7 +117,7 @@
       "aliases": [],
       "notes": [],
       "confidence": 0.2,
-      "created_by": "NTPE Glossary Builder v1.0"
+      "created_by": "NTPE Glossary Builder v1.1.1"
     },
     "UNHRDO": {
       "source": "UNHRDO",
@@ -137,7 +139,7 @@
         "manual editable"
       ],
       "confidence": 0.77,
-      "created_by": "NTPE Glossary Builder v1.0"
+      "created_by": "NTPE Glossary Builder v1.1.1"
     }
   }
 }
