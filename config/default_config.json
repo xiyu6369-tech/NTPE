@@ -5,11 +5,10 @@
   "api_url": "https://integrate.api.nvidia.com/v1/chat/completions",
   "timeout": 180,
   "rpm_limit": 40,
-  "chunk_size": 1800,
-  "min_chunk_size": 350,
-  "context_size": 1000,
-  "max_retry": 5,
+  "chunk_size": 1100,
+  "context_size": 650,
+  "max_retry": 4,
+  "retry_wait_base": 8,
   "opencc": true,
-  "polish_enabled": false,
   "target_language": "自然繁體中文小說文體"
 }

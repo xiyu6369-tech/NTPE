@@ -1,3 +1,2 @@
-requests
-chardet
-opencc-python-reimplemented
+chardet>=5.2.0
+opencc-python-reimplemented>=0.1.7

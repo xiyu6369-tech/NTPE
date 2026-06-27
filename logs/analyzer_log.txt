@@ -1,0 +1,48 @@
+[2026-06-27 23:24:02] NTPE Document Analyzer v1.0 啟動
+[2026-06-27 23:24:02] 找到 6 個 TXT 檔
+[2026-06-27 23:24:02] [1/6] 開始分析：passion1_normalized.txt
+[2026-06-27 23:24:02] 完成分析：passion1_normalized.txt
+[2026-06-27 23:24:02]   JSON：passion1_normalized_analysis.json
+[2026-06-27 23:24:02]   Report：passion1_normalized_report.txt
+[2026-06-27 23:24:02]   CSV：passion1_normalized_statistics.csv
+[2026-06-27 23:24:02]   Character Memory：passion1_normalized_character_memory_auto.json
+[2026-06-27 23:24:02]   Glossary Auto：passion1_normalized_glossary_auto.json
+[2026-06-27 23:24:02] [2/6] 開始分析：passion2_normalized.txt
+[2026-06-27 23:24:03] 完成分析：passion2_normalized.txt
+[2026-06-27 23:24:03]   JSON：passion2_normalized_analysis.json
+[2026-06-27 23:24:03]   Report：passion2_normalized_report.txt
+[2026-06-27 23:24:03]   CSV：passion2_normalized_statistics.csv
+[2026-06-27 23:24:03]   Character Memory：passion2_normalized_character_memory_auto.json
+[2026-06-27 23:24:03]   Glossary Auto：passion2_normalized_glossary_auto.json
+[2026-06-27 23:24:03] [3/6] 開始分析：passion3_normalized.txt
+[2026-06-27 23:24:03] 完成分析：passion3_normalized.txt
+[2026-06-27 23:24:03]   JSON：passion3_normalized_analysis.json
+[2026-06-27 23:24:03]   Report：passion3_normalized_report.txt
+[2026-06-27 23:24:03]   CSV：passion3_normalized_statistics.csv
+[2026-06-27 23:24:03]   Character Memory：passion3_normalized_character_memory_auto.json
+[2026-06-27 23:24:03]   Glossary Auto：passion3_normalized_glossary_auto.json
+[2026-06-27 23:24:03] [4/6] 開始分析：passion4_normalized.txt
+[2026-06-27 23:24:03] 完成分析：passion4_normalized.txt
+[2026-06-27 23:24:03]   JSON：passion4_normalized_analysis.json
+[2026-06-27 23:24:03]   Report：passion4_normalized_report.txt
+[2026-06-27 23:24:03]   CSV：passion4_normalized_statistics.csv
+[2026-06-27 23:24:03]   Character Memory：passion4_normalized_character_memory_auto.json
+[2026-06-27 23:24:03]   Glossary Auto：passion4_normalized_glossary_auto.json
+[2026-06-27 23:24:03] [5/6] 開始分析：passion5_normalized.txt
+[2026-06-27 23:24:03] 完成分析：passion5_normalized.txt
+[2026-06-27 23:24:03]   JSON：passion5_normalized_analysis.json
+[2026-06-27 23:24:03]   Report：passion5_normalized_report.txt
+[2026-06-27 23:24:03]   CSV：passion5_normalized_statistics.csv
+[2026-06-27 23:24:03]   Character Memory：passion5_normalized_character_memory_auto.json
+[2026-06-27 23:24:03]   Glossary Auto：passion5_normalized_glossary_auto.json
+[2026-06-27 23:24:03] [6/6] 開始分析：passion6_normalized.txt
+[2026-06-27 23:24:03] 完成分析：passion6_normalized.txt
+[2026-06-27 23:24:03]   JSON：passion6_normalized_analysis.json
+[2026-06-27 23:24:03]   Report：passion6_normalized_report.txt
+[2026-06-27 23:24:03]   CSV：passion6_normalized_statistics.csv
+[2026-06-27 23:24:03]   Character Memory：passion6_normalized_character_memory_auto.json
+[2026-06-27 23:24:03]   Glossary Auto：passion6_normalized_glossary_auto.json
+[2026-06-27 23:24:03] 全部分析完成
+[2026-06-27 23:24:03] 成功：6
+[2026-06-27 23:24:03] 失敗：0
+[2026-06-27 23:24:03] 輸出資料夾：D:\Python\NTPE\analysis

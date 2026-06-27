@@ -1,0 +1,23 @@
+{
+  "UNHRDO": {
+    "source": "UNHRDO",
+    "translation": "",
+    "count": 12,
+    "locked": false,
+    "note": "auto-detected by NTPE Document Analyzer v1.0"
+  },
+  "UNH": {
+    "source": "UNH",
+    "translation": "",
+    "count": 2,
+    "locked": false,
+    "note": "auto-detected by NTPE Document Analyzer v1.0"
+  },
+  "UNHR": {
+    "source": "UNHR",
+    "translation": "",
+    "count": 2,
+    "locked": false,
+    "note": "auto-detected by NTPE Document Analyzer v1.0"
+  }
+}

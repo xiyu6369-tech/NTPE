@@ -1,0 +1,971 @@
+{
+  "ntpe_module": "Document Analyzer",
+  "version": "1.0",
+  "file": {
+    "name": "passion6_normalized.txt",
+    "stem": "passion6_normalized",
+    "path": "D:\\Python\\NTPE\\output\\passion6_normalized.txt",
+    "analyzed_at": "2026-06-27T23:24:03"
+  },
+  "basic_statistics": {
+    "characters_total": 25069,
+    "characters_no_spaces": 18732,
+    "lines_total": 687,
+    "lines_non_empty": 344,
+    "paragraphs": 344,
+    "estimated_korean_words": 6022,
+    "estimated_chinese_chars": 0
+  },
+  "language_statistics": {
+    "korean": 17227,
+    "hangul_jamo": 0,
+    "chinese": 0,
+    "japanese": 0,
+    "english": 0,
+    "digits": 8,
+    "total_language_chars": 17235,
+    "ratio": {
+      "korean": 99.9536,
+      "chinese": 0.0,
+      "japanese": 0.0,
+      "english": 0.0,
+      "digits": 0.0464
+    }
+  },
+  "dialogue_statistics": {
+    "lines_total_non_empty": 344,
+    "dialogue_lines_estimated": 108,
+    "narration_lines_estimated": 236,
+    "dialogue_ratio_percent": 31.3953,
+    "narration_ratio_percent": 68.6047,
+    "quote_counts": {
+      "「": 112,
+      "」": 112,
+      "『": 12,
+      "』": 12,
+      "\"": 0,
+      "'": 0
+    }
+  },
+  "chapter_detection": {
+    "chapter_count_estimated": 4,
+    "chapters": [
+      {
+        "line": 53,
+        "title": "***"
+      },
+      {
+        "line": 311,
+        "title": "***"
+      },
+      {
+        "line": 459,
+        "title": "***"
+      },
+      {
+        "line": 673,
+        "title": "***"
+      }
+    ]
+  },
+  "character_candidates": [
+    {
+      "name": "정태의는",
+      "count": 46
+    },
+    {
+      "name": "박준우는",
+      "count": 40
+    },
+    {
+      "name": "남자는",
+      "count": 24
+    },
+    {
+      "name": "정태의가",
+      "count": 20
+    },
+    {
+      "name": "정태의의",
+      "count": 19
+    },
+    {
+      "name": "그래도",
+      "count": 17
+    },
+    {
+      "name": "말을",
+      "count": 16
+    },
+    {
+      "name": "고개를",
+      "count": 15
+    },
+    {
+      "name": "그렇게",
+      "count": 15
+    },
+    {
+      "name": "정태의를",
+      "count": 15
+    },
+    {
+      "name": "박준우가",
+      "count": 15
+    },
+    {
+      "name": "않았다",
+      "count": 15
+    },
+    {
+      "name": "그의",
+      "count": 14
+    },
+    {
+      "name": "있던",
+      "count": 14
+    },
+    {
+      "name": "말이",
+      "count": 14
+    },
+    {
+      "name": "남자가",
+      "count": 13
+    },
+    {
+      "name": "같은",
+      "count": 12
+    },
+    {
+      "name": "없이",
+      "count": 12
+    },
+    {
+      "name": "역시",
+      "count": 12
+    },
+    {
+      "name": "박준우의",
+      "count": 12
+    },
+    {
+      "name": "휴가를",
+      "count": 11
+    },
+    {
+      "name": "있을",
+      "count": 11
+    },
+    {
+      "name": "걸음을",
+      "count": 11
+    },
+    {
+      "name": "하지",
+      "count": 11
+    },
+    {
+      "name": "어쩐지",
+      "count": 11
+    },
+    {
+      "name": "라고",
+      "count": 10
+    },
+    {
+      "name": "하는",
+      "count": 10
+    },
+    {
+      "name": "바로",
+      "count": 10
+    },
+    {
+      "name": "남자를",
+      "count": 10
+    },
+    {
+      "name": "박준우를",
+      "count": 10
+    },
+    {
+      "name": "뭔가",
+      "count": 10
+    },
+    {
+      "name": "대단히",
+      "count": 9
+    },
+    {
+      "name": "얼굴로",
+      "count": 9
+    },
+    {
+      "name": "남자의",
+      "count": 9
+    },
+    {
+      "name": "이제",
+      "count": 9
+    },
+    {
+      "name": "상관이",
+      "count": 9
+    },
+    {
+      "name": "그가",
+      "count": 8
+    },
+    {
+      "name": "같이",
+      "count": 8
+    },
+    {
+      "name": "굳이",
+      "count": 8
+    },
+    {
+      "name": "마음에",
+      "count": 8
+    },
+    {
+      "name": "상관은",
+      "count": 8
+    },
+    {
+      "name": "문제가",
+      "count": 8
+    },
+    {
+      "name": "입을",
+      "count": 8
+    },
+    {
+      "name": "이야기를",
+      "count": 8
+    },
+    {
+      "name": "않은",
+      "count": 8
+    },
+    {
+      "name": "휴가",
+      "count": 8
+    },
+    {
+      "name": "목소리가",
+      "count": 8
+    },
+    {
+      "name": "알고",
+      "count": 7
+    },
+    {
+      "name": "해도",
+      "count": 7
+    },
+    {
+      "name": "저도",
+      "count": 7
+    },
+    {
+      "name": "하나",
+      "count": 7
+    },
+    {
+      "name": "일도",
+      "count": 7
+    },
+    {
+      "name": "동양인이",
+      "count": 7
+    },
+    {
+      "name": "시선을",
+      "count": 7
+    },
+    {
+      "name": "괜찮아요",
+      "count": 7
+    },
+    {
+      "name": "거의",
+      "count": 7
+    },
+    {
+      "name": "빌어먹을",
+      "count": 7
+    },
+    {
+      "name": "아무리",
+      "count": 7
+    },
+    {
+      "name": "늘어져",
+      "count": 7
+    },
+    {
+      "name": "두고",
+      "count": 7
+    },
+    {
+      "name": "몹시",
+      "count": 7
+    },
+    {
+      "name": "청년은",
+      "count": 7
+    },
+    {
+      "name": "애인",
+      "count": 7
+    },
+    {
+      "name": "제대로",
+      "count": 6
+    },
+    {
+      "name": "때문에",
+      "count": 6
+    },
+    {
+      "name": "정도로",
+      "count": 6
+    },
+    {
+      "name": "한숨을",
+      "count": 6
+    },
+    {
+      "name": "수도",
+      "count": 6
+    },
+    {
+      "name": "위에",
+      "count": 6
+    },
+    {
+      "name": "약간",
+      "count": 6
+    },
+    {
+      "name": "모르게",
+      "count": 6
+    },
+    {
+      "name": "않을",
+      "count": 6
+    },
+    {
+      "name": "없어",
+      "count": 6
+    },
+    {
+      "name": "그때",
+      "count": 6
+    },
+    {
+      "name": "순간",
+      "count": 6
+    },
+    {
+      "name": "매우",
+      "count": 6
+    },
+    {
+      "name": "머리를",
+      "count": 6
+    },
+    {
+      "name": "여전히",
+      "count": 6
+    },
+    {
+      "name": "어차피",
+      "count": 6
+    },
+    {
+      "name": "무슨",
+      "count": 6
+    }
+  ],
+  "term_candidates": [],
+  "repetition_detection": {
+    "repeated_paragraph_count": 0,
+    "repeated_sentence_count": 0,
+    "repeated_paragraphs": [],
+    "repeated_sentences": []
+  },
+  "corruption_detection": {
+    "replacement_char": 0,
+    "null_char": 0,
+    "control_char_count": 0,
+    "mojibake_hits": [],
+    "corruption_score": 0,
+    "level": "clean"
+  },
+  "character_memory_auto": {
+    "정태의는": {
+      "source": "정태의는",
+      "translation": "",
+      "count": 46,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "박준우는": {
+      "source": "박준우는",
+      "translation": "",
+      "count": 40,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "남자는": {
+      "source": "남자는",
+      "translation": "",
+      "count": 24,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "정태의가": {
+      "source": "정태의가",
+      "translation": "",
+      "count": 20,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "정태의의": {
+      "source": "정태의의",
+      "translation": "",
+      "count": 19,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "그래도": {
+      "source": "그래도",
+      "translation": "",
+      "count": 17,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "말을": {
+      "source": "말을",
+      "translation": "",
+      "count": 16,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "고개를": {
+      "source": "고개를",
+      "translation": "",
+      "count": 15,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "그렇게": {
+      "source": "그렇게",
+      "translation": "",
+      "count": 15,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "정태의를": {
+      "source": "정태의를",
+      "translation": "",
+      "count": 15,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "박준우가": {
+      "source": "박준우가",
+      "translation": "",
+      "count": 15,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "않았다": {
+      "source": "않았다",
+      "translation": "",
+      "count": 15,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "그의": {
+      "source": "그의",
+      "translation": "",
+      "count": 14,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "있던": {
+      "source": "있던",
+      "translation": "",
+      "count": 14,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "말이": {
+      "source": "말이",
+      "translation": "",
+      "count": 14,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "남자가": {
+      "source": "남자가",
+      "translation": "",
+      "count": 13,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "같은": {
+      "source": "같은",
+      "translation": "",
+      "count": 12,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "없이": {
+      "source": "없이",
+      "translation": "",
+      "count": 12,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "역시": {
+      "source": "역시",
+      "translation": "",
+      "count": 12,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "박준우의": {
+      "source": "박준우의",
+      "translation": "",
+      "count": 12,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "휴가를": {
+      "source": "휴가를",
+      "translation": "",
+      "count": 11,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "있을": {
+      "source": "있을",
+      "translation": "",
+      "count": 11,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "걸음을": {
+      "source": "걸음을",
+      "translation": "",
+      "count": 11,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "하지": {
+      "source": "하지",
+      "translation": "",
+      "count": 11,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "어쩐지": {
+      "source": "어쩐지",
+      "translation": "",
+      "count": 11,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "라고": {
+      "source": "라고",
+      "translation": "",
+      "count": 10,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "하는": {
+      "source": "하는",
+      "translation": "",
+      "count": 10,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "바로": {
+      "source": "바로",
+      "translation": "",
+      "count": 10,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "남자를": {
+      "source": "남자를",
+      "translation": "",
+      "count": 10,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "박준우를": {
+      "source": "박준우를",
+      "translation": "",
+      "count": 10,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "뭔가": {
+      "source": "뭔가",
+      "translation": "",
+      "count": 10,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "대단히": {
+      "source": "대단히",
+      "translation": "",
+      "count": 9,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "얼굴로": {
+      "source": "얼굴로",
+      "translation": "",
+      "count": 9,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "남자의": {
+      "source": "남자의",
+      "translation": "",
+      "count": 9,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "이제": {
+      "source": "이제",
+      "translation": "",
+      "count": 9,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "상관이": {
+      "source": "상관이",
+      "translation": "",
+      "count": 9,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "그가": {
+      "source": "그가",
+      "translation": "",
+      "count": 8,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "같이": {
+      "source": "같이",
+      "translation": "",
+      "count": 8,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "굳이": {
+      "source": "굳이",
+      "translation": "",
+      "count": 8,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "마음에": {
+      "source": "마음에",
+      "translation": "",
+      "count": 8,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "상관은": {
+      "source": "상관은",
+      "translation": "",
+      "count": 8,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "문제가": {
+      "source": "문제가",
+      "translation": "",
+      "count": 8,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "입을": {
+      "source": "입을",
+      "translation": "",
+      "count": 8,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "이야기를": {
+      "source": "이야기를",
+      "translation": "",
+      "count": 8,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "않은": {
+      "source": "않은",
+      "translation": "",
+      "count": 8,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "휴가": {
+      "source": "휴가",
+      "translation": "",
+      "count": 8,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "목소리가": {
+      "source": "목소리가",
+      "translation": "",
+      "count": 8,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "알고": {
+      "source": "알고",
+      "translation": "",
+      "count": 7,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "해도": {
+      "source": "해도",
+      "translation": "",
+      "count": 7,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "저도": {
+      "source": "저도",
+      "translation": "",
+      "count": 7,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "하나": {
+      "source": "하나",
+      "translation": "",
+      "count": 7,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "일도": {
+      "source": "일도",
+      "translation": "",
+      "count": 7,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "동양인이": {
+      "source": "동양인이",
+      "translation": "",
+      "count": 7,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "시선을": {
+      "source": "시선을",
+      "translation": "",
+      "count": 7,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "괜찮아요": {
+      "source": "괜찮아요",
+      "translation": "",
+      "count": 7,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "거의": {
+      "source": "거의",
+      "translation": "",
+      "count": 7,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "빌어먹을": {
+      "source": "빌어먹을",
+      "translation": "",
+      "count": 7,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "아무리": {
+      "source": "아무리",
+      "translation": "",
+      "count": 7,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "늘어져": {
+      "source": "늘어져",
+      "translation": "",
+      "count": 7,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "두고": {
+      "source": "두고",
+      "translation": "",
+      "count": 7,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "몹시": {
+      "source": "몹시",
+      "translation": "",
+      "count": 7,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "청년은": {
+      "source": "청년은",
+      "translation": "",
+      "count": 7,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "애인": {
+      "source": "애인",
+      "translation": "",
+      "count": 7,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "제대로": {
+      "source": "제대로",
+      "translation": "",
+      "count": 6,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "때문에": {
+      "source": "때문에",
+      "translation": "",
+      "count": 6,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "정도로": {
+      "source": "정도로",
+      "translation": "",
+      "count": 6,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "한숨을": {
+      "source": "한숨을",
+      "translation": "",
+      "count": 6,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "수도": {
+      "source": "수도",
+      "translation": "",
+      "count": 6,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "위에": {
+      "source": "위에",
+      "translation": "",
+      "count": 6,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "약간": {
+      "source": "약간",
+      "translation": "",
+      "count": 6,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "모르게": {
+      "source": "모르게",
+      "translation": "",
+      "count": 6,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "않을": {
+      "source": "않을",
+      "translation": "",
+      "count": 6,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "없어": {
+      "source": "없어",
+      "translation": "",
+      "count": 6,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "그때": {
+      "source": "그때",
+      "translation": "",
+      "count": 6,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "순간": {
+      "source": "순간",
+      "translation": "",
+      "count": 6,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "매우": {
+      "source": "매우",
+      "translation": "",
+      "count": 6,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "머리를": {
+      "source": "머리를",
+      "translation": "",
+      "count": 6,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "여전히": {
+      "source": "여전히",
+      "translation": "",
+      "count": 6,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "어차피": {
+      "source": "어차피",
+      "translation": "",
+      "count": 6,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    },
+    "무슨": {
+      "source": "무슨",
+      "translation": "",
+      "count": 6,
+      "locked": false,
+      "note": "auto-detected by NTPE Document Analyzer v1.0"
+    }
+  },
+  "glossary_auto": {}
+}
