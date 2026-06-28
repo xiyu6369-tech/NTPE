@@ -37,9 +37,33 @@
     "recent_terms": []
   },
   "knowledge": {
-    "character_matches": [],
+    "character_matches": [
+      {
+        "source": "정태의",
+        "target": "鄭泰義",
+        "character_id": "CHAR000002",
+        "match_type": "single_name_ko",
+        "priority": 90,
+        "locked": true,
+        "regex": "(?<![A-Za-z0-9가-힣一-龥])정태의(?![A-Za-z0-9가-힣一-龥])",
+        "rule": "單名或韓文無空格姓名不拆"
+      },
+      {
+        "source": "일라이",
+        "target": "伊萊",
+        "character_id": "CHAR000001",
+        "match_type": "firstname_ko",
+        "priority": 70,
+        "locked": true,
+        "regex": "(?<![A-Za-z0-9가-힣一-龥])일라이(?![A-Za-z0-9가-힣一-龥])",
+        "rule": "名字翻名字，不可擴展為全名"
+      }
+    ],
     "glossary_matches": [],
-    "locked_dictionary": {}
+    "locked_dictionary": {
+      "정태의": "鄭泰義",
+      "일라이": "伊萊"
+    }
   },
   "rules": {
     "global_rules": [
@@ -74,14 +98,14 @@
   },
   "prompt": {
     "system_prompt": "你是 NTPE 的專業小說翻譯引擎。你的任務是將原文完整翻譯成Taiwan Traditional Chinese。你必須遵守提供的人名、術語與格式規則。只輸出譯文，不要加解釋。",
-    "user_prompt": "【翻譯規則】\\n- 翻譯為自然流暢的台灣繁體中文。\\n- 保留原文劇情與敘事順序。\\n- 不可刪減、不可摘要、不可自行補劇情。\\n- 對話使用「」。\\n- 消除機器翻譯感。\\n- 人物口吻保持一致。\\n- 全名必須翻成全名。\\n- 名字單獨出現時只翻名字，不可擴展成全名。\\n- 姓氏單獨出現時只翻姓氏，不可擴展成全名。\\n- 韓文無空格姓名視為完整姓名，不可拆分。\\n- 必須遵守 Character Database 的 locked_dictionary。\\n- 對話使用「」。\\n- 保留原文段落結構。\\n- 不要輸出 Markdown 標題。\\n- 不要加上「以下為翻譯」等說明文字。\\n- 不可漏翻。\\n- 不可摘要。\\n- 不可改寫劇情。\\n- 不可自行新增原文沒有的內容。\\n- 不可留下大量韓文原文。\\n- 不可把單獨名字翻成全名。\\n\\n【待翻譯內容】\\n일라이가 방 안으로 들어왔다.\n정태의는 그를 바라보았다.\n",
+    "user_prompt": "【翻譯規則】\\n- 翻譯為自然流暢的台灣繁體中文。\\n- 保留原文劇情與敘事順序。\\n- 不可刪減、不可摘要、不可自行補劇情。\\n- 對話使用「」。\\n- 消除機器翻譯感。\\n- 人物口吻保持一致。\\n- 全名必須翻成全名。\\n- 名字單獨出現時只翻名字，不可擴展成全名。\\n- 姓氏單獨出現時只翻姓氏，不可擴展成全名。\\n- 韓文無空格姓名視為完整姓名，不可拆分。\\n- 必須遵守 Character Database 的 locked_dictionary。\\n- 對話使用「」。\\n- 保留原文段落結構。\\n- 不要輸出 Markdown 標題。\\n- 不要加上「以下為翻譯」等說明文字。\\n- 不可漏翻。\\n- 不可摘要。\\n- 不可改寫劇情。\\n- 不可自行新增原文沒有的內容。\\n- 不可留下大量韓文原文。\\n- 不可把單獨名字翻成全名。\\n\\n【本段人物譯名】\\n- 정태의 → 鄭泰義（單名或韓文無空格姓名不拆）\\n- 일라이 → 伊萊（名字翻名字，不可擴展為全名）\\n\\n【待翻譯內容】\\n일라이가 방 안으로 들어왔다.\n정태의는 그를 바라보았다.\n",
     "prompt_mode": "translate"
   },
   "token_estimate": {
     "system_tokens": 61,
-    "user_tokens": 283,
+    "user_tokens": 331,
     "source_tokens": 26,
-    "total_input_tokens": 344,
+    "total_input_tokens": 392,
     "estimated_output_tokens": 500
   },
   "qa_requirements": {
@@ -92,7 +116,7 @@
     "check_length_ratio": true
   },
   "metadata": {
-    "created_at": "2026-06-29T00:01:17",
+    "created_at": "2026-06-29T00:10:48",
     "created_by": "NTPE Prompt Builder v1.0 Core",
     "package_version": "1.0"
   }
