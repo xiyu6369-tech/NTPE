@@ -1,0 +1,18 @@
+{
+  "status": "done",
+  "file": "passion1_normalized.txt",
+  "chunk_index": 4,
+  "char_count": 3051,
+  "attempts": 1,
+  "package_path": "D:\\Python\\NTPE\\prompt_packages\\passion1_normalized_chunk_000004.json",
+  "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000004_zh.txt",
+  "cache_path": "D:\\Python\\NTPE\\translation_cache\\passion1_normalized_chunk_000004_result.json",
+  "qa": {
+    "passed": true,
+    "issues": [],
+    "korean_residue_count": 0,
+    "source_length": 3050,
+    "translation_length": 1736
+  },
+  "updated_at": "2026-06-29T02:17:08"
+}

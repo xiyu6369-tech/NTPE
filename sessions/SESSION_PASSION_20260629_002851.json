@@ -1,0 +1,64 @@
+{
+  "session_id": "SESSION_PASSION_20260629_002851",
+  "project_id": "passion",
+  "status": "success",
+  "created_at": "2026-06-29T00:28:51",
+  "updated_at": "2026-06-29T00:28:52",
+  "current_stage": "translate_package",
+  "stages": [
+    {
+      "stage": "prepare_demo_chunk",
+      "status": "success",
+      "started_at": "2026-06-29T00:28:51",
+      "ended_at": "2026-06-29T00:28:51",
+      "message": "demo chunk ready",
+      "warnings": [],
+      "data": {
+        "file_name": "prompt_builder_sample_chunk.txt",
+        "path": "D:\\Python\\NTPE\\examples\\prompt_builder_sample_chunk.txt",
+        "char_count": 32,
+        "chunk_text": "일라이가 방 안으로 들어왔다.\n정태의는 그를 바라보았다.\n"
+      }
+    },
+    {
+      "stage": "build_prompt_package",
+      "status": "success",
+      "started_at": "2026-06-29T00:28:51",
+      "ended_at": "2026-06-29T00:28:51",
+      "message": "prompt package built",
+      "warnings": [],
+      "data": {
+        "package_path": "D:\\Python\\NTPE\\prompt_packages\\SESSION_PASSION_20260629_002851_chunk_000001.json",
+        "package_id": "PKG_SESSION_PASSION_20260629_002851_000001",
+        "character_matches": 2,
+        "glossary_matches": 0
+      }
+    },
+    {
+      "stage": "translate_package",
+      "status": "success",
+      "started_at": "2026-06-29T00:28:51",
+      "ended_at": "2026-06-29T00:28:52",
+      "message": "translation finished",
+      "warnings": [],
+      "data": {
+        "status": "success",
+        "package_id": "PKG_SESSION_PASSION_20260629_002851_000001",
+        "translated_at": "2026-06-29T00:28:52",
+        "output_path": "D:\\Python\\NTPE\\translated\\prompt_builder_sample_chunk_chunk_000001_zh.txt",
+        "cache_path": "D:\\Python\\NTPE\\translation_cache\\prompt_builder_sample_chunk_chunk_000001_result.json",
+        "qa": {
+          "passed": true,
+          "issues": [],
+          "korean_residue_count": 0,
+          "source_length": 31,
+          "translation_length": 16
+        },
+        "package_path": "D:\\Python\\NTPE\\prompt_packages\\SESSION_PASSION_20260629_002851_chunk_000001.json"
+      }
+    }
+  ],
+  "files": [],
+  "chunks": [],
+  "notes": []
+}

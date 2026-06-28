@@ -1,0 +1,141 @@
+{
+  "result": {
+    "status": "success",
+    "package_id": "PKG_SESSION_PASSION_20260629_002851_000001",
+    "translated_at": "2026-06-29T00:28:52",
+    "output_path": "D:\\Python\\NTPE\\translated\\prompt_builder_sample_chunk_chunk_000001_zh.txt",
+    "cache_path": "D:\\Python\\NTPE\\translation_cache\\prompt_builder_sample_chunk_chunk_000001_result.json",
+    "qa": {
+      "passed": true,
+      "issues": [],
+      "korean_residue_count": 0,
+      "source_length": 31,
+      "translation_length": 16
+    },
+    "package_path": "D:\\Python\\NTPE\\prompt_packages\\SESSION_PASSION_20260629_002851_chunk_000001.json"
+  },
+  "translation": "伊萊走進房間，鄭泰義看了他一眼。\n",
+  "package": {
+    "package_id": "PKG_SESSION_PASSION_20260629_002851_000001",
+    "project": {
+      "project_name": "Passion",
+      "source_language": "ko",
+      "target_language": "zh-TW"
+    },
+    "session": {
+      "session_id": "SESSION_PASSION_20260629_002851",
+      "file_name": "prompt_builder_sample_chunk.txt",
+      "chunk_index": 1,
+      "chunk_total": 1,
+      "resume_key": "prompt_builder_sample_chunk.txt:chunk:000001"
+    },
+    "model_profile": {
+      "engine": "NVIDIA",
+      "model": "meta/llama-3.3-70b-instruct",
+      "context_window": 131072,
+      "temperature": 0.15,
+      "top_p": 0.85,
+      "max_output_tokens": 4000
+    },
+    "style_profile": {
+      "name": "Taiwan Novel",
+      "description": "publication-grade Traditional Chinese",
+      "target_register": "publication-grade Traditional Chinese"
+    },
+    "source": {
+      "chunk_text": "일라이가 방 안으로 들어왔다.\n정태의는 그를 바라보았다.\n",
+      "source_hash": "29430b00ae50323e30f3342a70b99ba18fd7c6be",
+      "char_count": 32
+    },
+    "context": {
+      "previous_summary": "",
+      "previous_chunk_tail": "",
+      "recent_characters": [],
+      "recent_terms": []
+    },
+    "knowledge": {
+      "character_matches": [
+        {
+          "source": "정태의",
+          "target": "鄭泰義",
+          "character_id": "CHAR000002",
+          "match_type": "single_name_ko",
+          "priority": 90,
+          "locked": true,
+          "regex": "(?<![A-Za-z0-9가-힣一-龥])정태의(?![A-Za-z0-9가-힣一-龥])",
+          "rule": "單名或韓文無空格姓名不拆"
+        },
+        {
+          "source": "일라이",
+          "target": "伊萊",
+          "character_id": "CHAR000001",
+          "match_type": "firstname_ko",
+          "priority": 70,
+          "locked": true,
+          "regex": "(?<![A-Za-z0-9가-힣一-龥])일라이(?![A-Za-z0-9가-힣一-龥])",
+          "rule": "名字翻名字，不可擴展為全名"
+        }
+      ],
+      "glossary_matches": [],
+      "locked_dictionary": {
+        "정태의": "鄭泰義",
+        "일라이": "伊萊"
+      }
+    },
+    "rules": {
+      "global_rules": [
+        "翻譯為自然流暢的台灣繁體中文。",
+        "保留原文劇情與敘事順序。",
+        "不可刪減、不可摘要、不可自行補劇情。",
+        "對話使用「」。",
+        "消除機器翻譯感。",
+        "人物口吻保持一致。"
+      ],
+      "character_rules": [
+        "全名必須翻成全名。",
+        "名字單獨出現時只翻名字，不可擴展成全名。",
+        "姓氏單獨出現時只翻姓氏，不可擴展成全名。",
+        "韓文無空格姓名視為完整姓名，不可拆分。",
+        "必須遵守 Character Database 的 locked_dictionary。"
+      ],
+      "format_rules": [
+        "對話使用「」。",
+        "保留原文段落結構。",
+        "不要輸出 Markdown 標題。",
+        "不要加上「以下為翻譯」等說明文字。"
+      ],
+      "negative_rules": [
+        "不可漏翻。",
+        "不可摘要。",
+        "不可改寫劇情。",
+        "不可自行新增原文沒有的內容。",
+        "不可留下大量韓文原文。",
+        "不可把單獨名字翻成全名。"
+      ]
+    },
+    "prompt": {
+      "system_prompt": "你是 NTPE 的專業小說翻譯引擎。你的任務是將原文完整翻譯成Taiwan Traditional Chinese。你必須遵守提供的人名、術語與格式規則。只輸出譯文，不要加解釋。",
+      "user_prompt": "【翻譯規則】\\n- 翻譯為自然流暢的台灣繁體中文。\\n- 保留原文劇情與敘事順序。\\n- 不可刪減、不可摘要、不可自行補劇情。\\n- 對話使用「」。\\n- 消除機器翻譯感。\\n- 人物口吻保持一致。\\n- 全名必須翻成全名。\\n- 名字單獨出現時只翻名字，不可擴展成全名。\\n- 姓氏單獨出現時只翻姓氏，不可擴展成全名。\\n- 韓文無空格姓名視為完整姓名，不可拆分。\\n- 必須遵守 Character Database 的 locked_dictionary。\\n- 對話使用「」。\\n- 保留原文段落結構。\\n- 不要輸出 Markdown 標題。\\n- 不要加上「以下為翻譯」等說明文字。\\n- 不可漏翻。\\n- 不可摘要。\\n- 不可改寫劇情。\\n- 不可自行新增原文沒有的內容。\\n- 不可留下大量韓文原文。\\n- 不可把單獨名字翻成全名。\\n\\n【本段人物譯名】\\n- 정태의 → 鄭泰義（單名或韓文無空格姓名不拆）\\n- 일라이 → 伊萊（名字翻名字，不可擴展為全名）\\n\\n【待翻譯內容】\\n일라이가 방 안으로 들어왔다.\n정태의는 그를 바라보았다.\n",
+      "prompt_mode": "translate"
+    },
+    "token_estimate": {
+      "system_tokens": 61,
+      "user_tokens": 331,
+      "source_tokens": 26,
+      "total_input_tokens": 392,
+      "estimated_output_tokens": 500
+    },
+    "qa_requirements": {
+      "check_korean_residue": true,
+      "check_name_rules": true,
+      "check_glossary": true,
+      "check_repetition": true,
+      "check_length_ratio": true
+    },
+    "metadata": {
+      "created_at": "2026-06-29T00:28:51",
+      "created_by": "NTPE Prompt Builder v1.0 Core",
+      "package_version": "1.0"
+    }
+  }
+}

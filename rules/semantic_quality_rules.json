@@ -1,0 +1,63 @@
+{
+  "version": "1.0",
+  "description": "NTPE semantic quality rules for Korean novel translation.",
+  "semantic_locks": [
+    {
+      "source": "초인종",
+      "required_any": ["門鈴"],
+      "forbidden_any": ["電話鈴", "電話鈴聲", "電話聲"],
+      "severity": "error",
+      "note": "초인종 is doorbell, not telephone."
+    },
+    {
+      "source": "군화",
+      "required_any": ["軍靴"],
+      "forbidden_any": ["鞋子"],
+      "severity": "warning",
+      "note": "군화 should preserve the military boot image."
+    },
+    {
+      "source": "연립주택",
+      "required_any": ["連棟住宅", "聯排住宅", "老舊連棟住宅"],
+      "forbidden_any": [],
+      "severity": "warning",
+      "note": "연립주택 is not a generic apartment if the scene emphasizes old multi-unit row housing."
+    },
+    {
+      "source": "역병신",
+      "required_any": ["瘟神"],
+      "forbidden_any": ["有些不對勁", "不舒服"],
+      "severity": "warning",
+      "note": "역병신 is a strong metaphor and should not be flattened."
+    },
+    {
+      "source": "정복",
+      "required_any": ["正裝", "禮服", "制服"],
+      "forbidden_any": [],
+      "severity": "info",
+      "note": "정복/제복 should preserve formal-uniform nuance."
+    }
+  ],
+  "hallucination_guards": [
+    {
+      "source_contains": ["아침 식사", "두어 술"],
+      "translation_forbidden_any": ["喝了兩口酒", "喝酒", "兩口酒"],
+      "severity": "error",
+      "message": "두어 술 떴다 means taking a few spoonfuls/bites, not drinking alcohol."
+    },
+    {
+      "source_contains": ["젓가락", "콩자반"],
+      "translation_forbidden_any": ["筷子掉落", "筷子掉到了地上"],
+      "severity": "warning",
+      "message": "原文是豆子從筷子上掉落，不是筷子本身掉落。"
+    }
+  ],
+  "title_rules": [
+    {
+      "source_regex": "^패션\\s*1$",
+      "required_any": ["《PASSION》第一卷", "PASSION 1", "《PASSION 1》"],
+      "forbidden_any": ["時尚的", "時尚 1"],
+      "severity": "error"
+    }
+  ]
+}

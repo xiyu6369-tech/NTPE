@@ -1,0 +1,37 @@
+====================================
+NTPE TQF Quality Benchmark v1.0
+====================================
+
+Generated: 2026-06-29T04:01:09
+Recommendation: RETRANSLATE_REQUIRED
+
+[Scores]
+- structure: 10
+- semantic: 31
+- coverage: 50
+- hallucination: 0
+- style: 95
+- overall: 31.8
+
+[Metrics]
+- source_chars: 3084
+- translation_chars: 1823
+- length_ratio: 0.591
+- source_paragraphs: 43
+- translation_paragraphs: 3
+- korean_residue_count: 0
+
+[Issues]
+- [error] structure_title_missing: 來源第一行像標題：패션 1，但譯文沒有保留指定標題格式。
+- [error] structure_title_as_body: 標題可能被當成正文翻譯：譯文開頭包含「時尚的」。
+- [warning] semantic_forbidden_translation: 군화 出現時，譯文不應出現「鞋子」。군화 should preserve the military boot image.
+- [warning] semantic_required_missing: 연립주택 出現時，譯文應包含建議語義：['連棟住宅', '聯排住宅', '老舊連棟住宅']。연립주택 is not a generic apartment if the scene emphasizes old multi-unit row housing.
+- [warning] semantic_forbidden_translation: 역병신 出現時，譯文不應出現「有些不對勁」。역병신 is a strong metaphor and should not be flattened.
+- [warning] semantic_forbidden_translation: 역병신 出現時，譯文不應出現「不舒服」。역병신 is a strong metaphor and should not be flattened.
+- [warning] semantic_required_missing: 역병신 出現時，譯文應包含建議語義：['瘟神']。역병신 is a strong metaphor and should not be flattened.
+- [warning] coverage_short: 譯文偏短，需人工檢查是否漏翻：ratio=0.59
+- [warning] coverage_paragraph_compression: 段落數壓縮明顯：source_paragraphs=43, translation_paragraphs=3
+- [error] hallucination_forbidden_content: 두어 술 떴다 means taking a few spoonfuls/bites, not drinking alcohol.
+- [error] hallucination_forbidden_content: 두어 술 떴다 means taking a few spoonfuls/bites, not drinking alcohol.
+- [warning] hallucination_forbidden_content: 原文是豆子從筷子上掉落，不是筷子本身掉落。
+- [info] style_quote_format: 譯文出現英文雙引號，建議統一為中文引號「」。

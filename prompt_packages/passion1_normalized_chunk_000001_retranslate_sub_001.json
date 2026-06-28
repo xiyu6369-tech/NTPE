@@ -1,0 +1,287 @@
+{
+  "package_id": "PKG_RETRANSLATE_passion1_normalized_000001_001001",
+  "project": {
+    "project_name": "Passion",
+    "source_language": "ko",
+    "target_language": "zh-TW"
+  },
+  "session": {
+    "session_id": "RETRANSLATE_passion1_normalized_000001",
+    "file_name": "passion1_normalized.txt",
+    "chunk_index": 1001,
+    "chunk_total": 3,
+    "resume_key": "passion1_normalized.txt:chunk:001001"
+  },
+  "model_profile": {
+    "engine": "NVIDIA",
+    "model": "meta/llama-3.3-70b-instruct",
+    "context_window": 131072,
+    "temperature": 0.15,
+    "top_p": 0.85,
+    "max_output_tokens": 4000
+  },
+  "style_profile": {
+    "name": "Taiwan Novel",
+    "description": "publication-grade Traditional Chinese",
+    "target_register": "publication-grade Traditional Chinese"
+  },
+  "source": {
+    "chunk_text": "패션 1\n\n초인종이 울린 순간 정태의는 멈칫했다. 손에 쥐고 있던 젓가락에서 콩자반이 떨어져 굴렀다. 새까만 콩알이 접시 밖으로 나가 끈적한 흔적을 남기며 멈출 때까지 몇 초도 걸리지 않았는데 그 사이를 못 참고 다시 초인종이 울렸다.\n\n정태의는 빗 젓가락 끝으로 톡톡 식탁을 두드리며 현관 쪽으로 신경실적인 시선을 주었다. 계단을 올라오는 발소리가 희미하게 들렸을 때부터 예감이 좋지 않았다.\n\n아니, 정확히 말하면 새벽부터 비가 내린 통에 무릎이 욱신거려 잠에서 깨었을 때부터 기분이 안 좋았다. 비가 오거나 날이 궂으면 무릎이야 늘 아프지만 오늘처럼 특히나 욱신거리는 날은 일진이 좋지 않다.\n\n소리 없이 부슬거리며 비가 내리는 궂은 하늘과 다를 바 없는 기분으로 간단한 아침 식사를 늘어 놓고 두어 술 떴을 때였다. 바깥에서 발소리가 들려온 것은.\n\n지은 지 20년도 더 된 낡아빠진 연립주택은, 건물에 고양이 한마리라도 들어오면 그 소리가 옥탑층까지 울려 금세 알 수 있었다.\n\n그리고 옥탑 바로 아래 3층에서, 정태의는 아침 7시를 약간 넘은 이 애매한 시간에 건물로 들어서서 계단을 올라오는 발소리를 들은 순간부터 뭔가 예감이 좋지 않다고 생각했다.\n\n그리고 초인종이 울린 순간, 그 좋지 않은 예감은 진한 현실감으로 다가왔다.\n\n이 집을 찾아올 사람은 거의 없었다. 나흘 전 집을 나간 뒤로 소식이 없는 그의 형--이 집에 그와 함께사는 유일한 사람--은 열쇠가 있으니 초인종을 누르지 않는다.\n\n문 밖에서 멈춘 딱딱하고 묵직한 기척은 그가 고민하는 동안에도 한 번 더 초인종을 울렸다. 뚜걱, 발소리도 한 번 더 울린다. 각지고 무거운 소리다. 군화 소리와 닮았다.\n\n군화라는 단어를 떠올린 순간 불길한 예감이 한층 짙어졌고, 초인종이 이번에는 연거푸 세 번, 네 번 연달아 울렸다. 밥술을 몇 번 뜨지도 않았는데 입맛이 뚝 떨어져 젓가락을 내려놓았다.\n\n불길한 예감을 몰고 온 문 밖의 작자는 물러설 기미가 보이지 않았다. 문을 두드리지도 않고 소리내어 부르지도 않고 초인종만 줄기차게 눌러대는 저 형태에 떠오르는 사람이 있어 마음이 더욱 우울해졌다.\n\n\"…….\"\n\n정태의가 현관으로 가 문의 걸회를 벗기고 문을 연 것은 초인종이 정확히 열두 번 울렸을 때였다. 바깥에 서 있던 사람은 문이 열리자 한 걸음 물러섰다. 각진 소리를 내는 그 신발은 먼지 하나 없이 깔끔한 군화였다.\n",
+    "source_hash": "444b7869af472475a3c2ff0dab8269123e7bfb5a",
+    "char_count": 1175,
+    "document_structure": {
+      "enabled": true,
+      "module": "TQF-01 Document Structure Engine",
+      "version": "1.0",
+      "file_name": "",
+      "chunk_index": 1,
+      "has_title": true,
+      "title": {
+        "type": "work_title",
+        "level": 1,
+        "source": "패션 1",
+        "source_title": "패션",
+        "number": "1",
+        "target": "《PASSION》第一卷",
+        "locked": true,
+        "rule": "作品標題：패션 固定譯為 PASSION，不可翻成『時尚』；標題不可併入正文。",
+        "line_index": 0,
+        "original_line": "패션 1"
+      },
+      "blocks": [
+        {
+          "type": "work_title",
+          "level": 1,
+          "source": "패션 1",
+          "source_title": "패션",
+          "number": "1",
+          "target": "《PASSION》第一卷",
+          "locked": true,
+          "rule": "作品標題：패션 固定譯為 PASSION，不可翻成『時尚』；標題不可併入正文。",
+          "line_index": 0,
+          "original_line": "패션 1"
+        },
+        {
+          "type": "body",
+          "line_index": 2,
+          "note": "Body text starts here after detected title."
+        }
+      ],
+      "rules": [
+        "如果第一行是 title/work_title，必須獨立翻譯成標題，不可併入正文第一句。",
+        "作品名 패션 在標題中固定譯為 PASSION，不可翻成『時尚』。",
+        "標題後必須保留空行，再開始正文翻譯。"
+      ],
+      "warnings": []
+    }
+  },
+  "context": {
+    "previous_summary": "",
+    "previous_chunk_tail": "",
+    "recent_characters": [],
+    "recent_terms": []
+  },
+  "knowledge": {
+    "character_matches": [
+      {
+        "source": "정태의",
+        "target": "鄭泰義",
+        "character_id": "CHAR000002",
+        "match_type": "single_name_ko",
+        "priority": 90,
+        "locked": true,
+        "regex": "(?<![A-Za-z0-9가-힣一-龥])정태의(?![A-Za-z0-9가-힣一-龥])",
+        "rule": "單名或韓文無空格姓名不拆"
+      }
+    ],
+    "glossary_matches": [],
+    "semantic_matches": [
+      {
+        "source": "군화",
+        "preferred": "軍靴",
+        "required": [
+          "軍靴"
+        ],
+        "allowed": [],
+        "forbidden": [
+          "鞋子",
+          "靴子"
+        ],
+        "level": "A",
+        "category": "object",
+        "note": "군화 must preserve the military boot image."
+      },
+      {
+        "source": "두어 술 떴",
+        "preferred": "才吃了幾口早餐",
+        "required": [
+          "吃了幾口"
+        ],
+        "allowed": [],
+        "forbidden": [
+          "喝了兩口酒",
+          "喝了幾口酒",
+          "喝酒",
+          "兩口酒"
+        ],
+        "level": "A",
+        "category": "action",
+        "note": "술 here means spoonful/bite counter, not alcohol."
+      },
+      {
+        "source": "밥술",
+        "preferred": "幾口飯",
+        "required": [
+          "飯"
+        ],
+        "allowed": [],
+        "forbidden": [
+          "酒"
+        ],
+        "level": "A",
+        "category": "action",
+        "note": "밥술 is a spoonful/bite of food, not liquor."
+      },
+      {
+        "source": "초인종",
+        "preferred": "門鈴",
+        "required": [
+          "門鈴"
+        ],
+        "allowed": [],
+        "forbidden": [
+          "電話鈴",
+          "電話",
+          "來電鈴聲"
+        ],
+        "level": "A",
+        "category": "object",
+        "note": "초인종 is a doorbell, not a phone bell."
+      },
+      {
+        "source": "연립주택",
+        "preferred": "老舊連棟住宅",
+        "required": [
+          "連棟住宅"
+        ],
+        "allowed": [
+          "連棟住宅",
+          "聯排住宅",
+          "老舊連棟住宅"
+        ],
+        "forbidden": [
+          "公寓樓",
+          "公寓"
+        ],
+        "level": "B",
+        "category": "setting",
+        "note": "연립주택 should not be flattened into generic apartment when the old multi-unit row-house setting matters."
+      },
+      {
+        "source": "콩자반",
+        "preferred": "醬煮黑豆",
+        "required": [
+          "黑豆"
+        ],
+        "allowed": [],
+        "forbidden": [
+          "豆子"
+        ],
+        "level": "B",
+        "category": "food",
+        "note": "콩자반 is a Korean black bean side dish; at least preserve black bean."
+      }
+    ],
+    "locked_dictionary": {
+      "정태의": "鄭泰義"
+    },
+    "semantic_dictionary": {
+      "군화": "軍靴",
+      "두어 술 떴": "才吃了幾口早餐",
+      "밥술": "幾口飯",
+      "초인종": "門鈴",
+      "연립주택": "老舊連棟住宅",
+      "콩자반": "醬煮黑豆"
+    }
+  },
+  "rules": {
+    "global_rules": [
+      "翻譯為自然流暢的台灣繁體中文。",
+      "保留原文劇情與敘事順序。",
+      "不可刪減、不可摘要、不可自行補劇情。",
+      "對話使用「」。",
+      "消除機器翻譯感。",
+      "人物口吻保持一致。"
+    ],
+    "character_rules": [
+      "全名必須翻成全名。",
+      "名字單獨出現時只翻名字，不可擴展成全名。",
+      "姓氏單獨出現時只翻姓氏，不可擴展成全名。",
+      "韓文無空格姓名視為完整姓名，不可拆分。",
+      "必須遵守 Character Database 的 locked_dictionary。"
+    ],
+    "format_rules": [
+      "對話使用「」。",
+      "保留原文段落結構。",
+      "不要輸出 Markdown 標題。",
+      "不要加上「以下為翻譯」等說明文字。"
+    ],
+    "negative_rules": [
+      "不可漏翻。",
+      "不可摘要。",
+      "不可改寫劇情。",
+      "不可自行新增原文沒有的內容。",
+      "不可留下大量韓文原文。",
+      "不可把單獨名字翻成全名。",
+      "嚴禁濃縮成摘要，必須逐段完整翻譯。",
+      "原文每個敘述資訊都必須保留。",
+      "초인종 必須翻成門鈴，不可翻成電話鈴。",
+      "밥 / 아침 식사 是早餐或飯，不可誤譯成喝酒。"
+    ],
+    "semantic_rules": [
+      "군화 必須依語境譯為「軍靴」。",
+      "군화 禁止譯成：鞋子／靴子。",
+      "군화 語義提醒：군화 must preserve the military boot image.",
+      "두어 술 떴 必須依語境譯為「才吃了幾口早餐」。",
+      "두어 술 떴 禁止譯成：喝了兩口酒／喝了幾口酒／喝酒／兩口酒。",
+      "두어 술 떴 語義提醒：술 here means spoonful/bite counter, not alcohol.",
+      "밥술 必須依語境譯為「幾口飯」。",
+      "밥술 禁止譯成：酒。",
+      "밥술 語義提醒：밥술 is a spoonful/bite of food, not liquor.",
+      "초인종 必須依語境譯為「門鈴」。",
+      "초인종 禁止譯成：電話鈴／電話／來電鈴聲。",
+      "초인종 語義提醒：초인종 is a doorbell, not a phone bell.",
+      "연립주택 必須依語境譯為「老舊連棟住宅」。",
+      "연립주택 禁止譯成：公寓樓／公寓。",
+      "연립주택 語義提醒：연립주택 should not be flattened into generic apartment when the old multi-unit row-house setting matters.",
+      "콩자반 必須依語境譯為「醬煮黑豆」。",
+      "콩자반 禁止譯成：豆子。",
+      "콩자반 語義提醒：콩자반 is a Korean black bean side dish; at least preserve black bean."
+    ]
+  },
+  "prompt": {
+    "system_prompt": "你是 NTPE 的專業韓文小說翻譯引擎。你的任務是將原文完整翻譯成Taiwan Traditional Chinese。你必須忠實保留原文資訊、敘事節奏、段落結構、人物語氣與小說畫面感。你必須遵守提供的人名、術語、語義鎖定與文件結構規則。只輸出譯文，不要加解釋。",
+    "user_prompt": "【翻譯規則】\n- 翻譯為自然流暢的台灣繁體中文。\n- 保留原文劇情與敘事順序。\n- 不可刪減、不可摘要、不可自行補劇情。\n- 對話使用「」。\n- 消除機器翻譯感。\n- 人物口吻保持一致。\n- 全名必須翻成全名。\n- 名字單獨出現時只翻名字，不可擴展成全名。\n- 姓氏單獨出現時只翻姓氏，不可擴展成全名。\n- 韓文無空格姓名視為完整姓名，不可拆分。\n- 必須遵守 Character Database 的 locked_dictionary。\n- 군화 必須依語境譯為「軍靴」。\n- 군화 禁止譯成：鞋子／靴子。\n- 군화 語義提醒：군화 must preserve the military boot image.\n- 두어 술 떴 必須依語境譯為「才吃了幾口早餐」。\n- 두어 술 떴 禁止譯成：喝了兩口酒／喝了幾口酒／喝酒／兩口酒。\n- 두어 술 떴 語義提醒：술 here means spoonful/bite counter, not alcohol.\n- 밥술 必須依語境譯為「幾口飯」。\n- 밥술 禁止譯成：酒。\n- 밥술 語義提醒：밥술 is a spoonful/bite of food, not liquor.\n- 초인종 必須依語境譯為「門鈴」。\n- 초인종 禁止譯成：電話鈴／電話／來電鈴聲。\n- 초인종 語義提醒：초인종 is a doorbell, not a phone bell.\n- 연립주택 必須依語境譯為「老舊連棟住宅」。\n- 연립주택 禁止譯成：公寓樓／公寓。\n- 연립주택 語義提醒：연립주택 should not be flattened into generic apartment when the old multi-unit row-house setting matters.\n- 콩자반 必須依語境譯為「醬煮黑豆」。\n- 콩자반 禁止譯成：豆子。\n- 콩자반 語義提醒：콩자반 is a Korean black bean side dish; at least preserve black bean.\n- 對話使用「」。\n- 保留原文段落結構。\n- 不要輸出 Markdown 標題。\n- 不要加上「以下為翻譯」等說明文字。\n- 不可漏翻。\n- 不可摘要。\n- 不可改寫劇情。\n- 不可自行新增原文沒有的內容。\n- 不可留下大量韓文原文。\n- 不可把單獨名字翻成全名。\n\n【文件結構】\n- 第一行是標題，不是正文：패션 1 → 《PASSION》第一卷\n- 標題必須獨立輸出，不可接到正文第一句。\n- 標題後請保留空行，再開始正文。\n\n【本段人物譯名】\n- 정태의 → 鄭泰義（單名或韓文無空格姓名不拆）\n\n【本段語義鎖定】\n- 군화 → 軍靴\n  禁止譯成：鞋子／靴子\n  語義說明：군화 must preserve the military boot image.\n- 두어 술 떴 → 才吃了幾口早餐\n  禁止譯成：喝了兩口酒／喝了幾口酒／喝酒／兩口酒\n  語義說明：술 here means spoonful/bite counter, not alcohol.\n- 밥술 → 幾口飯\n  禁止譯成：酒\n  語義說明：밥술 is a spoonful/bite of food, not liquor.\n- 초인종 → 門鈴\n  禁止譯成：電話鈴／電話／來電鈴聲\n  語義說明：초인종 is a doorbell, not a phone bell.\n- 연립주택 → 老舊連棟住宅\n  禁止譯成：公寓樓／公寓\n  語義說明：연립주택 should not be flattened into generic apartment when the old multi-unit row-house setting matters.\n- 콩자반 → 醬煮黑豆\n  禁止譯成：豆子\n  語義說明：콩자반 is a Korean black bean side dish; at least preserve black bean.\n\n【重翻要求】\n這是品質修復重翻。請比第一次更完整、更忠實，不可摘要，不可漏段。\n\n【待翻譯內容】\n패션 1\n\n초인종이 울린 순간 정태의는 멈칫했다. 손에 쥐고 있던 젓가락에서 콩자반이 떨어져 굴렀다. 새까만 콩알이 접시 밖으로 나가 끈적한 흔적을 남기며 멈출 때까지 몇 초도 걸리지 않았는데 그 사이를 못 참고 다시 초인종이 울렸다.\n\n정태의는 빗 젓가락 끝으로 톡톡 식탁을 두드리며 현관 쪽으로 신경실적인 시선을 주었다. 계단을 올라오는 발소리가 희미하게 들렸을 때부터 예감이 좋지 않았다.\n\n아니, 정확히 말하면 새벽부터 비가 내린 통에 무릎이 욱신거려 잠에서 깨었을 때부터 기분이 안 좋았다. 비가 오거나 날이 궂으면 무릎이야 늘 아프지만 오늘처럼 특히나 욱신거리는 날은 일진이 좋지 않다.\n\n소리 없이 부슬거리며 비가 내리는 궂은 하늘과 다를 바 없는 기분으로 간단한 아침 식사를 늘어 놓고 두어 술 떴을 때였다. 바깥에서 발소리가 들려온 것은.\n\n지은 지 20년도 더 된 낡아빠진 연립주택은, 건물에 고양이 한마리라도 들어오면 그 소리가 옥탑층까지 울려 금세 알 수 있었다.\n\n그리고 옥탑 바로 아래 3층에서, 정태의는 아침 7시를 약간 넘은 이 애매한 시간에 건물로 들어서서 계단을 올라오는 발소리를 들은 순간부터 뭔가 예감이 좋지 않다고 생각했다.\n\n그리고 초인종이 울린 순간, 그 좋지 않은 예감은 진한 현실감으로 다가왔다.\n\n이 집을 찾아올 사람은 거의 없었다. 나흘 전 집을 나간 뒤로 소식이 없는 그의 형--이 집에 그와 함께사는 유일한 사람--은 열쇠가 있으니 초인종을 누르지 않는다.\n\n문 밖에서 멈춘 딱딱하고 묵직한 기척은 그가 고민하는 동안에도 한 번 더 초인종을 울렸다. 뚜걱, 발소리도 한 번 더 울린다. 각지고 무거운 소리다. 군화 소리와 닮았다.\n\n군화라는 단어를 떠올린 순간 불길한 예감이 한층 짙어졌고, 초인종이 이번에는 연거푸 세 번, 네 번 연달아 울렸다. 밥술을 몇 번 뜨지도 않았는데 입맛이 뚝 떨어져 젓가락을 내려놓았다.\n\n불길한 예감을 몰고 온 문 밖의 작자는 물러설 기미가 보이지 않았다. 문을 두드리지도 않고 소리내어 부르지도 않고 초인종만 줄기차게 눌러대는 저 형태에 떠오르는 사람이 있어 마음이 더욱 우울해졌다.\n\n\"…….\"\n\n정태의가 현관으로 가 문의 걸회를 벗기고 문을 연 것은 초인종이 정확히 열두 번 울렸을 때였다. 바깥에 서 있던 사람은 문이 열리자 한 걸음 물러섰다. 각진 소리를 내는 그 신발은 먼지 하나 없이 깔끔한 군화였다.\n",
+    "prompt_mode": "translate"
+  },
+  "token_estimate": {
+    "system_tokens": 99,
+    "user_tokens": 1819,
+    "source_tokens": 903,
+    "total_input_tokens": 1918,
+    "estimated_output_tokens": 1806
+  },
+  "qa_requirements": {
+    "check_korean_residue": true,
+    "check_name_rules": true,
+    "check_glossary": true,
+    "check_repetition": true,
+    "check_length_ratio": true,
+    "check_semantic_rules": true
+  },
+  "metadata": {
+    "created_at": "2026-06-29T04:16:48",
+    "created_by": "NTPE Prompt Builder + TQF-02 Semantic Translation Engine",
+    "package_version": "1.0"
+  }
+}

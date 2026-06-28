@@ -1,0 +1,139 @@
+{
+  "version": "1.0",
+  "module": "TQF-02 Semantic Translation Engine",
+  "description": "High-risk Korean semantic locks for novel translation fidelity.",
+  "rules": [
+    {
+      "source": "초인종",
+      "required": [
+        "門鈴"
+      ],
+      "preferred": "門鈴",
+      "forbidden": [
+        "電話鈴",
+        "電話",
+        "來電鈴聲"
+      ],
+      "level": "A",
+      "category": "object",
+      "note": "초인종 is a doorbell, not a phone bell."
+    },
+    {
+      "source": "군화",
+      "required": [
+        "軍靴"
+      ],
+      "preferred": "軍靴",
+      "forbidden": [
+        "鞋子",
+        "靴子"
+      ],
+      "level": "A",
+      "category": "object",
+      "note": "군화 must preserve the military boot image."
+    },
+    {
+      "source": "연립주택",
+      "required": [
+        "連棟住宅"
+      ],
+      "preferred": "老舊連棟住宅",
+      "allowed": [
+        "連棟住宅",
+        "聯排住宅",
+        "老舊連棟住宅"
+      ],
+      "forbidden": [
+        "公寓樓",
+        "公寓"
+      ],
+      "level": "B",
+      "category": "setting",
+      "note": "연립주택 should not be flattened into generic apartment when the old multi-unit row-house setting matters."
+    },
+    {
+      "source": "두어 술 떴",
+      "required": [
+        "吃了幾口"
+      ],
+      "preferred": "才吃了幾口早餐",
+      "forbidden": [
+        "喝了兩口酒",
+        "喝了幾口酒",
+        "喝酒",
+        "兩口酒"
+      ],
+      "level": "A",
+      "category": "action",
+      "note": "술 here means spoonful/bite counter, not alcohol."
+    },
+    {
+      "source": "밥술",
+      "required": [
+        "飯"
+      ],
+      "preferred": "幾口飯",
+      "forbidden": [
+        "酒"
+      ],
+      "level": "A",
+      "category": "action",
+      "note": "밥술 is a spoonful/bite of food, not liquor."
+    },
+    {
+      "source": "역병신",
+      "required": [
+        "瘟神"
+      ],
+      "preferred": "像把瘟神迎進門",
+      "forbidden": [
+        "有些不對勁",
+        "不舒服",
+        "不安"
+      ],
+      "level": "A",
+      "category": "metaphor",
+      "note": "역병신 is a strong metaphor and must not be flattened."
+    },
+    {
+      "source": "콩자반",
+      "required": [
+        "黑豆"
+      ],
+      "preferred": "醬煮黑豆",
+      "forbidden": [
+        "豆子"
+      ],
+      "level": "B",
+      "category": "food",
+      "note": "콩자반 is a Korean black bean side dish; at least preserve black bean."
+    },
+    {
+      "source": "걸쇠",
+      "required": [
+        "門閂"
+      ],
+      "preferred": "門閂",
+      "forbidden": [
+        "門鎖"
+      ],
+      "level": "B",
+      "category": "object",
+      "note": "걸쇠 is closer to latch/bolt than generic lock."
+    },
+    {
+      "source": "정복",
+      "required": [
+        "正裝制服"
+      ],
+      "preferred": "正裝制服",
+      "forbidden": [
+        "軍官",
+        "軍服"
+      ],
+      "level": "B",
+      "category": "clothing",
+      "note": "정복 is formal uniform; not automatically a military officer."
+    }
+  ]
+}

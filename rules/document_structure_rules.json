@@ -1,0 +1,51 @@
+{
+  "version": "1.0",
+  "module": "TQF-01 Document Structure Engine",
+  "work_titles": [
+    {
+      "source": "패션",
+      "target": "《PASSION》",
+      "language": "ko",
+      "number_format": "《PASSION》第{number_zh}卷",
+      "locked": true,
+      "note": "作品標題，不可翻成『時尚』。"
+    }
+  ],
+  "title_patterns": [
+    {
+      "name": "work_title_with_number",
+      "regex": "^패션\\s*(\\d+)\\s*$",
+      "type": "work_title",
+      "level": 1
+    },
+    {
+      "name": "chapter_english",
+      "regex": "^(chapter|CHAPTER)\\s+([0-9IVXLC]+)\\s*$",
+      "type": "chapter_title",
+      "level": 1
+    },
+    {
+      "name": "prologue",
+      "regex": "^(prologue|PROLOGUE|프롤로그)\\s*$",
+      "type": "section_title",
+      "level": 1
+    },
+    {
+      "name": "epilogue",
+      "regex": "^(epilogue|EPILOGUE|에필로그)\\s*$",
+      "type": "section_title",
+      "level": 1
+    }
+  ],
+  "separators": [
+    "***",
+    "---",
+    "——",
+    "* * *"
+  ],
+  "rules": [
+    "如果第一行是 title/work_title，必須獨立翻譯成標題，不可併入正文第一句。",
+    "作品名 패션 在標題中固定譯為 PASSION，不可翻成『時尚』。",
+    "標題後必須保留空行，再開始正文翻譯。"
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "status": "done",
+  "file": "passion1_normalized.txt",
+  "chunk_index": 27,
+  "char_count": 3064,
+  "attempts": 1,
+  "package_path": "D:\\Python\\NTPE\\prompt_packages\\passion1_normalized_chunk_000027.json",
+  "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000027_zh.txt",
+  "cache_path": "D:\\Python\\NTPE\\translation_cache\\passion1_normalized_chunk_000027_result.json",
+  "qa": {
+    "passed": true,
+    "issues": [
+      {
+        "type": "korean_residue",
+        "severity": "warning",
+        "message": "譯文仍包含較多韓文字元：2107"
+      },
+      {
+        "type": "locked_name_missing",
+        "severity": "warning",
+        "message": "原文出現 정재의，但譯文未出現鎖定譯名 鄭載義"
+      },
+      {
+        "type": "locked_name_missing",
+        "severity": "warning",
+        "message": "原文出現 정태의，但譯文未出現鎖定譯名 鄭泰義"
+      }
+    ],
+    "korean_residue_count": 2107,
+    "source_length": 3063,
+    "translation_length": 3027
+  },
+  "updated_at": "2026-06-29T02:24:46"
+}
