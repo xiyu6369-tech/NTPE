@@ -1,0 +1,88 @@
+{
+  "project": {
+    "project_id": "passion",
+    "project_name": "Passion",
+    "series_name": "Passion",
+    "description": "Korean long-form novel translation project"
+  },
+  "language": {
+    "source_language": "ko",
+    "target_language": "zh-TW",
+    "target_variant": "Taiwan Traditional Chinese"
+  },
+  "paths": {
+    "input_dir": "input",
+    "normalized_dir": "output",
+    "analysis_dir": "analysis",
+    "memory_dir": "memory",
+    "logs_dir": "logs",
+    "translation_output_dir": "translated"
+  },
+  "model_profile": {
+    "engine": "NVIDIA",
+    "model": "meta/llama-3.3-70b-instruct",
+    "api_url": "https://integrate.api.nvidia.com/v1/chat/completions",
+    "context_window": 131072,
+    "temperature": 0.15,
+    "top_p": 0.85,
+    "max_output_tokens": 4000,
+    "rpm_limit": 40,
+    "timeout_seconds": 180
+  },
+  "translation_style": {
+    "style_id": "taiwan_novel",
+    "name": "Taiwan Novel",
+    "register": "publication-grade Traditional Chinese",
+    "requirements": [
+      "翻譯為自然流暢的台灣繁體中文。",
+      "保留原文劇情與敘事順序。",
+      "不可刪減、不可摘要、不可自行補劇情。",
+      "對話使用「」。",
+      "消除機器翻譯感。",
+      "人物口吻保持一致。"
+    ]
+  },
+  "chunking": {
+    "chunk_size": 3000,
+    "overlap_size": 150,
+    "split_preference": [
+      "paragraph",
+      "sentence",
+      "hard_limit"
+    ],
+    "max_chunk_size": 4200
+  },
+  "context": {
+    "previous_chunk_tail_chars": 500,
+    "previous_summary_enabled": true,
+    "recent_character_limit": 12,
+    "recent_term_limit": 20
+  },
+  "knowledge_sources": {
+    "character_database": "memory/character_database.json",
+    "character_match_dictionary": "memory/character_match_dictionary.json",
+    "knowledge_base": "memory/knowledge_base.json",
+    "glossary": "memory/glossary.json"
+  },
+  "qa": {
+    "enabled": true,
+    "check_korean_residue": true,
+    "check_name_rules": true,
+    "check_glossary": true,
+    "check_repetition": true,
+    "check_length_ratio": true,
+    "min_length_ratio": 0.3,
+    "max_retry": 3
+  },
+  "output": {
+    "encoding": "utf-8",
+    "line_break": "LF",
+    "suffix": "_zh",
+    "write_chunk_cache": true,
+    "merge_final_output": true
+  },
+  "metadata": {
+    "created_by": "NTPE Project Profile v1.0",
+    "profile_version": "1.0"
+  }
+}
