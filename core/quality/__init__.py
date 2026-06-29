@@ -32,6 +32,8 @@ try:
 except Exception:
     NovelStylePlanner = None
 
+from .novel_prompt_engine import NovelPromptEngine
+
 __all__ = [
     "SemanticTranslationEngine",
     "DocumentStructureEngine",
@@ -41,4 +43,5 @@ __all__ = [
     "SemanticQA",
     "SemanticRepair",
     "NovelStylePlanner",
+    "NovelPromptEngine",
 ]

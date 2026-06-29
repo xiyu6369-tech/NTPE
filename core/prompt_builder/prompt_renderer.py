@@ -14,26 +14,45 @@ class PromptRenderer:
         semantic_matches: list[dict] | None = None,
         document_structure: dict | None = None,
         style_plan: dict | None = None,
+        novel_prompt_sections: dict | None = None,
+        novel_prompt_engine=None,
     ) -> dict:
         semantic_matches = semantic_matches or []
         document_structure = document_structure or {}
         style_plan = style_plan or {}
+        novel_prompt_sections = novel_prompt_sections or {}
 
         target = profile.get("language", {}).get("target_variant", "Taiwan Traditional Chinese")
-        system_prompt = (
-            "你是 NTPE 的專業韓文小說翻譯引擎。"
-            f"你的任務是將原文完整翻譯成{target}。"
-            "你必須忠實保留原文資訊、敘事節奏、段落結構、人物語氣與小說畫面感。"
-            "你不是摘要工具，而是出版級小說譯者。"
-            "你必須遵守提供的人名、術語、語義鎖定、文件結構與小說風格規劃。"
-            "只輸出譯文，不要加解釋。"
-        )
+
+        if novel_prompt_engine:
+            system_prompt = novel_prompt_engine.build_system_prompt(target)
+        else:
+            system_prompt = (
+                "你是 NTPE 的專業韓文小說翻譯引擎。"
+                f"你的任務是將原文完整翻譯成{target}。"
+                "只輸出譯文，不要加解釋。"
+            )
 
         parts = []
         parts.append("【翻譯規則】")
-        for group in ["global_rules", "character_rules", "semantic_rules", "novel_style_rules", "format_rules", "negative_rules"]:
+        for group in [
+            "global_rules",
+            "character_rules",
+            "semantic_rules",
+            "novel_prompt_rules",
+            "novel_style_rules",
+            "format_rules",
+            "negative_rules",
+        ]:
             for rule in rules.get(group, []):
                 parts.append(f"- {rule}")
+
+        if novel_prompt_sections:
+            parts.append("")
+            parts.append("【TQF-06.1 小說翻譯引擎】")
+            parts.append(f"- 目標：{novel_prompt_sections.get('target', '')}")
+            for item in novel_prompt_sections.get("focus", []):
+                parts.append(f"- 本段重點：{item}")
 
         if style_plan:
             parts.append("")
@@ -42,12 +61,6 @@ class PromptRenderer:
             for item in style_plan.get("matched_rules", []):
                 if item.get("instruction"):
                     parts.append(f"- {item['instruction']}")
-            examples = style_plan.get("preferred_style_examples", [])[:3]
-            if examples:
-                parts.append("【風格示例】")
-                for ex in examples:
-                    parts.append(f"- 避免：{ex.get('bad','')}")
-                    parts.append(f"  建議：{ex.get('good','')}")
 
         if document_structure.get("has_title") and document_structure.get("title"):
             title = document_structure["title"]
@@ -85,7 +98,6 @@ class PromptRenderer:
                     parts.append(f"- {item['source']} → {preferred}")
                 elif required:
                     parts.append(f"- {item['source']} 必須包含：{'／'.join(required)}")
-
                 if forbidden:
                     parts.append(f"  禁止譯成：{'／'.join(forbidden)}")
                 if note:

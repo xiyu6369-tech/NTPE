@@ -25,6 +25,11 @@ try:
 except Exception:
     NovelStylePlanner = None
 
+try:
+    from core.quality.novel_prompt_engine import NovelPromptEngine
+except Exception:
+    NovelPromptEngine = None
+
 
 class PromptBuilder:
     def __init__(self, root: str | Path, profile_path: str | Path | None = None):
@@ -42,6 +47,7 @@ class PromptBuilder:
         self.semantic_engine = SemanticTranslationEngine(self.root) if SemanticTranslationEngine else None
         self.structure_engine = DocumentStructureEngine(self.root) if DocumentStructureEngine else None
         self.style_planner = NovelStylePlanner(self.root) if NovelStylePlanner else None
+        self.novel_prompt_engine = NovelPromptEngine(self.root) if NovelPromptEngine else None
 
     def build(self, *, chunk_text: str, file_name: str, chunk_index: int, chunk_total: int, session_id: str, context: dict | None = None) -> dict:
         if context is None:
@@ -60,6 +66,7 @@ class PromptBuilder:
             "title": None,
             "elements": [],
         }
+
         style_plan = self.style_planner.plan(chunk_text) if self.style_planner else {
             "style_target": "台灣繁體中文出版級小說譯文",
             "principles": [],
@@ -67,6 +74,8 @@ class PromptBuilder:
             "forbidden_style": [],
             "preferred_style_examples": [],
         }
+
+        novel_prompt_sections = self.novel_prompt_engine.build_sections(chunk_text) if self.novel_prompt_engine else {}
 
         rules = self.rule_generator.generate()
 
@@ -78,6 +87,10 @@ class PromptBuilder:
             rules.setdefault("novel_style_rules", [])
             rules["novel_style_rules"].extend(self.style_planner.build_prompt_rules(style_plan))
 
+        if self.novel_prompt_engine and novel_prompt_sections:
+            rules.setdefault("novel_prompt_rules", [])
+            rules["novel_prompt_rules"].extend(self.novel_prompt_engine.build_prompt_rules(novel_prompt_sections))
+
         prompt = self.renderer.render(
             profile=self.profile,
             chunk_text=chunk_text,
@@ -86,8 +99,10 @@ class PromptBuilder:
             semantic_matches=semantic_matches,
             document_structure=document_structure,
             style_plan=style_plan,
+            novel_prompt_sections=novel_prompt_sections,
             rules=rules,
             context=context,
+            novel_prompt_engine=self.novel_prompt_engine,
         )
 
         return self.package_builder.build(
@@ -102,6 +117,7 @@ class PromptBuilder:
             semantic_matches=semantic_matches,
             document_structure=document_structure,
             style_plan=style_plan,
+            novel_prompt_sections=novel_prompt_sections,
             rules=rules,
             prompt=prompt,
             context=context,

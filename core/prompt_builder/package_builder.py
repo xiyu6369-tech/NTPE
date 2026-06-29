@@ -21,10 +21,12 @@ class PackageBuilder:
         semantic_matches: list[dict] | None = None,
         document_structure: dict | None = None,
         style_plan: dict | None = None,
+        novel_prompt_sections: dict | None = None,
     ) -> dict:
         semantic_matches = semantic_matches or []
         document_structure = document_structure or {}
         style_plan = style_plan or {}
+        novel_prompt_sections = novel_prompt_sections or {}
 
         locked_dictionary = {}
 
@@ -85,6 +87,7 @@ class PackageBuilder:
                 "description": profile["translation_style"].get("register", ""),
                 "target_register": profile["translation_style"].get("register", ""),
                 "novel_style_plan": style_plan,
+                "novel_prompt_engine": novel_prompt_sections,
             },
             "source": source_block,
             "context": context,
@@ -112,10 +115,11 @@ class PackageBuilder:
                 "check_length_ratio": profile["qa"]["check_length_ratio"],
                 "check_semantic_rules": True,
                 "check_novel_style": True,
+                "check_literary_prompt": True,
             },
             "metadata": {
                 "created_at": now_iso(),
-                "created_by": "NTPE Prompt Builder + TQF-05.1 Novel Style Planner",
-                "package_version": "1.0",
+                "created_by": "NTPE v1.1 TQF-06.1 Novel Prompt Engine",
+                "package_version": "1.1",
             },
         }

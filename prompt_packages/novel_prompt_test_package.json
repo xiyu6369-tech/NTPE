@@ -1,0 +1,327 @@
+{
+  "package_id": "PKG_NOVEL_PROMPT_TEST_000001",
+  "project": {
+    "project_name": "Passion",
+    "source_language": "ko",
+    "target_language": "zh-TW"
+  },
+  "session": {
+    "session_id": "NOVEL_PROMPT_TEST",
+    "file_name": "novel_prompt_test.txt",
+    "chunk_index": 1,
+    "chunk_total": 1,
+    "resume_key": "novel_prompt_test.txt:chunk:000001"
+  },
+  "model_profile": {
+    "engine": "NVIDIA",
+    "model": "meta/llama-3.3-70b-instruct",
+    "context_window": 131072,
+    "temperature": 0.15,
+    "top_p": 0.85,
+    "max_output_tokens": 4000
+  },
+  "style_profile": {
+    "name": "Taiwan Novel",
+    "description": "publication-grade Traditional Chinese",
+    "target_register": "publication-grade Traditional Chinese",
+    "novel_style_plan": {
+      "style_target": "台灣繁體中文出版級小說譯文",
+      "principles": [
+        "忠實完整，不摘要、不濃縮、不改寫劇情。",
+        "保留原文敘事節奏、停頓、心理描寫與比喻。",
+        "將韓文壓縮語序自然展開為流暢中文。",
+        "必要時補足中文閱讀所需主詞，但不得新增原文沒有的資訊。",
+        "對話使用中文引號「」。",
+        "避免機翻腔、避免流水帳、避免過度白話化。"
+      ],
+      "matched_rules": [
+        {
+          "id": "EXP_ACTION_DETAIL",
+          "instruction": "動作描寫不可壓縮，需保留動作順序與畫面感。",
+          "matched_keywords": [
+            "떨어져",
+            "굴렀다"
+          ]
+        }
+      ],
+      "forbidden_style": [
+        "將多個段落濃縮為一段。",
+        "把心理描寫改成概括說明。",
+        "刪除比喻、停頓或情緒鋪陳。",
+        "使用『這名男子』『這個人』等僵硬代稱過度重複。",
+        "將作品標題 패션 翻成時尚。"
+      ],
+      "preferred_style_examples": [
+        {
+          "bad": "他感到有些不對勁。",
+          "good": "他心裡那股不祥的預感又沉了幾分。"
+        },
+        {
+          "bad": "豆子掉了下來。",
+          "good": "筷尖夾著的醬煮黑豆滑落下來，滾出盤緣，拖出一道黏膩的痕跡。"
+        },
+        {
+          "bad": "讓他進來時感到不安。",
+          "good": "他側身讓開時，心情簡直像是在把瘟神迎進家門。"
+        }
+      ]
+    },
+    "novel_prompt_engine": {
+      "target": "台灣繁體中文出版級韓文小說譯文",
+      "literary_rules": [
+        "保留原文敘事節奏，不可把多個短句壓成說明文。",
+        "保留心理描寫、停頓、沉默、猶豫與情緒轉折。",
+        "保留動作順序與畫面感，不可只保留結果。",
+        "保留天氣、聲音、空間、氣氛等場景描寫。",
+        "韓文壓縮語序可自然展開為中文，但不得新增原文沒有的資訊。",
+        "內心獨白不得改成客觀說明文。",
+        "比喻與意象需保留，不可攤平成普通描述。"
+      ],
+      "taiwan_style_rules": [
+        "使用台灣繁體中文。",
+        "避免中國大陸用語與簡體字。",
+        "避免機翻腔，例如過度使用『這名男子』『進行』『表示』『感到』。",
+        "對話使用「」。",
+        "敘述語氣應自然、流暢、有小說感。"
+      ],
+      "dialogue_rules": [
+        "對話要符合人物性格與上下文情緒。",
+        "不要讓所有人物使用同一種語氣。",
+        "避免每句對話都用『說道』，可依情境使用問、嘀咕、淡淡地說、開口等自然表達。",
+        "對話前後的動作與停頓要保留。"
+      ],
+      "forbidden_rules": [
+        "不可摘要。",
+        "不可漏翻。",
+        "不可刪除段落。",
+        "不可壓縮心理描寫。",
+        "不可把標題接成正文。",
+        "不可自行新增原文沒有的情節。",
+        "不可把專有名詞翻成普通名詞。",
+        "不可留下大量韓文原文。"
+      ],
+      "focus": [
+        "本段含聲音、空間或場景描寫，需保留畫面感與氛圍。"
+      ]
+    }
+  },
+  "source": {
+    "chunk_text": "패션 1\n\n초인종이 울린 순간 정태의는 멈칫했다.\n\n손에 쥐고 있던 젓가락에서 콩자반이 떨어져 굴렀다.\n\n정태의는 현관 쪽으로 신경질적인 시선을 주었다.\n",
+    "source_hash": "7a3e7afbaba6fe56f3b0e68572b9cdedf8486f76",
+    "char_count": 86,
+    "document_structure": {
+      "enabled": true,
+      "module": "TQF-01 Document Structure Engine",
+      "version": "1.0",
+      "file_name": "",
+      "chunk_index": 1,
+      "has_title": true,
+      "title": {
+        "type": "work_title",
+        "level": 1,
+        "source": "패션 1",
+        "source_title": "패션",
+        "number": "1",
+        "target": "《PASSION》第一卷",
+        "locked": true,
+        "rule": "作品標題：패션 固定譯為 PASSION，不可翻成『時尚』；標題不可併入正文。",
+        "line_index": 0,
+        "original_line": "패션 1"
+      },
+      "blocks": [
+        {
+          "type": "work_title",
+          "level": 1,
+          "source": "패션 1",
+          "source_title": "패션",
+          "number": "1",
+          "target": "《PASSION》第一卷",
+          "locked": true,
+          "rule": "作品標題：패션 固定譯為 PASSION，不可翻成『時尚』；標題不可併入正文。",
+          "line_index": 0,
+          "original_line": "패션 1"
+        },
+        {
+          "type": "body",
+          "line_index": 2,
+          "note": "Body text starts here after detected title."
+        }
+      ],
+      "rules": [
+        "如果第一行是 title/work_title，必須獨立翻譯成標題，不可併入正文第一句。",
+        "作品名 패션 在標題中固定譯為 PASSION，不可翻成『時尚』。",
+        "標題後必須保留空行，再開始正文翻譯。"
+      ],
+      "warnings": []
+    }
+  },
+  "context": {
+    "previous_summary": "",
+    "previous_chunk_tail": "",
+    "recent_characters": [],
+    "recent_terms": []
+  },
+  "knowledge": {
+    "character_matches": [
+      {
+        "source": "정태의",
+        "target": "鄭泰義",
+        "character_id": "CHAR000002",
+        "match_type": "single_name_ko",
+        "priority": 90,
+        "locked": true,
+        "regex": "(?<![A-Za-z0-9가-힣一-龥])정태의(?![A-Za-z0-9가-힣一-龥])",
+        "rule": "單名或韓文無空格姓名不拆"
+      }
+    ],
+    "glossary_matches": [],
+    "semantic_matches": [
+      {
+        "source": "초인종",
+        "preferred": "門鈴",
+        "required": [
+          "門鈴"
+        ],
+        "allowed": [],
+        "forbidden": [
+          "電話鈴",
+          "電話",
+          "來電鈴聲"
+        ],
+        "level": "A",
+        "category": "object",
+        "note": "초인종 is a doorbell, not a phone bell."
+      },
+      {
+        "source": "콩자반",
+        "preferred": "醬煮黑豆",
+        "required": [
+          "黑豆"
+        ],
+        "allowed": [],
+        "forbidden": [
+          "豆子"
+        ],
+        "level": "B",
+        "category": "food",
+        "note": "콩자반 is a Korean black bean side dish; at least preserve black bean."
+      }
+    ],
+    "locked_dictionary": {
+      "정태의": "鄭泰義"
+    },
+    "semantic_dictionary": {
+      "초인종": "門鈴",
+      "콩자반": "醬煮黑豆"
+    }
+  },
+  "rules": {
+    "global_rules": [
+      "翻譯為自然流暢的台灣繁體中文。",
+      "保留原文劇情與敘事順序。",
+      "不可刪減、不可摘要、不可自行補劇情。",
+      "對話使用「」。",
+      "消除機器翻譯感。",
+      "人物口吻保持一致。"
+    ],
+    "character_rules": [
+      "全名必須翻成全名。",
+      "名字單獨出現時只翻名字，不可擴展成全名。",
+      "姓氏單獨出現時只翻姓氏，不可擴展成全名。",
+      "韓文無空格姓名視為完整姓名，不可拆分。",
+      "必須遵守 Character Database 的 locked_dictionary。"
+    ],
+    "format_rules": [
+      "對話使用「」。",
+      "保留原文段落結構。",
+      "不要輸出 Markdown 標題。",
+      "不要加上「以下為翻譯」等說明文字。"
+    ],
+    "negative_rules": [
+      "不可漏翻。",
+      "不可摘要。",
+      "不可改寫劇情。",
+      "不可自行新增原文沒有的內容。",
+      "不可留下大量韓文原文。",
+      "不可把單獨名字翻成全名。"
+    ],
+    "semantic_rules": [
+      "초인종 必須依語境譯為「門鈴」。",
+      "초인종 禁止譯成：電話鈴／電話／來電鈴聲。",
+      "초인종 語義提醒：초인종 is a doorbell, not a phone bell.",
+      "콩자반 必須依語境譯為「醬煮黑豆」。",
+      "콩자반 禁止譯成：豆子。",
+      "콩자반 語義提醒：콩자반 is a Korean black bean side dish; at least preserve black bean."
+    ],
+    "novel_style_rules": [
+      "本段譯文目標：台灣繁體中文出版級小說譯文。",
+      "忠實完整，不摘要、不濃縮、不改寫劇情。",
+      "保留原文敘事節奏、停頓、心理描寫與比喻。",
+      "將韓文壓縮語序自然展開為流暢中文。",
+      "必要時補足中文閱讀所需主詞，但不得新增原文沒有的資訊。",
+      "對話使用中文引號「」。",
+      "避免機翻腔、避免流水帳、避免過度白話化。",
+      "動作描寫不可壓縮，需保留動作順序與畫面感。",
+      "禁止：將多個段落濃縮為一段。",
+      "禁止：把心理描寫改成概括說明。",
+      "禁止：刪除比喻、停頓或情緒鋪陳。",
+      "禁止：使用『這名男子』『這個人』等僵硬代稱過度重複。",
+      "禁止：將作品標題 패션 翻成時尚。"
+    ],
+    "novel_prompt_rules": [
+      "譯文目標：台灣繁體中文出版級韓文小說譯文。",
+      "保留原文敘事節奏，不可把多個短句壓成說明文。",
+      "保留心理描寫、停頓、沉默、猶豫與情緒轉折。",
+      "保留動作順序與畫面感，不可只保留結果。",
+      "保留天氣、聲音、空間、氣氛等場景描寫。",
+      "韓文壓縮語序可自然展開為中文，但不得新增原文沒有的資訊。",
+      "內心獨白不得改成客觀說明文。",
+      "比喻與意象需保留，不可攤平成普通描述。",
+      "使用台灣繁體中文。",
+      "避免中國大陸用語與簡體字。",
+      "避免機翻腔，例如過度使用『這名男子』『進行』『表示』『感到』。",
+      "對話使用「」。",
+      "敘述語氣應自然、流暢、有小說感。",
+      "對話要符合人物性格與上下文情緒。",
+      "不要讓所有人物使用同一種語氣。",
+      "避免每句對話都用『說道』，可依情境使用問、嘀咕、淡淡地說、開口等自然表達。",
+      "對話前後的動作與停頓要保留。",
+      "不可摘要。",
+      "不可漏翻。",
+      "不可刪除段落。",
+      "不可壓縮心理描寫。",
+      "不可把標題接成正文。",
+      "不可自行新增原文沒有的情節。",
+      "不可把專有名詞翻成普通名詞。",
+      "不可留下大量韓文原文。",
+      "本段含聲音、空間或場景描寫，需保留畫面感與氛圍。"
+    ]
+  },
+  "prompt": {
+    "system_prompt": "你是 NTPE 的專業韓文小說翻譯引擎。你的任務是將原文完整翻譯成Taiwan Traditional Chinese。你不是一般翻譯器，也不是摘要工具。你是專業韓文小說譯者，目標是產出自然、完整、有小說閱讀感的台灣繁體中文譯文。你必須忠實保留原文資訊，不得刪節、摘要、改寫劇情或自行補劇情。只輸出譯文，不要加解釋。",
+    "user_prompt": "【翻譯規則】\n- 翻譯為自然流暢的台灣繁體中文。\n- 保留原文劇情與敘事順序。\n- 不可刪減、不可摘要、不可自行補劇情。\n- 對話使用「」。\n- 消除機器翻譯感。\n- 人物口吻保持一致。\n- 全名必須翻成全名。\n- 名字單獨出現時只翻名字，不可擴展成全名。\n- 姓氏單獨出現時只翻姓氏，不可擴展成全名。\n- 韓文無空格姓名視為完整姓名，不可拆分。\n- 必須遵守 Character Database 的 locked_dictionary。\n- 초인종 必須依語境譯為「門鈴」。\n- 초인종 禁止譯成：電話鈴／電話／來電鈴聲。\n- 초인종 語義提醒：초인종 is a doorbell, not a phone bell.\n- 콩자반 必須依語境譯為「醬煮黑豆」。\n- 콩자반 禁止譯成：豆子。\n- 콩자반 語義提醒：콩자반 is a Korean black bean side dish; at least preserve black bean.\n- 譯文目標：台灣繁體中文出版級韓文小說譯文。\n- 保留原文敘事節奏，不可把多個短句壓成說明文。\n- 保留心理描寫、停頓、沉默、猶豫與情緒轉折。\n- 保留動作順序與畫面感，不可只保留結果。\n- 保留天氣、聲音、空間、氣氛等場景描寫。\n- 韓文壓縮語序可自然展開為中文，但不得新增原文沒有的資訊。\n- 內心獨白不得改成客觀說明文。\n- 比喻與意象需保留，不可攤平成普通描述。\n- 使用台灣繁體中文。\n- 避免中國大陸用語與簡體字。\n- 避免機翻腔，例如過度使用『這名男子』『進行』『表示』『感到』。\n- 對話使用「」。\n- 敘述語氣應自然、流暢、有小說感。\n- 對話要符合人物性格與上下文情緒。\n- 不要讓所有人物使用同一種語氣。\n- 避免每句對話都用『說道』，可依情境使用問、嘀咕、淡淡地說、開口等自然表達。\n- 對話前後的動作與停頓要保留。\n- 不可摘要。\n- 不可漏翻。\n- 不可刪除段落。\n- 不可壓縮心理描寫。\n- 不可把標題接成正文。\n- 不可自行新增原文沒有的情節。\n- 不可把專有名詞翻成普通名詞。\n- 不可留下大量韓文原文。\n- 本段含聲音、空間或場景描寫，需保留畫面感與氛圍。\n- 本段譯文目標：台灣繁體中文出版級小說譯文。\n- 忠實完整，不摘要、不濃縮、不改寫劇情。\n- 保留原文敘事節奏、停頓、心理描寫與比喻。\n- 將韓文壓縮語序自然展開為流暢中文。\n- 必要時補足中文閱讀所需主詞，但不得新增原文沒有的資訊。\n- 對話使用中文引號「」。\n- 避免機翻腔、避免流水帳、避免過度白話化。\n- 動作描寫不可壓縮，需保留動作順序與畫面感。\n- 禁止：將多個段落濃縮為一段。\n- 禁止：把心理描寫改成概括說明。\n- 禁止：刪除比喻、停頓或情緒鋪陳。\n- 禁止：使用『這名男子』『這個人』等僵硬代稱過度重複。\n- 禁止：將作品標題 패션 翻成時尚。\n- 對話使用「」。\n- 保留原文段落結構。\n- 不要輸出 Markdown 標題。\n- 不要加上「以下為翻譯」等說明文字。\n- 不可漏翻。\n- 不可摘要。\n- 不可改寫劇情。\n- 不可自行新增原文沒有的內容。\n- 不可留下大量韓文原文。\n- 不可把單獨名字翻成全名。\n\n【TQF-06.1 小說翻譯引擎】\n- 目標：台灣繁體中文出版級韓文小說譯文\n- 本段重點：本段含聲音、空間或場景描寫，需保留畫面感與氛圍。\n\n【小說風格規劃】\n- 目標風格：台灣繁體中文出版級小說譯文\n- 動作描寫不可壓縮，需保留動作順序與畫面感。\n\n【文件結構】\n- 第一行是標題，不是正文：패션 1 → 《PASSION》第一卷\n- 標題必須獨立輸出，不可接到正文第一句。\n- 標題後請保留空行，再開始正文。\n\n【本段人物譯名】\n- 정태의 → 鄭泰義（單名或韓文無空格姓名不拆）\n\n【本段語義鎖定】\n- 초인종 → 門鈴\n  禁止譯成：電話鈴／電話／來電鈴聲\n  語義說明：초인종 is a doorbell, not a phone bell.\n- 콩자반 → 醬煮黑豆\n  禁止譯成：豆子\n  語義說明：콩자반 is a Korean black bean side dish; at least preserve black bean.\n\n【待翻譯內容】\n패션 1\n\n초인종이 울린 순간 정태의는 멈칫했다.\n\n손에 쥐고 있던 젓가락에서 콩자반이 떨어져 굴렀다.\n\n정태의는 현관 쪽으로 신경질적인 시선을 주었다.\n",
+    "prompt_mode": "translate"
+  },
+  "token_estimate": {
+    "system_tokens": 124,
+    "user_tokens": 1312,
+    "source_tokens": 66,
+    "total_input_tokens": 1436,
+    "estimated_output_tokens": 500
+  },
+  "qa_requirements": {
+    "check_korean_residue": true,
+    "check_name_rules": true,
+    "check_glossary": true,
+    "check_repetition": true,
+    "check_length_ratio": true,
+    "check_semantic_rules": true,
+    "check_novel_style": true,
+    "check_literary_prompt": true
+  },
+  "metadata": {
+    "created_at": "2026-06-30T02:50:19",
+    "created_by": "NTPE v1.1 TQF-06.1 Novel Prompt Engine",
+    "package_version": "1.1"
+  }
+}
