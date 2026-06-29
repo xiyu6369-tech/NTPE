@@ -11,6 +11,11 @@ from .package_builder import PackageBuilder
 from .utils import save_json
 
 try:
+    from core.context.memory_engine import ContextMemoryEngine
+except Exception:
+    ContextMemoryEngine = None
+
+try:
     from core.quality.semantic_engine import SemanticTranslationEngine
 except Exception:
     SemanticTranslationEngine = None
@@ -43,6 +48,7 @@ class PromptBuilder:
         self.rule_generator = RuleGenerator(self.profile)
         self.renderer = PromptRenderer()
         self.package_builder = PackageBuilder()
+        self.context_memory = ContextMemoryEngine(self.root) if ContextMemoryEngine else None
 
         self.semantic_engine = SemanticTranslationEngine(self.root) if SemanticTranslationEngine else None
         self.structure_engine = DocumentStructureEngine(self.root) if DocumentStructureEngine else None
@@ -51,12 +57,15 @@ class PromptBuilder:
 
     def build(self, *, chunk_text: str, file_name: str, chunk_index: int, chunk_total: int, session_id: str, context: dict | None = None) -> dict:
         if context is None:
-            context = {
-                "previous_summary": "",
-                "previous_chunk_tail": "",
-                "recent_characters": [],
-                "recent_terms": [],
-            }
+            if self.context_memory:
+                context = self.context_memory.build_context()
+            else:
+                context = {
+                    "previous_summary": "",
+                    "previous_chunk_tail": "",
+                    "recent_characters": [],
+                    "recent_terms": [],
+                }
 
         character_matches = self.character_selector.select(chunk_text)
         glossary_matches = self.glossary_selector.select(chunk_text)
