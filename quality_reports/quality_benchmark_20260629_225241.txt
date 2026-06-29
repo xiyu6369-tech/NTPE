@@ -1,0 +1,31 @@
+====================================
+NTPE TQF Quality Benchmark v1.0
+====================================
+
+Generated: 2026-06-29T22:52:41
+Recommendation: RETRANSLATE_REQUIRED
+
+[Scores]
+- structure: 10
+- semantic: 70
+- coverage: 75
+- hallucination: 80
+- style: 95
+- overall: 63.8
+
+[Metrics]
+- source_chars: 3084
+- translation_chars: 1979
+- length_ratio: 0.641
+- source_paragraphs: 43
+- translation_paragraphs: 43
+- korean_residue_count: 0
+
+[Issues]
+- [error] structure_title_missing: 來源第一行像標題：패션 1，但譯文沒有保留指定標題格式。
+- [error] structure_title_as_body: 標題可能被當成正文翻譯：譯文開頭包含「時尚 1」。
+- [warning] semantic_forbidden_translation: 역병신 出現時，譯文不應出現「有些不對勁」。역병신 is a strong metaphor and should not be flattened.
+- [warning] semantic_forbidden_translation: 역병신 出現時，譯文不應出現「不舒服」。역병신 is a strong metaphor and should not be flattened.
+- [warning] coverage_short: 譯文偏短，需人工檢查是否漏翻：ratio=0.64
+- [warning] hallucination_forbidden_content: 原文是豆子從筷子上掉落，不是筷子本身掉落。
+- [info] style_quote_format: 譯文出現英文雙引號，建議統一為中文引號「」。

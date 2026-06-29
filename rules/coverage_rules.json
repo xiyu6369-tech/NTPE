@@ -1,0 +1,14 @@
+{
+  "version": "1.2",
+  "module": "TQF-03.2 Best Effort Save + UltraSplit",
+  "thresholds": {
+    "min_length_ratio_warning": 0.78,
+    "min_length_ratio_error": 0.7,
+    "min_paragraph_ratio_warning": 0.85,
+    "min_paragraph_ratio_error": 0.7
+  },
+  "save_policy": {
+    "save_best_attempt_when_all_retries_fail": true,
+    "min_best_attempt_score": 50
+  }
+}

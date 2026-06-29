@@ -1,0 +1,177 @@
+{
+  "package_id": "PKG_TQF03_RETRANSLATE_passion1_normalized_000001_001003",
+  "project": {
+    "project_name": "Passion",
+    "source_language": "ko",
+    "target_language": "zh-TW"
+  },
+  "session": {
+    "session_id": "TQF03_RETRANSLATE_passion1_normalized_000001",
+    "file_name": "passion1_normalized.txt",
+    "chunk_index": 1003,
+    "chunk_total": 4,
+    "resume_key": "passion1_normalized.txt:chunk:001003"
+  },
+  "model_profile": {
+    "engine": "NVIDIA",
+    "model": "meta/llama-3.3-70b-instruct",
+    "context_window": 131072,
+    "temperature": 0.15,
+    "top_p": 0.85,
+    "max_output_tokens": 4000
+  },
+  "style_profile": {
+    "name": "Taiwan Novel",
+    "description": "publication-grade Traditional Chinese",
+    "target_register": "publication-grade Traditional Chinese"
+  },
+  "source": {
+    "chunk_text": "【P022】\n정태의는 복잡한 얼굴로 잠시 남자를 바라보다가 한숨 섞어 말했다.\n\n【P023】\n\"삼촌이 모를 만한 별일이 나한테 뭐 있겠어요. 삼촌에게야 이 시간에 연락도 없이 갑자기 찾아올 별일이 있을지 몰라도. ……들어오세요.\"\n\n【P024】\n어쩐지 감이 안 좋다 싶었다.\n\n【P025】\n이 남자가 싫은 건 아니지만 이 차림을 하고서 찾아오는 게 영 찜찜하다. 하지만 생각해보면 십중팔구 그는 형을 찾아왔을테고, 자신이 불길해할 일은 없었다.\n\n【P026】\n그럼에도 불구하고, 정태의는 집 안에 역병신을 맞아들이는 기분으로 비켜섰다. 그 얼굴을 본 남자의 눈이 불쾌한 빛도 없이 즐거운 듯 살짝 휘어졌다. 앞서 집 안으로 들어가는 남자의 뒤로 문을 닫고 들어가면서 정태의가 물었다.\n\n【P027】\n\"언제 들어온 거에요?\"\n\n【P028】\n\"두 시간 전. 공항에서 바로 왔어.\"\n\n【P029】\n\"응, 그렇구나……. 그런데 연락이라도 하고 오지 그랬어요. 형 없는데.\"\n\n【P030】\n주름 하나 없이 칼같이 각이 잡힌 제복 차림에 어울리지 않는 방만한 자세로 소파에 몸을 던지던 남자는 정태의의 말을 듣자 잠깐 멈칫하며 정태의를 노려보았다.\n\n【P031】\n\"없어? 언제 오는데.\"\n\n【P032】\n\"모르죠. 나흘 전에 나가더니 연락이 없는걸요. 형 만나러만 입국한 거에요? 그러면 먼 길을 헛걸음했네.\"\n\n【P033】\n\"연락해 볼 만한 데 없어?\"\n\n【P034】\n\"연락하려 들어서 쉽게 연락이 되면 정재의가 아니요. 알면서 뭘.\"\n\n【P035】\n정태의는 남자의 맞은편 스툴에 걸터앉으며 무심하게 말했다.\n\n【P036】\n정태의의 형은 비교적 규칙적인 생활을 하는 사람이었다. 하루 이틀 외박을 할 일이 있으면 대부분은 간단하게나마 예정을 알리고 나갔다. 그러나 가끔은 기약도 없이 훌쩍 나가서 몇날며칠이고 돌아오지 않을 때가 있었는데, 지금이 그럴 때였다. 사나흘만에 돌아올때도 있었지만 길게는 두 달 넘도록 소식조차 없을 때도 있어, 이번에는 과연 언제쯤 돌아올지 종잡을 수가 없었다.\n",
+    "source_hash": "5f5c7b0ea6c4452721195c7863900b130462de35",
+    "char_count": 997,
+    "document_structure": {
+      "enabled": true,
+      "module": "TQF-01 Document Structure Engine",
+      "version": "1.0",
+      "file_name": "",
+      "chunk_index": 1,
+      "has_title": false,
+      "title": null,
+      "blocks": [],
+      "rules": [
+        "如果第一行是 title/work_title，必須獨立翻譯成標題，不可併入正文第一句。",
+        "作品名 패션 在標題中固定譯為 PASSION，不可翻成『時尚』。",
+        "標題後必須保留空行，再開始正文翻譯。"
+      ],
+      "warnings": [
+        "No title detected in first chunk."
+      ]
+    }
+  },
+  "context": {
+    "previous_summary": "",
+    "previous_chunk_tail": "",
+    "recent_characters": [],
+    "recent_terms": []
+  },
+  "knowledge": {
+    "character_matches": [
+      {
+        "source": "정재의",
+        "target": "鄭載義",
+        "character_id": "CHAR000003",
+        "match_type": "single_name_ko",
+        "priority": 90,
+        "locked": true,
+        "regex": "(?<![A-Za-z0-9가-힣一-龥])정재의(?![A-Za-z0-9가-힣一-龥])",
+        "rule": "單名或韓文無空格姓名不拆"
+      },
+      {
+        "source": "정태의",
+        "target": "鄭泰義",
+        "character_id": "CHAR000002",
+        "match_type": "single_name_ko",
+        "priority": 90,
+        "locked": true,
+        "regex": "(?<![A-Za-z0-9가-힣一-龥])정태의(?![A-Za-z0-9가-힣一-龥])",
+        "rule": "單名或韓文無空格姓名不拆"
+      }
+    ],
+    "glossary_matches": [],
+    "semantic_matches": [
+      {
+        "source": "역병신",
+        "preferred": "像把瘟神迎進門",
+        "required": [
+          "瘟神"
+        ],
+        "allowed": [],
+        "forbidden": [
+          "有些不對勁",
+          "不舒服",
+          "不安"
+        ],
+        "level": "A",
+        "category": "metaphor",
+        "note": "역병신 is a strong metaphor and must not be flattened."
+      }
+    ],
+    "locked_dictionary": {
+      "정재의": "鄭載義",
+      "정태의": "鄭泰義"
+    },
+    "semantic_dictionary": {
+      "역병신": "像把瘟神迎進門"
+    }
+  },
+  "rules": {
+    "global_rules": [
+      "翻譯為自然流暢的台灣繁體中文。",
+      "保留原文劇情與敘事順序。",
+      "不可刪減、不可摘要、不可自行補劇情。",
+      "對話使用「」。",
+      "消除機器翻譯感。",
+      "人物口吻保持一致。"
+    ],
+    "character_rules": [
+      "全名必須翻成全名。",
+      "名字單獨出現時只翻名字，不可擴展成全名。",
+      "姓氏單獨出現時只翻姓氏，不可擴展成全名。",
+      "韓文無空格姓名視為完整姓名，不可拆分。",
+      "必須遵守 Character Database 的 locked_dictionary。"
+    ],
+    "format_rules": [
+      "對話使用「」。",
+      "保留原文段落結構。",
+      "不要輸出 Markdown 標題。",
+      "不要加上「以下為翻譯」等說明文字。"
+    ],
+    "negative_rules": [
+      "不可漏翻。",
+      "不可摘要。",
+      "不可改寫劇情。",
+      "不可自行新增原文沒有的內容。",
+      "不可留下大量韓文原文。",
+      "不可把單獨名字翻成全名。"
+    ],
+    "semantic_rules": [
+      "역병신 必須依語境譯為「像把瘟神迎進門」。",
+      "역병신 禁止譯成：有些不對勁／不舒服／不安。",
+      "역병신 語義提醒：역병신 is a strong metaphor and must not be flattened."
+    ],
+    "coverage_rules": [
+      "這是 TQF-03 覆蓋率重翻：嚴禁摘要，嚴禁合併段落。",
+      "原文已用【P001】、【P002】等段落標記。譯文必須保留每一個段落標記。",
+      "每個【Pxxx】段落都必須完整翻譯，不能省略任何段落。",
+      "每個段落翻譯後請換行，段落之間保留空行。",
+      "不可把多個段落合併成一段。",
+      "不可省略心理描寫、動作、景物、比喻、停頓與語氣。",
+      "若某段很短，也必須翻譯該段，不可略過。"
+    ]
+  },
+  "prompt": {
+    "system_prompt": "你是 NTPE 的專業韓文小說翻譯引擎。你的任務是將原文完整翻譯成Taiwan Traditional Chinese。你必須忠實保留原文資訊、敘事節奏、段落結構、人物語氣與小說畫面感。你必須遵守提供的人名、術語、語義鎖定與文件結構規則。只輸出譯文，不要加解釋。",
+    "user_prompt": "【翻譯規則】\n- 翻譯為自然流暢的台灣繁體中文。\n- 保留原文劇情與敘事順序。\n- 不可刪減、不可摘要、不可自行補劇情。\n- 對話使用「」。\n- 消除機器翻譯感。\n- 人物口吻保持一致。\n- 全名必須翻成全名。\n- 名字單獨出現時只翻名字，不可擴展成全名。\n- 姓氏單獨出現時只翻姓氏，不可擴展成全名。\n- 韓文無空格姓名視為完整姓名，不可拆分。\n- 必須遵守 Character Database 的 locked_dictionary。\n- 역병신 必須依語境譯為「像把瘟神迎進門」。\n- 역병신 禁止譯成：有些不對勁／不舒服／不安。\n- 역병신 語義提醒：역병신 is a strong metaphor and must not be flattened.\n- 對話使用「」。\n- 保留原文段落結構。\n- 不要輸出 Markdown 標題。\n- 不要加上「以下為翻譯」等說明文字。\n- 不可漏翻。\n- 不可摘要。\n- 不可改寫劇情。\n- 不可自行新增原文沒有的內容。\n- 不可留下大量韓文原文。\n- 不可把單獨名字翻成全名。\n\n【本段人物譯名】\n- 정재의 → 鄭載義（單名或韓文無空格姓名不拆）\n- 정태의 → 鄭泰義（單名或韓文無空格姓名不拆）\n\n【本段語義鎖定】\n- 역병신 → 像把瘟神迎進門\n  禁止譯成：有些不對勁／不舒服／不安\n  語義說明：역병신 is a strong metaphor and must not be flattened.\n\n【TQF-03 覆蓋率要求】\n- 這是 TQF-03 覆蓋率重翻：嚴禁摘要，嚴禁合併段落。\n- 原文已用【P001】、【P002】等段落標記。譯文必須保留每一個段落標記。\n- 每個【Pxxx】段落都必須完整翻譯，不能省略任何段落。\n- 每個段落翻譯後請換行，段落之間保留空行。\n- 不可把多個段落合併成一段。\n- 不可省略心理描寫、動作、景物、比喻、停頓與語氣。\n- 若某段很短，也必須翻譯該段，不可略過。\n\n【待翻譯內容】\n【P022】\n정태의는 복잡한 얼굴로 잠시 남자를 바라보다가 한숨 섞어 말했다.\n\n【P023】\n\"삼촌이 모를 만한 별일이 나한테 뭐 있겠어요. 삼촌에게야 이 시간에 연락도 없이 갑자기 찾아올 별일이 있을지 몰라도. ……들어오세요.\"\n\n【P024】\n어쩐지 감이 안 좋다 싶었다.\n\n【P025】\n이 남자가 싫은 건 아니지만 이 차림을 하고서 찾아오는 게 영 찜찜하다. 하지만 생각해보면 십중팔구 그는 형을 찾아왔을테고, 자신이 불길해할 일은 없었다.\n\n【P026】\n그럼에도 불구하고, 정태의는 집 안에 역병신을 맞아들이는 기분으로 비켜섰다. 그 얼굴을 본 남자의 눈이 불쾌한 빛도 없이 즐거운 듯 살짝 휘어졌다. 앞서 집 안으로 들어가는 남자의 뒤로 문을 닫고 들어가면서 정태의가 물었다.\n\n【P027】\n\"언제 들어온 거에요?\"\n\n【P028】\n\"두 시간 전. 공항에서 바로 왔어.\"\n\n【P029】\n\"응, 그렇구나……. 그런데 연락이라도 하고 오지 그랬어요. 형 없는데.\"\n\n【P030】\n주름 하나 없이 칼같이 각이 잡힌 제복 차림에 어울리지 않는 방만한 자세로 소파에 몸을 던지던 남자는 정태의의 말을 듣자 잠깐 멈칫하며 정태의를 노려보았다.\n\n【P031】\n\"없어? 언제 오는데.\"\n\n【P032】\n\"모르죠. 나흘 전에 나가더니 연락이 없는걸요. 형 만나러만 입국한 거에요? 그러면 먼 길을 헛걸음했네.\"\n\n【P033】\n\"연락해 볼 만한 데 없어?\"\n\n【P034】\n\"연락하려 들어서 쉽게 연락이 되면 정재의가 아니요. 알면서 뭘.\"\n\n【P035】\n정태의는 남자의 맞은편 스툴에 걸터앉으며 무심하게 말했다.\n\n【P036】\n정태의의 형은 비교적 규칙적인 생활을 하는 사람이었다. 하루 이틀 외박을 할 일이 있으면 대부분은 간단하게나마 예정을 알리고 나갔다. 그러나 가끔은 기약도 없이 훌쩍 나가서 몇날며칠이고 돌아오지 않을 때가 있었는데, 지금이 그럴 때였다. 사나흘만에 돌아올때도 있었지만 길게는 두 달 넘도록 소식조차 없을 때도 있어, 이번에는 과연 언제쯤 돌아올지 종잡을 수가 없었다.\n",
+    "prompt_mode": "translate"
+  },
+  "token_estimate": {
+    "system_tokens": 99,
+    "user_tokens": 1119,
+    "source_tokens": 705,
+    "total_input_tokens": 1218,
+    "estimated_output_tokens": 1410
+  },
+  "qa_requirements": {
+    "check_korean_residue": true,
+    "check_name_rules": true,
+    "check_glossary": true,
+    "check_repetition": true,
+    "check_length_ratio": true,
+    "check_semantic_rules": true
+  },
+  "metadata": {
+    "created_at": "2026-06-29T04:41:10",
+    "created_by": "NTPE Prompt Builder + TQF-02 Semantic Translation Engine",
+    "package_version": "1.0"
+  }
+}

@@ -1,0 +1,166 @@
+{
+  "package_id": "PKG_TQF032_RETRANSLATE_passion1_normalized_000001_001004",
+  "project": {
+    "project_name": "Passion",
+    "source_language": "ko",
+    "target_language": "zh-TW"
+  },
+  "session": {
+    "session_id": "TQF032_RETRANSLATE_passion1_normalized_000001",
+    "file_name": "passion1_normalized.txt",
+    "chunk_index": 1004,
+    "chunk_total": 8,
+    "resume_key": "passion1_normalized.txt:chunk:001004"
+  },
+  "model_profile": {
+    "engine": "NVIDIA",
+    "model": "meta/llama-3.3-70b-instruct",
+    "context_window": 131072,
+    "temperature": 0.15,
+    "top_p": 0.85,
+    "max_output_tokens": 4000
+  },
+  "style_profile": {
+    "name": "Taiwan Novel",
+    "description": "publication-grade Traditional Chinese",
+    "target_register": "publication-grade Traditional Chinese"
+  },
+  "source": {
+    "chunk_text": "【P014】\n그리고 그 신발 위로 자로 잰 듯 반듯하고 흐트러짐 없는 새카만 군북이 자리 잡고 있었다. 정확히는 군복이 아니라 정복이나 제복이라고 해야겠지만, 이 남자가 몸담고 있는 곳은 군대와 그리 크게 차이나지도 않는 곳이었다.\n\n【P015】\n목깃에 조그맣게 달려 있는 은배지가 어쩐지 유난히 밉살스러워 보인다. 저 배지를 달고 싶어 못 견뎌하는 사람이 세상에 숱하게 널려 있는 탓은 아니다.\n\n【P016】\n이 남자가 저 배지를 달고-- 정식으로 제복을 차려입고---이 집을 찾아왔을 때 좋은 일이 있었던 적은 한 번도 없었다. 그렇게 말은 해도, 이 남자의 정복 차림은 이걸로 세 번째인가 네 번째로 보는 것이었다.\n\n【P017】\n까만 장갑이 까만 모자를 벗겨내었다. 남자는 정태의를 맞보며 매끄럽게 웃었다.\n\n【P018】\n\"오랜만이구나. 별일 없었지?\"\n",
+    "source_hash": "dc2765fdbf6f36f81640f1c1cdffd67b337426db",
+    "char_count": 426,
+    "document_structure": {
+      "enabled": true,
+      "module": "TQF-01 Document Structure Engine",
+      "version": "1.0",
+      "file_name": "",
+      "chunk_index": 1,
+      "has_title": false,
+      "title": null,
+      "blocks": [],
+      "rules": [
+        "如果第一行是 title/work_title，必須獨立翻譯成標題，不可併入正文第一句。",
+        "作品名 패션 在標題中固定譯為 PASSION，不可翻成『時尚』。",
+        "標題後必須保留空行，再開始正文翻譯。"
+      ],
+      "warnings": [
+        "No title detected in first chunk."
+      ]
+    }
+  },
+  "context": {
+    "previous_summary": "",
+    "previous_chunk_tail": "",
+    "recent_characters": [],
+    "recent_terms": []
+  },
+  "knowledge": {
+    "character_matches": [
+      {
+        "source": "정태의",
+        "target": "鄭泰義",
+        "character_id": "CHAR000002",
+        "match_type": "single_name_ko",
+        "priority": 90,
+        "locked": true,
+        "regex": "(?<![A-Za-z0-9가-힣一-龥])정태의(?![A-Za-z0-9가-힣一-龥])",
+        "rule": "單名或韓文無空格姓名不拆"
+      }
+    ],
+    "glossary_matches": [],
+    "semantic_matches": [
+      {
+        "source": "정복",
+        "preferred": "正裝制服",
+        "required": [
+          "正裝制服"
+        ],
+        "allowed": [],
+        "forbidden": [
+          "軍官",
+          "軍服"
+        ],
+        "level": "B",
+        "category": "clothing",
+        "note": "정복 is formal uniform; not automatically a military officer."
+      }
+    ],
+    "locked_dictionary": {
+      "정태의": "鄭泰義"
+    },
+    "semantic_dictionary": {
+      "정복": "正裝制服"
+    }
+  },
+  "rules": {
+    "global_rules": [
+      "翻譯為自然流暢的台灣繁體中文。",
+      "保留原文劇情與敘事順序。",
+      "不可刪減、不可摘要、不可自行補劇情。",
+      "對話使用「」。",
+      "消除機器翻譯感。",
+      "人物口吻保持一致。"
+    ],
+    "character_rules": [
+      "全名必須翻成全名。",
+      "名字單獨出現時只翻名字，不可擴展成全名。",
+      "姓氏單獨出現時只翻姓氏，不可擴展成全名。",
+      "韓文無空格姓名視為完整姓名，不可拆分。",
+      "必須遵守 Character Database 的 locked_dictionary。"
+    ],
+    "format_rules": [
+      "對話使用「」。",
+      "保留原文段落結構。",
+      "不要輸出 Markdown 標題。",
+      "不要加上「以下為翻譯」等說明文字。"
+    ],
+    "negative_rules": [
+      "不可漏翻。",
+      "不可摘要。",
+      "不可改寫劇情。",
+      "不可自行新增原文沒有的內容。",
+      "不可留下大量韓文原文。",
+      "不可把單獨名字翻成全名。"
+    ],
+    "semantic_rules": [
+      "정복 必須依語境譯為「正裝制服」。",
+      "정복 禁止譯成：軍官／軍服。",
+      "정복 語義提醒：정복 is formal uniform; not automatically a military officer."
+    ],
+    "coverage_rules": [
+      "這是 TQF-03.2 覆蓋率重翻：禁止摘要，禁止合併段落。",
+      "原文使用【P001】等段落標記。每個標記都必須出現在譯文中。",
+      "每個【Pxxx】之後都必須有完整譯文，不能只輸出空標記。",
+      "每個原文段落必須對應一個譯文段落，段落之間保留空行。",
+      "不要濃縮、不要概括、不要省略心理描寫、動作、景物、比喻、停頓與語氣。",
+      "譯文可以比原文長，忠實完整優先於簡短。",
+      "不可把 패션 翻成時尚；作品標題由系統鎖定。",
+      "本段標題已鎖定為「《PASSION》第一卷」，不要再翻譯或輸出標題。"
+    ]
+  },
+  "prompt": {
+    "system_prompt": "你是 NTPE 的專業韓文小說翻譯引擎。你的任務是將原文完整翻譯成Taiwan Traditional Chinese。你必須忠實保留原文資訊、敘事節奏、段落結構、人物語氣與小說畫面感。你必須遵守提供的人名、術語、語義鎖定與文件結構規則。只輸出譯文，不要加解釋。",
+    "user_prompt": "\n\n【前一次覆蓋率檢查未達標 attempt=4】\n- 譯文長度比例過低，疑似摘要或漏翻：ratio=0.6494\n請重翻：每個【Pxxx】都必須保留並完整翻譯。不可摘要、不可合併段落、不可縮寫。\n\n\n【前一次覆蓋率檢查未達標 attempt=3】\n- 譯文長度比例過低，疑似摘要或漏翻：ratio=0.5741\n請重翻：每個【Pxxx】都必須保留並完整翻譯。不可摘要、不可合併段落、不可縮寫。\n\n\n【前一次覆蓋率檢查未達標 attempt=2】\n- 譯文長度比例過低，疑似摘要或漏翻：ratio=0.5576\n請重翻：每個【Pxxx】都必須保留並完整翻譯。不可摘要、不可合併段落、不可縮寫。\n\n\n【前一次覆蓋率檢查未達標 attempt=1】\n- 譯文長度比例過低，疑似摘要或漏翻：ratio=0.6047\n請重翻：每個【Pxxx】都必須保留並完整翻譯。不可摘要、不可合併段落、不可縮寫。\n【翻譯規則】\n- 翻譯為自然流暢的台灣繁體中文。\n- 保留原文劇情與敘事順序。\n- 不可刪減、不可摘要、不可自行補劇情。\n- 對話使用「」。\n- 消除機器翻譯感。\n- 人物口吻保持一致。\n- 全名必須翻成全名。\n- 名字單獨出現時只翻名字，不可擴展成全名。\n- 姓氏單獨出現時只翻姓氏，不可擴展成全名。\n- 韓文無空格姓名視為完整姓名，不可拆分。\n- 必須遵守 Character Database 的 locked_dictionary。\n- 정복 必須依語境譯為「正裝制服」。\n- 정복 禁止譯成：軍官／軍服。\n- 정복 語義提醒：정복 is formal uniform; not automatically a military officer.\n- 對話使用「」。\n- 保留原文段落結構。\n- 不要輸出 Markdown 標題。\n- 不要加上「以下為翻譯」等說明文字。\n- 不可漏翻。\n- 不可摘要。\n- 不可改寫劇情。\n- 不可自行新增原文沒有的內容。\n- 不可留下大量韓文原文。\n- 不可把單獨名字翻成全名。\n\n【本段人物譯名】\n- 정태의 → 鄭泰義（單名或韓文無空格姓名不拆）\n\n【本段語義鎖定】\n- 정복 → 正裝制服\n  禁止譯成：軍官／軍服\n  語義說明：정복 is formal uniform; not automatically a military officer.\n\n【TQF-03.2 覆蓋率要求】\n- 這是 TQF-03.2 覆蓋率重翻：禁止摘要，禁止合併段落。\n- 原文使用【P001】等段落標記。每個標記都必須出現在譯文中。\n- 每個【Pxxx】之後都必須有完整譯文，不能只輸出空標記。\n- 每個原文段落必須對應一個譯文段落，段落之間保留空行。\n- 不要濃縮、不要概括、不要省略心理描寫、動作、景物、比喻、停頓與語氣。\n- 譯文可以比原文長，忠實完整優先於簡短。\n- 不可把 패션 翻成時尚；作品標題由系統鎖定。\n- 本段標題已鎖定為「《PASSION》第一卷」，不要再翻譯或輸出標題。\n\n【待翻譯內容】\n【P014】\n그리고 그 신발 위로 자로 잰 듯 반듯하고 흐트러짐 없는 새카만 군북이 자리 잡고 있었다. 정확히는 군복이 아니라 정복이나 제복이라고 해야겠지만, 이 남자가 몸담고 있는 곳은 군대와 그리 크게 차이나지도 않는 곳이었다.\n\n【P015】\n목깃에 조그맣게 달려 있는 은배지가 어쩐지 유난히 밉살스러워 보인다. 저 배지를 달고 싶어 못 견뎌하는 사람이 세상에 숱하게 널려 있는 탓은 아니다.\n\n【P016】\n이 남자가 저 배지를 달고-- 정식으로 제복을 차려입고---이 집을 찾아왔을 때 좋은 일이 있었던 적은 한 번도 없었다. 그렇게 말은 해도, 이 남자의 정복 차림은 이걸로 세 번째인가 네 번째로 보는 것이었다.\n\n【P017】\n까만 장갑이 까만 모자를 벗겨내었다. 남자는 정태의를 맞보며 매끄럽게 웃었다.\n\n【P018】\n\"오랜만이구나. 별일 없었지?\"\n",
+    "prompt_mode": "translate"
+  },
+  "token_estimate": {
+    "system_tokens": 99,
+    "user_tokens": 682,
+    "source_tokens": 309,
+    "total_input_tokens": 781,
+    "estimated_output_tokens": 618
+  },
+  "qa_requirements": {
+    "check_korean_residue": true,
+    "check_name_rules": true,
+    "check_glossary": true,
+    "check_repetition": true,
+    "check_length_ratio": true,
+    "check_semantic_rules": true
+  },
+  "metadata": {
+    "created_at": "2026-06-29T23:22:37",
+    "created_by": "NTPE Prompt Builder + TQF-02 Semantic Translation Engine",
+    "package_version": "1.0"
+  }
+}

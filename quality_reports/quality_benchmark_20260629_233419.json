@@ -1,0 +1,50 @@
+{
+  "status": "success",
+  "generated_at": "2026-06-29T23:34:19",
+  "scores": {
+    "structure": 100,
+    "semantic": 70,
+    "coverage": 75,
+    "hallucination": 80,
+    "style": 95,
+    "overall": 81.8
+  },
+  "issues": [
+    {
+      "severity": "warning",
+      "type": "semantic_forbidden_translation",
+      "message": "군화 出現時，譯文不應出現「鞋子」。군화 should preserve the military boot image."
+    },
+    {
+      "severity": "warning",
+      "type": "semantic_forbidden_translation",
+      "message": "역병신 出現時，譯文不應出現「有些不對勁」。역병신 is a strong metaphor and should not be flattened."
+    },
+    {
+      "severity": "warning",
+      "type": "coverage_short",
+      "message": "譯文偏短，需人工檢查是否漏翻：ratio=0.68"
+    },
+    {
+      "severity": "warning",
+      "type": "hallucination_forbidden_content",
+      "message": "原文是豆子從筷子上掉落，不是筷子本身掉落。"
+    },
+    {
+      "severity": "info",
+      "type": "style_quote_format",
+      "message": "譯文出現英文雙引號，建議統一為中文引號「」。"
+    }
+  ],
+  "metrics": {
+    "source_chars": 3084,
+    "translation_chars": 2103,
+    "length_ratio": 0.681,
+    "source_paragraphs": 43,
+    "translation_paragraphs": 43,
+    "korean_residue_count": 0
+  },
+  "recommendation": "HUMAN_REVIEW_RECOMMENDED",
+  "package_path": "D:\\Python\\NTPE\\prompt_packages\\passion1_normalized_chunk_000001.json",
+  "translation_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000001_zh.txt"
+}
