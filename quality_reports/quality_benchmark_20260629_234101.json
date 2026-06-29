@@ -1,0 +1,30 @@
+{
+  "status": "success",
+  "generated_at": "2026-06-29T23:41:01",
+  "scores": {
+    "structure": 100,
+    "semantic": 100,
+    "coverage": 75,
+    "hallucination": 100,
+    "style": 100,
+    "overall": 93.8
+  },
+  "issues": [
+    {
+      "severity": "warning",
+      "type": "coverage_short",
+      "message": "譯文偏短，需人工檢查是否漏翻：ratio=0.69"
+    }
+  ],
+  "metrics": {
+    "source_chars": 3084,
+    "translation_chars": 2115,
+    "length_ratio": 0.685,
+    "source_paragraphs": 43,
+    "translation_paragraphs": 43,
+    "korean_residue_count": 0
+  },
+  "recommendation": "PASS",
+  "package_path": "D:\\Python\\NTPE\\prompt_packages\\passion1_normalized_chunk_000001.json",
+  "translation_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000001_zh.txt"
+}

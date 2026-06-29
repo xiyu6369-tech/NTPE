@@ -1,0 +1,77 @@
+{
+  "version": "1.0",
+  "module": "TQF-04 Semantic QA + Auto Repair",
+  "description": "Post-translation semantic QA and conservative automatic repair rules.",
+  "rules": [
+    {
+      "id": "SEM_GUNHWA_BOOT",
+      "source_trigger": "군화",
+      "required_any": [
+        "軍靴"
+      ],
+      "forbidden": [
+        "鞋子"
+      ],
+      "repair": [
+        {
+          "from": "鞋子",
+          "to": "軍靴",
+          "when_source_contains": "군화"
+        }
+      ],
+      "severity": "warning",
+      "note": "군화 must preserve military boot imagery."
+    },
+    {
+      "id": "SEM_YEOKBYEONGSIN",
+      "source_trigger": "역병신",
+      "required_any": [
+        "瘟神"
+      ],
+      "forbidden": [
+        "有些不對勁",
+        "不舒服",
+        "不安"
+      ],
+      "repair": [
+        {
+          "from": "有些不對勁",
+          "to": "像把瘟神迎進門一樣",
+          "when_source_contains": "역병신"
+        },
+        {
+          "from": "不舒服",
+          "to": "像把瘟神迎進門一樣",
+          "when_source_contains": "역병신"
+        }
+      ],
+      "severity": "warning",
+      "note": "역병신 is a strong metaphor and must not be flattened."
+    },
+    {
+      "id": "SEM_BEANS_CHOPSTICKS",
+      "source_trigger": "젓가락에서 콩자반이 떨어져",
+      "required_any": [
+        "豆",
+        "黑豆"
+      ],
+      "forbidden": [
+        "筷子掉",
+        "筷子也掉",
+        "筷子掉落"
+      ],
+      "repair": [],
+      "severity": "warning",
+      "note": "The bean falls from the chopsticks; the chopsticks do not fall."
+    },
+    {
+      "id": "STYLE_QUOTES",
+      "source_trigger": "",
+      "required_any": [],
+      "forbidden": [],
+      "repair": [],
+      "severity": "info",
+      "note": "Normalize English double quotes to Chinese corner quotes when used as dialogue."
+    }
+  ]
+}

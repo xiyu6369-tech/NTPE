@@ -8,12 +8,21 @@ try:
 except Exception:
     DocumentStructureEngine = None
 
-from .coverage_analyzer import CoverageAnalyzer
-from .coverage_checker import CoverageChecker
+try:
+    from .coverage_analyzer import CoverageAnalyzer
+    from .coverage_checker import CoverageChecker
+except Exception:
+    CoverageAnalyzer = None
+    CoverageChecker = None
+
+from .semantic_qa import SemanticQA
+from .semantic_repair import SemanticRepair
 
 __all__ = [
     "SemanticTranslationEngine",
     "DocumentStructureEngine",
     "CoverageAnalyzer",
     "CoverageChecker",
+    "SemanticQA",
+    "SemanticRepair",
 ]
