@@ -1,0 +1,853 @@
+{
+  "status": "success",
+  "started_at": "2026-06-30T02:30:36",
+  "updated_at": "2026-06-30T02:30:36",
+  "file_count": 1,
+  "chunk_count": 85,
+  "translated_count": 0,
+  "skipped_count": 85,
+  "semantic_repaired_count": 0,
+  "style_expanded_count": 0,
+  "quality_failed_count": 0,
+  "missing_file_count": 0,
+  "failed_count": 0,
+  "final_outputs": [
+    "D:\\Python\\NTPE\\final_output\\passion1_normalized_zh.txt"
+  ],
+  "missing_files": [],
+  "failed_chunks": [],
+  "quality_failed_chunks": [],
+  "files": [
+    {
+      "file": "passion1_normalized.txt",
+      "status": "done",
+      "chunk_count": 85,
+      "chunks": [
+        {
+          "chunk_index": 1,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000001_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000001.json",
+          "quality": {}
+        },
+        {
+          "chunk_index": 2,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000002_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000002.json",
+          "quality": {}
+        },
+        {
+          "chunk_index": 3,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000003_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000003.json",
+          "quality": {}
+        },
+        {
+          "chunk_index": 4,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000004_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000004.json",
+          "quality": {}
+        },
+        {
+          "chunk_index": 5,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000005_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000005.json",
+          "quality": {}
+        },
+        {
+          "chunk_index": 6,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000006_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000006.json",
+          "quality": {}
+        },
+        {
+          "chunk_index": 7,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000007_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000007.json",
+          "quality": {}
+        },
+        {
+          "chunk_index": 8,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000008_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000008.json",
+          "quality": {}
+        },
+        {
+          "chunk_index": 9,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000009_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000009.json",
+          "quality": {}
+        },
+        {
+          "chunk_index": 10,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000010_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000010.json",
+          "quality": {}
+        },
+        {
+          "chunk_index": 11,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000011_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000011.json",
+          "quality": {}
+        },
+        {
+          "chunk_index": 12,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000012_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000012.json",
+          "quality": {}
+        },
+        {
+          "chunk_index": 13,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000013_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000013.json",
+          "quality": {}
+        },
+        {
+          "chunk_index": 14,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000014_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000014.json",
+          "quality": {}
+        },
+        {
+          "chunk_index": 15,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000015_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000015.json",
+          "quality": {}
+        },
+        {
+          "chunk_index": 16,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000016_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000016.json",
+          "quality": {}
+        },
+        {
+          "chunk_index": 17,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000017_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000017.json",
+          "quality": {}
+        },
+        {
+          "chunk_index": 18,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000018_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000018.json",
+          "quality": {}
+        },
+        {
+          "chunk_index": 19,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000019_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000019.json",
+          "quality": {}
+        },
+        {
+          "chunk_index": 20,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000020_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000020.json",
+          "quality": {}
+        },
+        {
+          "chunk_index": 21,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000021_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000021.json",
+          "quality": {}
+        },
+        {
+          "chunk_index": 22,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000022_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000022.json",
+          "quality": {}
+        },
+        {
+          "chunk_index": 23,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000023_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000023.json",
+          "quality": {}
+        },
+        {
+          "chunk_index": 24,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000024_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000024.json",
+          "quality": {}
+        },
+        {
+          "chunk_index": 25,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000025_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000025.json",
+          "quality": {}
+        },
+        {
+          "chunk_index": 26,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000026_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000026.json",
+          "quality": {}
+        },
+        {
+          "chunk_index": 27,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000027_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000027.json",
+          "quality": {}
+        },
+        {
+          "chunk_index": 28,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000028_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000028.json",
+          "quality": {}
+        },
+        {
+          "chunk_index": 29,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000029_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000029.json",
+          "quality": {}
+        },
+        {
+          "chunk_index": 30,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000030_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000030.json",
+          "quality": {}
+        },
+        {
+          "chunk_index": 31,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000031_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000031.json",
+          "quality": {}
+        },
+        {
+          "chunk_index": 32,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000032_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000032.json",
+          "quality": {}
+        },
+        {
+          "chunk_index": 33,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000033_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000033.json",
+          "quality": {}
+        },
+        {
+          "chunk_index": 34,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000034_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000034.json",
+          "quality": {}
+        },
+        {
+          "chunk_index": 35,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000035_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000035.json",
+          "quality": {}
+        },
+        {
+          "chunk_index": 36,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000036_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000036.json",
+          "quality": {}
+        },
+        {
+          "chunk_index": 37,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000037_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000037.json",
+          "quality": {}
+        },
+        {
+          "chunk_index": 38,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000038_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000038.json",
+          "quality": {}
+        },
+        {
+          "chunk_index": 39,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000039_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000039.json",
+          "quality": {}
+        },
+        {
+          "chunk_index": 40,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000040_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000040.json",
+          "quality": {}
+        },
+        {
+          "chunk_index": 41,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000041_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000041.json",
+          "quality": {
+            "overall": 64.0,
+            "semantic": 100,
+            "coverage": 40,
+            "passed": false
+          }
+        },
+        {
+          "chunk_index": 42,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000042_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000042.json",
+          "quality": {
+            "overall": 64.0,
+            "semantic": 100,
+            "coverage": 40,
+            "passed": false
+          }
+        },
+        {
+          "chunk_index": 43,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000043_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000043.json",
+          "quality": {
+            "overall": 70.0,
+            "semantic": 100,
+            "coverage": 50,
+            "passed": false
+          }
+        },
+        {
+          "chunk_index": 44,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000044_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000044.json",
+          "quality": {
+            "overall": 52.0,
+            "semantic": 100,
+            "coverage": 20,
+            "passed": false
+          }
+        },
+        {
+          "chunk_index": 45,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000045_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000045.json",
+          "quality": {
+            "overall": 52.0,
+            "semantic": 100,
+            "coverage": 20,
+            "passed": false
+          }
+        },
+        {
+          "chunk_index": 46,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000046_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000046.json",
+          "quality": {
+            "overall": 64.0,
+            "semantic": 100,
+            "coverage": 40,
+            "passed": false
+          }
+        },
+        {
+          "chunk_index": 47,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000047_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000047.json",
+          "quality": {
+            "overall": 100.0,
+            "semantic": 100,
+            "coverage": 100,
+            "passed": true
+          }
+        },
+        {
+          "chunk_index": 48,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000048_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000048.json",
+          "quality": {
+            "overall": 62.2,
+            "semantic": 100,
+            "coverage": 37,
+            "passed": false
+          }
+        },
+        {
+          "chunk_index": 49,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000049_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000049.json",
+          "quality": {
+            "overall": 62.2,
+            "semantic": 100,
+            "coverage": 37,
+            "passed": false
+          }
+        },
+        {
+          "chunk_index": 50,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000050_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000050.json",
+          "quality": {
+            "overall": 64.0,
+            "semantic": 100,
+            "coverage": 40,
+            "passed": false
+          }
+        },
+        {
+          "chunk_index": 51,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000051_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000051.json",
+          "quality": {
+            "overall": 43.0,
+            "semantic": 100,
+            "coverage": 5,
+            "passed": false
+          }
+        },
+        {
+          "chunk_index": 52,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000052_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000052.json",
+          "quality": {
+            "overall": 62.2,
+            "semantic": 100,
+            "coverage": 37,
+            "passed": false
+          }
+        },
+        {
+          "chunk_index": 53,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000053_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000053.json",
+          "quality": {
+            "overall": 52.0,
+            "semantic": 100,
+            "coverage": 20,
+            "passed": false
+          }
+        },
+        {
+          "chunk_index": 54,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000054_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000054.json",
+          "quality": {
+            "overall": 62.2,
+            "semantic": 100,
+            "coverage": 37,
+            "passed": false
+          }
+        },
+        {
+          "chunk_index": 55,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000055_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000055.json",
+          "quality": {
+            "overall": 62.2,
+            "semantic": 100,
+            "coverage": 37,
+            "passed": false
+          }
+        },
+        {
+          "chunk_index": 56,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000056_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000056.json",
+          "quality": {
+            "overall": 62.2,
+            "semantic": 100,
+            "coverage": 37,
+            "passed": false
+          }
+        },
+        {
+          "chunk_index": 57,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000057_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000057.json",
+          "quality": {
+            "overall": 62.2,
+            "semantic": 100,
+            "coverage": 37,
+            "passed": false
+          }
+        },
+        {
+          "chunk_index": 58,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000058_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000058.json",
+          "quality": {
+            "overall": 62.2,
+            "semantic": 100,
+            "coverage": 37,
+            "passed": false
+          }
+        },
+        {
+          "chunk_index": 59,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000059_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000059.json",
+          "quality": {
+            "overall": 92.2,
+            "semantic": 100,
+            "coverage": 87,
+            "passed": false
+          }
+        },
+        {
+          "chunk_index": 60,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000060_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000060.json",
+          "quality": {
+            "overall": 43.0,
+            "semantic": 100,
+            "coverage": 5,
+            "passed": false
+          }
+        },
+        {
+          "chunk_index": 61,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000061_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000061.json",
+          "quality": {
+            "overall": 43.0,
+            "semantic": 100,
+            "coverage": 5,
+            "passed": false
+          }
+        },
+        {
+          "chunk_index": 62,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000062_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000062.json",
+          "quality": {
+            "overall": 52.0,
+            "semantic": 100,
+            "coverage": 20,
+            "passed": false
+          }
+        },
+        {
+          "chunk_index": 63,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000063_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000063.json",
+          "quality": {
+            "overall": 84.4,
+            "semantic": 100,
+            "coverage": 74,
+            "passed": false
+          }
+        },
+        {
+          "chunk_index": 64,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000064_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000064.json",
+          "quality": {
+            "overall": 62.2,
+            "semantic": 100,
+            "coverage": 37,
+            "passed": false
+          }
+        },
+        {
+          "chunk_index": 65,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000065_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000065.json",
+          "quality": {
+            "overall": 43.0,
+            "semantic": 100,
+            "coverage": 5,
+            "passed": false
+          }
+        },
+        {
+          "chunk_index": 66,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000066_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000066.json",
+          "quality": {
+            "overall": 43.0,
+            "semantic": 100,
+            "coverage": 5,
+            "passed": false
+          }
+        },
+        {
+          "chunk_index": 67,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000067_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000067.json",
+          "quality": {
+            "overall": 52.0,
+            "semantic": 100,
+            "coverage": 20,
+            "passed": false
+          }
+        },
+        {
+          "chunk_index": 68,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000068_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000068.json",
+          "quality": {
+            "overall": 62.2,
+            "semantic": 100,
+            "coverage": 37,
+            "passed": false
+          }
+        },
+        {
+          "chunk_index": 69,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000069_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000069.json",
+          "quality": {
+            "overall": 52.0,
+            "semantic": 100,
+            "coverage": 20,
+            "passed": false
+          }
+        },
+        {
+          "chunk_index": 70,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000070_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000070.json",
+          "quality": {
+            "overall": 100.0,
+            "semantic": 100,
+            "coverage": 100,
+            "passed": true
+          }
+        },
+        {
+          "chunk_index": 71,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000071_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000071.json",
+          "quality": {
+            "overall": 52.0,
+            "semantic": 100,
+            "coverage": 20,
+            "passed": false
+          }
+        },
+        {
+          "chunk_index": 72,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000072_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000072.json",
+          "quality": {
+            "overall": 52.0,
+            "semantic": 100,
+            "coverage": 20,
+            "passed": false
+          }
+        },
+        {
+          "chunk_index": 73,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000073_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000073.json",
+          "quality": {
+            "overall": 84.4,
+            "semantic": 100,
+            "coverage": 74,
+            "passed": false
+          }
+        },
+        {
+          "chunk_index": 74,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000074_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000074.json",
+          "quality": {
+            "overall": 62.2,
+            "semantic": 100,
+            "coverage": 37,
+            "passed": false
+          }
+        },
+        {
+          "chunk_index": 75,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000075_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000075.json",
+          "quality": {
+            "overall": 70.0,
+            "semantic": 100,
+            "coverage": 50,
+            "passed": false
+          }
+        },
+        {
+          "chunk_index": 76,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000076_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000076.json",
+          "quality": {
+            "overall": 52.0,
+            "semantic": 100,
+            "coverage": 20,
+            "passed": false
+          }
+        },
+        {
+          "chunk_index": 77,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000077_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000077.json",
+          "quality": {
+            "overall": 74.2,
+            "semantic": 100,
+            "coverage": 57,
+            "passed": false
+          }
+        },
+        {
+          "chunk_index": 78,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000078_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000078.json",
+          "quality": {
+            "overall": 73.0,
+            "semantic": 100,
+            "coverage": 55,
+            "passed": false
+          }
+        },
+        {
+          "chunk_index": 79,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000079_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000079.json",
+          "quality": {
+            "overall": 62.2,
+            "semantic": 100,
+            "coverage": 37,
+            "passed": false
+          }
+        },
+        {
+          "chunk_index": 80,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000080_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000080.json",
+          "quality": {
+            "overall": 52.0,
+            "semantic": 100,
+            "coverage": 20,
+            "passed": false
+          }
+        },
+        {
+          "chunk_index": 81,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000081_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000081.json",
+          "quality": {
+            "overall": 64.0,
+            "semantic": 100,
+            "coverage": 40,
+            "passed": false
+          }
+        },
+        {
+          "chunk_index": 82,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000082_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000082.json",
+          "quality": {
+            "overall": 52.0,
+            "semantic": 100,
+            "coverage": 20,
+            "passed": false
+          }
+        },
+        {
+          "chunk_index": 83,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000083_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000083.json",
+          "quality": {
+            "overall": 52.0,
+            "semantic": 100,
+            "coverage": 20,
+            "passed": false
+          }
+        },
+        {
+          "chunk_index": 84,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000084_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000084.json",
+          "quality": {
+            "overall": 84.4,
+            "semantic": 100,
+            "coverage": 74,
+            "passed": false
+          }
+        },
+        {
+          "chunk_index": 85,
+          "status": "skipped_existing",
+          "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000085_zh.txt",
+          "state_path": "D:\\Python\\NTPE\\sessions\\pipeline_v1\\passion1_normalized\\chunk000085.json",
+          "quality": {
+            "overall": 70.0,
+            "semantic": 100,
+            "coverage": 50,
+            "passed": false
+          }
+        }
+      ],
+      "final_output": "D:\\Python\\NTPE\\final_output\\passion1_normalized_zh.txt",
+      "started_at": "2026-06-30T02:30:36",
+      "ended_at": "2026-06-30T02:30:36"
+    }
+  ],
+  "ended_at": "2026-06-30T02:30:36"
+}

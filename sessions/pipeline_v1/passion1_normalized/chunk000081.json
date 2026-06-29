@@ -1,0 +1,48 @@
+{
+  "file": "passion1_normalized.txt",
+  "chunk_index": 81,
+  "status": "done",
+  "package_path": "D:\\Python\\NTPE\\prompt_packages\\passion1_normalized_chunk_000081_v1.json",
+  "updated_at": "2026-06-30T02:12:46",
+  "output_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000081_zh.txt",
+  "semantic_repaired": false,
+  "style_expanded": true,
+  "semantic": {
+    "passed": true,
+    "issues": [],
+    "issue_count": 0
+  },
+  "coverage": {
+    "passed": false,
+    "score": 40,
+    "metrics": {
+      "source_length": 3011,
+      "translation_length": 2350,
+      "length_ratio": 0.7805,
+      "source_paragraphs": 42,
+      "translation_paragraphs": 14,
+      "paragraph_ratio": 0.3333,
+      "source_sentences": 98,
+      "translation_sentences": 66,
+      "sentence_ratio": 0.6735,
+      "source_dialogue_count": 44,
+      "translation_dialogue_count": 36,
+      "dialogue_ratio": 0.8182
+    },
+    "issues": [
+      {
+        "severity": "error",
+        "type": "paragraph_compression_error",
+        "message": "段落壓縮過度：source=42, translation=14, ratio=0.3333"
+      }
+    ]
+  },
+  "quality": {
+    "overall": 64.0,
+    "semantic": 100,
+    "coverage": 40,
+    "passed": false
+  },
+  "expansion_status": "expanded",
+  "expansion_tasks": 8
+}

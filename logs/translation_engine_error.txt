@@ -25,3 +25,4 @@
 [2026-06-29T23:53:00] PKG_TQF032_RETRANSLATE_passion1_normalized_000001_001001｜'latin-1' codec can't encode characters in position 7-8: ordinal not in range(256)
 [2026-06-29T23:53:05] PKG_TQF032_RETRANSLATE_passion1_normalized_000001_001001｜'latin-1' codec can't encode characters in position 7-8: ordinal not in range(256)
 [2026-06-29T23:53:15] PKG_TQF032_RETRANSLATE_passion1_normalized_000001_001001｜'latin-1' codec can't encode characters in position 7-8: ordinal not in range(256)
+[2026-06-30T00:57:36] PKG_PIPELINE_V1_passion1_normalized_000053｜HTTPSConnectionPool(host='integrate.api.nvidia.com', port=443): Read timed out. (read timeout=180)
