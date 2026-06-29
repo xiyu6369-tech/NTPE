@@ -9,6 +9,7 @@ from core.translation_engine.translation_engine import TranslationEngine
 from core.quality.semantic_qa import SemanticQA
 from core.quality.semantic_repair import SemanticRepair
 from core.quality.coverage_checker import CoverageChecker
+from core.context.memory_engine import ContextMemoryEngine
 
 try:
     from core.expansion.style_expansion_engine import StyleExpansionEngine
@@ -86,6 +87,7 @@ class ProductionPipelineV1:
             semantic_qa = SemanticQA(root=self.root)
             semantic_repair = SemanticRepair(root=self.root)
             coverage_checker = CoverageChecker(root=self.root)
+            context_memory = ContextMemoryEngine(root=self.root)
             style_expansion = StyleExpansionEngine(root=self.root) if StyleExpansionEngine else None
             merger = ChunkMerger(root=self.root)
 
@@ -269,6 +271,13 @@ class ProductionPipelineV1:
                         chunk_state["expansion_tasks"] = expansion_result.get("plan", {}).get("task_count", 0)
 
                     save_json(state_path, chunk_state)
+
+                    context_memory.update_after_chunk(
+                        file_name=file_path.name,
+                        chunk_index=chunk.index,
+                        source_text=chunk.text,
+                        translation_text=translation_text,
+                    )
                     file_chunk_outputs.append(translation_path)
                     file_report["chunks"].append({
                         "chunk_index": chunk.index,
