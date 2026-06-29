@@ -20,6 +20,11 @@ try:
 except Exception:
     DocumentStructureEngine = None
 
+try:
+    from core.quality.novel_style_planner import NovelStylePlanner
+except Exception:
+    NovelStylePlanner = None
+
 
 class PromptBuilder:
     def __init__(self, root: str | Path, profile_path: str | Path | None = None):
@@ -36,6 +41,7 @@ class PromptBuilder:
 
         self.semantic_engine = SemanticTranslationEngine(self.root) if SemanticTranslationEngine else None
         self.structure_engine = DocumentStructureEngine(self.root) if DocumentStructureEngine else None
+        self.style_planner = NovelStylePlanner(self.root) if NovelStylePlanner else None
 
     def build(self, *, chunk_text: str, file_name: str, chunk_index: int, chunk_total: int, session_id: str, context: dict | None = None) -> dict:
         if context is None:
@@ -54,12 +60,23 @@ class PromptBuilder:
             "title": None,
             "elements": [],
         }
+        style_plan = self.style_planner.plan(chunk_text) if self.style_planner else {
+            "style_target": "台灣繁體中文出版級小說譯文",
+            "principles": [],
+            "matched_rules": [],
+            "forbidden_style": [],
+            "preferred_style_examples": [],
+        }
 
         rules = self.rule_generator.generate()
 
         if self.semantic_engine and semantic_matches:
             rules.setdefault("semantic_rules", [])
             rules["semantic_rules"].extend(self.semantic_engine.build_prompt_rules(semantic_matches))
+
+        if self.style_planner and style_plan:
+            rules.setdefault("novel_style_rules", [])
+            rules["novel_style_rules"].extend(self.style_planner.build_prompt_rules(style_plan))
 
         prompt = self.renderer.render(
             profile=self.profile,
@@ -68,6 +85,7 @@ class PromptBuilder:
             glossary_matches=glossary_matches,
             semantic_matches=semantic_matches,
             document_structure=document_structure,
+            style_plan=style_plan,
             rules=rules,
             context=context,
         )
@@ -83,6 +101,7 @@ class PromptBuilder:
             glossary_matches=glossary_matches,
             semantic_matches=semantic_matches,
             document_structure=document_structure,
+            style_plan=style_plan,
             rules=rules,
             prompt=prompt,
             context=context,

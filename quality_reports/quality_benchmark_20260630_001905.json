@@ -1,0 +1,24 @@
+{
+  "status": "success",
+  "generated_at": "2026-06-30T00:19:05",
+  "scores": {
+    "structure": 100,
+    "semantic": 100,
+    "coverage": 100,
+    "hallucination": 100,
+    "style": 100,
+    "overall": 100.0
+  },
+  "issues": [],
+  "metrics": {
+    "source_chars": 3084,
+    "translation_chars": 2574,
+    "length_ratio": 0.835,
+    "source_paragraphs": 43,
+    "translation_paragraphs": 43,
+    "korean_residue_count": 0
+  },
+  "recommendation": "PASS",
+  "package_path": "D:\\Python\\NTPE\\prompt_packages\\passion1_normalized_chunk_000001.json",
+  "translation_path": "D:\\Python\\NTPE\\translated\\passion1_normalized_chunk_000001_zh.txt"
+}

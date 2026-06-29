@@ -1,0 +1,25 @@
+====================================
+NTPE TQF Quality Benchmark v1.0
+====================================
+
+Generated: 2026-06-30T00:19:05
+Recommendation: PASS
+
+[Scores]
+- structure: 100
+- semantic: 100
+- coverage: 100
+- hallucination: 100
+- style: 100
+- overall: 100.0
+
+[Metrics]
+- source_chars: 3084
+- translation_chars: 2574
+- length_ratio: 0.835
+- source_paragraphs: 43
+- translation_paragraphs: 43
+- korean_residue_count: 0
+
+[Issues]
+- None

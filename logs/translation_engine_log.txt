@@ -210,3 +210,58 @@
 [2026-06-29T23:31:35] 完成：PKG_TQF032_RETRANSLATE_passion1_normalized_000001_001008 -> D:\Python\NTPE\translated\passion1_normalized_chunk_001008_zh.txt
 [2026-06-29T23:31:55] 開始翻譯：PKG_TQF032_RETRANSLATE_passion1_normalized_000001_001008
 [2026-06-29T23:32:24] 完成：PKG_TQF032_RETRANSLATE_passion1_normalized_000001_001008 -> D:\Python\NTPE\translated\passion1_normalized_chunk_001008_zh.txt
+[2026-06-29T23:53:00] 開始翻譯：PKG_TQF032_RETRANSLATE_passion1_normalized_000001_001001
+[2026-06-29T23:53:05] 開始翻譯：PKG_TQF032_RETRANSLATE_passion1_normalized_000001_001001
+[2026-06-29T23:53:15] 開始翻譯：PKG_TQF032_RETRANSLATE_passion1_normalized_000001_001001
+[2026-06-29T23:53:48] 開始翻譯：PKG_TQF032_RETRANSLATE_passion1_normalized_000001_001001
+[2026-06-29T23:54:00] 完成：PKG_TQF032_RETRANSLATE_passion1_normalized_000001_001001 -> D:\Python\NTPE\translated\passion1_normalized_chunk_001001_zh.txt
+[2026-06-29T23:54:05] 開始翻譯：PKG_TQF032_RETRANSLATE_passion1_normalized_000001_001001
+[2026-06-29T23:54:26] 完成：PKG_TQF032_RETRANSLATE_passion1_normalized_000001_001001 -> D:\Python\NTPE\translated\passion1_normalized_chunk_001001_zh.txt
+[2026-06-29T23:54:36] 開始翻譯：PKG_TQF032_RETRANSLATE_passion1_normalized_000001_001001
+[2026-06-29T23:54:41] 完成：PKG_TQF032_RETRANSLATE_passion1_normalized_000001_001001 -> D:\Python\NTPE\translated\passion1_normalized_chunk_001001_zh.txt
+[2026-06-29T23:54:41] 開始翻譯：PKG_TQF032_RETRANSLATE_passion1_normalized_000001_001002
+[2026-06-29T23:55:19] 完成：PKG_TQF032_RETRANSLATE_passion1_normalized_000001_001002 -> D:\Python\NTPE\translated\passion1_normalized_chunk_001002_zh.txt
+[2026-06-29T23:55:24] 開始翻譯：PKG_TQF032_RETRANSLATE_passion1_normalized_000001_001002
+[2026-06-29T23:56:05] 完成：PKG_TQF032_RETRANSLATE_passion1_normalized_000001_001002 -> D:\Python\NTPE\translated\passion1_normalized_chunk_001002_zh.txt
+[2026-06-29T23:56:15] 開始翻譯：PKG_TQF032_RETRANSLATE_passion1_normalized_000001_001002
+[2026-06-29T23:56:55] 完成：PKG_TQF032_RETRANSLATE_passion1_normalized_000001_001002 -> D:\Python\NTPE\translated\passion1_normalized_chunk_001002_zh.txt
+[2026-06-29T23:57:15] 開始翻譯：PKG_TQF032_RETRANSLATE_passion1_normalized_000001_001002
+[2026-06-29T23:57:39] 完成：PKG_TQF032_RETRANSLATE_passion1_normalized_000001_001002 -> D:\Python\NTPE\translated\passion1_normalized_chunk_001002_zh.txt
+[2026-06-29T23:57:39] 開始翻譯：PKG_TQF032_RETRANSLATE_passion1_normalized_000001_001003
+[2026-06-29T23:57:42] 完成：PKG_TQF032_RETRANSLATE_passion1_normalized_000001_001003 -> D:\Python\NTPE\translated\passion1_normalized_chunk_001003_zh.txt
+[2026-06-29T23:57:47] 開始翻譯：PKG_TQF032_RETRANSLATE_passion1_normalized_000001_001003
+[2026-06-29T23:57:57] 完成：PKG_TQF032_RETRANSLATE_passion1_normalized_000001_001003 -> D:\Python\NTPE\translated\passion1_normalized_chunk_001003_zh.txt
+[2026-06-29T23:58:07] 開始翻譯：PKG_TQF032_RETRANSLATE_passion1_normalized_000001_001003
+[2026-06-29T23:58:10] 完成：PKG_TQF032_RETRANSLATE_passion1_normalized_000001_001003 -> D:\Python\NTPE\translated\passion1_normalized_chunk_001003_zh.txt
+[2026-06-29T23:58:30] 開始翻譯：PKG_TQF032_RETRANSLATE_passion1_normalized_000001_001003
+[2026-06-29T23:58:41] 完成：PKG_TQF032_RETRANSLATE_passion1_normalized_000001_001003 -> D:\Python\NTPE\translated\passion1_normalized_chunk_001003_zh.txt
+[2026-06-29T23:58:41] 開始翻譯：PKG_TQF032_RETRANSLATE_passion1_normalized_000001_001004
+[2026-06-29T23:58:51] 完成：PKG_TQF032_RETRANSLATE_passion1_normalized_000001_001004 -> D:\Python\NTPE\translated\passion1_normalized_chunk_001004_zh.txt
+[2026-06-29T23:58:52] 開始翻譯：PKG_TQF032_RETRANSLATE_passion1_normalized_000001_001005
+[2026-06-29T23:58:59] 完成：PKG_TQF032_RETRANSLATE_passion1_normalized_000001_001005 -> D:\Python\NTPE\translated\passion1_normalized_chunk_001005_zh.txt
+[2026-06-29T23:59:04] 開始翻譯：PKG_TQF032_RETRANSLATE_passion1_normalized_000001_001005
+[2026-06-29T23:59:12] 完成：PKG_TQF032_RETRANSLATE_passion1_normalized_000001_001005 -> D:\Python\NTPE\translated\passion1_normalized_chunk_001005_zh.txt
+[2026-06-29T23:59:13] 開始翻譯：PKG_TQF032_RETRANSLATE_passion1_normalized_000001_001006
+[2026-06-29T23:59:24] 完成：PKG_TQF032_RETRANSLATE_passion1_normalized_000001_001006 -> D:\Python\NTPE\translated\passion1_normalized_chunk_001006_zh.txt
+[2026-06-29T23:59:29] 開始翻譯：PKG_TQF032_RETRANSLATE_passion1_normalized_000001_001006
+[2026-06-29T23:59:33] 完成：PKG_TQF032_RETRANSLATE_passion1_normalized_000001_001006 -> D:\Python\NTPE\translated\passion1_normalized_chunk_001006_zh.txt
+[2026-06-29T23:59:43] 開始翻譯：PKG_TQF032_RETRANSLATE_passion1_normalized_000001_001006
+[2026-06-30T00:00:31] 完成：PKG_TQF032_RETRANSLATE_passion1_normalized_000001_001006 -> D:\Python\NTPE\translated\passion1_normalized_chunk_001006_zh.txt
+[2026-06-30T00:00:51] 開始翻譯：PKG_TQF032_RETRANSLATE_passion1_normalized_000001_001006
+[2026-06-30T00:01:12] 完成：PKG_TQF032_RETRANSLATE_passion1_normalized_000001_001006 -> D:\Python\NTPE\translated\passion1_normalized_chunk_001006_zh.txt
+[2026-06-30T00:01:12] 開始翻譯：PKG_TQF032_RETRANSLATE_passion1_normalized_000001_001007
+[2026-06-30T00:01:47] 完成：PKG_TQF032_RETRANSLATE_passion1_normalized_000001_001007 -> D:\Python\NTPE\translated\passion1_normalized_chunk_001007_zh.txt
+[2026-06-30T00:01:52] 開始翻譯：PKG_TQF032_RETRANSLATE_passion1_normalized_000001_001007
+[2026-06-30T00:02:23] 完成：PKG_TQF032_RETRANSLATE_passion1_normalized_000001_001007 -> D:\Python\NTPE\translated\passion1_normalized_chunk_001007_zh.txt
+[2026-06-30T00:02:33] 開始翻譯：PKG_TQF032_RETRANSLATE_passion1_normalized_000001_001007
+[2026-06-30T00:03:11] 完成：PKG_TQF032_RETRANSLATE_passion1_normalized_000001_001007 -> D:\Python\NTPE\translated\passion1_normalized_chunk_001007_zh.txt
+[2026-06-30T00:03:31] 開始翻譯：PKG_TQF032_RETRANSLATE_passion1_normalized_000001_001007
+[2026-06-30T00:03:42] 完成：PKG_TQF032_RETRANSLATE_passion1_normalized_000001_001007 -> D:\Python\NTPE\translated\passion1_normalized_chunk_001007_zh.txt
+[2026-06-30T00:03:42] 開始翻譯：PKG_TQF032_RETRANSLATE_passion1_normalized_000001_001008
+[2026-06-30T00:03:49] 完成：PKG_TQF032_RETRANSLATE_passion1_normalized_000001_001008 -> D:\Python\NTPE\translated\passion1_normalized_chunk_001008_zh.txt
+[2026-06-30T00:03:54] 開始翻譯：PKG_TQF032_RETRANSLATE_passion1_normalized_000001_001008
+[2026-06-30T00:04:15] 完成：PKG_TQF032_RETRANSLATE_passion1_normalized_000001_001008 -> D:\Python\NTPE\translated\passion1_normalized_chunk_001008_zh.txt
+[2026-06-30T00:04:25] 開始翻譯：PKG_TQF032_RETRANSLATE_passion1_normalized_000001_001008
+[2026-06-30T00:04:42] 完成：PKG_TQF032_RETRANSLATE_passion1_normalized_000001_001008 -> D:\Python\NTPE\translated\passion1_normalized_chunk_001008_zh.txt
+[2026-06-30T00:05:02] 開始翻譯：PKG_TQF032_RETRANSLATE_passion1_normalized_000001_001008
+[2026-06-30T00:05:17] 完成：PKG_TQF032_RETRANSLATE_passion1_normalized_000001_001008 -> D:\Python\NTPE\translated\passion1_normalized_chunk_001008_zh.txt

@@ -15,14 +15,30 @@ except Exception:
     CoverageAnalyzer = None
     CoverageChecker = None
 
-from .semantic_qa import SemanticQA
-from .semantic_repair import SemanticRepair
+try:
+    from .coverage_expansion_analyzer import CoverageExpansionAnalyzer
+except Exception:
+    CoverageExpansionAnalyzer = None
+
+try:
+    from .semantic_qa import SemanticQA
+    from .semantic_repair import SemanticRepair
+except Exception:
+    SemanticQA = None
+    SemanticRepair = None
+
+try:
+    from .novel_style_planner import NovelStylePlanner
+except Exception:
+    NovelStylePlanner = None
 
 __all__ = [
     "SemanticTranslationEngine",
     "DocumentStructureEngine",
     "CoverageAnalyzer",
     "CoverageChecker",
+    "CoverageExpansionAnalyzer",
     "SemanticQA",
     "SemanticRepair",
+    "NovelStylePlanner",
 ]

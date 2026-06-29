@@ -1,0 +1,89 @@
+{
+  "version": "1.0",
+  "module": "TQF-05.1 Novel Style Planner",
+  "description": "Publisher-grade Traditional Chinese novel translation planning rules.",
+  "style_profile": {
+    "target": "台灣繁體中文出版級小說譯文",
+    "principles": [
+      "忠實完整，不摘要、不濃縮、不改寫劇情。",
+      "保留原文敘事節奏、停頓、心理描寫與比喻。",
+      "將韓文壓縮語序自然展開為流暢中文。",
+      "必要時補足中文閱讀所需主詞，但不得新增原文沒有的資訊。",
+      "對話使用中文引號「」。",
+      "避免機翻腔、避免流水帳、避免過度白話化。"
+    ]
+  },
+  "expansion_rules": [
+    {
+      "id": "EXP_ACTION_DETAIL",
+      "trigger_keywords": [
+        "떨어져",
+        "굴렀다",
+        "멈췄다",
+        "두드리며",
+        "비켜섰다"
+      ],
+      "instruction": "動作描寫不可壓縮，需保留動作順序與畫面感。"
+    },
+    {
+      "id": "EXP_INNER_MONOLOGUE",
+      "trigger_keywords": [
+        "예감",
+        "기분",
+        "생각",
+        "불길",
+        "우울"
+      ],
+      "instruction": "心理與預感描寫需保留語氣層次，不可簡化成單一句感覺不好。"
+    },
+    {
+      "id": "EXP_METAPHOR",
+      "trigger_keywords": [
+        "역병신",
+        "다를 바 없는"
+      ],
+      "instruction": "比喻不可攤平成普通敘述，需保留比喻力度。"
+    },
+    {
+      "id": "EXP_ATMOSPHERE",
+      "trigger_keywords": [
+        "비",
+        "궂은",
+        "소리 없이",
+        "희미하게"
+      ],
+      "instruction": "天氣、聲音、空間氛圍不可省略，需轉成自然中文場景描寫。"
+    },
+    {
+      "id": "EXP_DIALOGUE_FLOW",
+      "trigger_keywords": [
+        "말했다",
+        "물었다",
+        "중얼거렸다",
+        "노려보았다"
+      ],
+      "instruction": "對話與動作銜接需自然，避免每句都使用『說道』。"
+    }
+  ],
+  "forbidden_style": [
+    "將多個段落濃縮為一段。",
+    "把心理描寫改成概括說明。",
+    "刪除比喻、停頓或情緒鋪陳。",
+    "使用『這名男子』『這個人』等僵硬代稱過度重複。",
+    "將作品標題 패션 翻成時尚。"
+  ],
+  "preferred_style_examples": [
+    {
+      "bad": "他感到有些不對勁。",
+      "good": "他心裡那股不祥的預感又沉了幾分。"
+    },
+    {
+      "bad": "豆子掉了下來。",
+      "good": "筷尖夾著的醬煮黑豆滑落下來，滾出盤緣，拖出一道黏膩的痕跡。"
+    },
+    {
+      "bad": "讓他進來時感到不安。",
+      "good": "他側身讓開時，心情簡直像是在把瘟神迎進家門。"
+    }
+  ]
+}
