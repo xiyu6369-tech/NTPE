@@ -1,0 +1,136 @@
+{
+  "states": {
+    "story_state": {
+      "current_file": "context_test.txt",
+      "current_chunk": 1,
+      "recent_events": [
+        {
+          "file": "context_test.txt",
+          "chunk": 1,
+          "event": "門鈴響起，打斷目前場景。",
+          "updated_at": "2026-06-30T03:24:49"
+        }
+      ],
+      "updated_at": "2026-06-30T03:24:49"
+    },
+    "character_state": {
+      "characters": {
+        "鄭泰義": {
+          "aliases": [
+            "정태의"
+          ],
+          "emotion": "煩躁",
+          "focus": "玄關",
+          "notes": [],
+          "last_seen": "2026-06-30T03:24:49"
+        }
+      },
+      "active_characters": [
+        "鄭泰義"
+      ],
+      "updated_at": "2026-06-30T03:24:49"
+    },
+    "scene_state": {
+      "location": "玄關",
+      "time": "",
+      "weather": "",
+      "mood": "",
+      "objects": [
+        "筷子",
+        "醬煮黑豆",
+        "門鈴"
+      ],
+      "updated_at": "2026-06-30T03:24:49"
+    },
+    "dialogue_state": {
+      "in_dialogue": false,
+      "recent_dialogue": [],
+      "last_speaker": "",
+      "updated_at": "2026-06-30T03:24:49"
+    },
+    "narrative_state": {
+      "person": "第三人稱",
+      "tone": "煩躁",
+      "emotion_flow": [
+        "煩躁"
+      ],
+      "narrative_focus": [
+        "場景與聲音"
+      ],
+      "updated_at": "2026-06-30T03:24:49"
+    }
+  },
+  "context": {
+    "previous_summary": "【NTPE Context Memory】\n- 目前檔案：context_test.txt\n- 目前 Chunk：1\n- 最近事件：\n  - 門鈴響起，打斷目前場景。\n- 場景狀態：場景=玄關\n- 場景物件：筷子、醬煮黑豆、門鈴\n- 目前活躍人物：鄭泰義\n  - 鄭泰義：情緒=煩躁；注意=玄關\n- 敘事語氣：煩躁\n- 敘事重點：場景與聲音\n- 情緒流：煩躁\n【上一段尾端】\n《PASSION》第一卷\n\n門鈴響起的瞬間，鄭泰義僵住了。\n\n筷尖夾著的醬煮黑豆滑落下來，滾出盤緣。\n\n鄭泰義帶著煩躁的目光望向玄關。",
+    "previous_chunk_tail": "《PASSION》第一卷\n\n門鈴響起的瞬間，鄭泰義僵住了。\n\n筷尖夾著的醬煮黑豆滑落下來，滾出盤緣。\n\n鄭泰義帶著煩躁的目光望向玄關。\n",
+    "recent_characters": [
+      "鄭泰義"
+    ],
+    "recent_terms": [
+      "筷子",
+      "醬煮黑豆",
+      "門鈴"
+    ],
+    "context_memory": {
+      "story_state": {
+        "current_file": "context_test.txt",
+        "current_chunk": 1,
+        "recent_events": [
+          {
+            "file": "context_test.txt",
+            "chunk": 1,
+            "event": "門鈴響起，打斷目前場景。",
+            "updated_at": "2026-06-30T03:24:49"
+          }
+        ],
+        "updated_at": "2026-06-30T03:24:49"
+      },
+      "character_state": {
+        "characters": {
+          "鄭泰義": {
+            "aliases": [
+              "정태의"
+            ],
+            "emotion": "煩躁",
+            "focus": "玄關",
+            "notes": [],
+            "last_seen": "2026-06-30T03:24:49"
+          }
+        },
+        "active_characters": [
+          "鄭泰義"
+        ],
+        "updated_at": "2026-06-30T03:24:49"
+      },
+      "scene_state": {
+        "location": "玄關",
+        "time": "",
+        "weather": "",
+        "mood": "",
+        "objects": [
+          "筷子",
+          "醬煮黑豆",
+          "門鈴"
+        ],
+        "updated_at": "2026-06-30T03:24:49"
+      },
+      "dialogue_state": {
+        "in_dialogue": false,
+        "recent_dialogue": [],
+        "last_speaker": "",
+        "updated_at": "2026-06-30T03:24:49"
+      },
+      "narrative_state": {
+        "person": "第三人稱",
+        "tone": "煩躁",
+        "emotion_flow": [
+          "煩躁"
+        ],
+        "narrative_focus": [
+          "場景與聲音"
+        ],
+        "updated_at": "2026-06-30T03:24:49"
+      }
+    }
+  }
+}
