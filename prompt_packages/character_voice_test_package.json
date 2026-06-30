@@ -75,7 +75,7 @@
   "memory": {
     "characters": {
       "鄭泰義": {
-        "seen_count": 1,
+        "seen_count": 2,
         "last_seen_file": "voice_test.txt",
         "last_seen_chunk": 1,
         "voice": [
@@ -86,7 +86,7 @@
         ]
       },
       "叔叔": {
-        "seen_count": 1,
+        "seen_count": 2,
         "last_seen_file": "voice_test.txt",
         "last_seen_chunk": 1,
         "voice": [
@@ -97,7 +97,7 @@
         ]
       },
       "伊萊": {
-        "seen_count": 1,
+        "seen_count": 2,
         "last_seen_file": "voice_test.txt",
         "last_seen_chunk": 1,
         "voice": [
@@ -108,6 +108,6 @@
         ]
       }
     },
-    "updated_at": "2026-06-30T23:01:49"
+    "updated_at": "2026-06-30T23:28:51"
   }
 }

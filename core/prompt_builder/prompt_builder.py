@@ -16,6 +16,13 @@ except Exception:
     ContextMemoryEngine = None
 
 try:
+    from core.voice.voice_profile import VoiceProfile
+    from core.voice.voice_memory import VoiceMemory
+except Exception:
+    VoiceProfile = None
+    VoiceMemory = None
+
+try:
     from core.quality.semantic_engine import SemanticTranslationEngine
 except Exception:
     SemanticTranslationEngine = None
@@ -49,6 +56,8 @@ class PromptBuilder:
         self.renderer = PromptRenderer()
         self.package_builder = PackageBuilder()
         self.context_memory = ContextMemoryEngine(self.root) if ContextMemoryEngine else None
+        self.voice_profile = VoiceProfile(self.root) if VoiceProfile else None
+        self.voice_memory = VoiceMemory(self.root) if VoiceMemory else None
 
         self.semantic_engine = SemanticTranslationEngine(self.root) if SemanticTranslationEngine else None
         self.structure_engine = DocumentStructureEngine(self.root) if DocumentStructureEngine else None
@@ -69,6 +78,7 @@ class PromptBuilder:
 
         character_matches = self.character_selector.select(chunk_text)
         glossary_matches = self.glossary_selector.select(chunk_text)
+        voice_matches = self.voice_profile.match(chunk_text) if self.voice_profile else []
         semantic_matches = self.semantic_engine.select(chunk_text) if self.semantic_engine else []
         document_structure = self.structure_engine.analyze(chunk_text) if self.structure_engine else {
             "has_title": False,
@@ -88,6 +98,19 @@ class PromptBuilder:
 
         rules = self.rule_generator.generate()
 
+        if voice_matches:
+            rules.setdefault("character_voice_rules", [])
+            rules["character_voice_rules"].extend(
+                self.voice_profile.build_prompt_rules(voice_matches)
+            )
+
+            if self.voice_memory:
+                self.voice_memory.update_seen(
+                    voice_matches,
+                    file_name=file_name,
+                    chunk_index=chunk_index,
+                )
+
         if self.semantic_engine and semantic_matches:
             rules.setdefault("semantic_rules", [])
             rules["semantic_rules"].extend(self.semantic_engine.build_prompt_rules(semantic_matches))
@@ -105,6 +128,7 @@ class PromptBuilder:
             chunk_text=chunk_text,
             character_matches=character_matches,
             glossary_matches=glossary_matches,
+            voice_matches=voice_matches,
             semantic_matches=semantic_matches,
             document_structure=document_structure,
             style_plan=style_plan,
@@ -123,6 +147,7 @@ class PromptBuilder:
             session_id=session_id,
             character_matches=character_matches,
             glossary_matches=glossary_matches,
+            voice_matches=voice_matches,
             semantic_matches=semantic_matches,
             document_structure=document_structure,
             style_plan=style_plan,

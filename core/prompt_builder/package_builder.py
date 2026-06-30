@@ -15,6 +15,7 @@ class PackageBuilder:
         session_id: str,
         character_matches: list[dict],
         glossary_matches: list[dict],
+        voice_matches: list[dict] | None = None,
         rules: dict,
         prompt: dict,
         context: dict,
@@ -23,6 +24,7 @@ class PackageBuilder:
         style_plan: dict | None = None,
         novel_prompt_sections: dict | None = None,
     ) -> dict:
+        voice_matches = voice_matches or []
         semantic_matches = semantic_matches or []
         document_structure = document_structure or {}
         style_plan = style_plan or {}
@@ -94,6 +96,7 @@ class PackageBuilder:
             "knowledge": {
                 "character_matches": character_matches,
                 "glossary_matches": glossary_matches,
+                "voice_matches": voice_matches,
                 "semantic_matches": semantic_matches,
                 "locked_dictionary": locked_dictionary,
                 "semantic_dictionary": semantic_dictionary,
@@ -116,6 +119,7 @@ class PackageBuilder:
                 "check_semantic_rules": True,
                 "check_novel_style": True,
                 "check_literary_prompt": True,
+                "check_character_voice": True,
             },
             "metadata": {
                 "created_at": now_iso(),

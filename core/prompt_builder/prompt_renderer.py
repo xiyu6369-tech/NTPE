@@ -9,6 +9,7 @@ class PromptRenderer:
         chunk_text: str,
         character_matches: list[dict],
         glossary_matches: list[dict],
+        voice_matches: list[dict] | None = None,
         rules: dict,
         context: dict,
         semantic_matches: list[dict] | None = None,
@@ -17,6 +18,7 @@ class PromptRenderer:
         novel_prompt_sections: dict | None = None,
         novel_prompt_engine=None,
     ) -> dict:
+        voice_matches = voice_matches or []
         semantic_matches = semantic_matches or []
         document_structure = document_structure or {}
         style_plan = style_plan or {}
@@ -38,6 +40,7 @@ class PromptRenderer:
         for group in [
             "global_rules",
             "character_rules",
+            "character_voice_rules",
             "semantic_rules",
             "novel_prompt_rules",
             "novel_style_rules",
@@ -84,6 +87,18 @@ class PromptRenderer:
                     parts.append(f"- {item['source']} → {item['target']}")
                 else:
                     parts.append(f"- {item['source']}")
+
+        if voice_matches:
+            parts.append("")
+            parts.append("【人物語氣規則】")
+            for item in voice_matches:
+                parts.append(f"- {item['target_name']}：{'、'.join(item.get('voice', []))}")
+                if item.get("dialogue_style"):
+                    parts.append(f"  對話：{item['dialogue_style']}")
+                if item.get("narration_style"):
+                    parts.append(f"  敘事：{item['narration_style']}")
+                if item.get("avoid"):
+                    parts.append(f"  避免：{'、'.join(item['avoid'])}")
 
         if semantic_matches:
             parts.append("")
