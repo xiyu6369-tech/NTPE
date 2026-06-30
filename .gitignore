@@ -1,43 +1,33 @@
-# Python
 __pycache__/
 *.py[cod]
-*$py.class
+.pytest_cache/
+.mypy_cache/
 
-# Virtual Environment
-venv/
-.env/
 .venv/
+venv/
+env/
 
-# Logs
-logs/*.log
-*.log
-
-# Cache
-cache/
-*.cache
-
-# Progress
-progress.json
-resume_state.json
-
-# API
-config/config.json
-
-# OS
+.vscode/
+.idea/
 .DS_Store
 Thumbs.db
 
-# VSCode
-.vscode/
+runtime/
+logs/
+reports/
+quality_reports/
+sessions/
+translated/
+final_output/
 
-# PyInstaller
-build/
-dist/
-*.spec
+prompt_packages/*_test_package.json
+prompt_packages/*_integration_test_package.json
+prompt_packages/*_latest.json
 
-# Testing
-.pytest_cache/
+*.patch
+create_*.py
+integrate_*.py
 
-# Temporary
-*.tmp
-*.bak
+.env
+.env.*
+config.local.json
