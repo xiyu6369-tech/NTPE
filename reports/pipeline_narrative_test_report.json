@@ -1,0 +1,10 @@
+{
+  "enabled": true,
+  "literary_rule_count": 5,
+  "emotion": "unease",
+  "pacing": "segmented",
+  "inner_monologue": "inner_monologue",
+  "dialogue_beat": "dialogue_beat",
+  "scene_flow": "atmosphere_flow",
+  "prompt_rule_count": 10
+}
