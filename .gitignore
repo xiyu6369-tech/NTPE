@@ -1,43 +1,70 @@
+# ==========================================================
+# NTPE Repository Ignore Rules
+# ==========================================================
+
 # Python
 __pycache__/
 *.py[cod]
 *$py.class
+.pytest_cache/
+.mypy_cache/
 
-# Virtual Environment
-venv/
-.env/
+# Virtual environments
 .venv/
+venv/
+env/
 
-# Logs
-logs/*.log
-*.log
-
-# Cache
-cache/
-*.cache
-
-# Progress
-progress.json
-resume_state.json
-
-# API
-config/config.json
+# IDE
+.vscode/
+.idea/
 
 # OS
 .DS_Store
 Thumbs.db
 
-# VSCode
-.vscode/
+# ==========================================================
+# Runtime data
+# ==========================================================
 
-# PyInstaller
-build/
-dist/
-*.spec
+memory/*.json
+!memory/.gitkeep
 
-# Testing
-.pytest_cache/
+sessions/
+logs/
+reports/
+quality_reports/
 
-# Temporary
-*.tmp
-*.bak
+# ==========================================================
+# Temporary prompt outputs
+# ==========================================================
+
+prompt_packages/*_test_package.json
+prompt_packages/*_integration_test_package.json
+prompt_packages/context_memory_test_package.json
+prompt_packages/narrative_intelligence_test_package.json
+prompt_packages/narrative_prompt_integration_test_package.json
+prompt_packages/literary_style_test_package.json
+prompt_packages/character_voice_test_package.json
+
+# ==========================================================
+# Temporary patch / helper scripts
+# ==========================================================
+
+*.patch
+create_*.py
+integrate_*.py
+
+# ==========================================================
+# Translation outputs
+# ==========================================================
+
+translated/
+final_output/
+
+# ==========================================================
+# Local configuration
+# ==========================================================
+
+config.local.json
+.env
+.env.*
