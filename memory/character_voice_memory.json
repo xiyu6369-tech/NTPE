@@ -1,0 +1,16 @@
+{
+  "characters": {
+    "鄭泰義": {
+      "seen_count": 3,
+      "last_seen_file": "narrative_prompt_test.txt",
+      "last_seen_chunk": 1,
+      "voice": [
+        "自然",
+        "帶吐槽感",
+        "內心戲多",
+        "反應快"
+      ]
+    }
+  },
+  "updated_at": "2026-07-01T01:00:27"
+}
