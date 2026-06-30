@@ -31,3 +31,4 @@ integrate_*.py
 .env
 .env.*
 config.local.json
+config/config.json

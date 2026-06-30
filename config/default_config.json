@@ -1,14 +1,26 @@
 {
-  "provider": "nvidia",
-  "api_key": "",
-  "model": "meta/llama-3.3-70b-instruct",
-  "api_url": "https://integrate.api.nvidia.com/v1/chat/completions",
-  "timeout": 180,
-  "rpm_limit": 40,
-  "chunk_size": 1100,
-  "context_size": 650,
-  "max_retry": 4,
-  "retry_wait_base": 8,
-  "opencc": true,
-  "target_language": "自然繁體中文小說文體"
+  "app": {
+    "name": "NTPE",
+    "version": "1.2.0-dev",
+    "release_stage": "development"
+  },
+  "translation": {
+    "provider": "nvidia",
+    "model": "meta/llama-3.3-70b-instruct",
+    "target_language": "zh-TW"
+  },
+  "pipeline": {
+    "timeout": 180,
+    "rpm_limit": 40,
+    "chunk_size": 3000,
+    "context_size": 800
+  },
+  "quality": {
+    "opencc": true,
+    "auto_retry": true,
+    "auto_review": false
+  },
+  "user": {
+    "api_key": ""
+  }
 }
