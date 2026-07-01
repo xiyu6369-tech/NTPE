@@ -3,6 +3,7 @@ from .plugin_context import PluginContext
 from .plugin_registry import PluginRegistry
 from .context_plugin import ContextMemoryPlugin
 from .prompt_plugin import PromptBuilderPlugin
+from .quality_plugin import QualityPlugin
 
 __all__ = [
     "PluginBase",
@@ -10,4 +11,5 @@ __all__ = [
     "PluginRegistry",
     "ContextMemoryPlugin",
     "PromptBuilderPlugin",
+    "QualityPlugin",
 ]
