@@ -176,3 +176,30 @@ __all__ += [
     "build_knowledge_semantic_manifest",
     "tokenize",
 ]
+
+# Foundation-08.7 Knowledge Snapshot Manager exports
+from .snapshot import (
+    KnowledgeSnapshotDiff,
+    KnowledgeSnapshotDiffer,
+    KnowledgeSnapshotHistory,
+    KnowledgeSnapshotHistoryEntry,
+    KnowledgeSnapshotManager,
+    KnowledgeSnapshotRegistry,
+    KnowledgeSnapshotSerializer,
+    build_knowledge_snapshot_manifest,
+    build_snapshot_manager,
+    merge_snapshots,
+)
+
+__all__ += [
+    "KnowledgeSnapshotDiff",
+    "KnowledgeSnapshotDiffer",
+    "KnowledgeSnapshotHistory",
+    "KnowledgeSnapshotHistoryEntry",
+    "KnowledgeSnapshotManager",
+    "KnowledgeSnapshotRegistry",
+    "KnowledgeSnapshotSerializer",
+    "build_knowledge_snapshot_manifest",
+    "build_snapshot_manager",
+    "merge_snapshots",
+]
