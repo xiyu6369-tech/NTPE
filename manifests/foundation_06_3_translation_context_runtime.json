@@ -1,0 +1,21 @@
+{
+  "name": "NTPE Foundation-06.3 Translation Context Runtime",
+  "version": "Foundation-06.3",
+  "type": "translation_context_runtime",
+  "capabilities": [
+    "context_bundle",
+    "previous_context",
+    "next_context",
+    "glossary_context",
+    "character_context",
+    "narrative_context",
+    "scene_context",
+    "context_cache",
+    "context_version",
+    "runtime_context_adapter",
+    "integration_test",
+    "smoke_test",
+    "json_schema"
+  ],
+  "compatible_with": ["Foundation-06.2", "Foundation-06.1", "Foundation-06.0", "Foundation-05.6"]
+}

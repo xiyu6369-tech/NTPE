@@ -1,0 +1,15 @@
+{
+  "name": "NTPE Foundation-06.1 Translation Job Manager",
+  "version": "Foundation-06.1",
+  "type": "translation_job_manager",
+  "capabilities": [
+    "create_translation_job",
+    "normalize_translation_job",
+    "validate_translation_job",
+    "update_segment_status",
+    "calculate_job_progress",
+    "export_job_manifest",
+    "translation_job_manager_adapter"
+  ],
+  "compatible_with": ["Foundation-06.0", "Foundation-05.6"]
+}

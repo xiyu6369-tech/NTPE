@@ -1,0 +1,1 @@
+{"$schema":"https://json-schema.org/draft/2020-12/schema","title":"NTPE Translation Result","type":"object","properties":{"status":{"type":"string"},"output":{"type":"string"},"error":{"type":"object"}}}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "NTPE Context Bundle",
+  "type": "object",
+  "required": ["type", "version", "context_id", "segment", "job", "previous_context", "next_context", "glossary_context", "runtime_metadata"],
+  "properties": {
+    "type": {"const": "translation_context_bundle"},
+    "version": {"type": "integer", "minimum": 1},
+    "context_id": {"type": "string"},
+    "segment": {"type": "object"},
+    "job": {"type": "object"},
+    "previous_context": {"type": "array"},
+    "next_context": {"type": "array"},
+    "glossary_context": {"type": "object"},
+    "character_context": {"type": "object"},
+    "narrative_context": {"type": "object"},
+    "scene_context": {"type": "object"},
+    "runtime_metadata": {"type": "object"},
+    "user_metadata": {"type": "object"},
+    "pipeline_context": {"type": "object"}
+  }
+}

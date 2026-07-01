@@ -1,0 +1,1 @@
+{"$schema":"https://json-schema.org/draft/2020-12/schema","title":"NTPE Translation Job","type":"object","required":["job_id"],"properties":{"job_id":{"type":"string"},"source_language":{"type":"string"},"target_language":{"type":"string"},"segments":{"type":"array"}}}

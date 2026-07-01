@@ -1,0 +1,1 @@
+{"$schema":"https://json-schema.org/draft/2020-12/schema","title":"NTPE Pipeline Payload","type":"object","properties":{"payload_id":{"type":"string"},"translation_context":{"type":"object"}}}

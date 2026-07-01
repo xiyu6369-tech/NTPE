@@ -1,0 +1,1 @@
+{"$schema":"https://json-schema.org/draft/2020-12/schema","title":"NTPE Runtime Manifest","type":"object","required":["name","version","type"],"properties":{"name":{"type":"string"},"version":{"type":"string"},"type":{"type":"string"},"capabilities":{"type":"array"}}}

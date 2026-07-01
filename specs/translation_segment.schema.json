@@ -1,0 +1,1 @@
+{"$schema":"https://json-schema.org/draft/2020-12/schema","title":"NTPE Translation Segment","type":"object","required":["segment_id"],"properties":{"segment_id":{"type":"string"},"index":{"type":"integer"},"source_text":{"type":"string"},"target_text":{"type":"string"},"status":{"type":"string"}}}
