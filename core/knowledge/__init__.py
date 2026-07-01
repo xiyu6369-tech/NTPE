@@ -151,3 +151,28 @@ __all__ += [
     "build_knowledge_api_manifest",
     "build_query_request",
 ]
+
+# Foundation-08.6 Semantic Index exports
+from .semantic import (
+    KnowledgeIndexBuilder,
+    KnowledgeIndexDocument,
+    KnowledgeRankingEngine,
+    KnowledgeSearchResult,
+    KnowledgeSemanticIndex,
+    KnowledgeSemanticSearchEngine,
+    KnowledgeTokenizer,
+    build_knowledge_semantic_manifest,
+    tokenize,
+)
+
+__all__ += [
+    "KnowledgeIndexBuilder",
+    "KnowledgeIndexDocument",
+    "KnowledgeRankingEngine",
+    "KnowledgeSearchResult",
+    "KnowledgeSemanticIndex",
+    "KnowledgeSemanticSearchEngine",
+    "KnowledgeTokenizer",
+    "build_knowledge_semantic_manifest",
+    "tokenize",
+]
