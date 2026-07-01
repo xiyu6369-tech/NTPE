@@ -18,6 +18,14 @@ from .lifecycle import TranslationIntelligenceLifecycle
 from .memory_store import IntelligenceMemoryStore
 from .merge_strategy import IntelligenceMergeStrategy
 from .narrative_engine import NarrativeMemoryEngine
+from .persistence import (
+    IntelligencePersistenceLoader,
+    IntelligencePersistenceRegistry,
+    IntelligenceSnapshotSerializer,
+    JsonIntelligenceStore,
+    SQLiteIntelligenceStore,
+    get_default_persistence_registry,
+)
 from .persistence_contract import IntelligencePersistenceContract, InMemoryIntelligencePersistence
 from .runtime_integration import RuntimeIntelligencePacket, TranslationIntelligenceRuntimeIntegration
 from .scene_engine import SceneMemoryEngine
@@ -37,17 +45,23 @@ __all__ = [
     "IntelligenceMemoryStore",
     "IntelligenceMergeStrategy",
     "IntelligencePersistenceContract",
+    "IntelligencePersistenceLoader",
+    "IntelligencePersistenceRegistry",
     "IntelligenceSessionScope",
     "IntelligenceSnapshot",
     "IntelligenceSnapshotManager",
+    "IntelligenceSnapshotSerializer",
     "InMemoryIntelligencePersistence",
+    "JsonIntelligenceStore",
     "NarrativeMemoryEngine",
     "NarrativeMemoryEntry",
     "RuntimeIntelligencePacket",
+    "SQLiteIntelligenceStore",
     "SceneMemoryEngine",
     "SceneMemoryEntry",
     "SnapshotVersion",
     "TranslationIntelligenceEngine",
     "TranslationIntelligenceLifecycle",
     "TranslationIntelligenceRuntimeIntegration",
+    "get_default_persistence_registry",
 ]
