@@ -16,6 +16,7 @@ from .engine import TranslationIntelligenceEngine
 from .glossary_engine import GlossaryIntelligenceEngine
 from .memory_store import IntelligenceMemoryStore
 from .narrative_engine import NarrativeMemoryEngine
+from .runtime_integration import RuntimeIntelligencePacket, TranslationIntelligenceRuntimeIntegration
 from .scene_engine import SceneMemoryEngine
 
 __all__ = [
@@ -31,7 +32,9 @@ __all__ = [
     "IntelligenceSnapshot",
     "NarrativeMemoryEngine",
     "NarrativeMemoryEntry",
+    "RuntimeIntelligencePacket",
     "SceneMemoryEngine",
     "SceneMemoryEntry",
     "TranslationIntelligenceEngine",
+    "TranslationIntelligenceRuntimeIntegration",
 ]
