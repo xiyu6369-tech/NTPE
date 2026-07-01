@@ -57,3 +57,22 @@ __all__ += [
     "IntelligenceKnowledgeAdapter",
     "PersistenceKnowledgeAdapter",
 ]
+
+# Foundation-08.2 Knowledge Runtime exports
+from .runtime import (
+    KnowledgeContextRuntime,
+    KnowledgePromptRuntime,
+    KnowledgeRepositoryRuntime,
+    KnowledgeRuntime,
+    KnowledgeSessionRuntime,
+    build_knowledge_runtime_manifest,
+)
+
+__all__ += [
+    "KnowledgeContextRuntime",
+    "KnowledgePromptRuntime",
+    "KnowledgeRepositoryRuntime",
+    "KnowledgeRuntime",
+    "KnowledgeSessionRuntime",
+    "build_knowledge_runtime_manifest",
+]
