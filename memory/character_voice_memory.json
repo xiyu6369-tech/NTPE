@@ -1,8 +1,8 @@
 {
   "characters": {
     "鄭泰義": {
-      "seen_count": 4,
-      "last_seen_file": "narrative_prompt_test.txt",
+      "seen_count": 7,
+      "last_seen_file": "adapter_test.txt",
       "last_seen_chunk": 1,
       "voice": [
         "自然",
@@ -12,5 +12,5 @@
       ]
     }
   },
-  "updated_at": "2026-07-01T01:14:40"
+  "updated_at": "2026-07-01T18:35:14"
 }

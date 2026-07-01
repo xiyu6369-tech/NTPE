@@ -159,12 +159,27 @@ class ProductionPipelineV1:
                         print("  SKIP existing")
                         continue
 
+                    plugin_payload = self._build_plugin_payload(
+                        chunk=chunk,
+                        file_path=file_path,
+                        chunk_total=len(chunks),
+                        session_id=f"PIPELINE_V1_{file_path.stem}",
+                    )
+
+                    try:
+                        plugin_payload = self.plugin_adapter.build_context(plugin_payload)
+                        plugin_context = plugin_payload.get("context")
+                    except Exception as e:
+                        append_log(self.log_path, f"PLUGIN CONTEXT FALLBACK {file_path.name} chunk {chunk.index}: {e}")
+                        plugin_context = None
+
                     package = prompt_builder.build(
                         chunk_text=chunk.text,
                         file_name=file_path.name,
                         chunk_index=chunk.index,
                         chunk_total=len(chunks),
                         session_id=f"PIPELINE_V1_{file_path.stem}",
+                        context=plugin_context,
                     )
                     package_path = self.runtime.prompt_package_path(
                         f"{file_path.stem}_chunk_{chunk.index:06d}_v1.json"
@@ -342,6 +357,27 @@ class ProductionPipelineV1:
             self._update_report(report, counters)
             append_log(self.log_path, f"PIPELINE V1 FATAL ERROR: {e}")
             return {"status": "failed", "report_path": str(self.live_report_path), **counters, "error": str(e)}
+
+    def _build_plugin_payload(
+        self,
+        *,
+        chunk,
+        file_path: Path,
+        chunk_total: int,
+        session_id: str,
+        previous_tail: str = "",
+        translation_text: str = "",
+    ) -> dict:
+        return {
+            "previous_tail": previous_tail,
+            "chunk_text": chunk.text,
+            "source_text": chunk.text,
+            "translation_text": translation_text,
+            "file_name": file_path.name,
+            "chunk_index": chunk.index,
+            "chunk_total": chunk_total,
+            "session_id": session_id,
+        }
 
     def _translate_with_retry(self, *, translation_engine, package: dict, package_path: Path, chunk_label: str) -> dict:
         last = {}
