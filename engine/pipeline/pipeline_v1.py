@@ -11,6 +11,7 @@ from core.quality.semantic_repair import SemanticRepair
 from core.quality.coverage_checker import CoverageChecker
 from core.context.memory_engine import ContextMemoryEngine
 from core.runtime import RuntimeManager
+from core.plugins import PipelinePluginAdapter
 try:
     from core.expansion.style_expansion_engine import StyleExpansionEngine
 except Exception:
@@ -32,7 +33,7 @@ class ProductionPipelineV1:
         
         # Foundation-02 Runtime Manager
         self.runtime = RuntimeManager(self.root)
-
+        self.plugin_adapter = PipelinePluginAdapter(self.root)
         self.project_manager = ProjectManager(self.root)
         self.log_path = self.runtime.log_path("pipeline_v1.log")
 

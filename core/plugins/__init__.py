@@ -6,6 +6,7 @@ from .prompt_plugin import PromptBuilderPlugin
 from .quality_plugin import QualityPlugin
 from .narrative_plugin import NarrativePlugin
 from .plugin_manager import PipelinePluginManager
+from .pipeline_plugin_adapter import PipelinePluginAdapter
 
 __all__ = [
     "PluginBase",
@@ -16,4 +17,5 @@ __all__ = [
     "QualityPlugin",
     "NarrativePlugin",
     "PipelinePluginManager",
+    "PipelinePluginAdapter",
 ]
