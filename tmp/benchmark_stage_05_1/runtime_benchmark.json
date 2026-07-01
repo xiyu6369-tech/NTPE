@@ -1,0 +1,150 @@
+{
+  "schema": "ntpe.benchmark.report.v1",
+  "generated_at": "2026-07-01T18:30:18.242968+00:00",
+  "metadata": {
+    "stage": "beta-stage-05.1"
+  },
+  "summary": {
+    "total": 12,
+    "passed": 12,
+    "failed": 0
+  },
+  "results": [
+    {
+      "name": "runtime_startup",
+      "status": "PASS",
+      "elapsed_ms": 0.0065,
+      "memory_delta_bytes": 328,
+      "peak_memory_bytes": 328,
+      "metrics": {
+        "runtime_attached": true
+      },
+      "error": null
+    },
+    {
+      "name": "runtime_job_creation",
+      "status": "PASS",
+      "elapsed_ms": 0.0071,
+      "memory_delta_bytes": 320,
+      "peak_memory_bytes": 320,
+      "metrics": {
+        "segment_count": 3
+      },
+      "error": null
+    },
+    {
+      "name": "runtime_segment_throughput",
+      "status": "PASS",
+      "elapsed_ms": 0.0073,
+      "memory_delta_bytes": 344,
+      "peak_memory_bytes": 344,
+      "metrics": {
+        "segments": 3,
+        "segments_per_second": 410959.05170915293
+      },
+      "error": null
+    },
+    {
+      "name": "pipeline_latency",
+      "status": "PASS",
+      "elapsed_ms": 0.0176,
+      "memory_delta_bytes": 353,
+      "peak_memory_bytes": 402,
+      "metrics": {
+        "step_count": 3,
+        "output_present": true
+      },
+      "error": null
+    },
+    {
+      "name": "pipeline_throughput",
+      "status": "PASS",
+      "elapsed_ms": 0.2819,
+      "memory_delta_bytes": 296,
+      "peak_memory_bytes": 384,
+      "metrics": {
+        "items": 25,
+        "items_per_second": 88683.93043461832
+      },
+      "error": null
+    },
+    {
+      "name": "session_checkpoint",
+      "status": "PASS",
+      "elapsed_ms": 0.0035,
+      "memory_delta_bytes": 288,
+      "peak_memory_bytes": 288,
+      "metrics": {
+        "checkpoint_created": true
+      },
+      "error": null
+    },
+    {
+      "name": "session_resume_latency",
+      "status": "PASS",
+      "elapsed_ms": 0.0019,
+      "memory_delta_bytes": 272,
+      "peak_memory_bytes": 272,
+      "metrics": {
+        "resumed": true
+      },
+      "error": null
+    },
+    {
+      "name": "recovery_latency",
+      "status": "PASS",
+      "elapsed_ms": 0.0149,
+      "memory_delta_bytes": 448,
+      "peak_memory_bytes": 448,
+      "metrics": {
+        "restored": true,
+        "checkpoint_keys": 2
+      },
+      "error": null
+    },
+    {
+      "name": "runtime_case",
+      "status": "PASS",
+      "elapsed_ms": 0.6204,
+      "memory_delta_bytes": 760,
+      "peak_memory_bytes": 2327,
+      "metrics": {
+        "ok": true
+      },
+      "error": null
+    },
+    {
+      "name": "pipeline_case",
+      "status": "PASS",
+      "elapsed_ms": 0.3754,
+      "memory_delta_bytes": 656,
+      "peak_memory_bytes": 2311,
+      "metrics": {
+        "latency_ms": 1.0
+      },
+      "error": null
+    },
+    {
+      "name": "session_case",
+      "status": "PASS",
+      "elapsed_ms": 0.4242,
+      "memory_delta_bytes": 640,
+      "peak_memory_bytes": 2295,
+      "metrics": {
+        "resume_ms": 1.0
+      },
+      "error": null
+    },
+    {
+      "name": "recovery_case",
+      "status": "PASS",
+      "elapsed_ms": 0.3585,
+      "memory_delta_bytes": 624,
+      "peak_memory_bytes": 2279,
+      "metrics": {
+        "recovery_ms": 1.0
+      },
+      "error": null
+    }
+  ]
+}
