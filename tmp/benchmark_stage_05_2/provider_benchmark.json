@@ -1,0 +1,178 @@
+{
+  "schema": "ntpe.benchmark.report.v1",
+  "generated_at": "2026-07-01T18:47:10.831422+00:00",
+  "metadata": {
+    "stage": "beta-stage-05.2"
+  },
+  "summary": {
+    "total": 10,
+    "passed": 10,
+    "failed": 0
+  },
+  "results": [
+    {
+      "name": "provider_latency",
+      "status": "PASS",
+      "elapsed_ms": 26.678,
+      "memory_delta_bytes": 1591,
+      "peak_memory_bytes": 1959,
+      "metrics": {
+        "requests": 3,
+        "avg_latency_ms": 0.003814697265625,
+        "first_token_latency_ms": 0.003814697265625,
+        "completion_latency_ms": 0.003814697265625,
+        "providers": [
+          "latency_mock"
+        ]
+      },
+      "error": null
+    },
+    {
+      "name": "provider_throughput",
+      "status": "PASS",
+      "elapsed_ms": 0.0539,
+      "memory_delta_bytes": 592,
+      "peak_memory_bytes": 1240,
+      "metrics": {
+        "requests": 4,
+        "segments_per_minute": 4452690.5228930125,
+        "requests_per_minute": 4452690.5228930125,
+        "tokens_per_second": 296846.0348595342,
+        "characters_per_second": 1113172.6307232531,
+        "tokens": 16,
+        "characters": 60
+      },
+      "error": null
+    },
+    {
+      "name": "provider_retry",
+      "status": "PASS",
+      "elapsed_ms": 0.0959,
+      "memory_delta_bytes": 3557,
+      "peak_memory_bytes": 3557,
+      "metrics": {
+        "retry_count": 2,
+        "retry_success": true,
+        "retry_success_rate": 1.0,
+        "request_delta": 1,
+        "provider": "retry_mock"
+      },
+      "error": null
+    },
+    {
+      "name": "provider_fallback",
+      "status": "PASS",
+      "elapsed_ms": 0.1012,
+      "memory_delta_bytes": 4634,
+      "peak_memory_bytes": 4634,
+      "metrics": {
+        "fallback_triggered": true,
+        "fallback_count": 1,
+        "switch_time_ms": 0.10119999933522195,
+        "recovery_time_ms": 0.10119999933522195,
+        "provider": "backup"
+      },
+      "error": null
+    },
+    {
+      "name": "provider_rate_limit",
+      "status": "PASS",
+      "elapsed_ms": 0.1199,
+      "memory_delta_bytes": 3386,
+      "peak_memory_bytes": 3446,
+      "metrics": {
+        "attempts": 3,
+        "successes": 1,
+        "rpm_hits": 2,
+        "rate_limited": 2,
+        "queue_time_ms": 0.0,
+        "wait_time_ms": 0.0,
+        "effective_throughput": 8340.283833477051
+      },
+      "error": null
+    },
+    {
+      "name": "provider_health",
+      "status": "PASS",
+      "elapsed_ms": 0.0111,
+      "memory_delta_bytes": 336,
+      "peak_memory_bytes": 384,
+      "metrics": {
+        "providers": 1,
+        "healthy": 1,
+        "availability": 1.0,
+        "health": {
+          "health": {
+            "provider": "health",
+            "healthy": true
+          }
+        }
+      },
+      "error": null
+    },
+    {
+      "name": "provider_latency_case",
+      "status": "PASS",
+      "elapsed_ms": 0.537,
+      "memory_delta_bytes": 896,
+      "peak_memory_bytes": 2543,
+      "metrics": {
+        "requests": 3,
+        "avg_latency_ms": 0.003814697265625,
+        "first_token_latency_ms": 0.003814697265625,
+        "completion_latency_ms": 0.003814697265625,
+        "providers": [
+          "latency_mock"
+        ]
+      },
+      "error": null
+    },
+    {
+      "name": "provider_throughput_case",
+      "status": "PASS",
+      "elapsed_ms": 0.3799,
+      "memory_delta_bytes": 776,
+      "peak_memory_bytes": 2335,
+      "metrics": {
+        "requests": 4,
+        "segments_per_minute": 4452690.5228930125,
+        "requests_per_minute": 4452690.5228930125,
+        "tokens_per_second": 296846.0348595342,
+        "characters_per_second": 1113172.6307232531,
+        "tokens": 16,
+        "characters": 60
+      },
+      "error": null
+    },
+    {
+      "name": "provider_retry_case",
+      "status": "PASS",
+      "elapsed_ms": 0.3928,
+      "memory_delta_bytes": 672,
+      "peak_memory_bytes": 2319,
+      "metrics": {
+        "retry_count": 2,
+        "retry_success": true,
+        "retry_success_rate": 1.0,
+        "request_delta": 1,
+        "provider": "retry_mock"
+      },
+      "error": null
+    },
+    {
+      "name": "provider_fallback_case",
+      "status": "PASS",
+      "elapsed_ms": 0.4044,
+      "memory_delta_bytes": 656,
+      "peak_memory_bytes": 2303,
+      "metrics": {
+        "fallback_triggered": true,
+        "fallback_count": 1,
+        "switch_time_ms": 0.10119999933522195,
+        "recovery_time_ms": 0.10119999933522195,
+        "provider": "backup"
+      },
+      "error": null
+    }
+  ]
+}
