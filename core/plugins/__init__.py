@@ -4,6 +4,8 @@ from .plugin_registry import PluginRegistry
 from .context_plugin import ContextMemoryPlugin
 from .prompt_plugin import PromptBuilderPlugin
 from .quality_plugin import QualityPlugin
+from .narrative_plugin import NarrativePlugin
+from .plugin_manager import PipelinePluginManager
 
 __all__ = [
     "PluginBase",
@@ -12,4 +14,6 @@ __all__ = [
     "ContextMemoryPlugin",
     "PromptBuilderPlugin",
     "QualityPlugin",
+    "NarrativePlugin",
+    "PipelinePluginManager",
 ]
