@@ -1,0 +1,18 @@
+{
+  "kind": "ntpe.foundation_manifest",
+  "version": "06.5",
+  "name": "Foundation-06.5 Translation Runtime Executor",
+  "capabilities": [
+    "prompt_package_execution",
+    "model_adapter_dispatch",
+    "executor_result_contract",
+    "segment_status_update",
+    "executor_trace",
+    "executor_metrics",
+    "executor_manifest"
+  ],
+  "compatibility": {
+    "backward_compatible": true,
+    "requires": ["Foundation-06.0", "Foundation-06.1", "Foundation-06.2", "Foundation-06.3", "Foundation-06.4"]
+  }
+}

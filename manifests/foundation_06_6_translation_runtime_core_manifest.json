@@ -1,0 +1,24 @@
+{
+  "name": "NTPE Foundation-06.6 Translation Runtime Core",
+  "version": "Foundation-06.6",
+  "type": "translation_runtime_core",
+  "capabilities": [
+    "runtime_bootstrap",
+    "translation_session",
+    "session_resume",
+    "context_runtime_integration",
+    "prompt_runtime_integration",
+    "executor_integration",
+    "runtime_events",
+    "runtime_manifest"
+  ],
+  "compatible_with": [
+    "Foundation-06.5",
+    "Foundation-06.4",
+    "Foundation-06.3",
+    "Foundation-06.2",
+    "Foundation-06.1",
+    "Foundation-06.0",
+    "Foundation-05.6"
+  ]
+}

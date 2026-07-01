@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "NTPE Translation Runtime Session",
+  "type": "object",
+  "required": ["type", "version", "session_id", "job_id", "status", "progress"],
+  "properties": {
+    "type": {"const": "translation_runtime_session"},
+    "version": {"type": "string"},
+    "session_id": {"type": "string"},
+    "job_id": {"type": "string"},
+    "status": {"type": "string"},
+    "current_segment_id": {"type": ["string", "null"]},
+    "progress": {
+      "type": "object",
+      "required": ["total", "completed", "failed", "skipped", "percent"],
+      "properties": {
+        "total": {"type": "integer"},
+        "completed": {"type": "integer"},
+        "failed": {"type": "integer"},
+        "skipped": {"type": "integer"},
+        "percent": {"type": "number"}
+      }
+    },
+    "events": {"type": "array"},
+    "resume": {"type": "object"}
+  }
+}

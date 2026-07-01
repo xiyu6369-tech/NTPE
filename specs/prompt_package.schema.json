@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "NTPE Prompt Package",
+  "type": "object",
+  "required": ["type", "package_id", "template", "messages", "prompt_text"],
+  "properties": {
+    "type": {"const": "translation_prompt_package"},
+    "version": {"type": "string"},
+    "package_id": {"type": "string"},
+    "context_id": {"type": ["string", "null"]},
+    "source_language": {"type": "string"},
+    "target_language": {"type": "string"},
+    "source_text": {"type": "string"},
+    "prompt_text": {"type": "string"},
+    "messages": {"type": "array", "items": {"type": "object"}},
+    "metadata": {"type": "object"},
+    "runtime_metadata": {"type": "object"}
+  }
+}

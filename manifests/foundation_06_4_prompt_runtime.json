@@ -1,0 +1,14 @@
+{
+  "name": "NTPE Foundation-06.4 Prompt Runtime",
+  "version": "Foundation-06.4",
+  "type": "prompt_runtime",
+  "capabilities": [
+    "prompt_template",
+    "prompt_package",
+    "context_to_prompt",
+    "messages_builder",
+    "prompt_cache",
+    "runtime_prompt_adapter"
+  ],
+  "compatible_with": ["Foundation-06.3", "Foundation-06.2", "Foundation-06.1", "Foundation-06.0", "Foundation-05.6"]
+}

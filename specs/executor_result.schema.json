@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "NTPE Executor Result",
+  "type": "object",
+  "required": ["executor_id", "job_id", "segment_id", "status", "attempts"],
+  "properties": {
+    "executor_id": {"type": "string"},
+    "job_id": {"type": "string"},
+    "segment_id": {"type": "string"},
+    "status": {"type": "string", "enum": ["completed", "failed", "skipped"]},
+    "output_text": {"type": "string"},
+    "error": {"type": ["string", "null"]},
+    "model": {"type": "string"},
+    "attempts": {"type": "integer", "minimum": 0},
+    "metadata": {"type": "object"}
+  }
+}

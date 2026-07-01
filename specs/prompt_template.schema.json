@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "NTPE Prompt Template",
+  "type": "object",
+  "required": ["type", "template_id", "instruction"],
+  "properties": {
+    "type": {"const": "translation_prompt_template"},
+    "template_id": {"type": "string"},
+    "name": {"type": "string"},
+    "version": {"type": "string"},
+    "system_prompt": {"type": "string"},
+    "instruction": {"type": "string"},
+    "constraints": {"type": "array", "items": {"type": "string"}},
+    "output_format": {"type": "string"}
+  }
+}

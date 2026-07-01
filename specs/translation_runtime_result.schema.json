@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "NTPE Translation Runtime Core Result",
+  "type": "object",
+  "required": ["type", "version", "runtime_id", "job", "session", "results", "status"],
+  "properties": {
+    "type": {"const": "translation_runtime_core_result"},
+    "version": {"type": "string"},
+    "runtime_id": {"type": "string"},
+    "status": {"enum": ["completed", "partial", "failed"]},
+    "error": {"type": ["string", "null"]},
+    "job": {"type": "object"},
+    "session": {"type": "object"},
+    "results": {"type": "array"},
+    "manifest": {"type": "object"}
+  }
+}
