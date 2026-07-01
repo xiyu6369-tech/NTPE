@@ -76,3 +76,26 @@ __all__ += [
     "KnowledgeSessionRuntime",
     "build_knowledge_runtime_manifest",
 ]
+
+# Foundation-08.3 Knowledge Synchronization exports
+from .synchronization import (
+    KnowledgeConflictResolver,
+    KnowledgeSyncContext,
+    KnowledgeSyncRuntime,
+    KnowledgeSyncSnapshot,
+    KnowledgeSynchronizationManager,
+    build_knowledge_synchronization_manifest,
+    build_sync_context,
+    build_sync_snapshot,
+)
+
+__all__ += [
+    "KnowledgeConflictResolver",
+    "KnowledgeSyncContext",
+    "KnowledgeSyncRuntime",
+    "KnowledgeSyncSnapshot",
+    "KnowledgeSynchronizationManager",
+    "build_knowledge_synchronization_manifest",
+    "build_sync_context",
+    "build_sync_snapshot",
+]
