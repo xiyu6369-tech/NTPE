@@ -10,7 +10,7 @@ from core.quality.semantic_qa import SemanticQA
 from core.quality.semantic_repair import SemanticRepair
 from core.quality.coverage_checker import CoverageChecker
 from core.context.memory_engine import ContextMemoryEngine
-
+from core.runtime import RuntimeManager
 try:
     from core.expansion.style_expansion_engine import StyleExpansionEngine
 except Exception:
@@ -29,14 +29,25 @@ class ProductionPipelineV1:
 
     def __init__(self, root: str | Path):
         self.root = Path(root)
+        
+        # Foundation-02 Runtime Manager
+        self.runtime = RuntimeManager(self.root)
+
         self.project_manager = ProjectManager(self.root)
-        self.log_path = self.root / "logs" / "pipeline_v1.log"
-        self.report_dir = self.root / "reports"
-        self.report_dir.mkdir(parents=True, exist_ok=True)
-        self.state_dir = self.root / "sessions" / "pipeline_v1"
+        self.log_path = self.runtime.log_path("pipeline_v1.log")
+
+        self.report_dir = self.runtime.reports_dir
+
+        self.state_dir = self.runtime.session_path("pipeline_v1")
         self.state_dir.mkdir(parents=True, exist_ok=True)
-        self.live_report_path = self.report_dir / "pipeline_v1_live_report.json"
-        self.quality_failed_path = self.report_dir / "quality_failed_chunks.json"
+
+        self.live_report_path = self.runtime.report_path(
+            "pipeline_v1_live_report.json"
+        )
+
+        self.quality_failed_path = self.runtime.report_path(
+            "quality_failed_chunks.json"
+        )
 
     def run(self) -> dict:
         started_at = now_iso()
@@ -154,9 +165,9 @@ class ProductionPipelineV1:
                         chunk_total=len(chunks),
                         session_id=f"PIPELINE_V1_{file_path.stem}",
                     )
-
-                    package_path = self.root / "prompt_packages" / f"{file_path.stem}_chunk_{chunk.index:06d}_v1.json"
-                    save_json(package_path, package)
+                    package_path = self.runtime.prompt_package_path(
+                        f"{file_path.stem}_chunk_{chunk.index:06d}_v1.json"
+                    ) 
 
                     base_state = {
                         "file": file_path.name,
@@ -373,7 +384,9 @@ class ProductionPipelineV1:
         })
 
     def _output_path(self, file_path: Path, chunk_index: int) -> Path:
-        return self.root / "translated" / f"{file_path.stem}_chunk_{chunk_index:06d}_zh.txt"
+        return self.runtime.translated_path(
+            f"{file_path.stem}_chunk_{chunk_index:06d}_zh.txt"
+        )
 
     def _state_path(self, file_path: Path, chunk_index: int) -> Path:
         return self.state_dir / file_path.stem / f"chunk{chunk_index:06d}.json"
