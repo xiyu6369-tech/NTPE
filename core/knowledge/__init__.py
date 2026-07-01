@@ -124,3 +124,30 @@ __all__ += [
     "build_lru_policy",
     "build_ttl_policy",
 ]
+
+# Foundation-08.5 Knowledge Query API exports
+from .api import (
+    KnowledgeAPI,
+    KnowledgeFilter,
+    KnowledgePagination,
+    KnowledgeQueryBuilder,
+    KnowledgeQueryExecutor,
+    KnowledgeQueryRequest,
+    KnowledgeQueryResult,
+    KnowledgeSort,
+    build_knowledge_api_manifest,
+    build_query_request,
+)
+
+__all__ += [
+    "KnowledgeAPI",
+    "KnowledgeFilter",
+    "KnowledgePagination",
+    "KnowledgeQueryBuilder",
+    "KnowledgeQueryExecutor",
+    "KnowledgeQueryRequest",
+    "KnowledgeQueryResult",
+    "KnowledgeSort",
+    "build_knowledge_api_manifest",
+    "build_query_request",
+]
