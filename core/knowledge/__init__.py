@@ -99,3 +99,28 @@ __all__ += [
     "build_sync_context",
     "build_sync_snapshot",
 ]
+
+# Foundation-08.4 Knowledge Cache exports
+from .cache import (
+    KnowledgeCacheEntry,
+    KnowledgeCacheManager,
+    KnowledgeCachePolicy,
+    KnowledgeCacheRuntime,
+    KnowledgeCacheSnapshot,
+    KnowledgeCacheStore,
+    build_knowledge_cache_manifest,
+    build_lru_policy,
+    build_ttl_policy,
+)
+
+__all__ += [
+    "KnowledgeCacheEntry",
+    "KnowledgeCacheManager",
+    "KnowledgeCachePolicy",
+    "KnowledgeCacheRuntime",
+    "KnowledgeCacheSnapshot",
+    "KnowledgeCacheStore",
+    "build_knowledge_cache_manifest",
+    "build_lru_policy",
+    "build_ttl_policy",
+]
