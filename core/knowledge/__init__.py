@@ -31,3 +31,29 @@ __all__ = [
     "build_repository_from_intelligence_snapshot",
     "get_default_knowledge_registry",
 ]
+
+# Foundation-08.1 Repository implementation exports
+from .repositories import KnowledgeMemoryRepository, KnowledgeRepositoryManager, build_memory_repository
+from .providers import (
+    CharacterKnowledgeProvider,
+    GlossaryKnowledgeProvider,
+    NarrativeKnowledgeProvider,
+    RuntimeKnowledgeProvider,
+    SceneKnowledgeProvider,
+    StaticKnowledgeProvider,
+)
+from .adapters import IntelligenceKnowledgeAdapter, PersistenceKnowledgeAdapter
+
+__all__ += [
+    "KnowledgeMemoryRepository",
+    "KnowledgeRepositoryManager",
+    "build_memory_repository",
+    "StaticKnowledgeProvider",
+    "CharacterKnowledgeProvider",
+    "GlossaryKnowledgeProvider",
+    "NarrativeKnowledgeProvider",
+    "SceneKnowledgeProvider",
+    "RuntimeKnowledgeProvider",
+    "IntelligenceKnowledgeAdapter",
+    "PersistenceKnowledgeAdapter",
+]
