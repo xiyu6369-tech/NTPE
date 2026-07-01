@@ -18,6 +18,16 @@ from .lifecycle import TranslationIntelligenceLifecycle
 from .memory_store import IntelligenceMemoryStore
 from .merge_strategy import IntelligenceMergeStrategy
 from .narrative_engine import NarrativeMemoryEngine
+
+from .events import (
+    IntelligenceEvent,
+    IntelligenceEventBus,
+    IntelligenceEventDispatcher,
+    IntelligencePublisher,
+    IntelligenceRuntimeEventFacade,
+    IntelligenceSubscriber,
+)
+
 from .persistence import (
     IntelligencePersistenceLoader,
     IntelligencePersistenceRegistry,
@@ -42,6 +52,12 @@ __all__ = [
     "GlossaryEntry",
     "GlossaryIntelligenceEngine",
     "IntelligenceAdapter",
+    "IntelligenceEvent",
+    "IntelligenceEventBus",
+    "IntelligenceEventDispatcher",
+    "IntelligencePublisher",
+    "IntelligenceRuntimeEventFacade",
+    "IntelligenceSubscriber",
     "IntelligenceMemoryStore",
     "IntelligenceMergeStrategy",
     "IntelligencePersistenceContract",
