@@ -228,3 +228,34 @@ __all__ += [
     "SUPPORTED_SCHEMA",
     "build_knowledge_io_manifest",
 ]
+
+# Foundation-08.9 Knowledge Maintenance exports
+from .maintenance import (
+    KnowledgeCleanup,
+    KnowledgeDiagnostics,
+    KnowledgeIntegrityChecker,
+    KnowledgeIntegrityReport,
+    KnowledgeMaintenanceManager,
+    KnowledgeOptimizer,
+    KnowledgeRepairEngine,
+    KnowledgeStatistics,
+    build_knowledge_maintenance_manager,
+    build_knowledge_maintenance_manifest,
+    build_knowledge_statistics,
+    check_knowledge_integrity,
+)
+
+__all__ += [
+    "KnowledgeCleanup",
+    "KnowledgeDiagnostics",
+    "KnowledgeIntegrityChecker",
+    "KnowledgeIntegrityReport",
+    "KnowledgeMaintenanceManager",
+    "KnowledgeOptimizer",
+    "KnowledgeRepairEngine",
+    "KnowledgeStatistics",
+    "build_knowledge_maintenance_manager",
+    "build_knowledge_maintenance_manifest",
+    "build_knowledge_statistics",
+    "check_knowledge_integrity",
+]
