@@ -203,3 +203,28 @@ __all__ += [
     "build_snapshot_manager",
     "merge_snapshots",
 ]
+
+# Foundation-08.8 Knowledge Import / Export exports
+from .io import (
+    KnowledgeExporter,
+    KnowledgeImporter,
+    KnowledgePackageBuilder,
+    KnowledgePackageReader,
+    KnowledgePackageValidationResult,
+    KnowledgePackageValidator,
+    SUPPORTED_PACKAGE_VERSION,
+    SUPPORTED_SCHEMA,
+    build_knowledge_io_manifest,
+)
+
+__all__ += [
+    "KnowledgeExporter",
+    "KnowledgeImporter",
+    "KnowledgePackageBuilder",
+    "KnowledgePackageReader",
+    "KnowledgePackageValidationResult",
+    "KnowledgePackageValidator",
+    "SUPPORTED_PACKAGE_VERSION",
+    "SUPPORTED_SCHEMA",
+    "build_knowledge_io_manifest",
+]
