@@ -6,4 +6,11 @@ PLATFORM_EVENTS = {
     "stopped": "platform.service.stopped",
     "failed": "platform.service.failed",
     "health": "platform.service.health",
+    "event_bus": "platform.event_bus",
+    "event_published": "platform.event.published",
+    "lifecycle_phase_completed": "platform.lifecycle.phase.completed",
+    "lifecycle_phase_started": "platform.lifecycle.phase.started",
+    "lifecycle_hook_executed": "platform.lifecycle.hook.executed",
+    "lifecycle_hook_registered": "platform.lifecycle.hook.registered",
+    "lifecycle": "platform.lifecycle",
 }
