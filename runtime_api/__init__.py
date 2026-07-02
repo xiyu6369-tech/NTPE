@@ -1,4 +1,4 @@
-"""NTPE Runtime API Layer public surface for Stage-11.5."""
+"""NTPE Runtime API Layer public surface for Stage-11.6."""
 from .runtime_context import RUNTIME_API_STAGE, RUNTIME_API_VERSION, RuntimeApiContext
 from .runtime_errors import (
     RuntimeApiError,
@@ -23,6 +23,11 @@ from .runtime_event import RuntimeEvent, RuntimeEventSeverity, RuntimeEventType
 from .event_request import RuntimeEventPublishRequest
 from .event_response import RuntimeEventListResponse
 from .event_api import RuntimeEventApi, attach_event_api
+
+from .runtime_resource import RuntimeResource, RuntimeResourceState, RuntimeResourceType
+from .resource_request import RuntimeResourceCreateRequest, RuntimeResourceTransitionRequest
+from .resource_response import RuntimeResourceListResponse
+from .resource_api import RuntimeResourceApi, attach_resource_api
 
 __all__ = [
     "RUNTIME_API_VERSION",
@@ -60,4 +65,12 @@ __all__ = [
     "RuntimeEventListResponse",
     "RuntimeEventApi",
     "attach_event_api",
+    "RuntimeResource",
+    "RuntimeResourceState",
+    "RuntimeResourceType",
+    "RuntimeResourceCreateRequest",
+    "RuntimeResourceTransitionRequest",
+    "RuntimeResourceListResponse",
+    "RuntimeResourceApi",
+    "attach_resource_api",
 ]
