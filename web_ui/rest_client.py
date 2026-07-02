@@ -70,6 +70,36 @@ class WebUiRestClient:
         response = self.rest_api.handle(method, f"/v1/pipelines/{pipeline_id}/{action}", body=body)
         return response.to_dict()
 
+
+
+    def list_events(self) -> Dict[str, Any]:
+        response = self.rest_api.handle("GET", "/v1/events")
+        return response.to_dict()
+
+    def publish_event(self, name: str | None = None, event_type: str = "custom", severity: str = "info", message: str | None = None, payload: Optional[Dict[str, Any]] = None, metadata: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+        body = {
+            "name": name or "runtime.event",
+            "event_type": event_type,
+            "severity": severity,
+            "message": message,
+            "payload": dict(payload or {}),
+            "metadata": dict(metadata or {}),
+        }
+        response = self.rest_api.handle("POST", "/v1/events", body=body)
+        return response.to_dict()
+
+    def filter_events(self, **filters: Any) -> Dict[str, Any]:
+        response = self.rest_api.handle("POST", "/v1/events/filter", body={k: v for k, v in filters.items() if v is not None})
+        return response.to_dict()
+
+    def event_summary(self) -> Dict[str, Any]:
+        response = self.rest_api.handle("GET", "/v1/events/summary")
+        return response.to_dict()
+
+    def clear_events(self) -> Dict[str, Any]:
+        response = self.rest_api.handle("POST", "/v1/events/clear")
+        return response.to_dict()
+
     def state(self) -> WebUiState:
         manifest = self.manifest()
         health = self.health()
