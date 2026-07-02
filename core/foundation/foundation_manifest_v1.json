@@ -1,0 +1,38 @@
+{
+  "name": "NTPE Foundation v1.0",
+  "foundation_version": "1.0",
+  "status": "Frozen",
+  "api_level": 1,
+  "compatibility": "Stable",
+  "contracts": {
+    "runtime_contract": "Frozen",
+    "context_pipeline_contract": "Frozen",
+    "prompt_pipeline_contract": "Frozen",
+    "plugin_contract": "Frozen",
+    "production_pipeline_contract": "Frozen",
+    "translation_runtime_contract": "Frozen",
+    "intelligence_contract": "Frozen",
+    "knowledge_contract": "Frozen",
+    "snapshot_contract": "Frozen"
+  },
+  "foundation_series": [
+    "Foundation-01 Core Infrastructure",
+    "Foundation-02 Context Pipeline",
+    "Foundation-03 Plugin Pipeline",
+    "Foundation-04 Production Pipeline",
+    "Foundation-05 Runtime Foundation",
+    "Foundation-06 Translation Runtime Core",
+    "Foundation-07 Translation Intelligence",
+    "Foundation-08 Knowledge Layer",
+    "Foundation-09 Foundation Freeze"
+  ],
+  "policy": {
+    "breaking_changes": false,
+    "new_foundation_modules": false,
+    "bug_fixes": true,
+    "security_fixes": true,
+    "documentation": true,
+    "test_improvements": true,
+    "backward_compatibility_required": true
+  }
+}
