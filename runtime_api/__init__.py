@@ -1,4 +1,4 @@
-"""NTPE Runtime API Layer public surface for Stage-11.6."""
+"""NTPE Runtime API Layer public surface for Stage-11.8."""
 from .runtime_context import RUNTIME_API_STAGE, RUNTIME_API_VERSION, RuntimeApiContext
 from .runtime_errors import (
     RuntimeApiError,
@@ -33,6 +33,16 @@ from .runtime_middleware import RuntimeMiddleware, RuntimeMiddlewareResult, Runt
 from .middleware_request import RuntimeMiddlewareRegisterRequest
 from .middleware_response import RuntimeMiddlewareListResponse
 from .middleware_api import RuntimeMiddlewareApi, attach_middleware_api
+
+from .runtime_freeze import (
+    RUNTIME_API_FREEZE_STAGE,
+    RUNTIME_API_FREEZE_VERSION,
+    FROZEN_RUNTIME_API_MODULES,
+    FROZEN_RUNTIME_API_OPERATIONS,
+    RuntimeApiFreezeReport,
+    RuntimeApiFreezeValidator,
+    create_runtime_api_freeze_report,
+)
 
 __all__ = [
     "RUNTIME_API_VERSION",
@@ -85,4 +95,11 @@ __all__ = [
     "RuntimeMiddlewareListResponse",
     "RuntimeMiddlewareApi",
     "attach_middleware_api",
+    'RUNTIME_API_FREEZE_STAGE',
+    'RUNTIME_API_FREEZE_VERSION',
+    'FROZEN_RUNTIME_API_MODULES',
+    'FROZEN_RUNTIME_API_OPERATIONS',
+    'RuntimeApiFreezeReport',
+    'RuntimeApiFreezeValidator',
+    'create_runtime_api_freeze_report',
 ]
