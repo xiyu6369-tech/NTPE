@@ -1,8 +1,9 @@
+# Changelog
 
-## NTPE 1.0 Beta — Stage-06.7 Plugin Command
+## NTPE 1.0 Beta — Stage-06.8 CLI Packaging
 
-- Added CLI plugin command group.
-- Added plugin list/info/enable/disable/install/uninstall/validate actions.
-- Added CLI-facing plugin registry store.
-- Added plugin manifest integration and acceptance tests.
-- Preserved Foundation v1.0 freeze and backward compatibility.
+- Added `cli.packaging` package.
+- Added entrypoint verification for `ntpe` CLI.
+- Added distribution metadata and release manifest helpers.
+- Added install verification and packaging acceptance tests.
+- Updated CLI manifest to Stage-06.8.
