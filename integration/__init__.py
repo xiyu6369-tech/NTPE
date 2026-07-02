@@ -28,6 +28,15 @@ from .plugin_dispatcher import PluginDispatcher
 from .plugin_bridge import PluginIntegrationBridge
 from .plugin_manager import PluginIntegrationManager
 
+from .extension_models import EXTENSION_FRAMEWORK_VERSION, EXTENSION_FRAMEWORK_STAGE, ExtensionManifest, ExtensionDescriptor, ExtensionCommand, ExtensionResult
+from .extension_context import ExtensionContext
+from .extension_events import ExtensionEvent, ExtensionEventBus
+from .extension_registry import ExtensionRegistry
+from .extension_dispatcher import ExtensionDispatcher
+from .extension_loader import ExtensionLoader
+from .extension_manifest import build_extension_manifest, load_extension_manifest
+from .extension_manager import ExtensionManager
+
 __all__ = [
     "INTEGRATION_VERSION",
     "INTEGRATION_STAGE",
@@ -74,4 +83,19 @@ __all__ = [
     "PluginDispatcher",
     "PluginIntegrationBridge",
     "PluginIntegrationManager",
+    "EXTENSION_FRAMEWORK_VERSION",
+    "EXTENSION_FRAMEWORK_STAGE",
+    "ExtensionManifest",
+    "ExtensionDescriptor",
+    "ExtensionCommand",
+    "ExtensionResult",
+    "ExtensionContext",
+    "ExtensionEvent",
+    "ExtensionEventBus",
+    "ExtensionRegistry",
+    "ExtensionDispatcher",
+    "ExtensionLoader",
+    "build_extension_manifest",
+    "load_extension_manifest",
+    "ExtensionManager",
 ]
