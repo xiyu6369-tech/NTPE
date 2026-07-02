@@ -83,6 +83,21 @@ from .service_policy import (
 from .policy_registry import PlatformPolicyRegistry
 from .policy_engine import PlatformPolicyEngine, create_policy_engine
 
+from .platform_freeze import (
+    PLATFORM_FREEZE_VERSION,
+    PLATFORM_FREEZE_STAGE,
+    PLATFORM_FREEZE_STATUS,
+    PLATFORM_FROZEN_SURFACES,
+    build_platform_freeze_manifest,
+    build_platform_service_contract,
+    build_platform_compatibility_matrix,
+    build_platform_version_manifest,
+    validate_platform_freeze_manifest,
+    platform_freeze_is_compatible,
+    write_platform_freeze_artifacts,
+    load_platform_json,
+)
+
 __all__ = [
     "PLATFORM_SERVICES_VERSION",
     "PLATFORM_SERVICES_STAGE",
@@ -152,4 +167,16 @@ __all__ = [
     "PlatformPolicyRegistry",
     "PlatformPolicyEngine",
     "create_policy_engine",
+    "PLATFORM_FREEZE_VERSION",
+    "PLATFORM_FREEZE_STAGE",
+    "PLATFORM_FREEZE_STATUS",
+    "PLATFORM_FROZEN_SURFACES",
+    "build_platform_freeze_manifest",
+    "build_platform_service_contract",
+    "build_platform_compatibility_matrix",
+    "build_platform_version_manifest",
+    "validate_platform_freeze_manifest",
+    "platform_freeze_is_compatible",
+    "write_platform_freeze_artifacts",
+    "load_platform_json",
 ]
