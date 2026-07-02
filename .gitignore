@@ -1,3 +1,56 @@
+# --------------------------
+# Python
+# --------------------------
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+
+# --------------------------
+# Virtual Environment
+# --------------------------
+.venv/
+venv/
+env/
+
+# --------------------------
+# Runtime
+# --------------------------
+logs/
+backup/
+cache/
+temp/
+output/
+
+# --------------------------
+# Translation Runtime
+# --------------------------
+translate_progress*.json
+resume_state*.json
+runtime_state*.json
+workflow_state*.json
+
+# Log files
+*.log
+
+# --------------------------
+# Benchmark
+# --------------------------
+benchmark/results/
+benchmark/reports/
+
+# --------------------------
+# OS
+# --------------------------
+Thumbs.db
+.DS_Store
+
+# --------------------------
+# IDE
+# --------------------------
+.vscode/
+.idea/
 # Python
 __pycache__/
 *.py[cod]
@@ -41,3 +94,37 @@ dist/
 # Temporary
 *.tmp
 *.bak
+# Runtime logs
+logs/*.txt
+
+# Runtime backup
+backup/
+# Runtime
+logs/
+backup/
+output/
+cache/
+temp/
+
+# Progress
+*.progress.json
+*.resume.json
+translate_progress*.json
+resume_state*.json
+
+# Benchmark outputs
+benchmark/results/
+benchmark/reports/
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Local environment
+.venv/
+.env
+
+# OS
+.DS_Store
+Thumbs.db
