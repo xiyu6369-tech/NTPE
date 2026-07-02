@@ -1,0 +1,11 @@
+{
+  "version": {"stable": true},
+  "doctor": {"stable": true},
+  "translate": {"stable": true},
+  "project": {"stable": true, "subcommands": ["create", "open", "info", "validate", "list", "export", "import"]},
+  "benchmark": {"stable": true, "subcommands": ["run", "runtime", "provider", "stress", "report", "compare"]},
+  "quality": {"stable": true, "subcommands": ["check", "score", "repair", "report", "rules"]},
+  "session": {"stable": true, "subcommands": ["create", "list", "info", "resume", "pause", "stop", "checkpoint", "restore", "cleanup"]},
+  "config": {"stable": true, "subcommands": ["list", "get", "set", "validate", "export", "import", "reset"]},
+  "plugin": {"stable": true, "subcommands": ["list", "info", "enable", "disable", "install", "uninstall", "validate"]}
+}

@@ -1,0 +1,10 @@
+{
+  "name": "NTPE CLI v1",
+  "stage": "NTPE 1.0 Beta Stage-06.9 CLI Freeze",
+  "version": "0.6.9",
+  "status": "frozen",
+  "commands": ["version", "doctor", "translate", "project", "benchmark", "quality", "session", "config", "plugin"],
+  "json_schema_keys": ["ok", "exit_code", "message", "data", "errors"],
+  "baseline": "beta-1.0-cli",
+  "backward_compatible": true
+}
