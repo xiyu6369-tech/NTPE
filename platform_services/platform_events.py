@@ -13,4 +13,8 @@ PLATFORM_EVENTS = {
     "lifecycle_hook_executed": "platform.lifecycle.hook.executed",
     "lifecycle_hook_registered": "platform.lifecycle.hook.registered",
     "lifecycle": "platform.lifecycle",
+    "policy": "platform.policy",
+    "policy_registered": "platform.policy.registered",
+    "policy_evaluated": "platform.policy.evaluated",
+    "policy_denied": "platform.policy.denied",
 }

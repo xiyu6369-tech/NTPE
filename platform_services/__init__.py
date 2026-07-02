@@ -72,6 +72,17 @@ from .lifecycle_hooks import (
 )
 from .service_lifecycle import PlatformServiceLifecycle, create_service_lifecycle
 
+from .service_policy import (
+    PLATFORM_POLICY_VERSION,
+    PLATFORM_POLICY_STAGE,
+    PlatformPolicyDecision,
+    PlatformPolicyContext,
+    PlatformPolicy,
+    PlatformPolicyEvaluation,
+)
+from .policy_registry import PlatformPolicyRegistry
+from .policy_engine import PlatformPolicyEngine, create_policy_engine
+
 __all__ = [
     "PLATFORM_SERVICES_VERSION",
     "PLATFORM_SERVICES_STAGE",
@@ -132,4 +143,13 @@ __all__ = [
     "create_lifecycle_hooks",
     "PlatformServiceLifecycle",
     "create_service_lifecycle",
+    "PLATFORM_POLICY_VERSION",
+    "PLATFORM_POLICY_STAGE",
+    "PlatformPolicyDecision",
+    "PlatformPolicyContext",
+    "PlatformPolicy",
+    "PlatformPolicyEvaluation",
+    "PlatformPolicyRegistry",
+    "PlatformPolicyEngine",
+    "create_policy_engine",
 ]
