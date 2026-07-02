@@ -1,4 +1,4 @@
-"""NTPE Runtime API Layer public surface for Stage-11.2."""
+"""NTPE Runtime API Layer public surface for Stage-11.3."""
 from .runtime_context import RUNTIME_API_STAGE, RUNTIME_API_VERSION, RuntimeApiContext
 from .runtime_errors import (
     RuntimeApiError,
@@ -11,6 +11,10 @@ from .runtime_response import RuntimeApiResponse
 from .runtime_api import RuntimeApi, create_runtime_api
 from .runtime_session import RuntimeSession, RuntimeSessionState
 from .session_api import RuntimeSessionApi, attach_session_api
+from .runtime_job import RuntimeJob, RuntimeJobState
+from .job_request import RuntimeJobCreateRequest
+from .job_response import RuntimeJobListResponse
+from .job_api import RuntimeJobApi, attach_job_api
 
 __all__ = [
     "RUNTIME_API_VERSION",
@@ -28,4 +32,10 @@ __all__ = [
     "RuntimeSessionState",
     "RuntimeSessionApi",
     "attach_session_api",
+    "RuntimeJob",
+    "RuntimeJobState",
+    "RuntimeJobCreateRequest",
+    "RuntimeJobListResponse",
+    "RuntimeJobApi",
+    "attach_job_api",
 ]
