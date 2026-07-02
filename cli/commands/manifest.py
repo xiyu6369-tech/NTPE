@@ -35,3 +35,37 @@ def attach_translate_manifest(payload: Dict[str, Any]) -> Dict[str, Any]:
     manifests = payload.setdefault("manifests", {})
     manifests["cli_translate"] = build_translate_manifest()
     return payload
+
+
+def build_project_manifest() -> Dict[str, Any]:
+    return {
+        "component": "cli.project",
+        "version": "1.0-beta-stage-06.2",
+        "commands": ["project"],
+        "actions": ["create", "open", "info", "validate", "list", "export", "import"],
+        "options": [
+            "path",
+            "--name",
+            "--input",
+            "--output",
+            "--force",
+            "--strict",
+            "--replace",
+        ],
+        "compatible_with": [
+            "foundation-v1.0",
+            "beta-stage-01",
+            "beta-stage-02",
+            "beta-stage-03",
+            "beta-stage-04",
+            "beta-stage-05",
+            "beta-stage-06.0",
+            "beta-stage-06.1",
+        ],
+    }
+
+
+def attach_project_manifest(payload: Dict[str, Any]) -> Dict[str, Any]:
+    manifests = payload.setdefault("manifests", {})
+    manifests["cli_project"] = build_project_manifest()
+    return payload
