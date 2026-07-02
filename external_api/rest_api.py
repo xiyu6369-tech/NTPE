@@ -9,6 +9,7 @@ from .rest_models import EXTERNAL_API_STAGE, EXTERNAL_API_VERSION, RestRequest, 
 from .rest_router import RestRouter
 from .rest_session import RestSessionApi
 from .rest_job import RestJobApi
+from .rest_pipeline import RestPipelineApi
 
 
 class RestApi:
@@ -22,9 +23,11 @@ class RestApi:
         self.router = RestRouter()
         self.session_routes = RestSessionApi(self.runtime_api)
         self.job_routes = RestJobApi(self.runtime_api)
+        self.pipeline_routes = RestPipelineApi(self.runtime_api)
         self._register_core_routes()
         self.session_routes.register_routes(self.router)
         self.job_routes.register_routes(self.router)
+        self.pipeline_routes.register_routes(self.router)
 
     def _register_core_routes(self) -> None:
         self.router.add_route("GET", "/health", self._health)
@@ -42,6 +45,9 @@ class RestApi:
         job_response = self.job_routes.maybe_dispatch(request)
         if job_response is not None:
             return job_response
+        pipeline_response = self.pipeline_routes.maybe_dispatch(request)
+        if pipeline_response is not None:
+            return pipeline_response
         return self.router.dispatch(request)
 
     def _health(self, request: RestRequest) -> RestResponse:
@@ -80,6 +86,7 @@ class RestApi:
             "uses_frozen_runtime_api_only": True,
             "session_api": self.session_routes.manifest(),
             "job_api": self.job_routes.manifest(),
+            "pipeline_api": self.pipeline_routes.manifest(),
         }
 
 
