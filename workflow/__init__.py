@@ -26,3 +26,27 @@ __all__ += [
     "JOB_SCHEDULER_VERSION", "JOB_SCHEDULER_STAGE", "JobStatus", "JobPriority", "JobContext", "Job", "JobResult",
     "JobQueue", "JobRegistry", "JobDispatcher", "JobManager", "SchedulingPolicy", "JobScheduler", "create_job_scheduler", "JOB_EVENTS",
 ]
+
+# Stage-09.2 Pipeline Orchestrator public surface
+from .pipeline_models import (
+    PIPELINE_ORCHESTRATOR_VERSION,
+    PIPELINE_ORCHESTRATOR_STAGE,
+    PipelineStatus,
+    PipelineStageStatus,
+    PipelineStage,
+    PipelineDefinition,
+    PipelineStageResult,
+    PipelineExecutionResult,
+)
+from .pipeline_context import PipelineContext
+from .pipeline_registry import PipelineRegistry
+from .execution_plan import ExecutionPlan
+from .pipeline_dispatcher import PipelineDispatcher
+from .orchestrator import PipelineOrchestrator, create_pipeline_orchestrator
+from .pipeline_events import PIPELINE_EVENTS
+
+__all__ += [
+    "PIPELINE_ORCHESTRATOR_VERSION", "PIPELINE_ORCHESTRATOR_STAGE", "PipelineStatus", "PipelineStageStatus",
+    "PipelineStage", "PipelineDefinition", "PipelineStageResult", "PipelineExecutionResult", "PipelineContext",
+    "PipelineRegistry", "ExecutionPlan", "PipelineDispatcher", "PipelineOrchestrator", "create_pipeline_orchestrator", "PIPELINE_EVENTS",
+]
