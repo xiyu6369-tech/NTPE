@@ -42,3 +42,26 @@ __all__ += [
     "PerformanceProfiler",
     "IntegrationStressTest",
 ]
+
+# Stage-09.7 Workflow Benchmark exports
+from .workflow_metrics import WORKFLOW_BENCHMARK_STAGE, WORKFLOW_BENCHMARK_VERSION, WorkflowBenchmarkMetric
+from .workflow_report import WorkflowBenchmarkReport
+from .workflow_profiler import WorkflowProfiler
+from .workflow_runner import WorkflowBenchmarkRunner
+from .workflow_suite import WorkflowBenchmarkSuite
+from .workflow_load_test import WorkflowLoadTest
+from .workflow_stress_test import WorkflowStressTest
+from .workflow_benchmark import WorkflowBenchmark
+
+__all__ += [
+    "WORKFLOW_BENCHMARK_STAGE",
+    "WORKFLOW_BENCHMARK_VERSION",
+    "WorkflowBenchmarkMetric",
+    "WorkflowBenchmarkReport",
+    "WorkflowProfiler",
+    "WorkflowBenchmarkRunner",
+    "WorkflowBenchmarkSuite",
+    "WorkflowLoadTest",
+    "WorkflowStressTest",
+    "WorkflowBenchmark",
+]
