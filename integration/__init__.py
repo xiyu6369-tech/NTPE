@@ -12,6 +12,14 @@ from .runtime_dispatcher import RuntimeDispatcher
 from .runtime_bridge import RuntimeBridge
 from .runtime_manager import RuntimeManager
 
+from .bridge_models import BRIDGE_INTEGRATION_VERSION, BRIDGE_INTEGRATION_STAGE, BridgeCommand, BridgeResult, BridgeEndpoint
+from .bridge_context import BridgeContext
+from .bridge_events import BridgeEvent, BridgeEventBus
+from .bridge_registry import BridgeRegistry
+from .bridge_dispatcher import BridgeDispatcher
+from .sdk_cli_bridge import SDKCLIBridge
+from .bridge_manager import BridgeManager
+
 __all__ = [
     "INTEGRATION_VERSION",
     "INTEGRATION_STAGE",
@@ -34,4 +42,16 @@ __all__ = [
     "RuntimeDispatcher",
     "RuntimeBridge",
     "RuntimeManager",
+    "BRIDGE_INTEGRATION_VERSION",
+    "BRIDGE_INTEGRATION_STAGE",
+    "BridgeCommand",
+    "BridgeResult",
+    "BridgeEndpoint",
+    "BridgeContext",
+    "BridgeEvent",
+    "BridgeEventBus",
+    "BridgeRegistry",
+    "BridgeDispatcher",
+    "SDKCLIBridge",
+    "BridgeManager",
 ]
