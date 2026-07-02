@@ -37,20 +37,18 @@ def attach_translate_manifest(payload: Dict[str, Any]) -> Dict[str, Any]:
     return payload
 
 
-def build_project_manifest() -> Dict[str, Any]:
+def build_benchmark_manifest() -> Dict[str, Any]:
     return {
-        "component": "cli.project",
-        "version": "1.0-beta-stage-06.2",
-        "commands": ["project"],
-        "actions": ["create", "open", "info", "validate", "list", "export", "import"],
-        "options": [
-            "path",
-            "--name",
-            "--input",
-            "--output",
-            "--force",
-            "--strict",
-            "--replace",
+        "component": "cli.benchmark",
+        "version": "1.0-beta-stage-06.3",
+        "commands": ["benchmark"],
+        "subcommands": ["run", "runtime", "provider", "stress", "report", "compare"],
+        "integrates": [
+            "benchmark.framework",
+            "benchmark.runtime",
+            "benchmark.provider",
+            "benchmark.stress",
+            "benchmark.report",
         ],
         "compatible_with": [
             "foundation-v1.0",
@@ -61,11 +59,12 @@ def build_project_manifest() -> Dict[str, Any]:
             "beta-stage-05",
             "beta-stage-06.0",
             "beta-stage-06.1",
+            "beta-stage-06.2",
         ],
     }
 
 
-def attach_project_manifest(payload: Dict[str, Any]) -> Dict[str, Any]:
+def attach_benchmark_manifest(payload: Dict[str, Any]) -> Dict[str, Any]:
     manifests = payload.setdefault("manifests", {})
-    manifests["cli_project"] = build_project_manifest()
+    manifests["cli_benchmark"] = build_benchmark_manifest()
     return payload
