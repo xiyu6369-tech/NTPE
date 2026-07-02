@@ -12,6 +12,8 @@ from .rest_job import RestJobApi
 from .rest_pipeline import RestPipelineApi
 from .rest_event import RestEventApi
 from .rest_resource import RestResourceApi
+from .rest_auth import RestAuthHooks
+from .rest_middleware import RestMiddlewareChain, RestMiddlewareContext
 
 
 class RestApi:
@@ -28,6 +30,8 @@ class RestApi:
         self.pipeline_routes = RestPipelineApi(self.runtime_api)
         self.event_routes = RestEventApi(self.runtime_api)
         self.resource_routes = RestResourceApi(self.runtime_api)
+        self.auth_hooks = RestAuthHooks()
+        self.middleware = RestMiddlewareChain()
         self._register_core_routes()
         self.session_routes.register_routes(self.router)
         self.job_routes.register_routes(self.router)
@@ -45,6 +49,23 @@ class RestApi:
 
     def handle(self, method: str, path: str, *, body: Optional[Dict[str, Any]] = None, headers: Optional[Dict[str, str]] = None, query: Optional[Dict[str, Any]] = None, request_id: Optional[str] = None) -> RestResponse:
         request = RestRequest(method=method, path=path, body=dict(body or {}), headers=dict(headers or {}), query=dict(query or {}), request_id=request_id)
+        context = RestMiddlewareContext(request=request)
+
+        auth_result = self.auth_hooks.evaluate(request)
+        if not auth_result.allowed:
+            return self.auth_hooks.response_for_denial(auth_result, request)
+        if auth_result.principal:
+            context.metadata["principal"] = auth_result.principal
+        context.metadata.update(auth_result.metadata)
+
+        before_response = self.middleware.run_before(context)
+        if before_response is not None:
+            return self.middleware.run_after(context, before_response)
+
+        response = self._dispatch_without_middleware(request)
+        return self.middleware.run_after(context, response)
+
+    def _dispatch_without_middleware(self, request: RestRequest) -> RestResponse:
         session_response = self.session_routes.maybe_dispatch(request)
         if session_response is not None:
             return session_response
@@ -101,6 +122,8 @@ class RestApi:
             "pipeline_api": self.pipeline_routes.manifest(),
             "event_api": self.event_routes.manifest(),
             "resource_api": self.resource_routes.manifest(),
+            "middleware_api": self.middleware.manifest(),
+            "auth_hooks": self.auth_hooks.manifest(),
         }
 
 
