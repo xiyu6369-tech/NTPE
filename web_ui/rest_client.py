@@ -100,6 +100,30 @@ class WebUiRestClient:
         response = self.rest_api.handle("POST", "/v1/events/clear")
         return response.to_dict()
 
+
+    def list_resources(self) -> Dict[str, Any]:
+        response = self.rest_api.handle("GET", "/v1/resources")
+        return response.to_dict()
+
+    def create_resource(self, name: str | None = None, resource_type: str = "custom", uri: str | None = None, metadata: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+        body = {"name": name, "resource_type": resource_type, "uri": uri, "metadata": dict(metadata or {})}
+        response = self.rest_api.handle("POST", "/v1/resources", body=body)
+        return response.to_dict()
+
+    def filter_resources(self, **filters: Any) -> Dict[str, Any]:
+        response = self.rest_api.handle("POST", "/v1/resources/filter", body={k: v for k, v in filters.items() if v is not None})
+        return response.to_dict()
+
+    def resource_action(self, resource_id: str, action: str, metadata: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+        method = "GET" if action == "summary" else "POST"
+        body = {} if method == "GET" else {"metadata": dict(metadata or {})}
+        response = self.rest_api.handle(method, f"/v1/resources/{resource_id}/{action}", body=body)
+        return response.to_dict()
+
+    def resource_summary(self) -> Dict[str, Any]:
+        response = self.rest_api.handle("GET", "/v1/resources/summary")
+        return response.to_dict()
+
     def state(self) -> WebUiState:
         manifest = self.manifest()
         health = self.health()

@@ -6,8 +6,10 @@ from .job_models import WEB_UI_JOB_STAGE, JobAction, JobPageView
 from .job_page import WebUiJobPage
 from .pipeline_models import WEB_UI_PIPELINE_STAGE, PipelineAction, PipelinePageView
 from .event_models import WEB_UI_EVENT_STAGE, EventAction, EventPageView
+from .resource_models import WEB_UI_RESOURCE_STAGE, ResourceAction, ResourcePageView
 from .pipeline_page import WebUiPipelinePage
 from .event_page import WebUiEventPage
+from .resource_page import WebUiResourcePage
 from .dashboard_models import DashboardMetric, DashboardSection, DashboardView, WEB_UI_DASHBOARD_STAGE
 from .ui_models import WEB_UI_STAGE, WEB_UI_VERSION, WebUiPage, WebUiRoute, WebUiState
 from .ui_shell import WebUiShell
@@ -22,6 +24,7 @@ __all__ = [
     "WEB_UI_JOB_STAGE",
     "WEB_UI_PIPELINE_STAGE",
     "WEB_UI_EVENT_STAGE",
+    "WEB_UI_RESOURCE_STAGE",
     "DashboardMetric",
     "DashboardSection",
     "DashboardView",
@@ -38,6 +41,9 @@ __all__ = [
     "EventAction",
     "EventPageView",
     "WebUiEventPage",
+    "ResourceAction",
+    "ResourcePageView",
+    "WebUiResourcePage",
     "WebUiPage",
     "WebUiRoute",
     "WebUiState",
