@@ -46,6 +46,15 @@ from .event_publisher import EventPublisher
 from .event_subscriber import EventSubscriber
 from .event_bus import EventBus
 
+from .service_models import SERVICE_CONTAINER_VERSION, SERVICE_CONTAINER_STAGE, ServiceLifetime, ServiceDescriptor, ServiceResolution
+from .service_registry import ServiceRegistry
+from .service_factory import ServiceFactory
+from .service_scope import ServiceScope
+from .service_resolver import ServiceResolver
+from .service_provider import ServiceProvider
+from .dependency_graph import DependencyGraph
+from .service_container import ServiceContainer
+
 __all__ = [
     "INTEGRATION_VERSION",
     "INTEGRATION_STAGE",
@@ -119,4 +128,16 @@ __all__ = [
     "EventPublisher",
     "EventSubscriber",
     "EventBus",
+    "SERVICE_CONTAINER_VERSION",
+    "SERVICE_CONTAINER_STAGE",
+    "ServiceLifetime",
+    "ServiceDescriptor",
+    "ServiceResolution",
+    "ServiceRegistry",
+    "ServiceFactory",
+    "ServiceScope",
+    "ServiceResolver",
+    "ServiceProvider",
+    "DependencyGraph",
+    "ServiceContainer",
 ]
