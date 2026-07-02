@@ -55,6 +55,21 @@ from .service_provider import ServiceProvider
 from .dependency_graph import DependencyGraph
 from .service_container import ServiceContainer
 
+from .freeze import (
+    INTEGRATION_FREEZE_VERSION,
+    INTEGRATION_FREEZE_STAGE,
+    INTEGRATION_FREEZE_STATUS,
+    IntegrationFreezeResult,
+    build_freeze_manifest,
+    build_integration_contract,
+    build_compatibility_matrix,
+    build_version_manifest,
+    validate_freeze_manifest,
+    write_freeze_artifacts,
+    load_json,
+    freeze_is_compatible,
+)
+
 __all__ = [
     "INTEGRATION_VERSION",
     "INTEGRATION_STAGE",
@@ -140,4 +155,16 @@ __all__ = [
     "ServiceProvider",
     "DependencyGraph",
     "ServiceContainer",
+    "INTEGRATION_FREEZE_VERSION",
+    "INTEGRATION_FREEZE_STAGE",
+    "INTEGRATION_FREEZE_STATUS",
+    "IntegrationFreezeResult",
+    "build_freeze_manifest",
+    "build_integration_contract",
+    "build_compatibility_matrix",
+    "build_version_manifest",
+    "validate_freeze_manifest",
+    "write_freeze_artifacts",
+    "load_json",
+    "freeze_is_compatible",
 ]

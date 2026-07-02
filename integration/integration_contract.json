@@ -1,0 +1,55 @@
+{
+  "contract_version": "1.0.0",
+  "status": "frozen",
+  "frozen_surfaces": {
+    "integration_core": [
+      "IntegrationCore",
+      "IntegrationRegistry",
+      "IntegrationContext",
+      "IntegrationResult"
+    ],
+    "runtime_integration": [
+      "RuntimeBridge",
+      "RuntimeManager",
+      "RuntimeRegistry",
+      "RuntimeDispatcher"
+    ],
+    "sdk_cli_bridge": [
+      "SDKCLIBridge",
+      "BridgeManager",
+      "BridgeRegistry",
+      "BridgeDispatcher"
+    ],
+    "plugin_integration": [
+      "PluginIntegrationBridge",
+      "PluginIntegrationManager",
+      "PluginIntegrationRegistry"
+    ],
+    "extension_framework": [
+      "ExtensionManager",
+      "ExtensionRegistry",
+      "ExtensionLoader",
+      "ExtensionManifest"
+    ],
+    "event_bus": [
+      "EventBus",
+      "EventPublisher",
+      "EventSubscriber",
+      "EventDispatcher"
+    ],
+    "service_container": [
+      "ServiceContainer",
+      "ServiceRegistry",
+      "ServiceProvider",
+      "ServiceResolver"
+    ]
+  },
+  "rules": {
+    "backward_compatible": true,
+    "no_breaking_changes": true,
+    "additive_extensions_allowed": true,
+    "foundation_v1_required": true,
+    "cli_freeze_required": true,
+    "sdk_stage_07_required": true
+  }
+}

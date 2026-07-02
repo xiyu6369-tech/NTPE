@@ -1,0 +1,27 @@
+{
+  "name": "ntpe-integration",
+  "version": "1.0.0",
+  "stage": "NTPE 1.0 Beta Stage-08.8 Integration Freeze",
+  "status": "frozen",
+  "foundation_status": "frozen",
+  "additive_only": true,
+  "contracts": [
+    "integration_core",
+    "runtime_integration",
+    "sdk_cli_bridge",
+    "plugin_integration",
+    "extension_framework",
+    "event_bus",
+    "service_container"
+  ],
+  "compatibility_targets": [
+    "foundation_v1",
+    "cli_freeze",
+    "sdk_stage_07",
+    "runtime_integration",
+    "plugin_integration",
+    "extension_framework",
+    "event_bus",
+    "service_container"
+  ]
+}

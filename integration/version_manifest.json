@@ -1,0 +1,9 @@
+{
+  "component": "integration",
+  "version": "1.0.0",
+  "stage": "08.8",
+  "status": "frozen",
+  "foundation_status": "frozen",
+  "public_contract": "integration_contract.json",
+  "compatibility_matrix": "compatibility_matrix.json"
+}

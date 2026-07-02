@@ -1,0 +1,14 @@
+{
+  "version": "1.0.0",
+  "status": "frozen",
+  "matrix": {
+    "foundation_v1": true,
+    "cli_freeze": true,
+    "sdk_stage_07": true,
+    "runtime_integration": true,
+    "plugin_integration": true,
+    "extension_framework": true,
+    "event_bus": true,
+    "service_container": true
+  }
+}
