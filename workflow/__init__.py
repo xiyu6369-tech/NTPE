@@ -97,3 +97,30 @@ __all__ += [
     "Checkpoint", "PersistenceResult", "PersistenceStore", "StateSerializer", "StateDeserializer", "CheckpointManager",
     "RecoveryManager", "PersistenceManager", "WorkflowPersistence", "create_workflow_persistence", "PERSISTENCE_EVENTS",
 ]
+
+# Stage-09.6 Distributed Execution public surface
+from .distributed import (
+    DISTRIBUTED_EXECUTION_VERSION,
+    DISTRIBUTED_EXECUTION_STAGE,
+    NodeStatus,
+    DistributionStrategy,
+    DistributedNode,
+    DistributionResult,
+    ClusterTopology,
+    NodeRegistry,
+    DistributedScheduler,
+    DistributedDispatcher,
+    HeartbeatMonitor,
+    FailoverManager,
+    TopologyManager,
+    DistributedCoordinator,
+    create_distributed_coordinator,
+    DISTRIBUTED_EVENTS,
+)
+
+__all__ += [
+    "DISTRIBUTED_EXECUTION_VERSION", "DISTRIBUTED_EXECUTION_STAGE", "NodeStatus", "DistributionStrategy",
+    "DistributedNode", "DistributionResult", "ClusterTopology", "NodeRegistry", "DistributedScheduler",
+    "DistributedDispatcher", "HeartbeatMonitor", "FailoverManager", "TopologyManager", "DistributedCoordinator",
+    "create_distributed_coordinator", "DISTRIBUTED_EVENTS",
+]
