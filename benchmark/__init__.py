@@ -23,3 +23,22 @@ __all__ = [
     "BenchmarkSuite",
     "build_benchmark_manifest",
 ]
+
+# Stage-08.7 Integration Benchmark exports
+from .benchmark_metrics import INTEGRATION_BENCHMARK_STAGE, INTEGRATION_BENCHMARK_VERSION, IntegrationBenchmarkMetrics
+from .benchmark_report import IntegrationBenchmarkReport
+from .integration_benchmark import IntegrationBenchmark
+from .load_test import IntegrationLoadTest
+from .performance_profiler import PerformanceProfiler
+from .stress_test import IntegrationStressTest
+
+__all__ += [
+    "INTEGRATION_BENCHMARK_STAGE",
+    "INTEGRATION_BENCHMARK_VERSION",
+    "IntegrationBenchmarkMetrics",
+    "IntegrationBenchmarkReport",
+    "IntegrationBenchmark",
+    "IntegrationLoadTest",
+    "PerformanceProfiler",
+    "IntegrationStressTest",
+]
