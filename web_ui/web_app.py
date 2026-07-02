@@ -7,6 +7,7 @@ from external_api import RestApi
 
 from .rest_client import WebUiRestClient
 from .dashboard import WebUiDashboard
+from .session_page import WebUiSessionPage
 from .ui_models import WEB_UI_STAGE, WEB_UI_VERSION, WebUiPage
 from .ui_shell import WebUiShell
 
@@ -21,6 +22,7 @@ class WebUiApp:
         self.client = WebUiRestClient(rest_api=rest_api)
         self.shell = WebUiShell()
         self.dashboard = WebUiDashboard()
+        self.session_page = WebUiSessionPage(self.client)
 
     def render(self, path: str = "/") -> WebUiPage:
         state = self.client.state()
@@ -29,10 +31,18 @@ class WebUiApp:
             components = list(page.components)
             components.append({"type": "dashboard", "view": self.dashboard.build(state).to_dict()})
             return WebUiPage(route=page.route, state=page.state, components=components, created_at=page.created_at)
+        if page.route.page_id == "sessions":
+            components = list(page.components)
+            components.append({"type": "session_page", "view": self.session_page.build(state).to_dict()})
+            return WebUiPage(route=page.route, state=page.state, components=components, created_at=page.created_at)
         return page
 
     def dashboard_view(self) -> dict:
         return self.dashboard.build(self.client.state()).to_dict()
+
+    def session_view(self) -> dict:
+        state = self.client.state()
+        return self.session_page.build(state).to_dict()
 
     def manifest(self) -> dict:
         rest_manifest = self.client.manifest()
@@ -46,6 +56,7 @@ class WebUiApp:
             "uses_frozen_runtime_api_only": rest_manifest.get("uses_frozen_runtime_api_only"),
             "framework_neutral": True,
             "dashboard_stage": self.dashboard.stage,
+            "session_page_stage": self.session_page.stage,
             "additive_only": True,
         }
 

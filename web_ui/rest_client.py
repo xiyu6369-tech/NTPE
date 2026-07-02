@@ -21,6 +21,22 @@ class WebUiRestClient:
     def manifest(self) -> Dict[str, Any]:
         return self.rest_api.manifest()
 
+
+    def list_sessions(self) -> Dict[str, Any]:
+        response = self.rest_api.handle("GET", "/v1/sessions")
+        return response.to_dict()
+
+    def create_session(self, name: str | None = None, metadata: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+        body = {"name": name, "metadata": dict(metadata or {})}
+        response = self.rest_api.handle("POST", "/v1/sessions", body=body)
+        return response.to_dict()
+
+    def session_action(self, session_id: str, action: str, metadata: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+        method = "GET" if action == "resume-state" else "POST"
+        body = {} if method == "GET" else {"metadata": dict(metadata or {})}
+        response = self.rest_api.handle(method, f"/v1/sessions/{session_id}/{action}", body=body)
+        return response.to_dict()
+
     def state(self) -> WebUiState:
         manifest = self.manifest()
         health = self.health()
