@@ -20,7 +20,7 @@ def command_version(context: CLIContext, args: object) -> CLIResult:
 
 def command_doctor(context: CLIContext, args: object) -> CLIResult:
     required = ["core", "runtime", "translation"]
-    recommended = ["benchmark", "tests", "config"]
+    recommended = ["benchmark", "tests", "config", "cli"]
     existing_required = [name for name in required if context.path(name).exists()]
     missing_required = [name for name in required if name not in existing_required]
     missing_recommended = [name for name in recommended if not context.path(name).exists()]
@@ -50,6 +50,12 @@ def build_registry() -> CommandRegistry:
     registry = CommandRegistry()
     registry.register(CLICommand("version", "show NTPE version", command_version))
     registry.register(CLICommand("doctor", "check project structure", command_doctor))
+    try:
+        from .commands.translate import register_translate_command
+        register_translate_command(registry)
+    except Exception:
+        # Keep CLI core usable even if optional command modules are unavailable.
+        pass
     return registry
 
 
@@ -70,10 +76,25 @@ def format_result(result: CLIResult, as_json: bool = False) -> str:
     return "OK" if result.ok else "FAIL"
 
 
+def _extract_global_value(args_list: list[str], name: str) -> Optional[str]:
+    if name not in args_list:
+        return None
+    index = args_list.index(name)
+    if index + 1 >= len(args_list):
+        return None
+    return args_list[index + 1]
+
+
+def _extract_global_flag(args_list: list[str], name: str) -> bool:
+    return name in args_list
+
+
 def run_cli(argv: Optional[Iterable[str]] = None, context: Optional[CLIContext] = None) -> CLIResult:
     parser = build_parser()
-    args = parser.parse_args(list(argv) if argv is not None else None)
-    root = Path(args.root).resolve() if getattr(args, "root", None) else None
+    args_list = list(argv) if argv is not None else sys.argv[1:]
+    args = parser.parse_args(args_list)
+    root_arg = getattr(args, "root", None) or _extract_global_value(args_list, "--root")
+    root = Path(root_arg).resolve() if root_arg else None
     cli_context = context or CLIContext.discover(root)
 
     if not args.command:
@@ -94,7 +115,8 @@ def main(argv: Optional[Iterable[str]] = None) -> int:
     args_list = list(argv) if argv is not None else sys.argv[1:]
     args = parser.parse_args(args_list)
     result = run_cli(args_list)
-    print(format_result(result, as_json=getattr(args, "as_json", False)))
+    as_json = bool(getattr(args, "as_json", False)) or _extract_global_flag(args_list, "--json")
+    print(format_result(result, as_json=as_json))
     return result.exit_code
 
 
