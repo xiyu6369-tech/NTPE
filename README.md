@@ -267,3 +267,19 @@ License
 This project is currently under active development.
 
 Copyright © NTPE Project.
+
+## NTPE CLI — Plugin Command
+
+Stage-06.7 adds plugin management commands:
+
+```bash
+python -m cli plugin list
+python -m cli plugin info context
+python -m cli plugin enable context
+python -m cli plugin disable context
+python -m cli plugin install plugin.json
+python -m cli plugin uninstall sample
+python -m cli plugin validate
+```
+
+The command uses a CLI-facing registry under `.ntpe_plugins/` and does not replace the frozen Foundation Plugin System.

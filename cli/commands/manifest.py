@@ -120,3 +120,34 @@ def build_config_manifest() -> Dict[str, Any]:
 def attach_config_manifest(payload: Dict[str, Any]) -> Dict[str, Any]:
     payload.setdefault("manifests", {})["cli_config"] = build_config_manifest()
     return payload
+
+
+def build_plugin_manifest() -> Dict[str, Any]:
+    return {
+        "component": "cli.plugin",
+        "version": "1.0-beta-stage-06.7",
+        "commands": ["plugin"],
+        "actions": ["list", "info", "enable", "disable", "install", "uninstall", "validate"],
+        "options": ["--plugin-dir", "--enabled", "--disabled", "--replace"],
+        "compatible_with": [
+            "foundation-v1.0",
+            "beta-stage-01",
+            "beta-stage-02",
+            "beta-stage-03",
+            "beta-stage-04",
+            "beta-stage-05",
+            "beta-stage-06.0",
+            "beta-stage-06.1",
+            "beta-stage-06.2",
+            "beta-stage-06.3",
+            "beta-stage-06.4",
+            "beta-stage-06.5",
+            "beta-stage-06.6",
+        ],
+    }
+
+
+def attach_plugin_manifest(payload: Dict[str, Any]) -> Dict[str, Any]:
+    manifests = payload.setdefault("manifests", {})
+    manifests["cli_plugin"] = build_plugin_manifest()
+    return payload

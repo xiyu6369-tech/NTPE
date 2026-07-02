@@ -250,6 +250,52 @@ def _add_config(subparsers, common):
     config.set_defaults(command="config", config_action="list")
 
 
+
+def _add_plugin(subparsers, common):
+    plugin = subparsers.add_parser("plugin", help="manage NTPE plugins", parents=[common])
+    plugin.add_argument("--plugin-dir", default=".ntpe_plugins", help="plugin registry directory")
+    plugin_sub = plugin.add_subparsers(dest="plugin_action")
+
+    list_cmd = plugin_sub.add_parser("list", help="list plugins", parents=[common])
+    list_cmd.add_argument("--plugin-dir", default=".ntpe_plugins", help="plugin registry directory")
+    enabled_group = list_cmd.add_mutually_exclusive_group()
+    enabled_group.add_argument("--enabled", action="store_true", default=None, help="show enabled plugins only")
+    enabled_group.add_argument("--disabled", action="store_true", default=None, help="show disabled plugins only")
+    list_cmd.set_defaults(command="plugin", plugin_action="list")
+
+    info = plugin_sub.add_parser("info", help="show plugin information", parents=[common])
+    info.add_argument("name", help="plugin name")
+    info.add_argument("--plugin-dir", default=".ntpe_plugins", help="plugin registry directory")
+    info.set_defaults(command="plugin", plugin_action="info")
+
+    enable = plugin_sub.add_parser("enable", help="enable plugin", parents=[common])
+    enable.add_argument("name", help="plugin name")
+    enable.add_argument("--plugin-dir", default=".ntpe_plugins", help="plugin registry directory")
+    enable.set_defaults(command="plugin", plugin_action="enable")
+
+    disable = plugin_sub.add_parser("disable", help="disable plugin", parents=[common])
+    disable.add_argument("name", help="plugin name")
+    disable.add_argument("--plugin-dir", default=".ntpe_plugins", help="plugin registry directory")
+    disable.set_defaults(command="plugin", plugin_action="disable")
+
+    install = plugin_sub.add_parser("install", help="install plugin package metadata", parents=[common])
+    install.add_argument("package", help="plugin package path, directory, or JSON manifest")
+    install.add_argument("--replace", action="store_true", help="replace existing plugin metadata")
+    install.add_argument("--plugin-dir", default=".ntpe_plugins", help="plugin registry directory")
+    install.set_defaults(command="plugin", plugin_action="install")
+
+    uninstall = plugin_sub.add_parser("uninstall", help="uninstall plugin", parents=[common])
+    uninstall.add_argument("name", help="plugin name")
+    uninstall.add_argument("--plugin-dir", default=".ntpe_plugins", help="plugin registry directory")
+    uninstall.set_defaults(command="plugin", plugin_action="uninstall")
+
+    validate = plugin_sub.add_parser("validate", help="validate plugin registry", parents=[common])
+    validate.add_argument("name", nargs="?", default=None, help="optional plugin name")
+    validate.add_argument("--plugin-dir", default=".ntpe_plugins", help="plugin registry directory")
+    validate.set_defaults(command="plugin", plugin_action="validate")
+
+    plugin.set_defaults(command="plugin", plugin_action="list")
+
 def build_parser() -> argparse.ArgumentParser:
     common = _global_options()
     parser = argparse.ArgumentParser(
@@ -273,5 +319,6 @@ def build_parser() -> argparse.ArgumentParser:
     _add_quality(subparsers, common)
     _add_session(subparsers, common)
     _add_config(subparsers, common)
+    _add_plugin(subparsers, common)
 
     return parser
