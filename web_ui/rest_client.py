@@ -37,6 +37,22 @@ class WebUiRestClient:
         response = self.rest_api.handle(method, f"/v1/sessions/{session_id}/{action}", body=body)
         return response.to_dict()
 
+
+    def list_jobs(self) -> Dict[str, Any]:
+        response = self.rest_api.handle("GET", "/v1/jobs")
+        return response.to_dict()
+
+    def create_job(self, session_id: str | None = None, name: str | None = None, metadata: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+        body = {"session_id": session_id, "name": name, "metadata": dict(metadata or {})}
+        response = self.rest_api.handle("POST", "/v1/jobs", body=body)
+        return response.to_dict()
+
+    def job_action(self, job_id: str, action: str, metadata: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+        method = "GET" if action in {"status", "result"} else "POST"
+        body = {} if method == "GET" else {"metadata": dict(metadata or {})}
+        response = self.rest_api.handle(method, f"/v1/jobs/{job_id}/{action}", body=body)
+        return response.to_dict()
+
     def state(self) -> WebUiState:
         manifest = self.manifest()
         health = self.health()
