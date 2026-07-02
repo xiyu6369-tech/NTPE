@@ -1,0 +1,4 @@
+include README.md
+include sdk/py.typed
+recursive-include docs/sdk *.md
+recursive-include examples sdk_*.py

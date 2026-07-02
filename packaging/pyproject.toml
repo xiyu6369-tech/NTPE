@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ntpe-sdk"
+version = "1.0.0b7"
+description = "Python SDK facade for Novel Translation Professional Engine"
+requires-python = ">=3.10"
+readme = "README.md"
+
+[tool.setuptools]
+packages = ["sdk"]
+include-package-data = true
+
+[tool.setuptools.package-data]
+sdk = ["py.typed"]

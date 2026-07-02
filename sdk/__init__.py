@@ -76,6 +76,9 @@ from .plugin_registry import SDKPluginRegistry
 from .plugin_loader import SDKPluginLoader
 from .plugin_manager import SDKPluginManager
 
+from .version import SDK_VERSION as PACKAGE_VERSION, SDK_STAGE as PACKAGE_STAGE, SDK_STAGE_NAME, SDK_API_LEVEL, get_version, version_info
+from .metadata import SDKPackageMetadata, package_metadata, package_classifiers
+
 __all__ = [
     "NTPEClient",
     "SDKRequest",
@@ -174,4 +177,13 @@ __all__ = [
     "SDKPluginRegistry",
     "SDKPluginLoader",
     "SDKPluginManager",
+    "PACKAGE_VERSION",
+    "PACKAGE_STAGE",
+    "SDK_STAGE_NAME",
+    "SDK_API_LEVEL",
+    "get_version",
+    "version_info",
+    "SDKPackageMetadata",
+    "package_metadata",
+    "package_classifiers",
 ]
