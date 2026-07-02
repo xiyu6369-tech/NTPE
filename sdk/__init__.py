@@ -18,6 +18,19 @@ from .translation import (
     translate_file,
 )
 
+from .batch_models import BatchItem, BatchOptions, BatchProgress, BatchResult
+from .batch_request import BatchRequest
+from .batch_response import BatchResponse
+from .batch import (
+    SDK_BATCH_STAGE,
+    SDK_BATCH_VERSION,
+    SDKBatchAPI,
+    build_sdk_batch_manifest,
+    translate_batch as sdk_batch_translate,
+    translate_batch_async as sdk_batch_translate_async,
+    translate_files as sdk_translate_files,
+)
+
 __all__ = [
     "NTPEClient",
     "SDKRequest",
@@ -45,4 +58,17 @@ __all__ = [
     "translate_async",
     "translate_batch",
     "translate_file",
+    "BatchItem",
+    "BatchOptions",
+    "BatchProgress",
+    "BatchResult",
+    "BatchRequest",
+    "BatchResponse",
+    "SDK_BATCH_STAGE",
+    "SDK_BATCH_VERSION",
+    "SDKBatchAPI",
+    "build_sdk_batch_manifest",
+    "sdk_batch_translate",
+    "sdk_batch_translate_async",
+    "sdk_translate_files",
 ]
