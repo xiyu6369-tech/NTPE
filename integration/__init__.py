@@ -20,6 +20,14 @@ from .bridge_dispatcher import BridgeDispatcher
 from .sdk_cli_bridge import SDKCLIBridge
 from .bridge_manager import BridgeManager
 
+from .plugin_models import PLUGIN_INTEGRATION_VERSION, PLUGIN_INTEGRATION_STAGE, IntegratedPluginDescriptor, PluginCommand, PluginIntegrationResult
+from .plugin_events import PluginIntegrationEvent, PluginEventBus
+from .plugin_context import PluginIntegrationContext
+from .plugin_registry import PluginIntegrationRegistry
+from .plugin_dispatcher import PluginDispatcher
+from .plugin_bridge import PluginIntegrationBridge
+from .plugin_manager import PluginIntegrationManager
+
 __all__ = [
     "INTEGRATION_VERSION",
     "INTEGRATION_STAGE",
@@ -54,4 +62,16 @@ __all__ = [
     "BridgeDispatcher",
     "SDKCLIBridge",
     "BridgeManager",
+    "PLUGIN_INTEGRATION_VERSION",
+    "PLUGIN_INTEGRATION_STAGE",
+    "IntegratedPluginDescriptor",
+    "PluginCommand",
+    "PluginIntegrationResult",
+    "PluginIntegrationEvent",
+    "PluginEventBus",
+    "PluginIntegrationContext",
+    "PluginIntegrationRegistry",
+    "PluginDispatcher",
+    "PluginIntegrationBridge",
+    "PluginIntegrationManager",
 ]
