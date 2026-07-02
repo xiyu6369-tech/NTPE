@@ -50,3 +50,19 @@ __all__ += [
     "PipelineStage", "PipelineDefinition", "PipelineStageResult", "PipelineExecutionResult", "PipelineContext",
     "PipelineRegistry", "ExecutionPlan", "PipelineDispatcher", "PipelineOrchestrator", "create_pipeline_orchestrator", "PIPELINE_EVENTS",
 ]
+
+# Stage-09.3 Task Queue public surface
+from .task_models import TASK_QUEUE_VERSION, TASK_QUEUE_STAGE, TaskStatus, TaskPriority, TaskContext, Task
+from .task_result import TaskResult
+from .task_queue import TaskQueue
+from .task_registry import TaskRegistry
+from .task_dispatcher import TaskDispatcher
+from .task_queue_manager import TaskQueueManager
+from .queue_metrics import QueueMetrics
+from .task_queue_api import WorkflowTaskQueue, create_task_queue
+from .task_events import TASK_EVENTS
+
+__all__ += [
+    "TASK_QUEUE_VERSION", "TASK_QUEUE_STAGE", "TaskStatus", "TaskPriority", "TaskContext", "Task", "TaskResult",
+    "TaskQueue", "TaskRegistry", "TaskDispatcher", "TaskQueueManager", "QueueMetrics", "WorkflowTaskQueue", "create_task_queue", "TASK_EVENTS",
+]
