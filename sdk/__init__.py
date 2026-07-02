@@ -68,6 +68,14 @@ from .config_builder import SDKConfigBuilder, config_builder
 from .config_validator import SDKConfigValidationResult, SDKConfigValidator, validate_config
 from .config_loader import SDKConfigLoader, load_config, save_config
 
+from .plugin_models import PluginDescriptor, PluginResult
+from .plugin_manifest import SDK_PLUGIN_STAGE, SDK_PLUGIN_VERSION, PluginManifest, build_sdk_plugin_manifest
+from .plugin_context import SDKPluginContext
+from .plugin import SDKPlugin
+from .plugin_registry import SDKPluginRegistry
+from .plugin_loader import SDKPluginLoader
+from .plugin_manager import SDKPluginManager
+
 __all__ = [
     "NTPEClient",
     "SDKRequest",
@@ -155,4 +163,15 @@ __all__ = [
     "SDKConfigLoader",
     "load_config",
     "save_config",
+    "PluginDescriptor",
+    "PluginResult",
+    "SDK_PLUGIN_STAGE",
+    "SDK_PLUGIN_VERSION",
+    "PluginManifest",
+    "build_sdk_plugin_manifest",
+    "SDKPluginContext",
+    "SDKPlugin",
+    "SDKPluginRegistry",
+    "SDKPluginLoader",
+    "SDKPluginManager",
 ]
