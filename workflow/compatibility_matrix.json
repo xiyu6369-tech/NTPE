@@ -1,0 +1,32 @@
+{
+  "version": "1.0.0",
+  "status": "frozen",
+  "matrix": {
+    "foundation_v1": true,
+    "cli_freeze": true,
+    "sdk_stage_07": true,
+    "integration_freeze": true,
+    "workflow_core": true,
+    "job_scheduler": true,
+    "pipeline_orchestrator": true,
+    "task_queue": true,
+    "worker_runtime": true,
+    "workflow_persistence": true,
+    "distributed_execution": true,
+    "workflow_benchmark": true
+  },
+  "compatible_with": [
+    "Foundation v1.0 Frozen",
+    "Stage-06 CLI Frozen",
+    "Stage-07 SDK",
+    "Stage-08 Integration Frozen",
+    "Stage-09.0 Workflow Core",
+    "Stage-09.1 Job Scheduler",
+    "Stage-09.2 Pipeline Orchestrator",
+    "Stage-09.3 Task Queue",
+    "Stage-09.4 Worker Runtime",
+    "Stage-09.5 Workflow Persistence",
+    "Stage-09.6 Distributed Execution",
+    "Stage-09.7 Workflow Benchmark"
+  ]
+}

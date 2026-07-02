@@ -1,0 +1,36 @@
+{
+  "name": "ntpe-workflow",
+  "version": "1.0.0",
+  "stage": "NTPE 1.0 Beta Stage-09.8 Workflow Freeze",
+  "status": "frozen",
+  "foundation_status": "frozen",
+  "integration_status": "frozen",
+  "additive_only": true,
+  "contracts": [
+    "workflow_core",
+    "job_scheduler",
+    "pipeline_orchestrator",
+    "task_queue",
+    "worker_runtime",
+    "workflow_persistence",
+    "distributed_execution"
+  ],
+  "compatibility_targets": [
+    "foundation_v1",
+    "cli_freeze",
+    "sdk_stage_07",
+    "integration_freeze",
+    "workflow_core",
+    "job_scheduler",
+    "pipeline_orchestrator",
+    "task_queue",
+    "worker_runtime",
+    "workflow_persistence",
+    "distributed_execution",
+    "workflow_benchmark"
+  ],
+  "metadata": {
+    "stage": "09.8",
+    "frozen": true
+  }
+}

@@ -124,3 +124,26 @@ __all__ += [
     "DistributedDispatcher", "HeartbeatMonitor", "FailoverManager", "TopologyManager", "DistributedCoordinator",
     "create_distributed_coordinator", "DISTRIBUTED_EVENTS",
 ]
+
+# Stage-09.8 Workflow Freeze public surface
+from .freeze import (
+    WORKFLOW_FREEZE_VERSION,
+    WORKFLOW_FREEZE_STAGE,
+    WORKFLOW_FREEZE_STATUS,
+    WorkflowFreezeResult,
+    build_workflow_freeze_manifest,
+    build_workflow_contract,
+    build_workflow_compatibility_matrix,
+    build_workflow_version_manifest,
+    validate_workflow_freeze_manifest,
+    write_workflow_freeze_artifacts,
+    load_workflow_json,
+    workflow_freeze_is_compatible,
+)
+
+__all__ += [
+    "WORKFLOW_FREEZE_VERSION", "WORKFLOW_FREEZE_STAGE", "WORKFLOW_FREEZE_STATUS", "WorkflowFreezeResult",
+    "build_workflow_freeze_manifest", "build_workflow_contract", "build_workflow_compatibility_matrix",
+    "build_workflow_version_manifest", "validate_workflow_freeze_manifest", "write_workflow_freeze_artifacts",
+    "load_workflow_json", "workflow_freeze_is_compatible",
+]

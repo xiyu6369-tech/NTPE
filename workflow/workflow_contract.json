@@ -1,0 +1,59 @@
+{
+  "contract_version": "1.0.0",
+  "status": "frozen",
+  "frozen_surfaces": {
+    "workflow_core": [
+      "WorkflowCore",
+      "WorkflowEngine",
+      "WorkflowRegistry",
+      "WorkflowContext"
+    ],
+    "job_scheduler": [
+      "JobScheduler",
+      "JobManager",
+      "JobQueue",
+      "JobRegistry",
+      "SchedulingPolicy"
+    ],
+    "pipeline_orchestrator": [
+      "PipelineOrchestrator",
+      "PipelineRegistry",
+      "PipelineDispatcher",
+      "ExecutionPlan"
+    ],
+    "task_queue": [
+      "WorkflowTaskQueue",
+      "TaskQueue",
+      "TaskDispatcher",
+      "TaskQueueManager",
+      "QueueMetrics"
+    ],
+    "worker_runtime": [
+      "WorkerRuntime",
+      "WorkerPool",
+      "WorkerManager",
+      "WorkerDispatcher"
+    ],
+    "workflow_persistence": [
+      "WorkflowPersistence",
+      "PersistenceManager",
+      "CheckpointManager",
+      "RecoveryManager"
+    ],
+    "distributed_execution": [
+      "DistributedCoordinator",
+      "NodeRegistry",
+      "DistributedScheduler",
+      "FailoverManager"
+    ]
+  },
+  "rules": {
+    "backward_compatible": true,
+    "no_breaking_changes": true,
+    "additive_extensions_allowed": true,
+    "foundation_v1_required": true,
+    "cli_freeze_required": true,
+    "sdk_stage_07_required": true,
+    "integration_freeze_required": true
+  }
+}

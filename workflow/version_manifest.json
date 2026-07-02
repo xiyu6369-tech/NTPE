@@ -1,0 +1,10 @@
+{
+  "component": "workflow",
+  "version": "1.0.0",
+  "stage": "09.8",
+  "status": "frozen",
+  "foundation_status": "frozen",
+  "integration_status": "frozen",
+  "public_contract": "workflow_contract.json",
+  "compatibility_matrix": "compatibility_matrix.json"
+}
