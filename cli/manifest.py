@@ -6,10 +6,10 @@ from typing import Any, Dict, MutableMapping
 def build_cli_manifest() -> Dict[str, Any]:
     return {
         "name": "NTPE CLI",
-        "stage": "NTPE 1.0 Beta Stage-06.5",
-        "version": "0.6.5",
+        "stage": "NTPE 1.0 Beta Stage-06.6",
+        "version": "0.6.6",
         "status": "beta",
-        "commands": ["version", "doctor", "translate", "project", "benchmark", "quality", "session"],
+        "commands": ["version", "doctor", "translate", "project", "benchmark", "quality", "session", "config"],
         "capabilities": [
             "cli_context",
             "cli_result",
@@ -30,6 +30,14 @@ def build_cli_manifest() -> Dict[str, Any]:
             "session_checkpoint",
             "session_restore",
             "session_cleanup",
+            "config_command",
+            "config_list",
+            "config_get",
+            "config_set",
+            "config_validate",
+            "config_export",
+            "config_import",
+            "config_reset",
             "json_output",
             "module_entrypoint",
         ],

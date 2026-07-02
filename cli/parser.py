@@ -207,6 +207,49 @@ def _add_session(subparsers, common):
     session.set_defaults(command="session", session_action="list")
 
 
+
+def _add_config(subparsers, common):
+    config = subparsers.add_parser("config", help="manage NTPE configuration", parents=[common])
+    config.add_argument("--config-dir", default=".ntpe", help="configuration directory")
+    config_sub = config.add_subparsers(dest="config_action")
+
+    list_cmd = config_sub.add_parser("list", help="list configuration", parents=[common])
+    list_cmd.add_argument("--config-dir", default=".ntpe", help="configuration directory")
+    list_cmd.set_defaults(command="config", config_action="list")
+
+    get = config_sub.add_parser("get", help="get configuration value", parents=[common])
+    get.add_argument("key", nargs="?", default=None, help="configuration key, supports dot path")
+    get.add_argument("--config-dir", default=".ntpe", help="configuration directory")
+    get.set_defaults(command="config", config_action="get")
+
+    set_cmd = config_sub.add_parser("set", help="set configuration value", parents=[common])
+    set_cmd.add_argument("key", help="configuration key, supports dot path")
+    set_cmd.add_argument("value", help="configuration value; JSON values are accepted")
+    set_cmd.add_argument("--config-dir", default=".ntpe", help="configuration directory")
+    set_cmd.set_defaults(command="config", config_action="set")
+
+    validate = config_sub.add_parser("validate", help="validate configuration", parents=[common])
+    validate.add_argument("--config-dir", default=".ntpe", help="configuration directory")
+    validate.set_defaults(command="config", config_action="validate")
+
+    export = config_sub.add_parser("export", help="export configuration", parents=[common])
+    export.add_argument("--output", "-o", default="ntpe_config_export.json", help="export JSON file")
+    export.add_argument("--config-dir", default=".ntpe", help="configuration directory")
+    export.set_defaults(command="config", config_action="export")
+
+    import_cmd = config_sub.add_parser("import", help="import configuration", parents=[common])
+    import_cmd.add_argument("package", help="configuration JSON package")
+    import_cmd.add_argument("--replace", action="store_true", help="replace existing config instead of merging")
+    import_cmd.add_argument("--config-dir", default=".ntpe", help="configuration directory")
+    import_cmd.set_defaults(command="config", config_action="import")
+
+    reset = config_sub.add_parser("reset", help="reset configuration to defaults", parents=[common])
+    reset.add_argument("--config-dir", default=".ntpe", help="configuration directory")
+    reset.set_defaults(command="config", config_action="reset")
+
+    config.set_defaults(command="config", config_action="list")
+
+
 def build_parser() -> argparse.ArgumentParser:
     common = _global_options()
     parser = argparse.ArgumentParser(
@@ -229,5 +272,6 @@ def build_parser() -> argparse.ArgumentParser:
     _add_benchmark(subparsers, common)
     _add_quality(subparsers, common)
     _add_session(subparsers, common)
+    _add_config(subparsers, common)
 
     return parser
