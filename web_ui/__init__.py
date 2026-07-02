@@ -16,6 +16,14 @@ from .ui_shell import WebUiShell
 from .rest_client import WebUiRestClient
 from .web_app import WebUiApp, create_web_ui_app
 
+from .web_ui_freeze import (
+    WEB_UI_FREEZE_STAGE,
+    WEB_UI_FROZEN_PAGES,
+    WEB_UI_REQUIRED_ROUTES,
+    WebUiFreezeReport,
+    create_web_ui_freeze_report,
+    validate_web_ui_freeze,
+)
 __all__ = [
     "WEB_UI_STAGE",
     "WEB_UI_VERSION",
@@ -50,5 +58,11 @@ __all__ = [
     "WebUiShell",
     "WebUiRestClient",
     "WebUiApp",
+    "WEB_UI_FREEZE_STAGE",
+    "WEB_UI_FROZEN_PAGES",
+    "WEB_UI_REQUIRED_ROUTES",
+    "WebUiFreezeReport",
+    "create_web_ui_freeze_report",
+    "validate_web_ui_freeze",
     "create_web_ui_app",
 ]
