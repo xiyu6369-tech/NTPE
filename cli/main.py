@@ -74,6 +74,12 @@ def build_registry() -> CommandRegistry:
     except Exception:
         # Keep CLI core usable even if optional command modules are unavailable.
         pass
+    try:
+        from .commands.session import register_session_command
+        register_session_command(registry)
+    except Exception:
+        # Keep CLI core usable even if optional command modules are unavailable.
+        pass
     return registry
 
 

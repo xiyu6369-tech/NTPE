@@ -146,6 +146,67 @@ def _add_quality(subparsers, common):
     quality.set_defaults(command="quality", quality_action="rules")
 
 
+def _add_session(subparsers, common):
+    session = subparsers.add_parser("session", help="manage NTPE runtime sessions", parents=[common])
+    session.add_argument("--session-dir", default="sessions", help="session metadata directory")
+    session_sub = session.add_subparsers(dest="session_action")
+
+    create = session_sub.add_parser("create", help="create a runtime session", parents=[common])
+    create.add_argument("session_id", nargs="?", default=None, help="optional session id")
+    create.add_argument("--job-id", default="default-job", help="job id for the session")
+    create.add_argument("--session-dir", default="sessions", help="session metadata directory")
+    create.set_defaults(command="session", session_action="create")
+
+    list_cmd = session_sub.add_parser("list", help="list runtime sessions", parents=[common])
+    list_cmd.add_argument("--status", default=None, help="filter by status")
+    list_cmd.add_argument("--session-dir", default="sessions", help="session metadata directory")
+    list_cmd.set_defaults(command="session", session_action="list")
+
+    info = session_sub.add_parser("info", help="show session information", parents=[common])
+    info.add_argument("session_id", help="session id")
+    info.add_argument("--session-dir", default="sessions", help="session metadata directory")
+    info.set_defaults(command="session", session_action="info")
+
+    resume = session_sub.add_parser("resume", help="resume a runtime session", parents=[common])
+    resume.add_argument("session_id", help="session id")
+    resume.add_argument("--session-dir", default="sessions", help="session metadata directory")
+    resume.set_defaults(command="session", session_action="resume")
+
+    pause = session_sub.add_parser("pause", help="pause a runtime session", parents=[common])
+    pause.add_argument("session_id", help="session id")
+    pause.add_argument("--session-dir", default="sessions", help="session metadata directory")
+    pause.set_defaults(command="session", session_action="pause")
+
+    stop = session_sub.add_parser("stop", help="stop a runtime session", parents=[common])
+    stop.add_argument("session_id", help="session id")
+    stop.add_argument("--session-dir", default="sessions", help="session metadata directory")
+    stop.set_defaults(command="session", session_action="stop")
+
+    checkpoint = session_sub.add_parser("checkpoint", help="save a session checkpoint", parents=[common])
+    checkpoint.add_argument("session_id", help="session id")
+    checkpoint.add_argument("--segment", type=int, default=0, help="segment index")
+    checkpoint.add_argument("--state-json", default=None, help="checkpoint state JSON object")
+    checkpoint.add_argument("--session-dir", default="sessions", help="session metadata directory")
+    checkpoint.set_defaults(command="session", session_action="checkpoint")
+
+    restore = session_sub.add_parser("restore", help="restore a session checkpoint", parents=[common])
+    restore.add_argument("session_id", help="session id")
+    restore.add_argument("--session-dir", default="sessions", help="session metadata directory")
+    restore.set_defaults(command="session", session_action="restore")
+
+    cleanup = session_sub.add_parser("cleanup", help="cleanup inactive runtime sessions", parents=[common])
+    cleanup.add_argument("--status", action="append", default=None, help="status to delete; may be repeated")
+    cleanup.add_argument("--all", action="store_true", help="delete all sessions")
+    cleanup.add_argument("--session-dir", default="sessions", help="session metadata directory")
+    cleanup.set_defaults(command="session", session_action="cleanup")
+
+    demo = session_sub.add_parser("demo", help="create or show a demo session", parents=[common])
+    demo.add_argument("--session-dir", default="sessions", help="session metadata directory")
+    demo.set_defaults(command="session", session_action="demo")
+
+    session.set_defaults(command="session", session_action="list")
+
+
 def build_parser() -> argparse.ArgumentParser:
     common = _global_options()
     parser = argparse.ArgumentParser(
@@ -167,5 +228,6 @@ def build_parser() -> argparse.ArgumentParser:
     _add_project(subparsers, common)
     _add_benchmark(subparsers, common)
     _add_quality(subparsers, common)
+    _add_session(subparsers, common)
 
     return parser
