@@ -11,6 +11,7 @@ from .rest_session import RestSessionApi
 from .rest_job import RestJobApi
 from .rest_pipeline import RestPipelineApi
 from .rest_event import RestEventApi
+from .rest_resource import RestResourceApi
 
 
 class RestApi:
@@ -26,11 +27,13 @@ class RestApi:
         self.job_routes = RestJobApi(self.runtime_api)
         self.pipeline_routes = RestPipelineApi(self.runtime_api)
         self.event_routes = RestEventApi(self.runtime_api)
+        self.resource_routes = RestResourceApi(self.runtime_api)
         self._register_core_routes()
         self.session_routes.register_routes(self.router)
         self.job_routes.register_routes(self.router)
         self.pipeline_routes.register_routes(self.router)
         self.event_routes.register_routes(self.router)
+        self.resource_routes.register_routes(self.router)
 
     def _register_core_routes(self) -> None:
         self.router.add_route("GET", "/health", self._health)
@@ -54,6 +57,9 @@ class RestApi:
         event_response = self.event_routes.maybe_dispatch(request)
         if event_response is not None:
             return event_response
+        resource_response = self.resource_routes.maybe_dispatch(request)
+        if resource_response is not None:
+            return resource_response
         return self.router.dispatch(request)
 
     def _health(self, request: RestRequest) -> RestResponse:
@@ -94,6 +100,7 @@ class RestApi:
             "job_api": self.job_routes.manifest(),
             "pipeline_api": self.pipeline_routes.manifest(),
             "event_api": self.event_routes.manifest(),
+            "resource_api": self.resource_routes.manifest(),
         }
 
 
