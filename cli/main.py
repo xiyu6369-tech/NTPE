@@ -57,8 +57,20 @@ def build_registry() -> CommandRegistry:
         # Keep CLI core usable even if optional command modules are unavailable.
         pass
     try:
+        from .commands.project import register_project_command
+        register_project_command(registry)
+    except Exception:
+        # Keep CLI core usable even if optional command modules are unavailable.
+        pass
+    try:
         from .commands.benchmark import register_benchmark_command
         register_benchmark_command(registry)
+    except Exception:
+        # Keep CLI core usable even if optional command modules are unavailable.
+        pass
+    try:
+        from .commands.quality import register_quality_command
+        register_quality_command(registry)
     except Exception:
         # Keep CLI core usable even if optional command modules are unavailable.
         pass
