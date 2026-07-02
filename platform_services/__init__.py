@@ -11,6 +11,16 @@ from .service_registry import PlatformServiceRegistry
 from .service_manager import PlatformServiceManager
 from .service_host import PlatformServiceHost, create_platform_service_host
 
+
+from .service_discovery import (
+    PLATFORM_DISCOVERY_VERSION,
+    PLATFORM_DISCOVERY_STAGE,
+    ServiceDiscoveryQuery,
+    ServiceDiscoveryResult,
+    PlatformServiceDiscovery,
+    create_service_discovery,
+)
+
 from .platform_config import (
     PLATFORM_CONFIG_VERSION,
     PLATFORM_CONFIG_STAGE,
@@ -39,4 +49,10 @@ __all__ = [
     "PlatformServiceConfig",
     "create_platform_config",
     "create_service_config",
+    "PLATFORM_DISCOVERY_VERSION",
+    "PLATFORM_DISCOVERY_STAGE",
+    "ServiceDiscoveryQuery",
+    "ServiceDiscoveryResult",
+    "PlatformServiceDiscovery",
+    "create_service_discovery",
 ]
