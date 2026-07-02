@@ -53,6 +53,23 @@ class WebUiRestClient:
         response = self.rest_api.handle(method, f"/v1/jobs/{job_id}/{action}", body=body)
         return response.to_dict()
 
+
+
+    def list_pipelines(self) -> Dict[str, Any]:
+        response = self.rest_api.handle("GET", "/v1/pipelines")
+        return response.to_dict()
+
+    def create_pipeline(self, name: str | None = None, stages: Optional[list[Dict[str, Any]]] = None, metadata: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+        body = {"name": name, "stages": list(stages or []), "metadata": dict(metadata or {})}
+        response = self.rest_api.handle("POST", "/v1/pipelines", body=body)
+        return response.to_dict()
+
+    def pipeline_action(self, pipeline_id: str, action: str, metadata: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+        method = "GET" if action in {"status", "summary"} else "POST"
+        body = {} if method == "GET" else {"metadata": dict(metadata or {})}
+        response = self.rest_api.handle(method, f"/v1/pipelines/{pipeline_id}/{action}", body=body)
+        return response.to_dict()
+
     def state(self) -> WebUiState:
         manifest = self.manifest()
         health = self.health()

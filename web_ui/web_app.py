@@ -9,6 +9,7 @@ from .rest_client import WebUiRestClient
 from .dashboard import WebUiDashboard
 from .session_page import WebUiSessionPage
 from .job_page import WebUiJobPage
+from .pipeline_page import WebUiPipelinePage
 from .ui_models import WEB_UI_STAGE, WEB_UI_VERSION, WebUiPage
 from .ui_shell import WebUiShell
 
@@ -25,6 +26,7 @@ class WebUiApp:
         self.dashboard = WebUiDashboard()
         self.session_page = WebUiSessionPage(self.client)
         self.job_page = WebUiJobPage(self.client)
+        self.pipeline_page = WebUiPipelinePage(self.client)
 
     def render(self, path: str = "/") -> WebUiPage:
         state = self.client.state()
@@ -41,6 +43,10 @@ class WebUiApp:
             components = list(page.components)
             components.append({"type": "job_page", "view": self.job_page.build(state).to_dict()})
             return WebUiPage(route=page.route, state=page.state, components=components, created_at=page.created_at)
+        if page.route.page_id == "pipelines":
+            components = list(page.components)
+            components.append({"type": "pipeline_page", "view": self.pipeline_page.build(state).to_dict()})
+            return WebUiPage(route=page.route, state=page.state, components=components, created_at=page.created_at)
         return page
 
     def dashboard_view(self) -> dict:
@@ -53,6 +59,10 @@ class WebUiApp:
     def job_view(self) -> dict:
         state = self.client.state()
         return self.job_page.build(state).to_dict()
+
+    def pipeline_view(self) -> dict:
+        state = self.client.state()
+        return self.pipeline_page.build(state).to_dict()
 
     def manifest(self) -> dict:
         rest_manifest = self.client.manifest()
@@ -68,6 +78,7 @@ class WebUiApp:
             "dashboard_stage": self.dashboard.stage,
             "session_page_stage": self.session_page.stage,
             "job_page_stage": self.job_page.stage,
+            "pipeline_page_stage": self.pipeline_page.stage,
             "additive_only": True,
         }
 
