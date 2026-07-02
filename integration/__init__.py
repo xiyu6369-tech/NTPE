@@ -37,6 +37,15 @@ from .extension_loader import ExtensionLoader
 from .extension_manifest import build_extension_manifest, load_extension_manifest
 from .extension_manager import ExtensionManager
 
+from .event_models import EVENT_BUS_VERSION, EVENT_BUS_STAGE, Event, EventSubscription, EventDispatchResult
+from .event_context import EventContext
+from .event_filters import EventFilter
+from .event_registry import EventRegistry
+from .event_dispatcher import EventDispatcher
+from .event_publisher import EventPublisher
+from .event_subscriber import EventSubscriber
+from .event_bus import EventBus
+
 __all__ = [
     "INTEGRATION_VERSION",
     "INTEGRATION_STAGE",
@@ -98,4 +107,16 @@ __all__ = [
     "build_extension_manifest",
     "load_extension_manifest",
     "ExtensionManager",
+    "EVENT_BUS_VERSION",
+    "EVENT_BUS_STAGE",
+    "Event",
+    "EventSubscription",
+    "EventDispatchResult",
+    "EventContext",
+    "EventFilter",
+    "EventRegistry",
+    "EventDispatcher",
+    "EventPublisher",
+    "EventSubscriber",
+    "EventBus",
 ]
