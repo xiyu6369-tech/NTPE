@@ -6,6 +6,7 @@ from typing import Optional
 from external_api import RestApi
 
 from .rest_client import WebUiRestClient
+from .dashboard import WebUiDashboard
 from .ui_models import WEB_UI_STAGE, WEB_UI_VERSION, WebUiPage
 from .ui_shell import WebUiShell
 
@@ -19,9 +20,19 @@ class WebUiApp:
     def __init__(self, rest_api: Optional[RestApi] = None) -> None:
         self.client = WebUiRestClient(rest_api=rest_api)
         self.shell = WebUiShell()
+        self.dashboard = WebUiDashboard()
 
     def render(self, path: str = "/") -> WebUiPage:
-        return self.shell.render_page(path, self.client.state())
+        state = self.client.state()
+        page = self.shell.render_page(path, state)
+        if page.route.page_id == "dashboard":
+            components = list(page.components)
+            components.append({"type": "dashboard", "view": self.dashboard.build(state).to_dict()})
+            return WebUiPage(route=page.route, state=page.state, components=components, created_at=page.created_at)
+        return page
+
+    def dashboard_view(self) -> dict:
+        return self.dashboard.build(self.client.state()).to_dict()
 
     def manifest(self) -> dict:
         rest_manifest = self.client.manifest()
@@ -34,6 +45,7 @@ class WebUiApp:
             "uses_external_api_only": True,
             "uses_frozen_runtime_api_only": rest_manifest.get("uses_frozen_runtime_api_only"),
             "framework_neutral": True,
+            "dashboard_stage": self.dashboard.stage,
             "additive_only": True,
         }
 
