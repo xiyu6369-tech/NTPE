@@ -7,6 +7,7 @@ from runtime_api import RuntimeApi, RuntimeApiResponse, create_runtime_api
 
 from .rest_models import EXTERNAL_API_STAGE, EXTERNAL_API_VERSION, RestRequest, RestResponse
 from .rest_router import RestRouter
+from .rest_session import RestSessionApi
 
 
 class RestApi:
@@ -18,7 +19,9 @@ class RestApi:
     def __init__(self, runtime_api: Optional[RuntimeApi] = None) -> None:
         self.runtime_api = runtime_api or create_runtime_api()
         self.router = RestRouter()
+        self.session_routes = RestSessionApi(self.runtime_api)
         self._register_core_routes()
+        self.session_routes.register_routes(self.router)
 
     def _register_core_routes(self) -> None:
         self.router.add_route("GET", "/health", self._health)
@@ -29,7 +32,11 @@ class RestApi:
         return self.router.routes()
 
     def handle(self, method: str, path: str, *, body: Optional[Dict[str, Any]] = None, headers: Optional[Dict[str, str]] = None, query: Optional[Dict[str, Any]] = None, request_id: Optional[str] = None) -> RestResponse:
-        return self.router.dispatch(RestRequest(method=method, path=path, body=dict(body or {}), headers=dict(headers or {}), query=dict(query or {}), request_id=request_id))
+        request = RestRequest(method=method, path=path, body=dict(body or {}), headers=dict(headers or {}), query=dict(query or {}), request_id=request_id)
+        session_response = self.session_routes.maybe_dispatch(request)
+        if session_response is not None:
+            return session_response
+        return self.router.dispatch(request)
 
     def _health(self, request: RestRequest) -> RestResponse:
         response = self.runtime_api.execute("runtime.ping")
@@ -65,6 +72,7 @@ class RestApi:
             "runtime_api_stage": self.runtime_api.stage,
             "additive_only": True,
             "uses_frozen_runtime_api_only": True,
+            "session_api": self.session_routes.manifest(),
         }
 
 
