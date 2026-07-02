@@ -4,6 +4,23 @@ from .contracts import SDKRequest, SDKResult
 from .manifest import VERSION, STAGE, attach_sdk_manifest, build_sdk_manifest
 from .session import SDK_SESSION_STAGE, SDK_SESSION_VERSION, SDKSession, SDKSessionStatus, build_sdk_session_manifest, create_session
 from .exceptions import SDKError, SDKSessionError
+
+from .error_codes import SDK_ERROR_STAGE, SDK_ERROR_VERSION, SDKErrorCode
+from .error_models import SDKErrorContext, SDKErrorRecord
+from .error_response import SDKErrorResponse
+from .errors import (
+    SDKException,
+    SDKValidationError,
+    SDKConfigurationError,
+    SDKTranslationError,
+    SDKBatchError,
+    SDKStreamingError,
+    SDKRuntimeBridgeError,
+    build_sdk_error_manifest,
+    error_response,
+    normalize_exception,
+    normalize_response_errors,
+)
 from .options import TranslationOptions
 from .request import TranslationRequest
 from .response import TranslationResponse
@@ -61,6 +78,23 @@ __all__ = [
     "create_session",
     "SDKError",
     "SDKSessionError",
+    "normalize_response_errors",
+    "normalize_exception",
+    "error_response",
+    "build_sdk_error_manifest",
+    "SDKRuntimeBridgeError",
+    "SDKStreamingError",
+    "SDKBatchError",
+    "SDKTranslationError",
+    "SDKConfigurationError",
+    "SDKValidationError",
+    "SDKException",
+    "SDKErrorResponse",
+    "SDKErrorRecord",
+    "SDKErrorContext",
+    "SDKErrorCode",
+    "SDK_ERROR_VERSION",
+    "SDK_ERROR_STAGE",
     "TranslationOptions",
     "TranslationRequest",
     "TranslationResponse",
