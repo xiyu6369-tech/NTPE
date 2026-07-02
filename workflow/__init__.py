@@ -66,3 +66,34 @@ __all__ += [
     "TASK_QUEUE_VERSION", "TASK_QUEUE_STAGE", "TaskStatus", "TaskPriority", "TaskContext", "Task", "TaskResult",
     "TaskQueue", "TaskRegistry", "TaskDispatcher", "TaskQueueManager", "QueueMetrics", "WorkflowTaskQueue", "create_task_queue", "TASK_EVENTS",
 ]
+
+# Stage-09.4 Worker Runtime public surface
+from .worker_models import WORKER_RUNTIME_VERSION, WORKER_RUNTIME_STAGE, WorkerStatus, WorkerRuntimeStatus, Worker, ExecutionContext
+from .worker_registry import WorkerRegistry
+from .worker_dispatcher import WorkerDispatcher
+from .worker_manager import WorkerManager
+from .worker_pool import WorkerPool
+from .worker_runtime import WorkerRuntime, create_worker_runtime
+from .worker_events import WORKER_EVENTS
+
+__all__ += [
+    "WORKER_RUNTIME_VERSION", "WORKER_RUNTIME_STAGE", "WorkerStatus", "WorkerRuntimeStatus", "Worker", "ExecutionContext",
+    "WorkerRegistry", "WorkerDispatcher", "WorkerManager", "WorkerPool", "WorkerRuntime", "create_worker_runtime", "WORKER_EVENTS",
+]
+
+# Stage-09.5 Workflow Persistence public surface
+from .persistence_models import WORKFLOW_PERSISTENCE_VERSION, WORKFLOW_PERSISTENCE_STAGE, PersistenceStatus, SnapshotKind, WorkflowSnapshot, Checkpoint, PersistenceResult
+from .persistence_store import PersistenceStore
+from .state_serializer import StateSerializer
+from .state_deserializer import StateDeserializer
+from .checkpoint_manager import CheckpointManager
+from .recovery_manager import RecoveryManager
+from .persistence_manager import PersistenceManager
+from .persistence import WorkflowPersistence, create_workflow_persistence
+from .persistence_events import PERSISTENCE_EVENTS
+
+__all__ += [
+    "WORKFLOW_PERSISTENCE_VERSION", "WORKFLOW_PERSISTENCE_STAGE", "PersistenceStatus", "SnapshotKind", "WorkflowSnapshot",
+    "Checkpoint", "PersistenceResult", "PersistenceStore", "StateSerializer", "StateDeserializer", "CheckpointManager",
+    "RecoveryManager", "PersistenceManager", "WorkflowPersistence", "create_workflow_persistence", "PERSISTENCE_EVENTS",
+]
