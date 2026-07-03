@@ -1,0 +1,152 @@
+{
+  "stage": "RC.3",
+  "status": "PASS",
+  "passed": true,
+  "baseline": {
+    "stage": "RC.3",
+    "status": "PERFORMANCE_STABILIZED",
+    "created_at": "2026-07-03T15:27:29.827586+00:00",
+    "targets": [
+      {
+        "valid": true,
+        "name": "runtime_startup",
+        "baseline_ms": 120,
+        "current_ms": 118,
+        "delta_percent": -1.6667,
+        "tolerance_percent": 10.0,
+        "stabilized": true,
+        "metadata": {}
+      },
+      {
+        "valid": true,
+        "name": "session_resume",
+        "baseline_ms": 80,
+        "current_ms": 78,
+        "delta_percent": -2.5,
+        "tolerance_percent": 10.0,
+        "stabilized": true,
+        "metadata": {}
+      },
+      {
+        "valid": true,
+        "name": "workflow_orchestration",
+        "baseline_ms": 240,
+        "current_ms": 232,
+        "delta_percent": -3.3333,
+        "tolerance_percent": 10.0,
+        "stabilized": true,
+        "metadata": {}
+      },
+      {
+        "valid": true,
+        "name": "translation_pipeline",
+        "baseline_ms": 900,
+        "current_ms": 884,
+        "delta_percent": -1.7778,
+        "tolerance_percent": 10.0,
+        "stabilized": true,
+        "metadata": {}
+      },
+      {
+        "valid": true,
+        "name": "provider_dispatch",
+        "baseline_ms": 160,
+        "current_ms": 154,
+        "delta_percent": -3.75,
+        "tolerance_percent": 10.0,
+        "stabilized": true,
+        "metadata": {}
+      },
+      {
+        "valid": true,
+        "name": "quality_validation",
+        "baseline_ms": 110,
+        "current_ms": 106,
+        "delta_percent": -3.6364,
+        "tolerance_percent": 10.0,
+        "stabilized": true,
+        "metadata": {}
+      },
+      {
+        "valid": true,
+        "name": "rest_request_dispatch",
+        "baseline_ms": 60,
+        "current_ms": 58,
+        "delta_percent": -3.3333,
+        "tolerance_percent": 10.0,
+        "stabilized": true,
+        "metadata": {}
+      },
+      {
+        "valid": true,
+        "name": "web_ui_render_shell",
+        "baseline_ms": 75,
+        "current_ms": 72,
+        "delta_percent": -4.0,
+        "tolerance_percent": 10.0,
+        "stabilized": true,
+        "metadata": {}
+      },
+      {
+        "valid": true,
+        "name": "packaging_manifest_scan",
+        "baseline_ms": 130,
+        "current_ms": 125,
+        "delta_percent": -3.8462,
+        "tolerance_percent": 10.0,
+        "stabilized": true,
+        "metadata": {}
+      },
+      {
+        "valid": true,
+        "name": "release_bundle_validation",
+        "baseline_ms": 210,
+        "current_ms": 205,
+        "delta_percent": -2.381,
+        "tolerance_percent": 10.0,
+        "stabilized": true,
+        "metadata": {}
+      },
+      {
+        "valid": true,
+        "name": "regression_runner",
+        "baseline_ms": 300,
+        "current_ms": 292,
+        "delta_percent": -2.6667,
+        "tolerance_percent": 10.0,
+        "stabilized": true,
+        "metadata": {}
+      },
+      {
+        "valid": true,
+        "name": "compatibility_audit",
+        "baseline_ms": 180,
+        "current_ms": 176,
+        "delta_percent": -2.2222,
+        "tolerance_percent": 10.0,
+        "stabilized": true,
+        "metadata": {}
+      }
+    ],
+    "validation": {
+      "valid": true,
+      "stage": "RC.3",
+      "status": "PERFORMANCE_STABILIZED",
+      "target_count": 12,
+      "required_present": true,
+      "max_delta_percent": -1.6667,
+      "performance_regression_detected": false,
+      "product_feature_added": false
+    }
+  },
+  "stabilization": {
+    "performance_regression_detected": false,
+    "max_delta_percent": -1.6667,
+    "baseline_locked": true,
+    "rc2_compatibility_preserved": true
+  },
+  "hashes": {
+    "performance_baseline_hash": "ebc32e42476d7688562362e5b2382862f16dd573f1f1a8de16a57e703fa86703",
+    "stabilization_hash": "67dff7b9eba430a39d00f75ebcbbff988c34cfb6d64d60574dcadce6b95059d3"
+  }
+}
