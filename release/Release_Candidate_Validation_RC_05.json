@@ -1,0 +1,107 @@
+{
+  "stage": "RC.5",
+  "status": "PASS",
+  "passed": true,
+  "baseline": {
+    "stage": "RC.5",
+    "previous_stage": "RC.4",
+    "criteria": [
+      {
+        "id": "rc1_regression_baseline",
+        "name": "RC.1 regression baseline preserved",
+        "required": true,
+        "category": "regression"
+      },
+      {
+        "id": "rc2_compatibility_audit",
+        "name": "RC.2 compatibility audit preserved",
+        "required": true,
+        "category": "compatibility"
+      },
+      {
+        "id": "rc3_performance_stabilization",
+        "name": "RC.3 performance stabilization preserved",
+        "required": true,
+        "category": "performance"
+      },
+      {
+        "id": "rc4_translation_consistency",
+        "name": "RC.4 translation consistency audit preserved",
+        "required": true,
+        "category": "translation"
+      },
+      {
+        "id": "frozen_api_surface",
+        "name": "Frozen API surface unchanged",
+        "required": true,
+        "category": "compatibility"
+      },
+      {
+        "id": "release_artifacts",
+        "name": "Release artifacts present and traceable",
+        "required": true,
+        "category": "release"
+      },
+      {
+        "id": "manifest_integrity",
+        "name": "Manifest integrity verified",
+        "required": true,
+        "category": "release"
+      },
+      {
+        "id": "no_product_feature_added",
+        "name": "No product feature added during RC validation",
+        "required": true,
+        "category": "governance"
+      }
+    ],
+    "frozen_components": [
+      "Foundation v1.0",
+      "CLI",
+      "SDK",
+      "Integration",
+      "Workflow",
+      "Platform Services",
+      "Runtime API",
+      "External REST API",
+      "Web UI",
+      "Packaging / Release"
+    ],
+    "validation": {
+      "regression_baseline_preserved": true,
+      "compatibility_audit_preserved": true,
+      "performance_stabilization_preserved": true,
+      "translation_consistency_preserved": true,
+      "public_api_changed": false,
+      "product_feature_added": false,
+      "release_candidate_ready": true
+    }
+  },
+  "artifact_presence": {
+    "Regression_Report_RC_04.md": true,
+    "Compatibility_Report_RC_04.md": true,
+    "Performance_Report_RC_04.md": true,
+    "Translation_Consistency_Audit_Report_RC_04.md": true,
+    "Translation_Regression_Report_RC_04.md": true
+  },
+  "validation": {
+    "regression_baseline_preserved": true,
+    "compatibility_audit_preserved": true,
+    "performance_stabilization_preserved": true,
+    "translation_consistency_preserved": true,
+    "public_api_changed": false,
+    "product_feature_added": false,
+    "release_candidate_ready": true,
+    "valid": true,
+    "failed_checks": [],
+    "criteria_count": 8,
+    "frozen_component_count": 10,
+    "release_artifacts_present": true,
+    "rc_candidate_ready": true
+  },
+  "hashes": {
+    "rc_validation_hash": "e7be0c3537d11bf3f087a9778669cb4946fedb8aecca32a5fccfe2105e3d125f",
+    "artifact_presence_hash": "b4a8a18d31b4f6bddcc9b8181c50b1b52916dfd243d9d6b9eb25fd0882dc4156",
+    "release_candidate_hash": "38ff67716f51d699859c7b9119b542a7c90f8e95005abc05cf51a636dd48a2a1"
+  }
+}
