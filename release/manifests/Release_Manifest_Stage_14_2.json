@@ -1,0 +1,154 @@
+{
+  "name": "ntpe",
+  "version": "1.0.0-beta",
+  "stage": "Stage-14.2",
+  "profile": "beta",
+  "created_at": "2026-07-03T14:25:46.431211+00:00",
+  "components": [
+    {
+      "name": "foundation",
+      "stage": "Foundation v1.0",
+      "status": "frozen",
+      "public_api": true,
+      "notes": ""
+    },
+    {
+      "name": "cli",
+      "stage": "Stage-06",
+      "status": "frozen",
+      "public_api": true,
+      "notes": ""
+    },
+    {
+      "name": "sdk",
+      "stage": "Stage-07",
+      "status": "completed",
+      "public_api": true,
+      "notes": ""
+    },
+    {
+      "name": "integration",
+      "stage": "Stage-08",
+      "status": "frozen",
+      "public_api": true,
+      "notes": ""
+    },
+    {
+      "name": "workflow",
+      "stage": "Stage-09",
+      "status": "frozen",
+      "public_api": true,
+      "notes": ""
+    },
+    {
+      "name": "platform_services",
+      "stage": "Stage-10",
+      "status": "frozen",
+      "public_api": true,
+      "notes": ""
+    },
+    {
+      "name": "runtime_api",
+      "stage": "Stage-11",
+      "status": "frozen",
+      "public_api": true,
+      "notes": ""
+    },
+    {
+      "name": "external_api",
+      "stage": "Stage-12",
+      "status": "frozen",
+      "public_api": true,
+      "notes": ""
+    },
+    {
+      "name": "web_ui",
+      "stage": "Stage-13",
+      "status": "frozen",
+      "public_api": true,
+      "notes": ""
+    },
+    {
+      "name": "packaging",
+      "stage": "Stage-14.2",
+      "status": "active",
+      "public_api": true,
+      "notes": ""
+    }
+  ],
+  "dependencies": [
+    {
+      "name": "python",
+      "kind": "runtime",
+      "required": true,
+      "version": ">=3.10"
+    },
+    {
+      "name": "foundation",
+      "kind": "internal",
+      "required": true,
+      "version": "v1.0-frozen"
+    },
+    {
+      "name": "runtime_api",
+      "kind": "internal",
+      "required": true,
+      "version": "stage-11.8-frozen"
+    },
+    {
+      "name": "external_api",
+      "kind": "internal",
+      "required": true,
+      "version": "stage-12.8-frozen"
+    },
+    {
+      "name": "web_ui",
+      "kind": "internal",
+      "required": true,
+      "version": "stage-13.8-frozen"
+    }
+  ],
+  "artifacts": [
+    {
+      "name": "full_zip",
+      "kind": "zip",
+      "path": "/mnt/data/stage142_work/release/full",
+      "required": true
+    },
+    {
+      "name": "increment_zip",
+      "kind": "zip",
+      "path": "/mnt/data/stage142_work/release/increment",
+      "required": true
+    },
+    {
+      "name": "release_manifest",
+      "kind": "json",
+      "path": "/mnt/data/stage142_work/release/manifests/Release_Manifest_Stage_14_2.json",
+      "required": false
+    },
+    {
+      "name": "reports",
+      "kind": "directory",
+      "path": "/mnt/data/stage142_work/release/reports",
+      "required": true
+    },
+    {
+      "name": "manifests",
+      "kind": "directory",
+      "path": "/mnt/data/stage142_work/release/manifests",
+      "required": true
+    }
+  ],
+  "compatibility": {
+    "foundation_v1_frozen": true,
+    "cli_frozen": true,
+    "integration_frozen": true,
+    "workflow_frozen": true,
+    "platform_services_frozen": true,
+    "runtime_api_frozen": true,
+    "external_api_frozen": true,
+    "web_ui_frozen": true,
+    "additive_only": true
+  }
+}

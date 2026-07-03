@@ -37,3 +37,22 @@ __all__ = [
     "PACKAGING_STAGE",
     "PACKAGING_LAYER_FROZEN_DEPENDENCIES",
 ]
+
+# Stage-14.2 Release Manifest exports
+from .component_manifest import ComponentManifest, ReleaseComponent
+from .dependency_manifest import DependencyManifest, ReleaseDependency
+from .manifest_schema import ManifestSchema, RELEASE_MANIFEST_REQUIRED_FIELDS
+from .release_manifest import ReleaseManifest, build_release_manifest, load_release_manifest
+
+PACKAGING_STAGE = "Stage-14.2"
+__all__ += [
+    "ReleaseComponent",
+    "ComponentManifest",
+    "ReleaseDependency",
+    "DependencyManifest",
+    "ManifestSchema",
+    "RELEASE_MANIFEST_REQUIRED_FIELDS",
+    "ReleaseManifest",
+    "build_release_manifest",
+    "load_release_manifest",
+]
