@@ -1,0 +1,237 @@
+{
+  "stage": "RC.1",
+  "status": "PASS",
+  "passed": true,
+  "baseline": {
+    "stage": "RC.1",
+    "status": "BASELINE_LOCKED",
+    "created_at": "2026-07-03T15:04:38.155714+00:00",
+    "components": [
+      {
+        "name": "foundation",
+        "version": "1.0.0-rc.1",
+        "frozen": true,
+        "status": "PASS",
+        "metadata": {}
+      },
+      {
+        "name": "cli",
+        "version": "1.0.0-rc.1",
+        "frozen": true,
+        "status": "PASS",
+        "metadata": {}
+      },
+      {
+        "name": "sdk",
+        "version": "1.0.0-rc.1",
+        "frozen": true,
+        "status": "PASS",
+        "metadata": {}
+      },
+      {
+        "name": "integration",
+        "version": "1.0.0-rc.1",
+        "frozen": true,
+        "status": "PASS",
+        "metadata": {}
+      },
+      {
+        "name": "workflow",
+        "version": "1.0.0-rc.1",
+        "frozen": true,
+        "status": "PASS",
+        "metadata": {}
+      },
+      {
+        "name": "platform_services",
+        "version": "1.0.0-rc.1",
+        "frozen": true,
+        "status": "PASS",
+        "metadata": {}
+      },
+      {
+        "name": "runtime_api",
+        "version": "1.0.0-rc.1",
+        "frozen": true,
+        "status": "PASS",
+        "metadata": {}
+      },
+      {
+        "name": "external_api",
+        "version": "1.0.0-rc.1",
+        "frozen": true,
+        "status": "PASS",
+        "metadata": {}
+      },
+      {
+        "name": "web_ui",
+        "version": "1.0.0-rc.1",
+        "frozen": true,
+        "status": "PASS",
+        "metadata": {}
+      },
+      {
+        "name": "packaging",
+        "version": "1.0.0-rc.1",
+        "frozen": true,
+        "status": "PASS",
+        "metadata": {}
+      },
+      {
+        "name": "release",
+        "version": "1.0.0-rc.1",
+        "frozen": true,
+        "status": "PASS",
+        "metadata": {}
+      },
+      {
+        "name": "translation_engine",
+        "version": "1.0.0-rc.1",
+        "frozen": true,
+        "status": "PASS",
+        "metadata": {}
+      },
+      {
+        "name": "ai_provider",
+        "version": "1.0.0-rc.1",
+        "frozen": true,
+        "status": "PASS",
+        "metadata": {}
+      },
+      {
+        "name": "quality_engine",
+        "version": "1.0.0-rc.1",
+        "frozen": true,
+        "status": "PASS",
+        "metadata": {}
+      },
+      {
+        "name": "benchmark",
+        "version": "1.0.0-rc.1",
+        "frozen": true,
+        "status": "PASS",
+        "metadata": {}
+      },
+      {
+        "name": "performance",
+        "version": "1.0.0-rc.1",
+        "frozen": true,
+        "status": "PASS",
+        "metadata": {}
+      }
+    ],
+    "validation": {
+      "valid": true,
+      "stage": "RC.1",
+      "status": "BASELINE_LOCKED",
+      "component_count": 16,
+      "required_present": true,
+      "frozen_api_safe": true,
+      "product_feature_added": false
+    }
+  },
+  "suite": {
+    "passed": true,
+    "count": 15,
+    "results": [
+      {
+        "name": "Foundation Compatibility",
+        "category": "foundation",
+        "status": "PASS",
+        "error": null
+      },
+      {
+        "name": "CLI Compatibility",
+        "category": "cli",
+        "status": "PASS",
+        "error": null
+      },
+      {
+        "name": "SDK Compatibility",
+        "category": "sdk",
+        "status": "PASS",
+        "error": null
+      },
+      {
+        "name": "Integration Compatibility",
+        "category": "integration",
+        "status": "PASS",
+        "error": null
+      },
+      {
+        "name": "Workflow Compatibility",
+        "category": "workflow",
+        "status": "PASS",
+        "error": null
+      },
+      {
+        "name": "Platform Services",
+        "category": "platform",
+        "status": "PASS",
+        "error": null
+      },
+      {
+        "name": "Runtime API",
+        "category": "runtime",
+        "status": "PASS",
+        "error": null
+      },
+      {
+        "name": "REST API",
+        "category": "external_api",
+        "status": "PASS",
+        "error": null
+      },
+      {
+        "name": "Web UI",
+        "category": "web_ui",
+        "status": "PASS",
+        "error": null
+      },
+      {
+        "name": "Packaging",
+        "category": "packaging",
+        "status": "PASS",
+        "error": null
+      },
+      {
+        "name": "Release Bundle",
+        "category": "release",
+        "status": "PASS",
+        "error": null
+      },
+      {
+        "name": "Plugin Registry",
+        "category": "plugins",
+        "status": "PASS",
+        "error": null
+      },
+      {
+        "name": "Session Resume",
+        "category": "session",
+        "status": "PASS",
+        "error": null
+      },
+      {
+        "name": "Translation Runtime",
+        "category": "translation",
+        "status": "PASS",
+        "error": null
+      },
+      {
+        "name": "Benchmark",
+        "category": "benchmark",
+        "status": "PASS",
+        "error": null
+      }
+    ]
+  },
+  "hashes": {
+    "regression": "f9de0c31788bf7f70c6ab4ff601c7cfde0aed98c55ea8d45cf1e6d74c11cdfb3",
+    "project": "cb50474e1fa2e147cb76b791d2b91c8a3c721366a25df69f7f81dc485c3ff4c5"
+  },
+  "compatibility": {
+    "frozen_api_safe": true,
+    "product_feature_added": false
+  }
+}
