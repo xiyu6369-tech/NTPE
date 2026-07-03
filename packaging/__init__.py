@@ -97,3 +97,18 @@ __all__ += [
     "build_distribution_package",
     "load_distribution_package_manifest",
 ]
+
+# Stage-14.5 Release Validation exports
+from .release_validation import ReleaseValidationCheck, ReleaseValidationSummary, VALID_CHECK_STATUSES
+from .release_validator import DEFAULT_RELEASE_CHECKS, ReleaseValidator, build_release_validation, load_release_validation
+
+PACKAGING_STAGE = "Stage-14.5"
+__all__ += [
+    "ReleaseValidationCheck",
+    "ReleaseValidationSummary",
+    "VALID_CHECK_STATUSES",
+    "DEFAULT_RELEASE_CHECKS",
+    "ReleaseValidator",
+    "build_release_validation",
+    "load_release_validation",
+]

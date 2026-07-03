@@ -1,0 +1,205 @@
+{
+  "stage": "Stage-14.5",
+  "checks": [
+    {
+      "name": "Packaging Core",
+      "status": "PASS",
+      "message": "Packaging core manifest is buildable.",
+      "metadata": {
+        "stage": null,
+        "artifact_count": null
+      },
+      "validation": {
+        "valid": true,
+        "errors": [],
+        "name": "Packaging Core",
+        "status": "PASS"
+      }
+    },
+    {
+      "name": "Release Manifest",
+      "status": "PASS",
+      "message": "Release manifest validates component and dependency metadata.",
+      "metadata": {
+        "component_count": null,
+        "dependency_count": null
+      },
+      "validation": {
+        "valid": true,
+        "errors": [],
+        "name": "Release Manifest",
+        "status": "PASS"
+      }
+    },
+    {
+      "name": "Build Profiles",
+      "status": "PASS",
+      "message": "Build profile registry validates development, beta, rc, and production profiles.",
+      "metadata": {
+        "profile_count": null
+      },
+      "validation": {
+        "valid": true,
+        "errors": [],
+        "name": "Build Profiles",
+        "status": "PASS"
+      }
+    },
+    {
+      "name": "Distribution Package",
+      "status": "PASS",
+      "message": "Distribution package plan validates required artifact kinds.",
+      "metadata": {
+        "package_count": 5,
+        "kinds": [
+          "full",
+          "increment",
+          "portable",
+          "source",
+          "release_bundle"
+        ]
+      },
+      "validation": {
+        "valid": true,
+        "errors": [],
+        "name": "Distribution Package",
+        "status": "PASS"
+      }
+    },
+    {
+      "name": "Artifact Layout",
+      "status": "PASS",
+      "message": "Release artifact layout is present.",
+      "metadata": {
+        "required_dirs": [
+          "release/full",
+          "release/increment",
+          "release/portable",
+          "release/source",
+          "release/reports",
+          "release/manifests"
+        ],
+        "missing": []
+      },
+      "validation": {
+        "valid": true,
+        "errors": [],
+        "name": "Artifact Layout",
+        "status": "PASS"
+      }
+    },
+    {
+      "name": "Manifest Files",
+      "status": "PASS",
+      "message": "Stage-14 manifest files are available.",
+      "metadata": {
+        "required": [
+          "Packaging_Manifest_Stage_14_1.json",
+          "Release_Manifest_Stage_14_2.json",
+          "Build_Profiles_Stage_14_3.json",
+          "Distribution_Package_Stage_14_4.json"
+        ],
+        "missing": []
+      },
+      "validation": {
+        "valid": true,
+        "errors": [],
+        "name": "Manifest Files",
+        "status": "PASS"
+      }
+    },
+    {
+      "name": "Translation Validation Baseline",
+      "status": "PASS",
+      "message": "Translation_Validation_Report_Stage_14_4.md exists",
+      "metadata": {
+        "path": "/mnt/data/stage145_work/Translation_Validation_Report_Stage_14_4.md"
+      },
+      "validation": {
+        "valid": true,
+        "errors": [],
+        "name": "Translation Validation Baseline",
+        "status": "PASS"
+      }
+    },
+    {
+      "name": "Release Reports",
+      "status": "PASS",
+      "message": "Prior release validation reports are available or can be regenerated.",
+      "metadata": {
+        "required": [
+          "Release_Validation_Report_Stage_14_1.md",
+          "Release_Validation_Report_Stage_14_2.md",
+          "Release_Validation_Report_Stage_14_3.md"
+        ],
+        "missing": []
+      },
+      "validation": {
+        "valid": true,
+        "errors": [],
+        "name": "Release Reports",
+        "status": "PASS"
+      }
+    },
+    {
+      "name": "Frozen API Compatibility",
+      "status": "PASS",
+      "message": "Stage-14.5 only adds release validation metadata and does not modify frozen public APIs.",
+      "metadata": {
+        "frozen_layers": [
+          "Foundation",
+          "CLI",
+          "Workflow",
+          "Platform Services",
+          "Runtime API",
+          "External API",
+          "Web UI"
+        ]
+      },
+      "validation": {
+        "valid": true,
+        "errors": [],
+        "name": "Frozen API Compatibility",
+        "status": "PASS"
+      }
+    }
+  ],
+  "metadata": {
+    "profile": "beta",
+    "release_root": "/mnt/data/stage145_work/release",
+    "selected_checks": [
+      "packaging_core",
+      "release_manifest",
+      "build_profiles",
+      "distribution_package",
+      "artifact_layout",
+      "manifest_files",
+      "translation_validation",
+      "release_reports",
+      "frozen_api_compatibility"
+    ]
+  },
+  "validation": {
+    "valid": true,
+    "check_count": 9,
+    "invalid": [],
+    "failed": [],
+    "warnings": [],
+    "passed": [
+      "Packaging Core",
+      "Release Manifest",
+      "Build Profiles",
+      "Distribution Package",
+      "Artifact Layout",
+      "Manifest Files",
+      "Translation Validation Baseline",
+      "Release Reports",
+      "Frozen API Compatibility"
+    ],
+    "compatibility": {
+      "additive_only": true,
+      "frozen_api_safe": true,
+      "release_layer_only": true
+    }
+  }
+}
