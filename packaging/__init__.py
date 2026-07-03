@@ -112,3 +112,23 @@ __all__ += [
     "build_release_validation",
     "load_release_validation",
 ]
+
+# Stage-14.6 Release Freeze exports
+from .release_freeze import (
+    FROZEN_RELEASE_COMPONENTS,
+    RELEASE_FREEZE_REQUIRED_REPORTS,
+    ReleaseFreezeRecord,
+    ReleaseFreezer,
+    build_release_freeze,
+    load_release_freeze,
+)
+
+PACKAGING_STAGE = "Stage-14.6"
+__all__ += [
+    "FROZEN_RELEASE_COMPONENTS",
+    "RELEASE_FREEZE_REQUIRED_REPORTS",
+    "ReleaseFreezeRecord",
+    "ReleaseFreezer",
+    "build_release_freeze",
+    "load_release_freeze",
+]

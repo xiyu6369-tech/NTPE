@@ -1,0 +1,50 @@
+{
+  "stage": "Stage-14.6",
+  "version": "1.0.0-beta",
+  "status": "FROZEN",
+  "components": [
+    "Foundation v1.0",
+    "CLI",
+    "Integration",
+    "Workflow",
+    "Platform Services",
+    "Runtime API",
+    "External API",
+    "Web UI",
+    "Packaging Core",
+    "Release Manifest",
+    "Build Profiles",
+    "Distribution Package",
+    "Release Validation"
+  ],
+  "artifacts": [
+    "Packaging_Manifest_Stage_14_1.json",
+    "Release_Manifest_Stage_14_2.json",
+    "Build_Profiles_Stage_14_3.json",
+    "Distribution_Package_Stage_14_4.json",
+    "release/reports/Release_Validation_Stage_14_5.json",
+    "Translation_Validation_Report_Stage_14_6.md",
+    "Release_Validation_Report_Stage_14_6.md"
+  ],
+  "metadata": {
+    "created_at": "2026-07-03T14:46:25.258601+00:00",
+    "profile": "beta",
+    "release_validation_valid": true,
+    "release_manifest_valid": true,
+    "build_profiles_valid": true,
+    "distribution_valid": true,
+    "validator_check_count": 9,
+    "frozen_api_policy": "no public API changes after Stage-14.6 without a new version plan"
+  },
+  "validation": {
+    "valid": true,
+    "errors": [],
+    "component_count": 13,
+    "artifact_count": 7,
+    "compatibility": {
+      "additive_only": true,
+      "frozen_api_safe": true,
+      "release_freeze_only": true
+    }
+  }
+}
