@@ -25,6 +25,7 @@ from lts.txt_translation_runtime import (
 
 
 DEFAULT_BATCH_REPORT_BASENAME = "Batch_Translation_Report"
+DEFAULT_BATCH_FAILURE_BASENAME = "Batch_Failure_Manifest"
 
 
 def format_duration(seconds: float | int | None) -> str:
@@ -118,6 +119,9 @@ class BatchTranslationOptions:
     taiwan_traditional_normalization: bool = True
     report_dir: Path | None = None
     progress: bool = True
+    continue_on_failure: bool = False
+    failed_only: bool = False
+    failed_manifest: Path | None = None
 
 
 def natural_sort_key(path: Path) -> list[object]:
@@ -210,7 +214,7 @@ def summarize_txt_result(result: dict) -> dict:
 def _write_batch_markdown(report: dict, path: Path) -> None:
     summary = report.get("summary", {})
     lines = [
-        "# NTPE 1.1 LTS Stage-07 Batch Progress / Summary Report",
+        "# NTPE 1.1 LTS Stage-08 Batch Progress / Summary Report" if report.get("version") == "1.1-lts-stage-08" else "# NTPE 1.1 LTS Stage-07 Batch Progress / Summary Report",
         "",
         f"- Status: {report.get('status')}",
         f"- Version: {report.get('version')}",
@@ -282,6 +286,52 @@ def _emit_progress(
         eta_seconds=eta,
     ))
 
+
+def resolve_failed_manifest_path(report_dir: Path, options: BatchTranslationOptions) -> Path:
+    if options.failed_manifest:
+        return options.failed_manifest if options.failed_manifest.is_absolute() else report_dir.parent / options.failed_manifest
+    return report_dir / f"{DEFAULT_BATCH_FAILURE_BASENAME}.json"
+
+
+def write_failure_manifest(report: dict, path: Path) -> None:
+    failed_records = [record for record in report.get("files", []) if record.get("status") == "failed"]
+    payload = {
+        "version": "1.1-lts-stage-08",
+        "status": "failed" if failed_records else "success",
+        "created_at": now_iso(),
+        "input_dir": report.get("input_dir"),
+        "output_dir": report.get("output_dir"),
+        "failed_count": len(failed_records),
+        "failed_files": failed_records,
+    }
+    save_json(path, payload)
+
+
+def load_failed_manifest(path: str | Path) -> set[str]:
+    path = Path(path)
+    if not path.exists():
+        return set()
+    try:
+        data = json.loads(path.read_text(encoding="utf-8-sig"))
+    except Exception:
+        return set()
+    failed: set[str] = set()
+    for record in data.get("failed_files", []) if isinstance(data, dict) else []:
+        input_path = record.get("input") if isinstance(record, dict) else None
+        if input_path:
+            failed.add(str(input_path))
+    return failed
+
+
+def filter_failed_only(files: list[Path], report_dir: Path, options: BatchTranslationOptions, input_dir: Path) -> list[Path]:
+    manifest_path = resolve_failed_manifest_path(report_dir, options)
+    failed_paths = load_failed_manifest(manifest_path)
+    if not failed_paths:
+        return []
+    normalized = {str(Path(item)) for item in failed_paths}
+    return [path for path in files if str(path) in normalized or str(path.relative_to(input_dir)) in normalized or path.name in normalized]
+
+
 def translate_batch(options: BatchTranslationOptions, root: str | Path | None = None) -> dict:
     root_path = Path(root) if root else Path(__file__).resolve().parents[1]
     input_dir = options.input_dir if options.input_dir.is_absolute() else root_path / options.input_dir
@@ -294,6 +344,8 @@ def translate_batch(options: BatchTranslationOptions, root: str | Path | None = 
     started = time.time()
     started_at = now_iso()
     files = scan_txt_files(input_dir, recursive=options.recursive)
+    if options.failed_only:
+        files = filter_failed_only(files, report_dir, options, input_dir)
     records: list[dict] = []
     reporter = BatchProgressReporter(enabled=options.progress)
     summary = {
@@ -311,6 +363,8 @@ def translate_batch(options: BatchTranslationOptions, root: str | Path | None = 
         "korean_residue_issues": 0,
         "skipped_chunks": 0,
         "failed_chunks": 0,
+        "continue_on_failure": options.continue_on_failure,
+        "failed_only": options.failed_only,
     }
 
     for index, input_file in enumerate(files, start=1):
@@ -343,7 +397,9 @@ def translate_batch(options: BatchTranslationOptions, root: str | Path | None = 
             summary["completed_files"] += 1
             records.append(record)
             _emit_progress(reporter, index=index, total=len(files), status="failed", input_name=input_file.name, summary=summary, started=started)
-            break
+            if not options.continue_on_failure:
+                break
+            continue
 
         status = result.get("status", "failed")
         metrics = summarize_txt_result(result)
@@ -369,7 +425,9 @@ def translate_batch(options: BatchTranslationOptions, root: str | Path | None = 
             record["error"] = result.get("error", "batch item failed")
             records.append(record)
             _emit_progress(reporter, index=index, total=len(files), status="failed", input_name=input_file.name, summary=summary, started=started)
-            break
+            if not options.continue_on_failure:
+                break
+            continue
 
     summary["elapsed_seconds"] = _elapsed_seconds(started)
     summary["elapsed_hms"] = format_duration(summary["elapsed_seconds"])
@@ -377,10 +435,10 @@ def translate_batch(options: BatchTranslationOptions, root: str | Path | None = 
     summary["completion_rate_percent"] = safe_percent(summary["completed_files"], summary["total_files"])
     summary["average_seconds_per_file"] = round(summary["elapsed_seconds"] / summary["completed_files"], 3) if summary["completed_files"] else 0.0
     summary["average_chunks_per_file"] = round(summary["total_chunks"] / summary["success"], 3) if summary["success"] else 0.0
-    status = "success" if summary["failed"] == 0 else "failed"
+    status = "success" if summary["failed"] == 0 else "partial_success" if options.continue_on_failure and summary["success"] > 0 else "failed"
     completed_at = now_iso()
     report = {
-        "version": "1.1-lts-stage-07",
+        "version": "1.1-lts-stage-08" if (options.continue_on_failure or options.failed_only) else "1.1-lts-stage-07",
         "status": status,
         "started_at": started_at,
         "completed_at": completed_at,
@@ -389,6 +447,8 @@ def translate_batch(options: BatchTranslationOptions, root: str | Path | None = 
         "recursive": options.recursive,
         "skip_completed": options.skip_completed,
         "dry_run": options.dry_run,
+        "continue_on_failure": options.continue_on_failure,
+        "failed_only": options.failed_only,
         "summary": summary,
         "progress_log": reporter.lines,
         "files": records,
@@ -399,12 +459,15 @@ def translate_batch(options: BatchTranslationOptions, root: str | Path | None = 
     _write_batch_markdown(report, md_path)
     report["report_json"] = str(json_path)
     report["report_md"] = str(md_path)
+    failure_manifest_path = resolve_failed_manifest_path(report_dir, options)
+    report["failure_manifest"] = str(failure_manifest_path)
+    write_failure_manifest(report, failure_manifest_path)
     save_json(json_path, report)
     return report
 
 
 def parse_args(argv: Iterable[str] | None = None) -> BatchTranslationOptions:
-    parser = argparse.ArgumentParser(description="NTPE 1.1 LTS Stage-07 batch folder TXT translation with progress reports")
+    parser = argparse.ArgumentParser(description="NTPE 1.1 LTS Stage-08 batch folder TXT translation with failure recovery")
     parser.add_argument("input", help="input folder containing TXT files")
     parser.add_argument("output", nargs="?", default="output", help="output directory")
     parser.add_argument("--recursive", action="store_true", help="scan TXT files recursively")
@@ -427,6 +490,9 @@ def parse_args(argv: Iterable[str] | None = None) -> BatchTranslationOptions:
     parser.add_argument("--no-taiwan-normalization", action="store_true")
     parser.add_argument("--report-dir", default=None, help="optional batch report directory")
     parser.add_argument("--quiet-progress", action="store_true", help="disable live batch progress lines")
+    parser.add_argument("--continue-on-failure", action="store_true", help="continue translating remaining files after a file fails")
+    parser.add_argument("--failed-only", action="store_true", help="translate only files listed in the previous failure manifest")
+    parser.add_argument("--failed-manifest", default=None, help="custom failure manifest path for failed-only/recovery runs")
     parser.add_argument("--dry-run", action="store_true", help="build prompt packages without provider calls")
     ns = parser.parse_args(list(argv) if argv is not None else None)
     return BatchTranslationOptions(
@@ -453,6 +519,9 @@ def parse_args(argv: Iterable[str] | None = None) -> BatchTranslationOptions:
         taiwan_traditional_normalization=not ns.no_taiwan_normalization,
         report_dir=Path(ns.report_dir) if ns.report_dir else None,
         progress=not ns.quiet_progress,
+        continue_on_failure=ns.continue_on_failure,
+        failed_only=ns.failed_only,
+        failed_manifest=Path(ns.failed_manifest) if ns.failed_manifest else None,
     )
 
 
@@ -470,6 +539,7 @@ def main(argv: Iterable[str] | None = None) -> int:
         print(f"elapsed: {result['summary'].get('elapsed_hms', '00:00:00')}")
         print(f"success_rate: {result['summary'].get('success_rate_percent', 0)}%")
         print(f"report: {result.get('report_md', '')}")
+        print(f"failure_manifest: {result.get('failure_manifest', '')}")
         return 0 if result.get("status") == "success" else 1
     except Exception as exc:
         print("NTPE 1.1 LTS Batch Folder Translation")
