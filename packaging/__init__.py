@@ -76,3 +76,24 @@ __all__ += [
     "build_profile_manifest",
     "load_build_profiles",
 ]
+
+# Stage-14.4 Distribution Package exports
+from .distribution_package import DistributionPackage, VALID_DISTRIBUTION_KINDS
+from .distribution_builder import (
+    DEFAULT_DISTRIBUTION_LAYOUT,
+    DistributionBuilder,
+    DistributionBuildResult,
+    build_distribution_package,
+    load_distribution_package_manifest,
+)
+
+PACKAGING_STAGE = "Stage-14.4"
+__all__ += [
+    "DistributionPackage",
+    "VALID_DISTRIBUTION_KINDS",
+    "DEFAULT_DISTRIBUTION_LAYOUT",
+    "DistributionBuilder",
+    "DistributionBuildResult",
+    "build_distribution_package",
+    "load_distribution_package_manifest",
+]

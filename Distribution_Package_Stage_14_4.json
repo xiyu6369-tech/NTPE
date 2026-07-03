@@ -1,0 +1,144 @@
+{
+  "stage": "Stage-14.4",
+  "package_count": 5,
+  "packages": [
+    {
+      "kind": "full",
+      "name": "NTPE_Stage_14_4_Full.zip",
+      "path": "/mnt/data/stage144_work/release/full/NTPE_Stage_14_4_Full.zip",
+      "profile": "beta",
+      "includes": [
+        "all project files",
+        "tests",
+        "reports",
+        "release manifests"
+      ],
+      "metadata": {
+        "stage": "Stage-14.4",
+        "additive_only": true,
+        "frozen_api_safe": true,
+        "planned_artifact": true
+      },
+      "validation": {
+        "valid": true,
+        "errors": [],
+        "kind": "full",
+        "name": "NTPE_Stage_14_4_Full.zip"
+      }
+    },
+    {
+      "kind": "increment",
+      "name": "NTPE_Stage_14_4_Increment.zip",
+      "path": "/mnt/data/stage144_work/release/increment/NTPE_Stage_14_4_Increment.zip",
+      "profile": "beta",
+      "includes": [
+        "Stage-14.4 changed files only"
+      ],
+      "metadata": {
+        "stage": "Stage-14.4",
+        "additive_only": true,
+        "frozen_api_safe": true,
+        "planned_artifact": true
+      },
+      "validation": {
+        "valid": true,
+        "errors": [],
+        "kind": "increment",
+        "name": "NTPE_Stage_14_4_Increment.zip"
+      }
+    },
+    {
+      "kind": "portable",
+      "name": "NTPE_Stage_14_4_Portable.zip",
+      "path": "/mnt/data/stage144_work/release/portable/NTPE_Stage_14_4_Portable.zip",
+      "profile": "beta",
+      "includes": [
+        "runtime",
+        "CLI",
+        "REST",
+        "Web UI",
+        "configs"
+      ],
+      "metadata": {
+        "stage": "Stage-14.4",
+        "additive_only": true,
+        "frozen_api_safe": true,
+        "planned_artifact": true
+      },
+      "validation": {
+        "valid": true,
+        "errors": [],
+        "kind": "portable",
+        "name": "NTPE_Stage_14_4_Portable.zip"
+      }
+    },
+    {
+      "kind": "source",
+      "name": "NTPE_Stage_14_4_Source.tar.gz",
+      "path": "/mnt/data/stage144_work/release/source/NTPE_Stage_14_4_Source.tar.gz",
+      "profile": "beta",
+      "includes": [
+        "source tree",
+        "documentation",
+        "manifests"
+      ],
+      "metadata": {
+        "stage": "Stage-14.4",
+        "additive_only": true,
+        "frozen_api_safe": true,
+        "planned_artifact": true
+      },
+      "validation": {
+        "valid": true,
+        "errors": [],
+        "kind": "source",
+        "name": "NTPE_Stage_14_4_Source.tar.gz"
+      }
+    },
+    {
+      "kind": "release_bundle",
+      "name": "NTPE_Stage_14_4_Release_Bundle.zip",
+      "path": "/mnt/data/stage144_work/release/bundles/NTPE_Stage_14_4_Release_Bundle.zip",
+      "profile": "beta",
+      "includes": [
+        "full",
+        "increment",
+        "portable",
+        "wheel",
+        "source",
+        "reports"
+      ],
+      "metadata": {
+        "stage": "Stage-14.4",
+        "additive_only": true,
+        "frozen_api_safe": true,
+        "planned_artifact": true
+      },
+      "validation": {
+        "valid": true,
+        "errors": [],
+        "kind": "release_bundle",
+        "name": "NTPE_Stage_14_4_Release_Bundle.zip"
+      }
+    }
+  ],
+  "validation": {
+    "valid": true,
+    "package_count": 5,
+    "kinds": [
+      "full",
+      "increment",
+      "portable",
+      "source",
+      "release_bundle"
+    ],
+    "missing": [],
+    "invalid": [],
+    "compatibility": {
+      "uses_stage_14_3_build_profiles": true,
+      "additive_only": true,
+      "frozen_api_safe": true
+    }
+  },
+  "manifest_path": "/mnt/data/stage144_work/release/manifests/Distribution_Package_Stage_14_4.json"
+}
