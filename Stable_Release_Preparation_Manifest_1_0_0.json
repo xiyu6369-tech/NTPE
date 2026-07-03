@@ -1,0 +1,57 @@
+{
+  "stage": "STABLE.1",
+  "status": "PREPARED",
+  "version": "1.0.0",
+  "source_version": "1.0-rc",
+  "generated_at": "2026-07-03T16:05:51.976512+00:00",
+  "frozen_components": [
+    "foundation",
+    "cli",
+    "sdk",
+    "integration",
+    "workflow",
+    "platform_services",
+    "runtime_api",
+    "external_api",
+    "web_ui",
+    "packaging",
+    "release_candidate"
+  ],
+  "required_rc_artifacts": [
+    "RC_Freeze_Manifest_RC_06.json",
+    "RC_Freeze_Report_RC_06.md",
+    "Regression_Report_RC_06.md",
+    "Compatibility_Report_RC_06.md",
+    "Translation_Regression_Report_RC_06.md",
+    "Performance_Report_RC_06.md"
+  ],
+  "stable_outputs": [
+    "Stable_Release_Preparation_Manifest_1_0_0.json",
+    "Stable_Release_Preparation_Hash_1_0_0.json",
+    "Stable_Release_Preparation_Report_1_0_0.md",
+    "README_NTPE_1_0_Stable_Release_Preparation.txt",
+    "CHANGELOG_STABLE_1_0_0.md"
+  ],
+  "metadata": {
+    "source_stage": "RC.6",
+    "release_channel": "stable"
+  },
+  "validation": {
+    "component_validation": true,
+    "required_rc_artifacts": {
+      "RC_Freeze_Manifest_RC_06.json": true,
+      "RC_Freeze_Report_RC_06.md": true,
+      "Regression_Report_RC_06.md": true,
+      "Compatibility_Report_RC_06.md": true,
+      "Translation_Regression_Report_RC_06.md": true,
+      "Performance_Report_RC_06.md": true
+    },
+    "required_rc_artifacts_valid": true,
+    "manifest_validation": true,
+    "public_api_changed": false,
+    "product_feature_added": false,
+    "stable_preparation_ready": true,
+    "preparation_hash": "9cf2181b89c9ec6530d86c48350859265865198bf35bab46d256cf1874382d8e"
+  },
+  "passed": true
+}
