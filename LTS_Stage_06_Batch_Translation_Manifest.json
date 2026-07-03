@@ -1,0 +1,30 @@
+{
+  "version": "1.1.0-lts-stage-06",
+  "stage": "NTPE 1.1 LTS Stage-06 Batch Folder Translation",
+  "created_at": "2026-07-03T18:30:07",
+  "base": "NTPE 1.1 LTS Clean Project Tool",
+  "compatibility": {
+    "foundation_v1_0": "frozen_preserved",
+    "cli": "frozen_preserved",
+    "sdk": "frozen_preserved",
+    "runtime_api": "frozen_preserved",
+    "web_ui": "frozen_preserved",
+    "txt_entry_stage_01_to_05": "backward_compatible"
+  },
+  "added_or_updated": [
+    "ntpe_translate_batch.py",
+    "lts/batch_translation_runtime.py",
+    "tests/lts_stage_06/test_batch_translation_runtime.py",
+    "tests/lts_stage_06/launcher_batch_translation_test.py",
+    "README_NTPE_1_1_LTS_Stage_06_Batch_Folder_Translation.txt",
+    "CHANGELOG_LTS_STAGE_06.md"
+  ],
+  "tests": {
+    "pytest": "46 passed",
+    "stage_06": "passed",
+    "stage_01_to_05_regression": "passed",
+    "stable_regression": "passed",
+    "clean_project": "passed"
+  },
+  "entrypoint": "python ntpe_translate_batch.py input output"
+}

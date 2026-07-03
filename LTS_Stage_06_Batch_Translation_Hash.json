@@ -1,0 +1,14 @@
+{
+  "version": "1.1.0-lts-stage-06",
+  "created_at": "2026-07-03T18:30:07",
+  "sha256": {
+    "ntpe_translate_batch.py": "31328bdc39ed98cee0c9ee2b810b0a04f756ac496d56fb079d78c1e6078a8e95",
+    "lts/batch_translation_runtime.py": "d7ce1b5662836cdebd082209ae4d89e33a89edd9535768034027519265db2265",
+    "tests/lts_stage_06/test_batch_translation_runtime.py": "847f32a0a04ac2cd0980ac57f094c81a0829a05b7a25f48a54920964445befaf",
+    "tests/lts_stage_06/launcher_batch_translation_test.py": "b263f4220a4ffcd6bc14276c5cd79f88314c5178ad25e233195b187234423f9e",
+    "README_NTPE_1_1_LTS_Stage_06_Batch_Folder_Translation.txt": "8c3253f2f3b8a9df43810fadea4fb74168a684fddfa9a059a2327215291d44dd",
+    "CHANGELOG_LTS_STAGE_06.md": "7d7c3344000583accca685cd391830775143f9beb8efa8d0ba9b17533a7482e4",
+    "LTS_Stage_06_Batch_Translation_Manifest.json": "b5bd2593554dc76bf5974d855178df645c13a3439c1c0c2d74e959087061e42e",
+    "LTS_Stage_06_Batch_Translation_Report.md": "35e1a3a9c11cfcd7c04905488c242c3b1ebcf347675797f9b549af5a5c9cc85c"
+  }
+}
