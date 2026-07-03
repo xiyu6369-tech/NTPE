@@ -132,3 +132,30 @@ __all__ += [
     "build_release_freeze",
     "load_release_freeze",
 ]
+
+
+# NTPE 1.0 Beta Final Freeze / RC Preparation exports
+from .beta_final_freeze import (
+    BETA_FINAL_STAGE,
+    BETA_FINAL_VERSION,
+    RC_TARGET_VERSION,
+    BETA_FINAL_FROZEN_COMPONENTS,
+    RC_PREPARATION_CHECKS,
+    BetaFinalFreezeRecord,
+    BetaFinalFreezer,
+    build_beta_final_freeze,
+    load_beta_final_freeze,
+)
+
+PACKAGING_STAGE = "NTPE 1.0 Beta Final Freeze / RC Preparation"
+__all__ += [
+    "BETA_FINAL_STAGE",
+    "BETA_FINAL_VERSION",
+    "RC_TARGET_VERSION",
+    "BETA_FINAL_FROZEN_COMPONENTS",
+    "RC_PREPARATION_CHECKS",
+    "BetaFinalFreezeRecord",
+    "BetaFinalFreezer",
+    "build_beta_final_freeze",
+    "load_beta_final_freeze",
+]
