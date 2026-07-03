@@ -1,0 +1,54 @@
+{
+  "name": "NTPE 1.1 LTS Clean Project Tool",
+  "stage": "LTS-Utility-Clean-Project",
+  "base": "NTPE_1_1_LTS_Stage_05_Output_Formatter_FULL.zip",
+  "compatibility": "incremental; no frozen module changes; no TXT CLI parameter breakage",
+  "test_result": "40 passed",
+  "files": [
+    {
+      "path": "tools/__init__.py",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "bytes": 1
+    },
+    {
+      "path": "tools/clean_project.py",
+      "sha256": "9dd2c03701a2b71d3cfec641a59bd5f187b17217c9de7a952f4bae6f72e810fc",
+      "bytes": 8218
+    },
+    {
+      "path": "tools/README_Clean_Project.txt",
+      "sha256": "49091c01fbcd1c8853a8b149fb7ee44fd77fcdf3b6f4f1ba2a3cf511108b5e09",
+      "bytes": 867
+    },
+    {
+      "path": "tests/lts_utility_clean_project/test_clean_project.py",
+      "sha256": "16d600c691b2fc040f3533e1abbb31027ebc2ae1eec832d8b73ab71e17181f9d",
+      "bytes": 2045
+    },
+    {
+      "path": "tests/lts_utility_clean_project/launcher_clean_project_test.py",
+      "sha256": "82e2883e3c199388f65cf8adb4a2b8f7e8d4803180f8f31bea777216d50c7f6d",
+      "bytes": 1348
+    },
+    {
+      "path": "README_NTPE_1_1_LTS_Clean_Project_Tool.txt",
+      "sha256": "843303b5355cf3245afeb858d1ff15d0906bdc4575593dfbaf10feccf2d00007",
+      "bytes": 515
+    },
+    {
+      "path": "CHANGELOG_LTS_Clean_Project_Tool.md",
+      "sha256": "deb18a832d46bc49ac2a24e9621bfccdf6df2c630dfd88614d7a9d4938ca41ef",
+      "bytes": 623
+    },
+    {
+      "path": "Clean_Project_Tool_Manifest_1_1_LTS.json",
+      "sha256": "40e01784052da86d27c3656fabc4f34ce2ffbc9a068e34a7462d995d767ca941",
+      "bytes": 1831
+    },
+    {
+      "path": "Clean_Project_Tool_Report_1_1_LTS.md",
+      "sha256": "e710bcf4dae7840a2560e0e931ab35f51f1ee7f42bae0425b35d216788d4c202",
+      "bytes": 655
+    }
+  ]
+}
