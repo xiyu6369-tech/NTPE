@@ -9,6 +9,7 @@ from pathlib import Path
 from typing import Callable, Iterable
 
 from core.translation_engine.utils import now_iso, save_json, save_text
+from lts.long_run_recovery import DEFAULT_STALE_AFTER_SECONDS, write_heartbeat
 from lts.txt_translation_runtime import (
     DEFAULT_CHUNK_SIZE,
     DEFAULT_CHARACTER_MEMORY,
@@ -122,6 +123,10 @@ class BatchTranslationOptions:
     continue_on_failure: bool = False
     failed_only: bool = False
     failed_manifest: Path | None = None
+    heartbeat: bool = False
+    heartbeat_seconds: float = 60.0
+    stale_after_seconds: int = DEFAULT_STALE_AFTER_SECONDS
+    auto_recovery: bool = False
 
 
 def natural_sort_key(path: Path) -> list[object]:
@@ -365,9 +370,18 @@ def translate_batch(options: BatchTranslationOptions, root: str | Path | None = 
         "failed_chunks": 0,
         "continue_on_failure": options.continue_on_failure,
         "failed_only": options.failed_only,
+        "heartbeat_enabled": options.heartbeat,
+        "auto_recovery": options.auto_recovery,
+        "auto_recovery": options.auto_recovery,
+        "stale_after_seconds": options.stale_after_seconds,
     }
 
+    if options.heartbeat:
+        write_heartbeat(report_dir, status="running", total_files=len(files), completed_files=0, message="batch started")
+
     for index, input_file in enumerate(files, start=1):
+        if options.heartbeat:
+            write_heartbeat(report_dir, status="running", current_file=input_file.name, current_index=index, total_files=len(files), completed_files=int(summary.get("completed_files", 0)), message="file started")
         _emit_progress(reporter, index=index, total=len(files), status="start", input_name=input_file.name, summary=summary, started=started)
         final_output = get_output_path_for_input(input_file, input_dir, output_dir, options.output_suffix)
         per_file_output_dir = final_output.parent
@@ -386,6 +400,8 @@ def translate_batch(options: BatchTranslationOptions, root: str | Path | None = 
             summary["completed_files"] += 1
             records.append(record)
             _emit_progress(reporter, index=index, total=len(files), status="skipped", input_name=input_file.name, summary=summary, started=started)
+            if options.heartbeat:
+                write_heartbeat(report_dir, status="running", current_file=input_file.name, current_index=index, total_files=len(files), completed_files=int(summary.get("completed_files", 0)), message="file skipped")
             continue
 
         txt_options = build_txt_options(input_file, per_file_output_dir, options)
@@ -397,6 +413,8 @@ def translate_batch(options: BatchTranslationOptions, root: str | Path | None = 
             summary["completed_files"] += 1
             records.append(record)
             _emit_progress(reporter, index=index, total=len(files), status="failed", input_name=input_file.name, summary=summary, started=started)
+            if options.heartbeat:
+                write_heartbeat(report_dir, status="running", current_file=input_file.name, current_index=index, total_files=len(files), completed_files=int(summary.get("completed_files", 0)), message="file failed")
             if not options.continue_on_failure:
                 break
             continue
@@ -419,12 +437,16 @@ def translate_batch(options: BatchTranslationOptions, root: str | Path | None = 
             summary["completed_files"] += 1
             records.append(record)
             _emit_progress(reporter, index=index, total=len(files), status="success", input_name=input_file.name, summary=summary, started=started)
+            if options.heartbeat:
+                write_heartbeat(report_dir, status="running", current_file=input_file.name, current_index=index, total_files=len(files), completed_files=int(summary.get("completed_files", 0)), message="file completed")
         else:
             summary["failed"] += 1
             summary["completed_files"] += 1
             record["error"] = result.get("error", "batch item failed")
             records.append(record)
             _emit_progress(reporter, index=index, total=len(files), status="failed", input_name=input_file.name, summary=summary, started=started)
+            if options.heartbeat:
+                write_heartbeat(report_dir, status="running", current_file=input_file.name, current_index=index, total_files=len(files), completed_files=int(summary.get("completed_files", 0)), message="file failed")
             if not options.continue_on_failure:
                 break
             continue
@@ -438,7 +460,7 @@ def translate_batch(options: BatchTranslationOptions, root: str | Path | None = 
     status = "success" if summary["failed"] == 0 else "partial_success" if options.continue_on_failure and summary["success"] > 0 else "failed"
     completed_at = now_iso()
     report = {
-        "version": "1.1-lts-stage-08" if (options.continue_on_failure or options.failed_only) else "1.1-lts-stage-07",
+        "version": "1.1-lts-stage-10" if (options.auto_recovery or options.heartbeat) else "1.1-lts-stage-08" if (options.continue_on_failure or options.failed_only) else "1.1-lts-stage-07",
         "status": status,
         "started_at": started_at,
         "completed_at": completed_at,
@@ -449,6 +471,10 @@ def translate_batch(options: BatchTranslationOptions, root: str | Path | None = 
         "dry_run": options.dry_run,
         "continue_on_failure": options.continue_on_failure,
         "failed_only": options.failed_only,
+        "heartbeat_enabled": options.heartbeat,
+        "auto_recovery": options.auto_recovery,
+        "auto_recovery": options.auto_recovery,
+        "stale_after_seconds": options.stale_after_seconds,
         "summary": summary,
         "progress_log": reporter.lines,
         "files": records,
@@ -462,6 +488,8 @@ def translate_batch(options: BatchTranslationOptions, root: str | Path | None = 
     failure_manifest_path = resolve_failed_manifest_path(report_dir, options)
     report["failure_manifest"] = str(failure_manifest_path)
     write_failure_manifest(report, failure_manifest_path)
+    if options.heartbeat:
+        write_heartbeat(report_dir, status=status, total_files=len(files), completed_files=int(summary.get("completed_files", 0)), message="batch completed")
     save_json(json_path, report)
     return report
 
@@ -493,6 +521,11 @@ def parse_args(argv: Iterable[str] | None = None) -> BatchTranslationOptions:
     parser.add_argument("--continue-on-failure", action="store_true", help="continue translating remaining files after a file fails")
     parser.add_argument("--failed-only", action="store_true", help="translate only files listed in the previous failure manifest")
     parser.add_argument("--failed-manifest", default=None, help="custom failure manifest path for failed-only/recovery runs")
+    parser.add_argument("--heartbeat", action="store_true", help="enable long-run heartbeat report")
+    parser.add_argument("--no-heartbeat", action="store_true", help="disable long-run heartbeat report")
+    parser.add_argument("--heartbeat-seconds", type=float, default=60.0, help="reserved heartbeat interval metadata for long-run monitors")
+    parser.add_argument("--stale-after-seconds", type=int, default=DEFAULT_STALE_AFTER_SECONDS, help="stale threshold used by auto-recovery reports")
+    parser.add_argument("--auto-recovery", action="store_true", help="enable long-run recovery metadata in batch reports")
     parser.add_argument("--dry-run", action="store_true", help="build prompt packages without provider calls")
     ns = parser.parse_args(list(argv) if argv is not None else None)
     return BatchTranslationOptions(
@@ -522,6 +555,10 @@ def parse_args(argv: Iterable[str] | None = None) -> BatchTranslationOptions:
         continue_on_failure=ns.continue_on_failure,
         failed_only=ns.failed_only,
         failed_manifest=Path(ns.failed_manifest) if ns.failed_manifest else None,
+        heartbeat=bool(ns.heartbeat and not ns.no_heartbeat),
+        heartbeat_seconds=max(0.0, ns.heartbeat_seconds),
+        stale_after_seconds=max(0, ns.stale_after_seconds),
+        auto_recovery=ns.auto_recovery,
     )
 
 
