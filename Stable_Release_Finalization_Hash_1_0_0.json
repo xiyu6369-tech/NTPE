@@ -1,0 +1,9 @@
+{
+  "stage": "STABLE.2",
+  "status": "FINALIZED",
+  "version": "1.0.0",
+  "release_channel": "stable",
+  "hash": "57c25bc1a536591e9b6771d92a900882629d0db3e3436ab25de51c2b6167a3a1",
+  "source_stage": "STABLE.1",
+  "source_version": "1.0.0"
+}
