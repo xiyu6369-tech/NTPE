@@ -5,6 +5,7 @@ import hashlib
 import json
 import math
 import re
+import time
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Iterable
@@ -16,6 +17,18 @@ from core.translation_engine.utils import now_iso, save_json, save_text
 DEFAULT_MODEL = "meta/llama-3.3-70b-instruct"
 DEFAULT_CHUNK_SIZE = 1800
 DEFAULT_OUTPUT_SUFFIX = "_zh"
+DEFAULT_MAX_RETRIES = 3
+DEFAULT_RETRY_BASE_SECONDS = 5.0
+RETRYABLE_ERROR_PATTERNS = (
+    "503",
+    "429",
+    "resourceexhausted",
+    "rate limit",
+    "too many requests",
+    "service unavailable",
+    "timeout",
+    "temporarily unavailable",
+)
 
 
 @dataclass(frozen=True)
@@ -29,6 +42,8 @@ class TxtTranslationOptions:
     target_language: str = "zh-TW"
     resume: bool = True
     dry_run: bool = False
+    max_retries: int = DEFAULT_MAX_RETRIES
+    retry_base_seconds: float = DEFAULT_RETRY_BASE_SECONDS
 
 
 def read_text_auto(path: str | Path) -> str:
@@ -117,6 +132,57 @@ def load_locked_dictionary(root: Path) -> dict[str, str]:
                     locked[src.strip()] = target.strip()
     return locked
 
+
+
+def get_resume_state_path(output_dir: Path, input_path: Path) -> Path:
+    return output_dir / f"{input_path.stem}_resume_state.json"
+
+
+def load_resume_state(path: str | Path) -> dict:
+    path = Path(path)
+    if not path.exists():
+        return {"version": "1.1-lts-stage-02", "chunks": {}, "events": []}
+    try:
+        data = json.loads(path.read_text(encoding="utf-8-sig"))
+    except Exception:
+        return {"version": "1.1-lts-stage-02", "chunks": {}, "events": []}
+    if not isinstance(data, dict):
+        return {"version": "1.1-lts-stage-02", "chunks": {}, "events": []}
+    data.setdefault("version", "1.1-lts-stage-02")
+    data.setdefault("chunks", {})
+    data.setdefault("events", [])
+    return data
+
+
+def save_resume_state(path: str | Path, state: dict) -> None:
+    save_json(path, state)
+
+
+def is_retryable_error(error: str) -> bool:
+    lowered = str(error or "").lower()
+    return any(pattern in lowered for pattern in RETRYABLE_ERROR_PATTERNS)
+
+
+def retry_delay_seconds(attempt: int, base_seconds: float) -> float:
+    return max(0.0, float(base_seconds)) * (2 ** max(0, attempt - 1))
+
+
+def translate_package_with_retry(engine: TranslationEngine, package: dict, package_path: Path, options: TxtTranslationOptions) -> dict:
+    attempts = max(1, int(options.max_retries) + 1)
+    last_result: dict = {"status": "failed", "error": "translation was not attempted"}
+    for attempt in range(1, attempts + 1):
+        result = engine.translate_package(package, package_path=package_path)
+        result["attempt"] = attempt
+        last_result = result
+        if result.get("status") == "success":
+            return result
+        error = result.get("error", "")
+        if attempt >= attempts or not is_retryable_error(error):
+            return result
+        delay = retry_delay_seconds(attempt, options.retry_base_seconds)
+        if delay > 0:
+            time.sleep(delay)
+    return last_result
 
 def _extract_pairs(data) -> dict[str, str]:
     pairs: dict[str, str] = {}
@@ -221,8 +287,8 @@ def build_prompt_package(
         },
         "metadata": {
             "created_at": now_iso(),
-            "created_by": "NTPE 1.1 LTS Stage-01 TXT Translation Entry",
-            "package_version": "1.1-lts-stage-01",
+            "created_by": "NTPE 1.1 LTS Stage-02 TXT Translation Entry",
+            "package_version": "1.1-lts-stage-02",
         },
     }
 
@@ -247,6 +313,13 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
     engine = TranslationEngine(root=root_path)
     translated_chunks: list[str] = []
     records: list[dict] = []
+    resume_state_path = get_resume_state_path(output_dir, input_path)
+    resume_state = load_resume_state(resume_state_path)
+    resume_state["input"] = str(input_path)
+    resume_state["output_dir"] = str(output_dir)
+    resume_state["chunk_total"] = len(chunks)
+    resume_state["updated_at"] = now_iso()
+    save_resume_state(resume_state_path, resume_state)
 
     for idx, chunk in enumerate(chunks, start=1):
         package = build_prompt_package(
@@ -260,25 +333,66 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
         save_json(package_path, package)
 
         chunk_file = chunk_out_dir / f"{input_path.stem}_chunk_{idx:06d}_zh.txt"
-        if options.resume and chunk_file.exists() and chunk_file.read_text(encoding="utf-8").strip():
+        chunk_key = f"{idx:06d}"
+        source_hash = package["source"]["source_hash"]
+        state_entry = resume_state["chunks"].get(chunk_key, {})
+        reusable_state = (
+            options.resume
+            and state_entry.get("status") == "success"
+            and state_entry.get("source_hash") == source_hash
+            and chunk_file.exists()
+            and chunk_file.read_text(encoding="utf-8").strip()
+        )
+
+        if reusable_state:
             translation = chunk_file.read_text(encoding="utf-8")
-            result = {"status": "skipped", "output_path": str(chunk_file), "package_id": package["package_id"]}
+            result = {"status": "skipped", "output_path": str(chunk_file), "package_id": package["package_id"], "attempt": 0}
         elif options.dry_run:
             translation = ""
-            result = {"status": "dry_run", "output_path": str(chunk_file), "package_id": package["package_id"]}
+            result = {"status": "dry_run", "output_path": str(chunk_file), "package_id": package["package_id"], "attempt": 0}
+            resume_state["chunks"][chunk_key] = {
+                "status": "dry_run",
+                "source_hash": source_hash,
+                "output_path": str(chunk_file),
+                "updated_at": now_iso(),
+            }
+            save_resume_state(resume_state_path, resume_state)
         else:
-            result = engine.translate_package(package, package_path=package_path)
+            result = translate_package_with_retry(engine, package, package_path, options)
             if result.get("status") != "success":
+                resume_state["chunks"][chunk_key] = {
+                    "status": "failed",
+                    "source_hash": source_hash,
+                    "error": result.get("error", "unknown error"),
+                    "attempt": result.get("attempt", 1),
+                    "updated_at": now_iso(),
+                }
+                resume_state["events"].append({
+                    "event": "chunk_failed",
+                    "chunk_index": idx,
+                    "error": result.get("error", "unknown error"),
+                    "at": now_iso(),
+                })
+                save_resume_state(resume_state_path, resume_state)
                 return {
                     "status": "failed",
                     "input": str(input_path),
                     "failed_chunk": idx,
                     "error": result.get("error", "unknown error"),
                     "records": records,
+                    "resume_state": str(resume_state_path),
                 }
             generated_path = Path(result["output_path"])
             translation = generated_path.read_text(encoding="utf-8")
             save_text(chunk_file, translation)
+            resume_state["chunks"][chunk_key] = {
+                "status": "success",
+                "source_hash": source_hash,
+                "output_path": str(chunk_file),
+                "attempt": result.get("attempt", 1),
+                "updated_at": now_iso(),
+            }
+            save_resume_state(resume_state_path, resume_state)
 
         if translation:
             translated_chunks.append(translation.strip())
@@ -296,6 +410,8 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
         "chunk_size": options.chunk_size,
         "model": options.model,
         "resume": options.resume,
+        "resume_state": str(resume_state_path),
+        "retry": {"max_retries": options.max_retries, "base_seconds": options.retry_base_seconds},
         "dry_run": options.dry_run,
         "completed_at": now_iso(),
         "records": records,
@@ -305,13 +421,15 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
 
 
 def parse_args(argv: Iterable[str] | None = None) -> TxtTranslationOptions:
-    parser = argparse.ArgumentParser(description="NTPE 1.1 LTS Stage-01 TXT novel translation entry")
+    parser = argparse.ArgumentParser(description="NTPE 1.1 LTS Stage-02 TXT novel translation entry")
     parser.add_argument("input", help="input TXT file path")
     parser.add_argument("output", nargs="?", default="output", help="output directory")
     parser.add_argument("--chunk-size", type=int, default=DEFAULT_CHUNK_SIZE)
     parser.add_argument("--model", default=DEFAULT_MODEL)
     parser.add_argument("--project-name", default="NTPE Novel Translation")
     parser.add_argument("--no-resume", action="store_true", help="disable chunk resume")
+    parser.add_argument("--max-retries", type=int, default=DEFAULT_MAX_RETRIES, help="retry count for retryable provider errors")
+    parser.add_argument("--retry-base-seconds", type=float, default=DEFAULT_RETRY_BASE_SECONDS, help="base seconds for exponential retry backoff")
     parser.add_argument("--dry-run", action="store_true", help="build prompt packages without calling provider")
     ns = parser.parse_args(list(argv) if argv is not None else None)
     return TxtTranslationOptions(
@@ -322,6 +440,8 @@ def parse_args(argv: Iterable[str] | None = None) -> TxtTranslationOptions:
         project_name=ns.project_name,
         resume=not ns.no_resume,
         dry_run=ns.dry_run,
+        max_retries=max(0, ns.max_retries),
+        retry_base_seconds=max(0.0, ns.retry_base_seconds),
     )
 
 
@@ -335,6 +455,7 @@ def main(argv: Iterable[str] | None = None) -> int:
         print(f"input: {result.get('input', '')}")
         print(f"output: {result.get('output', '')}")
         print(f"chunks: {result.get('chunk_total', 0)}")
+        print(f"resume_state: {result.get('resume_state', '')}")
         return 0 if result.get("status") == "success" else 1
     except Exception as exc:
         print("NTPE 1.1 LTS TXT Translation Entry")

@@ -1,0 +1,56 @@
+{
+  "stage": "NTPE 1.1 LTS Stage-02",
+  "name": "Resume / Retry Enhancement",
+  "version": "1.1.0-lts-stage-02",
+  "created_at": "2026-07-03T17:32:15",
+  "base": "NTPE 1.1 LTS Stage-01 TXT Translation Entry",
+  "compatibility": {
+    "foundation_v1_0_frozen": true,
+    "cli_frozen": true,
+    "stable_1_0_compatible": true,
+    "stage_01_command_compatible": true,
+    "incremental_update": true
+  },
+  "features": [
+    "chunk-level resume state",
+    "source_hash based completed chunk reuse",
+    "retryable provider error detection",
+    "exponential retry backoff",
+    "retry CLI options"
+  ],
+  "files": [
+    {
+      "path": "ntpe_translate_txt.py",
+      "sha256": "f7e5a83cca66559fe46455d86f569f8101b71ce540e9ae69f2dab09da92a6041"
+    },
+    {
+      "path": "lts/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "lts/txt_translation_runtime.py",
+      "sha256": "f7f3011e50cac799a79c0e146940217a16eae65118fa664dfb8e6e4209bc1ccc"
+    },
+    {
+      "path": "tests/lts_stage_02/test_resume_retry_runtime.py",
+      "sha256": "19cebf0127abf74b1775495831a48083f73c4d2ce381ce9438fd80e681bd9342"
+    },
+    {
+      "path": "tests/lts_stage_02/launcher_resume_retry_test.py",
+      "sha256": "d00e319a3eb16175d05a417555bb99d698ab56905258b6ea8c3beb261b091cf5"
+    },
+    {
+      "path": "CHANGELOG_LTS_Stage_02.md",
+      "sha256": "2470ea99cf4f0fee21adf783864763e9f909940ef2c6f7dfa6caf66fd0b781f5"
+    },
+    {
+      "path": "README_NTPE_1_1_LTS_Stage_02.txt",
+      "sha256": "3a84c4e613a028195b2ba431d556c6b71f3a46a538eb21829b54619662b87cc0"
+    }
+  ],
+  "tests": {
+    "command": "PYTHONPATH=. pytest -q tests/lts_stage_01 tests/lts_stage_02 tests/stable_release_preparation tests/stable_release_finalization tests/stable_release_completion",
+    "result": "19 passed",
+    "status": "ALL PASS"
+  }
+}
