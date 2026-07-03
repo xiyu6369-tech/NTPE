@@ -1,6 +1,6 @@
 # =====================================================
-# NTPE 1.1 LTS Stage-06
-# Batch Folder TXT Translation Entry
+# NTPE 1.1 LTS Stage-07
+# Batch Folder TXT Translation Entry + Progress / Summary Report
 # 放置位置：D:\Python\NTPE\ntpe_translate_batch.py
 # =====================================================
 

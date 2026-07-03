@@ -6,7 +6,7 @@ import re
 import time
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Iterable
+from typing import Callable, Iterable
 
 from core.translation_engine.utils import now_iso, save_json, save_text
 from lts.txt_translation_runtime import (
@@ -25,6 +25,71 @@ from lts.txt_translation_runtime import (
 
 
 DEFAULT_BATCH_REPORT_BASENAME = "Batch_Translation_Report"
+
+
+def format_duration(seconds: float | int | None) -> str:
+    total = max(0, int(seconds or 0))
+    hours, remainder = divmod(total, 3600)
+    minutes, secs = divmod(remainder, 60)
+    return f"{hours:02d}:{minutes:02d}:{secs:02d}"
+
+
+def safe_percent(part: int | float, whole: int | float) -> float:
+    whole = float(whole or 0)
+    if whole <= 0:
+        return 0.0
+    return round((float(part or 0) / whole) * 100, 2)
+
+
+def estimate_remaining_seconds(completed: int, total: int, elapsed_seconds: float) -> float | None:
+    if completed <= 0 or total <= 0 or completed >= total:
+        return 0.0 if completed >= total else None
+    average = elapsed_seconds / completed
+    return round(average * (total - completed), 3)
+
+
+@dataclass(frozen=True)
+class BatchProgressSnapshot:
+    index: int
+    total: int
+    status: str
+    input_name: str
+    success: int
+    skipped: int
+    failed: int
+    elapsed_seconds: float
+    eta_seconds: float | None
+
+    @property
+    def completed(self) -> int:
+        return self.success + self.skipped + self.failed
+
+    @property
+    def percent(self) -> float:
+        return safe_percent(self.completed, self.total)
+
+
+def format_progress_line(snapshot: BatchProgressSnapshot) -> str:
+    eta = format_duration(snapshot.eta_seconds) if snapshot.eta_seconds is not None else "--:--:--"
+    return (
+        f"[{snapshot.completed}/{snapshot.total} {snapshot.percent:.2f}%] "
+        f"{snapshot.status}: {snapshot.input_name} | "
+        f"success={snapshot.success} skipped={snapshot.skipped} failed={snapshot.failed} | "
+        f"elapsed={format_duration(snapshot.elapsed_seconds)} eta={eta}"
+    )
+
+
+class BatchProgressReporter:
+    def __init__(self, enabled: bool = True, sink: Callable[[str], None] | None = None) -> None:
+        self.enabled = enabled
+        self.sink = sink or print
+        self.lines: list[str] = []
+
+    def emit(self, snapshot: BatchProgressSnapshot) -> None:
+        line = format_progress_line(snapshot)
+        self.lines.append(line)
+        if self.enabled:
+            self.sink(line)
 
 
 @dataclass(frozen=True)
@@ -52,6 +117,7 @@ class BatchTranslationOptions:
     output_formatter_enabled: bool = True
     taiwan_traditional_normalization: bool = True
     report_dir: Path | None = None
+    progress: bool = True
 
 
 def natural_sort_key(path: Path) -> list[object]:
@@ -105,33 +171,116 @@ def _elapsed_seconds(start: float) -> float:
     return round(time.time() - start, 3)
 
 
+def summarize_txt_result(result: dict) -> dict:
+    records = result.get("records", []) if isinstance(result, dict) else []
+    provider_attempts = 0
+    qa_attempts = 0
+    qa_retry_count = 0
+    qa_issue_count = 0
+    korean_residue_issues = 0
+    skipped_chunks = 0
+    failed_chunks = 0
+    for record in records:
+        provider_attempts += int(record.get("attempt", 0) or 0)
+        qa_attempt = int(record.get("qa_attempt", 0) or 0)
+        qa_attempts += qa_attempt
+        if qa_attempt > 1:
+            qa_retry_count += qa_attempt - 1
+        if record.get("status") == "skipped":
+            skipped_chunks += 1
+        if record.get("status") in {"failed", "qa_failed"}:
+            failed_chunks += 1
+        qa = record.get("qa") or {}
+        for issue in qa.get("issues", []) if isinstance(qa, dict) else []:
+            qa_issue_count += 1
+            if issue.get("code") == "KOREAN_RESIDUE":
+                korean_residue_issues += 1
+    return {
+        "provider_attempts": provider_attempts,
+        "provider_retry_count": max(0, provider_attempts - len(records)),
+        "qa_attempts": qa_attempts,
+        "qa_retry_count": qa_retry_count,
+        "qa_issue_count": qa_issue_count,
+        "korean_residue_issues": korean_residue_issues,
+        "skipped_chunks": skipped_chunks,
+        "failed_chunks": failed_chunks,
+    }
+
+
 def _write_batch_markdown(report: dict, path: Path) -> None:
+    summary = report.get("summary", {})
     lines = [
-        "# NTPE 1.1 LTS Stage-06 Batch Translation Report",
+        "# NTPE 1.1 LTS Stage-07 Batch Progress / Summary Report",
         "",
         f"- Status: {report.get('status')}",
+        f"- Version: {report.get('version')}",
         f"- Started At: {report.get('started_at')}",
         f"- Completed At: {report.get('completed_at')}",
         f"- Input Directory: `{report.get('input_dir')}`",
         f"- Output Directory: `{report.get('output_dir')}`",
-        f"- Total Files: {report['summary'].get('total_files')}",
-        f"- Success: {report['summary'].get('success')}",
-        f"- Skipped: {report['summary'].get('skipped')}",
-        f"- Failed: {report['summary'].get('failed')}",
-        f"- Total Chunks: {report['summary'].get('total_chunks')}",
-        f"- Elapsed Seconds: {report['summary'].get('elapsed_seconds')}",
+        f"- Total Files: {summary.get('total_files')}",
+        f"- Completed Files: {summary.get('completed_files')}",
+        f"- Success: {summary.get('success')}",
+        f"- Skipped: {summary.get('skipped')}",
+        f"- Failed: {summary.get('failed')}",
+        f"- Success Rate: {summary.get('success_rate_percent')}%",
+        f"- Total Chunks: {summary.get('total_chunks')}",
+        f"- Provider Retries: {summary.get('provider_retry_count')}",
+        f"- QA Retries: {summary.get('qa_retry_count')}",
+        f"- QA Issues: {summary.get('qa_issue_count')}",
+        f"- Korean Residue Issues: {summary.get('korean_residue_issues')}",
+        f"- Elapsed: {summary.get('elapsed_hms')} ({summary.get('elapsed_seconds')} seconds)",
+        f"- Average Seconds / File: {summary.get('average_seconds_per_file')}",
+        f"- Average Chunks / File: {summary.get('average_chunks_per_file')}",
+        "",
+        "## Progress Log",
+        "",
+    ]
+    progress_log = report.get("progress_log", [])
+    if progress_log:
+        lines.extend(f"- {line}" for line in progress_log)
+    else:
+        lines.append("- none")
+    lines.extend([
         "",
         "## Files",
         "",
-        "| # | Status | Input | Output | Chunks | Error |",
-        "|---:|---|---|---|---:|---|",
-    ]
+        "| # | Status | Input | Output | Chunks | Attempts | QA Retries | Error |",
+        "|---:|---|---|---|---:|---:|---:|---|",
+    ])
     for record in report.get("files", []):
+        metrics = record.get("metrics", {})
         lines.append(
-            f"| {record.get('index')} | {record.get('status')} | `{record.get('input')}` | `{record.get('output', '')}` | {record.get('chunk_total', 0)} | {record.get('error', '')} |"
+            f"| {record.get('index')} | {record.get('status')} | `{record.get('input')}` | `{record.get('output', '')}` | "
+            f"{record.get('chunk_total', 0)} | {metrics.get('provider_attempts', 0)} | {metrics.get('qa_retry_count', 0)} | {record.get('error', '')} |"
         )
     save_text(path, "\n".join(lines).strip() + "\n")
 
+
+def _emit_progress(
+    reporter: BatchProgressReporter,
+    *,
+    index: int,
+    total: int,
+    status: str,
+    input_name: str,
+    summary: dict,
+    started: float,
+) -> None:
+    completed = int(summary.get("success", 0)) + int(summary.get("skipped", 0)) + int(summary.get("failed", 0))
+    elapsed = _elapsed_seconds(started)
+    eta = estimate_remaining_seconds(completed, total, elapsed)
+    reporter.emit(BatchProgressSnapshot(
+        index=index,
+        total=total,
+        status=status,
+        input_name=input_name,
+        success=int(summary.get("success", 0)),
+        skipped=int(summary.get("skipped", 0)),
+        failed=int(summary.get("failed", 0)),
+        elapsed_seconds=elapsed,
+        eta_seconds=eta,
+    ))
 
 def translate_batch(options: BatchTranslationOptions, root: str | Path | None = None) -> dict:
     root_path = Path(root) if root else Path(__file__).resolve().parents[1]
@@ -146,15 +295,26 @@ def translate_batch(options: BatchTranslationOptions, root: str | Path | None = 
     started_at = now_iso()
     files = scan_txt_files(input_dir, recursive=options.recursive)
     records: list[dict] = []
+    reporter = BatchProgressReporter(enabled=options.progress)
     summary = {
         "total_files": len(files),
+        "completed_files": 0,
         "success": 0,
         "skipped": 0,
         "failed": 0,
         "total_chunks": 0,
+        "provider_attempts": 0,
+        "provider_retry_count": 0,
+        "qa_attempts": 0,
+        "qa_retry_count": 0,
+        "qa_issue_count": 0,
+        "korean_residue_issues": 0,
+        "skipped_chunks": 0,
+        "failed_chunks": 0,
     }
 
     for index, input_file in enumerate(files, start=1):
+        _emit_progress(reporter, index=index, total=len(files), status="start", input_name=input_file.name, summary=summary, started=started)
         final_output = get_output_path_for_input(input_file, input_dir, output_dir, options.output_suffix)
         per_file_output_dir = final_output.parent
         per_file_output_dir.mkdir(parents=True, exist_ok=True)
@@ -167,43 +327,60 @@ def translate_batch(options: BatchTranslationOptions, root: str | Path | None = 
         }
 
         if options.skip_completed and final_output.exists() and final_output.read_text(encoding="utf-8", errors="ignore").strip():
-            record.update({"status": "skipped", "chunk_total": 0, "completed_at": now_iso()})
+            record.update({"status": "skipped", "chunk_total": 0, "completed_at": now_iso(), "metrics": {}})
             summary["skipped"] += 1
+            summary["completed_files"] += 1
             records.append(record)
+            _emit_progress(reporter, index=index, total=len(files), status="skipped", input_name=input_file.name, summary=summary, started=started)
             continue
 
         txt_options = build_txt_options(input_file, per_file_output_dir, options)
         try:
             result = translate_txt(txt_options, root=root_path)
         except Exception as exc:
-            record.update({"status": "failed", "error": str(exc), "completed_at": now_iso()})
+            record.update({"status": "failed", "error": str(exc), "completed_at": now_iso(), "metrics": {}})
             summary["failed"] += 1
+            summary["completed_files"] += 1
             records.append(record)
+            _emit_progress(reporter, index=index, total=len(files), status="failed", input_name=input_file.name, summary=summary, started=started)
             break
 
         status = result.get("status", "failed")
+        metrics = summarize_txt_result(result)
         record.update({
             "status": status,
             "output": result.get("output", str(final_output)),
             "chunk_total": result.get("chunk_total", 0),
             "resume_state": result.get("resume_state", ""),
             "completed_at": now_iso(),
+            "metrics": metrics,
         })
         summary["total_chunks"] += int(result.get("chunk_total", 0) or 0)
+        for key in ("provider_attempts", "provider_retry_count", "qa_attempts", "qa_retry_count", "qa_issue_count", "korean_residue_issues", "skipped_chunks", "failed_chunks"):
+            summary[key] += int(metrics.get(key, 0) or 0)
         if status == "success":
             summary["success"] += 1
+            summary["completed_files"] += 1
+            records.append(record)
+            _emit_progress(reporter, index=index, total=len(files), status="success", input_name=input_file.name, summary=summary, started=started)
         else:
             summary["failed"] += 1
+            summary["completed_files"] += 1
             record["error"] = result.get("error", "batch item failed")
             records.append(record)
+            _emit_progress(reporter, index=index, total=len(files), status="failed", input_name=input_file.name, summary=summary, started=started)
             break
-        records.append(record)
 
     summary["elapsed_seconds"] = _elapsed_seconds(started)
+    summary["elapsed_hms"] = format_duration(summary["elapsed_seconds"])
+    summary["success_rate_percent"] = safe_percent(summary["success"], max(1, summary["total_files"] - summary["skipped"]))
+    summary["completion_rate_percent"] = safe_percent(summary["completed_files"], summary["total_files"])
+    summary["average_seconds_per_file"] = round(summary["elapsed_seconds"] / summary["completed_files"], 3) if summary["completed_files"] else 0.0
+    summary["average_chunks_per_file"] = round(summary["total_chunks"] / summary["success"], 3) if summary["success"] else 0.0
     status = "success" if summary["failed"] == 0 else "failed"
     completed_at = now_iso()
     report = {
-        "version": "1.1-lts-stage-06",
+        "version": "1.1-lts-stage-07",
         "status": status,
         "started_at": started_at,
         "completed_at": completed_at,
@@ -213,6 +390,7 @@ def translate_batch(options: BatchTranslationOptions, root: str | Path | None = 
         "skip_completed": options.skip_completed,
         "dry_run": options.dry_run,
         "summary": summary,
+        "progress_log": reporter.lines,
         "files": records,
     }
     json_path = report_dir / f"{DEFAULT_BATCH_REPORT_BASENAME}.json"
@@ -226,7 +404,7 @@ def translate_batch(options: BatchTranslationOptions, root: str | Path | None = 
 
 
 def parse_args(argv: Iterable[str] | None = None) -> BatchTranslationOptions:
-    parser = argparse.ArgumentParser(description="NTPE 1.1 LTS Stage-06 batch folder TXT translation")
+    parser = argparse.ArgumentParser(description="NTPE 1.1 LTS Stage-07 batch folder TXT translation with progress reports")
     parser.add_argument("input", help="input folder containing TXT files")
     parser.add_argument("output", nargs="?", default="output", help="output directory")
     parser.add_argument("--recursive", action="store_true", help="scan TXT files recursively")
@@ -248,6 +426,7 @@ def parse_args(argv: Iterable[str] | None = None) -> BatchTranslationOptions:
     parser.add_argument("--no-output-formatter", action="store_true")
     parser.add_argument("--no-taiwan-normalization", action="store_true")
     parser.add_argument("--report-dir", default=None, help="optional batch report directory")
+    parser.add_argument("--quiet-progress", action="store_true", help="disable live batch progress lines")
     parser.add_argument("--dry-run", action="store_true", help="build prompt packages without provider calls")
     ns = parser.parse_args(list(argv) if argv is not None else None)
     return BatchTranslationOptions(
@@ -273,6 +452,7 @@ def parse_args(argv: Iterable[str] | None = None) -> BatchTranslationOptions:
         output_formatter_enabled=not ns.no_output_formatter,
         taiwan_traditional_normalization=not ns.no_taiwan_normalization,
         report_dir=Path(ns.report_dir) if ns.report_dir else None,
+        progress=not ns.quiet_progress,
     )
 
 
@@ -287,6 +467,8 @@ def main(argv: Iterable[str] | None = None) -> int:
         print(f"output_dir: {result.get('output_dir', '')}")
         print(f"files: {result['summary'].get('success', 0)} success / {result['summary'].get('skipped', 0)} skipped / {result['summary'].get('failed', 0)} failed / {result['summary'].get('total_files', 0)} total")
         print(f"chunks: {result['summary'].get('total_chunks', 0)}")
+        print(f"elapsed: {result['summary'].get('elapsed_hms', '00:00:00')}")
+        print(f"success_rate: {result['summary'].get('success_rate_percent', 0)}%")
         print(f"report: {result.get('report_md', '')}")
         return 0 if result.get("status") == "success" else 1
     except Exception as exc:
