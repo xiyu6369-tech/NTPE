@@ -1,6 +1,6 @@
 # =====================================================
-# NTPE 1.1 LTS Stage-01
-# TXT Novel Translation Entry
+# NTPE 1.1 LTS Stage-04
+# TXT Novel Translation Entry + QA / Korean Residue Check
 # 放置位置：D:\Python\NTPE\ntpe_translate_txt.py
 # =====================================================
 

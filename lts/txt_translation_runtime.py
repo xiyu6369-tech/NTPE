@@ -20,6 +20,10 @@ DEFAULT_OUTPUT_SUFFIX = "_zh"
 DEFAULT_MAX_RETRIES = 3
 DEFAULT_RETRY_BASE_SECONDS = 5.0
 DEFAULT_CHARACTER_MEMORY = "memory/character_memory_lts.json"
+DEFAULT_MIN_LENGTH_RATIO = 0.25
+DEFAULT_MAX_KOREAN_CHARS = 3
+DEFAULT_MAX_REPEATED_LINES = 2
+QA_FAIL_POLICIES = ("retry", "fail", "warn")
 RETRYABLE_ERROR_PATTERNS = (
     "503",
     "429",
@@ -48,6 +52,11 @@ class TxtTranslationOptions:
     glossary_path: Path | None = None
     character_memory_path: Path | None = None
     strict_lock_terms: bool = True
+    qa_enabled: bool = True
+    qa_fail_policy: str = "retry"
+    min_length_ratio: float = DEFAULT_MIN_LENGTH_RATIO
+    max_korean_chars: int = DEFAULT_MAX_KOREAN_CHARS
+    max_repeated_lines: int = DEFAULT_MAX_REPEATED_LINES
 
 
 def read_text_auto(path: str | Path) -> str:
@@ -206,14 +215,14 @@ def get_resume_state_path(output_dir: Path, input_path: Path) -> Path:
 def load_resume_state(path: str | Path) -> dict:
     path = Path(path)
     if not path.exists():
-        return {"version": "1.1-lts-stage-03", "chunks": {}, "events": []}
+        return {"version": "1.1-lts-stage-04", "chunks": {}, "events": []}
     try:
         data = json.loads(path.read_text(encoding="utf-8-sig"))
     except Exception:
-        return {"version": "1.1-lts-stage-03", "chunks": {}, "events": []}
+        return {"version": "1.1-lts-stage-04", "chunks": {}, "events": []}
     if not isinstance(data, dict):
-        return {"version": "1.1-lts-stage-03", "chunks": {}, "events": []}
-    data.setdefault("version", "1.1-lts-stage-03")
+        return {"version": "1.1-lts-stage-04", "chunks": {}, "events": []}
+    data.setdefault("version", "1.1-lts-stage-04")
     data.setdefault("chunks", {})
     data.setdefault("events", [])
     return data
@@ -248,6 +257,62 @@ def translate_package_with_retry(engine: TranslationEngine, package: dict, packa
         if delay > 0:
             time.sleep(delay)
     return last_result
+
+
+def count_korean_characters(text: str) -> int:
+    return len(re.findall(r"[\u1100-\u11ff\u3130-\u318f\uac00-\ud7a3]", text or ""))
+
+
+def _normalized_len(text: str) -> int:
+    return len(re.sub(r"\s+", "", text or ""))
+
+
+def detect_repeated_lines(text: str, max_repeated_lines: int = DEFAULT_MAX_REPEATED_LINES) -> list[str]:
+    counts: dict[str, int] = {}
+    repeated: list[str] = []
+    for raw_line in (text or "").splitlines():
+        line = raw_line.strip()
+        if len(line) < 4:
+            continue
+        counts[line] = counts.get(line, 0) + 1
+        if counts[line] > max_repeated_lines and line not in repeated:
+            repeated.append(line)
+    return repeated
+
+
+def analyze_translation_quality(source_text: str, translated_text: str, options: TxtTranslationOptions | None = None) -> dict:
+    options = options or TxtTranslationOptions(input_path=Path("input.txt"), output_dir=Path("output"))
+    korean_chars = count_korean_characters(translated_text)
+    source_len = max(1, _normalized_len(source_text))
+    translated_len = _normalized_len(translated_text)
+    length_ratio = translated_len / source_len
+    repeated_lines = detect_repeated_lines(translated_text, options.max_repeated_lines)
+    issues: list[dict] = []
+    if korean_chars > options.max_korean_chars:
+        issues.append({"code": "KOREAN_RESIDUE", "message": f"韓文殘留過多：{korean_chars} > {options.max_korean_chars}"})
+    if translated_len == 0:
+        issues.append({"code": "EMPTY_TRANSLATION", "message": "譯文為空"})
+    elif length_ratio < options.min_length_ratio:
+        issues.append({"code": "LENGTH_RATIO_TOO_LOW", "message": f"譯文長度比例過低：{length_ratio:.3f} < {options.min_length_ratio:.3f}"})
+    if repeated_lines:
+        issues.append({"code": "REPEATED_LINES", "message": f"偵測到重複行：{len(repeated_lines)}", "samples": repeated_lines[:3]})
+    return {
+        "passed": not issues,
+        "issues": issues,
+        "metrics": {
+            "korean_chars": korean_chars,
+            "source_chars": source_len,
+            "translated_chars": translated_len,
+            "length_ratio": round(length_ratio, 4),
+            "repeated_line_count": len(repeated_lines),
+        },
+    }
+
+
+def qa_retry_delay_seconds(attempt: int, base_seconds: float) -> float:
+    # QA retry uses a softer delay than provider-limit retry.
+    return min(retry_delay_seconds(attempt, base_seconds), 30.0)
+
 
 def _extract_pairs(data) -> dict[str, str]:
     pairs: dict[str, str] = {}
@@ -352,8 +417,8 @@ def build_prompt_package(
         },
         "metadata": {
             "created_at": now_iso(),
-            "created_by": "NTPE 1.1 LTS Stage-03 TXT Translation Entry",
-            "package_version": "1.1-lts-stage-03",
+            "created_by": "NTPE 1.1 LTS Stage-04 TXT Translation Entry",
+            "package_version": "1.1-lts-stage-04",
         },
     }
 
@@ -427,13 +492,37 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
             }
             save_resume_state(resume_state_path, resume_state)
         else:
-            result = translate_package_with_retry(engine, package, package_path, options)
+            qa_attempt_records: list[dict] = []
+            qa_report = {"passed": True, "issues": [], "metrics": {}}
+            translation = ""
+            result = {"status": "failed", "error": "translation was not attempted", "attempt": 0}
+            qa_attempts = max(1, int(options.max_retries) + 1) if options.qa_fail_policy == "retry" else 1
+            for qa_attempt in range(1, qa_attempts + 1):
+                result = translate_package_with_retry(engine, package, package_path, options)
+                result["qa_attempt"] = qa_attempt
+                if result.get("status") != "success":
+                    break
+                generated_path = Path(result["output_path"])
+                translation = generated_path.read_text(encoding="utf-8")
+                if options.strict_lock_terms:
+                    translation = apply_locked_dictionary(translation, locked_dictionary)
+                qa_report = analyze_translation_quality(chunk, translation, options) if options.qa_enabled else {"passed": True, "issues": [], "metrics": {}}
+                qa_attempt_records.append({"qa_attempt": qa_attempt, "qa": qa_report})
+                if qa_report.get("passed") or options.qa_fail_policy == "warn":
+                    break
+                if options.qa_fail_policy == "fail" or qa_attempt >= qa_attempts:
+                    break
+                delay = qa_retry_delay_seconds(qa_attempt, options.retry_base_seconds)
+                if delay > 0:
+                    time.sleep(delay)
+
             if result.get("status") != "success":
                 resume_state["chunks"][chunk_key] = {
                     "status": "failed",
                     "source_hash": source_hash,
                     "error": result.get("error", "unknown error"),
                     "attempt": result.get("attempt", 1),
+                    "qa_attempt": result.get("qa_attempt", 1),
                     "updated_at": now_iso(),
                 }
                 resume_state["events"].append({
@@ -451,18 +540,49 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
                     "records": records,
                     "resume_state": str(resume_state_path),
                 }
-            generated_path = Path(result["output_path"])
-            translation = generated_path.read_text(encoding="utf-8")
-            if options.strict_lock_terms:
-                translation = apply_locked_dictionary(translation, locked_dictionary)
+
+            qa_failed = options.qa_enabled and not qa_report.get("passed", True) and options.qa_fail_policy != "warn"
+            if qa_failed:
+                error = "; ".join(issue.get("message", issue.get("code", "QA_FAILED")) for issue in qa_report.get("issues", [])) or "translation QA failed"
+                resume_state["chunks"][chunk_key] = {
+                    "status": "qa_failed",
+                    "source_hash": source_hash,
+                    "error": error,
+                    "qa": qa_report,
+                    "attempt": result.get("attempt", 1),
+                    "qa_attempt": result.get("qa_attempt", 1),
+                    "updated_at": now_iso(),
+                }
+                resume_state["events"].append({
+                    "event": "chunk_qa_failed",
+                    "chunk_index": idx,
+                    "error": error,
+                    "qa": qa_report,
+                    "at": now_iso(),
+                })
+                save_resume_state(resume_state_path, resume_state)
+                return {
+                    "status": "failed",
+                    "input": str(input_path),
+                    "failed_chunk": idx,
+                    "error": error,
+                    "qa": qa_report,
+                    "records": records,
+                    "resume_state": str(resume_state_path),
+                }
+
             save_text(chunk_file, translation)
             resume_state["chunks"][chunk_key] = {
                 "status": "success",
                 "source_hash": source_hash,
                 "output_path": str(chunk_file),
                 "attempt": result.get("attempt", 1),
+                "qa_attempt": result.get("qa_attempt", 1),
+                "qa": qa_report,
                 "updated_at": now_iso(),
             }
+            result["qa"] = qa_report
+            result["qa_attempt_records"] = qa_attempt_records
             save_resume_state(resume_state_path, resume_state)
 
         if translation:
@@ -488,6 +608,7 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
         "resume_state": str(resume_state_path),
         "retry": {"max_retries": options.max_retries, "base_seconds": options.retry_base_seconds},
         "glossary": {"locked_terms": len(locked_dictionary), "matched_terms": len(matched_terms_for_memory), "strict_lock_terms": options.strict_lock_terms},
+        "qa": {"enabled": options.qa_enabled, "fail_policy": options.qa_fail_policy, "min_length_ratio": options.min_length_ratio, "max_korean_chars": options.max_korean_chars, "max_repeated_lines": options.max_repeated_lines},
         "character_memory": str(character_memory_path),
         "dry_run": options.dry_run,
         "completed_at": now_iso(),
@@ -498,7 +619,7 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
 
 
 def parse_args(argv: Iterable[str] | None = None) -> TxtTranslationOptions:
-    parser = argparse.ArgumentParser(description="NTPE 1.1 LTS Stage-02 TXT novel translation entry")
+    parser = argparse.ArgumentParser(description="NTPE 1.1 LTS Stage-04 TXT novel translation entry")
     parser.add_argument("input", help="input TXT file path")
     parser.add_argument("output", nargs="?", default="output", help="output directory")
     parser.add_argument("--chunk-size", type=int, default=DEFAULT_CHUNK_SIZE)
@@ -510,6 +631,11 @@ def parse_args(argv: Iterable[str] | None = None) -> TxtTranslationOptions:
     parser.add_argument("--glossary", dest="glossary_path", default=None, help="optional glossary file, supports source=target or source->target")
     parser.add_argument("--character-memory", dest="character_memory_path", default=None, help="optional character memory JSON path")
     parser.add_argument("--no-strict-lock-terms", action="store_true", help="disable output source-term normalization")
+    parser.add_argument("--no-qa", action="store_true", help="disable translation QA checks")
+    parser.add_argument("--qa-fail-policy", choices=QA_FAIL_POLICIES, default="retry", help="QA failure behavior: retry, fail, or warn")
+    parser.add_argument("--min-length-ratio", type=float, default=DEFAULT_MIN_LENGTH_RATIO, help="minimum translated/source character ratio")
+    parser.add_argument("--max-korean-chars", type=int, default=DEFAULT_MAX_KOREAN_CHARS, help="maximum allowed Korean characters after translation")
+    parser.add_argument("--max-repeated-lines", type=int, default=DEFAULT_MAX_REPEATED_LINES, help="maximum allowed repeats for the same non-trivial output line")
     parser.add_argument("--dry-run", action="store_true", help="build prompt packages without calling provider")
     ns = parser.parse_args(list(argv) if argv is not None else None)
     return TxtTranslationOptions(
@@ -525,6 +651,11 @@ def parse_args(argv: Iterable[str] | None = None) -> TxtTranslationOptions:
         glossary_path=Path(ns.glossary_path) if ns.glossary_path else None,
         character_memory_path=Path(ns.character_memory_path) if ns.character_memory_path else None,
         strict_lock_terms=not ns.no_strict_lock_terms,
+        qa_enabled=not ns.no_qa,
+        qa_fail_policy=ns.qa_fail_policy,
+        min_length_ratio=max(0.0, ns.min_length_ratio),
+        max_korean_chars=max(0, ns.max_korean_chars),
+        max_repeated_lines=max(0, ns.max_repeated_lines),
     )
 
 

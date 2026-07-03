@@ -1,0 +1,42 @@
+{
+  "stage": "NTPE 1.1 LTS Stage-04",
+  "name": "Translation QA / Korean Residue Check",
+  "status": "ALL PASS",
+  "files": [
+    {
+      "path": "ntpe_translate_txt.py",
+      "sha256": "efd24ee961e863ad9038a936c65fd7f3f2e1237f3d703e1b568f88ea7da74cee",
+      "size": 352
+    },
+    {
+      "path": "lts/txt_translation_runtime.py",
+      "sha256": "bc8850a928ac244eb55a537aad380e3ec5b729aa298dafe399abe1331dcb7186",
+      "size": 28491
+    },
+    {
+      "path": "README_NTPE_1_1_LTS_Stage_04.txt",
+      "sha256": "734b62161876c4ffffb1e5b94dd36a85f02c62aa78a7523019b837fdfc86df58",
+      "size": 904
+    },
+    {
+      "path": "CHANGELOG_LTS_Stage_04.md",
+      "sha256": "8289604b1dba6c16f52c402b0e9d0c2b92352ace40316371db84eb8d008fb4a0",
+      "size": 682
+    },
+    {
+      "path": "LTS_Stage_04_Translation_QA_Report.md",
+      "sha256": "97dccb1bb68c2f9ee2c646cc5bbbb3deb7e42d94fdfcca6ece9ed4e656725240",
+      "size": 581
+    },
+    {
+      "path": "tests/lts_stage_04/test_translation_qa.py",
+      "sha256": "959ba24818b404f55c990aec96a5769e7b00935b0dc6b89bdde5e6e75aae6228",
+      "size": 3606
+    },
+    {
+      "path": "tests/lts_stage_04/launcher_translation_qa_test.py",
+      "sha256": "789b243e736ca5f92252840e05aaad98a04d2c7a7f3f2d8f1aa9f2835dd503b1",
+      "size": 908
+    }
+  ]
+}
