@@ -23,6 +23,7 @@ DEFAULT_CHARACTER_MEMORY = "memory/character_memory_lts.json"
 DEFAULT_MIN_LENGTH_RATIO = 0.25
 DEFAULT_MAX_KOREAN_CHARS = 3
 DEFAULT_MAX_REPEATED_LINES = 2
+DEFAULT_OUTPUT_FORMATTER_ENABLED = True
 QA_FAIL_POLICIES = ("retry", "fail", "warn")
 RETRYABLE_ERROR_PATTERNS = (
     "503",
@@ -57,6 +58,8 @@ class TxtTranslationOptions:
     min_length_ratio: float = DEFAULT_MIN_LENGTH_RATIO
     max_korean_chars: int = DEFAULT_MAX_KOREAN_CHARS
     max_repeated_lines: int = DEFAULT_MAX_REPEATED_LINES
+    output_formatter_enabled: bool = DEFAULT_OUTPUT_FORMATTER_ENABLED
+    taiwan_traditional_normalization: bool = True
 
 
 def read_text_auto(path: str | Path) -> str:
@@ -215,14 +218,14 @@ def get_resume_state_path(output_dir: Path, input_path: Path) -> Path:
 def load_resume_state(path: str | Path) -> dict:
     path = Path(path)
     if not path.exists():
-        return {"version": "1.1-lts-stage-04", "chunks": {}, "events": []}
+        return {"version": "1.1-lts-stage-05", "chunks": {}, "events": []}
     try:
         data = json.loads(path.read_text(encoding="utf-8-sig"))
     except Exception:
-        return {"version": "1.1-lts-stage-04", "chunks": {}, "events": []}
+        return {"version": "1.1-lts-stage-05", "chunks": {}, "events": []}
     if not isinstance(data, dict):
-        return {"version": "1.1-lts-stage-04", "chunks": {}, "events": []}
-    data.setdefault("version", "1.1-lts-stage-04")
+        return {"version": "1.1-lts-stage-05", "chunks": {}, "events": []}
+    data.setdefault("version", "1.1-lts-stage-05")
     data.setdefault("chunks", {})
     data.setdefault("events", [])
     return data
@@ -258,6 +261,113 @@ def translate_package_with_retry(engine: TranslationEngine, package: dict, packa
             time.sleep(delay)
     return last_result
 
+
+
+TAIWAN_TRADITIONAL_REPLACEMENTS = {
+    "台湾": "台灣",
+    "台北": "臺北",
+    "里面": "裡面",
+    "里头": "裡頭",
+    "这里": "這裡",
+    "那里": "那裡",
+    "哪里": "哪裡",
+    "为": "為",
+    "这": "這",
+    "个": "個",
+    "后": "後",
+    "说": "說",
+    "还": "還",
+    "会": "會",
+    "对": "對",
+    "发": "發",
+    "头": "頭",
+    "么": "麼",
+    "没": "沒",
+    "让": "讓",
+    "过": "過",
+    "时": "時",
+    "间": "間",
+    "门": "門",
+    "声": "聲",
+    "来": "來",
+    "见": "見",
+    "现": "現",
+    "长": "長",
+    "体": "體",
+    "书": "書",
+    "气": "氣",
+    "脸": "臉",
+    "眼": "眼",
+    "边": "邊",
+    "从": "從",
+    "点": "點",
+    "样": "樣",
+    "听": "聽",
+    "话": "話",
+    "轻": "輕",
+    "动": "動",
+    "实": "實",
+    "觉": "覺",
+    "该": "該",
+    "着": "著",
+}
+
+
+def normalize_punctuation_for_zh_tw(text: str) -> str:
+    result = text or ""
+    # Normalize common ASCII punctuation from provider output into CJK punctuation.
+    result = result.replace("...", "……")
+    result = result.replace(",", "，")
+    result = result.replace(":", "：")
+    result = result.replace(";", "；")
+    result = result.replace("?", "？")
+    result = result.replace("!", "！")
+    result = result.replace("(", "（").replace(")", "）")
+    # Convert straight quotes in simple dialogue-like output to corner brackets conservatively.
+    result = re.sub(r'"([^"\n]{1,200})"', r'「\1」', result)
+    result = re.sub(r"'([^'\n]{1,200})'", r"『\1』", result)
+    # Collapse excessive punctuation introduced by provider formatting.
+    result = re.sub(r"。{2,}", "。", result)
+    result = re.sub(r"，{2,}", "，", result)
+    result = re.sub(r"！{2,}", "！", result)
+    result = re.sub(r"？{2,}", "？", result)
+    return result
+
+
+def normalize_taiwan_traditional(text: str) -> str:
+    result = text or ""
+    for simplified, traditional in sorted(TAIWAN_TRADITIONAL_REPLACEMENTS.items(), key=lambda item: len(item[0]), reverse=True):
+        result = result.replace(simplified, traditional)
+    return result
+
+
+def clean_provider_output(text: str) -> str:
+    result = text or ""
+    # Remove common model preambles without touching narrative content.
+    preamble_patterns = (
+        r"^以下(?:是|為).{0,20}翻譯[:：]\s*",
+        r"^譯文[:：]\s*",
+        r"^翻譯結果[:：]\s*",
+    )
+    for pattern in preamble_patterns:
+        result = re.sub(pattern, "", result.strip(), flags=re.IGNORECASE)
+    result = result.replace("\ufeff", "").replace("\x00", "")
+    result = result.replace("\r\n", "\n").replace("\r", "\n")
+    result = re.sub(r"[ \t]+\n", "\n", result)
+    result = re.sub(r"\n{3,}", "\n\n", result)
+    return result.strip()
+
+
+def format_translation_output(text: str, options: TxtTranslationOptions | None = None) -> str:
+    options = options or TxtTranslationOptions(input_path=Path("input.txt"), output_dir=Path("output"))
+    result = clean_provider_output(text)
+    if not options.output_formatter_enabled:
+        return result.strip()
+    result = normalize_punctuation_for_zh_tw(result)
+    if options.taiwan_traditional_normalization:
+        result = normalize_taiwan_traditional(result)
+    result = clean_provider_output(result)
+    return result.strip()
 
 def count_korean_characters(text: str) -> int:
     return len(re.findall(r"[\u1100-\u11ff\u3130-\u318f\uac00-\ud7a3]", text or ""))
@@ -417,8 +527,8 @@ def build_prompt_package(
         },
         "metadata": {
             "created_at": now_iso(),
-            "created_by": "NTPE 1.1 LTS Stage-04 TXT Translation Entry",
-            "package_version": "1.1-lts-stage-04",
+            "created_by": "NTPE 1.1 LTS Stage-05 TXT Translation Entry",
+            "package_version": "1.1-lts-stage-05",
         },
     }
 
@@ -506,6 +616,7 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
                 translation = generated_path.read_text(encoding="utf-8")
                 if options.strict_lock_terms:
                     translation = apply_locked_dictionary(translation, locked_dictionary)
+                translation = format_translation_output(translation, options)
                 qa_report = analyze_translation_quality(chunk, translation, options) if options.qa_enabled else {"passed": True, "issues": [], "metrics": {}}
                 qa_attempt_records.append({"qa_attempt": qa_attempt, "qa": qa_report})
                 if qa_report.get("passed") or options.qa_fail_policy == "warn":
@@ -594,6 +705,7 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
         final_text = "\n\n".join(translated_chunks).strip() + "\n"
         if options.strict_lock_terms:
             final_text = apply_locked_dictionary(final_text, locked_dictionary)
+        final_text = format_translation_output(final_text, options).strip() + "\n"
         save_text(final_output, final_text)
         update_character_memory(character_memory_path, matched_terms_for_memory)
 
@@ -609,6 +721,7 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
         "retry": {"max_retries": options.max_retries, "base_seconds": options.retry_base_seconds},
         "glossary": {"locked_terms": len(locked_dictionary), "matched_terms": len(matched_terms_for_memory), "strict_lock_terms": options.strict_lock_terms},
         "qa": {"enabled": options.qa_enabled, "fail_policy": options.qa_fail_policy, "min_length_ratio": options.min_length_ratio, "max_korean_chars": options.max_korean_chars, "max_repeated_lines": options.max_repeated_lines},
+        "formatter": {"enabled": options.output_formatter_enabled, "taiwan_traditional_normalization": options.taiwan_traditional_normalization},
         "character_memory": str(character_memory_path),
         "dry_run": options.dry_run,
         "completed_at": now_iso(),
@@ -619,7 +732,7 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
 
 
 def parse_args(argv: Iterable[str] | None = None) -> TxtTranslationOptions:
-    parser = argparse.ArgumentParser(description="NTPE 1.1 LTS Stage-04 TXT novel translation entry")
+    parser = argparse.ArgumentParser(description="NTPE 1.1 LTS Stage-05 TXT novel translation entry")
     parser.add_argument("input", help="input TXT file path")
     parser.add_argument("output", nargs="?", default="output", help="output directory")
     parser.add_argument("--chunk-size", type=int, default=DEFAULT_CHUNK_SIZE)
@@ -636,6 +749,8 @@ def parse_args(argv: Iterable[str] | None = None) -> TxtTranslationOptions:
     parser.add_argument("--min-length-ratio", type=float, default=DEFAULT_MIN_LENGTH_RATIO, help="minimum translated/source character ratio")
     parser.add_argument("--max-korean-chars", type=int, default=DEFAULT_MAX_KOREAN_CHARS, help="maximum allowed Korean characters after translation")
     parser.add_argument("--max-repeated-lines", type=int, default=DEFAULT_MAX_REPEATED_LINES, help="maximum allowed repeats for the same non-trivial output line")
+    parser.add_argument("--no-output-formatter", action="store_true", help="disable output punctuation/cleanup formatter")
+    parser.add_argument("--no-taiwan-normalization", action="store_true", help="disable built-in Taiwan Traditional Chinese normalization")
     parser.add_argument("--dry-run", action="store_true", help="build prompt packages without calling provider")
     ns = parser.parse_args(list(argv) if argv is not None else None)
     return TxtTranslationOptions(
@@ -656,6 +771,8 @@ def parse_args(argv: Iterable[str] | None = None) -> TxtTranslationOptions:
         min_length_ratio=max(0.0, ns.min_length_ratio),
         max_korean_chars=max(0, ns.max_korean_chars),
         max_repeated_lines=max(0, ns.max_repeated_lines),
+        output_formatter_enabled=not ns.no_output_formatter,
+        taiwan_traditional_normalization=not ns.no_taiwan_normalization,
     )
 
 

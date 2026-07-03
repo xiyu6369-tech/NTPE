@@ -1,0 +1,54 @@
+{
+  "package_id": "TXT_input_000001",
+  "project": {
+    "project_name": "NTPE Novel Translation",
+    "source_language": "ko",
+    "target_language": "zh-TW"
+  },
+  "session": {
+    "session_id": "TXT_input",
+    "file_name": "input.txt",
+    "chunk_index": 1,
+    "chunk_total": 1,
+    "resume_key": "input.txt:chunk:000001"
+  },
+  "model_profile": {
+    "engine": "NVIDIA",
+    "model": "meta/llama-3.3-70b-instruct",
+    "context_window": 131072,
+    "temperature": 0.15,
+    "top_p": 0.85,
+    "max_output_tokens": 1000
+  },
+  "source": {
+    "chunk_text": "정태의는 걸었다.\n",
+    "source_hash": "99c4d219f25944e9226d0b2961f577b450f64a03",
+    "char_count": 10
+  },
+  "context": {
+    "previous_summary": "",
+    "previous_chunk_tail": "",
+    "recent_characters": [],
+    "recent_terms": []
+  },
+  "knowledge": {
+    "locked_dictionary": {}
+  },
+  "prompt": {
+    "system_prompt": "你是 NTPE 的專業小說翻譯引擎。請將原文完整翻譯成自然流暢的台灣繁體中文。只輸出譯文，不要加解釋、標題或 Markdown。",
+    "user_prompt": "【翻譯規則】\n- 翻譯為自然流暢的台灣繁體中文。\n- 保留原文劇情、段落與敘事順序。\n- 不可刪減、不可摘要、不可自行補劇情。\n- 對話使用「」。\n- 人名與術語必須遵守鎖定譯名。\n- 不可留下大量韓文原文。\n\n【本段鎖定譯名】\n- 無\n\n【待翻譯內容】\n정태의는 걸었다.\n",
+    "prompt_mode": "translate_txt"
+  },
+  "qa_requirements": {
+    "check_korean_residue": true,
+    "check_name_rules": true,
+    "check_glossary": true,
+    "check_repetition": true,
+    "check_length_ratio": true
+  },
+  "metadata": {
+    "created_at": "2026-07-03T17:44:29",
+    "created_by": "NTPE 1.1 LTS Stage-05 TXT Translation Entry",
+    "package_version": "1.1-lts-stage-05"
+  }
+}

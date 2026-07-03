@@ -1,0 +1,12 @@
+{
+  "stage": "NTPE 1.1 LTS Stage-05",
+  "sha256": {
+    "ntpe_translate_txt.py": "6f55d88afbd6687211e2aff977e623dd838d2b7776b0b30dc263f063dcd4b2f9",
+    "lts/txt_translation_runtime.py": "90538c610e9504f6e116e3a59ec30c3c7ea8aac584cb1e9a9a38b0a31d93954e",
+    "tests/lts_stage_05/test_output_formatter.py": "f1e82da42e44f143f7454f896778258a470d40495d8ff2ffa0e3a9058d08f130",
+    "tests/lts_stage_05/launcher_output_formatter_test.py": "1faa767590a74e7f50e1bc00e4af3946562150a51aade28e3521353dc9fce771",
+    "README_NTPE_1_1_LTS_Stage_05.txt": "685e54e985b8f5fd08295bbeb06f75c1bd6d57388d43190c7971fa64f86f2603",
+    "CHANGELOG_LTS_05.md": "ada1548fa6dae53288532f2a3510f97d92c8b4c726e409496bcc88d50ce260a9",
+    "LTS_Stage_05_Manifest.json": "35afb6f9d1c6e0cf4c2de39a01e5e9615a3e2192930239f43cd94c0f9ec88700"
+  }
+}

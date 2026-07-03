@@ -3,7 +3,7 @@
   "status": "PREPARED",
   "version": "1.0.0",
   "source_version": "1.0-rc",
-  "generated_at": "2026-07-03T16:05:51.976512+00:00",
+  "generated_at": "2026-07-03T16:20:49.791996+00:00",
   "frozen_components": [
     "foundation",
     "cli",

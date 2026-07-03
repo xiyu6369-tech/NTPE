@@ -1,0 +1,19 @@
+{
+  "stage": "NTPE 1.1 LTS Stage-05",
+  "name": "Output Formatter / Taiwan Traditional Chinese Normalization",
+  "status": "complete",
+  "compatibility": "backward compatible with NTPE 1.0 Stable and LTS Stage-01/02/03/04",
+  "updated_files": [
+    "ntpe_translate_txt.py",
+    "lts/txt_translation_runtime.py",
+    "tests/lts_stage_05/test_output_formatter.py",
+    "tests/lts_stage_05/launcher_output_formatter_test.py",
+    "README_NTPE_1_1_LTS_Stage_05.txt",
+    "CHANGELOG_LTS_05.md"
+  ],
+  "tests": {
+    "result": "ALL PASS",
+    "total_passed": 38,
+    "command": "PYTHONPATH=. pytest -q tests/lts_stage_01 tests/lts_stage_02 tests/lts_stage_03 tests/lts_stage_04 tests/lts_stage_05 tests/stable_release_preparation tests/stable_release_finalization tests/stable_release_completion"
+  }
+}
