@@ -1,0 +1,15 @@
+{
+  "stage": "NTPE 1.1 LTS Stage-03",
+  "name": "Glossary / Character Memory Strengthening",
+  "status": "ALL PASS",
+  "test_result": "26 passed",
+  "files": [
+    "lts/txt_translation_runtime.py",
+    "ntpe_translate_txt.py",
+    "tests/lts_stage_03/test_glossary_character_memory.py",
+    "tests/lts_stage_03/launcher_glossary_character_memory_test.py",
+    "README_NTPE_1_1_LTS_Stage_03.txt",
+    "CHANGELOG_LTS_Stage_03.md",
+    "LTS_Stage_03_Glossary_Character_Memory_Report.md"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "lts/txt_translation_runtime.py": "dfd3f3227a172c8115f660dd8e6848aa33d8b169b443e08e122a569008da98d1",
+  "ntpe_translate_txt.py": "f7e5a83cca66559fe46455d86f569f8101b71ce540e9ae69f2dab09da92a6041",
+  "tests/lts_stage_03/test_glossary_character_memory.py": "c79c84064c6a0f5c45ca0002b1d88af4b8ca38c1368fe264cd8538c289f7d461",
+  "tests/lts_stage_03/launcher_glossary_character_memory_test.py": "56eaf510d7e6ccbbd4551bdf130f42db656fed92a59901547e2b5abbdd524d1e",
+  "README_NTPE_1_1_LTS_Stage_03.txt": "d729709082ef28eafaa661bb147cdb65938a199bcf4136414a097dd9b0184364",
+  "CHANGELOG_LTS_Stage_03.md": "dcd37faf0c44c820dc9c33651804ac35f461cbb18edee50f6c0dfc7364830070",
+  "LTS_Stage_03_Glossary_Character_Memory_Report.md": "d0dc413252331e98eb7bade052d0f1a24f46af7f362538910f1260d3b13b527b",
+  "LTS_Stage_03_Glossary_Character_Memory_Manifest.json": "76208396ac917178ed9863bea2895a72fa7c0edee1d4704f0452aa314da316ef"
+}

@@ -19,6 +19,7 @@ DEFAULT_CHUNK_SIZE = 1800
 DEFAULT_OUTPUT_SUFFIX = "_zh"
 DEFAULT_MAX_RETRIES = 3
 DEFAULT_RETRY_BASE_SECONDS = 5.0
+DEFAULT_CHARACTER_MEMORY = "memory/character_memory_lts.json"
 RETRYABLE_ERROR_PATTERNS = (
     "503",
     "429",
@@ -44,6 +45,9 @@ class TxtTranslationOptions:
     dry_run: bool = False
     max_retries: int = DEFAULT_MAX_RETRIES
     retry_base_seconds: float = DEFAULT_RETRY_BASE_SECONDS
+    glossary_path: Path | None = None
+    character_memory_path: Path | None = None
+    strict_lock_terms: bool = True
 
 
 def read_text_auto(path: str | Path) -> str:
@@ -109,28 +113,89 @@ def _split_oversized(text: str, chunk_size: int) -> list[str]:
     return pieces
 
 
-def load_locked_dictionary(root: Path) -> dict[str, str]:
+def load_glossary_text(path: str | Path) -> dict[str, str]:
+    path = Path(path)
+    if not path.exists():
+        return {}
+    pairs: dict[str, str] = {}
+    for raw_line in path.read_text(encoding="utf-8-sig", errors="ignore").splitlines():
+        line = raw_line.strip()
+        if not line or line.startswith("#"):
+            continue
+        delimiter = "=" if "=" in line else "->" if "->" in line else "→" if "→" in line else None
+        if delimiter is None:
+            continue
+        src, target = line.split(delimiter, 1)
+        src = src.strip().strip("- ").strip()
+        target = target.strip()
+        if src and target:
+            pairs[src] = target
+    return pairs
+
+
+def load_json_pairs(path: str | Path) -> dict[str, str]:
+    path = Path(path)
+    if not path.exists():
+        return {}
+    try:
+        data = json.loads(path.read_text(encoding="utf-8-sig"))
+    except Exception:
+        return {}
+    return _extract_pairs(data)
+
+
+def load_locked_dictionary(root: Path, options: TxtTranslationOptions | None = None) -> dict[str, str]:
     locked: dict[str, str] = {}
     for path in (root / "character_override.json", root / "glossary_override.json"):
-        if not path.exists():
-            continue
-        try:
-            data = json.loads(path.read_text(encoding="utf-8-sig"))
-        except Exception:
-            continue
-        locked.update(_extract_pairs(data))
-    glossary_txt = root / "glossary.txt"
-    if glossary_txt.exists():
-        for line in glossary_txt.read_text(encoding="utf-8-sig", errors="ignore").splitlines():
-            if "=" in line:
-                src, target = line.split("=", 1)
-                if src.strip() and target.strip():
-                    locked[src.strip()] = target.strip()
-            elif "->" in line:
-                src, target = line.split("->", 1)
-                if src.strip() and target.strip():
-                    locked[src.strip()] = target.strip()
+        locked.update(load_json_pairs(path))
+
+    locked.update(load_glossary_text(root / "glossary.txt"))
+
+    if options and options.glossary_path:
+        custom_glossary = options.glossary_path if options.glossary_path.is_absolute() else root / options.glossary_path
+        locked.update(load_glossary_text(custom_glossary))
+        locked.update(load_json_pairs(custom_glossary))
+
+    memory_path = resolve_character_memory_path(root, options)
+    if memory_path:
+        locked.update(load_json_pairs(memory_path))
     return locked
+
+
+def resolve_character_memory_path(root: Path, options: TxtTranslationOptions | None = None) -> Path:
+    if options and options.character_memory_path:
+        return options.character_memory_path if options.character_memory_path.is_absolute() else root / options.character_memory_path
+    return root / DEFAULT_CHARACTER_MEMORY
+
+
+def apply_locked_dictionary(text: str, locked_dictionary: dict[str, str]) -> str:
+    result = text
+    for source, target in sorted(locked_dictionary.items(), key=lambda item: len(item[0]), reverse=True):
+        if not source or not target:
+            continue
+        # Remove accidental Korean/source residue and normalize any exact source term that survived provider output.
+        result = result.replace(source, target)
+    return result
+
+
+def collect_matched_locked_terms(chunks: list[str], locked_dictionary: dict[str, str]) -> dict[str, str]:
+    source_text = "\n".join(chunks)
+    return {src: target for src, target in locked_dictionary.items() if src and src in source_text}
+
+
+def update_character_memory(path: str | Path, matched_terms: dict[str, str]) -> None:
+    if not matched_terms:
+        return
+    path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    existing = load_json_pairs(path)
+    existing.update(matched_terms)
+    payload = {
+        "version": "1.1-lts-stage-03",
+        "updated_at": now_iso(),
+        "characters": existing,
+    }
+    save_json(path, payload)
 
 
 
@@ -141,14 +206,14 @@ def get_resume_state_path(output_dir: Path, input_path: Path) -> Path:
 def load_resume_state(path: str | Path) -> dict:
     path = Path(path)
     if not path.exists():
-        return {"version": "1.1-lts-stage-02", "chunks": {}, "events": []}
+        return {"version": "1.1-lts-stage-03", "chunks": {}, "events": []}
     try:
         data = json.loads(path.read_text(encoding="utf-8-sig"))
     except Exception:
-        return {"version": "1.1-lts-stage-02", "chunks": {}, "events": []}
+        return {"version": "1.1-lts-stage-03", "chunks": {}, "events": []}
     if not isinstance(data, dict):
-        return {"version": "1.1-lts-stage-02", "chunks": {}, "events": []}
-    data.setdefault("version", "1.1-lts-stage-02")
+        return {"version": "1.1-lts-stage-03", "chunks": {}, "events": []}
+    data.setdefault("version", "1.1-lts-stage-03")
     data.setdefault("chunks", {})
     data.setdefault("events", [])
     return data
@@ -287,8 +352,8 @@ def build_prompt_package(
         },
         "metadata": {
             "created_at": now_iso(),
-            "created_by": "NTPE 1.1 LTS Stage-02 TXT Translation Entry",
-            "package_version": "1.1-lts-stage-02",
+            "created_by": "NTPE 1.1 LTS Stage-03 TXT Translation Entry",
+            "package_version": "1.1-lts-stage-03",
         },
     }
 
@@ -309,7 +374,9 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
     chunk_out_dir = output_dir / f"{input_path.stem}_chunks"
     chunk_out_dir.mkdir(parents=True, exist_ok=True)
 
-    locked_dictionary = load_locked_dictionary(root_path)
+    locked_dictionary = load_locked_dictionary(root_path, options)
+    character_memory_path = resolve_character_memory_path(root_path, options)
+    matched_terms_for_memory = collect_matched_locked_terms(chunks, locked_dictionary)
     engine = TranslationEngine(root=root_path)
     translated_chunks: list[str] = []
     records: list[dict] = []
@@ -346,6 +413,8 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
 
         if reusable_state:
             translation = chunk_file.read_text(encoding="utf-8")
+            if options.strict_lock_terms:
+                translation = apply_locked_dictionary(translation, locked_dictionary)
             result = {"status": "skipped", "output_path": str(chunk_file), "package_id": package["package_id"], "attempt": 0}
         elif options.dry_run:
             translation = ""
@@ -384,6 +453,8 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
                 }
             generated_path = Path(result["output_path"])
             translation = generated_path.read_text(encoding="utf-8")
+            if options.strict_lock_terms:
+                translation = apply_locked_dictionary(translation, locked_dictionary)
             save_text(chunk_file, translation)
             resume_state["chunks"][chunk_key] = {
                 "status": "success",
@@ -400,7 +471,11 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
 
     final_output = output_dir / f"{input_path.stem}{DEFAULT_OUTPUT_SUFFIX}.txt"
     if not options.dry_run:
-        save_text(final_output, "\n\n".join(translated_chunks).strip() + "\n")
+        final_text = "\n\n".join(translated_chunks).strip() + "\n"
+        if options.strict_lock_terms:
+            final_text = apply_locked_dictionary(final_text, locked_dictionary)
+        save_text(final_output, final_text)
+        update_character_memory(character_memory_path, matched_terms_for_memory)
 
     manifest = {
         "status": "success",
@@ -412,6 +487,8 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
         "resume": options.resume,
         "resume_state": str(resume_state_path),
         "retry": {"max_retries": options.max_retries, "base_seconds": options.retry_base_seconds},
+        "glossary": {"locked_terms": len(locked_dictionary), "matched_terms": len(matched_terms_for_memory), "strict_lock_terms": options.strict_lock_terms},
+        "character_memory": str(character_memory_path),
         "dry_run": options.dry_run,
         "completed_at": now_iso(),
         "records": records,
@@ -430,6 +507,9 @@ def parse_args(argv: Iterable[str] | None = None) -> TxtTranslationOptions:
     parser.add_argument("--no-resume", action="store_true", help="disable chunk resume")
     parser.add_argument("--max-retries", type=int, default=DEFAULT_MAX_RETRIES, help="retry count for retryable provider errors")
     parser.add_argument("--retry-base-seconds", type=float, default=DEFAULT_RETRY_BASE_SECONDS, help="base seconds for exponential retry backoff")
+    parser.add_argument("--glossary", dest="glossary_path", default=None, help="optional glossary file, supports source=target or source->target")
+    parser.add_argument("--character-memory", dest="character_memory_path", default=None, help="optional character memory JSON path")
+    parser.add_argument("--no-strict-lock-terms", action="store_true", help="disable output source-term normalization")
     parser.add_argument("--dry-run", action="store_true", help="build prompt packages without calling provider")
     ns = parser.parse_args(list(argv) if argv is not None else None)
     return TxtTranslationOptions(
@@ -442,6 +522,9 @@ def parse_args(argv: Iterable[str] | None = None) -> TxtTranslationOptions:
         dry_run=ns.dry_run,
         max_retries=max(0, ns.max_retries),
         retry_base_seconds=max(0.0, ns.retry_base_seconds),
+        glossary_path=Path(ns.glossary_path) if ns.glossary_path else None,
+        character_memory_path=Path(ns.character_memory_path) if ns.character_memory_path else None,
+        strict_lock_terms=not ns.no_strict_lock_terms,
     )
 
 
