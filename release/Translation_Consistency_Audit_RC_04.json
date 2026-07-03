@@ -1,0 +1,180 @@
+{
+  "stage": "RC.4",
+  "status": "PASS",
+  "passed": true,
+  "baseline": {
+    "stage": "RC.4",
+    "status": "TRANSLATION_CONSISTENCY_AUDITED",
+    "created_at": "2026-07-03T15:34:15.924089+00:00",
+    "rules": [
+      {
+        "valid": true,
+        "name": "glossary_lock",
+        "scope": "translation.quality.glossary",
+        "required": true,
+        "passed": true,
+        "severity": "blocking",
+        "metadata": {
+          "rc_stage": "RC.4",
+          "feature_added": "false"
+        }
+      },
+      {
+        "valid": true,
+        "name": "character_name_lock",
+        "scope": "memory.character_registry",
+        "required": true,
+        "passed": true,
+        "severity": "blocking",
+        "metadata": {
+          "rc_stage": "RC.4",
+          "feature_added": "false"
+        }
+      },
+      {
+        "valid": true,
+        "name": "term_normalization",
+        "scope": "translation.quality.term_normalizer",
+        "required": true,
+        "passed": true,
+        "severity": "blocking",
+        "metadata": {
+          "rc_stage": "RC.4",
+          "feature_added": "false"
+        }
+      },
+      {
+        "valid": true,
+        "name": "traditional_chinese_output",
+        "scope": "translation.quality.style_enforcer",
+        "required": true,
+        "passed": true,
+        "severity": "blocking",
+        "metadata": {
+          "rc_stage": "RC.4",
+          "feature_added": "false"
+        }
+      },
+      {
+        "valid": true,
+        "name": "prompt_contract",
+        "scope": "core.prompt_builder",
+        "required": true,
+        "passed": true,
+        "severity": "blocking",
+        "metadata": {
+          "rc_stage": "RC.4",
+          "feature_added": "false"
+        }
+      },
+      {
+        "valid": true,
+        "name": "narrative_context",
+        "scope": "core.narrative",
+        "required": true,
+        "passed": true,
+        "severity": "blocking",
+        "metadata": {
+          "rc_stage": "RC.4",
+          "feature_added": "false"
+        }
+      },
+      {
+        "valid": true,
+        "name": "quality_gate",
+        "scope": "translation.quality.pipeline",
+        "required": true,
+        "passed": true,
+        "severity": "blocking",
+        "metadata": {
+          "rc_stage": "RC.4",
+          "feature_added": "false"
+        }
+      },
+      {
+        "valid": true,
+        "name": "workflow_preservation",
+        "scope": "workflow",
+        "required": true,
+        "passed": true,
+        "severity": "blocking",
+        "metadata": {
+          "rc_stage": "RC.4",
+          "feature_added": "false"
+        }
+      },
+      {
+        "valid": true,
+        "name": "session_resume_consistency",
+        "scope": "sessions",
+        "required": true,
+        "passed": true,
+        "severity": "blocking",
+        "metadata": {
+          "rc_stage": "RC.4",
+          "feature_added": "false"
+        }
+      },
+      {
+        "valid": true,
+        "name": "provider_response_shape",
+        "scope": "core.ai_provider",
+        "required": true,
+        "passed": true,
+        "severity": "blocking",
+        "metadata": {
+          "rc_stage": "RC.4",
+          "feature_added": "false"
+        }
+      },
+      {
+        "valid": true,
+        "name": "rest_translation_path",
+        "scope": "external_api",
+        "required": true,
+        "passed": true,
+        "severity": "blocking",
+        "metadata": {
+          "rc_stage": "RC.4",
+          "feature_added": "false"
+        }
+      },
+      {
+        "valid": true,
+        "name": "web_ui_translation_surface",
+        "scope": "web_ui",
+        "required": true,
+        "passed": true,
+        "severity": "blocking",
+        "metadata": {
+          "rc_stage": "RC.4",
+          "feature_added": "false"
+        }
+      }
+    ],
+    "validation": {
+      "valid": true,
+      "stage": "RC.4",
+      "status": "TRANSLATION_CONSISTENCY_AUDITED",
+      "rule_count": 12,
+      "required_present": true,
+      "failed_rules": [],
+      "translation_consistency_regression_detected": false,
+      "public_api_changed": false,
+      "product_feature_added": false
+    }
+  },
+  "audit": {
+    "glossary_consistency": true,
+    "character_name_consistency": true,
+    "traditional_chinese_consistency": true,
+    "prompt_narrative_quality_path": true,
+    "runtime_workflow_rest_webui_path": true,
+    "translation_consistency_regression_detected": false,
+    "rc3_performance_baseline_preserved": true
+  },
+  "hashes": {
+    "translation_consistency_hash": "c7c1dc25ce5e7b807d27ea7046ee8fbf465f374dce8dec2b9bcef9a1960fc0db",
+    "audit_validation_hash": "d6e98195265857ac737fae0e42d5f8cc03dd61778b562a878907868e1e0a8480"
+  }
+}
