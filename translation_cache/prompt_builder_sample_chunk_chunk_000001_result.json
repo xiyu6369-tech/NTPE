@@ -1,8 +1,8 @@
 {
   "result": {
     "status": "success",
-    "package_id": "PKG_SESSION_PASSION_20260629_002851_000001",
-    "translated_at": "2026-06-29T00:28:52",
+    "package_id": "PKG_SESSION_PROMPT_BUILDER_TEST_000001",
+    "translated_at": "2026-07-04T01:18:53",
     "output_path": "D:\\Python\\NTPE\\translated\\prompt_builder_sample_chunk_chunk_000001_zh.txt",
     "cache_path": "D:\\Python\\NTPE\\translation_cache\\prompt_builder_sample_chunk_chunk_000001_result.json",
     "qa": {
@@ -10,20 +10,20 @@
       "issues": [],
       "korean_residue_count": 0,
       "source_length": 31,
-      "translation_length": 16
+      "translation_length": 17
     },
-    "package_path": "D:\\Python\\NTPE\\prompt_packages\\SESSION_PASSION_20260629_002851_chunk_000001.json"
+    "package_path": "D:\\Python\\NTPE\\prompt_packages\\prompt_package_sample.json"
   },
-  "translation": "伊萊走進房間，鄭泰義看了他一眼。\n",
+  "translation": "伊萊走進了房間裡。\n鄭泰義看著他。\n",
   "package": {
-    "package_id": "PKG_SESSION_PASSION_20260629_002851_000001",
+    "package_id": "PKG_SESSION_PROMPT_BUILDER_TEST_000001",
     "project": {
       "project_name": "Passion",
       "source_language": "ko",
       "target_language": "zh-TW"
     },
     "session": {
-      "session_id": "SESSION_PASSION_20260629_002851",
+      "session_id": "SESSION_PROMPT_BUILDER_TEST",
       "file_name": "prompt_builder_sample_chunk.txt",
       "chunk_index": 1,
       "chunk_total": 1,
@@ -133,7 +133,7 @@
       "check_length_ratio": true
     },
     "metadata": {
-      "created_at": "2026-06-29T00:28:51",
+      "created_at": "2026-06-29T00:18:40",
       "created_by": "NTPE Prompt Builder v1.0 Core",
       "package_version": "1.0"
     }

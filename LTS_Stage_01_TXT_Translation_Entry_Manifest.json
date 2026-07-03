@@ -1,0 +1,43 @@
+{
+  "stage": "NTPE 1.1 LTS Stage-01",
+  "name": "TXT Translation Entry",
+  "version": "1.1-lts-stage-01",
+  "files": [
+    {
+      "path": "ntpe_translate_txt.py",
+      "sha256": "f7e5a83cca66559fe46455d86f569f8101b71ce540e9ae69f2dab09da92a6041",
+      "size": 324
+    },
+    {
+      "path": "lts/txt_translation_runtime.py",
+      "sha256": "c5744cdad2b25f3d55a380201c507c4356ea4794c377a130623814543e7f6b89",
+      "size": 12798
+    },
+    {
+      "path": "README_NTPE_1_1_LTS_Stage_01.txt",
+      "sha256": "63dbbbd114df95d63870253ae77e13ad36d047a3137b08d0d1c50fe7bc2c3780",
+      "size": 620
+    },
+    {
+      "path": "CHANGELOG_NTPE_1_1_LTS_Stage_01.md",
+      "sha256": "904ee6c77acbc9ab2f771ce0398aaa0b6ea358355ce5854ffbf3a1fa349dca0b",
+      "size": 486
+    },
+    {
+      "path": "LTS_Stage_01_TXT_Translation_Entry_Report.md",
+      "sha256": "e35cbe05e806f1b68d475c1089074d9fd78ef9c8eb9d194a36ceeeb517afff6f",
+      "size": 732
+    },
+    {
+      "path": "tests/lts_stage_01/test_txt_translation_runtime.py",
+      "sha256": "67fa7b730fd1793bbfde918375c8c39ff8267c62f9609f00ebbccc8eb34e6e40",
+      "size": 2027
+    },
+    {
+      "path": "tests/lts_stage_01/launcher_txt_translation_entry_test.py",
+      "sha256": "4fce4ce06099d848f4aef3e139085a4ef442a07ba6dfbdae9a264fb93cd03762",
+      "size": 667
+    }
+  ],
+  "compatibility": "NTPE 1.0 Stable compatible; no frozen module overwritten"
+}
