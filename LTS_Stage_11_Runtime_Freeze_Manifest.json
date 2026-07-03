@@ -1,0 +1,129 @@
+{
+  "version": "1.1-lts-stage-11",
+  "release_line": "NTPE 1.1 LTS",
+  "stage": "Stage-11 LTS Runtime Freeze / Validation",
+  "status": "frozen",
+  "created_at": "2026-07-03T19:34:34",
+  "compatibility_policy": {
+    "foundation_v1_0": "frozen",
+    "cli": "frozen",
+    "sdk": "frozen",
+    "integration": "frozen",
+    "workflow": "frozen",
+    "platform_services": "frozen",
+    "runtime_api": "frozen",
+    "external_rest_api": "frozen",
+    "web_ui": "frozen",
+    "packaging_release": "frozen",
+    "stable_1_0": "preserved",
+    "lts_1_1": "incremental_additive"
+  },
+  "runtime_files": [
+    {
+      "path": "ntpe_translate_txt.py",
+      "sha256": "6f55d88afbd6687211e2aff977e623dd838d2b7776b0b30dc263f063dcd4b2f9",
+      "size_bytes": 386
+    },
+    {
+      "path": "ntpe_translate_batch.py",
+      "sha256": "725033d3e89b66d634b0b6114fd233799aff65136f5ced55e7aab35ffdee6c2b",
+      "size_bytes": 363
+    },
+    {
+      "path": "ntpe_batch_monitor.py",
+      "sha256": "d3967e04ba782562692dbe02588781cd56049cdd6454625f633b14457b09f6cf",
+      "size_bytes": 341
+    },
+    {
+      "path": "ntpe_long_run_recovery.py",
+      "sha256": "24626ed096a7862913f886b65f9f890f6570e78a68974ac0f776e88365ddadcf",
+      "size_bytes": 335
+    },
+    {
+      "path": "lts/txt_translation_runtime.py",
+      "sha256": "90538c610e9504f6e116e3a59ec30c3c7ea8aac584cb1e9a9a38b0a31d93954e",
+      "size_bytes": 32707
+    },
+    {
+      "path": "lts/batch_translation_runtime.py",
+      "sha256": "762af137db1d5f2ab28d40f6834727ad062caee4888ed381e5c00435d830895d",
+      "size_bytes": 27591
+    },
+    {
+      "path": "lts/batch_runtime_monitor.py",
+      "sha256": "4a5e5b9749a03edb39b3823f78ede7cfd3dd0a88e57d934d4f50d5b262bd46eb",
+      "size_bytes": 11023
+    },
+    {
+      "path": "lts/long_run_recovery.py",
+      "sha256": "3344463809f41249ea91fcc08d228c648cb00a981e93a82584d12ed3cf10d75b",
+      "size_bytes": 11565
+    }
+  ],
+  "stage_reports": [
+    {
+      "path": "LTS_Stage_01_TXT_Translation_Entry_Report.md",
+      "sha256": "e35cbe05e806f1b68d475c1089074d9fd78ef9c8eb9d194a36ceeeb517afff6f",
+      "size_bytes": 732
+    },
+    {
+      "path": "LTS_Stage_02_Resume_Retry_Report.md",
+      "sha256": "d113c424766719986d5b9dd816ad15fd4eb28d85b62b2377584a0aabbc803656",
+      "size_bytes": 922
+    },
+    {
+      "path": "LTS_Stage_03_Glossary_Character_Memory_Report.md",
+      "sha256": "d0dc413252331e98eb7bade052d0f1a24f46af7f362538910f1260d3b13b527b",
+      "size_bytes": 818
+    },
+    {
+      "path": "LTS_Stage_04_Translation_QA_Report.md",
+      "sha256": "97dccb1bb68c2f9ee2c646cc5bbbb3deb7e42d94fdfcca6ece9ed4e656725240",
+      "size_bytes": 581
+    },
+    {
+      "path": "LTS_Stage_05_Report.md",
+      "sha256": "2252867f06ce968da22c1e0c8f5af7a6a304c3f8f0516611d16aa9b459f9e2d6",
+      "size_bytes": 506
+    },
+    {
+      "path": "Clean_Project_Tool_Report_1_1_LTS.md",
+      "sha256": "e710bcf4dae7840a2560e0e931ab35f51f1ee7f42bae0425b35d216788d4c202",
+      "size_bytes": 655
+    },
+    {
+      "path": "LTS_Stage_06_Batch_Translation_Report.md",
+      "sha256": "35e1a3a9c11cfcd7c04905488c242c3b1ebcf347675797f9b549af5a5c9cc85c",
+      "size_bytes": 727
+    },
+    {
+      "path": "LTS_Stage_07_Batch_Progress_Report.md",
+      "sha256": "357630861b6d27f74854e919c73c8ef707a7b02223846c2f18e2a35e5ac01ff9",
+      "size_bytes": 801
+    },
+    {
+      "path": "LTS_Stage_08_Batch_Failure_Recovery_Report.md",
+      "sha256": "61bbdb72208a13dc00ca858786f026747c07bdb99bf50f4558d66ece99461ad1",
+      "size_bytes": 254
+    },
+    {
+      "path": "LTS_Stage_09_Batch_Runtime_Monitor_Report.md",
+      "sha256": "ab5c5faab42c22322cdadc4ecbd3f48fbd9c73360de88ff9ed5ec0e433c4bd7d",
+      "size_bytes": 597
+    },
+    {
+      "path": "LTS_Stage_10_Long_Run_Stability_Report.md",
+      "sha256": "ed56bf8d2703d492fdb3a4b34763f84a47d754144085df992521ea34a78cc6db",
+      "size_bytes": 856
+    }
+  ],
+  "missing_runtime_files": [],
+  "missing_stage_reports": [],
+  "validation": {
+    "runtime_file_count": 8,
+    "stage_report_count": 11,
+    "missing_count": 0,
+    "selected_regression_suite": "Stable + LTS Stage-01~10 + Clean Project Tool + Stage-11",
+    "expected_result": "ALL PASS"
+  }
+}
