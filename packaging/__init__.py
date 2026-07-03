@@ -56,3 +56,23 @@ __all__ += [
     "build_release_manifest",
     "load_release_manifest",
 ]
+
+# Stage-14.3 Build Profiles exports
+from .build_profile import BuildProfile
+from .build_profiles import (
+    DEFAULT_PROFILE_ORDER,
+    BuildProfileRegistry,
+    build_profile_manifest,
+    default_build_profiles,
+    load_build_profiles,
+)
+
+PACKAGING_STAGE = "Stage-14.3"
+__all__ += [
+    "BuildProfile",
+    "BuildProfileRegistry",
+    "DEFAULT_PROFILE_ORDER",
+    "default_build_profiles",
+    "build_profile_manifest",
+    "load_build_profiles",
+]

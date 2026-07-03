@@ -1,0 +1,107 @@
+{
+  "stage": "Stage-14.3",
+  "profile_count": 4,
+  "profiles": [
+    {
+      "name": "development",
+      "version_suffix": "dev",
+      "debug": true,
+      "optimize": false,
+      "include_tests": true,
+      "include_docs": true,
+      "include_reports": true,
+      "include_source": true,
+      "include_web_ui": true,
+      "artifact_kinds": [
+        "full",
+        "increment",
+        "source"
+      ],
+      "metadata": {
+        "audience": "developers",
+        "stability": "development"
+      }
+    },
+    {
+      "name": "beta",
+      "version_suffix": "beta",
+      "debug": false,
+      "optimize": false,
+      "include_tests": true,
+      "include_docs": true,
+      "include_reports": true,
+      "include_source": true,
+      "include_web_ui": true,
+      "artifact_kinds": [
+        "full",
+        "increment",
+        "portable",
+        "source"
+      ],
+      "metadata": {
+        "audience": "beta-testers",
+        "stability": "beta"
+      }
+    },
+    {
+      "name": "rc",
+      "version_suffix": "rc",
+      "debug": false,
+      "optimize": true,
+      "include_tests": true,
+      "include_docs": true,
+      "include_reports": true,
+      "include_source": true,
+      "include_web_ui": true,
+      "artifact_kinds": [
+        "full",
+        "increment",
+        "portable",
+        "wheel",
+        "source"
+      ],
+      "metadata": {
+        "audience": "release-candidate",
+        "stability": "rc"
+      }
+    },
+    {
+      "name": "production",
+      "version_suffix": "stable",
+      "debug": false,
+      "optimize": true,
+      "include_tests": false,
+      "include_docs": true,
+      "include_reports": true,
+      "include_source": true,
+      "include_web_ui": true,
+      "artifact_kinds": [
+        "full",
+        "portable",
+        "wheel",
+        "source"
+      ],
+      "metadata": {
+        "audience": "end-users",
+        "stability": "production"
+      }
+    }
+  ],
+  "validation": {
+    "valid": true,
+    "count": 4,
+    "profiles": [
+      "development",
+      "beta",
+      "rc",
+      "production"
+    ],
+    "missing": [],
+    "invalid": []
+  },
+  "compatibility": {
+    "uses_stage_14_2_release_manifest": true,
+    "additive_only": true,
+    "frozen_api_safe": true
+  }
+}
