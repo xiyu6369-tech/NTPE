@@ -56,3 +56,11 @@
 - Added `StructureIntegrityReport` for structured and summary reporting.
 - Added Stage-15.5 launcher and unit tests.
 - Preserved backward compatibility with Foundation v1.0, NTPE 1.1 LTS Frozen, Stage-14 Freeze, and Stage-15.1–15.4 APIs.
+## NTPE 1.2 Professional Stage-15.6
+
+- Added Quality Report / Export Layer.
+- Added deterministic JSON, TXT, metrics JSON, and issues CSV exports.
+- Added metadata secret masking for exported reports.
+- Added Stage-15.6 launcher and unit tests.
+- Preserved Foundation v1.0, NTPE 1.1 LTS Frozen, Stage-14 Freeze, and Stage-15.1-15.5 compatibility.
+

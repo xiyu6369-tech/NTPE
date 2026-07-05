@@ -1,24 +1,28 @@
-# NTPE 1.2 Professional Stage-14.6 Delta
+# NTPE 1.2 Professional Stage-14.2
 
-Provider Security / Secret Protection layer.
+Stage-14.2 adds the Provider Credential / Config Layer on top of the Stage-14 AI Provider Framework and Stage-14.1 runtime binding.
 
-Apply this delta on top of Stage-14.5 / GitHub main.
+## Scope
 
-## Added
+- Provider config schema
+- Provider profile loading
+- Environment variable credential mapping
+- Credential registry
+- Credential validation
+- Secret masking for logs/manifests
+- Retry defaults from config
+- Rate limit defaults from config
+- Runtime config manifest APIs
+- Runtime provider config template export
 
-- Provider secret protection runtime
-- Log-safe secret redaction
-- Nested payload redaction
-- Secret fingerprinting
-- Credential audit scanner
-- Environment variable allow-list validation
-- Manifest security feature flags
-- Stage-14.6 launcher and pytest coverage
+## Default credential environment variables
 
-## Validation
+- NVIDIA: `NVIDIA_API_KEY`
+- OpenAI: `OPENAI_API_KEY`
+- Gemini: `GEMINI_API_KEY`
+- Anthropic: `ANTHROPIC_API_KEY`
+- OpenRouter: `OPENROUTER_API_KEY`
+- Ollama: `OLLAMA_API_KEY`
+- Custom Provider: `NTPE_CUSTOM_PROVIDER_API_KEY`
 
-- Stage-14.6 Launcher PASS
-- Pytest targeted: 9 passed
-- Project Validator: ALL PASS
-- Python compile: 1083 files compile
-- Tests detected: 280
+No secret value is stored in the committed default config.

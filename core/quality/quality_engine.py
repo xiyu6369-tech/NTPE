@@ -15,8 +15,8 @@ from .quality_result import QualityResult
 class TranslationQualityEngine:
     """Public Stage-15 Translation Quality Engine facade."""
 
-    stage = "Stage-15.5"
-    name = "Translation Quality Engine Core + Completeness + Consistency + Repetition + Structure Integrity"
+    stage = "Stage-15.6"
+    name = "Translation Quality Engine Core + Completeness + Consistency + Repetition + Structure Integrity + Export Layer"
 
     def __init__(
         self,

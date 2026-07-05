@@ -184,3 +184,27 @@ __all__ = list(dict.fromkeys(__all__ + [
     "StructureIntegrityRule",
     "build_structure_rules",
 ]))
+
+# NTPE 1.2 Professional Stage-15.6 Quality Report / Export Layer exports
+try:
+    from .export_layer import (
+        QualityExportBundle,
+        QualityExportOptions,
+        QualityReportExporter,
+        QualityReportSerializer,
+        SecretMasker,
+    )
+except Exception:
+    QualityExportBundle = None
+    QualityExportOptions = None
+    QualityReportExporter = None
+    QualityReportSerializer = None
+    SecretMasker = None
+
+__all__ = list(dict.fromkeys(__all__ + [
+    "QualityExportBundle",
+    "QualityExportOptions",
+    "QualityReportExporter",
+    "QualityReportSerializer",
+    "SecretMasker",
+]))

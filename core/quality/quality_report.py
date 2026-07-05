@@ -21,8 +21,8 @@ class QualityReport:
 
     def to_dict(self) -> Dict[str, Any]:
         return {
-            "stage": "Stage-15.2",
-            "engine": "Translation Quality Engine Core + Completeness Detection",
+            "stage": "Stage-15.6",
+            "engine": "Translation Quality Engine Core + Export Layer",
             "segment_id": self.context.segment_id,
             "session_id": self.context.session_id,
             "provider_name": self.context.provider_name,
@@ -41,7 +41,7 @@ class QualityReport:
         data = self.result.to_dict()
         lines = [
             "NTPE Translation Quality Report",
-            "Stage: Stage-15.2",
+            "Stage: Stage-15.6",
             f"Status: {data['status']}",
             f"Score: {data['score']}",
             f"Issues: {len(data['issues'])}",
@@ -49,3 +49,13 @@ class QualityReport:
         for issue in data["issues"]:
             lines.append(f"- [{issue['severity']}] {issue['rule_name']}: {issue['message']}")
         return "\n".join(lines) + "\n"
+
+    def export_files(self, output_dir: str | Path, *, basename: str | None = None):
+        from .export_layer import QualityReportExporter
+
+        return QualityReportExporter(output_dir).export(
+            self.context,
+            self.result,
+            basename=basename or self.context.segment_id or self.context.session_id,
+        )
+
