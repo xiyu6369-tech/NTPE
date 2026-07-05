@@ -7,6 +7,7 @@ from core.translation_engine.translation_engine import TranslationEngine
 from .runtime_contract import build_runtime_contract, validate_runtime_contract
 from .runtime_provider import RuntimeProviderAdapter, RuntimeProviderPolicy
 from .runtime_qa import RuntimeQAPolicy, analyze_runtime_quality
+from .runtime_recovery import RuntimeCheckpointKey, mark_checkpoint_completed, recovery_summary, update_checkpoint
 
 
 class TranslationRuntime:
@@ -17,7 +18,7 @@ class TranslationRuntime:
     making launcher, TXT, and batch translation share one official runtime entry.
     """
 
-    version = "1.2-professional-stage-03"
+    version = "1.2-professional-stage-04"
 
     def __init__(self, root: str | Path | None = None, api_key: str | None = None):
         self.root = Path(root) if root else Path(__file__).resolve().parents[2]
@@ -43,6 +44,24 @@ class TranslationRuntime:
 
     def analyze_quality(self, source_text: str, translated_text: str, policy: RuntimeQAPolicy | None = None) -> dict[str, Any]:
         return analyze_runtime_quality(source_text, translated_text, policy or self.qa_policy)
+
+    def checkpoint(self, scope: str, name: str, **cursor: Any) -> dict[str, Any]:
+        key = RuntimeCheckpointKey(scope=scope, name=name)
+        checkpoint = update_checkpoint(self.root, key, status="running", cursor=cursor)
+        return checkpoint.to_dict()
+
+    def checkpoint_error(self, scope: str, name: str, error: str, **cursor: Any) -> dict[str, Any]:
+        key = RuntimeCheckpointKey(scope=scope, name=name)
+        checkpoint = update_checkpoint(self.root, key, status="failed", cursor=cursor, error={"message": error})
+        return checkpoint.to_dict()
+
+    def checkpoint_completed(self, scope: str, name: str, **metadata: Any) -> dict[str, Any]:
+        key = RuntimeCheckpointKey(scope=scope, name=name)
+        checkpoint = mark_checkpoint_completed(self.root, key, metadata=metadata)
+        return checkpoint.to_dict()
+
+    def recovery_summary(self) -> dict[str, Any]:
+        return recovery_summary(self.root)
 
     def translate_txt(self, options: Any) -> dict[str, Any]:
         # Lazy import prevents circular imports and preserves the frozen LTS module.

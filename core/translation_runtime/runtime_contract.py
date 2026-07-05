@@ -47,6 +47,10 @@ REQUIRED_ENTRYPOINTS: tuple[str, ...] = (
     "main_txt",
     "main_batch",
     "analyze_quality",
+    "checkpoint",
+    "checkpoint_error",
+    "checkpoint_completed",
+    "recovery_summary",
 )
 
 OFFICIAL_PIPELINE: tuple[str, ...] = (
@@ -72,6 +76,7 @@ RUNTIME_CAPABILITIES: tuple[RuntimeCapability, ...] = (
     RuntimeCapability("lts_compatibility", True, "Keep NTPE 1.1 LTS TXT and batch runtime contracts callable."),
     RuntimeCapability("provider_boundary", True, "Route package translation through an observable runtime provider adapter."),
     RuntimeCapability("qa_boundary", True, "Expose shared runtime QA analysis for future TXT and batch expansion."),
+    RuntimeCapability("runtime_recovery", True, "Persist runtime checkpoints and recovery summaries without changing LTS resume files."),
 )
 
 

@@ -8,6 +8,15 @@ from .runtime_context import RuntimeContext
 from .runtime_contract import RuntimeContract, RuntimeCapability, build_runtime_contract, validate_runtime_contract
 from .runtime_provider import RuntimeProviderAdapter, RuntimeProviderPolicy, RuntimeProviderTrace, is_retryable_provider_error
 from .runtime_qa import RuntimeQAPolicy, analyze_runtime_quality, count_korean_characters, detect_repeated_lines
+from .runtime_recovery import (
+    RuntimeCheckpoint,
+    RuntimeCheckpointKey,
+    load_checkpoint,
+    mark_checkpoint_completed,
+    recovery_summary,
+    save_checkpoint,
+    update_checkpoint,
+)
 
 __all__ = [
     "TranslationRuntime",
@@ -31,4 +40,11 @@ __all__ = [
     "analyze_runtime_quality",
     "count_korean_characters",
     "detect_repeated_lines",
+    "RuntimeCheckpoint",
+    "RuntimeCheckpointKey",
+    "load_checkpoint",
+    "save_checkpoint",
+    "update_checkpoint",
+    "mark_checkpoint_completed",
+    "recovery_summary",
 ]
