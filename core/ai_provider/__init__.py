@@ -57,6 +57,23 @@ from .router import ProviderRouter
 from .runtime_bridge import RuntimeProviderBridge
 from .runtime_binding import bind_provider_manager, register_provider
 
+from .diagnostics import ProviderRuntimeDiagnostics
+from .observability import ProviderObservabilityRuntime
+from .runtime_telemetry import ProviderRuntimeTelemetry
+from .telemetry_events import (
+    ProviderTelemetryEvent,
+    TELEMETRY_REQUEST_STARTED,
+    TELEMETRY_REQUEST_COMPLETED,
+    TELEMETRY_REQUEST_FAILED,
+    TELEMETRY_PROVIDER_HEALTH,
+    TELEMETRY_ROUTING_DECISION,
+    TELEMETRY_EXPORT,
+)
+from .telemetry_exporter import ProviderTelemetryExporter
+from .telemetry_metrics import ProviderTelemetryMetrics
+from .telemetry_sink import ProviderTelemetrySink
+from .telemetry_trace import ProviderTraceRecorder, ProviderTraceSpan
+
 __all__ = [
     "DEFAULT_PROVIDER_ENV",
     "ProviderConfigLayer",
@@ -115,5 +132,20 @@ __all__ = [
     "AI_PROVIDER_MANIFEST",
     "build_ai_provider_manifest",
     "bind_provider_manager",
+    "ProviderRuntimeDiagnostics",
+    "ProviderObservabilityRuntime",
+    "ProviderRuntimeTelemetry",
+    "ProviderTelemetryEvent",
+    "TELEMETRY_REQUEST_STARTED",
+    "TELEMETRY_REQUEST_COMPLETED",
+    "TELEMETRY_REQUEST_FAILED",
+    "TELEMETRY_PROVIDER_HEALTH",
+    "TELEMETRY_ROUTING_DECISION",
+    "TELEMETRY_EXPORT",
+    "ProviderTelemetryExporter",
+    "ProviderTelemetryMetrics",
+    "ProviderTelemetrySink",
+    "ProviderTraceRecorder",
+    "ProviderTraceSpan",
     "register_provider",
 ]

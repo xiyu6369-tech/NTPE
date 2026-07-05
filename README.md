@@ -1,21 +1,24 @@
-# NTPE 1.2 Professional — Stage-14.4 Provider Load Balancer / Multi-Provider Orchestration
+# NTPE 1.2 Professional Stage-14.5 Delta
 
-This delta adds the Stage-14.4 multi-provider orchestration layer on top of the Stage-14.3 execution policy.
+Provider Observability / Runtime Telemetry layer.
+
+Apply this delta on top of Stage-14.4 / GitHub main.
 
 ## Added
 
-- `ProviderLoadBalancer`
-- `MultiProviderOrchestrator`
-- `RoutingPolicy`
-- `FallbackChain`
-- `ProviderPool`
-- `ProviderScore`
-- `OrchestrationResult`
-- Stage-14.4 launcher and pytest coverage
+- Provider telemetry events
+- In-memory telemetry sink and subscribers
+- Trace recorder and span model
+- Per-provider metric aggregation
+- Runtime diagnostics
+- JSON and Prometheus-style exporters
+- Direct provider / execution policy / load balancer observability wrappers
+- Stage-14.5 launcher and pytest coverage
 
-## Compatibility
+## Validation
 
-- Additive update only
-- No Foundation v1.0 changes
-- No NTPE 1.1 LTS Frozen changes
-- Stage-14 / 14.1 / 14.2 / 14.3 compatibility preserved
+- Stage-14.5 Launcher PASS
+- Pytest targeted: 12 passed
+- Project Validator: ALL PASS
+- Python compile: 1078 files compile
+- Tests detected: 278

@@ -1,12 +1,9 @@
-# Changelog — NTPE 1.2 Professional Stage-14.4
+# Changelog — NTPE 1.2 Professional Stage-14.5
 
-## Provider Load Balancer / Multi-Provider Orchestration
+## Provider Observability / Runtime Telemetry
 
-- Added multi-provider routing and fallback orchestration.
-- Added weighted, priority, cost-aware, latency-aware, capability-aware, and balanced routing policies.
-- Added provider pool configuration with enable/disable support.
-- Added health/capability filtering before provider selection.
-- Added fallback chain and retry escalation across providers.
-- Added orchestration statistics and structured attempt records.
-- Added compatibility-safe exports in `core.ai_provider`.
-- Added launcher and pytest validation coverage.
+- Added `ProviderObservabilityRuntime` facade.
+- Added `ProviderRuntimeTelemetry` stable runtime entry point.
+- Added telemetry events, sink, traces, metrics, diagnostics, JSON export, and Prometheus-style export.
+- Added wrappers for direct providers, execution policy, and load balancer orchestration.
+- Preserved Stage-14 through Stage-14.4 backward compatibility.
