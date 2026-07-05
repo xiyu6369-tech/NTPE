@@ -39,3 +39,12 @@
 - Added terminology report serializer.
 - Added Stage-15.3 launcher and unit tests.
 - Preserved Stage-15.1 and Stage-15.2 backward compatibility.
+
+## NTPE 1.2 Professional Stage-15.4
+
+- Added Repetition / Duplicate Content Detection.
+- Added exact paragraph and sentence duplicate scanning.
+- Added adjacent near-duplicate paragraph detection.
+- Added repeated n-gram detection.
+- Added repetition quality rule and report integration.
+- Added Stage-15.4 launcher and unit tests.

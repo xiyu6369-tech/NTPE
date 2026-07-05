@@ -139,3 +139,26 @@ try:
 except Exception:
     # Optional in older Stage-15 builds.
     pass
+
+
+# NTPE 1.2 Professional Stage-15.4 Repetition / Duplicate Content Detection exports
+try:
+    from .repetition_detection import RepetitionAnalysis, RepetitionDetector, RepetitionSpan
+    from .repetition_report import RepetitionReport
+    from .repetition_rules import RepetitionDuplicateContentRule, build_repetition_rules
+except Exception:
+    RepetitionAnalysis = None
+    RepetitionDetector = None
+    RepetitionSpan = None
+    RepetitionReport = None
+    RepetitionDuplicateContentRule = None
+    build_repetition_rules = None
+
+__all__ = list(dict.fromkeys(__all__ + [
+    "RepetitionAnalysis",
+    "RepetitionDetector",
+    "RepetitionSpan",
+    "RepetitionReport",
+    "RepetitionDuplicateContentRule",
+    "build_repetition_rules",
+]))

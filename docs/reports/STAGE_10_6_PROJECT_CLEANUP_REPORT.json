@@ -4,8 +4,21 @@
   "root": "D:\\Python\\NTPE",
   "removed_generated_count": 0,
   "removed_generated": [],
-  "archived_root_documents_count": 0,
-  "archived_root_documents": [],
+  "archived_root_documents_count": 3,
+  "archived_root_documents": [
+    {
+      "from": "README_STAGE15_2_TRANSLATION_COMPLETENESS.md",
+      "to": "docs\\archive\\release_history\\README_STAGE15_2_TRANSLATION_COMPLETENESS.md"
+    },
+    {
+      "from": "README_STAGE15_3_TERMINOLOGY_CONSISTENCY.md",
+      "to": "docs\\archive\\release_history\\README_STAGE15_3_TERMINOLOGY_CONSISTENCY.md"
+    },
+    {
+      "from": "README_STAGE15_4_REPETITION_DETECTION.md",
+      "to": "docs\\archive\\release_history\\README_STAGE15_4_REPETITION_DETECTION.md"
+    }
+  ],
   "removed_empty_directories_count": 0,
   "removed_empty_directories": []
 }
