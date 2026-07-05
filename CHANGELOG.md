@@ -1,11 +1,23 @@
-# NTPE 1.2 Professional Stage-14.2
+# Changelog — NTPE 1.2 Professional Stage-14.3
 
-Provider Credential / Config Layer.
+## Added
 
-- Added `core.ai_provider.config` with ProviderConfigLayer and ProviderProfile.
-- Added `core.ai_provider.credentials` with credential registry, environment variable resolution, validation, and secret masking.
-- Added `config/provider_config.json` with safe provider defaults and no committed API keys.
-- Extended ProviderManager to accept config-backed registry/retry/rate-limit defaults.
-- Extended TranslationRuntime with provider config manifest, credential validation, and config template export APIs.
-- Preserved Stage-14 and Stage-14.1 compatibility surfaces.
-- Added Stage-14.2 validation test.
+- `ProviderRuntimeExecutionPolicy`
+- `ExecutionContext`
+- `ExecutionResult`
+- `ExecutionLimits`
+- `ExecutionRetryPolicy` and `ExecutionRetryState`
+- `ExecutionScheduler`
+- `ExecutionStatistics`
+- `ExecutionHookRegistry`
+- `ExecutionEvent` and `ExecutionEventBus`
+- Stage-14.3 launcher and pytest coverage
+
+## Changed
+
+- `ProviderManager` now delegates provider execution to the execution policy while preserving public return types.
+- `core.ai_provider.__init__` exports the Stage-14.3 runtime policy APIs.
+
+## Compatibility
+
+No frozen Foundation v1.0 or NTPE 1.1 LTS files are modified.

@@ -29,6 +29,15 @@ from .contracts import (
     TokenUsage,
 )
 from .events import ProviderEvent, ProviderEventBus
+from .execution_context import ExecutionContext
+from .execution_events import ExecutionEvent, ExecutionEventBus
+from .execution_hooks import ExecutionHookRegistry
+from .execution_limits import ExecutionLimits
+from .execution_policy import ProviderRuntimeExecutionPolicy
+from .execution_result import ExecutionResult
+from .execution_retry import ExecutionRetryPolicy, ExecutionRetryState
+from .execution_scheduler import ExecutionScheduler
+from .execution_statistics import ExecutionStatistics
 from .fallback import FallbackStrategy
 from .health import HealthMonitor
 from .manager import ProviderManager
@@ -74,6 +83,17 @@ __all__ = [
     "HealthMonitor",
     "ProviderEvent",
     "ProviderEventBus",
+    "ExecutionContext",
+    "ExecutionEvent",
+    "ExecutionEventBus",
+    "ExecutionHookRegistry",
+    "ExecutionLimits",
+    "ProviderRuntimeExecutionPolicy",
+    "ExecutionResult",
+    "ExecutionRetryPolicy",
+    "ExecutionRetryState",
+    "ExecutionScheduler",
+    "ExecutionStatistics",
     "ProviderManager",
     "RuntimeProviderBridge",
     "AI_PROVIDER_MANIFEST",

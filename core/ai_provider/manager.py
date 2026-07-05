@@ -13,6 +13,7 @@ from .rate_limiter import RateLimiter
 from .registry import ProviderRegistry
 from .retry import RetryPolicy
 from .router import ProviderRouter
+from .execution_policy import ProviderRuntimeExecutionPolicy
 
 
 class ProviderManager:
@@ -26,6 +27,7 @@ class ProviderManager:
         metrics: Optional[ProviderMetrics] = None,
         event_bus: Optional[ProviderEventBus] = None,
         config_layer: Optional[ProviderConfigLayer] = None,
+        execution_policy: Optional[ProviderRuntimeExecutionPolicy] = None,
     ):
         self.config_layer = config_layer
         if config_layer and registry is None:
@@ -38,6 +40,10 @@ class ProviderManager:
         self.metrics = metrics or ProviderMetrics()
         self.health_monitor = HealthMonitor()
         self.event_bus = event_bus or ProviderEventBus()
+        self.execution_policy = execution_policy or ProviderRuntimeExecutionPolicy(
+            retry_policy=self.retry_policy,
+            rate_limiter=self.rate_limiter,
+        )
 
     def _provider_chain(self, request: ProviderRequest):
         preferred = self.router.route(request) or self.registry.default_name()
@@ -50,14 +56,11 @@ class ProviderManager:
             if not provider_name:
                 continue
             provider = self.registry.get(provider_name)
-            if not self.rate_limiter.allow(provider_name):
-                last = ProviderError("rate limit exceeded", provider_name, True, status_code=429)
-                self.metrics.record(provider_name, False, 0)
-                continue
             start = time.time()
             self.event_bus.publish(ProviderEvent("provider.request", provider_name, {"model": request.model}))
             try:
-                response = self.retry_policy.run(lambda: provider.complete(request))
+                result = self.execution_policy.execute(provider, request)
+                response = result.response
                 response.latency_ms = response.latency_ms or (time.time() - start) * 1000
                 self.metrics.record(provider_name, True, response.latency_ms, response.usage, response.cost)
                 self.event_bus.publish(
@@ -69,6 +72,7 @@ class ProviderManager:
                             "model": response.model,
                             "usage": response.usage.to_dict(),
                             "cost": response.cost.to_dict(),
+                            "execution": result.to_dict(),
                         },
                     )
                 )
@@ -89,11 +93,9 @@ class ProviderManager:
         if not provider_name:
             raise ProviderError("no provider available", None, True)
         provider = self.registry.get(provider_name)
-        if not self.rate_limiter.allow(provider_name):
-            raise ProviderError("rate limit exceeded", provider_name, True, status_code=429)
         self.event_bus.publish(ProviderEvent("provider.stream.start", provider_name, {"model": request.model}))
         try:
-            for chunk in provider.stream(request):
+            for chunk in self.execution_policy.stream(provider, request):
                 response_text.append(chunk.text)
                 last_chunk = chunk
                 yield chunk
@@ -120,4 +122,5 @@ class ProviderManager:
             "rate_limit": self.rate_limiter.snapshot(),
             "metrics": self.metrics.snapshot(),
             "config": self.config_layer.manifest() if self.config_layer else None,
+            "execution_policy": self.execution_policy.manifest(),
         }

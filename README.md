@@ -1,28 +1,38 @@
-# NTPE 1.2 Professional Stage-14.2
+# NTPE 1.2 Professional — Stage-14.3 Provider Runtime Execution Policy
 
-Stage-14.2 adds the Provider Credential / Config Layer on top of the Stage-14 AI Provider Framework and Stage-14.1 runtime binding.
+This delta adds the Provider Runtime Execution Policy layer on top of Stage-14, Stage-14.1, and Stage-14.2.
 
 ## Scope
 
-- Provider config schema
-- Provider profile loading
-- Environment variable credential mapping
-- Credential registry
-- Credential validation
-- Secret masking for logs/manifests
-- Retry defaults from config
-- Rate limit defaults from config
-- Runtime config manifest APIs
-- Runtime provider config template export
+- Unified provider execution policy
+- Execution context/result objects
+- Retry coordination
+- Runtime limits and budget validation
+- Rate-limit ownership at policy level
+- Streaming execution path
+- Execution event bus
+- Execution hook registry
+- Execution scheduler
+- Execution statistics
+- ProviderManager policy binding
 
-## Default credential environment variables
+## Compatibility
 
-- NVIDIA: `NVIDIA_API_KEY`
-- OpenAI: `OPENAI_API_KEY`
-- Gemini: `GEMINI_API_KEY`
-- Anthropic: `ANTHROPIC_API_KEY`
-- OpenRouter: `OPENROUTER_API_KEY`
-- Ollama: `OLLAMA_API_KEY`
-- Custom Provider: `NTPE_CUSTOM_PROVIDER_API_KEY`
+- Additive update only
+- Foundation v1.0 unchanged
+- NTPE 1.1 LTS Frozen unchanged
+- Stage-14/14.1/14.2 APIs preserved
+- Existing ProviderManager.complete and stream calls continue returning ProviderResponse / ProviderStreamChunk
 
-No secret value is stored in the committed default config.
+## Validation
+
+```text
+Stage-14.3 Launcher PASS
+Pytest targeted: 4 passed
+Stage-14.2 Regression PASS
+Stage-14.1 Regression PASS
+Stage-14 Regression PASS
+Project Validator: ALL PASS
+Python compile: 1056 files compile
+Tests detected: 274
+```
