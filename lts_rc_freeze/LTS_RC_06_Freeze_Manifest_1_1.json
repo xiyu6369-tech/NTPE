@@ -1,0 +1,124 @@
+{
+  "version": "1.1-lts-rc-06",
+  "release_line": "NTPE 1.1 LTS",
+  "stage": "RC-06 LTS RC Freeze",
+  "status": "pass",
+  "created_at": "2026-07-05T15:05:48",
+  "candidate": {
+    "source_stage": "RC-05 Release Candidate Final Validation",
+    "source_version": "1.1-lts-rc-05",
+    "recommended_tag": "v1.1.0-lts-rc-06-freeze",
+    "next_stage": "NTPE 1.1 LTS Stable Release Preparation"
+  },
+  "freeze_scope": {
+    "frozen_runtime": "NTPE 1.1 LTS Runtime",
+    "frozen_rc_chain": "RC-01 through RC-05",
+    "feature_changes_allowed": false,
+    "external_api_calls": 0,
+    "runtime_data_cleaned_before_packaging": true
+  },
+  "rc05_result": {
+    "version": "1.1-lts-rc-05",
+    "status": "pass",
+    "check_count": 8,
+    "failure_count": 0,
+    "failures": [],
+    "rc_artifact_count": 12,
+    "final_file_count": 10,
+    "release_candidate_gate_ready": true
+  },
+  "freeze_checks": [
+    "rc05_final_validation_passes",
+    "final_validation_artifacts_present",
+    "freeze_files_present",
+    "lts_runtime_freeze_preserved",
+    "frozen_compatibility_policy_preserved",
+    "rc_freeze_ready"
+  ],
+  "final_validation_artifacts": [
+    {
+      "path": "lts_rc_final_validation/LTS_RC_05_Final_Validation_Manifest_1_1.json",
+      "sha256": "d2f8df425cb9b171fe4d3415d170dc72a1276a29b29a39bfe3a9800201627592",
+      "size_bytes": 6806
+    },
+    {
+      "path": "lts_rc_final_validation/LTS_RC_05_Final_Validation_Hash_1_1.json",
+      "sha256": "6593551f4f330fc3afe86d3c410ea756635de11882cef1b32c8e7cc10aef53d6",
+      "size_bytes": 3166
+    },
+    {
+      "path": "lts_rc_final_validation/LTS_RC_05_Final_Validation_Report_1_1.md",
+      "sha256": "f8a477bdf6dfc4368b6bcbae242442c1547221a2172191968d83e0b5cc8b309c",
+      "size_bytes": 1437
+    }
+  ],
+  "freeze_files": [
+    {
+      "path": "ntpe_lts_rc_freeze.py",
+      "sha256": "695d65a766b1c3cc7a43735b93bc9b7ef629aec205ddec42e550066ddad8c87e",
+      "size_bytes": 299
+    },
+    {
+      "path": "lts/rc_freeze.py",
+      "sha256": "9b7c9e87a6c94c6a9dc282f970d8eebd0f3699dc25389b615c9d7f0f5af5072b",
+      "size_bytes": 11876
+    },
+    {
+      "path": "ntpe_lts_rc_final_validation.py",
+      "sha256": "c7bfa994c5a11c399645ad73da81e1c99130b6bd72a2956e8da5ca356d97d76a",
+      "size_bytes": 337
+    },
+    {
+      "path": "lts/final_validation.py",
+      "sha256": "034b22c14a0745db4c2df2e9df7ed01c9bb40d6496cfebd59da69e3dcec48fde",
+      "size_bytes": 14938
+    },
+    {
+      "path": "ntpe_lts_release_candidate.py",
+      "sha256": "821d89f35708b09e289b531e7f8002557573272e4f82ca7bae65c8094fc15733",
+      "size_bytes": 338
+    },
+    {
+      "path": "lts/release_candidate.py",
+      "sha256": "048f283aa502504a6a6c2ab810fb057aebfc3b4c1195b0e6d8129343b5c18490",
+      "size_bytes": 11563
+    },
+    {
+      "path": "ntpe_lts_runtime_freeze.py",
+      "sha256": "5be5202c0ee1ce7563497494e4639e77d80c81135842d031b6af1a9b0962d76c",
+      "size_bytes": 330
+    },
+    {
+      "path": "lts/runtime_freeze.py",
+      "sha256": "2c2fccb00cd51853342123adfd9d15f0c1a70976b5672ae24ef33d49f2d73ce7",
+      "size_bytes": 8819
+    }
+  ],
+  "missing_final_validation_artifacts": [],
+  "missing_freeze_files": [],
+  "compatibility_policy": {
+    "ntpe_1_0_stable": "preserved",
+    "foundation_v1_0": "frozen",
+    "cli": "frozen",
+    "sdk": "frozen",
+    "runtime_api": "frozen",
+    "external_rest_api": "frozen",
+    "web_ui": "frozen",
+    "lts_runtime": "frozen_by_stage_11",
+    "rc_04_change_type": "translation_quality_validation_metadata_only"
+  },
+  "lts_runtime_freeze_preserved": true,
+  "frozen_policy_preserved": true,
+  "rc_freeze_ready": true,
+  "failures": [],
+  "validation": {
+    "status": "pass",
+    "check_count": 6,
+    "failure_count": 0,
+    "final_artifact_count": 3,
+    "freeze_file_count": 8,
+    "selected_regression_suite": "Stable + LTS Stage-01~12 + RC-01~06",
+    "expected_result": "ALL PASS",
+    "external_api_calls": 0
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "version": "1.1-lts-stable-preparation",
+  "manifest": "lts_stable_preparation/LTS_Stable_Preparation_Manifest_1_1.json",
+  "manifest_sha256": "87b1822f40ec09d7392e399edd764a987874cbf33031da7ad2e50fd6573c9d48",
+  "rc06_artifact_hashes": {
+    "lts_rc_freeze/LTS_RC_06_Freeze_Manifest_1_1.json": "ec902c1685941947553baf2ae3abadc5bdb7b3cdd575b436d1c77812e55d1a97",
+    "lts_rc_freeze/LTS_RC_06_Freeze_Hash_1_1.json": "e81ae81120d9ecdb809a464cb95c199ee5379be3f9b91f93849ba849a7fad9a3",
+    "lts_rc_freeze/LTS_RC_06_Freeze_Report_1_1.md": "c39c8c774e992c6fcae71d46c6e142c06509d638362ee7a2047d0d0858beb357"
+  },
+  "stable_preparation_file_hashes": {
+    "ntpe_lts_stable_preparation.py": "b79007e68f790850d8768b7c239ba6f42591e56d9da5457d81a813f92ddf285f",
+    "lts/stable_preparation.py": "8ee0f7a5c509026214bb278a913ebe24740e6d9a5df790bb44a76850550aa613",
+    "ntpe_lts_rc_freeze.py": "695d65a766b1c3cc7a43735b93bc9b7ef629aec205ddec42e550066ddad8c87e",
+    "lts/rc_freeze.py": "9b7c9e87a6c94c6a9dc282f970d8eebd0f3699dc25389b615c9d7f0f5af5072b",
+    "ntpe_translate_txt.py": "6f55d88afbd6687211e2aff977e623dd838d2b7776b0b30dc263f063dcd4b2f9",
+    "ntpe_translate_batch.py": "725033d3e89b66d634b0b6114fd233799aff65136f5ced55e7aab35ffdee6c2b",
+    "ntpe_batch_monitor.py": "d3967e04ba782562692dbe02588781cd56049cdd6454625f633b14457b09f6cf",
+    "ntpe_long_run_recovery.py": "24626ed096a7862913f886b65f9f890f6570e78a68974ac0f776e88365ddadcf"
+  },
+  "stable_preparation_ready": true,
+  "status": "pass",
+  "created_at": "2026-07-05T15:11:48"
+}
