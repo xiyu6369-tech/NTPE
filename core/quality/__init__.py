@@ -45,3 +45,82 @@ __all__ = [
     "NovelStylePlanner",
     "NovelPromptEngine",
 ]
+
+# NTPE 1.2 Professional Stage-15.1 Translation Quality Engine Core
+try:
+    from .quality_context import QualityContext
+    from .quality_engine import TranslationQualityEngine
+    from .quality_events import QualityEvent, QualityEventBus
+    from .quality_pipeline import QualityPipeline
+    from .quality_registry import QualityRuleRegistry, build_default_quality_registry
+    from .quality_report import QualityReport
+    from .quality_result import QualityIssue, QualityResult, QualitySeverity, QualityStatus
+    from .quality_rules import (
+        BaseQualityRule,
+        LengthRatioRule,
+        NonEmptyTranslationRule,
+        PlaceholderIntegrityRule,
+        build_default_quality_rules,
+    )
+except Exception:
+    QualityContext = None
+    TranslationQualityEngine = None
+    QualityEvent = None
+    QualityEventBus = None
+    QualityPipeline = None
+    QualityRuleRegistry = None
+    QualityReport = None
+    QualityIssue = None
+    QualityResult = None
+    QualitySeverity = None
+    QualityStatus = None
+    BaseQualityRule = None
+    LengthRatioRule = None
+    NonEmptyTranslationRule = None
+    PlaceholderIntegrityRule = None
+    build_default_quality_registry = None
+    build_default_quality_rules = None
+
+__all__ = list(dict.fromkeys(__all__ + [
+    "QualityContext",
+    "TranslationQualityEngine",
+    "QualityEvent",
+    "QualityEventBus",
+    "QualityPipeline",
+    "QualityRuleRegistry",
+    "build_default_quality_registry",
+    "QualityReport",
+    "QualityIssue",
+    "QualityResult",
+    "QualitySeverity",
+    "QualityStatus",
+    "BaseQualityRule",
+    "LengthRatioRule",
+    "NonEmptyTranslationRule",
+    "PlaceholderIntegrityRule",
+    "build_default_quality_rules",
+]))
+
+# NTPE 1.2 Professional Stage-15.2 Translation Completeness / Missing Segment Detection
+try:
+    from .completeness_analyzer import (
+        CompletenessAnalysis,
+        CompletenessSegment,
+        TranslationCompletenessAnalyzer,
+    )
+    from .completeness_report import CompletenessReport
+    from .completeness_rules import (
+        MissingSegmentRule,
+        ShortSegmentRule,
+        TotalCompletenessRatioRule,
+        build_completeness_rules,
+    )
+except Exception:
+    CompletenessAnalysis = None
+    CompletenessSegment = None
+    TranslationCompletenessAnalyzer = None
+    CompletenessReport = None
+    MissingSegmentRule = None
+    ShortSegmentRule = None
+    TotalCompletenessRatioRule = None
+    build_completeness_rules = None

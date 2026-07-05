@@ -1,10 +1,30 @@
-# Changelog
+## NTPE 1.2 Professional Stage-15.1 - Translation Quality Engine Core
 
-## NTPE 1.2 Professional Stage-14.6
+- Added formal Translation Quality Engine Core facade.
+- Added quality context/result/rule/registry/pipeline/report/event modules.
+- Added default core quality rules for empty output, length ratio, and placeholders.
+- Added Stage-15.1 unit, integration, and launcher validation.
+- Preserved Foundation v1.0, NTPE 1.1 LTS Frozen, and Stage-14 Provider Framework Freeze compatibility.
 
-- Added Provider Security / Secret Protection layer.
-- Added log redaction and nested payload redaction.
-- Added non-reversible secret fingerprinting for audit usage.
-- Added plaintext secret scanner for provider config/log safety checks.
-- Added Stage-14.6 tests and launcher.
-- Preserved Stage-14 through Stage-14.5 APIs and frozen LTS compatibility.
+# NTPE 1.2 Professional Stage-14.7 Provider Framework Freeze
+
+## Added
+- Provider Framework freeze manifest.
+- Frozen Provider component list for Stage-14 through Stage-14.6.
+- Compatibility guard declarations for Foundation v1.0 and NTPE 1.1 LTS Stable.
+- Freeze validation report and assertion helper.
+- Stage-14.7 launcher and pytest coverage.
+
+## Compatibility
+- Additive-only update.
+- Existing Stage-14 / 14.1 / 14.2 / 14.3 / 14.4 / 14.5 / 14.6 imports remain available.
+- No Foundation v1.0 files modified.
+- No NTPE 1.1 LTS Frozen behavior changed.
+
+## NTPE 1.2 Professional Stage-15.2
+
+- Added Translation Completeness / Missing Segment Detection.
+- Added deterministic paragraph/sentence alignment for missing and short segment detection.
+- Added completeness quality rules to the default Translation Quality Engine registry.
+- Added completeness report export and Stage-15.2 validation launcher.
+- Preserved Stage-14 Provider Framework Freeze and Stage-15.1 Quality Engine compatibility.
