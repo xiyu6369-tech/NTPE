@@ -46,6 +46,7 @@ REQUIRED_ENTRYPOINTS: tuple[str, ...] = (
     "translate_batch",
     "main_txt",
     "main_batch",
+    "analyze_quality",
 )
 
 OFFICIAL_PIPELINE: tuple[str, ...] = (
@@ -69,6 +70,8 @@ RUNTIME_CAPABILITIES: tuple[RuntimeCapability, ...] = (
     RuntimeCapability("chunking", True, "Split long-form text into stable translation chunks."),
     RuntimeCapability("taiwan_formatter", True, "Normalize punctuation and common Taiwan Traditional Chinese variants."),
     RuntimeCapability("lts_compatibility", True, "Keep NTPE 1.1 LTS TXT and batch runtime contracts callable."),
+    RuntimeCapability("provider_boundary", True, "Route package translation through an observable runtime provider adapter."),
+    RuntimeCapability("qa_boundary", True, "Expose shared runtime QA analysis for future TXT and batch expansion."),
 )
 
 

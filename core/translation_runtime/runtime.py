@@ -5,6 +5,8 @@ from typing import Iterable, Any
 
 from core.translation_engine.translation_engine import TranslationEngine
 from .runtime_contract import build_runtime_contract, validate_runtime_contract
+from .runtime_provider import RuntimeProviderAdapter, RuntimeProviderPolicy
+from .runtime_qa import RuntimeQAPolicy, analyze_runtime_quality
 
 
 class TranslationRuntime:
@@ -15,12 +17,14 @@ class TranslationRuntime:
     making launcher, TXT, and batch translation share one official runtime entry.
     """
 
-    version = "1.2-professional-stage-02"
+    version = "1.2-professional-stage-03"
 
     def __init__(self, root: str | Path | None = None, api_key: str | None = None):
         self.root = Path(root) if root else Path(__file__).resolve().parents[2]
         self.api_key = api_key
         self.engine = TranslationEngine(root=self.root, api_key=api_key)
+        self.provider = RuntimeProviderAdapter(self.engine, RuntimeProviderPolicy())
+        self.qa_policy = RuntimeQAPolicy()
 
 
     def describe(self) -> dict[str, Any]:
@@ -32,10 +36,13 @@ class TranslationRuntime:
         return validate_runtime_contract(self)
 
     def translate_package_file(self, package_path: str | Path) -> dict[str, Any]:
-        return self.engine.translate_package_file(package_path)
+        return self.provider.translate_package_file(package_path)
 
     def translate_package(self, package: dict, package_path: str | Path | None = None) -> dict[str, Any]:
-        return self.engine.translate_package(package, package_path=package_path)
+        return self.provider.translate_package(package, package_path=package_path)
+
+    def analyze_quality(self, source_text: str, translated_text: str, policy: RuntimeQAPolicy | None = None) -> dict[str, Any]:
+        return analyze_runtime_quality(source_text, translated_text, policy or self.qa_policy)
 
     def translate_txt(self, options: Any) -> dict[str, Any]:
         # Lazy import prevents circular imports and preserves the frozen LTS module.
