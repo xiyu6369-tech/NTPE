@@ -11,6 +11,7 @@ from .runtime_recovery import RuntimeCheckpointKey, mark_checkpoint_completed, r
 from core.translation_session import TranslationSessionManager
 from core.translation_pipeline import TranslationPipelineManager
 from core.translation_resources import TranslationResourceManager
+from core.translation_plugins import TranslationPluginManager
 
 
 class TranslationRuntime:
@@ -21,7 +22,7 @@ class TranslationRuntime:
     making launcher, TXT, and batch translation share one official runtime entry.
     """
 
-    version = "1.2-professional-stage-04"
+    version = "1.2-professional-stage-08"
 
     def __init__(self, root: str | Path | None = None, api_key: str | None = None):
         self.root = Path(root) if root else Path(__file__).resolve().parents[2]
@@ -32,7 +33,25 @@ class TranslationRuntime:
         self.sessions = TranslationSessionManager(self.root, self)
         self.pipelines = TranslationPipelineManager(self.root, self)
         self.resources = TranslationResourceManager(self.root)
+        self.plugins = TranslationPluginManager(self.root)
 
+    def describe_plugins(self) -> dict[str, Any]:
+        return self.plugins.describe()
+
+    def validate_plugins(self) -> dict[str, Any]:
+        return self.plugins.validate()
+
+    def save_plugin_manifest(self, manifest_id: str | None = None) -> dict[str, Any]:
+        return self.plugins.save_manifest(manifest_id=manifest_id)
+
+    def get_plugin(self, kind: str, name: str = "default") -> dict[str, Any] | None:
+        return self.plugins.get(kind, name)
+
+    def execute_plugin(self, kind: str, name: str = "default", payload: dict[str, Any] | None = None, metadata: dict[str, Any] | None = None) -> dict[str, Any]:
+        return self.plugins.execute(kind=kind, name=name, payload=payload, metadata=metadata)
+
+    def execute_plugin_chain(self, kinds: list[str] | tuple[str, ...] | None = None, payload: dict[str, Any] | None = None) -> dict[str, Any]:
+        return self.plugins.execute_chain(kinds=kinds, payload=payload)
 
     def describe_resources(self) -> dict[str, Any]:
         return self.resources.describe()
