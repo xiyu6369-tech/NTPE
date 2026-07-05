@@ -1,0 +1,125 @@
+{
+  "version": "1.1-lts-rc-04",
+  "release_line": "NTPE 1.1 LTS",
+  "stage": "RC-04 Translation Quality / QA Validation",
+  "status": "pass",
+  "created_at": "2026-07-05T14:51:55",
+  "candidate": {
+    "source_stage": "RC-03 Performance / Long-Run Validation",
+    "source_version": "1.1-lts-rc-03",
+    "recommended_tag": "v1.1.0-lts-rc-04-quality"
+  },
+  "quality_checks": [
+    "rc03_performance_validation_passes",
+    "rc03_artifact_chain_present",
+    "quality_files_present",
+    "korean_residue_detector_passes",
+    "length_ratio_gate_passes",
+    "repeated_line_detector_passes",
+    "formatter_normalization_gate_passes",
+    "qa_failure_case_detected",
+    "qa_clean_case_passes"
+  ],
+  "performance_validation": {
+    "version": "1.1-lts-rc-03",
+    "status": "pass",
+    "check_count": 8,
+    "failure_count": 0,
+    "failures": [],
+    "performance_file_count": 7,
+    "rc02_artifact_count": 3,
+    "timing_probe_status": "pass"
+  },
+  "quality_probe": {
+    "mode": "static_quality_probe_no_external_api",
+    "korean_residue_detector_passes": true,
+    "length_ratio_gate_passes": true,
+    "repeated_line_detector_passes": true,
+    "formatter_normalization_gate_passes": true,
+    "qa_failure_case_detected": true,
+    "qa_clean_case_passes": true,
+    "failed_case_metrics": {
+      "korean_chars": 3,
+      "source_chars": 23,
+      "translated_chars": 3,
+      "length_ratio": 0.1304,
+      "repeated_line_count": 0
+    },
+    "clean_case_metrics": {
+      "korean_chars": 0,
+      "source_chars": 23,
+      "translated_chars": 16,
+      "length_ratio": 0.6957,
+      "repeated_line_count": 0
+    },
+    "status": "pass"
+  },
+  "rc03_artifacts": [
+    {
+      "path": "lts_rc_performance/LTS_RC_03_Performance_Long_Run_Validation_Manifest_1_1.json",
+      "sha256": "57f7ec5743396b893c1ac97730c9b74e7d9b728eb79fa5d5b19e8b2c2d8eda7e",
+      "size_bytes": 4075
+    },
+    {
+      "path": "lts_rc_performance/LTS_RC_03_Performance_Long_Run_Validation_Hash_1_1.json",
+      "sha256": "ef1c586c8c8f32d4f7d77a7e89381d3285db8f800b16571e0f0afe5214819749",
+      "size_bytes": 1583
+    },
+    {
+      "path": "lts_rc_performance/LTS_RC_03_Performance_Long_Run_Validation_Report_1_1.md",
+      "sha256": "5567fa6e4409163b1d043f2b6d41fe24af358980e23ba5fd4f2e2c533b8419db",
+      "size_bytes": 1191
+    }
+  ],
+  "quality_files": [
+    {
+      "path": "ntpe_translate_txt.py",
+      "sha256": "6f55d88afbd6687211e2aff977e623dd838d2b7776b0b30dc263f063dcd4b2f9",
+      "size_bytes": 386
+    },
+    {
+      "path": "ntpe_translate_batch.py",
+      "sha256": "725033d3e89b66d634b0b6114fd233799aff65136f5ced55e7aab35ffdee6c2b",
+      "size_bytes": 363
+    },
+    {
+      "path": "lts/txt_translation_runtime.py",
+      "sha256": "90538c610e9504f6e116e3a59ec30c3c7ea8aac584cb1e9a9a38b0a31d93954e",
+      "size_bytes": 32707
+    },
+    {
+      "path": "tests/lts_stage_04/test_translation_qa.py",
+      "sha256": "959ba24818b404f55c990aec96a5769e7b00935b0dc6b89bdde5e6e75aae6228",
+      "size_bytes": 3606
+    },
+    {
+      "path": "tests/lts_stage_05/test_output_formatter.py",
+      "sha256": "f1e82da42e44f143f7454f896778258a470d40495d8ff2ffa0e3a9058d08f130",
+      "size_bytes": 2660
+    }
+  ],
+  "missing_rc03_artifacts": [],
+  "missing_quality_files": [],
+  "failures": [],
+  "validation": {
+    "status": "pass",
+    "check_count": 9,
+    "failure_count": 0,
+    "quality_file_count": 5,
+    "rc03_artifact_count": 3,
+    "selected_regression_suite": "Stable + LTS Stage-01~12 + RC-01~04",
+    "expected_result": "ALL PASS",
+    "external_api_calls": 0
+  },
+  "compatibility_policy": {
+    "ntpe_1_0_stable": "preserved",
+    "foundation_v1_0": "frozen",
+    "cli": "frozen",
+    "sdk": "frozen",
+    "runtime_api": "frozen",
+    "external_rest_api": "frozen",
+    "web_ui": "frozen",
+    "lts_runtime": "frozen_by_stage_11",
+    "rc_04_change_type": "translation_quality_validation_metadata_only"
+  }
+}

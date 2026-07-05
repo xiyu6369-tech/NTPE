@@ -1,0 +1,200 @@
+{
+  "version": "1.1-lts-rc-05",
+  "release_line": "NTPE 1.1 LTS",
+  "stage": "RC-05 Release Candidate Final Validation",
+  "status": "pass",
+  "created_at": "2026-07-05T14:58:38",
+  "candidate": {
+    "source_stage": "RC-04 Translation Quality / QA Validation",
+    "source_version": "1.1-lts-rc-04",
+    "recommended_tag": "v1.1.0-lts-rc-05-final-validation",
+    "next_stage": "NTPE 1.1 LTS RC Freeze"
+  },
+  "rc_versions": {
+    "rc01_regression": "1.1-lts-rc-01",
+    "rc02_compatibility": "1.1-lts-rc-02",
+    "rc03_performance": "1.1-lts-rc-03",
+    "rc04_quality": "1.1-lts-rc-04",
+    "rc05_final": "1.1-lts-rc-05"
+  },
+  "final_checks": [
+    "rc01_regression_validation_passes",
+    "rc02_compatibility_validation_passes",
+    "rc03_performance_validation_passes",
+    "rc04_quality_validation_passes",
+    "rc_artifact_chain_present",
+    "final_validation_files_present",
+    "frozen_compatibility_policy_preserved",
+    "release_candidate_gate_ready"
+  ],
+  "gate_results": {
+    "rc01_regression": {
+      "name": "RC-01 Regression Validation",
+      "status": "pass",
+      "failure_count": 0,
+      "check_count": 6,
+      "version": "1.1-lts-rc-01"
+    },
+    "rc02_compatibility": {
+      "name": "RC-02 Compatibility Validation",
+      "status": "pass",
+      "failure_count": 0,
+      "check_count": 7,
+      "version": "1.1-lts-rc-02"
+    },
+    "rc03_performance": {
+      "name": "RC-03 Performance / Long-Run Validation",
+      "status": "pass",
+      "failure_count": 0,
+      "check_count": 8,
+      "version": "1.1-lts-rc-03"
+    },
+    "rc04_quality": {
+      "name": "RC-04 Translation Quality / QA Validation",
+      "status": "pass",
+      "failure_count": 0,
+      "check_count": 9,
+      "version": "1.1-lts-rc-04"
+    }
+  },
+  "rc_artifacts": [
+    {
+      "path": "lts_rc_regression/LTS_RC_01_Regression_Validation_Manifest_1_1.json",
+      "sha256": "5ad5746bc24aef47d1607cec515a627df173a63997c0ac5de31e46cf4576e6d3",
+      "size_bytes": 6811
+    },
+    {
+      "path": "lts_rc_regression/LTS_RC_01_Regression_Validation_Hash_1_1.json",
+      "sha256": "43f4add8bf82e9e5d5923a572b212dc2901b48635f0204bf29f82704749fb6f3",
+      "size_bytes": 2979
+    },
+    {
+      "path": "lts_rc_regression/LTS_RC_01_Regression_Validation_Report_1_1.md",
+      "sha256": "2bf28b9d3a2d616688e6eceef6aeb751b0440ccc6745ac616ef945696391492f",
+      "size_bytes": 1236
+    },
+    {
+      "path": "lts_rc_compatibility/LTS_RC_02_Compatibility_Validation_Manifest_1_1.json",
+      "sha256": "613ff66aefc863dd0c9cd22b53df0b91cff4469e2408f207830503d64ee01974",
+      "size_bytes": 5605
+    },
+    {
+      "path": "lts_rc_compatibility/LTS_RC_02_Compatibility_Validation_Hash_1_1.json",
+      "sha256": "5d562d1e31a128d6190b7652e5afa0a2e60358bcd8e8c59efd468499b0ab0f30",
+      "size_bytes": 2486
+    },
+    {
+      "path": "lts_rc_compatibility/LTS_RC_02_Compatibility_Validation_Report_1_1.md",
+      "sha256": "624dbfa0d1ab4edf850845753805513d76731da877a48d6e8d395f1fdc81f84b",
+      "size_bytes": 1639
+    },
+    {
+      "path": "lts_rc_performance/LTS_RC_03_Performance_Long_Run_Validation_Manifest_1_1.json",
+      "sha256": "57f7ec5743396b893c1ac97730c9b74e7d9b728eb79fa5d5b19e8b2c2d8eda7e",
+      "size_bytes": 4075
+    },
+    {
+      "path": "lts_rc_performance/LTS_RC_03_Performance_Long_Run_Validation_Hash_1_1.json",
+      "sha256": "ef1c586c8c8f32d4f7d77a7e89381d3285db8f800b16571e0f0afe5214819749",
+      "size_bytes": 1583
+    },
+    {
+      "path": "lts_rc_performance/LTS_RC_03_Performance_Long_Run_Validation_Report_1_1.md",
+      "sha256": "5567fa6e4409163b1d043f2b6d41fe24af358980e23ba5fd4f2e2c533b8419db",
+      "size_bytes": 1191
+    },
+    {
+      "path": "lts_rc_quality/LTS_RC_04_Translation_Quality_QA_Validation_Manifest_1_1.json",
+      "sha256": "b681bbebcd138b12ee0890402516eb81df98be59ab391a4876c67653a99a39c3",
+      "size_bytes": 3913
+    },
+    {
+      "path": "lts_rc_quality/LTS_RC_04_Translation_Quality_QA_Validation_Hash_1_1.json",
+      "sha256": "94625faafd25b9c88b25df6e7ba73144876b310327ec4afb1e9fd7be6ae4f985",
+      "size_bytes": 1363
+    },
+    {
+      "path": "lts_rc_quality/LTS_RC_04_Translation_Quality_QA_Validation_Report_1_1.md",
+      "sha256": "a4913ed36c18fe6bdf2498636c0e8d28cf5c63bd176b45b1565cd1b03591418e",
+      "size_bytes": 1206
+    }
+  ],
+  "final_validation_files": [
+    {
+      "path": "ntpe_lts_rc_regression.py",
+      "sha256": "2d01635f5ded82a6a9404527625c5a2bc7c567a7b57a3e47c9b283c93302e31a",
+      "size_bytes": 323
+    },
+    {
+      "path": "ntpe_lts_rc_compatibility.py",
+      "sha256": "1518f2434773c5de8cb2f7a52b58b09018481b2968932ebdb29271fe8d3824fe",
+      "size_bytes": 332
+    },
+    {
+      "path": "ntpe_lts_rc_performance.py",
+      "sha256": "1747c3010a82af9521ea15bb8a5a3543d52d476b8c72caf8e4225dbb2e50bd75",
+      "size_bytes": 337
+    },
+    {
+      "path": "ntpe_lts_rc_quality.py",
+      "sha256": "6b4db237ebcbeab204d897108771a77162351c0cc814cb7486ff9f1263441bc4",
+      "size_bytes": 331
+    },
+    {
+      "path": "ntpe_lts_rc_final_validation.py",
+      "sha256": "c7bfa994c5a11c399645ad73da81e1c99130b6bd72a2956e8da5ca356d97d76a",
+      "size_bytes": 337
+    },
+    {
+      "path": "lts/regression_validation.py",
+      "sha256": "8b0df2245fbd353536120b1de4fd2c80389c2850377beb4d058d9606ade2ba7e",
+      "size_bytes": 11827
+    },
+    {
+      "path": "lts/compatibility_validation.py",
+      "sha256": "43bbab50a4c99e09072c3d4fa5bdf14bbf6c2f0f77f0362b3aaa8529ff15f8a4",
+      "size_bytes": 13302
+    },
+    {
+      "path": "lts/performance_validation.py",
+      "sha256": "e2cbc08699149716e79d72647220f453dd48aa0555808093347f2cacf92ef3d7",
+      "size_bytes": 14027
+    },
+    {
+      "path": "lts/quality_validation.py",
+      "sha256": "a0bf5dbdba1c75e283eb690d541bcbb21e0bc8e57131d03174cc35c84d613f68",
+      "size_bytes": 13873
+    },
+    {
+      "path": "lts/final_validation.py",
+      "sha256": "034b22c14a0745db4c2df2e9df7ed01c9bb40d6496cfebd59da69e3dcec48fde",
+      "size_bytes": 14938
+    }
+  ],
+  "missing_rc_artifacts": [],
+  "missing_final_validation_files": [],
+  "compatibility_policy": {
+    "ntpe_1_0_stable": "preserved",
+    "foundation_v1_0": "frozen",
+    "cli": "frozen",
+    "sdk": "frozen",
+    "runtime_api": "frozen",
+    "external_rest_api": "frozen",
+    "web_ui": "frozen",
+    "lts_runtime": "frozen_by_stage_11",
+    "rc_04_change_type": "translation_quality_validation_metadata_only"
+  },
+  "frozen_policy_preserved": true,
+  "release_candidate_gate_ready": true,
+  "failures": [],
+  "validation": {
+    "status": "pass",
+    "check_count": 8,
+    "failure_count": 0,
+    "rc_artifact_count": 12,
+    "final_file_count": 10,
+    "selected_regression_suite": "Stable + LTS Stage-01~12 + RC-01~05",
+    "expected_result": "ALL PASS",
+    "external_api_calls": 0
+  }
+}
