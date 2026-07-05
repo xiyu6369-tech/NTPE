@@ -54,8 +54,11 @@ REQUIRED_ENTRYPOINTS: tuple[str, ...] = (
     "create_session",
     "list_sessions",
     "translate_package_file_session",
+    "describe_pipeline",
+    "validate_pipeline",
+    "execute_pipeline",
+    "save_pipeline_manifest",
 )
-
 OFFICIAL_PIPELINE: tuple[str, ...] = (
     "Encoding",
     "Chunk",
@@ -81,6 +84,7 @@ RUNTIME_CAPABILITIES: tuple[RuntimeCapability, ...] = (
     RuntimeCapability("qa_boundary", True, "Expose shared runtime QA analysis for future TXT and batch expansion."),
     RuntimeCapability("runtime_recovery", True, "Persist runtime checkpoints and recovery summaries without changing LTS resume files."),
     RuntimeCapability("translation_session", True, "Create Professional session manifests and checkpoints above the shared runtime."),
+    RuntimeCapability("translation_pipeline", True, "Declare, validate, and execute the official Professional translation pipeline."),
 )
 
 

@@ -7,7 +7,7 @@ def test_runtime_contract_declares_stage_03_surface():
     root = Path(__file__).resolve().parents[2]
     runtime = TranslationRuntime(root=root)
     contract = runtime.describe()
-    assert contract["version"] == "1.2-professional-stage-05"
+    assert contract["version"] == "1.2-professional-stage-06"
     assert contract["compatibility_floor"] == "1.1-lts-stable"
     assert "translate_txt" in contract["entrypoints"]
     assert "translate_batch" in contract["entrypoints"]

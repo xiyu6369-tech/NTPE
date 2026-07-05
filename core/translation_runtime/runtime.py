@@ -9,6 +9,7 @@ from .runtime_provider import RuntimeProviderAdapter, RuntimeProviderPolicy
 from .runtime_qa import RuntimeQAPolicy, analyze_runtime_quality
 from .runtime_recovery import RuntimeCheckpointKey, mark_checkpoint_completed, recovery_summary, update_checkpoint
 from core.translation_session import TranslationSessionManager
+from core.translation_pipeline import TranslationPipelineManager
 
 
 class TranslationRuntime:
@@ -19,7 +20,7 @@ class TranslationRuntime:
     making launcher, TXT, and batch translation share one official runtime entry.
     """
 
-    version = "1.2-professional-stage-05"
+    version = "1.2-professional-stage-06"
 
     def __init__(self, root: str | Path | None = None, api_key: str | None = None):
         self.root = Path(root) if root else Path(__file__).resolve().parents[2]
@@ -28,6 +29,20 @@ class TranslationRuntime:
         self.provider = RuntimeProviderAdapter(self.engine, RuntimeProviderPolicy())
         self.qa_policy = RuntimeQAPolicy()
         self.sessions = TranslationSessionManager(self.root, self)
+        self.pipelines = TranslationPipelineManager(self.root, self)
+
+
+    def describe_pipeline(self) -> dict[str, Any]:
+        return self.pipelines.describe()
+
+    def validate_pipeline(self) -> dict[str, Any]:
+        return self.pipelines.validate()
+
+    def execute_pipeline(self, payload: dict[str, Any] | None = None, handlers: dict[str, Any] | None = None) -> dict[str, Any]:
+        return self.pipelines.execute(payload=payload, handlers=handlers)
+
+    def save_pipeline_manifest(self, pipeline_id: str | None = None) -> dict[str, Any]:
+        return self.pipelines.save_manifest(pipeline_id=pipeline_id)
 
     def create_session(self, mode: str = "runtime", input_source: str = "", output_target: str = "", metadata: dict[str, Any] | None = None) -> dict[str, Any]:
         session = self.sessions.create_session(mode=mode, input_source=input_source, output_target=output_target, metadata=metadata)
