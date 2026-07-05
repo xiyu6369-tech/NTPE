@@ -1,0 +1,28 @@
+{
+  "version": "1.1-lts-stable-finalization",
+  "manifest": "lts_stable_finalization/LTS_Stable_Finalization_Manifest_1_1.json",
+  "manifest_sha256": "41c9e99eb7e292f8859013fe5cd9bdf473a9ca07f661d721be49cf5341320878",
+  "release_notes": "RELEASE_NOTES_NTPE_1_1_LTS.md",
+  "release_notes_sha256": "615d09ffc0c64f800b03f58ca827ee738c5da1b604968bea0053a85cb4e99084",
+  "stable_preparation_artifact_hashes": {
+    "lts_stable_preparation/LTS_Stable_Preparation_Manifest_1_1.json": "87b1822f40ec09d7392e399edd764a987874cbf33031da7ad2e50fd6573c9d48",
+    "lts_stable_preparation/LTS_Stable_Preparation_Hash_1_1.json": "8f3b61d1027754a58a8356e1700977ad3427ef9e624905636dfd77a9eb3bbfa3",
+    "lts_stable_preparation/LTS_Stable_Preparation_Report_1_1.md": "173e9131ae1504c2bbd893c54e950231ead1411cd1677a0dc03d99cdf42218b3"
+  },
+  "stable_finalization_file_hashes": {
+    "ntpe_lts_stable_finalization.py": "c18692aa881e44158bb692cb70c5a466a800d910305624e139696986383a4226",
+    "lts/stable_finalization.py": "fe7f1e2a301577ce2e043380ebe88e22856d4a5040196f3b801278ff451d208f",
+    "ntpe_lts_stable_preparation.py": "b79007e68f790850d8768b7c239ba6f42591e56d9da5457d81a813f92ddf285f",
+    "lts/stable_preparation.py": "8ee0f7a5c509026214bb278a913ebe24740e6d9a5df790bb44a76850550aa613",
+    "ntpe_lts_rc_freeze.py": "695d65a766b1c3cc7a43735b93bc9b7ef629aec205ddec42e550066ddad8c87e",
+    "lts/rc_freeze.py": "9b7c9e87a6c94c6a9dc282f970d8eebd0f3699dc25389b615c9d7f0f5af5072b",
+    "ntpe_translate_txt.py": "6f55d88afbd6687211e2aff977e623dd838d2b7776b0b30dc263f063dcd4b2f9",
+    "ntpe_translate_batch.py": "725033d3e89b66d634b0b6114fd233799aff65136f5ced55e7aab35ffdee6c2b",
+    "ntpe_batch_monitor.py": "d3967e04ba782562692dbe02588781cd56049cdd6454625f633b14457b09f6cf",
+    "ntpe_long_run_recovery.py": "24626ed096a7862913f886b65f9f890f6570e78a68974ac0f776e88365ddadcf",
+    "tools/clean_project.py": "9dd2c03701a2b71d3cfec641a59bd5f187b17217c9de7a952f4bae6f72e810fc"
+  },
+  "stable_finalization_ready": true,
+  "status": "pass",
+  "created_at": "2026-07-05T15:16:16"
+}
