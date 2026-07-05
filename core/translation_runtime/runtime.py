@@ -8,6 +8,7 @@ from .runtime_contract import build_runtime_contract, validate_runtime_contract
 from .runtime_provider import RuntimeProviderAdapter, RuntimeProviderPolicy
 from .runtime_qa import RuntimeQAPolicy, analyze_runtime_quality
 from .runtime_recovery import RuntimeCheckpointKey, mark_checkpoint_completed, recovery_summary, update_checkpoint
+from core.translation_session import TranslationSessionManager
 
 
 class TranslationRuntime:
@@ -18,7 +19,7 @@ class TranslationRuntime:
     making launcher, TXT, and batch translation share one official runtime entry.
     """
 
-    version = "1.2-professional-stage-04"
+    version = "1.2-professional-stage-05"
 
     def __init__(self, root: str | Path | None = None, api_key: str | None = None):
         self.root = Path(root) if root else Path(__file__).resolve().parents[2]
@@ -26,6 +27,18 @@ class TranslationRuntime:
         self.engine = TranslationEngine(root=self.root, api_key=api_key)
         self.provider = RuntimeProviderAdapter(self.engine, RuntimeProviderPolicy())
         self.qa_policy = RuntimeQAPolicy()
+        self.sessions = TranslationSessionManager(self.root, self)
+
+    def create_session(self, mode: str = "runtime", input_source: str = "", output_target: str = "", metadata: dict[str, Any] | None = None) -> dict[str, Any]:
+        session = self.sessions.create_session(mode=mode, input_source=input_source, output_target=output_target, metadata=metadata)
+        return {"status": "success", "session_id": session.session_id, "manifest": session.manifest().to_dict()}
+
+    def list_sessions(self) -> dict[str, Any]:
+        return self.sessions.list_sessions()
+
+    def translate_package_file_session(self, package_path: str | Path) -> dict[str, Any]:
+        session = self.sessions.create_session(mode="package", input_source=str(package_path))
+        return session.execute(lambda: self.translate_package_file(package_path))
 
 
     def describe(self) -> dict[str, Any]:

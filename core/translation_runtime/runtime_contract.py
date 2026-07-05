@@ -51,6 +51,9 @@ REQUIRED_ENTRYPOINTS: tuple[str, ...] = (
     "checkpoint_error",
     "checkpoint_completed",
     "recovery_summary",
+    "create_session",
+    "list_sessions",
+    "translate_package_file_session",
 )
 
 OFFICIAL_PIPELINE: tuple[str, ...] = (
@@ -77,6 +80,7 @@ RUNTIME_CAPABILITIES: tuple[RuntimeCapability, ...] = (
     RuntimeCapability("provider_boundary", True, "Route package translation through an observable runtime provider adapter."),
     RuntimeCapability("qa_boundary", True, "Expose shared runtime QA analysis for future TXT and batch expansion."),
     RuntimeCapability("runtime_recovery", True, "Persist runtime checkpoints and recovery summaries without changing LTS resume files."),
+    RuntimeCapability("translation_session", True, "Create Professional session manifests and checkpoints above the shared runtime."),
 )
 
 
