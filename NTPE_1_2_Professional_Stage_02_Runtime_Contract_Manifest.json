@@ -1,0 +1,38 @@
+{
+  "version": "1.2-professional-stage-02",
+  "stage": "Stage-02 Runtime Contract Stabilization",
+  "base": "NTPE 1.2 Professional Stage-01 Translation Runtime Integration",
+  "principles": [
+    "incremental update",
+    "no Foundation v1.0 modification",
+    "no NTPE 1.1 LTS breakage",
+    "backward compatible runtime surface"
+  ],
+  "files": {
+    "core/translation_runtime/runtime.py": {
+      "sha256": "23f410408ab408a0fe0cfa897fb321f68fd84f98a2f643fea594295e90bb1648",
+      "bytes": 3664
+    },
+    "core/translation_runtime/__init__.py": {
+      "sha256": "b3c89cc0ac85a4d4dff9a6c496ab19ba1f861638fd59e16f006c32cea2132099",
+      "bytes": 783
+    },
+    "core/translation_runtime/runtime_contract.py": {
+      "sha256": "fd7278db26a02d1946d705efed4d716686152d80f7c7efc93d1c6c5e4267e54e",
+      "bytes": 3314
+    },
+    "tests/runtime/translation_runtime_test.py": {
+      "sha256": "805154723ead24cdaaea9d4598086d293abda83e87cbe9070440e20235836329",
+      "bytes": 982
+    },
+    "tests/runtime/translation_runtime_contract_test.py": {
+      "sha256": "75321b7931c4a7345045a64321374b8e6880e564cad5f9f7dd4d3d271ecfc8f4",
+      "bytes": 1456
+    }
+  },
+  "tests": [
+    "python -m pytest tests/runtime/translation_runtime_test.py tests/smoke/runtime_smoke_test.py tests/runtime/translation_runtime_contract_test.py -q",
+    "python -m compileall -q core lts tests/runtime tests/smoke"
+  ],
+  "status": "ALL PASS"
+}

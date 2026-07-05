@@ -6,7 +6,7 @@ from core.translation_runtime import TranslationRuntime, read_text_auto, split_t
 def test_runtime_facade_and_helpers(tmp_path: Path):
     root = Path(__file__).resolve().parents[2]
     runtime = TranslationRuntime(root=root)
-    assert runtime.version == "1.2-professional-stage-01"
+    assert runtime.version == "1.2-professional-stage-02"
     assert runtime.engine.root == root
 
     sample = tmp_path / "sample.txt"

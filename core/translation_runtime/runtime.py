@@ -4,6 +4,7 @@ from pathlib import Path
 from typing import Iterable, Any
 
 from core.translation_engine.translation_engine import TranslationEngine
+from .runtime_contract import build_runtime_contract, validate_runtime_contract
 
 
 class TranslationRuntime:
@@ -14,12 +15,21 @@ class TranslationRuntime:
     making launcher, TXT, and batch translation share one official runtime entry.
     """
 
-    version = "1.2-professional-stage-01"
+    version = "1.2-professional-stage-02"
 
     def __init__(self, root: str | Path | None = None, api_key: str | None = None):
         self.root = Path(root) if root else Path(__file__).resolve().parents[2]
         self.api_key = api_key
         self.engine = TranslationEngine(root=self.root, api_key=api_key)
+
+
+    def describe(self) -> dict[str, Any]:
+        """Return the formal runtime contract for diagnostics and future SDK/UI layers."""
+        return build_runtime_contract(self.version, self.root).to_dict()
+
+    def validate_compatibility(self) -> dict[str, Any]:
+        """Verify that the public runtime surface remains backward compatible."""
+        return validate_runtime_contract(self)
 
     def translate_package_file(self, package_path: str | Path) -> dict[str, Any]:
         return self.engine.translate_package_file(package_path)

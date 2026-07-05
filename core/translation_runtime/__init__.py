@@ -5,6 +5,7 @@ from .runtime_encoding import normalize_text, read_text_auto
 from .runtime_chunk import split_text
 from .runtime_formatter import format_translation_output, normalize_taiwan_traditional
 from .runtime_context import RuntimeContext
+from .runtime_contract import RuntimeContract, RuntimeCapability, build_runtime_contract, validate_runtime_contract
 
 __all__ = [
     "TranslationRuntime",
@@ -16,4 +17,8 @@ __all__ = [
     "format_translation_output",
     "normalize_taiwan_traditional",
     "RuntimeContext",
+    "RuntimeContract",
+    "RuntimeCapability",
+    "build_runtime_contract",
+    "validate_runtime_contract",
 ]
