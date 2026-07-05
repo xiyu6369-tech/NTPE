@@ -48,3 +48,11 @@
 - Added repeated n-gram detection.
 - Added repetition quality rule and report integration.
 - Added Stage-15.4 launcher and unit tests.
+
+## NTPE 1.2 Professional Stage-15.5 — Formatting / Structure Integrity Engine
+
+- Added `StructureIntegrityAnalyzer` for paragraph, dialogue, chapter marker, placeholder, delimiter, control-character and line-damage validation.
+- Added `StructureIntegrityRule` for Translation Quality Engine integration.
+- Added `StructureIntegrityReport` for structured and summary reporting.
+- Added Stage-15.5 launcher and unit tests.
+- Preserved backward compatibility with Foundation v1.0, NTPE 1.1 LTS Frozen, Stage-14 Freeze, and Stage-15.1–15.4 APIs.

@@ -162,3 +162,25 @@ __all__ = list(dict.fromkeys(__all__ + [
     "RepetitionDuplicateContentRule",
     "build_repetition_rules",
 ]))
+
+# NTPE 1.2 Professional Stage-15.5 Formatting / Structure Integrity Engine exports
+try:
+    from .structure_integrity import StructureAnalysis, StructureIntegrityAnalyzer, StructureIssue
+    from .structure_report import StructureIntegrityReport
+    from .structure_rules import StructureIntegrityRule, build_structure_rules
+except Exception:
+    StructureAnalysis = None
+    StructureIntegrityAnalyzer = None
+    StructureIssue = None
+    StructureIntegrityReport = None
+    StructureIntegrityRule = None
+    build_structure_rules = None
+
+__all__ = list(dict.fromkeys(__all__ + [
+    "StructureAnalysis",
+    "StructureIntegrityAnalyzer",
+    "StructureIssue",
+    "StructureIntegrityReport",
+    "StructureIntegrityRule",
+    "build_structure_rules",
+]))

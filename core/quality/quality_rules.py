@@ -133,4 +133,18 @@ def build_default_quality_rules() -> list[QualityRule]:
         # Keep Stage-15.1/15.2 imports backward-compatible even if optional
         # Stage-15.3 terminology modules are not available in legacy builds.
         pass
+    try:
+        from .repetition_rules import build_repetition_rules
+        rules.extend(build_repetition_rules())
+    except Exception:
+        # Keep earlier Stage-15 builds backward-compatible if Stage-15.4
+        # repetition modules are not present.
+        pass
+    try:
+        from .structure_rules import build_structure_rules
+        rules.extend(build_structure_rules())
+    except Exception:
+        # Keep earlier Stage-15 builds backward-compatible if Stage-15.5
+        # structure modules are not present.
+        pass
     return rules
