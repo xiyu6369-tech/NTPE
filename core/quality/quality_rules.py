@@ -126,4 +126,11 @@ def build_default_quality_rules() -> list[QualityRule]:
         # Keep Stage-15.1 imports backward-compatible even if optional
         # Stage-15.2 completeness modules are not available in legacy builds.
         pass
+    try:
+        from .terminology_rules import build_terminology_rules
+        rules.extend(build_terminology_rules())
+    except Exception:
+        # Keep Stage-15.1/15.2 imports backward-compatible even if optional
+        # Stage-15.3 terminology modules are not available in legacy builds.
+        pass
     return rules

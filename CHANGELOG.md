@@ -28,3 +28,14 @@
 - Added completeness quality rules to the default Translation Quality Engine registry.
 - Added completeness report export and Stage-15.2 validation launcher.
 - Preserved Stage-14 Provider Framework Freeze and Stage-15.1 Quality Engine compatibility.
+
+## NTPE 1.2 Professional — Stage-15.3 Terminology / Character Consistency Engine
+
+- Added terminology and character-name consistency analyzer.
+- Added canonical glossary entry model with alias support.
+- Added missing canonical translation detection.
+- Added alias / translation drift warnings.
+- Added terminology quality rule integrated into the default Translation Quality Engine registry.
+- Added terminology report serializer.
+- Added Stage-15.3 launcher and unit tests.
+- Preserved Stage-15.1 and Stage-15.2 backward compatibility.

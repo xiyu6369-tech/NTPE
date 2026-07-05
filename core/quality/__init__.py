@@ -124,3 +124,18 @@ except Exception:
     ShortSegmentRule = None
     TotalCompletenessRatioRule = None
     build_completeness_rules = None
+
+# Stage-15.3 Terminology / Character Consistency Engine exports
+try:
+    from .terminology_consistency import (
+        TerminologyAnalysis,
+        TerminologyConsistencyAnalyzer,
+        TerminologyEntry,
+        TerminologyIssue,
+        build_default_character_glossary,
+    )
+    from .terminology_report import TerminologyReport
+    from .terminology_rules import TerminologyConsistencyRule, build_terminology_rules
+except Exception:
+    # Optional in older Stage-15 builds.
+    pass
