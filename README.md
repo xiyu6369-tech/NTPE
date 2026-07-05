@@ -1,19 +1,13 @@
-# NTPE 1.0 Beta — Stage-06.8 CLI Packaging
+# NTPE 1.2 Professional Stage-13
 
-Stage-06.8 adds the CLI packaging layer for NTPE.
+Stage-13 adds a local plugin packaging and publishing layer.
 
-## Capabilities
-
-- CLI entrypoint metadata: `ntpe = cli.main:main`
-- Version payload generation
-- Distribution metadata
-- Release manifest builder
-- Install verification
-- CLI packaging manifest
-
-## Test
+Commands:
 
 ```bat
-cd /d D:\Python\NTPE
-python tests\beta_stage_06_8\launcher_cli_packaging_test.py
+python ntpe_plugin_marketplace.py build <plugin_source> --output plugins/packages
+python ntpe_plugin_marketplace.py publish <metadata_json> --repository plugins/published
+python ntpe_plugin_marketplace.py published
 ```
+
+This stage does not execute plugins and does not perform network publishing.

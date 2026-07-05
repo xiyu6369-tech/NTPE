@@ -7,6 +7,8 @@ from typing import Any, Sequence
 
 from .manager import PluginMarketplaceManager
 from .package import MarketplacePluginPackage
+from .builder import PluginPackageBuilder
+from .publisher import PluginPackagePublisher
 
 
 class PluginMarketplaceCLI:
@@ -43,6 +45,17 @@ class PluginMarketplaceCLI:
         uninstall_parser = sub.add_parser("uninstall", help="Uninstall a plugin by id.")
         uninstall_parser.add_argument("plugin_id")
 
+        build_parser = sub.add_parser("build", help="Build a plugin distribution package.")
+        build_parser.add_argument("source")
+        build_parser.add_argument("--output", default="plugins/packages", help="Output directory for built packages.")
+        build_parser.add_argument("--replace", action="store_true", help="Replace an existing package artifact.")
+
+        publish_parser = sub.add_parser("publish", help="Publish built package metadata to a local repository index.")
+        publish_parser.add_argument("metadata")
+        publish_parser.add_argument("--repository", default="plugins/published", help="Local repository index directory.")
+        publish_parser.add_argument("--replace", action="store_true", help="Replace an existing published package version.")
+
+        sub.add_parser("published", help="List locally published plugin packages.")
         sub.add_parser("doctor", help="Run marketplace health checks.")
         return parser
 
@@ -59,6 +72,18 @@ class PluginMarketplaceCLI:
             result = package.validate(ntpe_version=args.ntpe_version)
             result["manifest"] = package.manifest.to_dict()
             return result
+        if command == "build":
+            output_dir = Path(args.output)
+            if not output_dir.is_absolute():
+                output_dir = self.root / output_dir
+            return PluginPackageBuilder.create(args.source, output_dir, ntpe_version=args.ntpe_version).build(replace=args.replace)
+        if command == "publish":
+            repository = Path(args.repository)
+            if not repository.is_absolute():
+                repository = self.root / repository
+            return PluginPackagePublisher.create(repository).publish_metadata(args.metadata, replace=args.replace)
+        if command == "published":
+            return PluginPackagePublisher.create(self.root / "plugins" / "published").list_published()
         if command == "doctor":
             validation = self.manager.validate()
             listing = self.manager.list_plugins()
@@ -85,6 +110,12 @@ def render_result(result: dict[str, Any], json_output: bool = False) -> str:
         lines.append(f"plugin_id: {result['plugin_id']}")
     if "plugin_count" in result:
         lines.append(f"plugin_count: {result['plugin_count']}")
+    if "package_count" in result:
+        lines.append(f"package_count: {result['package_count']}")
+    if "package_path" in result:
+        lines.append(f"package_path: {result['package_path']}")
+    if "metadata_path" in result:
+        lines.append(f"metadata_path: {result['metadata_path']}")
     if result.get("error"):
         lines.append(f"error: {result['error']}")
     if result.get("errors"):
@@ -94,6 +125,9 @@ def render_result(result: dict[str, Any], json_output: bool = False) -> str:
     if "plugins" in result:
         for item in result["plugins"]:
             lines.append(f"- {item.get('plugin_id')} {item.get('version')} {item.get('name')}")
+    if "packages" in result:
+        for item in result["packages"]:
+            lines.append(f"- {item.get('plugin_id')} {item.get('version')} {item.get('package')}")
     return "\n".join(lines)
 
 
