@@ -1,9 +1,10 @@
-# Changelog
+# NTPE Changelog
 
-## NTPE 1.0 Beta — Stage-06.8 CLI Packaging
+## NTPE 1.2 Professional Stage-11
 
-- Added `cli.packaging` package.
-- Added entrypoint verification for `ntpe` CLI.
-- Added distribution metadata and release manifest helpers.
-- Added install verification and packaging acceptance tests.
-- Updated CLI manifest to Stage-06.8.
+- Added Plugin Marketplace Interface.
+- Added plugin package manifest validation.
+- Added plugin install/uninstall repository workflow.
+- Added dependency guard and version policy.
+- Added marketplace CLI compatibility entrypoint.
+- Added Stage-11 marketplace tests and architecture gate report.

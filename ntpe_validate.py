@@ -44,6 +44,7 @@ REQUIRED_IMPORTS = [
     "core.translation_pipeline.pipeline_manager",
     "core.translation_resources.resource_manager",
     "core.translation_plugins.registry",
+    "core.translation_plugins.marketplace",
 ]
 
 OPTIONAL_IMPORTS = [

@@ -14,4 +14,10 @@ __all__ = [
     "PIPELINE_PLUGIN_MAP",
     "PluginRuntimeEvent",
     "TranslationPluginRuntime",
+    "PluginMarketplaceManager",
+    "MarketplacePluginManifest",
+    "PluginRepository",
+    "PluginInstaller",
 ]
+
+from .marketplace import PluginMarketplaceManager, MarketplacePluginManifest, PluginRepository, PluginInstaller
