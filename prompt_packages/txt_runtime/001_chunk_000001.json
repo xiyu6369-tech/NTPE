@@ -1,16 +1,16 @@
 {
-  "package_id": "TXT_novel_000001",
+  "package_id": "TXT_001_000001",
   "project": {
-    "project_name": "NTPE Novel Translation",
+    "project_name": "NTPE Batch Novel Translation",
     "source_language": "ko",
     "target_language": "zh-TW"
   },
   "session": {
-    "session_id": "TXT_novel",
-    "file_name": "novel.txt",
+    "session_id": "TXT_001",
+    "file_name": "001.txt",
     "chunk_index": 1,
     "chunk_total": 1,
-    "resume_key": "novel.txt:chunk:000001"
+    "resume_key": "001.txt:chunk:000001"
   },
   "model_profile": {
     "engine": "NVIDIA",
@@ -21,9 +21,9 @@
     "max_output_tokens": 1000
   },
   "source": {
-    "chunk_text": "정태의는 문 앞에 섰다.\n\n그는 잠시 숨을 골랐다.\n",
-    "source_hash": "676cf16478b85bf2f3cbfac6e24760b9ac5a9889",
-    "char_count": 29
+    "chunk_text": "정태의는 문 앞에 섰다.\n",
+    "source_hash": "297ebe21e8fa6fb8369e839505562a47801e0f8e",
+    "char_count": 14
   },
   "context": {
     "previous_summary": "",
@@ -36,7 +36,7 @@
   },
   "prompt": {
     "system_prompt": "你是 NTPE 的專業小說翻譯引擎。請將原文完整翻譯成自然流暢的台灣繁體中文。只輸出譯文，不要加解釋、標題或 Markdown。",
-    "user_prompt": "【翻譯規則】\n- 翻譯為自然流暢的台灣繁體中文。\n- 保留原文劇情、段落與敘事順序。\n- 不可刪減、不可摘要、不可自行補劇情。\n- 對話使用「」。\n- 人名與術語必須遵守鎖定譯名。\n- 不可留下大量韓文原文。\n\n【本段鎖定譯名】\n- 無\n\n【待翻譯內容】\n정태의는 문 앞에 섰다.\n\n그는 잠시 숨을 골랐다.\n",
+    "user_prompt": "【翻譯規則】\n- 翻譯為自然流暢的台灣繁體中文。\n- 保留原文劇情、段落與敘事順序。\n- 不可刪減、不可摘要、不可自行補劇情。\n- 對話使用「」。\n- 人名與術語必須遵守鎖定譯名。\n- 不可留下大量韓文原文。\n\n【本段鎖定譯名】\n- 無\n\n【待翻譯內容】\n정태의는 문 앞에 섰다.\n",
     "prompt_mode": "translate_txt"
   },
   "qa_requirements": {
