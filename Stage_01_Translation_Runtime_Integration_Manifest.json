@@ -1,0 +1,45 @@
+{
+  "version": "1.2-professional-stage-01",
+  "stage": "Stage-01 Translation Runtime Integration",
+  "baseline": "NTPE 1.1 LTS Stable Release Complete FULL",
+  "status": "ALL PASS",
+  "strategy": "incremental_additive_update",
+  "compatibility": {
+    "foundation_v1_0_modified": false,
+    "ntpe_1_1_lts_broken": false,
+    "launcher_translate_compatible": true,
+    "existing_cli_arguments_preserved": true
+  },
+  "added_files": [
+    "core/translation_runtime/__init__.py",
+    "core/translation_runtime/runtime.py",
+    "core/translation_runtime/runtime_encoding.py",
+    "core/translation_runtime/runtime_chunk.py",
+    "core/translation_runtime/runtime_context.py",
+    "core/translation_runtime/runtime_formatter.py",
+    "core/translation_runtime/runtime_output.py",
+    "tests/runtime/translation_runtime_test.py",
+    "tests/smoke/runtime_smoke_test.py",
+    "CHANGELOG_Stage_01_Translation_Runtime_Integration.md",
+    "Stage_01_Translation_Runtime_Integration_Report.md"
+  ],
+  "modified_files": [
+    "launcher_translate.py",
+    "ntpe_translate_txt.py",
+    "ntpe_translate_batch.py"
+  ],
+  "tests": [
+    {
+      "command": "python -m pytest tests/runtime/translation_runtime_test.py tests/smoke/runtime_smoke_test.py -q",
+      "result": "4 passed"
+    },
+    {
+      "command": "python -m py_compile launcher_translate.py ntpe_translate_txt.py ntpe_translate_batch.py core/translation_runtime/*.py",
+      "result": "ALL PASS"
+    }
+  ],
+  "clean_project_tool": {
+    "command": "python tools/clean_project.py --root . --yes",
+    "executed": true
+  }
+}

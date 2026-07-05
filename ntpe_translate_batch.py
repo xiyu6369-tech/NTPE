@@ -1,10 +1,10 @@
 # =====================================================
-# NTPE 1.1 LTS Stage-07
-# Batch Folder TXT Translation Entry + Progress / Summary Report
+# NTPE 1.2 Professional Stage-01
+# Batch TXT Translation Entry via official Translation Runtime
 # 放置位置：D:\Python\NTPE\ntpe_translate_batch.py
 # =====================================================
 
-from lts.batch_translation_runtime import main
+from core.translation_runtime import main_batch as main
 
 
 if __name__ == "__main__":
