@@ -1,9 +1,10 @@
-# Changelog — NTPE 1.2 Professional Stage-14.5
+# Changelog
 
-## Provider Observability / Runtime Telemetry
+## NTPE 1.2 Professional Stage-14.6
 
-- Added `ProviderObservabilityRuntime` facade.
-- Added `ProviderRuntimeTelemetry` stable runtime entry point.
-- Added telemetry events, sink, traces, metrics, diagnostics, JSON export, and Prometheus-style export.
-- Added wrappers for direct providers, execution policy, and load balancer orchestration.
-- Preserved Stage-14 through Stage-14.4 backward compatibility.
+- Added Provider Security / Secret Protection layer.
+- Added log redaction and nested payload redaction.
+- Added non-reversible secret fingerprinting for audit usage.
+- Added plaintext secret scanner for provider config/log safety checks.
+- Added Stage-14.6 tests and launcher.
+- Preserved Stage-14 through Stage-14.5 APIs and frozen LTS compatibility.

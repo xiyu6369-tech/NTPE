@@ -74,6 +74,15 @@ from .telemetry_metrics import ProviderTelemetryMetrics
 from .telemetry_sink import ProviderTelemetrySink
 from .telemetry_trace import ProviderTraceRecorder, ProviderTraceSpan
 
+from .secret_protection import (
+    SecretAuditFinding,
+    SecretProtectionPolicy,
+    SecretProtectionRuntime,
+    fingerprint_secret,
+    redact_mapping,
+    redact_text,
+)
+
 __all__ = [
     "DEFAULT_PROVIDER_ENV",
     "ProviderConfigLayer",
@@ -148,4 +157,10 @@ __all__ = [
     "ProviderTraceRecorder",
     "ProviderTraceSpan",
     "register_provider",
+    "SecretAuditFinding",
+    "SecretProtectionPolicy",
+    "SecretProtectionRuntime",
+    "fingerprint_secret",
+    "redact_mapping",
+    "redact_text",
 ]

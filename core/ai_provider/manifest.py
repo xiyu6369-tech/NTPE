@@ -2,7 +2,7 @@ AI_PROVIDER_MANIFEST = {
     "name": "NTPE AI Provider Framework",
     "stage": "NTPE 1.2 Professional Stage-14",
     "version": "1.0-beta-stage-03",
-    "framework_version": "1.2-professional-stage-14.2",
+    "framework_version": "1.2-professional-stage-14.6",
     "frozen_dependencies": ["NTPE 1.0 Stable", "NTPE 1.1 LTS Stable"],
     "features": [
         "provider_registry",
@@ -23,6 +23,11 @@ AI_PROVIDER_MANIFEST = {
         "provider_profiles",
         "secret_masking",
         "credential_validation",
+        "safe_payload_export",
+        "credential_audit",
+        "secret_fingerprinting",
+        "log_redaction",
+        "provider_secret_protection",
     ],
     "standard_providers": ["nvidia", "openai", "gemini", "anthropic", "ollama", "openrouter", "custom"],
     "compatibility": {
