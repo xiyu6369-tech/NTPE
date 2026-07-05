@@ -1,0 +1,43 @@
+{
+  "default_provider": "nvidia",
+  "retry_defaults": {
+    "max_attempts": 3,
+    "base_delay_seconds": 0.0,
+    "backoff_factor": 2.0
+  },
+  "rate_limit_defaults": {
+    "max_calls": 1000000000,
+    "window_seconds": 60
+  },
+  "providers": {
+    "nvidia": {
+      "env_var": "NVIDIA_API_KEY",
+      "default_model": "meta/llama-3.3-70b-instruct"
+    },
+    "openai": {
+      "env_var": "OPENAI_API_KEY",
+      "default_model": "gpt-4.1-mini"
+    },
+    "gemini": {
+      "env_var": "GEMINI_API_KEY",
+      "default_model": "gemini-2.5-flash"
+    },
+    "anthropic": {
+      "env_var": "ANTHROPIC_API_KEY",
+      "default_model": "claude-3-5-sonnet-latest"
+    },
+    "ollama": {
+      "env_var": "OLLAMA_API_KEY",
+      "default_model": "llama3.1",
+      "base_url": "http://localhost:11434/api"
+    },
+    "openrouter": {
+      "env_var": "OPENROUTER_API_KEY",
+      "default_model": "openai/gpt-4.1-mini"
+    },
+    "custom": {
+      "env_var": "NTPE_CUSTOM_PROVIDER_API_KEY",
+      "default_model": "custom-model"
+    }
+  }
+}

@@ -3,6 +3,7 @@ from __future__ import annotations
 import time
 from typing import Iterator, Optional
 
+from .config import ProviderConfigLayer
 from .contracts import ProviderError, ProviderRequest, ProviderResponse, ProviderStreamChunk
 from .events import ProviderEvent, ProviderEventBus
 from .fallback import FallbackStrategy
@@ -24,11 +25,15 @@ class ProviderManager:
         fallback: Optional[FallbackStrategy] = None,
         metrics: Optional[ProviderMetrics] = None,
         event_bus: Optional[ProviderEventBus] = None,
+        config_layer: Optional[ProviderConfigLayer] = None,
     ):
+        self.config_layer = config_layer
+        if config_layer and registry is None:
+            registry = config_layer.build_registry()
         self.registry = registry or ProviderRegistry()
         self.router = router or ProviderRouter()
-        self.retry_policy = retry_policy or RetryPolicy()
-        self.rate_limiter = rate_limiter or RateLimiter(max_calls=10**9)
+        self.retry_policy = retry_policy or (config_layer.build_retry_policy() if config_layer else RetryPolicy())
+        self.rate_limiter = rate_limiter or (config_layer.build_rate_limiter() if config_layer else RateLimiter(max_calls=10**9))
         self.fallback = fallback or FallbackStrategy()
         self.metrics = metrics or ProviderMetrics()
         self.health_monitor = HealthMonitor()
@@ -114,4 +119,5 @@ class ProviderManager:
             "retry_policy": self.retry_policy.to_dict(),
             "rate_limit": self.rate_limiter.snapshot(),
             "metrics": self.metrics.snapshot(),
+            "config": self.config_layer.manifest() if self.config_layer else None,
         }

@@ -12,6 +12,15 @@ from core.translation_session import TranslationSessionManager
 from core.translation_pipeline import TranslationPipelineManager
 from core.translation_resources import TranslationResourceManager
 from core.translation_plugins import TranslationPluginManager, TranslationPluginRuntime
+from core.ai_provider import (
+    AIProvider,
+    ProviderConfigLayer,
+    ProviderManager,
+    ProviderRequest,
+    ProviderRouter,
+    RuntimeProviderBridge,
+    build_standard_provider_registry,
+)
 
 
 class TranslationRuntime:
@@ -22,19 +31,82 @@ class TranslationRuntime:
     making launcher, TXT, and batch translation share one official runtime entry.
     """
 
-    version = "1.2-professional-stage-09"
+    version = "1.2-professional-stage-14.2"
 
     def __init__(self, root: str | Path | None = None, api_key: str | None = None):
         self.root = Path(root) if root else Path(__file__).resolve().parents[2]
         self.api_key = api_key
         self.engine = TranslationEngine(root=self.root, api_key=api_key)
         self.provider = RuntimeProviderAdapter(self.engine, RuntimeProviderPolicy())
+        self.ai_provider_config = ProviderConfigLayer.load(self.root / "config" / "provider_config.json")
+        self.ai_provider_manager = ProviderManager(
+            registry=self.ai_provider_config.build_registry(),
+            router=ProviderRouter(default_provider=self.ai_provider_config.default_provider),
+            config_layer=self.ai_provider_config,
+        )
+        self.ai_provider_bridge = RuntimeProviderBridge(self.ai_provider_manager)
         self.qa_policy = RuntimeQAPolicy()
         self.sessions = TranslationSessionManager(self.root, self)
         self.pipelines = TranslationPipelineManager(self.root, self)
         self.resources = TranslationResourceManager(self.root)
         self.plugins = TranslationPluginManager(self.root)
         self.plugin_runtime = TranslationPluginRuntime(self.root, self.plugins)
+
+
+
+    def bind_ai_provider_manager(self, manager: ProviderManager) -> dict[str, Any]:
+        """Bind an AI ProviderManager to Translation Runtime without replacing LTS provider paths."""
+        self.ai_provider_manager = manager
+        self.ai_provider_bridge = RuntimeProviderBridge(manager)
+        self.ai_provider_config = manager.config_layer or self.ai_provider_config
+        return {"status": "success", "default_provider": manager.registry.default_name(), "providers": manager.registry.list()}
+
+    def register_ai_provider(self, provider: AIProvider, default: bool = False) -> dict[str, Any]:
+        self.ai_provider_manager.registry.register(provider, default=default)
+        return {"status": "success", "provider": provider.name, "default_provider": self.ai_provider_manager.registry.default_name()}
+
+    def complete_provider_prompt(self, prompt: str, model: str | None = None, metadata: dict[str, Any] | None = None) -> dict[str, Any]:
+        response = self.ai_provider_bridge.execute_prompt(prompt=prompt, model=model, metadata=metadata or {})
+        return response.to_dict() if hasattr(response, "to_dict") else dict(response)
+
+    def stream_provider_prompt(self, prompt: str, model: str | None = None, metadata: dict[str, Any] | None = None) -> list[dict[str, Any]]:
+        chunks = self.ai_provider_bridge.stream_prompt(prompt=prompt, model=model, metadata=metadata or {})
+        return [
+            {
+                "text": chunk.text,
+                "provider": chunk.provider,
+                "model": chunk.model,
+                "index": chunk.index,
+                "done": chunk.done,
+                "metadata": dict(chunk.metadata),
+            }
+            for chunk in chunks
+        ]
+
+    def discover_provider_models(self, provider: str | None = None) -> dict[str, Any]:
+        models = self.ai_provider_bridge.discover_models(provider)
+        return {"status": "success", "provider": provider, "models": [model.to_dict() for model in models]}
+
+    def detect_provider_capabilities(self, provider: str | None = None) -> dict[str, Any]:
+        capabilities = self.ai_provider_bridge.detect_capabilities(provider)
+        return {"status": "success", "capabilities": {name: cap.to_dict() for name, cap in capabilities.items()}}
+
+    def provider_health_check(self) -> dict[str, Any]:
+        return {"status": "success", "health": self.ai_provider_bridge.health_check()}
+
+    def provider_manifest(self) -> dict[str, Any]:
+        return self.ai_provider_manager.manifest()
+
+    def provider_config_manifest(self) -> dict[str, Any]:
+        return {"status": "success", "config": self.ai_provider_config.manifest()}
+
+    def validate_provider_credentials(self) -> dict[str, Any]:
+        return {"status": "success", "credentials": self.ai_provider_config.validate_credentials()}
+
+    def save_provider_config_template(self, path: str | Path | None = None) -> dict[str, Any]:
+        target = Path(path) if path else self.root / "config" / "provider_config.template.json"
+        saved = self.ai_provider_config.save_template(target)
+        return {"status": "success", "path": str(saved)}
 
 
     def describe_plugin_runtime(self) -> dict[str, Any]:
@@ -103,7 +175,7 @@ class TranslationRuntime:
 
     def describe(self) -> dict[str, Any]:
         """Return the formal runtime contract for diagnostics and future SDK/UI layers."""
-        return build_runtime_contract(self.version, self.root).to_dict()
+        return self.ai_provider_bridge.attach_runtime_manifest(build_runtime_contract(self.version, self.root).to_dict())
 
     def validate_compatibility(self) -> dict[str, Any]:
         """Verify that the public runtime surface remains backward compatible."""

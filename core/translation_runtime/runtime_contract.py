@@ -58,6 +58,17 @@ REQUIRED_ENTRYPOINTS: tuple[str, ...] = (
     "validate_pipeline",
     "execute_pipeline",
     "save_pipeline_manifest",
+    "bind_ai_provider_manager",
+    "register_ai_provider",
+    "complete_provider_prompt",
+    "stream_provider_prompt",
+    "discover_provider_models",
+    "detect_provider_capabilities",
+    "provider_health_check",
+    "provider_manifest",
+    "provider_config_manifest",
+    "validate_provider_credentials",
+    "save_provider_config_template",
 )
 OFFICIAL_PIPELINE: tuple[str, ...] = (
     "Encoding",
@@ -85,6 +96,9 @@ RUNTIME_CAPABILITIES: tuple[RuntimeCapability, ...] = (
     RuntimeCapability("runtime_recovery", True, "Persist runtime checkpoints and recovery summaries without changing LTS resume files."),
     RuntimeCapability("translation_session", True, "Create Professional session manifests and checkpoints above the shared runtime."),
     RuntimeCapability("translation_pipeline", True, "Declare, validate, and execute the official Professional translation pipeline."),
+    RuntimeCapability("ai_provider_framework", True, "Expose the Stage-14 AI Provider Framework through Translation Runtime."),
+    RuntimeCapability("provider_runtime_binding", True, "Bind ProviderManager, ProviderRegistry, model discovery, health, streaming, usage, and cost data to runtime APIs."),
+    RuntimeCapability("provider_config_layer", True, "Load provider profiles, credentials, environment variables, retry defaults, rate limits, and masked config manifests."),
 )
 
 

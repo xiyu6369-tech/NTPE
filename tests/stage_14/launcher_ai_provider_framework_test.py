@@ -57,7 +57,7 @@ attached = bridge.attach_runtime_manifest({"runtime": "translation"})
 check("Runtime Manifest Attach", attached["ai_provider"]["stage"] == "NTPE 1.2 Professional Stage-14")
 
 manifest = build_ai_provider_manifest()
-check("Stage Manifest", manifest["framework_version"] == "1.2-professional-stage-14")
+check("Stage Manifest", manifest["framework_version"].startswith("1.2-professional-stage-14"))
 check("Backward Compatibility", callable(manager.complete) and callable(bridge.execute_prompt))
 
 if all(results):
