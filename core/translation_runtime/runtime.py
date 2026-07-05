@@ -11,7 +11,7 @@ from .runtime_recovery import RuntimeCheckpointKey, mark_checkpoint_completed, r
 from core.translation_session import TranslationSessionManager
 from core.translation_pipeline import TranslationPipelineManager
 from core.translation_resources import TranslationResourceManager
-from core.translation_plugins import TranslationPluginManager
+from core.translation_plugins import TranslationPluginManager, TranslationPluginRuntime
 
 
 class TranslationRuntime:
@@ -22,7 +22,7 @@ class TranslationRuntime:
     making launcher, TXT, and batch translation share one official runtime entry.
     """
 
-    version = "1.2-professional-stage-08"
+    version = "1.2-professional-stage-09"
 
     def __init__(self, root: str | Path | None = None, api_key: str | None = None):
         self.root = Path(root) if root else Path(__file__).resolve().parents[2]
@@ -34,6 +34,17 @@ class TranslationRuntime:
         self.pipelines = TranslationPipelineManager(self.root, self)
         self.resources = TranslationResourceManager(self.root)
         self.plugins = TranslationPluginManager(self.root)
+        self.plugin_runtime = TranslationPluginRuntime(self.root, self.plugins)
+
+
+    def describe_plugin_runtime(self) -> dict[str, Any]:
+        return self.plugin_runtime.describe()
+
+    def validate_plugin_runtime(self) -> dict[str, Any]:
+        return self.plugin_runtime.validate()
+
+    def execute_pipeline_with_plugins(self, payload: dict[str, Any] | None = None) -> dict[str, Any]:
+        return self.plugin_runtime.execute_pipeline(self.pipelines, payload=payload)
 
     def describe_plugins(self) -> dict[str, Any]:
         return self.plugins.describe()
