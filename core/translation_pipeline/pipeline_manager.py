@@ -63,7 +63,7 @@ class TranslationPipelineManager:
 
     def describe(self) -> dict[str, Any]:
         manifest = self.manifest("official-runtime-pipeline")
-        return {"status": "success", "manifest": manifest.to_dict()}
+        return {"status": "success", "manifest": manifest.to_dict(), "resources": self.runtime.describe_resources() if hasattr(self.runtime, "describe_resources") else None}
 
     def validate(self) -> dict[str, Any]:
         steps = self.default_steps()

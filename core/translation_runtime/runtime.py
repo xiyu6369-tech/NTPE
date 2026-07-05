@@ -10,6 +10,7 @@ from .runtime_qa import RuntimeQAPolicy, analyze_runtime_quality
 from .runtime_recovery import RuntimeCheckpointKey, mark_checkpoint_completed, recovery_summary, update_checkpoint
 from core.translation_session import TranslationSessionManager
 from core.translation_pipeline import TranslationPipelineManager
+from core.translation_resources import TranslationResourceManager
 
 
 class TranslationRuntime:
@@ -20,7 +21,7 @@ class TranslationRuntime:
     making launcher, TXT, and batch translation share one official runtime entry.
     """
 
-    version = "1.2-professional-stage-06"
+    version = "1.2-professional-stage-04"
 
     def __init__(self, root: str | Path | None = None, api_key: str | None = None):
         self.root = Path(root) if root else Path(__file__).resolve().parents[2]
@@ -30,7 +31,21 @@ class TranslationRuntime:
         self.qa_policy = RuntimeQAPolicy()
         self.sessions = TranslationSessionManager(self.root, self)
         self.pipelines = TranslationPipelineManager(self.root, self)
+        self.resources = TranslationResourceManager(self.root)
 
+
+    def describe_resources(self) -> dict[str, Any]:
+        return self.resources.describe()
+
+    def validate_resources(self) -> dict[str, Any]:
+        return self.resources.validate()
+
+    def save_resource_manifest(self, manifest_id: str | None = None) -> dict[str, Any]:
+        return self.resources.save_manifest(manifest_id=manifest_id)
+
+    def get_resource(self, kind: str, name: str = "default") -> dict[str, Any] | None:
+        resource = self.resources.get(kind, name)
+        return resource.to_dict() if resource else None
 
     def describe_pipeline(self) -> dict[str, Any]:
         return self.pipelines.describe()

@@ -10,6 +10,7 @@ from .runtime_provider import RuntimeProviderAdapter, RuntimeProviderPolicy, Run
 from .runtime_qa import RuntimeQAPolicy, analyze_runtime_quality, count_korean_characters, detect_repeated_lines
 from core.translation_session import TranslationSession, TranslationSessionManager, SessionManifest, SessionCheckpoint, SessionState, SessionStatistics
 from core.translation_pipeline import TranslationPipelineManager, PipelineManifest, PipelineState, PipelineStep, PipelineStepResult
+from core.translation_resources import TranslationResource, TranslationResourceManager
 from .runtime_recovery import (
     RuntimeCheckpoint,
     RuntimeCheckpointKey,
@@ -60,4 +61,6 @@ __all__ = [
     "PipelineState",
     "PipelineStep",
     "PipelineStepResult",
+    "TranslationResource",
+    "TranslationResourceManager",
 ]
