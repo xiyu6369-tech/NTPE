@@ -41,7 +41,14 @@ from .execution_statistics import ExecutionStatistics
 from .fallback import FallbackStrategy
 from .health import HealthMonitor
 from .manager import ProviderManager
+from .fallback_chain import FallbackChain
+from .load_balancer import ProviderLoadBalancer
 from .manifest import AI_PROVIDER_MANIFEST, build_ai_provider_manifest
+from .orchestration import MultiProviderOrchestrator
+from .orchestration_result import OrchestrationResult, ProviderAttempt
+from .provider_pool import ProviderPool, ProviderPoolEntry
+from .provider_score import ProviderScore
+from .routing_policy import RoutingPolicy
 from .metrics import ProviderMetrics
 from .rate_limiter import RateLimiter
 from .registry import ProviderRegistry, build_standard_provider_registry
@@ -95,6 +102,15 @@ __all__ = [
     "ExecutionScheduler",
     "ExecutionStatistics",
     "ProviderManager",
+    "ProviderPool",
+    "ProviderPoolEntry",
+    "ProviderScore",
+    "RoutingPolicy",
+    "FallbackChain",
+    "ProviderLoadBalancer",
+    "MultiProviderOrchestrator",
+    "OrchestrationResult",
+    "ProviderAttempt",
     "RuntimeProviderBridge",
     "AI_PROVIDER_MANIFEST",
     "build_ai_provider_manifest",
