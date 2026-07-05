@@ -1,0 +1,145 @@
+{
+  "version": "1.1-lts-stable-complete",
+  "release_line": "NTPE 1.1 LTS",
+  "stage": "Stable Release Complete",
+  "status": "pass",
+  "created_at": "2026-07-05T15:20:54",
+  "candidate": {
+    "source_stage": "NTPE 1.1 LTS Stable Release Finalization",
+    "source_version": "1.1-lts-stable-finalization",
+    "recommended_tag": "v1.1.0-lts-stable",
+    "next_stage": "NTPE 1.1 LTS Stable Release Complete"
+  },
+  "completion_scope": {
+    "release_target": "NTPE 1.1 LTS Stable",
+    "feature_changes_allowed": false,
+    "runtime_data_cleaned_before_packaging": true,
+    "full_zip_policy": "clean_project_tool_required",
+    "increment_zip_policy": "stage_only_changes",
+    "backward_compatibility": "preserved",
+    "release_state": "complete"
+  },
+  "release_gate": {
+    "stable_finalization_status": "pass",
+    "written_stable_finalization_ready": true,
+    "feature_changes_after_finalization": false,
+    "external_api_calls": 0,
+    "clean_project_tool_required_for_full_zip": true,
+    "increment_zip_stage_only": true,
+    "official_lts_stable_release_allowed": true,
+    "completion_marker_required": true
+  },
+  "stable_complete_checks": [
+    "stable_finalization_passes",
+    "stable_finalization_artifacts_present",
+    "stable_complete_files_present",
+    "completion_marker_ready",
+    "release_tag_ready",
+    "no_feature_changes_after_finalization",
+    "clean_packaging_policy_confirmed",
+    "stable_complete_ready"
+  ],
+  "stable_finalization_result": {
+    "version": "1.1-lts-stable-finalization",
+    "status": "pass",
+    "check_count": 8,
+    "failure_count": 0,
+    "failures": [],
+    "stable_preparation_artifact_count": 3,
+    "stable_finalization_file_count": 11,
+    "stable_finalization_ready": true
+  },
+  "stable_finalization_artifacts": [
+    {
+      "path": "lts_stable_finalization/LTS_Stable_Finalization_Manifest_1_1.json",
+      "sha256": "41c9e99eb7e292f8859013fe5cd9bdf473a9ca07f661d721be49cf5341320878",
+      "size_bytes": 4669
+    },
+    {
+      "path": "lts_stable_finalization/LTS_Stable_Finalization_Hash_1_1.json",
+      "sha256": "c1bb3d99a2c7b92508600764ad27cdefb577838d78d7f5da34abbe990d576eb8",
+      "size_bytes": 2055
+    },
+    {
+      "path": "lts_stable_finalization/LTS_Stable_Finalization_Report_1_1.md",
+      "sha256": "294fa04ef5a77833c8814d505ab028fe77def195393b39c23177b828e0608d15",
+      "size_bytes": 1264
+    },
+    {
+      "path": "RELEASE_NOTES_NTPE_1_1_LTS.md",
+      "sha256": "615d09ffc0c64f800b03f58ca827ee738c5da1b604968bea0053a85cb4e99084",
+      "size_bytes": 1014
+    }
+  ],
+  "stable_complete_files": [
+    {
+      "path": "ntpe_lts_stable_complete.py",
+      "sha256": "053f8b77aff99f6f67f1ac950ba6f62f18c33d064ae2d8c0f85ac66d5c0f0104",
+      "size_bytes": 315
+    },
+    {
+      "path": "lts/stable_complete.py",
+      "sha256": "7f60e23181544b8440ac05f8c6a046f72865e2ea1774a1866d8600e4c1497798",
+      "size_bytes": 15482
+    },
+    {
+      "path": "ntpe_lts_stable_finalization.py",
+      "sha256": "c18692aa881e44158bb692cb70c5a466a800d910305624e139696986383a4226",
+      "size_bytes": 327
+    },
+    {
+      "path": "lts/stable_finalization.py",
+      "sha256": "fe7f1e2a301577ce2e043380ebe88e22856d4a5040196f3b801278ff451d208f",
+      "size_bytes": 15569
+    },
+    {
+      "path": "ntpe_lts_stable_preparation.py",
+      "sha256": "b79007e68f790850d8768b7c239ba6f42591e56d9da5457d81a813f92ddf285f",
+      "size_bytes": 324
+    },
+    {
+      "path": "lts/stable_preparation.py",
+      "sha256": "8ee0f7a5c509026214bb278a913ebe24740e6d9a5df790bb44a76850550aa613",
+      "size_bytes": 12196
+    },
+    {
+      "path": "ntpe_translate_txt.py",
+      "sha256": "6f55d88afbd6687211e2aff977e623dd838d2b7776b0b30dc263f063dcd4b2f9",
+      "size_bytes": 386
+    },
+    {
+      "path": "ntpe_translate_batch.py",
+      "sha256": "725033d3e89b66d634b0b6114fd233799aff65136f5ced55e7aab35ffdee6c2b",
+      "size_bytes": 363
+    },
+    {
+      "path": "ntpe_batch_monitor.py",
+      "sha256": "d3967e04ba782562692dbe02588781cd56049cdd6454625f633b14457b09f6cf",
+      "size_bytes": 341
+    },
+    {
+      "path": "ntpe_long_run_recovery.py",
+      "sha256": "24626ed096a7862913f886b65f9f890f6570e78a68974ac0f776e88365ddadcf",
+      "size_bytes": 335
+    },
+    {
+      "path": "tools/clean_project.py",
+      "sha256": "9dd2c03701a2b71d3cfec641a59bd5f187b17217c9de7a952f4bae6f72e810fc",
+      "size_bytes": 8218
+    }
+  ],
+  "missing_stable_finalization_artifacts": [],
+  "missing_stable_complete_files": [],
+  "stable_complete_ready": true,
+  "failures": [],
+  "validation": {
+    "status": "pass",
+    "check_count": 8,
+    "failure_count": 0,
+    "stable_finalization_artifact_count": 4,
+    "stable_complete_file_count": 11,
+    "selected_regression_suite": "Stable + LTS Stage-01~12 + RC-01~06 + Stable Preparation + Stable Finalization + Stable Complete",
+    "expected_result": "ALL PASS",
+    "external_api_calls": 0
+  }
+}

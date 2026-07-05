@@ -1,0 +1,29 @@
+{
+  "version": "1.1-lts-stable-complete",
+  "manifest": "lts_stable_complete/LTS_Stable_Complete_Manifest_1_1.json",
+  "manifest_sha256": "ff24055212f8a8a6942f35428ca9c6774a737f87631da08c79f0b9c3ac0e9385",
+  "completion_marker": "NTPE_1_1_LTS_STABLE_COMPLETE.md",
+  "completion_marker_sha256": "f4cbe06ffaf9788bebe6fb6dc28a371d1bd14339b77eb1f64f8610b7fb060bfa",
+  "stable_finalization_artifact_hashes": {
+    "lts_stable_finalization/LTS_Stable_Finalization_Manifest_1_1.json": "41c9e99eb7e292f8859013fe5cd9bdf473a9ca07f661d721be49cf5341320878",
+    "lts_stable_finalization/LTS_Stable_Finalization_Hash_1_1.json": "c1bb3d99a2c7b92508600764ad27cdefb577838d78d7f5da34abbe990d576eb8",
+    "lts_stable_finalization/LTS_Stable_Finalization_Report_1_1.md": "294fa04ef5a77833c8814d505ab028fe77def195393b39c23177b828e0608d15",
+    "RELEASE_NOTES_NTPE_1_1_LTS.md": "615d09ffc0c64f800b03f58ca827ee738c5da1b604968bea0053a85cb4e99084"
+  },
+  "stable_complete_file_hashes": {
+    "ntpe_lts_stable_complete.py": "053f8b77aff99f6f67f1ac950ba6f62f18c33d064ae2d8c0f85ac66d5c0f0104",
+    "lts/stable_complete.py": "7f60e23181544b8440ac05f8c6a046f72865e2ea1774a1866d8600e4c1497798",
+    "ntpe_lts_stable_finalization.py": "c18692aa881e44158bb692cb70c5a466a800d910305624e139696986383a4226",
+    "lts/stable_finalization.py": "fe7f1e2a301577ce2e043380ebe88e22856d4a5040196f3b801278ff451d208f",
+    "ntpe_lts_stable_preparation.py": "b79007e68f790850d8768b7c239ba6f42591e56d9da5457d81a813f92ddf285f",
+    "lts/stable_preparation.py": "8ee0f7a5c509026214bb278a913ebe24740e6d9a5df790bb44a76850550aa613",
+    "ntpe_translate_txt.py": "6f55d88afbd6687211e2aff977e623dd838d2b7776b0b30dc263f063dcd4b2f9",
+    "ntpe_translate_batch.py": "725033d3e89b66d634b0b6114fd233799aff65136f5ced55e7aab35ffdee6c2b",
+    "ntpe_batch_monitor.py": "d3967e04ba782562692dbe02588781cd56049cdd6454625f633b14457b09f6cf",
+    "ntpe_long_run_recovery.py": "24626ed096a7862913f886b65f9f890f6570e78a68974ac0f776e88365ddadcf",
+    "tools/clean_project.py": "9dd2c03701a2b71d3cfec641a59bd5f187b17217c9de7a952f4bae6f72e810fc"
+  },
+  "stable_complete_ready": true,
+  "status": "pass",
+  "created_at": "2026-07-05T15:20:54"
+}
