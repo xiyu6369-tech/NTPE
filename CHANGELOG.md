@@ -7,3 +7,9 @@
 - Added review registry, events, metrics, bridge, and exceptions.
 - Added launcher, unit tests, and integration tests.
 - Preserved backward compatibility with workflow, scheduler, and resource optimizer layers.
+
+## NTPE 1.2 Professional Stage-17.5 Export Framework
+
+- Added workflow export engine, registry, pipeline, metadata, validation, metrics, and events.
+- Added TXT, Markdown, HTML exporters and DOCX/EPUB/PDF framework exporters.
+- Added workflow export bridge and Stage-17.5 tests.

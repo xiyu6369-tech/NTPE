@@ -124,3 +124,12 @@ from .review_state import ReviewState
 from .review_task import ReviewComment, ReviewTask
 
 __all__ = [name for name in globals() if not name.startswith("_")]
+
+# Stage-17.5 Export Framework
+try:
+    from .export_engine import ExportEngine
+    from .export_context import ExportContext
+    from .export_metadata import ExportMetadata
+    from .export_result import ExportResult
+except Exception:  # pragma: no cover - preserve legacy import behavior
+    pass
