@@ -1,0 +1,8 @@
+@echo off
+setlocal
+python tools\stage18_6_documentation_center_migrate.py
+python ntpe_stage18_6_documentation_center_test.py
+python tests\integration\launcher_stage18_6_documentation_center_test.py
+python tests\smoke\launcher_stage18_6_documentation_center_smoke_test.py
+python ntpe_validate.py
+endlocal

@@ -1,28 +1,38 @@
-# NTPE 1.2 Professional Stage-14.2
+# NTPE — Novel Translation Professional Engine
 
-Stage-14.2 adds the Provider Credential / Config Layer on top of the Stage-14 AI Provider Framework and Stage-14.1 runtime binding.
+NTPE is a professional Korean novel translation engine focused on stable long-form translation, terminology consistency, workflow automation, quality validation, and enterprise deployment.
 
-## Scope
+## Current Release Line
 
-- Provider config schema
-- Provider profile loading
-- Environment variable credential mapping
-- Credential registry
-- Credential validation
-- Secret masking for logs/manifests
-- Retry defaults from config
-- Rate limit defaults from config
-- Runtime config manifest APIs
-- Runtime provider config template export
+- NTPE 1.0 Stable: Frozen
+- NTPE 1.1 LTS Stable: Frozen
+- NTPE 1.2 Professional: Active development
 
-## Default credential environment variables
+## Quick Start
 
-- NVIDIA: `NVIDIA_API_KEY`
-- OpenAI: `OPENAI_API_KEY`
-- Gemini: `GEMINI_API_KEY`
-- Anthropic: `ANTHROPIC_API_KEY`
-- OpenRouter: `OPENROUTER_API_KEY`
-- Ollama: `OLLAMA_API_KEY`
-- Custom Provider: `NTPE_CUSTOM_PROVIDER_API_KEY`
+```bat
+python launcher.py
+python ntpe_validate.py
+```
 
-No secret value is stored in the committed default config.
+## Documentation
+
+All long-form documentation is organized under `docs/`.
+
+- Architecture: `docs/architecture/`
+- Developer Guide: `docs/developer/`
+- API Notes: `docs/api/`
+- Enterprise Deployment: `docs/enterprise/`
+- Release Notes: `docs/release/`
+- Roadmap: `docs/roadmap/`
+- Freeze Records: `docs/freeze/`
+- Stage Documents: `docs/stages/`
+
+## Validation
+
+```bat
+python ntpe_stage18_6_documentation_center_test.py
+python tests\integration\launcher_stage18_6_documentation_center_test.py
+python tests\smoke\launcher_stage18_6_documentation_center_smoke_test.py
+python ntpe_validate.py
+```
