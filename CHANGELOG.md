@@ -141,3 +141,12 @@
 - Locked Stage-16.1 through Stage-16.7 public intelligence contracts.
 - Preserved backward compatibility with Provider Framework and Translation Quality Engine frozen layers.
 
+
+
+## NTPE 1.2 Professional - Stage-17.1 Translation Workflow Engine
+
+- Added `core.workflow` production workflow package.
+- Added workflow context, state, step, registry, pipeline, events, metrics, and result contracts.
+- Added default workflow chain: prepare -> intelligence -> translate -> quality check -> auto repair -> review gate -> export.
+- Added Stage-17.1 unit, integration, and launcher validation.
+- Preserved Stage-14, Stage-15, and Stage-16 frozen contracts.
