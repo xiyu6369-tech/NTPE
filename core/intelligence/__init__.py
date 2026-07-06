@@ -332,3 +332,39 @@ try:
 except Exception:
     pass
 
+
+# Stage-16.7 Intelligence Runtime Integration exports
+try:
+    from .intelligence_runtime import IntelligenceRuntime
+    from .intelligence_runtime_context import IntelligenceRuntimeContext
+    from .intelligence_runtime_events import (
+        INTELLIGENCE_RUNTIME_COMPLETED,
+        INTELLIGENCE_RUNTIME_STARTED,
+        INTELLIGENCE_RUNTIME_STEP_COMPLETED,
+        IntelligenceRuntimeEvent,
+        IntelligenceRuntimeEventBus,
+    )
+    from .intelligence_runtime_exceptions import IntelligenceRuntimeError, IntelligenceRuntimeInputError
+    from .intelligence_runtime_pipeline import IntelligenceRuntimePipeline
+    from .intelligence_runtime_registry import IntelligenceRuntimeRegistry
+    from .intelligence_runtime_result import IntelligenceRuntimeResult
+except Exception:  # pragma: no cover - compatibility-safe optional exports
+    pass
+
+try:
+    __all__.extend([
+        "INTELLIGENCE_RUNTIME_COMPLETED",
+        "INTELLIGENCE_RUNTIME_STARTED",
+        "INTELLIGENCE_RUNTIME_STEP_COMPLETED",
+        "IntelligenceRuntime",
+        "IntelligenceRuntimeContext",
+        "IntelligenceRuntimeError",
+        "IntelligenceRuntimeEvent",
+        "IntelligenceRuntimeEventBus",
+        "IntelligenceRuntimeInputError",
+        "IntelligenceRuntimePipeline",
+        "IntelligenceRuntimeRegistry",
+        "IntelligenceRuntimeResult",
+    ])
+except Exception:
+    pass

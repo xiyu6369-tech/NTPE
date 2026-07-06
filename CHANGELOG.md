@@ -126,3 +126,10 @@
 - Added explainable strategy selection and content classification.
 - Preserved backward compatibility with Stage-14, Stage-15, and Stage-16.1-16.5.
 
+## NTPE 1.2 Professional Stage-16.7 Intelligence Runtime Integration
+
+- Added IntelligenceRuntime facade.
+- Added IntelligenceRuntimeContext, result, registry, pipeline, metrics, events, and exceptions.
+- Added TranslationIntelligenceBridge for runtime binding.
+- Added Stage-16.7 launcher and unit tests.
+- Preserved Stage-14 Provider Framework and Stage-15 TQE frozen contracts.
