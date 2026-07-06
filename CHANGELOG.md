@@ -88,3 +88,10 @@
 - Added Stage-16.1 unit tests and root launcher.
 - Preserved Stage-14 Provider Framework Freeze and Stage-15 Translation Quality Engine Freeze compatibility.
 
+## NTPE 1.2 Professional - Stage-16.2 Narrative Intelligence
+
+- Added Narrative Intelligence Engine.
+- Added narrative segmentation, perspective, voice, tense, tone, scene transition, and style profile analysis.
+- Added narrative runtime state and events.
+- Added Stage-16.2 launcher and unit tests.
+
