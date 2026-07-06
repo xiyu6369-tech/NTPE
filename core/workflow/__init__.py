@@ -23,21 +23,25 @@ try:
     from .workflow_state import WorkflowState
     from .workflow_step import WorkflowStep
 
-    from .resource_bridge import optimize_workflow_resources
-    from .resource_context import ResourceContext
-    from .resource_events import (
-        RESOURCE_BUDGET_WARNING,
-        RESOURCE_OPTIMIZATION_COMPLETED,
-        RESOURCE_OPTIMIZATION_STARTED,
-        ResourceEvent,
-        ResourceEventBus,
+    from .job_context import JobContext
+    from .job_events import (
+        JOB_COMPLETED,
+        JOB_ENQUEUED,
+        JOB_FAILED,
+        JOB_PAUSED,
+        JOB_RESUMED,
+        JOB_RETRY,
+        JOB_STARTED,
+        JobEventBus,
     )
-    from .resource_exceptions import ResourceBudgetError, ResourceOptimizerError
-    from .resource_optimizer import ResourceOptimizer
-    from .resource_policy import ResourceOptimizationPolicy
-    from .resource_profile import ResourceProfile
-    from .resource_registry import ResourceProfileRegistry
-    from .resource_result import ResourceOptimizationResult, ResourcePlan
+    from .job_exceptions import JobExecutionError, JobQueueError, JobSchedulerError
+    from .job_metrics import build_job_metrics
+    from .job_priority import JobPriority, normalize_priority
+    from .job_queue import JobQueue
+    from .job_result import JobResult
+    from .job_scheduler import JobScheduler
+    from .job_state import JobState
+    from .job_worker import JobWorker
 except Exception:
     WorkflowContext = None
     TranslationWorkflowEngine = None
@@ -53,45 +57,33 @@ except Exception:
     WorkflowState = None
     WorkflowStep = None
     build_workflow_metrics = None
-
-    ResourceContext = None
-    ResourceEvent = None
-    ResourceEventBus = None
-    ResourceOptimizer = None
-    ResourceOptimizerError = None
-    ResourceBudgetError = None
-    ResourceOptimizationPolicy = None
-    ResourceOptimizationResult = None
-    ResourcePlan = None
-    ResourceProfile = None
-    ResourceProfileRegistry = None
-    optimize_workflow_resources = None
-    RESOURCE_BUDGET_WARNING = "ResourceBudgetWarning"
-    RESOURCE_OPTIMIZATION_COMPLETED = "ResourceOptimizationCompleted"
-    RESOURCE_OPTIMIZATION_STARTED = "ResourceOptimizationStarted"
+    JobContext = None
+    JobEventBus = None
+    JobExecutionError = None
+    JobPriority = None
+    JobQueue = None
+    JobQueueError = None
+    JobResult = None
+    JobScheduler = None
+    JobSchedulerError = None
+    JobState = None
+    JobWorker = None
+    build_job_metrics = None
+    normalize_priority = None
     WORKFLOW_COMPLETED = "WorkflowCompleted"
     WORKFLOW_FAILED = "WorkflowFailed"
     WORKFLOW_STARTED = "WorkflowStarted"
     WORKFLOW_STEP_COMPLETED = "WorkflowStepCompleted"
     WORKFLOW_STEP_STARTED = "WorkflowStepStarted"
+    JOB_COMPLETED = "JobCompleted"
+    JOB_ENQUEUED = "JobEnqueued"
+    JOB_FAILED = "JobFailed"
+    JOB_PAUSED = "JobPaused"
+    JOB_RESUMED = "JobResumed"
+    JOB_RETRY = "JobRetry"
+    JOB_STARTED = "JobStarted"
 
 __all__ = [
-
-    "RESOURCE_BUDGET_WARNING",
-    "RESOURCE_OPTIMIZATION_COMPLETED",
-    "RESOURCE_OPTIMIZATION_STARTED",
-    "ResourceBudgetError",
-    "ResourceContext",
-    "ResourceEvent",
-    "ResourceEventBus",
-    "ResourceOptimizationPolicy",
-    "ResourceOptimizationResult",
-    "ResourceOptimizer",
-    "ResourceOptimizerError",
-    "ResourcePlan",
-    "ResourceProfile",
-    "ResourceProfileRegistry",
-    "optimize_workflow_resources",
     "WORKFLOW_COMPLETED",
     "WORKFLOW_FAILED",
     "WORKFLOW_STARTED",
@@ -111,4 +103,24 @@ __all__ = [
     "WorkflowStepError",
     "WorkflowStepResult",
     "build_workflow_metrics",
+    "JOB_COMPLETED",
+    "JOB_ENQUEUED",
+    "JOB_FAILED",
+    "JOB_PAUSED",
+    "JOB_RESUMED",
+    "JOB_RETRY",
+    "JOB_STARTED",
+    "JobContext",
+    "JobEventBus",
+    "JobExecutionError",
+    "JobPriority",
+    "JobQueue",
+    "JobQueueError",
+    "JobResult",
+    "JobScheduler",
+    "JobSchedulerError",
+    "JobState",
+    "JobWorker",
+    "build_job_metrics",
+    "normalize_priority",
 ]

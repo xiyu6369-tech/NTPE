@@ -1,3 +1,14 @@
+# NTPE Changelog
+
+## NTPE 1.2 Professional - Stage-17.2 Job Scheduler / Batch Task Manager
+
+- Added `core.workflow.JobScheduler` for batch workflow execution.
+- Added priority-aware `JobQueue`.
+- Added synchronous `JobWorker` integration with `TranslationWorkflowEngine`.
+- Added job state/result/events/metrics modules.
+- Added Stage-17.2 launcher, unit tests, and integration tests.
+- Preserved Stage-17.1 Workflow Engine compatibility.
+
 
 ## NTPE 1.2 Professional Stage-16.3
 
@@ -150,10 +161,3 @@
 - Added default workflow chain: prepare -> intelligence -> translate -> quality check -> auto repair -> review gate -> export.
 - Added Stage-17.1 unit, integration, and launcher validation.
 - Preserved Stage-14, Stage-15, and Stage-16 frozen contracts.
-
-## NTPE 1.2 Professional - Stage-17.3 Resource Optimizer
-
-- Added Resource Optimizer for workflow production planning.
-- Added provider, token, cost, cache, worker, and rate-limit planning primitives.
-- Added workflow resource bridge and profile registry.
-- Added Stage-17.3 unit, integration, and launcher validation.
