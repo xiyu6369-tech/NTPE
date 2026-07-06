@@ -9,6 +9,7 @@ from .deployment_profile_manager import EnterpriseDeploymentProfileManager
 from .deployment_runtime import EnterpriseDeploymentRuntime, EnterpriseRuntimeContext, EnterpriseRuntimePlan, EnterpriseRuntimeResult
 from .deployment_orchestrator import EnterpriseDeploymentOrchestrator, EnterpriseOrchestrationPlan, EnterpriseOrchestrationResult
 from .deployment_validation import EnterpriseDeploymentValidation, EnterpriseValidationGate, EnterpriseValidationResult
+from .deployment_freeze import EnterpriseDeploymentFreeze, EnterpriseDeploymentFreezeManifest, EnterpriseDeploymentFreezeReport
 
 __all__ = [
     "EnterpriseDeploymentFoundation",
@@ -25,4 +26,7 @@ __all__ = [
     "EnterpriseDeploymentValidation",
     "EnterpriseValidationGate",
     "EnterpriseValidationResult",
+    "EnterpriseDeploymentFreeze",
+    "EnterpriseDeploymentFreezeManifest",
+    "EnterpriseDeploymentFreezeReport",
 ]
