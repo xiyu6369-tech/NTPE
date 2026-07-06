@@ -1,4 +1,12 @@
 
+## NTPE 1.2 Professional Stage-16.3
+
+- Added Character Relationship Intelligence Engine.
+- Added character registry, alias index, relationship graph, pronoun resolver, memory, metrics, events, and pipeline.
+- Added Stage-16.3 launcher and targeted unit tests.
+- Preserved Stage-14 and Stage-15 frozen contracts.
+
+
 ## NTPE 1.2 Professional Stage-15.8 Translation Quality Engine Freeze
 
 - Frozen Stage-15 Translation Quality Engine public baseline.

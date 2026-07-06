@@ -132,3 +132,73 @@ __all__.extend([
     "detect_voice",
     "split_segments",
 ])
+
+
+# Stage-16.3 Character Relationship Intelligence exports
+try:
+    from .character_alias import build_alias_index, detect_alias_conflicts
+    from .character_engine import CharacterRelationshipIntelligenceEngine
+    from .character_events import (
+        CHARACTER_ANALYZED,
+        CHARACTER_COMPLETED,
+        CHARACTER_STARTED,
+        CharacterEvent,
+        CharacterEventBus,
+    )
+    from .character_exceptions import CharacterInputError, CharacterIntelligenceError
+    from .character_graph import CharacterGraph
+    from .character_memory import CharacterMemory
+    from .character_metrics import build_character_metrics
+    from .character_pipeline import CharacterPipeline
+    from .character_pronoun import detect_pronouns, resolve_pronouns
+    from .character_registry import CharacterRecord, CharacterRegistry
+    from .character_relationship import CharacterRelationship
+    from .character_result import CharacterFinding, CharacterIntelligenceResult, CharacterMention
+except Exception:
+    CharacterRelationshipIntelligenceEngine = None
+    CharacterEvent = None
+    CharacterEventBus = None
+    CharacterGraph = None
+    CharacterMemory = None
+    CharacterPipeline = None
+    CharacterRecord = None
+    CharacterRegistry = None
+    CharacterRelationship = None
+    CharacterFinding = None
+    CharacterIntelligenceResult = None
+    CharacterMention = None
+    CharacterInputError = None
+    CharacterIntelligenceError = None
+    build_alias_index = None
+    build_character_metrics = None
+    detect_alias_conflicts = None
+    detect_pronouns = None
+    resolve_pronouns = None
+    CHARACTER_ANALYZED = "CharacterAnalyzed"
+    CHARACTER_COMPLETED = "CharacterCompleted"
+    CHARACTER_STARTED = "CharacterStarted"
+
+__all__.extend([
+    "CHARACTER_ANALYZED",
+    "CHARACTER_COMPLETED",
+    "CHARACTER_STARTED",
+    "CharacterEvent",
+    "CharacterEventBus",
+    "CharacterFinding",
+    "CharacterGraph",
+    "CharacterInputError",
+    "CharacterIntelligenceError",
+    "CharacterIntelligenceResult",
+    "CharacterMemory",
+    "CharacterMention",
+    "CharacterPipeline",
+    "CharacterRecord",
+    "CharacterRegistry",
+    "CharacterRelationship",
+    "CharacterRelationshipIntelligenceEngine",
+    "build_alias_index",
+    "build_character_metrics",
+    "detect_alias_conflicts",
+    "detect_pronouns",
+    "resolve_pronouns",
+])
