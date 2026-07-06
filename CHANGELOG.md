@@ -150,3 +150,10 @@
 - Added default workflow chain: prepare -> intelligence -> translate -> quality check -> auto repair -> review gate -> export.
 - Added Stage-17.1 unit, integration, and launcher validation.
 - Preserved Stage-14, Stage-15, and Stage-16 frozen contracts.
+
+## NTPE 1.2 Professional - Stage-17.3 Resource Optimizer
+
+- Added Resource Optimizer for workflow production planning.
+- Added provider, token, cost, cache, worker, and rate-limit planning primitives.
+- Added workflow resource bridge and profile registry.
+- Added Stage-17.3 unit, integration, and launcher validation.
