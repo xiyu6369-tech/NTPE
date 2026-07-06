@@ -133,3 +133,13 @@ try:
     from .export_result import ExportResult
 except Exception:  # pragma: no cover - preserve legacy import behavior
     pass
+
+# Stage-17.6 Monitoring Dashboard API
+try:
+    from .dashboard_api import MonitoringDashboardAPI
+    from .dashboard_bridge import build_dashboard_snapshot
+    from .dashboard_events import DashboardEvent, DashboardEventBus
+    from .dashboard_registry import DashboardRegistry
+    from .dashboard_result import DashboardSnapshot, DashboardStatus
+except Exception:  # pragma: no cover - preserve legacy import behavior
+    pass

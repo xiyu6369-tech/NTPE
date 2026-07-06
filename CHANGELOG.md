@@ -1,3 +1,10 @@
+# NTPE 1.2 Professional — Stage-17.6 Monitoring Dashboard API
+
+- Added shared MonitoringDashboardAPI.
+- Added dashboard registry, events, health summary, metrics, snapshot, and bridge helpers.
+- Added unit/integration tests and Stage-17.6 launcher.
+- Preserved Stage-14/15/16 frozen contracts and Stage-17.1~17.5 compatibility.
+
 # Changelog
 
 ## NTPE 1.2 Professional Stage-17.4 Review & Approval Layer
