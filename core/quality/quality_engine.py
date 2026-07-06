@@ -15,8 +15,8 @@ from .quality_result import QualityResult
 class TranslationQualityEngine:
     """Public Stage-15 Translation Quality Engine facade."""
 
-    stage = "Stage-15.6"
-    name = "Translation Quality Engine Core + Completeness + Consistency + Repetition + Structure Integrity + Export Layer"
+    stage = "Stage-15.7"
+    name = "Translation Quality Engine Core + Completeness + Consistency + Repetition + Structure Integrity + Export + Auto Repair Layer"
 
     def __init__(
         self,
@@ -64,3 +64,16 @@ class TranslationQualityEngine:
                 metadata=dict(metadata),
             )
         )
+    def repair(self, context: QualityContext, result: QualityResult | None = None, *, policy=None):
+        from .auto_repair import QualityAutoRepairEngine
+        return QualityAutoRepairEngine(policy).repair(context, result)
+
+    def repair_text(self, source_text: str, translated_text: str, *, language_pair: str = "ko->zh-TW", policy=None, **metadata: object):
+        context = QualityContext(
+            source_text=source_text,
+            translated_text=translated_text,
+            language_pair=language_pair,
+            metadata=dict(metadata),
+        )
+        return self.repair(context, policy=policy)
+

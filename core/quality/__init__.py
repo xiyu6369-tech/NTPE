@@ -208,3 +208,29 @@ __all__ = list(dict.fromkeys(__all__ + [
     "QualityReportSerializer",
     "SecretMasker",
 ]))
+
+
+# NTPE 1.2 Professional Stage-15.7 Quality Auto Repair Layer exports
+try:
+    from .auto_repair import QualityAutoRepairEngine, repair_translation_text
+    from .repair_policy import QualityRepairPolicy
+    from .repair_report import QualityRepairReport
+    from .repair_result import RepairAction, RepairResult, RepairStatus
+except Exception:
+    QualityAutoRepairEngine = None
+    repair_translation_text = None
+    QualityRepairPolicy = None
+    QualityRepairReport = None
+    RepairAction = None
+    RepairResult = None
+    RepairStatus = None
+
+__all__ = list(dict.fromkeys(__all__ + [
+    "QualityAutoRepairEngine",
+    "repair_translation_text",
+    "QualityRepairPolicy",
+    "QualityRepairReport",
+    "RepairAction",
+    "RepairResult",
+    "RepairStatus",
+]))

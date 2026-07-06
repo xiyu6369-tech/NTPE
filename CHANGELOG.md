@@ -64,3 +64,11 @@
 - Added Stage-15.6 launcher and unit tests.
 - Preserved Foundation v1.0, NTPE 1.1 LTS Frozen, Stage-14 Freeze, and Stage-15.1-15.5 compatibility.
 
+## NTPE 1.2 Professional — Stage-15.7 Quality Auto Repair Layer
+
+- Added deterministic quality auto repair engine.
+- Added repair policy, repair result, and repair report models.
+- Added safe repairs for whitespace, duplicate lines, dialogue quote formatting, and explicit glossary terms.
+- Added placeholder preservation guard to prevent unsafe repair output.
+- Added Stage-15.7 unit tests and launcher validation.
+
