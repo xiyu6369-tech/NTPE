@@ -80,4 +80,11 @@
 - Added safe repairs for whitespace, duplicate lines, dialogue quote formatting, and explicit glossary terms.
 - Added placeholder preservation guard to prevent unsafe repair output.
 - Added Stage-15.7 unit tests and launcher validation.
+## NTPE 1.2 Professional Stage-16.1 Context Intelligence Engine
+
+- Added `core.intelligence` context intelligence package.
+- Added deterministic dynamic context window selection.
+- Added context memory, registry, graph, metrics, events and pipeline modules.
+- Added Stage-16.1 unit tests and root launcher.
+- Preserved Stage-14 Provider Framework Freeze and Stage-15 Translation Quality Engine Freeze compatibility.
 
