@@ -202,3 +202,80 @@ __all__.extend([
     "detect_pronouns",
     "resolve_pronouns",
 ])
+
+
+# Stage-16.4 Semantic Consistency Engine exports
+try:
+    from .semantic_engine import SemanticConsistencyEngine
+    from .semantic_events import (
+        SEMANTIC_ANALYZED,
+        SEMANTIC_COMPLETED,
+        SEMANTIC_STARTED,
+        SemanticEvent,
+        SemanticEventBus,
+    )
+    from .semantic_exceptions import SemanticInputError, SemanticIntelligenceError
+    from .semantic_graph import SemanticEdge, SemanticGraph
+    from .semantic_memory import SemanticMemory
+    from .semantic_metrics import build_semantic_metrics
+    from .semantic_pipeline import SemanticConsistencyPipeline
+    from .semantic_result import SemanticConsistencyResult, SemanticFinding, SemanticUnit
+    from .semantic_rules import (
+        build_concept_map,
+        build_event_map,
+        build_semantic_units,
+        detect_continuity_gaps,
+        detect_semantic_contradictions,
+        extract_concepts,
+        extract_events,
+    )
+except Exception:
+    SemanticConsistencyEngine = None
+    SemanticEvent = None
+    SemanticEventBus = None
+    SemanticEdge = None
+    SemanticGraph = None
+    SemanticMemory = None
+    SemanticConsistencyPipeline = None
+    SemanticConsistencyResult = None
+    SemanticFinding = None
+    SemanticUnit = None
+    SemanticInputError = None
+    SemanticIntelligenceError = None
+    build_concept_map = None
+    build_event_map = None
+    build_semantic_metrics = None
+    build_semantic_units = None
+    detect_continuity_gaps = None
+    detect_semantic_contradictions = None
+    extract_concepts = None
+    extract_events = None
+    SEMANTIC_ANALYZED = "SemanticAnalyzed"
+    SEMANTIC_COMPLETED = "SemanticCompleted"
+    SEMANTIC_STARTED = "SemanticStarted"
+
+__all__.extend([
+    "SEMANTIC_ANALYZED",
+    "SEMANTIC_COMPLETED",
+    "SEMANTIC_STARTED",
+    "SemanticConsistencyEngine",
+    "SemanticConsistencyPipeline",
+    "SemanticConsistencyResult",
+    "SemanticEdge",
+    "SemanticEvent",
+    "SemanticEventBus",
+    "SemanticFinding",
+    "SemanticGraph",
+    "SemanticInputError",
+    "SemanticIntelligenceError",
+    "SemanticMemory",
+    "SemanticUnit",
+    "build_concept_map",
+    "build_event_map",
+    "build_semantic_metrics",
+    "build_semantic_units",
+    "detect_continuity_gaps",
+    "detect_semantic_contradictions",
+    "extract_concepts",
+    "extract_events",
+])

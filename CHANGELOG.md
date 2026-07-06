@@ -103,3 +103,11 @@
 - Added narrative runtime state and events.
 - Added Stage-16.2 launcher and unit tests.
 
+
+## NTPE 1.2 Professional Stage-16.4 Semantic Consistency Engine
+
+- Added semantic consistency engine facade.
+- Added semantic unit, concept, event, contradiction, and continuity-gap models.
+- Added semantic memory, graph, metrics, event bus, and deterministic pipeline.
+- Added Stage-16.4 unit, integration, and launcher validation.
+- Preserved Stage-14 and Stage-15 frozen API compatibility.
