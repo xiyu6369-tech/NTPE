@@ -1,6 +1,7 @@
 # =====================================================
 # NTPE 1.2 Professional
-# Stage-17.1 Translation Workflow Engine
+# Stage-17 Workflow Layer
+# Stage-17.4 Review & Approval Layer compatible exports
 # =====================================================
 
 try:
@@ -22,26 +23,6 @@ try:
     from .workflow_result import WorkflowResult, WorkflowStepResult
     from .workflow_state import WorkflowState
     from .workflow_step import WorkflowStep
-
-    from .job_context import JobContext
-    from .job_events import (
-        JOB_COMPLETED,
-        JOB_ENQUEUED,
-        JOB_FAILED,
-        JOB_PAUSED,
-        JOB_RESUMED,
-        JOB_RETRY,
-        JOB_STARTED,
-        JobEventBus,
-    )
-    from .job_exceptions import JobExecutionError, JobQueueError, JobSchedulerError
-    from .job_metrics import build_job_metrics
-    from .job_priority import JobPriority, normalize_priority
-    from .job_queue import JobQueue
-    from .job_result import JobResult
-    from .job_scheduler import JobScheduler
-    from .job_state import JobState
-    from .job_worker import JobWorker
 except Exception:
     WorkflowContext = None
     TranslationWorkflowEngine = None
@@ -57,70 +38,89 @@ except Exception:
     WorkflowState = None
     WorkflowStep = None
     build_workflow_metrics = None
-    JobContext = None
-    JobEventBus = None
-    JobExecutionError = None
-    JobPriority = None
-    JobQueue = None
-    JobQueueError = None
-    JobResult = None
-    JobScheduler = None
-    JobSchedulerError = None
-    JobState = None
-    JobWorker = None
-    build_job_metrics = None
-    normalize_priority = None
     WORKFLOW_COMPLETED = "WorkflowCompleted"
     WORKFLOW_FAILED = "WorkflowFailed"
     WORKFLOW_STARTED = "WorkflowStarted"
     WORKFLOW_STEP_COMPLETED = "WorkflowStepCompleted"
     WORKFLOW_STEP_STARTED = "WorkflowStepStarted"
-    JOB_COMPLETED = "JobCompleted"
-    JOB_ENQUEUED = "JobEnqueued"
-    JOB_FAILED = "JobFailed"
-    JOB_PAUSED = "JobPaused"
-    JOB_RESUMED = "JobResumed"
-    JOB_RETRY = "JobRetry"
-    JOB_STARTED = "JobStarted"
 
-__all__ = [
-    "WORKFLOW_COMPLETED",
-    "WORKFLOW_FAILED",
-    "WORKFLOW_STARTED",
-    "WORKFLOW_STEP_COMPLETED",
-    "WORKFLOW_STEP_STARTED",
-    "TranslationWorkflowEngine",
-    "WorkflowContext",
-    "WorkflowError",
-    "WorkflowEvent",
-    "WorkflowEventBus",
-    "WorkflowInputError",
-    "WorkflowPipeline",
-    "WorkflowRegistry",
-    "WorkflowResult",
-    "WorkflowState",
-    "WorkflowStep",
-    "WorkflowStepError",
-    "WorkflowStepResult",
-    "build_workflow_metrics",
-    "JOB_COMPLETED",
-    "JOB_ENQUEUED",
-    "JOB_FAILED",
-    "JOB_PAUSED",
-    "JOB_RESUMED",
-    "JOB_RETRY",
-    "JOB_STARTED",
-    "JobContext",
-    "JobEventBus",
-    "JobExecutionError",
-    "JobPriority",
-    "JobQueue",
-    "JobQueueError",
-    "JobResult",
-    "JobScheduler",
-    "JobSchedulerError",
-    "JobState",
-    "JobWorker",
-    "build_job_metrics",
-    "normalize_priority",
-]
+try:
+    from .job_context import JobContext
+    from .job_events import JobEvent, JobEventBus
+    from .job_exceptions import JobError, JobQueueError, JobStateError
+    from .job_metrics import build_job_metrics
+    from .job_priority import JobPriority
+    from .job_queue import JobQueue
+    from .job_result import JobResult
+    from .job_scheduler import JobScheduler
+    from .job_state import JobState
+    from .job_worker import JobWorker
+except Exception:
+    JobContext = None
+    JobEvent = None
+    JobEventBus = None
+    JobError = None
+    JobQueueError = None
+    JobStateError = None
+    JobPriority = None
+    JobQueue = None
+    JobResult = None
+    JobScheduler = None
+    JobState = None
+    JobWorker = None
+    build_job_metrics = None
+
+try:
+    from .resource_bridge import optimize_workflow_resources
+    from .resource_context import ResourceContext
+    from .resource_events import (
+        RESOURCE_BUDGET_WARNING,
+        RESOURCE_OPTIMIZATION_COMPLETED,
+        RESOURCE_OPTIMIZATION_STARTED,
+        ResourceEvent,
+        ResourceEventBus,
+    )
+    from .resource_exceptions import ResourceBudgetError, ResourceOptimizerError
+    from .resource_optimizer import ResourceOptimizer
+    from .resource_policy import ResourceOptimizationPolicy
+    from .resource_profile import ResourceProfile
+    from .resource_registry import ResourceProfileRegistry
+    from .resource_result import ResourceOptimizationResult, ResourcePlan
+except Exception:
+    ResourceContext = None
+    ResourceEvent = None
+    ResourceEventBus = None
+    ResourceOptimizer = None
+    ResourceOptimizerError = None
+    ResourceBudgetError = None
+    ResourceOptimizationPolicy = None
+    ResourceOptimizationResult = None
+    ResourcePlan = None
+    ResourceProfile = None
+    ResourceProfileRegistry = None
+    optimize_workflow_resources = None
+    RESOURCE_BUDGET_WARNING = "ResourceBudgetWarning"
+    RESOURCE_OPTIMIZATION_COMPLETED = "ResourceOptimizationCompleted"
+    RESOURCE_OPTIMIZATION_STARTED = "ResourceOptimizationStarted"
+
+from .review_approval_layer import ReviewApprovalLayer
+from .review_bridge import evaluate_review_gate
+from .review_events import (
+    REVIEW_APPROVED,
+    REVIEW_CANCELLED,
+    REVIEW_CHANGES_REQUESTED,
+    REVIEW_CREATED,
+    REVIEW_REJECTED,
+    REVIEW_STARTED,
+    ReviewEvent,
+    ReviewEventBus,
+)
+from .review_exceptions import ApprovalGateError, ReviewError, ReviewStateError
+from .review_gate import ApprovalGate, ApprovalGatePolicy
+from .review_metrics import build_review_metrics
+from .review_registry import ReviewRegistry
+from .review_result import ReviewResult
+from .review_state import ReviewState
+from .review_task import ReviewComment, ReviewTask
+
+__all__ = [name for name in globals() if not name.startswith("_")]
