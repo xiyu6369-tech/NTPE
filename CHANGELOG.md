@@ -133,3 +133,11 @@
 - Added TranslationIntelligenceBridge for runtime binding.
 - Added Stage-16.7 launcher and unit tests.
 - Preserved Stage-14 Provider Framework and Stage-15 TQE frozen contracts.
+## NTPE 1.2 Professional Stage-16.8 Advanced Translation Intelligence Freeze
+
+- Added Stage-16 intelligence freeze manifest.
+- Added frozen runtime contract declaration.
+- Added Stage-16 freeze validator and launcher.
+- Locked Stage-16.1 through Stage-16.7 public intelligence contracts.
+- Preserved backward compatibility with Provider Framework and Translation Quality Engine frozen layers.
+

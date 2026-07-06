@@ -368,3 +368,39 @@ try:
     ])
 except Exception:
     pass
+
+# Stage-16.8 Advanced Translation Intelligence Freeze exports
+try:
+    from .intelligence_contract import IntelligenceRuntimeContract
+    from .intelligence_freeze_events import (
+        INTELLIGENCE_FREEZE_COMPLETED,
+        INTELLIGENCE_FREEZE_STARTED,
+        INTELLIGENCE_FREEZE_VALIDATED,
+        IntelligenceFreezeEvent,
+        IntelligenceFreezeEventBus,
+    )
+    from .intelligence_freeze_manifest import IntelligenceFreezeManifest
+    from .intelligence_freeze_result import IntelligenceFreezeResult
+    from .intelligence_freeze_validator import IntelligenceFreezeValidator
+except Exception:
+    IntelligenceRuntimeContract = None
+    IntelligenceFreezeEvent = None
+    IntelligenceFreezeEventBus = None
+    IntelligenceFreezeManifest = None
+    IntelligenceFreezeResult = None
+    IntelligenceFreezeValidator = None
+    INTELLIGENCE_FREEZE_COMPLETED = "IntelligenceFreezeCompleted"
+    INTELLIGENCE_FREEZE_STARTED = "IntelligenceFreezeStarted"
+    INTELLIGENCE_FREEZE_VALIDATED = "IntelligenceFreezeValidated"
+
+__all__.extend([
+    "INTELLIGENCE_FREEZE_COMPLETED",
+    "INTELLIGENCE_FREEZE_STARTED",
+    "INTELLIGENCE_FREEZE_VALIDATED",
+    "IntelligenceFreezeEvent",
+    "IntelligenceFreezeEventBus",
+    "IntelligenceFreezeManifest",
+    "IntelligenceFreezeResult",
+    "IntelligenceFreezeValidator",
+    "IntelligenceRuntimeContract",
+])
