@@ -7,6 +7,7 @@ from .deployment_manifest import EnterpriseDeploymentManifest
 from .deployment_result import EnterpriseDeploymentResult
 from .deployment_profile_manager import EnterpriseDeploymentProfileManager
 from .deployment_runtime import EnterpriseDeploymentRuntime, EnterpriseRuntimeContext, EnterpriseRuntimePlan, EnterpriseRuntimeResult
+from .deployment_orchestrator import EnterpriseDeploymentOrchestrator, EnterpriseOrchestrationPlan, EnterpriseOrchestrationResult
 
 __all__ = [
     "EnterpriseDeploymentFoundation",
@@ -17,4 +18,7 @@ __all__ = [
     "EnterpriseRuntimeContext",
     "EnterpriseRuntimePlan",
     "EnterpriseRuntimeResult",
+    "EnterpriseDeploymentOrchestrator",
+    "EnterpriseOrchestrationPlan",
+    "EnterpriseOrchestrationResult",
 ]
