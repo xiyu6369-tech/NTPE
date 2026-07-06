@@ -46,3 +46,10 @@
 - Added `--simplified-chinese-policy normalize|warn|fail` to production translator CLI.
 - Preserved strict mode through `fail` for audit-focused runs.
 - Kept simplified-hit metrics visible in manifests and QA reports.
+## PS-03 Translation Corpus Evaluation Engine
+
+- Added literary quality evaluation reports for regression outputs.
+- Added `launcher_translate.py evaluate --stage <stage>`.
+- Added diff and regression history reports under `tests/literary/outputs/`.
+- Added PS-03 tests and documentation.
+

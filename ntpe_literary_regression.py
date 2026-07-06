@@ -14,11 +14,12 @@ from typing import Iterable
 from core.translation_engine.utils import now_iso, save_json
 from core.translation_runtime import TranslationRuntime
 from lts.txt_translation_runtime import TxtTranslationOptions
+from ntpe_literary_evaluation import evaluate_stage_outputs
 
 LITERARY_ROOT = Path("tests") / "literary"
 DEFAULT_TEST_SETS = ("Test_Set_0", "Test_Set_A", "Test_Set_B")
 DEFAULT_SOURCE_NAME = "original_ko.txt"
-DEFAULT_STAGE_NAME = "PS-02"
+DEFAULT_STAGE_NAME = "PS-03"
 
 
 @dataclass(frozen=True)
@@ -35,6 +36,8 @@ class LiteraryRegressionOptions:
     retry_base_seconds: float = 5.0
     qa_fail_policy: str = "retry"
     simplified_chinese_policy: str = "normalize"
+    evaluate: bool = True
+    previous_stage: str | None = None
 
 
 def _safe_stage_name(stage_name: str) -> str:
@@ -164,7 +167,7 @@ def run_literary_regression(options: LiteraryRegressionOptions) -> dict:
         "elapsed_seconds": round(time.time() - started, 3),
     }
     report = {
-        "version": "1.2-ps-02-literary-regression-runner",
+        "version": "1.2-ps-03-translation-corpus-evaluation-engine",
         "status": "success" if summary["failed"] == 0 else "failed",
         "stage": stage_name,
         "profile": options.profile,
@@ -176,6 +179,12 @@ def run_literary_regression(options: LiteraryRegressionOptions) -> dict:
     }
     save_json(output_base / "Literary_Regression_Report.json", report)
     _write_markdown_report(output_base / "Literary_Regression_Report.md", report)
+    if options.evaluate:
+        try:
+            report["quality_report"] = evaluate_stage_outputs(root, stage_name, previous_stage=options.previous_stage)
+        except Exception as exc:
+            report["quality_report_error"] = str(exc)
+            save_json(output_base / "Literary_Regression_Report.json", report)
     return report
 
 

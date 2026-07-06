@@ -11,6 +11,7 @@ from pathlib import Path
 from typing import Iterable
 
 from ntpe_literary_regression import LiteraryRegressionOptions, discover_test_sets, ensure_literary_structure, run_literary_regression
+from ntpe_literary_evaluation import evaluate_stage_outputs
 
 ROOT = Path(__file__).resolve().parent
 if str(ROOT) not in sys.path:
@@ -96,16 +97,22 @@ def build_parser() -> argparse.ArgumentParser:
 
     regression = sub.add_parser("regression", help="run literary regression corpus under tests/literary")
     regression.add_argument("--set", dest="sets", action="append", choices=("Test_Set_0", "Test_Set_A", "Test_Set_B"), help="run one test set; repeat to run multiple")
-    regression.add_argument("--stage", default=os.environ.get("NTPE_PS_STAGE", "PS-02"), help="output archive stage name under tests/literary/outputs")
+    regression.add_argument("--stage", default=os.environ.get("NTPE_PS_STAGE", "PS-03"), help="output archive stage name under tests/literary/outputs")
     regression.add_argument("--profile", choices=("fast", "balanced", "novel", "literary", "quality", "premium"), default=os.environ.get("NTPE_TRANSLATION_PROFILE", "literary"))
     regression.add_argument("--chunk-size", type=int, default=int(os.environ.get("NTPE_CHUNK_SIZE", "1000")))
     regression.add_argument("--model", default=DEFAULT_MODEL)
     regression.add_argument("--dry-run", action="store_true", help="build prompt packages and reports without calling NVIDIA API")
     regression.add_argument("--overwrite", action="store_true", help="clear the stage output folder before running")
+    regression.add_argument("--no-evaluate", action="store_true", help="skip PS-03 quality evaluation report")
+    regression.add_argument("--previous-stage", default=None, help="optional previous stage folder for diff report")
     regression.add_argument("--max-retries", type=int, default=3)
     regression.add_argument("--retry-base-seconds", type=float, default=5.0)
     regression.add_argument("--qa-fail-policy", choices=("retry", "fail", "warn"), default="retry")
     regression.add_argument("--simplified-chinese-policy", choices=("normalize", "warn", "fail"), default=os.environ.get("NTPE_SIMPLIFIED_CHINESE_POLICY", "normalize"))
+
+    evaluate = sub.add_parser("evaluate", help="evaluate literary regression outputs without rerunning translation")
+    evaluate.add_argument("--stage", default=os.environ.get("NTPE_PS_STAGE", "PS-03"), help="stage output folder under tests/literary/outputs")
+    evaluate.add_argument("--previous-stage", default=None, help="optional previous stage folder for diff report")
 
     corpus = sub.add_parser("corpus", help="inspect or initialize literary regression corpus")
     corpus.add_argument("action", choices=("init", "list"), nargs="?", default="list")
@@ -225,6 +232,18 @@ def run_corpus(args: argparse.Namespace) -> int:
     return 0
 
 
+def run_evaluate(args: argparse.Namespace) -> int:
+    report = evaluate_stage_outputs(ROOT, args.stage, previous_stage=args.previous_stage)
+    print("NTPE Literary Evaluation")
+    print("========================")
+    print(f"status: {report.get('status')}")
+    print(f"stage: {report.get('stage')}")
+    print(f"overall_score: {report.get('summary', {}).get('overall_score', 0)}")
+    print(f"report_md: {report.get('report_md')}")
+    print(f"report_json: {report.get('report_json')}")
+    return 0 if report.get("status") in ("success", "warning") else 1
+
+
 def run_regression(args: argparse.Namespace) -> int:
     options = LiteraryRegressionOptions(
         root=ROOT,
@@ -239,6 +258,8 @@ def run_regression(args: argparse.Namespace) -> int:
         retry_base_seconds=max(0.0, args.retry_base_seconds),
         qa_fail_policy=args.qa_fail_policy,
         simplified_chinese_policy=args.simplified_chinese_policy,
+        evaluate=not args.no_evaluate,
+        previous_stage=args.previous_stage,
     )
     return _print_regression_result(run_literary_regression(options))
 
@@ -259,6 +280,8 @@ def main(argv: Iterable[str] | None = None) -> int:
         return run_corpus(args)
     if args.command == "regression":
         return run_regression(args)
+    if args.command == "evaluate":
+        return run_evaluate(args)
     if args.command == "txt":
         return run_txt(args)
     if args.command == "batch":
