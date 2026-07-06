@@ -36,3 +36,22 @@ python tests\integration\launcher_stage18_6_documentation_center_test.py
 python tests\smoke\launcher_stage18_6_documentation_center_smoke_test.py
 python ntpe_validate.py
 ```
+
+## Production Translation Entry
+
+```bat
+set NVIDIA_API_KEY=your_key
+python launcher_translate.py batch input output
+```
+
+For one TXT file:
+
+```bat
+python launcher_translate.py txt input\novel.txt output
+```
+
+Check environment:
+
+```bat
+python launcher_translate.py doctor
+```

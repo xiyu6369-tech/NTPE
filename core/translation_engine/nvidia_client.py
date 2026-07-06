@@ -3,6 +3,7 @@ from __future__ import annotations
 import os
 import time
 import requests
+from requests import Timeout, RequestException
 
 
 class NvidiaClient:
@@ -10,12 +11,14 @@ class NvidiaClient:
         self,
         api_key: str | None = None,
         api_url: str = "https://integrate.api.nvidia.com/v1/chat/completions",
-        timeout: int = 180,
+        timeout: int = 60,
         rpm_limit: int = 40,
     ):
         self.api_key = api_key or os.environ.get("NVIDIA_API_KEY", "")
         self.api_url = api_url
-        self.timeout = timeout
+        self.timeout = int(os.environ.get("NTPE_API_TIMEOUT", timeout))
+        self.connect_timeout = int(os.environ.get("NTPE_API_CONNECT_TIMEOUT", 10))
+        self.debug = os.environ.get("NTPE_TRANSLATE_DEBUG", "").lower() in {"1", "true", "yes", "on"}
         self.rpm_limit = rpm_limit
         self.request_times: list[float] = []
 
@@ -71,12 +74,30 @@ class NvidiaClient:
             "stream": False,
         }
 
-        response = requests.post(
-            self.api_url,
-            headers=headers,
-            json=payload,
-            timeout=self.timeout,
-        )
+        if self.debug:
+            print(
+                f"[NTPE DEBUG] NVIDIA request start model={model} "
+                f"connect_timeout={self.connect_timeout}s read_timeout={self.timeout}s",
+                flush=True,
+            )
+
+        try:
+            response = requests.post(
+                self.api_url,
+                headers=headers,
+                json=payload,
+                timeout=(self.connect_timeout, self.timeout),
+            )
+        except Timeout as e:
+            raise RuntimeError(
+                f"NVIDIA API timeout after connect={self.connect_timeout}s/read={self.timeout}s. "
+                "請檢查網路、NVIDIA 服務狀態，或用 set NTPE_API_TIMEOUT=120 調高等待時間。"
+            ) from e
+        except RequestException as e:
+            raise RuntimeError(f"NVIDIA API request failed: {e}") from e
+
+        if self.debug:
+            print(f"[NTPE DEBUG] NVIDIA response status={response.status_code}", flush=True)
 
         if response.status_code >= 400:
             raise RuntimeError(

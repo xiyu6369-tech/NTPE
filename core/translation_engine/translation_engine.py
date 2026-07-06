@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import os
 from pathlib import Path
 from typing import Any
 
@@ -124,7 +125,14 @@ class TranslationEngine:
         return "https://integrate.api.nvidia.com/v1/chat/completions"
 
     def _get_timeout(self, package: dict) -> int:
-        return 180
+        # Stage-18.11: fail fast by default, allow override for slow networks.
+        value = os.environ.get("NTPE_API_TIMEOUT")
+        if value:
+            try:
+                return max(5, int(float(value)))
+            except ValueError:
+                return 60
+        return 60
 
     def _get_rpm_limit(self, package: dict) -> int:
         return 40

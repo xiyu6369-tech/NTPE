@@ -18,6 +18,7 @@ DEFAULT_MODEL = "meta/llama-3.3-70b-instruct"
 DEFAULT_CHUNK_SIZE = 1800
 DEFAULT_OUTPUT_SUFFIX = "_zh"
 DEFAULT_MAX_RETRIES = 3
+DEFAULT_QA_RETRY_PROMPT_ENABLED = True
 DEFAULT_RETRY_BASE_SECONDS = 5.0
 DEFAULT_CHARACTER_MEMORY = "memory/character_memory_lts.json"
 DEFAULT_MIN_LENGTH_RATIO = 0.25
@@ -399,13 +400,16 @@ def analyze_translation_quality(source_text: str, translated_text: str, options:
     repeated_lines = detect_repeated_lines(translated_text, options.max_repeated_lines)
     issues: list[dict] = []
     if korean_chars > options.max_korean_chars:
-        issues.append({"code": "KOREAN_RESIDUE", "message": f"韓文殘留過多：{korean_chars} > {options.max_korean_chars}"})
+        issues.append({
+            "code": "KOREAN_RESIDUE",
+            "message": f"KOREAN_RESIDUE korean_chars={korean_chars} max={options.max_korean_chars} / 韓文殘留過多：{korean_chars} > {options.max_korean_chars}",
+        })
     if translated_len == 0:
-        issues.append({"code": "EMPTY_TRANSLATION", "message": "譯文為空"})
+        issues.append({"code": "EMPTY_TRANSLATION", "message": "EMPTY_TRANSLATION translated output is empty / 譯文為空"})
     elif length_ratio < options.min_length_ratio:
-        issues.append({"code": "LENGTH_RATIO_TOO_LOW", "message": f"譯文長度比例過低：{length_ratio:.3f} < {options.min_length_ratio:.3f}"})
+        issues.append({"code": "LENGTH_RATIO_TOO_LOW", "message": f"LENGTH_RATIO_TOO_LOW ratio={length_ratio:.3f} min={options.min_length_ratio:.3f} / 譯文長度比例過低"})
     if repeated_lines:
-        issues.append({"code": "REPEATED_LINES", "message": f"偵測到重複行：{len(repeated_lines)}", "samples": repeated_lines[:3]})
+        issues.append({"code": "REPEATED_LINES", "message": f"REPEATED_LINES count={len(repeated_lines)} / 偵測到重複行", "samples": repeated_lines[:3]})
     return {
         "passed": not issues,
         "issues": issues,
@@ -460,7 +464,8 @@ def build_prompt_package(
 
     locked_lines = "\n".join(f"- {src} → {target}" for src, target in matched.items()) or "- 無"
     system_prompt = (
-        "你是 NTPE 的專業小說翻譯引擎。請將原文完整翻譯成自然流暢的台灣繁體中文。"
+        "你是 NTPE 的專業小說翻譯引擎。請將韓文原文完整翻譯成自然流暢的台灣繁體中文。"
+        "輸出語言只能是台灣繁體中文。禁止保留韓文原句，除非是無法翻譯的專有名詞且未提供譯名。"
         "只輸出譯文，不要加解釋、標題或 Markdown。"
     )
     user_prompt = f"""【翻譯規則】
@@ -469,7 +474,8 @@ def build_prompt_package(
 - 不可刪減、不可摘要、不可自行補劇情。
 - 對話使用「」。
 - 人名與術語必須遵守鎖定譯名。
-- 不可留下大量韓文原文。
+- 不可留下大量韓文原文；若原文是韓文，必須翻成中文，不可直接複製原文。
+- 若輸出中仍包含大量韓文字，該輸出會被判定失敗並自動重試。
 
 【本段鎖定譯名】
 {locked_lines}
@@ -532,6 +538,34 @@ def build_prompt_package(
         },
     }
 
+
+
+
+def build_qa_retry_user_prompt(original_user_prompt: str, qa_report: dict, qa_attempt: int) -> str:
+    """Create a stricter retry prompt after QA rejects a provider output."""
+    issues = qa_report.get("issues", []) if isinstance(qa_report, dict) else []
+    issue_lines = []
+    for issue in issues[:5]:
+        if isinstance(issue, dict):
+            code = issue.get("code") or issue.get("type") or "QA_ISSUE"
+            message = issue.get("message") or ""
+            issue_lines.append(f"- {code}: {message}")
+    issue_text = "\n".join(issue_lines) or "- QA_FAILED: previous output did not pass validation"
+    retry_note = f"""
+
+【NTPE 自動重試指令】
+前一次輸出未通過品質檢查，請重新翻譯，不要沿用前一次輸出。
+失敗原因：
+{issue_text}
+
+重試要求：
+- 請直接把【待翻譯內容】完整翻成台灣繁體中文。
+- 嚴禁複製韓文原文作為譯文。
+- 嚴禁輸出「以下是翻譯」等說明。
+- 保留段落順序與劇情資訊，不可摘要。
+- 這是第 {qa_attempt} 次 QA 重試。
+"""
+    return original_user_prompt.rstrip() + retry_note
 
 def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None) -> dict:
     root_path = Path(root) if root else Path(__file__).resolve().parents[1]
@@ -607,7 +641,11 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
             translation = ""
             result = {"status": "failed", "error": "translation was not attempted", "attempt": 0}
             qa_attempts = max(1, int(options.max_retries) + 1) if options.qa_fail_policy == "retry" else 1
+            original_user_prompt = package["prompt"]["user_prompt"]
             for qa_attempt in range(1, qa_attempts + 1):
+                if qa_attempt > 1:
+                    package["prompt"]["user_prompt"] = build_qa_retry_user_prompt(original_user_prompt, qa_report, qa_attempt)
+                    save_json(package_path, package)
                 result = translate_package_with_retry(engine, package, package_path, options)
                 result["qa_attempt"] = qa_attempt
                 if result.get("status") != "success":

@@ -23,3 +23,11 @@
 ## Compatibility
 - Keeps Stage-17.1 Workflow Engine public API intact.
 - Does not modify frozen Stage-14 Provider Framework, Stage-15 Translation Quality Engine, or Stage-16 Intelligence Layer.
+
+
+## Stage-18.11 Translation Timeout & Debug Hotfix
+
+- Added explicit connect/read timeout tuple for NVIDIA API requests.
+- Added `NTPE_TRANSLATE_DEBUG=1` request progress output.
+- Added clearer timeout/request errors.
+- Added doctor output for timeout/debug environment variables.
