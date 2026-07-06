@@ -8,6 +8,7 @@ from .deployment_result import EnterpriseDeploymentResult
 from .deployment_profile_manager import EnterpriseDeploymentProfileManager
 from .deployment_runtime import EnterpriseDeploymentRuntime, EnterpriseRuntimeContext, EnterpriseRuntimePlan, EnterpriseRuntimeResult
 from .deployment_orchestrator import EnterpriseDeploymentOrchestrator, EnterpriseOrchestrationPlan, EnterpriseOrchestrationResult
+from .deployment_validation import EnterpriseDeploymentValidation, EnterpriseValidationGate, EnterpriseValidationResult
 
 __all__ = [
     "EnterpriseDeploymentFoundation",
@@ -21,4 +22,7 @@ __all__ = [
     "EnterpriseDeploymentOrchestrator",
     "EnterpriseOrchestrationPlan",
     "EnterpriseOrchestrationResult",
+    "EnterpriseDeploymentValidation",
+    "EnterpriseValidationGate",
+    "EnterpriseValidationResult",
 ]
