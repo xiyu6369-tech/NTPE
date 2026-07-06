@@ -1,3 +1,12 @@
+
+## NTPE 1.2 Professional Stage-15.8 Translation Quality Engine Freeze
+
+- Frozen Stage-15 Translation Quality Engine public baseline.
+- Added quality freeze manifest and validation report.
+- Added compatibility guards for Stage-15.1 through Stage-15.7.
+- Added Stage-15.8 launcher and unit tests.
+- No runtime behavior changes; freeze-only stage.
+
 ## NTPE 1.2 Professional Stage-15.1 - Translation Quality Engine Core
 
 - Added formal Translation Quality Engine Core facade.

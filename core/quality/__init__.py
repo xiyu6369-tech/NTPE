@@ -234,3 +234,45 @@ __all__ = list(dict.fromkeys(__all__ + [
     "RepairResult",
     "RepairStatus",
 ]))
+
+# NTPE 1.2 Professional Stage-15.8 Translation Quality Engine Freeze exports
+try:
+    from .quality_freeze import (
+        FROZEN_QUALITY_COMPONENTS,
+        FROZEN_QUALITY_COMPATIBILITY_GUARDS,
+        FROZEN_QUALITY_PUBLIC_APIS,
+        TRANSLATION_QUALITY_ENGINE_FREEZE_NAME,
+        TRANSLATION_QUALITY_ENGINE_FREEZE_STAGE,
+        TRANSLATION_QUALITY_ENGINE_FREEZE_VERSION,
+        TranslationQualityEngineFreezeManifest,
+        TranslationQualityEngineFreezeReport,
+        assert_translation_quality_engine_frozen,
+        build_translation_quality_engine_freeze_manifest,
+        validate_translation_quality_engine_freeze,
+    )
+except Exception:
+    FROZEN_QUALITY_COMPONENTS = None
+    FROZEN_QUALITY_COMPATIBILITY_GUARDS = None
+    FROZEN_QUALITY_PUBLIC_APIS = None
+    TRANSLATION_QUALITY_ENGINE_FREEZE_NAME = None
+    TRANSLATION_QUALITY_ENGINE_FREEZE_STAGE = None
+    TRANSLATION_QUALITY_ENGINE_FREEZE_VERSION = None
+    TranslationQualityEngineFreezeManifest = None
+    TranslationQualityEngineFreezeReport = None
+    assert_translation_quality_engine_frozen = None
+    build_translation_quality_engine_freeze_manifest = None
+    validate_translation_quality_engine_freeze = None
+
+__all__ = list(dict.fromkeys(__all__ + [
+    "FROZEN_QUALITY_COMPONENTS",
+    "FROZEN_QUALITY_COMPATIBILITY_GUARDS",
+    "FROZEN_QUALITY_PUBLIC_APIS",
+    "TRANSLATION_QUALITY_ENGINE_FREEZE_NAME",
+    "TRANSLATION_QUALITY_ENGINE_FREEZE_STAGE",
+    "TRANSLATION_QUALITY_ENGINE_FREEZE_VERSION",
+    "TranslationQualityEngineFreezeManifest",
+    "TranslationQualityEngineFreezeReport",
+    "assert_translation_quality_engine_frozen",
+    "build_translation_quality_engine_freeze_manifest",
+    "validate_translation_quality_engine_freeze",
+]))
