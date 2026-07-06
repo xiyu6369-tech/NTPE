@@ -287,3 +287,48 @@ try:
     from .translation_memory_result import TranslationMemoryMatch, TranslationMemoryResult
 except Exception:  # pragma: no cover - compatibility-safe optional exports
     pass
+
+# Stage-16.6 Adaptive Translation Strategy exports
+try:
+    from .adaptive_strategy_context import AdaptiveStrategyContext
+    from .adaptive_strategy_engine import AdaptiveTranslationStrategyEngine
+    from .adaptive_strategy_events import (
+        STRATEGY_COMPLETED,
+        STRATEGY_SELECTED,
+        STRATEGY_STARTED,
+        AdaptiveStrategyEvent,
+        AdaptiveStrategyEventBus,
+    )
+    from .adaptive_strategy_exceptions import AdaptiveStrategyError, AdaptiveStrategyInputError
+    from .adaptive_strategy_pipeline import AdaptiveStrategyPipeline
+    from .adaptive_strategy_policy import AdaptiveStrategyPolicy
+    from .adaptive_strategy_profile import AdaptiveStrategyProfile, default_strategy_profiles
+    from .adaptive_strategy_result import AdaptiveStrategyCandidate, AdaptiveStrategyResult
+    from .adaptive_strategy_selector import AdaptiveStrategySelector, classify_content
+except Exception:  # pragma: no cover - compatibility-safe optional exports
+    pass
+
+try:
+    __all__.extend([
+        "STRATEGY_COMPLETED",
+        "STRATEGY_SELECTED",
+        "STRATEGY_STARTED",
+        "AdaptiveStrategyCandidate",
+        "AdaptiveStrategyContext",
+        "AdaptiveStrategyEngine",
+        "AdaptiveStrategyError",
+        "AdaptiveStrategyEvent",
+        "AdaptiveStrategyEventBus",
+        "AdaptiveStrategyInputError",
+        "AdaptiveStrategyPipeline",
+        "AdaptiveStrategyPolicy",
+        "AdaptiveStrategyProfile",
+        "AdaptiveStrategyResult",
+        "AdaptiveStrategySelector",
+        "AdaptiveTranslationStrategyEngine",
+        "classify_content",
+        "default_strategy_profiles",
+    ])
+except Exception:
+    pass
+

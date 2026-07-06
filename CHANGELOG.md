@@ -119,3 +119,10 @@
 - Added exact match, fuzzy match, context-aware reuse, terminology-aware reuse, and character-aware reuse.
 - Added JSON memory export/import support.
 - Added Stage-16.5 launcher and unit tests.
+## NTPE 1.2 Professional Stage-16.6
+
+- Added Adaptive Translation Strategy engine.
+- Added strategy profiles, selector, policy, metrics, events, and pipeline.
+- Added explainable strategy selection and content classification.
+- Preserved backward compatibility with Stage-14, Stage-15, and Stage-16.1-16.5.
+
