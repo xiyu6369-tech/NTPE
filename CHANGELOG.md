@@ -111,3 +111,11 @@
 - Added semantic memory, graph, metrics, event bus, and deterministic pipeline.
 - Added Stage-16.4 unit, integration, and launcher validation.
 - Preserved Stage-14 and Stage-15 frozen API compatibility.
+
+## NTPE 1.2 Professional Stage-16.5 Translation Memory Intelligence
+
+- Added Translation Memory Intelligence Engine.
+- Added source-target memory entries, store, index, matcher, scoring, policy, result, events, and exceptions.
+- Added exact match, fuzzy match, context-aware reuse, terminology-aware reuse, and character-aware reuse.
+- Added JSON memory export/import support.
+- Added Stage-16.5 launcher and unit tests.

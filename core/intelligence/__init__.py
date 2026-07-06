@@ -279,3 +279,11 @@ __all__.extend([
     "extract_concepts",
     "extract_events",
 ])
+
+# Stage-16.5 Translation Memory Intelligence
+try:
+    from .translation_memory_engine import TranslationMemoryIntelligenceEngine
+    from .translation_memory_entry import TranslationMemoryEntry
+    from .translation_memory_result import TranslationMemoryMatch, TranslationMemoryResult
+except Exception:  # pragma: no cover - compatibility-safe optional exports
+    pass
