@@ -15,14 +15,14 @@ from core.translation_engine.utils import now_iso, save_json, save_text
 
 
 DEFAULT_MODEL = "meta/llama-3.3-70b-instruct"
-DEFAULT_CHUNK_SIZE = 1800
+DEFAULT_CHUNK_SIZE = 1000
 DEFAULT_OUTPUT_SUFFIX = "_zh"
 DEFAULT_MAX_RETRIES = 3
 DEFAULT_QA_RETRY_PROMPT_ENABLED = True
 DEFAULT_RETRY_BASE_SECONDS = 5.0
 DEFAULT_CHARACTER_MEMORY = "memory/character_memory_lts.json"
-DEFAULT_MIN_LENGTH_RATIO = 0.25
-DEFAULT_MAX_KOREAN_CHARS = 3
+DEFAULT_MIN_LENGTH_RATIO = 0.18
+DEFAULT_MAX_KOREAN_CHARS = 2
 DEFAULT_MAX_REPEATED_LINES = 2
 DEFAULT_OUTPUT_FORMATTER_ENABLED = True
 QA_FAIL_POLICIES = ("retry", "fail", "warn")
@@ -61,6 +61,9 @@ class TxtTranslationOptions:
     max_repeated_lines: int = DEFAULT_MAX_REPEATED_LINES
     output_formatter_enabled: bool = DEFAULT_OUTPUT_FORMATTER_ENABLED
     taiwan_traditional_normalization: bool = True
+    quality_profile: str = "novel"
+    previous_context_chars: int = 700
+    simplified_chinese_policy: str = "normalize"  # normalize|warn|fail
 
 
 def read_text_auto(path: str | Path) -> str:
@@ -181,6 +184,28 @@ def resolve_character_memory_path(root: Path, options: TxtTranslationOptions | N
     return root / DEFAULT_CHARACTER_MEMORY
 
 
+# Stage-18.12: production name-lock hotfix.
+# The model sometimes translates locked Korean names into plausible but wrong Chinese
+# variants.  These aliases are applied after provider output and again before final
+# assembly, so glossary terms remain stable even when the model drifts.
+DEFAULT_LOCKED_TRANSLATION_ALIASES: dict[str, set[str]] = {
+    "鄭泰義": {"定泰義", "丁泰義", "正泰義", "鄭太義", "正太義", "鄭泰宜", "鄭泰儀"},
+    "伊萊・里格勞": {"伊萊·里格勞", "伊萊里格勞", "伊萊・利格羅", "伊萊·利格羅"},
+    "凱爾・里格勞": {"凱爾·里格勞", "凱爾里格勞", "凱爾・利格羅", "凱爾·利格羅"},
+}
+
+
+def build_translation_alias_map(locked_dictionary: dict[str, str]) -> dict[str, str]:
+    aliases: dict[str, str] = {}
+    for target in locked_dictionary.values():
+        if not target:
+            continue
+        for alias in DEFAULT_LOCKED_TRANSLATION_ALIASES.get(target, set()):
+            if alias and alias != target:
+                aliases[alias] = target
+    return aliases
+
+
 def apply_locked_dictionary(text: str, locked_dictionary: dict[str, str]) -> str:
     result = text
     for source, target in sorted(locked_dictionary.items(), key=lambda item: len(item[0]), reverse=True):
@@ -188,6 +213,9 @@ def apply_locked_dictionary(text: str, locked_dictionary: dict[str, str]) -> str
             continue
         # Remove accidental Korean/source residue and normalize any exact source term that survived provider output.
         result = result.replace(source, target)
+
+    for alias, target in sorted(build_translation_alias_map(locked_dictionary).items(), key=lambda item: len(item[0]), reverse=True):
+        result = result.replace(alias, target)
     return result
 
 
@@ -277,6 +305,42 @@ TAIWAN_TRADITIONAL_REPLACEMENTS = {
     "个": "個",
     "后": "後",
     "说": "說",
+    "开": "開",
+    "门": "門",
+    "这": "這",
+    "个": "個",
+    "为": "為",
+    "会": "會",
+    "里": "裡",
+    "后": "後",
+    "发": "發",
+    "么": "麼",
+    "没": "沒",
+    "过": "過",
+    "对": "對",
+    "还": "還",
+    "种": "種",
+    "现": "現",
+    "实": "實",
+    "当": "當",
+    "从": "從",
+    "长": "長",
+    "处": "處",
+    "头": "頭",
+    "给": "給",
+    "让": "讓",
+    "觉": "覺",
+    "声": "聲",
+    "气": "氣",
+    "爱": "愛",
+    "书": "書",
+    "边": "邊",
+    "间": "間",
+    "见": "見",
+    "听": "聽",
+    "话": "話",
+    "问": "問",
+    "答": "答",
     "还": "還",
     "会": "會",
     "对": "對",
@@ -391,27 +455,72 @@ def detect_repeated_lines(text: str, max_repeated_lines: int = DEFAULT_MAX_REPEA
     return repeated
 
 
-def analyze_translation_quality(source_text: str, translated_text: str, options: TxtTranslationOptions | None = None) -> dict:
+def detect_simplified_chinese(text: str) -> list[str]:
+    """Return possible simplified-Chinese hits after formatter normalization.
+
+    Stage-18.14 note:
+    This detector is intentionally conservative. A single remaining hit should
+    not fail a full translation job because providers sometimes output rare
+    characters that overlap with simplified forms or proper nouns.
+    """
+    return [simp for simp in TAIWAN_TRADITIONAL_REPLACEMENTS if simp in (text or "")][:20]
+
+
+def should_fail_on_simplified_chinese(options: TxtTranslationOptions, hit_count: int) -> bool:
+    policy = (getattr(options, "simplified_chinese_policy", "normalize") or "normalize").lower()
+    if policy == "fail":
+        return hit_count > 0
+    return False
+
+
+def detect_locked_term_violations(source_text: str, translated_text: str, locked_dictionary: dict[str, str]) -> list[dict]:
+    violations: list[dict] = []
+    for src, target in locked_dictionary.items():
+        if src and src in source_text and target and target not in translated_text:
+            violations.append({"source": src, "target": target, "code": "LOCKED_TERM_MISSING"})
+    for alias, target in build_translation_alias_map(locked_dictionary).items():
+        if alias and alias in translated_text:
+            violations.append({"alias": alias, "target": target, "code": "LOCKED_ALIAS_USED"})
+    return violations
+
+
+def analyze_translation_quality(source_text: str, translated_text: str, options: TxtTranslationOptions | None = None, locked_dictionary: dict[str, str] | None = None) -> dict:
     options = options or TxtTranslationOptions(input_path=Path("input.txt"), output_dir=Path("output"))
     korean_chars = count_korean_characters(translated_text)
     source_len = max(1, _normalized_len(source_text))
     translated_len = _normalized_len(translated_text)
     length_ratio = translated_len / source_len
     repeated_lines = detect_repeated_lines(translated_text, options.max_repeated_lines)
+    simplified_hits = detect_simplified_chinese(translated_text) if options.taiwan_traditional_normalization else []
+    term_violations = detect_locked_term_violations(source_text, translated_text, locked_dictionary or {})
     issues: list[dict] = []
     if korean_chars > options.max_korean_chars:
         issues.append({
             "code": "KOREAN_RESIDUE",
-            "message": f"KOREAN_RESIDUE korean_chars={korean_chars} max={options.max_korean_chars} / 韓文殘留過多：{korean_chars} > {options.max_korean_chars}",
+            "message": f"KOREAN_RESIDUE korean_chars={korean_chars} max={options.max_korean_chars}",
         })
     if translated_len == 0:
-        issues.append({"code": "EMPTY_TRANSLATION", "message": "EMPTY_TRANSLATION translated output is empty / 譯文為空"})
+        issues.append({"code": "EMPTY_TRANSLATION", "message": "EMPTY_TRANSLATION translated output is empty"})
     elif length_ratio < options.min_length_ratio:
-        issues.append({"code": "LENGTH_RATIO_TOO_LOW", "message": f"LENGTH_RATIO_TOO_LOW ratio={length_ratio:.3f} min={options.min_length_ratio:.3f} / 譯文長度比例過低"})
+        issues.append({"code": "LENGTH_RATIO_TOO_LOW", "message": f"LENGTH_RATIO_TOO_LOW ratio={length_ratio:.3f} min={options.min_length_ratio:.3f}"})
     if repeated_lines:
-        issues.append({"code": "REPEATED_LINES", "message": f"REPEATED_LINES count={len(repeated_lines)} / 偵測到重複行", "samples": repeated_lines[:3]})
+        issues.append({"code": "REPEATED_LINES", "message": f"REPEATED_LINES count={len(repeated_lines)}", "samples": repeated_lines[:3]})
+    if simplified_hits:
+        issue = {
+            "code": "SIMPLIFIED_CHINESE",
+            "message": f"SIMPLIFIED_CHINESE hits={len(simplified_hits)} policy={options.simplified_chinese_policy}",
+            "samples": simplified_hits[:10],
+            "severity": "error" if should_fail_on_simplified_chinese(options, len(simplified_hits)) else "warning",
+        }
+        if should_fail_on_simplified_chinese(options, len(simplified_hits)):
+            issues.append(issue)
+        else:
+            # Keep metric visibility without failing the chunk.
+            pass
+    if term_violations:
+        issues.append({"code": "LOCKED_TERM_VIOLATION", "message": f"LOCKED_TERM_VIOLATION count={len(term_violations)}", "samples": term_violations[:10]})
     return {
-        "passed": not issues,
+        "passed": not any(issue.get("severity", "error") == "error" for issue in issues),
         "issues": issues,
         "metrics": {
             "korean_chars": korean_chars,
@@ -419,6 +528,8 @@ def analyze_translation_quality(source_text: str, translated_text: str, options:
             "translated_chars": translated_len,
             "length_ratio": round(length_ratio, 4),
             "repeated_line_count": len(repeated_lines),
+            "simplified_hits": len(simplified_hits),
+            "locked_term_violations": len(term_violations),
         },
     }
 
@@ -436,7 +547,7 @@ def _extract_pairs(data) -> dict[str, str]:
                 pairs[key] = value
             elif isinstance(value, dict):
                 source = value.get("source") or value.get("ko") or value.get("korean") or key
-                target = value.get("target") or value.get("zh") or value.get("traditional") or value.get("name")
+                target = value.get("target") or value.get("translation") or value.get("zh") or value.get("traditional") or value.get("name")
                 if isinstance(source, str) and isinstance(target, str):
                     pairs[source] = target
                 pairs.update(_extract_pairs(value))
@@ -449,6 +560,27 @@ def _extract_pairs(data) -> dict[str, str]:
     return pairs
 
 
+
+def get_max_output_tokens(chunk_text: str, options: TxtTranslationOptions) -> int:
+    env_value = __import__("os").environ.get("NTPE_MAX_OUTPUT_TOKENS")
+    if env_value:
+        try:
+            return max(800, min(6000, int(float(env_value))))
+        except ValueError:
+            pass
+    profile = (options.quality_profile or "novel").lower()
+    if profile == "fast":
+        return max(900, min(1800, math.ceil(len(chunk_text) * 1.25)))
+    if profile == "balanced":
+        return max(1100, min(2800, math.ceil(len(chunk_text) * 1.50)))
+    if profile == "premium":
+        return max(1600, min(4600, math.ceil(len(chunk_text) * 1.95)))
+    if profile == "quality":
+        # Backward compatible alias for premium.
+        return max(1500, min(4200, math.ceil(len(chunk_text) * 1.85)))
+    # literary / novel default
+    return max(1200, min(3400, math.ceil(len(chunk_text) * 1.65)))
+
 def build_prompt_package(
     *,
     options: TxtTranslationOptions,
@@ -456,6 +588,7 @@ def build_prompt_package(
     chunk_index: int,
     chunk_total: int,
     locked_dictionary: dict[str, str],
+    previous_context: str = "",
 ) -> dict:
     input_name = options.input_path.name
     package_id = f"TXT_{options.input_path.stem}_{chunk_index:06d}"
@@ -463,22 +596,41 @@ def build_prompt_package(
     matched = {src: target for src, target in locked_dictionary.items() if src and src in chunk_text}
 
     locked_lines = "\n".join(f"- {src} → {target}" for src, target in matched.items()) or "- 無"
+    alias_map = build_translation_alias_map(matched)
+    alias_lines = "\n".join(f"- 禁止使用「{alias}」，必須改為「{target}」" for alias, target in alias_map.items()) or "- 無"
+    profile = (options.quality_profile or "literary").lower()
+    if profile == "novel":
+        profile = "literary"
+
     system_prompt = (
-        "你是 NTPE 的專業小說翻譯引擎。請將韓文原文完整翻譯成自然流暢的台灣繁體中文。"
-        "輸出語言只能是台灣繁體中文。禁止保留韓文原句，除非是無法翻譯的專有名詞且未提供譯名。"
+        "你是 NTPE 的文學級韓文小說翻譯引擎。請先理解劇情、人物關係、敘事視角與語氣，"
+        "再將韓文原文完整翻譯成自然流暢的繁體中文。"
+        "譯文目標不是特定地區口語，而是符合故事時代、文化背景與小說文體的中文閱讀體驗。"
+        "譯文要像正式出版小說：敘事連貫、主詞清楚、語氣貼合人物，但不可改寫劇情、不可增刪資訊。"
+        "人名、地名、術語與世界觀設定必須嚴格遵守鎖定譯名；不可自行音譯、不可改字、不可使用近音字。"
         "只輸出譯文，不要加解釋、標題或 Markdown。"
     )
-    user_prompt = f"""【翻譯規則】
-- 翻譯為自然流暢的台灣繁體中文。
-- 保留原文劇情、段落與敘事順序。
-- 不可刪減、不可摘要、不可自行補劇情。
-- 對話使用「」。
-- 人名與術語必須遵守鎖定譯名。
+    user_prompt = f"""【NTPE Literary Translation Policy】
+- 翻譯成自然、流暢、適合小說閱讀的繁體中文；不要強行套用特定地區用語。
+- 用詞必須依作品的時代、地點、人物身份與敘事氛圍選擇最自然的中文表達。
+- 先理解整句與段落邏輯，再翻譯；避免逐字直譯造成主詞錯置或中文生硬。
+- 保留原文劇情、段落、人物關係、敘事順序、伏筆與語氣；不可刪減、不可摘要、不可自行補劇情。
+- 對話使用「」，內心獨白、敘述與括號補充要自然分開。
+- 人名與術語必須遵守鎖定譯名；看到韓文原名時必須直接使用指定中文譯名。
 - 不可留下大量韓文原文；若原文是韓文，必須翻成中文，不可直接複製原文。
-- 若輸出中仍包含大量韓文字，該輸出會被判定失敗並自動重試。
+- 不要輸出簡體中文，不要輸出英文說明，不要加「以下是翻譯」。
+- 特別注意長句主詞與行為者，避免把 A 做的事翻成 B 做的事。
+- 若輸出中仍包含大量韓文字、錯誤譯名、簡體字或主詞錯置，該輸出會被判定失敗並自動重試。
+- 目前品質模式：{profile}。
 
 【本段鎖定譯名】
 {locked_lines}
+
+【禁止使用的錯誤譯名】
+{alias_lines}
+
+【前文參考，僅供保持語氣與銜接，禁止重複翻譯】
+{previous_context.strip() or "無"}
 
 【待翻譯內容】
 {chunk_text}"""
@@ -501,9 +653,9 @@ def build_prompt_package(
             "engine": "NVIDIA",
             "model": options.model,
             "context_window": 131072,
-            "temperature": 0.15,
-            "top_p": 0.85,
-            "max_output_tokens": max(1000, min(6000, math.ceil(len(chunk_text) * 1.8))),
+            "temperature": 0.12 if profile in ("literary", "premium") else 0.15,
+            "top_p": 0.82 if profile in ("literary", "premium") else 0.85,
+            "max_output_tokens": get_max_output_tokens(chunk_text, options),
         },
         "source": {
             "chunk_text": chunk_text,
@@ -512,7 +664,7 @@ def build_prompt_package(
         },
         "context": {
             "previous_summary": "",
-            "previous_chunk_tail": "",
+            "previous_chunk_tail": previous_context[-options.previous_context_chars:] if previous_context else "",
             "recent_characters": [],
             "recent_terms": [],
         },
@@ -522,7 +674,8 @@ def build_prompt_package(
         "prompt": {
             "system_prompt": system_prompt,
             "user_prompt": user_prompt,
-            "prompt_mode": "translate_txt",
+            "prompt_mode": "literary_translate_txt",
+            "profile": profile,
         },
         "qa_requirements": {
             "check_korean_residue": True,
@@ -530,15 +683,14 @@ def build_prompt_package(
             "check_glossary": True,
             "check_repetition": True,
             "check_length_ratio": True,
+            "check_literary_policy": True,
         },
         "metadata": {
             "created_at": now_iso(),
-            "created_by": "NTPE 1.1 LTS Stage-05 TXT Translation Entry",
-            "package_version": "1.1-lts-stage-05",
+            "created_by": "NTPE 1.2 Production Stabilization PS-01 Literary Prompt Engine",
+            "package_version": "1.2-ps-01-literary-prompt-engine",
         },
     }
-
-
 
 
 def build_qa_retry_user_prompt(original_user_prompt: str, qa_report: dict, qa_attempt: int) -> str:
@@ -559,7 +711,7 @@ def build_qa_retry_user_prompt(original_user_prompt: str, qa_report: dict, qa_at
 {issue_text}
 
 重試要求：
-- 請直接把【待翻譯內容】完整翻成台灣繁體中文。
+- 請直接把【待翻譯內容】完整翻成自然流暢、符合小說背景的繁體中文。
 - 嚴禁複製韓文原文作為譯文。
 - 嚴禁輸出「以下是翻譯」等說明。
 - 保留段落順序與劇情資訊，不可摘要。
@@ -604,6 +756,7 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
             chunk_index=idx,
             chunk_total=len(chunks),
             locked_dictionary=locked_dictionary,
+            previous_context="\n\n".join(translated_chunks[-2:])[-options.previous_context_chars:] if translated_chunks else "",
         )
         package_path = stage_dir / f"{input_path.stem}_chunk_{idx:06d}.json"
         save_json(package_path, package)
@@ -655,7 +808,7 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
                 if options.strict_lock_terms:
                     translation = apply_locked_dictionary(translation, locked_dictionary)
                 translation = format_translation_output(translation, options)
-                qa_report = analyze_translation_quality(chunk, translation, options) if options.qa_enabled else {"passed": True, "issues": [], "metrics": {}}
+                qa_report = analyze_translation_quality(chunk, translation, options, locked_dictionary=package.get("knowledge", {}).get("locked_dictionary", {})) if options.qa_enabled else {"passed": True, "issues": [], "metrics": {}}
                 qa_attempt_records.append({"qa_attempt": qa_attempt, "qa": qa_report})
                 if qa_report.get("passed") or options.qa_fail_policy == "warn":
                     break
@@ -789,6 +942,8 @@ def parse_args(argv: Iterable[str] | None = None) -> TxtTranslationOptions:
     parser.add_argument("--max-repeated-lines", type=int, default=DEFAULT_MAX_REPEATED_LINES, help="maximum allowed repeats for the same non-trivial output line")
     parser.add_argument("--no-output-formatter", action="store_true", help="disable output punctuation/cleanup formatter")
     parser.add_argument("--no-taiwan-normalization", action="store_true", help="disable built-in Taiwan Traditional Chinese normalization")
+    parser.add_argument("--simplified-chinese-policy", choices=("normalize", "warn", "fail"), default="normalize", help="remaining simplified Chinese behavior after normalization")
+    parser.add_argument("--quality-profile", choices=("fast", "balanced", "novel", "literary", "quality", "premium"), default="literary", help="translation quality profile")
     parser.add_argument("--dry-run", action="store_true", help="build prompt packages without calling provider")
     ns = parser.parse_args(list(argv) if argv is not None else None)
     return TxtTranslationOptions(
@@ -811,6 +966,8 @@ def parse_args(argv: Iterable[str] | None = None) -> TxtTranslationOptions:
         max_repeated_lines=max(0, ns.max_repeated_lines),
         output_formatter_enabled=not ns.no_output_formatter,
         taiwan_traditional_normalization=not ns.no_taiwan_normalization,
+        quality_profile=ns.quality_profile,
+        simplified_chinese_policy=ns.simplified_chinese_policy,
     )
 
 

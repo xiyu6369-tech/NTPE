@@ -118,6 +118,8 @@ class BatchTranslationOptions:
     max_repeated_lines: int = DEFAULT_MAX_REPEATED_LINES
     output_formatter_enabled: bool = True
     taiwan_traditional_normalization: bool = True
+    quality_profile: str = "novel"
+    simplified_chinese_policy: str = "normalize"
     report_dir: Path | None = None
     progress: bool = True
     continue_on_failure: bool = False
@@ -173,6 +175,8 @@ def build_txt_options(input_file: Path, per_file_output_dir: Path, options: Batc
         max_repeated_lines=max(0, options.max_repeated_lines),
         output_formatter_enabled=options.output_formatter_enabled,
         taiwan_traditional_normalization=options.taiwan_traditional_normalization,
+        quality_profile=options.quality_profile,
+        simplified_chinese_policy=options.simplified_chinese_policy,
     )
 
 

@@ -1,3 +1,11 @@
+
+## NTPE 1.2 Production Stabilization — PS-02 Literary Regression Runner
+
+- Added `launcher_translate.py corpus list/init`.
+- Added `launcher_translate.py regression` for Test_Set_0/A/B.
+- Separated real translation input from literary regression corpus.
+- Added PS-02 integration/smoke/root tests.
+
 # NTPE 1.2 Professional - Stage-17.8 Production Platform Freeze
 
 ## Added
@@ -31,3 +39,10 @@
 - Added `NTPE_TRANSLATE_DEBUG=1` request progress output.
 - Added clearer timeout/request errors.
 - Added doctor output for timeout/debug environment variables.
+
+## NTPE 1.2 Stage-18.14 — Simplified Chinese QA Hotfix
+
+- Changed simplified-Chinese QA from hard failure to default normalize/metric behavior.
+- Added `--simplified-chinese-policy normalize|warn|fail` to production translator CLI.
+- Preserved strict mode through `fail` for audit-focused runs.
+- Kept simplified-hit metrics visible in manifests and QA reports.

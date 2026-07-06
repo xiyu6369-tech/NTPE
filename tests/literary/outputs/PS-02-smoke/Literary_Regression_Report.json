@@ -1,0 +1,33 @@
+{
+  "version": "1.2-ps-02-literary-regression-runner",
+  "status": "success",
+  "stage": "PS-02-smoke",
+  "profile": "literary",
+  "created_at": "2026-07-07T02:59:04",
+  "literary_root": "D:\\Python\\NTPE\\tests\\literary",
+  "output_dir": "D:\\Python\\NTPE\\tests\\literary\\outputs\\PS-02-smoke",
+  "summary": {
+    "total": 1,
+    "success": 1,
+    "skipped": 0,
+    "failed": 0,
+    "dry_run": true,
+    "elapsed_seconds": 0.013
+  },
+  "records": [
+    {
+      "name": "Test_Set_0",
+      "path": "D:\\Python\\NTPE\\tests\\literary\\Test_Set_0",
+      "source": "D:\\Python\\NTPE\\tests\\literary\\Test_Set_0\\original_ko.txt",
+      "exists": true,
+      "has_content": true,
+      "output_dir": "D:\\Python\\NTPE\\tests\\literary\\outputs\\PS-02-smoke\\Test_Set_0",
+      "started_at": "2026-07-07T02:59:04",
+      "status": "success",
+      "chunk_total": 1,
+      "output": "D:\\Python\\NTPE\\tests\\literary\\outputs\\PS-02-smoke\\Test_Set_0\\original_ko_zh.txt",
+      "manifest": "D:\\Python\\NTPE\\tests\\literary\\outputs\\PS-02-smoke\\Test_Set_0\\original_ko_translation_manifest.json",
+      "completed_at": "2026-07-07T02:59:04"
+    }
+  ]
+}

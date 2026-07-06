@@ -10,6 +10,8 @@ import sys
 from pathlib import Path
 from typing import Iterable
 
+from ntpe_literary_regression import LiteraryRegressionOptions, discover_test_sets, ensure_literary_structure, run_literary_regression
+
 ROOT = Path(__file__).resolve().parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
@@ -53,7 +55,7 @@ def build_parser() -> argparse.ArgumentParser:
     txt = sub.add_parser("txt", help="translate one TXT file")
     txt.add_argument("input", help="input TXT file path")
     txt.add_argument("output", nargs="?", default="output", help="output directory")
-    txt.add_argument("--chunk-size", type=int, default=1800)
+    txt.add_argument("--chunk-size", type=int, default=int(os.environ.get("NTPE_CHUNK_SIZE", "1000")))
     txt.add_argument("--model", default=DEFAULT_MODEL)
     txt.add_argument("--glossary", default=None)
     txt.add_argument("--character-memory", default=None)
@@ -65,13 +67,15 @@ def build_parser() -> argparse.ArgumentParser:
     txt.add_argument("--max-repeated-lines", type=int, default=2)
     txt.add_argument("--no-resume", action="store_true")
     txt.add_argument("--no-qa", action="store_true")
+    txt.add_argument("--profile", choices=("fast", "balanced", "novel", "literary", "quality", "premium"), default=os.environ.get("NTPE_TRANSLATION_PROFILE", "literary"))
+    txt.add_argument("--simplified-chinese-policy", choices=("normalize", "warn", "fail"), default=os.environ.get("NTPE_SIMPLIFIED_CHINESE_POLICY", "normalize"))
     txt.add_argument("--dry-run", action="store_true", help="build packages only; do not call NVIDIA API")
 
     batch = sub.add_parser("batch", help="translate all TXT files in a folder")
     batch.add_argument("input", nargs="?", default="input", help="input folder; default: input")
     batch.add_argument("output", nargs="?", default="output", help="output folder; default: output")
     batch.add_argument("--recursive", action="store_true")
-    batch.add_argument("--chunk-size", type=int, default=1800)
+    batch.add_argument("--chunk-size", type=int, default=int(os.environ.get("NTPE_CHUNK_SIZE", "1000")))
     batch.add_argument("--model", default=DEFAULT_MODEL)
     batch.add_argument("--glossary", default=None)
     batch.add_argument("--character-memory", default=None)
@@ -86,11 +90,42 @@ def build_parser() -> argparse.ArgumentParser:
     batch.add_argument("--heartbeat", action="store_true")
     batch.add_argument("--no-resume", action="store_true")
     batch.add_argument("--no-qa", action="store_true")
+    batch.add_argument("--profile", choices=("fast", "balanced", "novel", "literary", "quality", "premium"), default=os.environ.get("NTPE_TRANSLATION_PROFILE", "literary"))
+    batch.add_argument("--simplified-chinese-policy", choices=("normalize", "warn", "fail"), default=os.environ.get("NTPE_SIMPLIFIED_CHINESE_POLICY", "normalize"))
     batch.add_argument("--dry-run", action="store_true", help="build packages only; do not call NVIDIA API")
+
+    regression = sub.add_parser("regression", help="run literary regression corpus under tests/literary")
+    regression.add_argument("--set", dest="sets", action="append", choices=("Test_Set_0", "Test_Set_A", "Test_Set_B"), help="run one test set; repeat to run multiple")
+    regression.add_argument("--stage", default=os.environ.get("NTPE_PS_STAGE", "PS-02"), help="output archive stage name under tests/literary/outputs")
+    regression.add_argument("--profile", choices=("fast", "balanced", "novel", "literary", "quality", "premium"), default=os.environ.get("NTPE_TRANSLATION_PROFILE", "literary"))
+    regression.add_argument("--chunk-size", type=int, default=int(os.environ.get("NTPE_CHUNK_SIZE", "1000")))
+    regression.add_argument("--model", default=DEFAULT_MODEL)
+    regression.add_argument("--dry-run", action="store_true", help="build prompt packages and reports without calling NVIDIA API")
+    regression.add_argument("--overwrite", action="store_true", help="clear the stage output folder before running")
+    regression.add_argument("--max-retries", type=int, default=3)
+    regression.add_argument("--retry-base-seconds", type=float, default=5.0)
+    regression.add_argument("--qa-fail-policy", choices=("retry", "fail", "warn"), default="retry")
+    regression.add_argument("--simplified-chinese-policy", choices=("normalize", "warn", "fail"), default=os.environ.get("NTPE_SIMPLIFIED_CHINESE_POLICY", "normalize"))
+
+    corpus = sub.add_parser("corpus", help="inspect or initialize literary regression corpus")
+    corpus.add_argument("action", choices=("init", "list"), nargs="?", default="list")
 
     doctor = sub.add_parser("doctor", help="check production translator environment")
     doctor.add_argument("--strict", action="store_true", help="fail when NVIDIA_API_KEY is missing")
     return parser
+
+
+def _print_regression_result(report: dict) -> int:
+    print("NTPE Literary Regression")
+    print("========================")
+    print(f"status: {report.get('status')}")
+    print(f"stage: {report.get('stage')}")
+    print(f"profile: {report.get('profile')}")
+    print(f"output_dir: {report.get('output_dir')}")
+    summary = report.get("summary", {})
+    print(f"sets: {summary.get('success', 0)} success / {summary.get('skipped', 0)} skipped / {summary.get('failed', 0)} failed / {summary.get('total', 0)} total")
+    print(f"dry_run: {summary.get('dry_run')}")
+    return 0 if report.get("status") == "success" else 1
 
 
 def run_doctor(strict: bool = False) -> int:
@@ -108,6 +143,10 @@ def run_doctor(strict: bool = False) -> int:
     checks.append(("NTPE_API_TIMEOUT", True, os.environ.get("NTPE_API_TIMEOUT", "60")))
     checks.append(("NTPE_API_CONNECT_TIMEOUT", True, os.environ.get("NTPE_API_CONNECT_TIMEOUT", "10")))
     checks.append(("NTPE_TRANSLATE_DEBUG", True, os.environ.get("NTPE_TRANSLATE_DEBUG", "off")))
+    checks.append(("NTPE_CHUNK_SIZE", True, os.environ.get("NTPE_CHUNK_SIZE", "1000")))
+    checks.append(("NTPE_TRANSLATION_PROFILE", True, os.environ.get("NTPE_TRANSLATION_PROFILE", "literary")))
+    checks.append(("NTPE_MAX_OUTPUT_TOKENS", True, os.environ.get("NTPE_MAX_OUTPUT_TOKENS", "auto")))
+    checks.append(("literary_corpus", (ROOT / "tests" / "literary").exists(), "tests/literary"))
     failed = False
     for name, ok, detail in checks:
         status = "PASS" if ok else "FAIL"
@@ -134,6 +173,8 @@ def run_txt(args: argparse.Namespace) -> int:
         min_length_ratio=max(0.0, args.min_length_ratio),
         max_korean_chars=max(0, args.max_korean_chars),
         max_repeated_lines=max(0, args.max_repeated_lines),
+        quality_profile=args.profile,
+        simplified_chinese_policy=args.simplified_chinese_policy,
     )
     return _print_result("NTPE Production TXT Translation", runtime.translate_txt(options))
 
@@ -157,11 +198,49 @@ def run_batch(args: argparse.Namespace) -> int:
         min_length_ratio=max(0.0, args.min_length_ratio),
         max_korean_chars=max(0, args.max_korean_chars),
         max_repeated_lines=max(0, args.max_repeated_lines),
+        quality_profile=args.profile,
+        simplified_chinese_policy=args.simplified_chinese_policy,
         continue_on_failure=args.continue_on_failure,
         auto_recovery=args.auto_recovery,
         heartbeat=args.heartbeat,
     )
     return _print_result("NTPE Production Batch Translation", runtime.translate_batch(options))
+
+
+def run_corpus(args: argparse.Namespace) -> int:
+    if args.action == "init":
+        result = ensure_literary_structure(ROOT)
+        print("NTPE Literary Corpus Init")
+        print("=========================")
+        print(f"status: {result.get('status')}")
+        print(f"literary_root: {result.get('literary_root')}")
+        for item in result.get("created", []):
+            print(f"created: {item}")
+        return 0
+    print("NTPE Literary Corpus")
+    print("====================")
+    for item in discover_test_sets(ROOT):
+        status = "READY" if item.get("exists") and item.get("has_content") else "EMPTY" if item.get("exists") else "MISSING"
+        print(f"{item.get('name'):<12} {status:<7} {item.get('source')}")
+    return 0
+
+
+def run_regression(args: argparse.Namespace) -> int:
+    options = LiteraryRegressionOptions(
+        root=ROOT,
+        test_sets=tuple(args.sets) if args.sets else ("Test_Set_0", "Test_Set_A", "Test_Set_B"),
+        stage_name=args.stage,
+        profile=args.profile,
+        chunk_size=max(300, args.chunk_size),
+        model=args.model,
+        dry_run=args.dry_run,
+        overwrite=args.overwrite,
+        max_retries=max(0, args.max_retries),
+        retry_base_seconds=max(0.0, args.retry_base_seconds),
+        qa_fail_policy=args.qa_fail_policy,
+        simplified_chinese_policy=args.simplified_chinese_policy,
+    )
+    return _print_regression_result(run_literary_regression(options))
 
 
 def main(argv: Iterable[str] | None = None) -> int:
@@ -176,6 +255,10 @@ def main(argv: Iterable[str] | None = None) -> int:
         return 0
     if args.command == "doctor":
         return run_doctor(strict=args.strict)
+    if args.command == "corpus":
+        return run_corpus(args)
+    if args.command == "regression":
+        return run_regression(args)
     if args.command == "txt":
         return run_txt(args)
     if args.command == "batch":
