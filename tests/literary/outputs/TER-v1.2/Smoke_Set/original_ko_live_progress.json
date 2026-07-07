@@ -1,0 +1,9 @@
+{
+  "status": "success",
+  "input": "D:\\Python\\NTPE\\tests\\literary\\Smoke_Set\\original_ko.txt",
+  "output": "D:\\Python\\NTPE\\tests\\literary\\outputs\\TER-v1.2\\Smoke_Set\\original_ko_zh.txt",
+  "chunk_total": 1,
+  "chunk_completed": 1,
+  "current_step": "completed",
+  "updated_at": "2026-07-08T00:19:41"
+}

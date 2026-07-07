@@ -67,3 +67,11 @@
 - Strengthened simplified-to-traditional normalization for provider output.
 - Updated compact literary prompt policy for idiom, action, and narrative style.
 - Added TER-v1.2 validation, integration, and smoke tests.
+## Translation Engine Refactoring v1.3
+
+- Added speed/prompt compression pass for literary translation.
+- Reduced fixed prompt policy/context text.
+- Reduced default max output token budget for faster small-regression runs.
+- Added max token visibility to progress/debug output.
+- Added TER-v1.3 regression tests.
+

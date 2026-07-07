@@ -19,8 +19,8 @@ def main():
     )
     formatted = format_translation_output('伊萊則是稍微扬起眉毛，然後就轉身走開了。', opt)
     checks = [
-        ('Prompt v1.2 mode', package['prompt']['prompt_mode'] == 'compact_literary_v3_ter_v1_2'),
-        ('Dynamic glossary still active', '일레이 => 伊萊' in package['prompt']['user_prompt']),
+        ('Prompt v1.3 compatible', package['prompt']['prompt_mode'] == 'compact_literary_v4_ter_v1_3'),
+        ('Dynamic glossary still active', '일레이=伊萊' in package['prompt']['user_prompt']),
         ('Prompt profile exists', package['prompt']['prompt_profile']['total_tokens'] > 0),
         ('Simplified removed', '扬' not in formatted),
         ('Literary phrase applied', '微微挑了挑眉' in formatted and '轉身離去' in formatted),

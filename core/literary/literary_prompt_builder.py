@@ -25,7 +25,7 @@ class LiteraryPromptResult:
         return {
             "system_prompt": self.system_prompt,
             "user_prompt": self.user_prompt,
-            "prompt_mode": "compact_literary_v3_ter_v1_2",
+            "prompt_mode": "compact_literary_v4_ter_v1_3",
             "profile": self.profile,
             "prompt_profile": self.prompt_profile.to_dict(),
             "narrative_context": self.narrative_context.to_dict(),
@@ -61,16 +61,16 @@ class LiteraryPromptBuilder:
 
         system_prompt = self.policy.system_identity()
         policy_text = self.policy.render() + "\n【Profile】\n- " + profile_guidance(normalized_profile)
-        context_text = "\n".join([
-            narrative.render(),
-            character.render(),
-            "【Previous】\n" + _compact_previous_context(previous_context),
-        ])
+        previous = _compact_previous_context(previous_context)
+        context_parts = [narrative.render(), character.render()]
+        if previous != "無":
+            context_parts.append("【Previous】" + previous)
+        context_text = "\n".join(context_parts)
         glossary_text = glossary.render()
         source_text = "【Korean】\n" + chunk_text.strip()
-        output_text = "【Output】\n只輸出繁體中文譯文，不要加標題、註解或分析。譯文應像中文小說正文，不要像摘要。"
+        output_text = "【Output】只輸出繁體中文譯文，不加標題、註解、Markdown。"
 
-        user_prompt = "\n\n".join([policy_text, context_text, glossary_text, source_text, output_text])
+        user_prompt = "\n".join([policy_text, context_text, glossary_text, source_text, output_text])
         prompt_profile = build_prompt_profile(
             system_prompt=system_prompt,
             policy_text=policy_text,
@@ -89,7 +89,7 @@ class LiteraryPromptBuilder:
         )
 
 
-def _compact_previous_context(previous_context: str, limit: int = 260) -> str:
+def _compact_previous_context(previous_context: str, limit: int = 160) -> str:
     text = " ".join((previous_context or "").split())
     if not text:
         return "無"

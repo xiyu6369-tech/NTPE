@@ -77,7 +77,8 @@ class NvidiaClient:
         if self.debug:
             print(
                 f"[NTPE DEBUG] NVIDIA request start model={model} "
-                f"connect_timeout={self.connect_timeout}s read_timeout={self.timeout}s",
+                f"connect_timeout={self.connect_timeout}s read_timeout={self.timeout}s "
+                f"max_tokens={max_tokens} prompt_chars={len(system_prompt) + len(user_prompt)}",
                 flush=True,
             )
 
@@ -91,7 +92,9 @@ class NvidiaClient:
         except Timeout as e:
             raise RuntimeError(
                 f"NVIDIA API timeout after connect={self.connect_timeout}s/read={self.timeout}s. "
-                "請檢查網路、NVIDIA 服務狀態，或用 set NTPE_API_TIMEOUT=120 調高等待時間。"
+                "Increase the read timeout with NTPE_API_TIMEOUT=180 or use "
+                "launcher_translate.py regression --api-timeout 180. "
+                "For large literary regression sets, 180-300 seconds is recommended."
             ) from e
         except RequestException as e:
             raise RuntimeError(f"NVIDIA API request failed: {e}") from e

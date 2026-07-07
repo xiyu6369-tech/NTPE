@@ -632,21 +632,19 @@ def get_max_output_tokens(chunk_text: str, options: TxtTranslationOptions) -> in
     env_value = __import__("os").environ.get("NTPE_MAX_OUTPUT_TOKENS")
     if env_value:
         try:
-            return max(800, min(6000, int(float(env_value))))
+            return max(400, min(6000, int(float(env_value))))
         except ValueError:
             pass
-    profile = (options.quality_profile or "novel").lower()
+    profile = (options.quality_profile or "literary").lower()
+    source_len = max(1, len(chunk_text))
     if profile == "fast":
-        return max(900, min(1800, math.ceil(len(chunk_text) * 1.25)))
+        return max(500, min(1200, math.ceil(source_len * 1.05)))
     if profile == "balanced":
-        return max(1100, min(2800, math.ceil(len(chunk_text) * 1.50)))
-    if profile == "premium":
-        return max(1600, min(4600, math.ceil(len(chunk_text) * 1.95)))
-    if profile == "quality":
-        # Backward compatible alias for premium.
-        return max(1500, min(4200, math.ceil(len(chunk_text) * 1.85)))
-    # literary / novel default
-    return max(1200, min(3400, math.ceil(len(chunk_text) * 1.65)))
+        return max(600, min(1600, math.ceil(source_len * 1.18)))
+    if profile in ("premium", "quality"):
+        return max(900, min(3000, math.ceil(source_len * 1.45)))
+    # literary / novel default: compact enough for speed, still sufficient for fiction prose.
+    return max(700, min(2200, math.ceil(source_len * 1.28)))
 
 def build_prompt_package(
     *,
@@ -724,8 +722,8 @@ def build_prompt_package(
         },
         "metadata": {
             "created_at": now_iso(),
-            "created_by": "NTPE 1.2 Translation Engine Refactoring v1.2",
-            "package_version": "1.2-translation-engine-refactor-v1.2",
+            "created_by": "NTPE 1.2 Translation Engine Refactoring v1.3",
+            "package_version": "1.2-translation-engine-refactor-v1.3",
         },
     }
 
@@ -833,7 +831,7 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
         prompt_profile = package.get("prompt", {}).get("prompt_profile", {})
         if prompt_profile:
             emit_progress(
-                "chunk {}/{} prompt profile: total={} system={} policy={} context={} glossary={} source={}".format(
+                "chunk {}/{} prompt profile: total={} system={} policy={} context={} glossary={} source={} max_tokens={}".format(
                     idx,
                     len(chunks),
                     prompt_profile.get("total_tokens", "?"),
@@ -842,6 +840,7 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
                     prompt_profile.get("context_tokens", "?"),
                     prompt_profile.get("glossary_tokens", "?"),
                     prompt_profile.get("source_tokens", "?"),
+                    package.get("model_profile", {}).get("max_output_tokens", "?"),
                 ),
                 options=options,
             )

@@ -39,13 +39,11 @@ class CharacterContext:
     def render(self) -> str:
         parts: list[str] = []
         if self.mentioned:
-            rows = []
-            for src, info in self.mentioned.items():
-                rows.append(f"- {src} => {info.get('zh', '')}；語氣：{info.get('voice', '依上下文')}")
-            parts.append("【Characters】\n" + "\n".join(rows))
+            rows = [f"{src}={info.get('zh', '')}" for src, info in self.mentioned.items()]
+            parts.append("【Characters】" + "；".join(rows))
         if self.subject_hints:
-            parts.append("【Subject Hints】\n" + "\n".join(f"- {x}" for x in self.subject_hints))
-        return "\n".join(parts) if parts else "【Characters】\n- 依原文判斷。"
+            parts.append("【Subject】" + "；".join(self.subject_hints))
+        return "\n".join(parts) if parts else "【Characters】依原文判斷"
 
     def to_dict(self) -> dict:
         return {"current_focus": self.current_focus, "mentioned": self.mentioned, "subject_hints": self.subject_hints}

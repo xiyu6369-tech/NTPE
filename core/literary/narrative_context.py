@@ -25,8 +25,8 @@ class NarrativeContext:
 
     def render(self) -> str:
         if not self.hints:
-            return "【Narrative】\n- 依原文判斷敘事視角、場景與情緒。"
-        return "【Narrative】\n" + "\n".join(f"- {item}" for item in self.hints)
+            return "【Narrative】依原文判斷敘事、場景與情緒"
+        return "【Narrative】" + "；".join(self.hints)
 
     def to_dict(self) -> dict:
         return {"perspective": self.perspective, "hints": self.hints}

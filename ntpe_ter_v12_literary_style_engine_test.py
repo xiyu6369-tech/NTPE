@@ -32,8 +32,8 @@ def main():
         locked_dictionary=locked,
     )
     prompt = pkg['prompt']['user_prompt']
-    check('Prompt mode v1.2', pkg['prompt']['prompt_mode'] == 'compact_literary_v3_ter_v1_2')
-    check('Prompt asks novel prose', '中文小說正文' in prompt)
+    check('Prompt mode v1.3 compatible', pkg['prompt']['prompt_mode'] == 'compact_literary_v4_ter_v1_3')
+    check('Prompt asks novel prose', '只輸出繁體中文譯文' in prompt or '只輸出譯文' in prompt)
     print('PASS')
 
 
