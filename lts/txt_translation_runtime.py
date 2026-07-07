@@ -311,7 +311,12 @@ def translate_package_with_retry(engine: TranslationEngine, package: dict, packa
     last_result: dict = {"status": "failed", "error": "translation was not attempted"}
     package_id = package.get("package_id", package_path.stem)
     for attempt in range(1, attempts + 1):
-        emit_progress(f"provider request start package={package_id} attempt={attempt}/{attempts}", options=options)
+        package.setdefault("runtime", {})["provider_attempt"] = attempt
+        source_len = int(package.get("source", {}).get("char_count", 0) or 0)
+        base_timeout = int(os.environ.get("NTPE_API_TIMEOUT", "60"))
+        first_timeout = int(os.environ.get("NTPE_SHORT_CHUNK_FIRST_TIMEOUT", "120"))
+        effective_timeout = min(base_timeout, first_timeout) if attempt == 1 and 0 < source_len <= 700 else base_timeout
+        emit_progress(f"provider request start package={package_id} attempt={attempt}/{attempts} timeout={effective_timeout}s", options=options)
         started = time.time()
         result = engine.translate_package(package, package_path=package_path)
         elapsed = time.time() - started

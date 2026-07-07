@@ -2,7 +2,7 @@
   "result": {
     "status": "success",
     "package_id": "TXT_original_ko_000001",
-    "translated_at": "2026-07-08T01:55:56",
+    "translated_at": "2026-07-08T03:08:33",
     "output_path": "D:\\Python\\NTPE\\translated\\original_ko_chunk_000001_zh.txt",
     "cache_path": "D:\\Python\\NTPE\\translation_cache\\original_ko_chunk_000001_result.json",
     "qa": {
@@ -10,11 +10,11 @@
       "issues": [],
       "korean_residue_count": 0,
       "source_length": 454,
-      "translation_length": 267
+      "translation_length": 276
     },
     "package_path": "D:\\Python\\NTPE\\prompt_packages\\txt_runtime\\original_ko_chunk_000001.json"
   },
-  "translation": "「伊萊！」\n鄭泰義叫住了想要轉身離去的伊萊，伊萊則是扬起眉毛，轉頭看向鄭泰義。鄭泰義用沉重的心情瞪了伊萊一會兒，然後說道：「如果你用強迫的方法，我絕對不會保持沉默。」\n伊萊則是開心地笑了，說道：「當然。」然後就轉身離去，只留下了一句令人費解的話。\n鄭泰義就站在原地，直到伊萊從視線中消失為止，然後他就靠在牆上，滑坐在地上。突然之間，他感到數十年的疲勞一下子都湧上心頭。\n事情已經變得最糟糕了，鄭泰義也不能拒絕伊萊的提議——因為如果他堅持拒絕的話，伊萊可能會採取極端的措施，而且鄭泰義也沒有拒絕的理由。但是，他絕對不希望事情會變成這樣。\n",
+  "translation": "「伊萊！」\n鄭泰義叫住了正要轉身離去的伊萊，伊萊則是微微扬起眉毛，轉頭看向鄭泰義。鄭泰義用沉重的心情瞪了伊萊一會兒，然後說道：「如果你用強迫的方法，我絕對不會保持沉默。」\n伊萊則是輕笑著說道：「當然。」然後就轉身離去，只留下了一句模稜兩可的話。\n鄭泰義就站在原地，直到伊萊轉過彎角，完全消失在視線中。等伊萊完全消失後，鄭泰義就靠在牆上，滑坐在地上。突然感覺到幾十年的疲勞一下子都湧上來了。\n事情已經變得最糟糕了。就算他想拒絕伊萊的提議，也不可能——如果他一直堅持拒絕，伊萊可能會採取極端的措施，而且他也沒有拒絕的理由。但是，他絕對不希望事情會變成這樣。\n",
   "package": {
     "package_id": "TXT_original_ko_000001",
     "project": {
@@ -133,17 +133,17 @@
         ],
         "alias_map": {
           "正太義": "鄭泰義",
+          "定泰義": "鄭泰義",
+          "正泰義": "鄭泰義",
           "鄭泰宜": "鄭泰義",
           "鄭太義": "鄭泰義",
           "鄭泰儀": "鄭泰義",
-          "正泰義": "鄭泰義",
-          "定泰義": "鄭泰義",
           "丁泰義": "鄭泰義",
+          "伊來": "伊萊",
+          "伊雷": "伊萊",
           "伊莱": "伊萊",
           "伊蕾": "伊萊",
-          "一萊": "伊萊",
-          "伊來": "伊萊",
-          "伊雷": "伊萊"
+          "一萊": "伊萊"
         },
         "max_terms": 24,
         "max_aliases": 18
@@ -158,9 +158,12 @@
       "check_literary_policy": true
     },
     "metadata": {
-      "created_at": "2026-07-08T01:51:30",
+      "created_at": "2026-07-08T03:07:03",
       "created_by": "NTPE 1.2 Translation Engine Refactoring v1.4",
       "package_version": "1.2-translation-engine-refactor-v1.4"
+    },
+    "runtime": {
+      "provider_attempt": 1
     }
   }
 }

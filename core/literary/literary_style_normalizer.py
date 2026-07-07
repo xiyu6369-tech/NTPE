@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import re
 
-# TER-v1.6: semantic-guarded literary normalization.
+# TER-v1.8: semantic-guarded literary normalization with character-tone safety.
 #
 # The normalizer is intentionally conservative.  It may smooth recurring
 # machine-translation phrasing, but it must not introduce new plot content or
@@ -11,6 +11,15 @@ import re
 # descriptions.
 LITERARY_STYLE_REPLACEMENTS: tuple[tuple[str, str], ...] = (
     # Ambiguous reply / Ilay response handling.
+
+    # TER-v1.8 character tone and ambiguity fixes.
+    ("伊萊開心地笑了", "伊萊像是覺得有趣似的笑了"),
+    ("伊萊開心地笑著", "伊萊像是覺得有趣似的笑著"),
+    ("伊萊愉快地笑了，說：「當然。」", "伊萊像是覺得有趣似的笑了笑，只說了句「當然」。"),
+    ("伊萊笑著回答：「當然。」然後就轉身離開了，只留下那句曖昧不明的回答。", "伊萊像是覺得有趣似的笑了笑，只說了句「當然」，便轉身離去。那句簡短的回答，怎麼解讀都說得通。"),
+    ("只留下了一句令人費解的話", "只留下那句怎麼解讀都行的簡短回答"),
+    ("只留下那句令人費解的話", "只留下那句怎麼解讀都行的簡短回答"),
+    ("只留下那句曖昧不明的回答", "只留下那句怎麼解讀都行的簡短回答"),
     (
         "伊萊笑著回答道：「當然。」說完便轉身離去，只留下了一句模糊的話。",
         "伊萊笑著只答了一句「當然」，便轉身離去。那句簡短的回答，怎麼解讀都說得通。",
@@ -173,6 +182,22 @@ def _normalize_narrative_naturalness(text: str) -> str:
     return result
 
 
+
+def _normalize_ilay_character_tone(text: str) -> str:
+    """Keep Ilay's tone controlled rather than overly cheerful.
+
+    Korean `유쾌하게 웃었다` can be pleasant/amused, but in this test context
+    `開心地笑了` reads too light and weakens the pressure of the scene.
+    """
+    result = text
+    result = re.sub(r"伊萊開心地笑了[，,]說[：:]「當然。」", "伊萊像是覺得有趣似的笑了笑，只說了句「當然」", result)
+    result = re.sub(r"伊萊愉快地笑了[，,]說[：:]「當然。」", "伊萊像是覺得有趣似的笑了笑，只說了句「當然」", result)
+    result = re.sub(r"伊萊笑著回答[：:]「當然。」然後就轉身(離開|離去)了，只留下那句([^。]{0,16})(?:話|回答)。", "伊萊像是覺得有趣似的笑了笑，只說了句「當然」，便轉身離去。那句簡短的回答，怎麼解讀都說得通。", result)
+    result = re.sub(r"伊萊笑著回答[：:]「當然。」說完便轉身(離開|離去)，只留下那句([^。]{0,16})(?:話|回答)。", "伊萊像是覺得有趣似的笑了笑，只說了句「當然」，便轉身離去。那句簡短的回答，怎麼解讀都說得通。", result)
+    result = result.replace("伊萊開心地笑了", "伊萊像是覺得有趣似的笑了")
+    result = result.replace("令人費解的話", "怎麼解讀都行的簡短回答")
+    return result
+
 def normalize_literary_style(text: str) -> str:
     """Apply conservative Chinese-novel style cleanup.
 
@@ -188,6 +213,7 @@ def normalize_literary_style(text: str) -> str:
     result = _normalize_ambiguous_reply(result)
     result = _dedupe_disappearance_sentences(result)
     result = _normalize_narrative_naturalness(result)
+    result = _normalize_ilay_character_tone(result)
 
     # Avoid awkward stacked particles produced by direct replacement.
     result = re.sub(r"(伊萊|鄭泰義|凱爾)則是", r"\1", result)

@@ -62,3 +62,8 @@ python launcher_translate.py doctor
 - Added regression CLI timeout options.
 - Added `golden` / `smoke` / `regression` aliases.
 - Replaced mojibake-prone timeout guidance with ASCII-safe text.
+
+
+### TER-v1.8 Character Tone + API Stability
+
+Adds Ilay tone guard and adaptive short-chunk first-attempt timeout.

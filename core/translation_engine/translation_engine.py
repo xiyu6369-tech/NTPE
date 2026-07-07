@@ -125,14 +125,27 @@ class TranslationEngine:
         return "https://integrate.api.nvidia.com/v1/chat/completions"
 
     def _get_timeout(self, package: dict) -> int:
-        # Stage-18.11: fail fast by default, allow override for slow networks.
+        # TER-v1.8: adaptive first-attempt timeout for short literary chunks.
+        # A short Smoke_Set request should not burn the full 180s before retrying
+        # when the provider worker hangs.  The environment value is still used as
+        # the upper bound for later attempts and long chunks.
         value = os.environ.get("NTPE_API_TIMEOUT")
-        if value:
-            try:
-                return max(5, int(float(value)))
-            except ValueError:
-                return 60
-        return 60
+        try:
+            base_timeout = max(5, int(float(value))) if value else 60
+        except ValueError:
+            base_timeout = 60
+
+        source_len = 0
+        attempt = 1
+        try:
+            source_len = int(package.get("source", {}).get("char_count", 0) or 0)
+            attempt = int(package.get("runtime", {}).get("provider_attempt", 1) or 1)
+        except Exception:
+            pass
+
+        if attempt == 1 and 0 < source_len <= 700:
+            return min(base_timeout, int(os.environ.get("NTPE_SHORT_CHUNK_FIRST_TIMEOUT", "120")))
+        return base_timeout
 
     def _get_rpm_limit(self, package: dict) -> int:
         return 40

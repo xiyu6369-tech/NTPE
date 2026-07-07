@@ -98,3 +98,10 @@
 - Improved imminent-action wording, viewpoint pronouns, and fatigue narration.
 - Preserved TER-v1.6 semantic guards and prompt compression.
 
+
+
+## Translation Engine Refactoring v1.8
+
+- Added Character Tone guard for Ilay.
+- Added adaptive short-chunk first-attempt timeout.
+- Kept TER-v1.7 Prompt/profile structure unchanged.
