@@ -96,7 +96,13 @@ def build_parser() -> argparse.ArgumentParser:
     batch.add_argument("--dry-run", action="store_true", help="build packages only; do not call NVIDIA API")
 
     regression = sub.add_parser("regression", help="run literary regression corpus under tests/literary")
-    regression.add_argument("--set", dest="sets", action="append", choices=("Test_Set_0", "Test_Set_A", "Test_Set_B"), help="run one test set; repeat to run multiple")
+    regression.add_argument(
+        "--set",
+        dest="sets",
+        action="append",
+        choices=("Test_Set_0", "Test_Set_A", "Test_Set_B", "smoke", "golden", "regression", "Smoke_Set", "Golden_Set", "Regression_Set"),
+        help="run one test set; aliases: smoke/golden/regression",
+    )
     regression.add_argument("--stage", default=os.environ.get("NTPE_PS_STAGE", "PS-03"), help="output archive stage name under tests/literary/outputs")
     regression.add_argument("--profile", choices=("fast", "balanced", "novel", "literary", "quality", "premium"), default=os.environ.get("NTPE_TRANSLATION_PROFILE", "literary"))
     regression.add_argument("--chunk-size", type=int, default=int(os.environ.get("NTPE_CHUNK_SIZE", "1000")))
@@ -109,6 +115,8 @@ def build_parser() -> argparse.ArgumentParser:
     regression.add_argument("--retry-base-seconds", type=float, default=5.0)
     regression.add_argument("--qa-fail-policy", choices=("retry", "fail", "warn"), default="retry")
     regression.add_argument("--simplified-chinese-policy", choices=("normalize", "warn", "fail"), default=os.environ.get("NTPE_SIMPLIFIED_CHINESE_POLICY", "normalize"))
+    regression.add_argument("--api-timeout", type=int, default=int(os.environ.get("NTPE_API_TIMEOUT", "180")), help="NVIDIA API read timeout in seconds; default 180 for literary regression")
+    regression.add_argument("--api-connect-timeout", type=int, default=int(os.environ.get("NTPE_API_CONNECT_TIMEOUT", "10")), help="NVIDIA API connect timeout in seconds")
 
     evaluate = sub.add_parser("evaluate", help="evaluate literary regression outputs without rerunning translation")
     evaluate.add_argument("--stage", default=os.environ.get("NTPE_PS_STAGE", "PS-03"), help="stage output folder under tests/literary/outputs")
@@ -134,6 +142,45 @@ def _print_regression_result(report: dict) -> int:
     print(f"dry_run: {summary.get('dry_run')}")
     return 0 if report.get("status") == "success" else 1
 
+
+
+
+def _apply_runtime_timeout_env(args: argparse.Namespace) -> None:
+    """Apply CLI timeout overrides before TranslationRuntime creates NvidiaClient.
+
+    Regression/golden tests are often longer than smoke tests, so the CLI must
+    propagate timeout settings explicitly instead of silently falling back to the
+    NvidiaClient 60-second default.
+    """
+    api_timeout = getattr(args, "api_timeout", None)
+    api_connect_timeout = getattr(args, "api_connect_timeout", None)
+    if api_timeout is not None:
+        os.environ["NTPE_API_TIMEOUT"] = str(max(1, int(api_timeout)))
+    if api_connect_timeout is not None:
+        os.environ["NTPE_API_CONNECT_TIMEOUT"] = str(max(1, int(api_connect_timeout)))
+
+def _normalize_regression_sets(values: list[str] | None) -> tuple[str, ...]:
+    if not values:
+        return ("Test_Set_0", "Test_Set_A", "Test_Set_B")
+    aliases = {
+        "smoke": "Test_Set_0",
+        "Smoke_Set": "Test_Set_0",
+        "Test_Set_0": "Test_Set_0",
+        "golden": "Test_Set_A",
+        "Golden_Set": "Test_Set_A",
+        "Test_Set_A": "Test_Set_A",
+        "regression": "Test_Set_B",
+        "Regression_Set": "Test_Set_B",
+        "Test_Set_B": "Test_Set_B",
+    }
+    normalized: list[str] = []
+    for value in values:
+        mapped = aliases.get(value)
+        if not mapped:
+            raise ValueError(f"Unknown regression set: {value}")
+        if mapped not in normalized:
+            normalized.append(mapped)
+    return tuple(normalized)
 
 def run_doctor(strict: bool = False) -> int:
     print("NTPE Production Translator Doctor")
@@ -245,9 +292,10 @@ def run_evaluate(args: argparse.Namespace) -> int:
 
 
 def run_regression(args: argparse.Namespace) -> int:
+    _apply_runtime_timeout_env(args)
     options = LiteraryRegressionOptions(
         root=ROOT,
-        test_sets=tuple(args.sets) if args.sets else ("Test_Set_0", "Test_Set_A", "Test_Set_B"),
+        test_sets=_normalize_regression_sets(args.sets),
         stage_name=args.stage,
         profile=args.profile,
         chunk_size=max(300, args.chunk_size),

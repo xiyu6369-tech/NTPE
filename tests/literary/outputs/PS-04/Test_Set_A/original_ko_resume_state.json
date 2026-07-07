@@ -1,0 +1,25 @@
+{
+  "version": "1.1-lts-stage-05",
+  "chunks": {
+    "000001": {
+      "status": "failed",
+      "source_hash": "376e9690fabf65e3c4ab121773c0fe34e64e2a17",
+      "error": "NVIDIA API timeout after connect=10s/read=60s. 請檢查網路、NVIDIA 服務狀態，或用 set NTPE_API_TIMEOUT=120 調高等待時間。",
+      "attempt": 4,
+      "qa_attempt": 1,
+      "updated_at": "2026-07-07T22:39:17"
+    }
+  },
+  "events": [
+    {
+      "event": "chunk_failed",
+      "chunk_index": 1,
+      "error": "NVIDIA API timeout after connect=10s/read=60s. 請檢查網路、NVIDIA 服務狀態，或用 set NTPE_API_TIMEOUT=120 調高等待時間。",
+      "at": "2026-07-07T22:39:17"
+    }
+  ],
+  "input": "D:\\Python\\NTPE\\tests\\literary\\Test_Set_A\\original_ko.txt",
+  "output_dir": "D:\\Python\\NTPE\\tests\\literary\\outputs\\PS-04\\Test_Set_A",
+  "chunk_total": 3,
+  "updated_at": "2026-07-07T22:34:41"
+}

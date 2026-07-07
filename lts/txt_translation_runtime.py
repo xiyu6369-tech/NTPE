@@ -12,6 +12,7 @@ from typing import Iterable
 
 from core.translation_engine.translation_engine import TranslationEngine
 from core.translation_engine.utils import now_iso, save_json, save_text
+from core.literary import LiteraryPromptBuilder, normalize_profile
 
 
 DEFAULT_MODEL = "meta/llama-3.3-70b-instruct"
@@ -598,42 +599,17 @@ def build_prompt_package(
     locked_lines = "\n".join(f"- {src} → {target}" for src, target in matched.items()) or "- 無"
     alias_map = build_translation_alias_map(matched)
     alias_lines = "\n".join(f"- 禁止使用「{alias}」，必須改為「{target}」" for alias, target in alias_map.items()) or "- 無"
-    profile = (options.quality_profile or "literary").lower()
-    if profile == "novel":
-        profile = "literary"
+    profile = normalize_profile(options.quality_profile or "literary")
 
-    system_prompt = (
-        "你是 NTPE 的文學級韓文小說翻譯引擎。請先理解劇情、人物關係、敘事視角與語氣，"
-        "再將韓文原文完整翻譯成自然流暢的繁體中文。"
-        "譯文目標不是特定地區口語，而是符合故事時代、文化背景與小說文體的中文閱讀體驗。"
-        "譯文要像正式出版小說：敘事連貫、主詞清楚、語氣貼合人物，但不可改寫劇情、不可增刪資訊。"
-        "人名、地名、術語與世界觀設定必須嚴格遵守鎖定譯名；不可自行音譯、不可改字、不可使用近音字。"
-        "只輸出譯文，不要加解釋、標題或 Markdown。"
+    prompt_result = LiteraryPromptBuilder().build(
+        chunk_text=chunk_text,
+        locked_dictionary=matched,
+        alias_map=alias_map,
+        previous_context=previous_context.strip(),
+        profile=profile,
     )
-    user_prompt = f"""【NTPE Literary Translation Policy】
-- 翻譯成自然、流暢、適合小說閱讀的繁體中文；不要強行套用特定地區用語。
-- 用詞必須依作品的時代、地點、人物身份與敘事氛圍選擇最自然的中文表達。
-- 先理解整句與段落邏輯，再翻譯；避免逐字直譯造成主詞錯置或中文生硬。
-- 保留原文劇情、段落、人物關係、敘事順序、伏筆與語氣；不可刪減、不可摘要、不可自行補劇情。
-- 對話使用「」，內心獨白、敘述與括號補充要自然分開。
-- 人名與術語必須遵守鎖定譯名；看到韓文原名時必須直接使用指定中文譯名。
-- 不可留下大量韓文原文；若原文是韓文，必須翻成中文，不可直接複製原文。
-- 不要輸出簡體中文，不要輸出英文說明，不要加「以下是翻譯」。
-- 特別注意長句主詞與行為者，避免把 A 做的事翻成 B 做的事。
-- 若輸出中仍包含大量韓文字、錯誤譯名、簡體字或主詞錯置，該輸出會被判定失敗並自動重試。
-- 目前品質模式：{profile}。
-
-【本段鎖定譯名】
-{locked_lines}
-
-【禁止使用的錯誤譯名】
-{alias_lines}
-
-【前文參考，僅供保持語氣與銜接，禁止重複翻譯】
-{previous_context.strip() or "無"}
-
-【待翻譯內容】
-{chunk_text}"""
+    system_prompt = prompt_result.system_prompt
+    user_prompt = prompt_result.user_prompt
 
     return {
         "package_id": package_id,
@@ -665,18 +641,15 @@ def build_prompt_package(
         "context": {
             "previous_summary": "",
             "previous_chunk_tail": previous_context[-options.previous_context_chars:] if previous_context else "",
-            "recent_characters": [],
-            "recent_terms": [],
+            "recent_characters": prompt_result.character_context.current_focus,
+            "recent_terms": [term.target for term in prompt_result.glossary_context.matched_terms],
+            "narrative_context": prompt_result.narrative_context.to_dict(),
+            "character_context": prompt_result.character_context.to_dict(),
         },
         "knowledge": {
             "locked_dictionary": matched,
         },
-        "prompt": {
-            "system_prompt": system_prompt,
-            "user_prompt": user_prompt,
-            "prompt_mode": "literary_translate_txt",
-            "profile": profile,
-        },
+        "prompt": prompt_result.to_prompt_dict(),
         "qa_requirements": {
             "check_korean_residue": True,
             "check_name_rules": True,
@@ -687,8 +660,8 @@ def build_prompt_package(
         },
         "metadata": {
             "created_at": now_iso(),
-            "created_by": "NTPE 1.2 Production Stabilization PS-01 Literary Prompt Engine",
-            "package_version": "1.2-ps-01-literary-prompt-engine",
+            "created_by": "NTPE 1.2 Production Stabilization PS-04 Narrative & Character Understanding Engine",
+            "package_version": "1.2-ps-04-narrative-character-understanding",
         },
     }
 

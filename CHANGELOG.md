@@ -53,3 +53,10 @@
 - Added diff and regression history reports under `tests/literary/outputs/`.
 - Added PS-03 tests and documentation.
 
+
+
+## PS-04.1 Regression Timeout & Encoding Hotfix
+
+- Added regression CLI timeout options.
+- Added `golden` / `smoke` / `regression` aliases.
+- Replaced mojibake-prone timeout guidance with ASCII-safe text.
