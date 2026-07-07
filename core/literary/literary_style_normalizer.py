@@ -34,6 +34,23 @@ LITERARY_STYLE_REPLACEMENTS: tuple[tuple[str, str], ...] = (
     ("留下了一句模糊的話", "留下那句曖昧不明的回答"),
     ("留下了這句話", "只留下那句模稜兩可的簡短回答"),
 
+    # TER-v1.7 narrative naturalness fixes.
+    ("想要轉身離開", "正要轉身離開"),
+    ("想要轉身離去", "正要轉身離去"),
+    ("在他轉身的時候", "正要轉身時"),
+    ("鄭泰義叫住了想要轉身離開的伊萊", "鄭泰義叫住了正要轉身離開的伊萊"),
+    ("鄭泰義叫住了想要轉身離去的伊萊", "鄭泰義叫住了正要轉身離去的伊萊"),
+    ("伊萊挑了挑眉，轉頭看向鄭泰義", "伊萊挑了挑眉，轉頭看了過來"),
+    ("伊萊微微挑了挑眉，回頭看了過去", "伊萊微微挑了挑眉，回頭看了過來"),
+    ("鄭泰義心情沉重地瞪了伊萊一會兒", "鄭泰義神情沉重地瞪著他看了一會兒"),
+    ("鄭泰義心情沉重地瞪了他一會兒", "鄭泰義神情沉重地瞪著他看了一會兒"),
+    ("用沉重的心情瞪了他一會兒", "神情沉重地瞪著他看了一會兒"),
+    ("幾十年的疲勞感覺像洪水一樣湧了上來", "彷彿積壓了數十年的疲憊一口氣湧了上來"),
+    ("積壓了數十年的疲憊一下子湧上心頭", "彷彿積壓了數十年的疲憊一口氣湧了上來"),
+    ("積壓了數十年的疲憊一瞬間湧了上來", "彷彿積壓了數十年的疲憊一口氣湧了上來"),
+    ("積壓了數十年的疲憊彷彿一下子都湧了上來", "彷彿積壓了數十年的疲憊一口氣湧了上來"),
+    ("疲憊彷彿一下子都湧了上來", "疲憊彷彿一口氣湧了上來"),
+
     # Light literary phrasing fixes.
     ("抬了抬眉毛", "挑了挑眉"),
     ("抬起眉毛", "挑起眉"),
@@ -139,6 +156,23 @@ def _dedupe_disappearance_sentences(text: str) -> str:
     return result
 
 
+def _normalize_narrative_naturalness(text: str) -> str:
+    """Smooth safe narrative phrasing without changing event order.
+
+    TER-v1.7 focuses on recurring Smoke_Set issues: a character being about to
+    leave, gaze/focus wording, and the fatigue metaphor.  The substitutions are
+    intentionally narrow so they do not invent new action.
+    """
+    result = text
+    result = re.sub(r"鄭泰義叫住了正要轉身(離開|離去)的伊萊", r"鄭泰義叫住了正要轉身\1的伊萊", result)
+    result = re.sub(r"伊萊挑了挑眉，轉頭看向鄭泰義", "伊萊挑了挑眉，轉頭看了過來", result)
+    result = re.sub(r"鄭泰義心情沉重地瞪了(伊萊|他)一會兒", "鄭泰義神情沉重地瞪著他看了一會兒", result)
+    result = re.sub(r"突然之間，(他感到)?(?:積壓了數十年的疲憊|幾十年的疲勞感覺像洪水一樣)(?:一下子|一瞬間|彷彿一下子)?(?:都)?湧(?:了)?上(?:心頭|來)", "突然之間，彷彿積壓了數十年的疲憊一口氣湧了上來", result)
+    # Avoid duplicate terminal particles after cleanup.
+    result = result.replace("湧了上來來", "湧了上來")
+    return result
+
+
 def normalize_literary_style(text: str) -> str:
     """Apply conservative Chinese-novel style cleanup.
 
@@ -153,6 +187,7 @@ def normalize_literary_style(text: str) -> str:
     # TER-v1.6 semantic guards.
     result = _normalize_ambiguous_reply(result)
     result = _dedupe_disappearance_sentences(result)
+    result = _normalize_narrative_naturalness(result)
 
     # Avoid awkward stacked particles produced by direct replacement.
     result = re.sub(r"(伊萊|鄭泰義|凱爾)則是", r"\1", result)
@@ -167,4 +202,6 @@ def normalize_literary_style(text: str) -> str:
     result = result.replace("挑了挑眉毛", "挑了挑眉")
     result = result.replace("挑起眉毛", "挑起眉")
     result = result.replace("抬了抬眉毛", "挑了挑眉")
+    result = result.replace("正要轉身離開", "正要轉身離去")
+    result = result.replace("想要轉身離開", "正要轉身離去")
     return result

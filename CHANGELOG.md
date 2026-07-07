@@ -92,4 +92,9 @@
 - Added semantic guard for literary polish regressions.
 - Prevents ambiguous-answer cleanup from producing `留下了鄭泰義一個回答`.
 - Deduplicates repeated disappearance descriptions in Smoke/Golden style passages.
+## Translation Engine Refactoring v1.7
+
+- Added TER-v1.7 Narrative Naturalness cleanup.
+- Improved imminent-action wording, viewpoint pronouns, and fatigue narration.
+- Preserved TER-v1.6 semantic guards and prompt compression.
 
