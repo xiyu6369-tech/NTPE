@@ -75,3 +75,9 @@
 - Added max token visibility to progress/debug output.
 - Added TER-v1.3 regression tests.
 
+
+
+## Translation Engine Refactoring v1.4
+- Added speed-oriented prompt compression and semantic accuracy cleanup.
+- Lowered short-segment max output tokens for Smoke_Set speed.
+- Preserved TER-v1.3 compact prompt structure.

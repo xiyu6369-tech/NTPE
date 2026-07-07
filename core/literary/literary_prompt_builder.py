@@ -25,7 +25,7 @@ class LiteraryPromptResult:
         return {
             "system_prompt": self.system_prompt,
             "user_prompt": self.user_prompt,
-            "prompt_mode": "compact_literary_v4_ter_v1_3",
+            "prompt_mode": "compact_literary_v5_ter_v1_4",
             "profile": self.profile,
             "prompt_profile": self.prompt_profile.to_dict(),
             "narrative_context": self.narrative_context.to_dict(),
@@ -35,7 +35,7 @@ class LiteraryPromptResult:
 
 
 class LiteraryPromptBuilder:
-    """Compact literary prompt builder v3.
+    """Compact literary prompt builder v4.
 
     v3 is designed to reduce repeated rules and keep each request focused on
     the current novel segment.  It sends only matched glossary entries and a
@@ -68,7 +68,7 @@ class LiteraryPromptBuilder:
         context_text = "\n".join(context_parts)
         glossary_text = glossary.render()
         source_text = "【Korean】\n" + chunk_text.strip()
-        output_text = "【Output】只輸出繁體中文譯文，不加標題、註解、Markdown。"
+        output_text = "【Output】直出譯文，禁止標題、註解、Markdown。"
 
         user_prompt = "\n".join([policy_text, context_text, glossary_text, source_text, output_text])
         prompt_profile = build_prompt_profile(

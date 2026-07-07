@@ -6,6 +6,16 @@ import re
 # These replacements are intentionally conservative: they improve common
 # machine-translation phrasing without adding new plot information.
 LITERARY_STYLE_REPLACEMENTS: tuple[tuple[str, str], ...] = (
+
+    ("伊萊卻是笑了笑，說：「當然。」說完便轉身離去，留下了這句話。", "伊萊笑了笑，只說了句「當然」，便轉身離去。"),
+    ("伊萊開心地笑了，說：「當然。」說完便轉身離去，留下了這句話。", "伊萊愉快地笑了笑，只說了句「當然」，便轉身離去。"),
+    ("說：「當然。」說完便轉身離去，留下了這句話。", "只說了句「當然」，便轉身離去。"),
+    ("留下了這句話", "只留下那句模稜兩可的簡短回答"),
+    ("也不能這樣做", "也不可能做到"),
+    ("事情已經變得最糟糕了", "事情已經往最糟的方向發展了"),
+    ("他絕對不希望事情會變成這樣", "這絕不是他想要的局面"),
+    ("一下子湧上心頭", "一瞬間湧了上來"),
+    ("湧上心頭", "湧了上來"),
     ("稍微揚起眉毛", "微微挑了挑眉"),
     ("微微揚起眉毛", "微微挑了挑眉"),
     ("稍微挑起眉毛", "微微挑了挑眉"),
@@ -46,5 +56,7 @@ def normalize_literary_style(text: str) -> str:
     result = re.sub(r"(伊萊|鄭泰義|凱爾)則是", r"\1", result)
     result = re.sub(r"，然後就", "，隨即", result)
     result = re.sub(r"，然後", "，接著", result)
+    result = result.replace("挑起眉，", "挑了挑眉，")
+    result = result.replace("挑起眉。", "挑了挑眉。")
     result = re.sub(r"說道：", "說：", result)
     return result

@@ -12,21 +12,21 @@ class LiteraryTranslationPolicy:
     leaves token budget for the actual novel text.
     """
 
-    name: str = "literary-traditional-chinese-v3"
-    version: str = "1.2-ter-v1.3-speed-prompt-compression"
+    name: str = "literary-traditional-chinese-v4"
+    version: str = "1.2-ter-v1.4-speed-semantic-accuracy"
 
     def system_identity(self) -> str:
-        return "專業韓文小說譯者。理解主詞、人物、語氣與場景後，直出自然繁體中文小說正文。"
+        return "韓文小說譯者。先判斷主詞與語氣，再直出自然繁體中文正文。"
 
     def rules(self) -> list[str]:
         return [
-            "忠於原文，不漏譯、不摘要、不新增劇情。",
-            "先判斷主詞與行為者，避免人物錯置。",
-            "Glossary 譯名必須逐字一致。",
-            "用語依作品背景自然選擇，不刻意地區化。",
-            "慣用語與心理描寫用自然中文，不機械直譯。",
-            "只輸出譯文；對話用「」。",
+            "忠於原文，不漏譯、不增刪。",
+            "先判斷主詞、行為者與指代，避免人物錯置。",
+            "Glossary 譯名逐字一致。",
+            "慣用語按中文小說語感處理，不機械直譯。",
+            "短答、反諷、模稜兩可語氣需保留，不擅自解釋。",
+            "只輸出繁體中文譯文，對話用「」。",
         ]
 
     def render(self) -> str:
-        return "【Policy】\n" + "；".join(self.rules())
+        return "【Policy】" + "；".join(self.rules())

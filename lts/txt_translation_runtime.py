@@ -638,13 +638,21 @@ def get_max_output_tokens(chunk_text: str, options: TxtTranslationOptions) -> in
     profile = (options.quality_profile or "literary").lower()
     source_len = max(1, len(chunk_text))
     if profile == "fast":
-        return max(500, min(1200, math.ceil(source_len * 1.05)))
+        return _dynamic_output_tokens(source_len, floor=360, small=520, mid=900, cap=1400, ratio=0.95)
     if profile == "balanced":
-        return max(600, min(1600, math.ceil(source_len * 1.18)))
+        return _dynamic_output_tokens(source_len, floor=420, small=620, mid=1100, cap=1800, ratio=1.05)
     if profile in ("premium", "quality"):
-        return max(900, min(3000, math.ceil(source_len * 1.45)))
-    # literary / novel default: compact enough for speed, still sufficient for fiction prose.
-    return max(700, min(2200, math.ceil(source_len * 1.28)))
+        return _dynamic_output_tokens(source_len, floor=650, small=1000, mid=1800, cap=3200, ratio=1.35)
+    # literary / novel default: enough for complete prose, but avoids oversized short-smoke requests.
+    return _dynamic_output_tokens(source_len, floor=420, small=560, mid=1200, cap=2400, ratio=1.12)
+
+
+def _dynamic_output_tokens(source_len: int, *, floor: int, small: int, mid: int, cap: int, ratio: float) -> int:
+    if source_len <= 600:
+        return small
+    if source_len <= 1200:
+        return max(floor, min(mid, math.ceil(source_len * ratio)))
+    return max(floor, min(cap, math.ceil(source_len * ratio)))
 
 def build_prompt_package(
     *,
@@ -722,8 +730,8 @@ def build_prompt_package(
         },
         "metadata": {
             "created_at": now_iso(),
-            "created_by": "NTPE 1.2 Translation Engine Refactoring v1.3",
-            "package_version": "1.2-translation-engine-refactor-v1.3",
+            "created_by": "NTPE 1.2 Translation Engine Refactoring v1.4",
+            "package_version": "1.2-translation-engine-refactor-v1.4",
         },
     }
 
