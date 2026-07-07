@@ -1,0 +1,31 @@
+{
+  "version": "1.1-lts-stage-05",
+  "chunks": {
+    "000001": {
+      "status": "success",
+      "source_hash": "b5e46051b99a323f575bf31576574a1e4b39cd93",
+      "output_path": "D:\\Python\\NTPE\\tests\\literary\\outputs\\TER-v1\\Smoke_Set\\original_ko_chunks\\original_ko_chunk_000001_zh.txt",
+      "attempt": 1,
+      "qa_attempt": 2,
+      "qa": {
+        "passed": true,
+        "issues": [],
+        "metrics": {
+          "korean_chars": 0,
+          "source_chars": 346,
+          "translated_chars": 239,
+          "length_ratio": 0.6908,
+          "repeated_line_count": 0,
+          "simplified_hits": 0,
+          "locked_term_violations": 0
+        }
+      },
+      "updated_at": "2026-07-07T23:38:50"
+    }
+  },
+  "events": [],
+  "input": "D:\\Python\\NTPE\\tests\\literary\\Smoke_Set\\original_ko.txt",
+  "output_dir": "D:\\Python\\NTPE\\tests\\literary\\outputs\\TER-v1\\Smoke_Set",
+  "chunk_total": 1,
+  "updated_at": "2026-07-07T23:35:14"
+}

@@ -56,10 +56,10 @@ class GlossaryContext:
     def render(self) -> str:
         if not self.matched_terms:
             return "【Glossary】\n- 無"
-        terms = "\n".join(f"- {t.source} => {t.target}" for t in self.matched_terms)
+        terms = "\n".join(f"- {t.source} => {t.target}（必須逐字一致）" for t in self.matched_terms)
         if not self.alias_map:
             return f"【Glossary】\n{terms}"
-        aliases = "\n".join(f"- {alias} => {target}" for alias, target in sorted(self.alias_map.items()))
+        aliases = "\n".join(f"- 禁用 {alias}，必須改為 {target}" for alias, target in sorted(self.alias_map.items()))
         return f"【Glossary】\n{terms}\n【Forbidden Aliases】\n{aliases}"
 
     def to_dict(self) -> dict:

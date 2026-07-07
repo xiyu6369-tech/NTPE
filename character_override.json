@@ -58,5 +58,10 @@
     "translation": "麗塔",
     "locked": true,
     "note": "manual locked"
+  },
+  "일레이": {
+    "translation": "伊萊",
+    "locked": true,
+    "note": "名字變體，單獨出現時不可翻成伊蕾"
   }
 }

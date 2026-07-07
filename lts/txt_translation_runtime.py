@@ -193,8 +193,10 @@ def resolve_character_memory_path(root: Path, options: TxtTranslationOptions | N
 # assembly, so glossary terms remain stable even when the model drifts.
 DEFAULT_LOCKED_TRANSLATION_ALIASES: dict[str, set[str]] = {
     "鄭泰義": {"定泰義", "丁泰義", "正泰義", "鄭太義", "正太義", "鄭泰宜", "鄭泰儀"},
-    "伊萊・里格勞": {"伊萊·里格勞", "伊萊里格勞", "伊萊・利格羅", "伊萊·利格羅"},
-    "凱爾・里格勞": {"凱爾·里格勞", "凱爾里格勞", "凱爾・利格羅", "凱爾·利格羅"},
+    "伊萊": {"伊蕾", "伊雷", "伊來", "伊莱", "一萊"},
+    "凱爾": {"卡爾", "凱爾爾", "凯尔"},
+    "伊萊・里格勞": {"伊萊·里格勞", "伊萊里格勞", "伊萊・利格羅", "伊萊·利格羅", "伊蕾・里格勞", "伊蕾·里格勞"},
+    "凱爾・里格勞": {"凱爾·里格勞", "凱爾里格勞", "凱爾・利格羅", "凱爾·利格羅", "卡爾・里格勞"},
 }
 
 
@@ -210,16 +212,24 @@ def build_translation_alias_map(locked_dictionary: dict[str, str]) -> dict[str, 
 
 
 def apply_locked_dictionary(text: str, locked_dictionary: dict[str, str]) -> str:
-    result = text
+    result = text or ""
+    # TER-v1.1: apply target aliases before source replacements so wrong Chinese
+    # variants such as 伊蕾 are normalized even when the Korean source term is
+    # already gone from provider output.
+    for alias, target in sorted(build_translation_alias_map(locked_dictionary).items(), key=lambda item: len(item[0]), reverse=True):
+        if alias and target:
+            result = result.replace(alias, target)
     for source, target in sorted(locked_dictionary.items(), key=lambda item: len(item[0]), reverse=True):
         if not source or not target:
             continue
         # Remove accidental Korean/source residue and normalize any exact source term that survived provider output.
         result = result.replace(source, target)
-
-    for alias, target in sorted(build_translation_alias_map(locked_dictionary).items(), key=lambda item: len(item[0]), reverse=True):
-        result = result.replace(alias, target)
     return result
+
+
+def matched_locked_dictionary(source_text: str, locked_dictionary: dict[str, str]) -> dict[str, str]:
+    """Return only terms that must be enforced for this source segment."""
+    return {src: target for src, target in locked_dictionary.items() if src and target and src in source_text}
 
 
 def collect_matched_locked_terms(chunks: list[str], locked_dictionary: dict[str, str]) -> dict[str, str]:
@@ -698,12 +708,17 @@ def build_qa_retry_user_prompt(original_user_prompt: str, qa_report: dict, qa_at
     """Create a stricter retry prompt after QA rejects a provider output."""
     issues = qa_report.get("issues", []) if isinstance(qa_report, dict) else []
     issue_lines = []
-    for issue in issues[:5]:
+    locked_lines = []
+    for issue in issues[:8]:
         if isinstance(issue, dict):
             code = issue.get("code") or issue.get("type") or "QA_ISSUE"
             message = issue.get("message") or ""
             issue_lines.append(f"- {code}: {message}")
+            for sample in issue.get("samples", []) if isinstance(issue.get("samples"), list) else []:
+                if isinstance(sample, dict) and sample.get("source") and sample.get("target"):
+                    locked_lines.append(f"- {sample['source']} => {sample['target']}")
     issue_text = "\n".join(issue_lines) or "- QA_FAILED: previous output did not pass validation"
+    locked_text = "\n".join(dict.fromkeys(locked_lines)) or "- 依 Glossary 欄位嚴格執行"
     retry_note = f"""
 
 【NTPE 自動重試指令】
@@ -711,8 +726,12 @@ def build_qa_retry_user_prompt(original_user_prompt: str, qa_report: dict, qa_at
 失敗原因：
 {issue_text}
 
+必須修正的鎖定譯名：
+{locked_text}
+
 重試要求：
-- 請直接把【待翻譯內容】完整翻成自然流暢、符合小說背景的繁體中文。
+- 請直接完整翻成自然流暢、符合小說背景的繁體中文。
+- 鎖定譯名必須逐字一致，不能自行改成近似音譯。
 - 嚴禁複製韓文原文作為譯文。
 - 嚴禁輸出「以下是翻譯」等說明。
 - 保留段落順序與劇情資訊，不可摘要。
