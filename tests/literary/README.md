@@ -1,14 +1,21 @@
 # NTPE Literary Regression Corpus
 
-NTPE Production Stabilization uses this folder to validate translation quality, not only program execution.
+Canonical sets:
 
-## Test sets
+- `Smoke_Set`: short smoke corpus for quick API / prompt / name-lock checks.
+- `Golden_Set`: fixed golden passage. Do not change after selection.
+- `Regression_Set`: rotating passage to prevent overfitting to the golden text.
 
-- `Test_Set_0`: tiny smoke corpus for quick API/prompt/name-lock checks.
-- `Test_Set_A`: golden regression corpus. Keep this stable once selected.
-- `Test_Set_B`: rotating regression corpus. Replace periodically to avoid overfitting one passage.
-- `outputs/PS-xx`: store generated outputs for manual comparison between Production Stabilization stages.
+Legacy CLI names remain accepted for compatibility:
 
-## Rule
+- `Smoke_Set` => `Smoke_Set`
+- `Golden_Set` => `Golden_Set`
+- `Regression_Set` => `Regression_Set`
 
-Do not optimize only for one passage. A PS stage passes only when it improves or preserves literary quality on Test_Set_A and does not regress on Test_Set_B.
+Recommended commands:
+
+```bat
+python launcher_translate.py regression --set smoke --stage TER-v1 --profile literary --api-timeout 180 --overwrite
+python launcher_translate.py regression --set golden --stage TER-v1 --profile literary --api-timeout 180 --overwrite
+python launcher_translate.py regression --stage TER-v1 --profile literary --api-timeout 180 --overwrite
+```

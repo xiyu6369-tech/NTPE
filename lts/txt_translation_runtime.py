@@ -4,6 +4,7 @@ import argparse
 import hashlib
 import json
 import math
+import os
 import re
 import time
 from dataclasses import dataclass
@@ -65,6 +66,7 @@ class TxtTranslationOptions:
     quality_profile: str = "novel"
     previous_context_chars: int = 700
     simplified_chinese_policy: str = "normalize"  # normalize|warn|fail
+    progress_enabled: bool = True
 
 
 def read_text_auto(path: str | Path) -> str:
@@ -274,20 +276,48 @@ def retry_delay_seconds(attempt: int, base_seconds: float) -> float:
     return max(0.0, float(base_seconds)) * (2 ** max(0, attempt - 1))
 
 
+def progress_enabled(options: TxtTranslationOptions | None = None) -> bool:
+    if options is not None and not getattr(options, "progress_enabled", True):
+        return False
+    value = os.environ.get("NTPE_PROGRESS", "1").lower()
+    return value not in {"0", "false", "no", "off"}
+
+
+def emit_progress(message: str, *, options: TxtTranslationOptions | None = None) -> None:
+    if progress_enabled(options):
+        print(f"[NTPE PROGRESS] {message}", flush=True)
+
+
+def save_live_progress(path: Path, payload: dict) -> None:
+    try:
+        save_json(path, payload)
+    except Exception:
+        # Live progress must never break translation.
+        pass
+
+
 def translate_package_with_retry(engine: TranslationEngine, package: dict, package_path: Path, options: TxtTranslationOptions) -> dict:
     attempts = max(1, int(options.max_retries) + 1)
     last_result: dict = {"status": "failed", "error": "translation was not attempted"}
+    package_id = package.get("package_id", package_path.stem)
     for attempt in range(1, attempts + 1):
+        emit_progress(f"provider request start package={package_id} attempt={attempt}/{attempts}", options=options)
+        started = time.time()
         result = engine.translate_package(package, package_path=package_path)
+        elapsed = time.time() - started
         result["attempt"] = attempt
+        result["provider_elapsed_seconds"] = round(elapsed, 3)
         last_result = result
         if result.get("status") == "success":
+            emit_progress(f"provider request success package={package_id} attempt={attempt}/{attempts} elapsed={elapsed:.1f}s", options=options)
             return result
         error = result.get("error", "")
+        emit_progress(f"provider request failed package={package_id} attempt={attempt}/{attempts} elapsed={elapsed:.1f}s error={error[:180]}", options=options)
         if attempt >= attempts or not is_retryable_error(error):
             return result
         delay = retry_delay_seconds(attempt, options.retry_base_seconds)
         if delay > 0:
+            emit_progress(f"retry wait {delay:.1f}s before next provider request", options=options)
             time.sleep(delay)
     return last_result
 
@@ -596,9 +626,7 @@ def build_prompt_package(
     source_hash = hashlib.sha1(chunk_text.encode("utf-8")).hexdigest()
     matched = {src: target for src, target in locked_dictionary.items() if src and src in chunk_text}
 
-    locked_lines = "\n".join(f"- {src} → {target}" for src, target in matched.items()) or "- 無"
     alias_map = build_translation_alias_map(matched)
-    alias_lines = "\n".join(f"- 禁止使用「{alias}」，必須改為「{target}」" for alias, target in alias_map.items()) or "- 無"
     profile = normalize_profile(options.quality_profile or "literary")
 
     prompt_result = LiteraryPromptBuilder().build(
@@ -660,8 +688,8 @@ def build_prompt_package(
         },
         "metadata": {
             "created_at": now_iso(),
-            "created_by": "NTPE 1.2 Production Stabilization PS-04 Narrative & Character Understanding Engine",
-            "package_version": "1.2-ps-04-narrative-character-understanding",
+            "created_by": "NTPE 1.2 Translation Engine Refactoring v1",
+            "package_version": "1.2-translation-engine-refactor-v1",
         },
     }
 
@@ -698,10 +726,13 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
     output_dir = options.output_dir if options.output_dir.is_absolute() else root_path / options.output_dir
     output_dir.mkdir(parents=True, exist_ok=True)
 
+    emit_progress(f"read input: {input_path}", options=options)
     text = read_text_auto(input_path)
+    emit_progress(f"split text: chars={len(text)} chunk_size={options.chunk_size}", options=options)
     chunks = split_text(text, options.chunk_size)
     if not chunks:
         raise ValueError(f"輸入檔案沒有可翻譯內容：{input_path}")
+    emit_progress(f"chunk plan: total={len(chunks)}", options=options)
 
     stage_dir = root_path / "prompt_packages" / "txt_runtime"
     stage_dir.mkdir(parents=True, exist_ok=True)
@@ -715,6 +746,16 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
     translated_chunks: list[str] = []
     records: list[dict] = []
     resume_state_path = get_resume_state_path(output_dir, input_path)
+    live_progress_path = output_dir / f"{input_path.stem}_live_progress.json"
+    save_live_progress(live_progress_path, {
+        "status": "running",
+        "input": str(input_path),
+        "output_dir": str(output_dir),
+        "chunk_total": len(chunks),
+        "chunk_completed": 0,
+        "current_step": "initialized",
+        "updated_at": now_iso(),
+    })
     resume_state = load_resume_state(resume_state_path)
     resume_state["input"] = str(input_path)
     resume_state["output_dir"] = str(output_dir)
@@ -723,6 +764,17 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
     save_resume_state(resume_state_path, resume_state)
 
     for idx, chunk in enumerate(chunks, start=1):
+        emit_progress(f"chunk {idx}/{len(chunks)} prepare package chars={len(chunk)}", options=options)
+        save_live_progress(live_progress_path, {
+            "status": "running",
+            "input": str(input_path),
+            "output_dir": str(output_dir),
+            "chunk_total": len(chunks),
+            "chunk_completed": max(0, idx - 1),
+            "current_chunk": idx,
+            "current_step": "prepare_package",
+            "updated_at": now_iso(),
+        })
         package = build_prompt_package(
             options=options,
             chunk_text=chunk,
@@ -733,6 +785,22 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
         )
         package_path = stage_dir / f"{input_path.stem}_chunk_{idx:06d}.json"
         save_json(package_path, package)
+        prompt_profile = package.get("prompt", {}).get("prompt_profile", {})
+        if prompt_profile:
+            emit_progress(
+                "chunk {}/{} prompt profile: total={} system={} policy={} context={} glossary={} source={}".format(
+                    idx,
+                    len(chunks),
+                    prompt_profile.get("total_tokens", "?"),
+                    prompt_profile.get("system_tokens", "?"),
+                    prompt_profile.get("policy_tokens", "?"),
+                    prompt_profile.get("context_tokens", "?"),
+                    prompt_profile.get("glossary_tokens", "?"),
+                    prompt_profile.get("source_tokens", "?"),
+                ),
+                options=options,
+            )
+        emit_progress(f"chunk {idx}/{len(chunks)} package saved: {package_path.name}", options=options)
 
         chunk_file = chunk_out_dir / f"{input_path.stem}_chunk_{idx:06d}_zh.txt"
         chunk_key = f"{idx:06d}"
@@ -747,11 +815,13 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
         )
 
         if reusable_state:
+            emit_progress(f"chunk {idx}/{len(chunks)} resume hit: using cached output", options=options)
             translation = chunk_file.read_text(encoding="utf-8")
             if options.strict_lock_terms:
                 translation = apply_locked_dictionary(translation, locked_dictionary)
             result = {"status": "skipped", "output_path": str(chunk_file), "package_id": package["package_id"], "attempt": 0}
         elif options.dry_run:
+            emit_progress(f"chunk {idx}/{len(chunks)} dry-run: skip provider", options=options)
             translation = ""
             result = {"status": "dry_run", "output_path": str(chunk_file), "package_id": package["package_id"], "attempt": 0}
             resume_state["chunks"][chunk_key] = {
@@ -769,6 +839,17 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
             qa_attempts = max(1, int(options.max_retries) + 1) if options.qa_fail_policy == "retry" else 1
             original_user_prompt = package["prompt"]["user_prompt"]
             for qa_attempt in range(1, qa_attempts + 1):
+                emit_progress(f"chunk {idx}/{len(chunks)} QA attempt {qa_attempt}/{qa_attempts}", options=options)
+                save_live_progress(live_progress_path, {
+                    "status": "running",
+                    "input": str(input_path),
+                    "output_dir": str(output_dir),
+                    "chunk_total": len(chunks),
+                    "chunk_completed": max(0, idx - 1),
+                    "current_chunk": idx,
+                    "current_step": f"provider_and_qa_attempt_{qa_attempt}",
+                    "updated_at": now_iso(),
+                })
                 if qa_attempt > 1:
                     package["prompt"]["user_prompt"] = build_qa_retry_user_prompt(original_user_prompt, qa_report, qa_attempt)
                     save_json(package_path, package)
@@ -777,12 +858,14 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
                 if result.get("status") != "success":
                     break
                 generated_path = Path(result["output_path"])
+                emit_progress(f"chunk {idx}/{len(chunks)} provider output received", options=options)
                 translation = generated_path.read_text(encoding="utf-8")
                 if options.strict_lock_terms:
                     translation = apply_locked_dictionary(translation, locked_dictionary)
                 translation = format_translation_output(translation, options)
                 qa_report = analyze_translation_quality(chunk, translation, options, locked_dictionary=package.get("knowledge", {}).get("locked_dictionary", {})) if options.qa_enabled else {"passed": True, "issues": [], "metrics": {}}
                 qa_attempt_records.append({"qa_attempt": qa_attempt, "qa": qa_report})
+                emit_progress(f"chunk {idx}/{len(chunks)} QA {'PASS' if qa_report.get('passed') else 'FAIL'} issues={len(qa_report.get('issues', []))}", options=options)
                 if qa_report.get("passed") or options.qa_fail_policy == "warn":
                     break
                 if options.qa_fail_policy == "fail" or qa_attempt >= qa_attempts:
@@ -807,6 +890,17 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
                     "at": now_iso(),
                 })
                 save_resume_state(resume_state_path, resume_state)
+                save_live_progress(live_progress_path, {
+                    "status": "failed",
+                    "input": str(input_path),
+                    "chunk_total": len(chunks),
+                    "chunk_completed": max(0, idx - 1),
+                    "failed_chunk": idx,
+                    "current_step": "provider_failed",
+                    "error": result.get("error", "unknown error"),
+                    "updated_at": now_iso(),
+                })
+                emit_progress(f"chunk {idx}/{len(chunks)} FAILED provider error={result.get('error', 'unknown error')[:180]}", options=options)
                 return {
                     "status": "failed",
                     "input": str(input_path),
@@ -836,6 +930,17 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
                     "at": now_iso(),
                 })
                 save_resume_state(resume_state_path, resume_state)
+                save_live_progress(live_progress_path, {
+                    "status": "failed",
+                    "input": str(input_path),
+                    "chunk_total": len(chunks),
+                    "chunk_completed": max(0, idx - 1),
+                    "failed_chunk": idx,
+                    "current_step": "qa_failed",
+                    "error": error,
+                    "updated_at": now_iso(),
+                })
+                emit_progress(f"chunk {idx}/{len(chunks)} FAILED QA error={error[:180]}", options=options)
                 return {
                     "status": "failed",
                     "input": str(input_path),
@@ -847,6 +952,7 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
                 }
 
             save_text(chunk_file, translation)
+            emit_progress(f"chunk {idx}/{len(chunks)} saved: {chunk_file.name}", options=options)
             resume_state["chunks"][chunk_key] = {
                 "status": "success",
                 "source_hash": source_hash,
@@ -860,6 +966,16 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
             result["qa_attempt_records"] = qa_attempt_records
             save_resume_state(resume_state_path, resume_state)
 
+        save_live_progress(live_progress_path, {
+            "status": "running",
+            "input": str(input_path),
+            "output_dir": str(output_dir),
+            "chunk_total": len(chunks),
+            "chunk_completed": idx,
+            "current_chunk": idx,
+            "current_step": "chunk_completed",
+            "updated_at": now_iso(),
+        })
         if translation:
             translated_chunks.append(translation.strip())
         records.append(result | {"chunk_index": idx, "chunk_total": len(chunks)})
@@ -892,6 +1008,16 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
         "records": records,
     }
     save_json(output_dir / f"{input_path.stem}_translation_manifest.json", manifest)
+    save_live_progress(live_progress_path, {
+        "status": "success",
+        "input": str(input_path),
+        "output": str(final_output),
+        "chunk_total": len(chunks),
+        "chunk_completed": len(chunks),
+        "current_step": "completed",
+        "updated_at": now_iso(),
+    })
+    emit_progress(f"completed: {final_output}", options=options)
     return manifest
 
 

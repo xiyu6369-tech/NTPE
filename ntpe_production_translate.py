@@ -71,6 +71,7 @@ def build_parser() -> argparse.ArgumentParser:
     txt.add_argument("--profile", choices=("fast", "balanced", "novel", "literary", "quality", "premium"), default=os.environ.get("NTPE_TRANSLATION_PROFILE", "literary"))
     txt.add_argument("--simplified-chinese-policy", choices=("normalize", "warn", "fail"), default=os.environ.get("NTPE_SIMPLIFIED_CHINESE_POLICY", "normalize"))
     txt.add_argument("--dry-run", action="store_true", help="build packages only; do not call NVIDIA API")
+    txt.add_argument("--no-progress", action="store_true", help="disable live NTPE progress messages")
 
     batch = sub.add_parser("batch", help="translate all TXT files in a folder")
     batch.add_argument("input", nargs="?", default="input", help="input folder; default: input")
@@ -94,6 +95,7 @@ def build_parser() -> argparse.ArgumentParser:
     batch.add_argument("--profile", choices=("fast", "balanced", "novel", "literary", "quality", "premium"), default=os.environ.get("NTPE_TRANSLATION_PROFILE", "literary"))
     batch.add_argument("--simplified-chinese-policy", choices=("normalize", "warn", "fail"), default=os.environ.get("NTPE_SIMPLIFIED_CHINESE_POLICY", "normalize"))
     batch.add_argument("--dry-run", action="store_true", help="build packages only; do not call NVIDIA API")
+    batch.add_argument("--no-progress", action="store_true", help="disable live NTPE progress messages")
 
     regression = sub.add_parser("regression", help="run literary regression corpus under tests/literary")
     regression.add_argument(
@@ -117,6 +119,7 @@ def build_parser() -> argparse.ArgumentParser:
     regression.add_argument("--simplified-chinese-policy", choices=("normalize", "warn", "fail"), default=os.environ.get("NTPE_SIMPLIFIED_CHINESE_POLICY", "normalize"))
     regression.add_argument("--api-timeout", type=int, default=int(os.environ.get("NTPE_API_TIMEOUT", "180")), help="NVIDIA API read timeout in seconds; default 180 for literary regression")
     regression.add_argument("--api-connect-timeout", type=int, default=int(os.environ.get("NTPE_API_CONNECT_TIMEOUT", "10")), help="NVIDIA API connect timeout in seconds")
+    regression.add_argument("--no-progress", action="store_true", help="disable live NTPE progress messages")
 
     evaluate = sub.add_parser("evaluate", help="evaluate literary regression outputs without rerunning translation")
     evaluate.add_argument("--stage", default=os.environ.get("NTPE_PS_STAGE", "PS-03"), help="stage output folder under tests/literary/outputs")
@@ -161,17 +164,17 @@ def _apply_runtime_timeout_env(args: argparse.Namespace) -> None:
 
 def _normalize_regression_sets(values: list[str] | None) -> tuple[str, ...]:
     if not values:
-        return ("Test_Set_0", "Test_Set_A", "Test_Set_B")
+        return ("Smoke_Set", "Golden_Set", "Regression_Set")
     aliases = {
-        "smoke": "Test_Set_0",
-        "Smoke_Set": "Test_Set_0",
-        "Test_Set_0": "Test_Set_0",
-        "golden": "Test_Set_A",
-        "Golden_Set": "Test_Set_A",
-        "Test_Set_A": "Test_Set_A",
-        "regression": "Test_Set_B",
-        "Regression_Set": "Test_Set_B",
-        "Test_Set_B": "Test_Set_B",
+        "smoke": "Smoke_Set",
+        "Smoke_Set": "Smoke_Set",
+        "Test_Set_0": "Smoke_Set",
+        "golden": "Golden_Set",
+        "Golden_Set": "Golden_Set",
+        "Test_Set_A": "Golden_Set",
+        "regression": "Regression_Set",
+        "Regression_Set": "Regression_Set",
+        "Test_Set_B": "Regression_Set",
     }
     normalized: list[str] = []
     for value in values:
@@ -229,6 +232,7 @@ def run_txt(args: argparse.Namespace) -> int:
         max_repeated_lines=max(0, args.max_repeated_lines),
         quality_profile=args.profile,
         simplified_chinese_policy=args.simplified_chinese_policy,
+        progress_enabled=not getattr(args, "no_progress", False),
     )
     return _print_result("NTPE Production TXT Translation", runtime.translate_txt(options))
 
@@ -257,6 +261,7 @@ def run_batch(args: argparse.Namespace) -> int:
         continue_on_failure=args.continue_on_failure,
         auto_recovery=args.auto_recovery,
         heartbeat=args.heartbeat,
+        progress_enabled=not getattr(args, "no_progress", False),
     )
     return _print_result("NTPE Production Batch Translation", runtime.translate_batch(options))
 
@@ -308,6 +313,7 @@ def run_regression(args: argparse.Namespace) -> int:
         simplified_chinese_policy=args.simplified_chinese_policy,
         evaluate=not args.no_evaluate,
         previous_stage=args.previous_stage,
+        progress_enabled=not getattr(args, "no_progress", False),
     )
     return _print_regression_result(run_literary_regression(options))
 

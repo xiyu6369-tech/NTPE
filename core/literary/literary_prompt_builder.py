@@ -7,6 +7,7 @@ from .character_context import CharacterContext
 from .glossary_context import GlossaryContext
 from .literary_profile import normalize_profile, profile_guidance
 from .narrative_context import NarrativeContext
+from .prompt_profiler import PromptProfile, build_prompt_profile
 from .translation_policy import LiteraryTranslationPolicy
 
 
@@ -17,14 +18,16 @@ class LiteraryPromptResult:
     narrative_context: NarrativeContext
     character_context: CharacterContext
     glossary_context: GlossaryContext
+    prompt_profile: PromptProfile
     profile: str
 
     def to_prompt_dict(self) -> dict:
         return {
             "system_prompt": self.system_prompt,
             "user_prompt": self.user_prompt,
-            "prompt_mode": "literary_narrative_understanding_ps04",
+            "prompt_mode": "compact_literary_v3",
             "profile": self.profile,
+            "prompt_profile": self.prompt_profile.to_dict(),
             "narrative_context": self.narrative_context.to_dict(),
             "character_context": self.character_context.to_dict(),
             "glossary_context": self.glossary_context.to_dict(),
@@ -32,11 +35,11 @@ class LiteraryPromptResult:
 
 
 class LiteraryPromptBuilder:
-    """Builds PS-04 narrative-aware literary prompts.
+    """Compact literary prompt builder v3.
 
-    The builder does not rewrite the source.  It gives the model structured
-    context before translation: policy, narrative hints, character hints,
-    locked glossary, previous context, and current text.
+    v3 is designed to reduce repeated rules and keep each request focused on
+    the current novel segment.  It sends only matched glossary entries and a
+    small set of narrative/character hints.
     """
 
     def __init__(self, policy: LiteraryTranslationPolicy | None = None):
@@ -56,27 +59,40 @@ class LiteraryPromptBuilder:
         character = CharacterContext.analyze(chunk_text, locked_dictionary, previous_context=previous_context)
         narrative = NarrativeContext.analyze(chunk_text, previous_context=previous_context)
 
-        system_prompt = (
-            f"{self.policy.system_identity()} "
-            "請嚴格遵守鎖定譯名與敘事主詞，並只輸出譯文。"
-        )
-
-        user_prompt = "\n\n".join([
-            self.policy.render(),
-            "【Profile Guidance】\n- " + profile_guidance(normalized_profile),
+        system_prompt = self.policy.system_identity()
+        policy_text = self.policy.render() + "\n【Profile】\n- " + profile_guidance(normalized_profile)
+        context_text = "\n".join([
             narrative.render(),
             character.render(),
-            glossary.render(),
-            "【Previous Context】\n" + (previous_context.strip() or "無；此段可獨立翻譯。"),
-            "【Current Korean Text】\n" + chunk_text,
-            "【Output Requirement】\n請直接輸出繁體中文譯文。不要輸出分析、註解、標題或 Markdown。",
+            "【Previous】\n" + _compact_previous_context(previous_context),
         ])
+        glossary_text = glossary.render()
+        source_text = "【Korean】\n" + chunk_text.strip()
+        output_text = "【Output】\n只輸出繁體中文譯文，不要加標題、註解或分析。"
 
+        user_prompt = "\n\n".join([policy_text, context_text, glossary_text, source_text, output_text])
+        prompt_profile = build_prompt_profile(
+            system_prompt=system_prompt,
+            policy_text=policy_text,
+            context_text=context_text,
+            glossary_text=glossary_text,
+            source_text=source_text,
+        )
         return LiteraryPromptResult(
             system_prompt=system_prompt,
             user_prompt=user_prompt,
             narrative_context=narrative,
             character_context=character,
             glossary_context=glossary,
+            prompt_profile=prompt_profile,
             profile=normalized_profile,
         )
+
+
+def _compact_previous_context(previous_context: str, limit: int = 260) -> str:
+    text = " ".join((previous_context or "").split())
+    if not text:
+        return "無"
+    if len(text) <= limit:
+        return text
+    return text[-limit:]

@@ -129,6 +129,7 @@ class BatchTranslationOptions:
     heartbeat_seconds: float = 60.0
     stale_after_seconds: int = DEFAULT_STALE_AFTER_SECONDS
     auto_recovery: bool = False
+    progress_enabled: bool = True
 
 
 def natural_sort_key(path: Path) -> list[object]:
@@ -177,6 +178,7 @@ def build_txt_options(input_file: Path, per_file_output_dir: Path, options: Batc
         taiwan_traditional_normalization=options.taiwan_traditional_normalization,
         quality_profile=options.quality_profile,
         simplified_chinese_policy=options.simplified_chinese_policy,
+        progress_enabled=options.progress_enabled,
     )
 
 

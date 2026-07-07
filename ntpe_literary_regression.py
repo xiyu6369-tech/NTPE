@@ -17,7 +17,15 @@ from lts.txt_translation_runtime import TxtTranslationOptions
 from ntpe_literary_evaluation import evaluate_stage_outputs
 
 LITERARY_ROOT = Path("tests") / "literary"
-DEFAULT_TEST_SETS = ("Test_Set_0", "Test_Set_A", "Test_Set_B")
+DEFAULT_TEST_SETS = ("Smoke_Set", "Golden_Set", "Regression_Set")
+LEGACY_TEST_SET_ALIASES = {
+    "Test_Set_0": "Smoke_Set",
+    "Test_Set_A": "Golden_Set",
+    "Test_Set_B": "Regression_Set",
+    "smoke": "Smoke_Set",
+    "golden": "Golden_Set",
+    "regression": "Regression_Set",
+}
 DEFAULT_SOURCE_NAME = "original_ko.txt"
 DEFAULT_STAGE_NAME = "PS-03"
 
@@ -38,6 +46,7 @@ class LiteraryRegressionOptions:
     simplified_chinese_policy: str = "normalize"
     evaluate: bool = True
     previous_stage: str | None = None
+    progress_enabled: bool = True
 
 
 def _safe_stage_name(stage_name: str) -> str:
@@ -53,9 +62,9 @@ def ensure_literary_structure(root: Path) -> dict:
     base = literary_root(root)
     created: list[str] = []
     for rel in [
-        Path("Test_Set_0"),
-        Path("Test_Set_A"),
-        Path("Test_Set_B"),
+        Path("Smoke_Set"),
+        Path("Golden_Set"),
+        Path("Regression_Set"),
         Path("outputs"),
     ]:
         path = base / rel
@@ -66,23 +75,42 @@ def ensure_literary_structure(root: Path) -> dict:
     if not readme.exists():
         readme.write_text(
             "# NTPE Literary Regression Corpus\n\n"
-            "Use Test_Set_0 for smoke checks, Test_Set_A as the stable golden corpus, "
-            "and Test_Set_B as a rotating regression corpus.\n",
+            "Use Smoke_Set for quick checks, Golden_Set as the stable golden corpus, "
+            "and Regression_Set as the rotating regression corpus.\n",
             encoding="utf-8",
         )
         created.append(str(readme))
     return {"status": "success", "literary_root": str(base), "created": created}
 
 
+def normalize_test_set_name(name: str) -> str:
+    return LEGACY_TEST_SET_ALIASES.get(name, name)
+
+
+def _source_for_set(base: Path, name: str) -> tuple[Path, str]:
+    canonical = normalize_test_set_name(name)
+    primary = base / canonical / DEFAULT_SOURCE_NAME
+    if primary.exists():
+        return primary, canonical
+    # Backward compatibility: if the user has not renamed local folders yet,
+    # still read the legacy folder while reporting the canonical name.
+    for legacy, mapped in LEGACY_TEST_SET_ALIASES.items():
+        if mapped == canonical and legacy.startswith("Test_Set_"):
+            legacy_source = base / legacy / DEFAULT_SOURCE_NAME
+            if legacy_source.exists():
+                return legacy_source, canonical
+    return primary, canonical
+
+
 def discover_test_sets(root: Path, requested: Iterable[str] | None = None) -> list[dict]:
     base = literary_root(root)
-    names = tuple(requested or DEFAULT_TEST_SETS)
+    names = tuple(normalize_test_set_name(name) for name in (requested or DEFAULT_TEST_SETS))
     sets: list[dict] = []
     for name in names:
-        source = base / name / DEFAULT_SOURCE_NAME
+        source, canonical = _source_for_set(base, name)
         sets.append({
-            "name": name,
-            "path": str(base / name),
+            "name": canonical,
+            "path": str(base / canonical),
             "source": str(source),
             "exists": source.exists(),
             "has_content": source.exists() and bool(source.read_text(encoding="utf-8-sig", errors="ignore").strip()),
@@ -113,7 +141,7 @@ def run_literary_regression(options: LiteraryRegressionOptions) -> dict:
 
     for test in discover_test_sets(root, options.test_sets):
         name = test["name"]
-        test_dir = base / name
+        test_dir = Path(test["source"]).parent
         stage_output_dir = output_base / name
         stage_output_dir.mkdir(parents=True, exist_ok=True)
         record = dict(test)
@@ -142,6 +170,7 @@ def run_literary_regression(options: LiteraryRegressionOptions) -> dict:
             qa_fail_policy=options.qa_fail_policy,
             quality_profile=options.profile,
             simplified_chinese_policy=options.simplified_chinese_policy,
+            progress_enabled=options.progress_enabled,
         )
         try:
             result = runtime.translate_txt(txt_options)
@@ -167,7 +196,7 @@ def run_literary_regression(options: LiteraryRegressionOptions) -> dict:
         "elapsed_seconds": round(time.time() - started, 3),
     }
     report = {
-        "version": "1.2-ps-03-translation-corpus-evaluation-engine",
+        "version": "1.2-translation-engine-refactor-v1",
         "status": "success" if summary["failed"] == 0 else "failed",
         "stage": stage_name,
         "profile": options.profile,

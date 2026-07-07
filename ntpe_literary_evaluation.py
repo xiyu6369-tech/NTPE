@@ -235,11 +235,16 @@ def evaluate_stage_outputs(root: Path, stage: str, previous_stage: str | None = 
     base = root / LITERARY_ROOT
     output_dir = base / "outputs" / stage
     output_dir.mkdir(parents=True, exist_ok=True)
-    test_sets = ["Test_Set_0", "Test_Set_A", "Test_Set_B"]
+    test_sets = ["Smoke_Set", "Golden_Set", "Regression_Set"]
+    legacy = {"Smoke_Set": "Test_Set_0", "Golden_Set": "Test_Set_A", "Regression_Set": "Test_Set_B"}
     records: list[dict] = []
     for name in test_sets:
         source = base / name / "original_ko.txt"
+        if not source.exists():
+            source = base / legacy[name] / "original_ko.txt"
         output = output_dir / name / OUTPUT_NAME
+        if not output.exists():
+            output = output_dir / legacy[name] / OUTPUT_NAME
         source_text = _read_text(source)
         translated_text = _read_text(output)
         evaluation = evaluate_translation_text(source_text, translated_text)
@@ -258,7 +263,7 @@ def evaluate_stage_outputs(root: Path, stage: str, previous_stage: str | None = 
     diff_md = output_dir / DIFF_MD
     prev = previous_stage or _find_previous_stage(base / "outputs", stage)
     report = {
-        "version": "1.2-ps-03-translation-corpus-evaluation-engine",
+        "version": "1.2-translation-engine-refactor-v1",
         "status": status,
         "stage": stage,
         "created_at": now_iso(),

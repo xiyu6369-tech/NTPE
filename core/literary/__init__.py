@@ -4,6 +4,7 @@ from .narrative_context import NarrativeContext
 from .character_context import CharacterContext
 from .glossary_context import GlossaryContext, LockedTerm
 from .literary_profile import normalize_profile, profile_guidance
+from .prompt_profiler import PromptProfile, build_prompt_profile, estimate_tokens
 
 __all__ = [
     "LiteraryPromptBuilder",
@@ -15,4 +16,7 @@ __all__ = [
     "LockedTerm",
     "normalize_profile",
     "profile_guidance",
+    "PromptProfile",
+    "build_prompt_profile",
+    "estimate_tokens",
 ]
