@@ -9,3 +9,4 @@
 | TER-v1.1 | 100.0 | success | `D:\Python\NTPE\tests\literary\outputs\TER-v1.1\Literary_Quality_Report.md` |
 | TER-v1.2 | 100.0 | success | `D:\Python\NTPE\tests\literary\outputs\TER-v1.2\Literary_Quality_Report.md` |
 | TER-v1.3 | 100.0 | success | `D:\Python\NTPE\tests\literary\outputs\TER-v1.3\Literary_Quality_Report.md` |
+| TER-v1.4 | 100.0 | success | `D:\Python\NTPE\tests\literary\outputs\TER-v1.4\Literary_Quality_Report.md` |
