@@ -116,17 +116,17 @@
       ],
       "alias_map": {
         "丁泰義": "鄭泰義",
+        "鄭泰宜": "鄭泰義",
+        "鄭太義": "鄭泰義",
+        "鄭泰儀": "鄭泰義",
         "正泰義": "鄭泰義",
         "正太義": "鄭泰義",
-        "鄭泰宜": "鄭泰義",
-        "鄭泰儀": "鄭泰義",
         "定泰義": "鄭泰義",
-        "鄭太義": "鄭泰義",
-        "伊來": "伊萊",
-        "伊蕾": "伊萊",
         "一萊": "伊萊",
+        "伊雷": "伊萊",
         "伊莱": "伊萊",
-        "伊雷": "伊萊"
+        "伊蕾": "伊萊",
+        "伊來": "伊萊"
       },
       "max_terms": 24,
       "max_aliases": 18
@@ -141,7 +141,7 @@
     "check_literary_policy": true
   },
   "metadata": {
-    "created_at": "2026-07-08T01:17:22",
+    "created_at": "2026-07-08T01:35:50",
     "created_by": "NTPE 1.2 Translation Engine Refactoring v1.4",
     "package_version": "1.2-translation-engine-refactor-v1.4"
   }

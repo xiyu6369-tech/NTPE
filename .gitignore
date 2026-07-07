@@ -129,9 +129,3 @@ __pycache__/
 .DS_Store
 Thumbs.db
 
-tests/literary/outputs/
-output/
-*_resume_state.json
-*_manifest.json
-*_chunk_*.json
-*_zh.txt

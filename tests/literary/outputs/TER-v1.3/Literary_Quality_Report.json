@@ -1,0 +1,210 @@
+{
+  "version": "1.2-translation-engine-refactor-v1",
+  "status": "success",
+  "stage": "TER-v1.3",
+  "created_at": "2026-07-08T00:38:23",
+  "output_dir": "D:\\Python\\NTPE\\tests\\literary\\outputs\\TER-v1.3",
+  "report_json": "D:\\Python\\NTPE\\tests\\literary\\outputs\\TER-v1.3\\Literary_Quality_Report.json",
+  "report_md": "D:\\Python\\NTPE\\tests\\literary\\outputs\\TER-v1.3\\Literary_Quality_Report.md",
+  "diff_md": "D:\\Python\\NTPE\\tests\\literary\\outputs\\TER-v1.3\\Literary_Diff_Report.md",
+  "previous_stage": "TER-v1.2",
+  "summary": {
+    "total": 3,
+    "existing_outputs": 1,
+    "overall_score": 100.0
+  },
+  "records": [
+    {
+      "name": "Smoke_Set",
+      "source": "D:\\Python\\NTPE\\tests\\literary\\Smoke_Set\\original_ko.txt",
+      "output": "D:\\Python\\NTPE\\tests\\literary\\outputs\\TER-v1.3\\Smoke_Set\\original_ko_zh.txt",
+      "exists": true,
+      "evaluation": {
+        "status": "success",
+        "overall_score": 100.0,
+        "max_score": 100,
+        "metrics": [
+          {
+            "name": "plot_fidelity_proxy",
+            "score": 30.0,
+            "max_score": 30.0,
+            "status": "PASS",
+            "notes": "length ratio=0.66"
+          },
+          {
+            "name": "locked_names_terms",
+            "score": 20.0,
+            "max_score": 20.0,
+            "status": "PASS",
+            "notes": "ok"
+          },
+          {
+            "name": "natural_chinese_proxy",
+            "score": 20.0,
+            "max_score": 20.0,
+            "status": "PASS",
+            "notes": "korean_hits=0, chinese_density=0.83"
+          },
+          {
+            "name": "subject_pronoun_proxy",
+            "score": 15.0,
+            "max_score": 15.0,
+            "status": "PASS",
+            "notes": "demonstrative_repetition=0"
+          },
+          {
+            "name": "character_voice_dialogue_proxy",
+            "score": 10.0,
+            "max_score": 10.0,
+            "status": "PASS",
+            "notes": "no dialogue in source"
+          },
+          {
+            "name": "format_punctuation",
+            "score": 5.0,
+            "max_score": 5.0,
+            "status": "PASS",
+            "notes": "simplified_hints=0"
+          }
+        ],
+        "raw": {
+          "source_chars": 455,
+          "translation_chars": 251,
+          "source_korean_chars": 317,
+          "translation_cjk_chars": 208,
+          "length_ratio": 0.656,
+          "korean_residue_count": 0,
+          "simplified_hint_count": 0
+        }
+      }
+    },
+    {
+      "name": "Golden_Set",
+      "source": "D:\\Python\\NTPE\\tests\\literary\\Golden_Set\\original_ko.txt",
+      "output": "D:\\Python\\NTPE\\tests\\literary\\outputs\\TER-v1.3\\Test_Set_A\\original_ko_zh.txt",
+      "exists": false,
+      "evaluation": {
+        "status": "failed",
+        "overall_score": 46.0,
+        "max_score": 100,
+        "metrics": [
+          {
+            "name": "plot_fidelity_proxy",
+            "score": 0.0,
+            "max_score": 30.0,
+            "status": "FAIL",
+            "notes": "missing output"
+          },
+          {
+            "name": "locked_names_terms",
+            "score": 8.0,
+            "max_score": 20.0,
+            "status": "FAIL",
+            "notes": "missing locked terms: 정태의->鄭泰義, 카일->凱爾"
+          },
+          {
+            "name": "natural_chinese_proxy",
+            "score": 14.0,
+            "max_score": 20.0,
+            "status": "FAIL",
+            "notes": "korean_hits=0, chinese_density=0.00"
+          },
+          {
+            "name": "subject_pronoun_proxy",
+            "score": 15.0,
+            "max_score": 15.0,
+            "status": "PASS",
+            "notes": "demonstrative_repetition=0"
+          },
+          {
+            "name": "character_voice_dialogue_proxy",
+            "score": 4.0,
+            "max_score": 10.0,
+            "status": "FAIL",
+            "notes": "dialogue punctuation may be missing"
+          },
+          {
+            "name": "format_punctuation",
+            "score": 5.0,
+            "max_score": 5.0,
+            "status": "PASS",
+            "notes": "simplified_hints=0"
+          }
+        ],
+        "raw": {
+          "source_chars": 2476,
+          "translation_chars": 0,
+          "source_korean_chars": 1726,
+          "translation_cjk_chars": 0,
+          "length_ratio": 0.0,
+          "korean_residue_count": 0,
+          "simplified_hint_count": 0
+        }
+      }
+    },
+    {
+      "name": "Regression_Set",
+      "source": "D:\\Python\\NTPE\\tests\\literary\\Regression_Set\\original_ko.txt",
+      "output": "D:\\Python\\NTPE\\tests\\literary\\outputs\\TER-v1.3\\Test_Set_B\\original_ko_zh.txt",
+      "exists": false,
+      "evaluation": {
+        "status": "failed",
+        "overall_score": 52.0,
+        "max_score": 100,
+        "metrics": [
+          {
+            "name": "plot_fidelity_proxy",
+            "score": 0.0,
+            "max_score": 30.0,
+            "status": "FAIL",
+            "notes": "missing output"
+          },
+          {
+            "name": "locked_names_terms",
+            "score": 14.0,
+            "max_score": 20.0,
+            "status": "FAIL",
+            "notes": "missing locked terms: 정태의->鄭泰義"
+          },
+          {
+            "name": "natural_chinese_proxy",
+            "score": 14.0,
+            "max_score": 20.0,
+            "status": "FAIL",
+            "notes": "korean_hits=0, chinese_density=0.00"
+          },
+          {
+            "name": "subject_pronoun_proxy",
+            "score": 15.0,
+            "max_score": 15.0,
+            "status": "PASS",
+            "notes": "demonstrative_repetition=0"
+          },
+          {
+            "name": "character_voice_dialogue_proxy",
+            "score": 4.0,
+            "max_score": 10.0,
+            "status": "FAIL",
+            "notes": "dialogue punctuation may be missing"
+          },
+          {
+            "name": "format_punctuation",
+            "score": 5.0,
+            "max_score": 5.0,
+            "status": "PASS",
+            "notes": "simplified_hints=0"
+          }
+        ],
+        "raw": {
+          "source_chars": 3078,
+          "translation_chars": 0,
+          "source_korean_chars": 2110,
+          "translation_cjk_chars": 0,
+          "length_ratio": 0.0,
+          "korean_residue_count": 0,
+          "simplified_hint_count": 0
+        }
+      }
+    }
+  ]
+}

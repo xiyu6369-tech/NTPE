@@ -1,0 +1,79 @@
+{
+  "status": "success",
+  "input": "D:\\Python\\NTPE\\tests\\literary\\Smoke_Set\\original_ko.txt",
+  "output": "D:\\Python\\NTPE\\tests\\literary\\outputs\\TER-v1.6\\Smoke_Set\\original_ko_zh.txt",
+  "chunk_total": 1,
+  "chunk_size": 1000,
+  "model": "meta/llama-3.3-70b-instruct",
+  "resume": false,
+  "resume_state": "D:\\Python\\NTPE\\tests\\literary\\outputs\\TER-v1.6\\Smoke_Set\\original_ko_resume_state.json",
+  "retry": {
+    "max_retries": 3,
+    "base_seconds": 5.0
+  },
+  "glossary": {
+    "locked_terms": 20,
+    "matched_terms": 2,
+    "strict_lock_terms": true
+  },
+  "qa": {
+    "enabled": true,
+    "fail_policy": "retry",
+    "min_length_ratio": 0.18,
+    "max_korean_chars": 2,
+    "max_repeated_lines": 2
+  },
+  "formatter": {
+    "enabled": true,
+    "taiwan_traditional_normalization": true
+  },
+  "character_memory": "D:\\Python\\NTPE\\memory\\character_memory_lts.json",
+  "dry_run": false,
+  "completed_at": "2026-07-08T01:37:05",
+  "records": [
+    {
+      "status": "success",
+      "package_id": "TXT_original_ko_000001",
+      "translated_at": "2026-07-08T01:37:05",
+      "output_path": "D:\\Python\\NTPE\\translated\\original_ko_chunk_000001_zh.txt",
+      "cache_path": "D:\\Python\\NTPE\\translation_cache\\original_ko_chunk_000001_result.json",
+      "qa": {
+        "passed": true,
+        "issues": [],
+        "metrics": {
+          "korean_chars": 0,
+          "source_chars": 346,
+          "translated_chars": 251,
+          "length_ratio": 0.7254,
+          "repeated_line_count": 0,
+          "simplified_hits": 1,
+          "locked_term_violations": 0
+        }
+      },
+      "package_path": "D:\\Python\\NTPE\\prompt_packages\\txt_runtime\\original_ko_chunk_000001.json",
+      "attempt": 1,
+      "provider_elapsed_seconds": 75.096,
+      "qa_attempt": 1,
+      "qa_attempt_records": [
+        {
+          "qa_attempt": 1,
+          "qa": {
+            "passed": true,
+            "issues": [],
+            "metrics": {
+              "korean_chars": 0,
+              "source_chars": 346,
+              "translated_chars": 251,
+              "length_ratio": 0.7254,
+              "repeated_line_count": 0,
+              "simplified_hits": 1,
+              "locked_term_violations": 0
+            }
+          }
+        }
+      ],
+      "chunk_index": 1,
+      "chunk_total": 1
+    }
+  ]
+}

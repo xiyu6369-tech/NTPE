@@ -62,6 +62,13 @@
       "status": "success",
       "overall_score": 100.0,
       "report_md": "D:\\Python\\NTPE\\tests\\literary\\outputs\\TER-v1.5\\Literary_Quality_Report.md"
+    },
+    {
+      "stage": "TER-v1.6",
+      "created_at": "2026-07-08T01:37:05",
+      "status": "success",
+      "overall_score": 100.0,
+      "report_md": "D:\\Python\\NTPE\\tests\\literary\\outputs\\TER-v1.6\\Literary_Quality_Report.md"
     }
   ]
 }
