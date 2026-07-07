@@ -1,1 +1,1 @@
-1.0.0-beta.1
+NTPE 1.2 Translation Engine Refactoring v2.0

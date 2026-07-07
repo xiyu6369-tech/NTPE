@@ -129,7 +129,7 @@ class TranslationEngine:
         # A short Smoke_Set request should not burn the full 180s before retrying
         # when the provider worker hangs.  The environment value is still used as
         # the upper bound for later attempts and long chunks.
-        value = os.environ.get("NTPE_API_TIMEOUT")
+        value = os.environ.get("NTPE_CURRENT_API_TIMEOUT") or os.environ.get("NTPE_API_TIMEOUT")
         try:
             base_timeout = max(5, int(float(value))) if value else 60
         except ValueError:

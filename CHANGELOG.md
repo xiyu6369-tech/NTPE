@@ -105,3 +105,17 @@
 - Added Character Tone guard for Ilay.
 - Added adaptive short-chunk first-attempt timeout.
 - Kept TER-v1.7 Prompt/profile structure unchanged.
+
+## TER-v1.9 Stability + Repetition Guard
+
+- Adds configurable provider fallback model chain via `NTPE_FALLBACK_MODELS`.
+- Shows provider model and timeout in progress output.
+- Adds retry timeout and capacity retry wait controls.
+- Strengthens Smoke_Set repetition guard and fatigue narration cleanup.
+
+## Translation Engine Refactoring v2.0 — Quality Lock Baseline
+
+- Added hard QA checks for recurring semantic regressions.
+- Fixed per-attempt provider timeout handling.
+- Added short-chunk fast-fail behavior after repeated provider timeouts.
+- Preserved TER-v1.9 fallback/progress behavior.

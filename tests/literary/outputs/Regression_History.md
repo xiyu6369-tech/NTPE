@@ -15,3 +15,5 @@
 | TER-v1.7 | 100.0 | success | `D:\Python\NTPE\tests\literary\outputs\TER-v1.7\Literary_Quality_Report.md` |
 | TER-v1.8 | 0.0 | failed | `D:\Python\NTPE\tests\literary\outputs\TER-v1.8\Literary_Quality_Report.md` |
 | TER-v1.8-retry | 100.0 | success | `D:\Python\NTPE\tests\literary\outputs\TER-v1.8-retry\Literary_Quality_Report.md` |
+| TER-v1.9 | 100.0 | success | `D:\Python\NTPE\tests\literary\outputs\TER-v1.9\Literary_Quality_Report.md` |
+| TER-v2.0 | 100.0 | success | `D:\Python\NTPE\tests\literary\outputs\TER-v2.0\Literary_Quality_Report.md` |

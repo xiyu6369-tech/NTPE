@@ -16,7 +16,11 @@ class NvidiaClient:
     ):
         self.api_key = api_key or os.environ.get("NVIDIA_API_KEY", "")
         self.api_url = api_url
-        self.timeout = int(os.environ.get("NTPE_API_TIMEOUT", timeout))
+        # TER-v2.0: honor per-attempt timeout first.
+        # Earlier builds printed adaptive timeouts (e.g. 120s) but requests could
+        # still wait NTPE_API_TIMEOUT (e.g. 180s), wasting time on saturated workers.
+        current_timeout = os.environ.get("NTPE_CURRENT_API_TIMEOUT")
+        self.timeout = int(current_timeout or os.environ.get("NTPE_API_TIMEOUT", timeout))
         self.connect_timeout = int(os.environ.get("NTPE_API_CONNECT_TIMEOUT", 10))
         self.debug = os.environ.get("NTPE_TRANSLATE_DEBUG", "").lower() in {"1", "true", "yes", "on"}
         self.rpm_limit = rpm_limit

@@ -306,34 +306,119 @@ def save_live_progress(path: Path, payload: dict) -> None:
         pass
 
 
+def _provider_model_chain(primary_model: str) -> list[str]:
+    """Return provider model chain with env-configurable fallbacks.
+
+    TER-v1.9 keeps the default model unchanged, but lets users configure
+    fallbacks without changing code:
+
+        set NTPE_FALLBACK_MODELS=model_a,model_b
+
+    Duplicate entries are removed while preserving order.
+    """
+    models: list[str] = []
+    for model in [primary_model, *os.environ.get("NTPE_FALLBACK_MODELS", "").split(",")]:
+        model = str(model or "").strip()
+        if model and model not in models:
+            models.append(model)
+    return models or [primary_model]
+
+
+def _provider_model_for_attempt(package: dict, attempt: int) -> str:
+    primary = package.get("model_profile", {}).get("model", "")
+    chain = _provider_model_chain(primary)
+    # Rotate across configured providers.  If no fallback is configured this
+    # simply returns the primary model every time.
+    return chain[(max(1, attempt) - 1) % len(chain)]
+
+
+def _effective_provider_timeout(package: dict, attempt: int) -> int:
+    source_len = int(package.get("source", {}).get("char_count", 0) or 0)
+    base_timeout = int(os.environ.get("NTPE_API_TIMEOUT", "60"))
+    # TER-v2.0: keep short smoke/regression requests from burning minutes per attempt.
+    first_timeout = int(os.environ.get("NTPE_SHORT_CHUNK_FIRST_TIMEOUT", "90"))
+    retry_timeout = int(os.environ.get("NTPE_RETRY_TIMEOUT", "120" if source_len <= 700 else str(base_timeout)))
+    if attempt == 1 and 0 < source_len <= 700:
+        return min(base_timeout, first_timeout)
+    if attempt > 1 and 0 < source_len <= 700:
+        return min(base_timeout, retry_timeout)
+    return base_timeout
+
+
+def _is_provider_capacity_error(error: str) -> bool:
+    lowered = str(error or "").lower()
+    return "resourceexhausted" in lowered or "worker local total request limit" in lowered or "503" in lowered
+
+
+def _is_provider_timeout_error(error: str) -> bool:
+    lowered = str(error or "").lower()
+    return "timeout" in lowered or "timed out" in lowered
+
+
 def translate_package_with_retry(engine: TranslationEngine, package: dict, package_path: Path, options: TxtTranslationOptions) -> dict:
     attempts = max(1, int(options.max_retries) + 1)
     last_result: dict = {"status": "failed", "error": "translation was not attempted"}
     package_id = package.get("package_id", package_path.stem)
+    original_model = package.get("model_profile", {}).get("model", "")
+    model_chain = _provider_model_chain(original_model)
+    provider_timeout_failures = 0
+    source_len = int(package.get("source", {}).get("char_count", 0) or 0)
     for attempt in range(1, attempts + 1):
-        package.setdefault("runtime", {})["provider_attempt"] = attempt
-        source_len = int(package.get("source", {}).get("char_count", 0) or 0)
-        base_timeout = int(os.environ.get("NTPE_API_TIMEOUT", "60"))
-        first_timeout = int(os.environ.get("NTPE_SHORT_CHUNK_FIRST_TIMEOUT", "120"))
-        effective_timeout = min(base_timeout, first_timeout) if attempt == 1 and 0 < source_len <= 700 else base_timeout
-        emit_progress(f"provider request start package={package_id} attempt={attempt}/{attempts} timeout={effective_timeout}s", options=options)
+        runtime = package.setdefault("runtime", {})
+        runtime["provider_attempt"] = attempt
+        provider_model = _provider_model_for_attempt(package, attempt)
+        package.setdefault("model_profile", {})["model"] = provider_model
+        effective_timeout = _effective_provider_timeout(package, attempt)
+        os.environ["NTPE_CURRENT_API_TIMEOUT"] = str(effective_timeout)
+        emit_progress(
+            f"provider request start package={package_id} attempt={attempt}/{attempts} "
+            f"model={provider_model} timeout={effective_timeout}s",
+            options=options,
+        )
         started = time.time()
         result = engine.translate_package(package, package_path=package_path)
         elapsed = time.time() - started
         result["attempt"] = attempt
         result["provider_elapsed_seconds"] = round(elapsed, 3)
+        result["provider_model"] = provider_model
         last_result = result
         if result.get("status") == "success":
-            emit_progress(f"provider request success package={package_id} attempt={attempt}/{attempts} elapsed={elapsed:.1f}s", options=options)
+            emit_progress(
+                f"provider request success package={package_id} attempt={attempt}/{attempts} "
+                f"model={provider_model} elapsed={elapsed:.1f}s",
+                options=options,
+            )
             return result
         error = result.get("error", "")
-        emit_progress(f"provider request failed package={package_id} attempt={attempt}/{attempts} elapsed={elapsed:.1f}s error={error[:180]}", options=options)
+        emit_progress(
+            f"provider request failed package={package_id} attempt={attempt}/{attempts} "
+            f"model={provider_model} elapsed={elapsed:.1f}s error={error[:180]}",
+            options=options,
+        )
+        if _is_provider_timeout_error(error):
+            provider_timeout_failures += 1
+        # TER-v2.0: short literary smoke chunks should not spend 10+ minutes on
+        # repeated provider hangs.  After two timeouts, fail fast unless a
+        # fallback model chain is configured.
+        if 0 < source_len <= 700 and provider_timeout_failures >= 2 and len(model_chain) <= 1:
+            result["error"] = (
+                str(error)[:220]
+                + " | TER-v2.0 fast-fail: short chunk timed out twice; retry later or set NTPE_FALLBACK_MODELS."
+            )
+            emit_progress("provider fast-fail: short chunk timed out twice; no fallback model configured", options=options)
+            return result
         if attempt >= attempts or not is_retryable_error(error):
             return result
+        if len(model_chain) > 1:
+            next_model = model_chain[(attempt) % len(model_chain)]
+            emit_progress(f"provider fallback candidate next_model={next_model}", options=options)
         delay = retry_delay_seconds(attempt, options.retry_base_seconds)
+        if _is_provider_capacity_error(error):
+            delay = min(delay, float(os.environ.get("NTPE_CAPACITY_RETRY_MAX_WAIT", "8")))
         if delay > 0:
             emit_progress(f"retry wait {delay:.1f}s before next provider request", options=options)
             time.sleep(delay)
+    package.setdefault("model_profile", {})["model"] = original_model
     return last_result
 
 
@@ -556,6 +641,28 @@ def detect_locked_term_violations(source_text: str, translated_text: str, locked
     return violations
 
 
+
+
+def detect_quality_lock_violations(translated_text: str) -> list[dict]:
+    """TER-v2.0 hard quality floor for recurring semantic regressions.
+
+    These patterns are not stylistic preferences; they are known semantic or
+    readability regressions observed in Smoke_Set.  They should fail QA so the
+    provider retries instead of accepting a bad baseline.
+    """
+    text = translated_text or ""
+    violations: list[dict] = []
+    checks = [
+        ("QUALITY_LOCK_WRONG_REPLY_OBJECT", r"留下了?鄭泰義(?:一個)?[^。]{0,12}(?:回答|話)", "回答被錯誤地留給鄭泰義；應是伊萊只留下簡短回答。"),
+        ("QUALITY_LOCK_DUPLICATE_DISAPPEARANCE", r"消失在視線[裡中][^。]{0,18}。[^。]{0,12}消失(?:在視線[裡中])?後", "同一個消失事件被重複敘述。"),
+        ("QUALITY_LOCK_AWKWARD_FATIGUE", r"幾十年(?:來)?的疲(?:勞|憊)(?:感覺像洪水一樣)?(?:一下子)?(?:都)?湧(?:了)?上(?:心頭|來)", "疲憊描寫不自然或過度直譯。"),
+    ]
+    for code, pattern, message in checks:
+        match = re.search(pattern, text)
+        if match:
+            violations.append({"code": code, "message": message, "sample": match.group(0)[:80]})
+    return violations
+
 def analyze_translation_quality(source_text: str, translated_text: str, options: TxtTranslationOptions | None = None, locked_dictionary: dict[str, str] | None = None) -> dict:
     options = options or TxtTranslationOptions(input_path=Path("input.txt"), output_dir=Path("output"))
     korean_chars = count_korean_characters(translated_text)
@@ -565,6 +672,7 @@ def analyze_translation_quality(source_text: str, translated_text: str, options:
     repeated_lines = detect_repeated_lines(translated_text, options.max_repeated_lines)
     simplified_hits = detect_simplified_chinese(translated_text) if options.taiwan_traditional_normalization else []
     term_violations = detect_locked_term_violations(source_text, translated_text, locked_dictionary or {})
+    quality_lock_violations = detect_quality_lock_violations(translated_text)
     issues: list[dict] = []
     if korean_chars > options.max_korean_chars:
         issues.append({
@@ -591,6 +699,8 @@ def analyze_translation_quality(source_text: str, translated_text: str, options:
             pass
     if term_violations:
         issues.append({"code": "LOCKED_TERM_VIOLATION", "message": f"LOCKED_TERM_VIOLATION count={len(term_violations)}", "samples": term_violations[:10]})
+    if quality_lock_violations:
+        issues.append({"code": "QUALITY_LOCK_VIOLATION", "message": f"QUALITY_LOCK_VIOLATION count={len(quality_lock_violations)}", "samples": quality_lock_violations[:10]})
     return {
         "passed": not any(issue.get("severity", "error") == "error" for issue in issues),
         "issues": issues,
@@ -602,6 +712,7 @@ def analyze_translation_quality(source_text: str, translated_text: str, options:
             "repeated_line_count": len(repeated_lines),
             "simplified_hits": len(simplified_hits),
             "locked_term_violations": len(term_violations),
+            "quality_lock_violations": len(quality_lock_violations),
         },
     }
 
@@ -735,8 +846,8 @@ def build_prompt_package(
         },
         "metadata": {
             "created_at": now_iso(),
-            "created_by": "NTPE 1.2 Translation Engine Refactoring v1.4",
-            "package_version": "1.2-translation-engine-refactor-v1.4",
+            "created_by": "NTPE 1.2 Translation Engine Refactoring v2.0",
+            "package_version": "1.2-translation-engine-refactor-v2.0",
         },
     }
 

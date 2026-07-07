@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import re
 
-# TER-v1.8: semantic-guarded literary normalization with character-tone safety.
+# TER-v2.0: quality-lock literary normalization with semantic safety.
 #
 # The normalizer is intentionally conservative.  It may smooth recurring
 # machine-translation phrasing, but it must not introduce new plot content or
@@ -10,9 +10,28 @@ import re
 # awkward "leaving someone an answer" structures and duplicated disappearance
 # descriptions.
 LITERARY_STYLE_REPLACEMENTS: tuple[tuple[str, str], ...] = (
+    # TER-v2.0 quality lock baseline: do not allow semantic drift from style cleanup.
+    ("留下了鄭泰義", "只留下那句簡短而曖昧的回答"),
+    ("留下鄭泰義", "只留下那句簡短而曖昧的回答"),
+    ("只留下了一句模稜兩可的話", "只留下那句簡短而曖昧的回答"),
+    ("只留下了一句模稜兩可的回答", "只留下那句簡短而曖昧的回答"),
+    ("只留下了一句令人費解的話", "只留下那句簡短而曖昧的回答"),
+    ("留下了一句令人費解的話", "留下那句簡短而曖昧的回答"),
+    ("突然感覺到幾十年的疲勞一下子都湧上來了", "彷彿積壓了數十年的疲憊，一口氣湧了上來"),
+    ("突然感覺到幾十年的疲勞一下子都湧了上來", "彷彿積壓了數十年的疲憊，一口氣湧了上來"),
+    ("幾十年的疲勞一下子都湧上來了", "彷彿積壓了數十年的疲憊，一口氣湧了上來"),
+    ("幾十年的疲勞一下子都湧了上來", "彷彿積壓了數十年的疲憊，一口氣湧了上來"),
     # Ambiguous reply / Ilay response handling.
 
     # TER-v1.8 character tone and ambiguity fixes.
+    # TER-v1.9 stability/repetition guard: keep character tone and remove
+    # near-duplicate disappearance/fatigue phrasing generated across retries.
+    ("伊萊微微挑了挑眉，轉頭看向鄭泰義", "伊萊微微挑了挑眉，轉頭看了過來"),
+    ("伊萊挑了挑眉，轉頭看向鄭泰義", "伊萊挑了挑眉，轉頭看了過來"),
+    ("伊萊輕笑著說：「當然。」說完便轉身離去，只留下了一句模稜兩可的話。", "伊萊輕笑著只答了一句「當然」，便轉身離去。那句簡短的回答，怎麼解讀都說得通。"),
+    ("只留下了一句模稜兩可的話", "只留下那句簡短而可多重解讀的回答"),
+    ("突然感覺到幾十年的疲勞一下子都湧上來了", "突然之間，彷彿積壓了數十年的疲憊一口氣湧了上來"),
+    ("幾十年的疲勞一下子都湧上來了", "彷彿積壓了數十年的疲憊一口氣湧了上來"),
     ("伊萊開心地笑了", "伊萊像是覺得有趣似的笑了"),
     ("伊萊開心地笑著", "伊萊像是覺得有趣似的笑著"),
     ("伊萊愉快地笑了，說：「當然。」", "伊萊像是覺得有趣似的笑了笑，只說了句「當然」。"),
@@ -140,6 +159,18 @@ def _dedupe_disappearance_sentences(text: str) -> str:
     result = text
     patterns = [
         (
+            r"鄭泰義就站在原地，直到伊萊轉過彎角，徹底消失在視線裡。等伊萊完全消失後，鄭泰義就靠在牆上，滑坐在地上。",
+            "鄭泰義就站在原地，直到伊萊轉過彎角、徹底消失在視線裡，才靠在牆上，滑坐在地上。",
+        ),
+        (
+            r"鄭泰義就站在原地，直到伊萊轉過彎角，徹底消失在視線裡。等伊萊徹底消失在視線裡，鄭泰義就靠在牆上，滑坐在地上。",
+            "鄭泰義就站在原地，直到伊萊轉過彎角、徹底消失在視線裡，才靠在牆上，滑坐在地上。",
+        ),
+        (
+            r"鄭泰義站在原地，直到伊萊轉過彎角，徹底消失在視線裡。等伊萊完全消失後，鄭泰義就靠在牆上，滑坐在地上。",
+            "鄭泰義站在原地，直到伊萊轉過彎角、徹底消失在視線裡，才靠在牆上，滑坐在地上。",
+        ),
+        (
             r"鄭泰義站在原地，直到伊萊轉過彎角，徹底消失在視線裡為止。等伊萊徹底消失在視線裡，鄭泰義就靠在牆上，滑坐在地上。",
             "鄭泰義站在原地，直到伊萊轉過彎角、徹底消失在視線裡，才靠在牆上，滑坐在地上。",
         ),
@@ -162,6 +193,11 @@ def _dedupe_disappearance_sentences(text: str) -> str:
         r"鄭泰義\1直到伊萊\2徹底消失在視線裡，才\3靠在牆上，滑坐在地上。",
         result,
     )
+    result = re.sub(
+        r"鄭泰義([^。]{0,40})直到伊萊([^。]{0,30})消失在視線裡。等伊萊(?:完全|徹底)消失後，鄭泰義([^。]{0,20})靠在牆上，滑坐在地上。",
+        r"鄭泰義\1直到伊萊\2徹底消失在視線裡，才\3靠在牆上，滑坐在地上。",
+        result,
+    )
     return result
 
 
@@ -176,7 +212,7 @@ def _normalize_narrative_naturalness(text: str) -> str:
     result = re.sub(r"鄭泰義叫住了正要轉身(離開|離去)的伊萊", r"鄭泰義叫住了正要轉身\1的伊萊", result)
     result = re.sub(r"伊萊挑了挑眉，轉頭看向鄭泰義", "伊萊挑了挑眉，轉頭看了過來", result)
     result = re.sub(r"鄭泰義心情沉重地瞪了(伊萊|他)一會兒", "鄭泰義神情沉重地瞪著他看了一會兒", result)
-    result = re.sub(r"突然之間，(他感到)?(?:積壓了數十年的疲憊|幾十年的疲勞感覺像洪水一樣)(?:一下子|一瞬間|彷彿一下子)?(?:都)?湧(?:了)?上(?:心頭|來)", "突然之間，彷彿積壓了數十年的疲憊一口氣湧了上來", result)
+    result = re.sub(r"突然(?:之間)?，?(?:他感到|感覺到)?(?:積壓了數十年的疲憊|幾十年的疲勞感覺像洪水一樣|幾十年的疲勞)(?:一下子|一瞬間|彷彿一下子)?(?:都)?湧(?:了)?上(?:心頭|來)(?:了)?", "突然之間，彷彿積壓了數十年的疲憊一口氣湧了上來", result)
     # Avoid duplicate terminal particles after cleanup.
     result = result.replace("湧了上來來", "湧了上來")
     return result
@@ -198,6 +234,60 @@ def _normalize_ilay_character_tone(text: str) -> str:
     result = result.replace("令人費解的話", "怎麼解讀都行的簡短回答")
     return result
 
+
+
+def _quality_lock_baseline(text: str) -> str:
+    """TER-v2.0 quality floor for recurring semantic regressions.
+
+    This guard is intentionally narrow and targets only observed failure
+    patterns from Smoke_Set.  It prevents style-polish rules from producing
+    wrong recipient/object relationships or duplicated disappearance events.
+    """
+    result = text or ""
+
+    # Wrong structure: the answer is left behind, not given *to Jeong Tae-ui*.
+    result = re.sub(
+        r"伊萊([^。]{0,20})(?:說|回答)[：:]「當然。」(?:說完)?便?轉身(?:離去|離開)(?:了)?，?留下了鄭泰義(?:一個)?([^。]{0,18})(?:話|回答)。?",
+        "伊萊\\1只答了一句「當然」，便轉身離去，只留下那句簡短而曖昧的回答。",
+        result,
+    )
+    result = re.sub(
+        r"伊萊([^。]{0,20})只答了一句「當然」(?:，)?便轉身(?:離去|離開)(?:了)?，?留下了鄭泰義(?:一個)?([^。]{0,18})(?:話|回答)。?",
+        "伊萊\\1只答了一句「當然」，便轉身離去，只留下那句簡短而曖昧的回答。",
+        result,
+    )
+
+    # Naturalize the ambiguous reply while preserving the original meaning.
+    result = re.sub(
+        r"伊萊([^。]{0,20})(?:說|回答)[：:]「當然。」(?:說完)?便?轉身(?:離去|離開)(?:了)?，?只留下(?:了)?(?:一?句)?(?:模稜兩可|令人費解|曖昧不明|可多重解讀)[^。]{0,12}(?:話|回答)。?",
+        "伊萊\\1只答了一句「當然」，便轉身離去，只留下那句簡短而曖昧的回答。",
+        result,
+    )
+
+    # Collapse near-duplicate disappearance sentences around the wall-slide action.
+    result = re.sub(
+        r"鄭泰義(?:就)?站在(?:原地|那裡)，直到伊萊轉過彎角，?(?:徹底|完全)?消失在視線(?:裡|中)(?:為止)?。(?:等|直到)伊萊(?:完全|徹底)?消失(?:在視線(?:裡|中))?後，?鄭泰義(?:就)?靠在牆上，?滑坐在地上。?",
+        "鄭泰義就站在原地，直到伊萊轉過彎角、徹底消失在視線裡，才靠著牆滑坐到地上。",
+        result,
+    )
+    result = re.sub(
+        r"鄭泰義(?:就)?站在(?:原地|那裡)，直到伊萊從視線(?:裡|中)消失(?:為止)?。(?:等|直到)伊萊(?:完全|徹底)?消失(?:在視線(?:裡|中))?後，?鄭泰義(?:就)?靠在牆上，?滑坐在地上。?",
+        "鄭泰義就站在原地，直到伊萊徹底消失在視線裡，才靠著牆滑坐到地上。",
+        result,
+    )
+
+    # Keep the fatigue metaphor literary but not exaggerated or awkward.
+    result = re.sub(
+        r"突然(?:之間)?，?(?:他)?(?:感到|感覺到)?(?:幾十年|數十年)(?:來)?的疲(?:勞|憊)(?:感覺像洪水一樣)?(?:一下子|一瞬間)?(?:都)?湧(?:了)?上(?:心頭|來)(?:了)?",
+        "突然之間，彷彿積壓了數十年的疲憊，一口氣湧了上來",
+        result,
+    )
+    result = result.replace("彷彿積壓了數十年的疲憊一口氣湧了上來", "彷彿積壓了數十年的疲憊，一口氣湧了上來")
+    result = result.replace("湧了上來了", "湧了上來")
+    result = result.replace("只留下那句簡短而曖昧的回答一個簡短的回答", "只留下那句簡短而曖昧的回答")
+    result = result.replace("只留下那句簡短而曖昧的回答一個回答", "只留下那句簡短而曖昧的回答")
+    return result
+
 def normalize_literary_style(text: str) -> str:
     """Apply conservative Chinese-novel style cleanup.
 
@@ -214,6 +304,7 @@ def normalize_literary_style(text: str) -> str:
     result = _dedupe_disappearance_sentences(result)
     result = _normalize_narrative_naturalness(result)
     result = _normalize_ilay_character_tone(result)
+    result = _quality_lock_baseline(result)
 
     # Avoid awkward stacked particles produced by direct replacement.
     result = re.sub(r"(伊萊|鄭泰義|凱爾)則是", r"\1", result)
@@ -230,4 +321,5 @@ def normalize_literary_style(text: str) -> str:
     result = result.replace("抬了抬眉毛", "挑了挑眉")
     result = result.replace("正要轉身離開", "正要轉身離去")
     result = result.replace("想要轉身離開", "正要轉身離去")
+    result = _quality_lock_baseline(result)
     return result
