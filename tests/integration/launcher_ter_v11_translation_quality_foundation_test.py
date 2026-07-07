@@ -19,7 +19,7 @@ def main():
     )
     prompt = package['prompt']['user_prompt']
     checks = [
-        ('Prompt has compact mode', package['prompt']['prompt_mode'] == 'compact_literary_v3'),
+        ('Prompt has compact mode', package['prompt']['prompt_mode'].startswith('compact_literary_v3')),
         ('Prompt locks 일레이', '일레이 => 伊萊' in prompt),
         ('Prompt locks 정태의', '정태의 => 鄭泰義' in prompt),
         ('Prompt includes forbidden alias', '伊蕾' in prompt),

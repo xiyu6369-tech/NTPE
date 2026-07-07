@@ -2,7 +2,7 @@
 ## NTPE 1.2 Production Stabilization — PS-02 Literary Regression Runner
 
 - Added `launcher_translate.py corpus list/init`.
-- Added `launcher_translate.py regression` for Test_Set_0/A/B.
+- Added `launcher_translate.py regression` for Smoke_Set/A/B.
 - Separated real translation input from literary regression corpus.
 - Added PS-02 integration/smoke/root tests.
 
@@ -60,3 +60,10 @@
 - Added regression CLI timeout options.
 - Added `golden` / `smoke` / `regression` aliases.
 - Replaced mojibake-prone timeout guidance with ASCII-safe text.
+
+## Translation Engine Refactoring v1.2
+
+- Added Literary Style Engine for conservative Chinese-novel phrasing cleanup.
+- Strengthened simplified-to-traditional normalization for provider output.
+- Updated compact literary prompt policy for idiom, action, and narrative style.
+- Added TER-v1.2 validation, integration, and smoke tests.

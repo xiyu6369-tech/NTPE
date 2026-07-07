@@ -25,7 +25,7 @@ class LiteraryPromptResult:
         return {
             "system_prompt": self.system_prompt,
             "user_prompt": self.user_prompt,
-            "prompt_mode": "compact_literary_v3",
+            "prompt_mode": "compact_literary_v3_ter_v1_2",
             "profile": self.profile,
             "prompt_profile": self.prompt_profile.to_dict(),
             "narrative_context": self.narrative_context.to_dict(),
@@ -68,7 +68,7 @@ class LiteraryPromptBuilder:
         ])
         glossary_text = glossary.render()
         source_text = "【Korean】\n" + chunk_text.strip()
-        output_text = "【Output】\n只輸出繁體中文譯文，不要加標題、註解或分析。"
+        output_text = "【Output】\n只輸出繁體中文譯文，不要加標題、註解或分析。譯文應像中文小說正文，不要像摘要。"
 
         user_prompt = "\n\n".join([policy_text, context_text, glossary_text, source_text, output_text])
         prompt_profile = build_prompt_profile(

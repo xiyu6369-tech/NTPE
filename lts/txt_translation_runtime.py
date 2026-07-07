@@ -13,7 +13,7 @@ from typing import Iterable
 
 from core.translation_engine.translation_engine import TranslationEngine
 from core.translation_engine.utils import now_iso, save_json, save_text
-from core.literary import LiteraryPromptBuilder, normalize_profile
+from core.literary import LiteraryPromptBuilder, normalize_profile, normalize_literary_style
 
 
 DEFAULT_MODEL = "meta/llama-3.3-70b-instruct"
@@ -419,6 +419,29 @@ TAIWAN_TRADITIONAL_REPLACEMENTS = {
 }
 
 
+# TER-v1.2: extra high-frequency simplified forms observed in provider output.
+TAIWAN_TRADITIONAL_REPLACEMENTS.update({
+    "扬": "揚",
+    "涌": "湧",
+    "转": "轉",
+    "离": "離",
+    "视": "視",
+    "顾": "顧",
+    "绝": "絕",
+    "严": "嚴",
+    "为": "為",
+    "与": "與",
+    "处": "處",
+    "压": "壓",
+    "积": "積",
+    "绪": "緒",
+    "郁": "鬱",
+    "亚": "亞",
+    "尔": "爾",
+    "莱": "萊",
+    "凯": "凱",
+})
+
 def normalize_punctuation_for_zh_tw(text: str) -> str:
     result = text or ""
     # Normalize common ASCII punctuation from provider output into CJK punctuation.
@@ -470,6 +493,9 @@ def format_translation_output(text: str, options: TxtTranslationOptions | None =
     if not options.output_formatter_enabled:
         return result.strip()
     result = normalize_punctuation_for_zh_tw(result)
+    if options.taiwan_traditional_normalization:
+        result = normalize_taiwan_traditional(result)
+    result = normalize_literary_style(result)
     if options.taiwan_traditional_normalization:
         result = normalize_taiwan_traditional(result)
     result = clean_provider_output(result)
@@ -698,8 +724,8 @@ def build_prompt_package(
         },
         "metadata": {
             "created_at": now_iso(),
-            "created_by": "NTPE 1.2 Translation Engine Refactoring v1",
-            "package_version": "1.2-translation-engine-refactor-v1",
+            "created_by": "NTPE 1.2 Translation Engine Refactoring v1.2",
+            "package_version": "1.2-translation-engine-refactor-v1.2",
         },
     }
 

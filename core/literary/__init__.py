@@ -20,3 +20,5 @@ __all__ = [
     "build_prompt_profile",
     "estimate_tokens",
 ]
+
+from .literary_style_normalizer import normalize_literary_style
