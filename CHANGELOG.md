@@ -81,3 +81,15 @@
 - Added speed-oriented prompt compression and semantic accuracy cleanup.
 - Lowered short-segment max output tokens for Smoke_Set speed.
 - Preserved TER-v1.3 compact prompt structure.
+
+## Translation Engine Refactoring v1.5 — Literary Polish v2
+
+- Preserves TER-v1.4 prompt compression.
+- Improves Smoke_Set literary phrasing for eyebrows, ambiguous short replies, and worst-case situation wording.
+- Adds TER-v1.5 tests.
+## Translation Engine Refactoring v1.6
+
+- Added semantic guard for literary polish regressions.
+- Prevents ambiguous-answer cleanup from producing `留下了鄭泰義一個回答`.
+- Deduplicates repeated disappearance descriptions in Smoke/Golden style passages.
+

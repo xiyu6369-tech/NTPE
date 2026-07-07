@@ -12,8 +12,8 @@ class LiteraryTranslationPolicy:
     leaves token budget for the actual novel text.
     """
 
-    name: str = "literary-traditional-chinese-v4"
-    version: str = "1.2-ter-v1.4-speed-semantic-accuracy"
+    name: str = "literary-traditional-chinese-v5"
+    version: str = "1.2-ter-v1.5-literary-polish-v2"
 
     def system_identity(self) -> str:
         return "韓文小說譯者。先判斷主詞與語氣，再直出自然繁體中文正文。"
@@ -25,6 +25,7 @@ class LiteraryTranslationPolicy:
             "Glossary 譯名逐字一致。",
             "慣用語按中文小說語感處理，不機械直譯。",
             "短答、反諷、模稜兩可語氣需保留，不擅自解釋。",
+            "避免生硬直譯，動作與心理描寫需像中文小說正文。",
             "只輸出繁體中文譯文，對話用「」。",
         ]
 

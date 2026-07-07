@@ -25,7 +25,7 @@ class LiteraryPromptResult:
         return {
             "system_prompt": self.system_prompt,
             "user_prompt": self.user_prompt,
-            "prompt_mode": "compact_literary_v5_ter_v1_4",
+            "prompt_mode": "compact_literary_v6_ter_v1_5",
             "profile": self.profile,
             "prompt_profile": self.prompt_profile.to_dict(),
             "narrative_context": self.narrative_context.to_dict(),
@@ -35,9 +35,9 @@ class LiteraryPromptResult:
 
 
 class LiteraryPromptBuilder:
-    """Compact literary prompt builder v4.
+    """Compact literary prompt builder v6.
 
-    v3 is designed to reduce repeated rules and keep each request focused on
+    v6 keeps TER-v1.4 compression while improving literary polish guidance and keep each request focused on
     the current novel segment.  It sends only matched glossary entries and a
     small set of narrative/character hints.
     """
