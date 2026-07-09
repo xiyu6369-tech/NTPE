@@ -14,6 +14,7 @@ import os
 import py_compile
 import subprocess
 import sys
+import tempfile
 import time
 from dataclasses import dataclass, asdict
 from pathlib import Path
@@ -170,12 +171,18 @@ def check_optional_imports() -> CheckResult:
 def check_py_compile() -> CheckResult:
     failed: List[str] = []
     total = 0
-    for file in iter_python_files():
-        total += 1
-        try:
-            py_compile.compile(str(file), doraise=True)
-        except py_compile.PyCompileError as exc:
-            failed.append(f"{rel(file)}: {exc.msg}")
+    with tempfile.TemporaryDirectory(prefix="ntpe_py_compile_") as cache_dir:
+        cache_root = Path(cache_dir)
+        for file in iter_python_files():
+            total += 1
+            try:
+                cfile = cache_root / rel(file).replace("\\", "__").replace("/", "__")
+                cfile = cfile.with_suffix(cfile.suffix + ".pyc")
+                py_compile.compile(str(file), cfile=str(cfile), doraise=True)
+            except py_compile.PyCompileError as exc:
+                failed.append(f"{rel(file)}: {exc.msg}")
+            except OSError as exc:
+                failed.append(f"{rel(file)}: {exc.__class__.__name__}: {exc}")
     clean_python_cache_artifacts()
     if failed:
         return CheckResult("Python compile", "FAIL", f"{len(failed)} failed / {total} files: " + " | ".join(failed[:10]))
@@ -268,7 +275,7 @@ def print_report(results: List[CheckResult], elapsed: float) -> None:
     elif warnings:
         print(f"PASS WITH WARNINGS: {len(warnings)} warning(s)")
     else:
-        print("ALL PASS ✅")
+        print("ALL PASS")
 
 
 def write_json_report(results: List[CheckResult], path: Path, elapsed: float) -> None:

@@ -7,13 +7,22 @@ import math
 import os
 import re
 import time
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from pathlib import Path
 from typing import Iterable
 
+from core.translation_engine.context_intelligence import apply_context_intelligence, build_naturalness_repair_directives
 from core.translation_engine.translation_engine import TranslationEngine
+from core.translation_engine.prompt_intelligence import apply_prompt_intelligence
 from core.translation_engine.utils import now_iso, save_json, save_text
 from core.literary import LiteraryPromptBuilder, normalize_profile, normalize_literary_style
+from core.translation_runtime.runtime_qa import RuntimeQAPolicy, analyze_runtime_quality, soft_fail_naturalness_report
+from core.translation_runtime.runtime_speed_policy import (
+    RuntimeSpeedPolicy,
+    effective_timeout,
+    get_runtime_speed_policy,
+    naturalness_guard_policy_for_speed,
+)
 
 
 DEFAULT_MODEL = "meta/llama-3.3-70b-instruct"
@@ -31,7 +40,10 @@ QA_FAIL_POLICIES = ("retry", "fail", "warn")
 RETRYABLE_ERROR_PATTERNS = (
     "503",
     "429",
+    "400",
     "resourceexhausted",
+    "degraded",
+    "cannot be invoked",
     "rate limit",
     "too many requests",
     "service unavailable",
@@ -67,6 +79,13 @@ class TxtTranslationOptions:
     previous_context_chars: int = 700
     simplified_chinese_policy: str = "normalize"  # normalize|warn|fail
     progress_enabled: bool = True
+    speed: str = "balanced"
+    chunk_size_explicit: bool = False
+    provider_attempts: int | None = None
+    qa_attempts: int | None = None
+    runtime_timeout: int | None = None
+    user_api_timeout: int | None = None
+    naturalness_retry_limit: int | None = None
 
 
 def read_text_auto(path: str | Path) -> str:
@@ -298,6 +317,27 @@ def emit_progress(message: str, *, options: TxtTranslationOptions | None = None)
         print(f"[NTPE PROGRESS] {message}", flush=True)
 
 
+def apply_runtime_speed_policy(options: TxtTranslationOptions) -> TxtTranslationOptions:
+    policy = get_runtime_speed_policy(options.speed)
+    user_timeout = options.user_api_timeout
+    if user_timeout is None and os.environ.get("NTPE_API_TIMEOUT_EXPLICIT") == "1":
+        try:
+            user_timeout = int(float(os.environ.get("NTPE_API_TIMEOUT", "")))
+        except ValueError:
+            user_timeout = None
+    chunk_size = options.chunk_size if options.chunk_size_explicit else policy.chunk_size
+    return replace(
+        options,
+        speed=policy.speed,
+        chunk_size=max(300, int(chunk_size)),
+        provider_attempts=options.provider_attempts or policy.provider_attempts,
+        qa_attempts=options.qa_attempts or policy.qa_attempts,
+        runtime_timeout=options.runtime_timeout or effective_timeout(policy, user_timeout),
+        user_api_timeout=user_timeout,
+        naturalness_retry_limit=policy.naturalness_retry_limit if options.naturalness_retry_limit is None else options.naturalness_retry_limit,
+    )
+
+
 def save_live_progress(path: Path, payload: dict) -> None:
     try:
         save_json(path, payload)
@@ -309,8 +349,8 @@ def save_live_progress(path: Path, payload: dict) -> None:
 def _provider_model_chain(primary_model: str) -> list[str]:
     """Return provider model chain with env-configurable fallbacks.
 
-    TER-v1.9 keeps the default model unchanged, but lets users configure
-    fallbacks without changing code:
+    TER-v2.1 keeps the default model unchanged, but improves degraded-model
+    handling.  Users may configure fallback models without changing code:
 
         set NTPE_FALLBACK_MODELS=model_a,model_b
 
@@ -334,8 +374,21 @@ def _provider_model_for_attempt(package: dict, attempt: int) -> str:
 
 def _effective_provider_timeout(package: dict, attempt: int) -> int:
     source_len = int(package.get("source", {}).get("char_count", 0) or 0)
+    runtime_timeout = package.get("runtime", {}).get("speed_timeout")
     base_timeout = int(os.environ.get("NTPE_API_TIMEOUT", "60"))
-    # TER-v2.0: keep short smoke/regression requests from burning minutes per attempt.
+    if runtime_timeout:
+        try:
+            policy_timeout = max(1, int(float(runtime_timeout)))
+            if os.environ.get("NTPE_API_TIMEOUT_EXPLICIT") == "1":
+                return min(policy_timeout, base_timeout)
+            return policy_timeout
+        except ValueError:
+            pass
+    # TER-v2.4: an explicit CLI/API timeout is authoritative.  Previous
+    # short-chunk defaults (90/120s) are still useful for smoke tests, but they
+    # must not silently lower a user supplied --api-timeout 180/300 value.
+    if os.environ.get("NTPE_API_TIMEOUT_EXPLICIT") == "1":
+        return base_timeout
     first_timeout = int(os.environ.get("NTPE_SHORT_CHUNK_FIRST_TIMEOUT", "90"))
     retry_timeout = int(os.environ.get("NTPE_RETRY_TIMEOUT", "120" if source_len <= 700 else str(base_timeout)))
     if attempt == 1 and 0 < source_len <= 700:
@@ -350,13 +403,18 @@ def _is_provider_capacity_error(error: str) -> bool:
     return "resourceexhausted" in lowered or "worker local total request limit" in lowered or "503" in lowered
 
 
+def _is_provider_degraded_error(error: str) -> bool:
+    lowered = str(error or "").lower()
+    return "degraded" in lowered or "cannot be invoked" in lowered or "function id" in lowered
+
+
 def _is_provider_timeout_error(error: str) -> bool:
     lowered = str(error or "").lower()
     return "timeout" in lowered or "timed out" in lowered
 
 
 def translate_package_with_retry(engine: TranslationEngine, package: dict, package_path: Path, options: TxtTranslationOptions) -> dict:
-    attempts = max(1, int(options.max_retries) + 1)
+    attempts = max(1, int(options.provider_attempts or (int(options.max_retries) + 1)))
     last_result: dict = {"status": "failed", "error": "translation was not attempted"}
     package_id = package.get("package_id", package_path.stem)
     original_model = package.get("model_profile", {}).get("model", "")
@@ -397,13 +455,26 @@ def translate_package_with_retry(engine: TranslationEngine, package: dict, packa
         )
         if _is_provider_timeout_error(error):
             provider_timeout_failures += 1
+        degraded = _is_provider_degraded_error(error)
+        # TER-v2.1: a DEGRADED model is not helped by retrying the same model.
+        # If no fallback is configured, fail immediately with an actionable
+        # message instead of burning minutes.
+        if degraded and len(model_chain) <= 1:
+            result["error"] = (
+                str(error)[:220]
+                + " | TER-v2.1 fast-fail: provider model is DEGRADED. "
+                + "Set NTPE_FALLBACK_MODELS or pass --fallback-models with an available backup model."
+            )
+            emit_progress("provider fast-fail: model degraded; no fallback model configured", options=options)
+            return result
         # TER-v2.0: short literary smoke chunks should not spend 10+ minutes on
         # repeated provider hangs.  After two timeouts, fail fast unless a
         # fallback model chain is configured.
-        if 0 < source_len <= 700 and provider_timeout_failures >= 2 and len(model_chain) <= 1:
+        timeout_fast_fail_enabled = os.environ.get("NTPE_SHORT_CHUNK_TIMEOUT_FAST_FAIL", "0") == "1"
+        if timeout_fast_fail_enabled and 0 < source_len <= 700 and provider_timeout_failures >= 2 and len(model_chain) <= 1:
             result["error"] = (
                 str(error)[:220]
-                + " | TER-v2.0 fast-fail: short chunk timed out twice; retry later or set NTPE_FALLBACK_MODELS."
+                + " | TER-v2.4 timeout fast-fail enabled: short chunk timed out twice; retry later or set NTPE_FALLBACK_MODELS."
             )
             emit_progress("provider fast-fail: short chunk timed out twice; no fallback model configured", options=options)
             return result
@@ -413,8 +484,10 @@ def translate_package_with_retry(engine: TranslationEngine, package: dict, packa
             next_model = model_chain[(attempt) % len(model_chain)]
             emit_progress(f"provider fallback candidate next_model={next_model}", options=options)
         delay = retry_delay_seconds(attempt, options.retry_base_seconds)
-        if _is_provider_capacity_error(error):
-            delay = min(delay, float(os.environ.get("NTPE_CAPACITY_RETRY_MAX_WAIT", "8")))
+        if degraded:
+            delay = 0.0
+        elif _is_provider_capacity_error(error):
+            delay = max(delay, float(os.environ.get("NTPE_CAPACITY_RETRY_WAIT", "30")))
         if delay > 0:
             emit_progress(f"retry wait {delay:.1f}s before next provider request", options=options)
             time.sleep(delay)
@@ -542,9 +615,9 @@ def normalize_punctuation_for_zh_tw(text: str) -> str:
     result = result.replace("?", "？")
     result = result.replace("!", "！")
     result = result.replace("(", "（").replace(")", "）")
-    # Convert straight quotes in simple dialogue-like output to corner brackets conservatively.
-    result = re.sub(r'"([^"\n]{1,200})"', r'「\1」', result)
-    result = re.sub(r"'([^'\n]{1,200})'", r"『\1』", result)
+    # Convert common provider dialogue quotes to corner brackets conservatively.
+    result = re.sub(r'[“"]([^“”"\n]{1,200})[”"]', r'「\1」', result)
+    result = re.sub(r"[‘']([^‘’'\n]{1,200})[’']", r"『\1』", result)
     # Collapse excessive punctuation introduced by provider formatting.
     result = re.sub(r"。{2,}", "。", result)
     result = re.sub(r"，{2,}", "，", result)
@@ -664,57 +737,33 @@ def detect_quality_lock_violations(translated_text: str) -> list[dict]:
     return violations
 
 def analyze_translation_quality(source_text: str, translated_text: str, options: TxtTranslationOptions | None = None, locked_dictionary: dict[str, str] | None = None) -> dict:
+    """TER-v2.2 consolidated runtime quality gate.
+
+    The public function name is kept for backward compatibility, but the actual
+    checks now run through core.translation_runtime.runtime_qa so TXT runtime,
+    integration tests, and future provider-layer hooks share the same policy.
+    """
     options = options or TxtTranslationOptions(input_path=Path("input.txt"), output_dir=Path("output"))
-    korean_chars = count_korean_characters(translated_text)
-    source_len = max(1, _normalized_len(source_text))
-    translated_len = _normalized_len(translated_text)
-    length_ratio = translated_len / source_len
-    repeated_lines = detect_repeated_lines(translated_text, options.max_repeated_lines)
-    simplified_hits = detect_simplified_chinese(translated_text) if options.taiwan_traditional_normalization else []
-    term_violations = detect_locked_term_violations(source_text, translated_text, locked_dictionary or {})
-    quality_lock_violations = detect_quality_lock_violations(translated_text)
-    issues: list[dict] = []
-    if korean_chars > options.max_korean_chars:
-        issues.append({
-            "code": "KOREAN_RESIDUE",
-            "message": f"KOREAN_RESIDUE korean_chars={korean_chars} max={options.max_korean_chars}",
-        })
-    if translated_len == 0:
-        issues.append({"code": "EMPTY_TRANSLATION", "message": "EMPTY_TRANSLATION translated output is empty"})
-    elif length_ratio < options.min_length_ratio:
-        issues.append({"code": "LENGTH_RATIO_TOO_LOW", "message": f"LENGTH_RATIO_TOO_LOW ratio={length_ratio:.3f} min={options.min_length_ratio:.3f}"})
-    if repeated_lines:
-        issues.append({"code": "REPEATED_LINES", "message": f"REPEATED_LINES count={len(repeated_lines)}", "samples": repeated_lines[:3]})
-    if simplified_hits:
-        issue = {
-            "code": "SIMPLIFIED_CHINESE",
-            "message": f"SIMPLIFIED_CHINESE hits={len(simplified_hits)} policy={options.simplified_chinese_policy}",
-            "samples": simplified_hits[:10],
-            "severity": "error" if should_fail_on_simplified_chinese(options, len(simplified_hits)) else "warning",
-        }
-        if should_fail_on_simplified_chinese(options, len(simplified_hits)):
-            issues.append(issue)
-        else:
-            # Keep metric visibility without failing the chunk.
-            pass
-    if term_violations:
-        issues.append({"code": "LOCKED_TERM_VIOLATION", "message": f"LOCKED_TERM_VIOLATION count={len(term_violations)}", "samples": term_violations[:10]})
-    if quality_lock_violations:
-        issues.append({"code": "QUALITY_LOCK_VIOLATION", "message": f"QUALITY_LOCK_VIOLATION count={len(quality_lock_violations)}", "samples": quality_lock_violations[:10]})
-    return {
-        "passed": not any(issue.get("severity", "error") == "error" for issue in issues),
-        "issues": issues,
-        "metrics": {
-            "korean_chars": korean_chars,
-            "source_chars": source_len,
-            "translated_chars": translated_len,
-            "length_ratio": round(length_ratio, 4),
-            "repeated_line_count": len(repeated_lines),
-            "simplified_hits": len(simplified_hits),
-            "locked_term_violations": len(term_violations),
-            "quality_lock_violations": len(quality_lock_violations),
-        },
-    }
+    runtime_policy = RuntimeQAPolicy(
+        enabled=options.qa_enabled,
+        min_length_ratio=options.min_length_ratio,
+        max_korean_chars=options.max_korean_chars,
+        max_repeated_lines=options.max_repeated_lines,
+        max_repeated_sentences=options.max_repeated_lines,
+        simplified_chinese_policy=options.simplified_chinese_policy,
+        quality_profile=options.quality_profile,
+        naturalness_guard_policy=naturalness_guard_policy_for_speed(options.speed),
+    )
+    simplified_terms = list(TAIWAN_TRADITIONAL_REPLACEMENTS.keys()) if options.taiwan_traditional_normalization else []
+    return analyze_runtime_quality(
+        source_text,
+        translated_text,
+        runtime_policy,
+        locked_dictionary=locked_dictionary or {},
+        alias_map=build_translation_alias_map(locked_dictionary or {}),
+        simplified_terms=simplified_terms,
+        extra_violations=detect_quality_lock_violations(translated_text),
+    )
 
 
 def qa_retry_delay_seconds(attempt: int, base_seconds: float) -> float:
@@ -797,7 +846,7 @@ def build_prompt_package(
     system_prompt = prompt_result.system_prompt
     user_prompt = prompt_result.user_prompt
 
-    return {
+    package = {
         "package_id": package_id,
         "project": {
             "project_name": options.project_name,
@@ -844,12 +893,21 @@ def build_prompt_package(
             "check_length_ratio": True,
             "check_literary_policy": True,
         },
+        "runtime": {
+            "speed": options.speed,
+            "provider_attempts": options.provider_attempts,
+            "qa_attempts": options.qa_attempts,
+            "speed_timeout": options.runtime_timeout,
+            "naturalness_retry_limit": options.naturalness_retry_limit,
+        },
         "metadata": {
             "created_at": now_iso(),
             "created_by": "NTPE 1.2 Translation Engine Refactoring v2.0",
             "package_version": "1.2-translation-engine-refactor-v2.0",
         },
     }
+    package = apply_prompt_intelligence(package, chunk_text)
+    return apply_context_intelligence(package, chunk_text, previous_context)
 
 
 def build_qa_retry_user_prompt(original_user_prompt: str, qa_report: dict, qa_attempt: int) -> str:
@@ -866,6 +924,14 @@ def build_qa_retry_user_prompt(original_user_prompt: str, qa_report: dict, qa_at
                 if isinstance(sample, dict) and sample.get("source") and sample.get("target"):
                     locked_lines.append(f"- {sample['source']} => {sample['target']}")
     issue_text = "\n".join(issue_lines) or "- QA_FAILED: previous output did not pass validation"
+    naturalness_samples: list[dict] = []
+    for issue in issues:
+        if isinstance(issue, dict) and issue.get("code") == "NATURALNESS_GUARD":
+            samples = issue.get("samples", [])
+            if isinstance(samples, list):
+                naturalness_samples.extend(sample for sample in samples if isinstance(sample, dict))
+    naturalness_directives = build_naturalness_repair_directives(naturalness_samples)
+    naturalness_text = "\n".join(f"- {directive}" for directive in naturalness_directives) or "- No Naturalness Guard repair directive."
     locked_text = "\n".join(dict.fromkeys(locked_lines)) or "- 依 Glossary 欄位嚴格執行"
     retry_note = f"""
 
@@ -885,9 +951,55 @@ def build_qa_retry_user_prompt(original_user_prompt: str, qa_report: dict, qa_at
 - 保留段落順序與劇情資訊，不可摘要。
 - 這是第 {qa_attempt} 次 QA 重試。
 """
+    retry_note += f"\n\nNaturalness Guard repair directives:\n{naturalness_text}\n"
     return original_user_prompt.rstrip() + retry_note
 
+
+def save_partial_translation_output(
+    *,
+    output_dir: Path,
+    input_path: Path,
+    translated_chunks: list[str],
+    records: list[dict],
+    failed_chunk: int,
+    error: str,
+    options: TxtTranslationOptions,
+) -> dict[str, str]:
+    """Persist successful chunks when a later provider call fails.
+
+    TER-v2.4 keeps partial translation material visible and resumable instead
+    of leaving only per-chunk files.  This does not mark the run successful; it
+    only writes a clearly named partial file and manifest for recovery.
+    """
+    partial_output = output_dir / f"{input_path.stem}{DEFAULT_OUTPUT_SUFFIX}.partial.txt"
+    partial_manifest = output_dir / f"{input_path.stem}_partial_manifest.json"
+    partial_text = "\n\n".join(chunk.strip() for chunk in translated_chunks if chunk.strip()).strip()
+    if partial_text:
+        save_text(partial_output, partial_text + "\n")
+    payload = {
+        "status": "partial_failed",
+        "input": str(input_path),
+        "partial_output": str(partial_output),
+        "completed_chunks": len([chunk for chunk in translated_chunks if chunk.strip()]),
+        "failed_chunk": failed_chunk,
+        "error": error,
+        "retry": {"max_retries": options.max_retries, "base_seconds": options.retry_base_seconds},
+        "records": records,
+        "updated_at": now_iso(),
+    }
+    save_json(partial_manifest, payload)
+    return {"partial_output": str(partial_output), "partial_manifest": str(partial_manifest)}
+
+
+def has_retry_worthy_naturalness_issue(qa_report: dict) -> bool:
+    for issue in qa_report.get("issues", []) if isinstance(qa_report, dict) else []:
+        if isinstance(issue, dict) and issue.get("code") == "NATURALNESS_GUARD" and issue.get("retry_worthy"):
+            return True
+    return False
+
+
 def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None) -> dict:
+    options = apply_runtime_speed_policy(options)
     root_path = Path(root) if root else Path(__file__).resolve().parents[1]
     input_path = options.input_path if options.input_path.is_absolute() else root_path / options.input_path
     output_dir = options.output_dir if options.output_dir.is_absolute() else root_path / options.output_dir
@@ -976,7 +1088,7 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
         state_entry = resume_state["chunks"].get(chunk_key, {})
         reusable_state = (
             options.resume
-            and state_entry.get("status") == "success"
+            and state_entry.get("status") in {"success", "pass_with_warning"}
             and state_entry.get("source_hash") == source_hash
             and chunk_file.exists()
             and chunk_file.read_text(encoding="utf-8").strip()
@@ -1004,7 +1116,8 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
             qa_report = {"passed": True, "issues": [], "metrics": {}}
             translation = ""
             result = {"status": "failed", "error": "translation was not attempted", "attempt": 0}
-            qa_attempts = max(1, int(options.max_retries) + 1) if options.qa_fail_policy == "retry" else 1
+            qa_attempts = max(1, int(options.qa_attempts or (int(options.max_retries) + 1))) if options.qa_fail_policy == "retry" else 1
+            naturalness_retry_count = 0
             original_user_prompt = package["prompt"]["user_prompt"]
             for qa_attempt in range(1, qa_attempts + 1):
                 emit_progress(f"chunk {idx}/{len(chunks)} QA attempt {qa_attempt}/{qa_attempts}", options=options)
@@ -1038,6 +1151,11 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
                     break
                 if options.qa_fail_policy == "fail" or qa_attempt >= qa_attempts:
                     break
+                if has_retry_worthy_naturalness_issue(qa_report):
+                    naturalness_retry_count += 1
+                    if naturalness_retry_count > int(options.naturalness_retry_limit or 0):
+                        emit_progress("naturalness retry limit reached for chunk; stop QA retry", options=options)
+                        break
                 delay = qa_retry_delay_seconds(qa_attempt, options.retry_base_seconds)
                 if delay > 0:
                     time.sleep(delay)
@@ -1069,6 +1187,15 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
                     "updated_at": now_iso(),
                 })
                 emit_progress(f"chunk {idx}/{len(chunks)} FAILED provider error={result.get('error', 'unknown error')[:180]}", options=options)
+                partial = save_partial_translation_output(
+                    output_dir=output_dir,
+                    input_path=input_path,
+                    translated_chunks=translated_chunks,
+                    records=records,
+                    failed_chunk=idx,
+                    error=result.get("error", "unknown error"),
+                    options=options,
+                )
                 return {
                     "status": "failed",
                     "input": str(input_path),
@@ -1076,7 +1203,15 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
                     "error": result.get("error", "unknown error"),
                     "records": records,
                     "resume_state": str(resume_state_path),
+                    **partial,
                 }
+
+            if options.qa_enabled and options.qa_fail_policy == "retry":
+                qa_report = soft_fail_naturalness_report(qa_report, options.speed)
+                if qa_report.get("status") == "pass_with_warning":
+                    result["status"] = "pass_with_warning"
+                    result["warning"] = "NATURALNESS_GUARD soft-failed after balanced retry limit"
+                    emit_progress(f"chunk {idx}/{len(chunks)} QA PASS_WITH_WARNING naturalness soft-fail", options=options)
 
             qa_failed = options.qa_enabled and not qa_report.get("passed", True) and options.qa_fail_policy != "warn"
             if qa_failed:
@@ -1109,6 +1244,15 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
                     "updated_at": now_iso(),
                 })
                 emit_progress(f"chunk {idx}/{len(chunks)} FAILED QA error={error[:180]}", options=options)
+                partial = save_partial_translation_output(
+                    output_dir=output_dir,
+                    input_path=input_path,
+                    translated_chunks=translated_chunks,
+                    records=records,
+                    failed_chunk=idx,
+                    error=error,
+                    options=options,
+                )
                 return {
                     "status": "failed",
                     "input": str(input_path),
@@ -1117,12 +1261,13 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
                     "qa": qa_report,
                     "records": records,
                     "resume_state": str(resume_state_path),
+                    **partial,
                 }
 
             save_text(chunk_file, translation)
             emit_progress(f"chunk {idx}/{len(chunks)} saved: {chunk_file.name}", options=options)
             resume_state["chunks"][chunk_key] = {
-                "status": "success",
+                "status": "pass_with_warning" if qa_report.get("status") == "pass_with_warning" else "success",
                 "source_hash": source_hash,
                 "output_path": str(chunk_file),
                 "attempt": result.get("attempt", 1),
@@ -1164,6 +1309,13 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
         "chunk_total": len(chunks),
         "chunk_size": options.chunk_size,
         "model": options.model,
+        "speed_policy": {
+            "speed": options.speed,
+            "provider_attempts": options.provider_attempts,
+            "qa_attempts": options.qa_attempts,
+            "timeout": options.runtime_timeout,
+            "naturalness_retry_limit": options.naturalness_retry_limit,
+        },
         "resume": options.resume,
         "resume_state": str(resume_state_path),
         "retry": {"max_retries": options.max_retries, "base_seconds": options.retry_base_seconds},
@@ -1193,7 +1345,8 @@ def parse_args(argv: Iterable[str] | None = None) -> TxtTranslationOptions:
     parser = argparse.ArgumentParser(description="NTPE 1.1 LTS Stage-05 TXT novel translation entry")
     parser.add_argument("input", help="input TXT file path")
     parser.add_argument("output", nargs="?", default="output", help="output directory")
-    parser.add_argument("--chunk-size", type=int, default=DEFAULT_CHUNK_SIZE)
+    parser.add_argument("--chunk-size", type=int, default=None)
+    parser.add_argument("--speed", choices=("fast", "balanced", "quality"), default=os.environ.get("NTPE_TRANSLATION_SPEED", "balanced"))
     parser.add_argument("--model", default=DEFAULT_MODEL)
     parser.add_argument("--project-name", default="NTPE Novel Translation")
     parser.add_argument("--no-resume", action="store_true", help="disable chunk resume")
@@ -1216,7 +1369,8 @@ def parse_args(argv: Iterable[str] | None = None) -> TxtTranslationOptions:
     return TxtTranslationOptions(
         input_path=Path(ns.input),
         output_dir=Path(ns.output),
-        chunk_size=ns.chunk_size,
+        chunk_size=max(300, ns.chunk_size) if ns.chunk_size is not None else DEFAULT_CHUNK_SIZE,
+        chunk_size_explicit=ns.chunk_size is not None,
         model=ns.model,
         project_name=ns.project_name,
         resume=not ns.no_resume,
@@ -1235,6 +1389,7 @@ def parse_args(argv: Iterable[str] | None = None) -> TxtTranslationOptions:
         taiwan_traditional_normalization=not ns.no_taiwan_normalization,
         quality_profile=ns.quality_profile,
         simplified_chinese_policy=ns.simplified_chinese_policy,
+        speed=ns.speed,
     )
 
 

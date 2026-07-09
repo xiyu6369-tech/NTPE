@@ -4,8 +4,12 @@ import os
 from pathlib import Path
 from typing import Any
 
-from .nvidia_client import NvidiaClient
+from core.ai_provider import ProviderRequest
+
 from .basic_qa import BasicTranslationQA
+from .context_intelligence import apply_context_intelligence
+from .prompt_intelligence import apply_prompt_intelligence
+from .provider_runtime import build_translation_provider_manager
 from .utils import load_json, save_json, save_text, append_log, clean_translation_text, now_iso
 
 
@@ -34,12 +38,16 @@ class TranslationEngine:
     def translate_package(self, package: dict, package_path: str | Path | None = None) -> dict[str, Any]:
         try:
             self._validate_package(package)
+            package = apply_prompt_intelligence(package, package.get("source", {}).get("chunk_text", ""))
+            package = apply_context_intelligence(package, package.get("source", {}).get("chunk_text", ""))
 
             model_profile = package["model_profile"]
             prompt = package["prompt"]
 
-            client = NvidiaClient(
+            provider_manager = build_translation_provider_manager(
+                root=self.root,
                 api_key=self.api_key,
+                primary_model=model_profile["model"],
                 api_url=self._get_api_url(package),
                 timeout=self._get_timeout(package),
                 rpm_limit=self._get_rpm_limit(package),
@@ -47,15 +55,22 @@ class TranslationEngine:
 
             append_log(self.logs_dir / "translation_engine_log.txt", f"開始翻譯：{package['package_id']}")
 
-            raw_text = client.chat(
-                model=model_profile["model"],
-                system_prompt=prompt["system_prompt"],
-                user_prompt=prompt["user_prompt"],
-                temperature=model_profile.get("temperature", 0.15),
-                top_p=model_profile.get("top_p", 0.85),
-                max_tokens=model_profile.get("max_output_tokens", 4000),
+            provider_response = provider_manager.complete(
+                ProviderRequest(
+                    prompt=prompt["user_prompt"],
+                    model=model_profile["model"],
+                    temperature=model_profile.get("temperature", 0.15),
+                    max_tokens=model_profile.get("max_output_tokens", 4000),
+                    metadata={
+                        "system_prompt": prompt["system_prompt"],
+                        "top_p": model_profile.get("top_p", 0.85),
+                        "package_id": package["package_id"],
+                        "runtime": "translation_engine_v3",
+                    },
+                )
             )
 
+            raw_text = provider_response.text
             translation = clean_translation_text(raw_text)
             qa_result = self.qa.check(package, translation)
 
@@ -72,6 +87,7 @@ class TranslationEngine:
                 "cache_path": str(cache_path),
                 "qa": qa_result,
                 "package_path": str(package_path) if package_path else "",
+                "provider": provider_response.to_dict(),
             }
 
             save_json(cache_path, {
@@ -129,11 +145,18 @@ class TranslationEngine:
         # A short Smoke_Set request should not burn the full 180s before retrying
         # when the provider worker hangs.  The environment value is still used as
         # the upper bound for later attempts and long chunks.
-        value = os.environ.get("NTPE_CURRENT_API_TIMEOUT") or os.environ.get("NTPE_API_TIMEOUT")
+        current_timeout = os.environ.get("NTPE_CURRENT_API_TIMEOUT")
+        value = current_timeout or os.environ.get("NTPE_API_TIMEOUT")
         try:
             base_timeout = max(5, int(float(value))) if value else 60
         except ValueError:
             base_timeout = 60
+
+        # TER-v2.4: the TXT runtime already calculates the exact per-attempt
+        # provider timeout and passes it through NTPE_CURRENT_API_TIMEOUT.  Do
+        # not apply the short-chunk clamp a second time inside the engine.
+        if current_timeout:
+            return base_timeout
 
         source_len = 0
         attempt = 1
@@ -143,6 +166,8 @@ class TranslationEngine:
         except Exception:
             pass
 
+        if os.environ.get("NTPE_API_TIMEOUT_EXPLICIT") == "1":
+            return base_timeout
         if attempt == 1 and 0 < source_len <= 700:
             return min(base_timeout, int(os.environ.get("NTPE_SHORT_CHUNK_FIRST_TIMEOUT", "120")))
         return base_timeout

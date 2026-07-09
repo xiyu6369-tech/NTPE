@@ -104,6 +104,83 @@
       "status": "success",
       "overall_score": 100.0,
       "report_md": "D:\\Python\\NTPE\\tests\\literary\\outputs\\TER-v2.0\\Literary_Quality_Report.md"
+    },
+    {
+      "stage": "TER-v2.0-golden",
+      "created_at": "2026-07-08T04:12:30",
+      "status": "failed",
+      "overall_score": 0.0,
+      "report_md": "D:\\Python\\NTPE\\tests\\literary\\outputs\\TER-v2.0-golden\\Literary_Quality_Report.md"
+    },
+    {
+      "stage": "TER-v2.0-golden-small",
+      "created_at": "2026-07-08T04:18:26",
+      "status": "failed",
+      "overall_score": 0.0,
+      "report_md": "D:\\Python\\NTPE\\tests\\literary\\outputs\\TER-v2.0-golden-small\\Literary_Quality_Report.md"
+    },
+    {
+      "stage": "TER-v2.0-golden-fast",
+      "created_at": "2026-07-08T04:19:14",
+      "status": "failed",
+      "overall_score": 0.0,
+      "report_md": "D:\\Python\\NTPE\\tests\\literary\\outputs\\TER-v2.0-golden-fast\\Literary_Quality_Report.md"
+    },
+    {
+      "stage": "TER-v2.1-golden",
+      "created_at": "2026-07-08T04:31:56",
+      "status": "failed",
+      "overall_score": 0.0,
+      "report_md": "D:\\Python\\NTPE\\tests\\literary\\outputs\\TER-v2.1-golden\\Literary_Quality_Report.md"
+    },
+    {
+      "stage": "provider-v3-test",
+      "created_at": "2026-07-08T23:10:09",
+      "status": "failed",
+      "overall_score": 0.0,
+      "report_md": "D:\\Python\\NTPE\\tests\\literary\\outputs\\provider-v3-test\\Literary_Quality_Report.md"
+    },
+    {
+      "stage": "TER-v2.4-real-sample",
+      "created_at": "2026-07-09T00:22:52",
+      "status": "failed",
+      "overall_score": 0.0,
+      "report_md": "D:\\Python\\NTPE\\tests\\literary\\outputs\\TER-v2.4-real-sample\\Literary_Quality_Report.md"
+    },
+    {
+      "stage": "TE-v3.0-stage01-real-sample",
+      "created_at": "2026-07-09T02:41:51",
+      "status": "success",
+      "overall_score": 95.0,
+      "report_md": "D:\\Python\\NTPE\\tests\\literary\\outputs\\TE-v3.0-stage01-real-sample\\Literary_Quality_Report.md"
+    },
+    {
+      "stage": "TE-v3.0-stage02-real-sample",
+      "created_at": "2026-07-09T03:17:17",
+      "status": "success",
+      "overall_score": 95.0,
+      "report_md": "D:\\Python\\NTPE\\tests\\literary\\outputs\\TE-v3.0-stage02-real-sample\\Literary_Quality_Report.md"
+    },
+    {
+      "stage": "TE-v3.0-stage021-real-sample",
+      "created_at": "2026-07-09T04:05:16",
+      "status": "failed",
+      "overall_score": 0.0,
+      "report_md": "D:\\Python\\NTPE\\tests\\literary\\outputs\\TE-v3.0-stage021-real-sample\\Literary_Quality_Report.md"
+    },
+    {
+      "stage": "TE-v30-stage022-balanced",
+      "created_at": "2026-07-09T04:28:57",
+      "status": "failed",
+      "overall_score": 0.0,
+      "report_md": "D:\\Python\\NTPE\\tests\\literary\\outputs\\TE-v30-stage022-balanced\\Literary_Quality_Report.md"
+    },
+    {
+      "stage": "TE-v30-stage0221-balanced",
+      "created_at": "2026-07-09T22:46:55",
+      "status": "failed",
+      "overall_score": 0.0,
+      "report_md": "D:\\Python\\NTPE\\tests\\literary\\outputs\\TE-v30-stage0221-balanced\\Literary_Quality_Report.md"
     }
   ]
 }

@@ -56,8 +56,10 @@ def build_parser() -> argparse.ArgumentParser:
     txt = sub.add_parser("txt", help="translate one TXT file")
     txt.add_argument("input", help="input TXT file path")
     txt.add_argument("output", nargs="?", default="output", help="output directory")
-    txt.add_argument("--chunk-size", type=int, default=int(os.environ.get("NTPE_CHUNK_SIZE", "1000")))
+    txt.add_argument("--chunk-size", type=int, default=None)
+    txt.add_argument("--speed", choices=("fast", "balanced", "quality"), default=os.environ.get("NTPE_TRANSLATION_SPEED", "balanced"))
     txt.add_argument("--model", default=DEFAULT_MODEL)
+    txt.add_argument("--fallback-models", default=os.environ.get("NTPE_FALLBACK_MODELS", ""), help="comma-separated fallback NVIDIA model IDs")
     txt.add_argument("--glossary", default=None)
     txt.add_argument("--character-memory", default=None)
     txt.add_argument("--max-retries", type=int, default=3)
@@ -70,6 +72,8 @@ def build_parser() -> argparse.ArgumentParser:
     txt.add_argument("--no-qa", action="store_true")
     txt.add_argument("--profile", choices=("fast", "balanced", "novel", "literary", "quality", "premium"), default=os.environ.get("NTPE_TRANSLATION_PROFILE", "literary"))
     txt.add_argument("--simplified-chinese-policy", choices=("normalize", "warn", "fail"), default=os.environ.get("NTPE_SIMPLIFIED_CHINESE_POLICY", "normalize"))
+    txt.add_argument("--api-timeout", type=int, default=None, help="provider read timeout upper bound in seconds")
+    txt.add_argument("--api-connect-timeout", type=int, default=None, help="provider connect timeout in seconds")
     txt.add_argument("--dry-run", action="store_true", help="build packages only; do not call NVIDIA API")
     txt.add_argument("--no-progress", action="store_true", help="disable live NTPE progress messages")
 
@@ -77,8 +81,10 @@ def build_parser() -> argparse.ArgumentParser:
     batch.add_argument("input", nargs="?", default="input", help="input folder; default: input")
     batch.add_argument("output", nargs="?", default="output", help="output folder; default: output")
     batch.add_argument("--recursive", action="store_true")
-    batch.add_argument("--chunk-size", type=int, default=int(os.environ.get("NTPE_CHUNK_SIZE", "1000")))
+    batch.add_argument("--chunk-size", type=int, default=None)
+    batch.add_argument("--speed", choices=("fast", "balanced", "quality"), default=os.environ.get("NTPE_TRANSLATION_SPEED", "balanced"))
     batch.add_argument("--model", default=DEFAULT_MODEL)
+    batch.add_argument("--fallback-models", default=os.environ.get("NTPE_FALLBACK_MODELS", ""), help="comma-separated fallback NVIDIA model IDs")
     batch.add_argument("--glossary", default=None)
     batch.add_argument("--character-memory", default=None)
     batch.add_argument("--max-retries", type=int, default=3)
@@ -94,6 +100,8 @@ def build_parser() -> argparse.ArgumentParser:
     batch.add_argument("--no-qa", action="store_true")
     batch.add_argument("--profile", choices=("fast", "balanced", "novel", "literary", "quality", "premium"), default=os.environ.get("NTPE_TRANSLATION_PROFILE", "literary"))
     batch.add_argument("--simplified-chinese-policy", choices=("normalize", "warn", "fail"), default=os.environ.get("NTPE_SIMPLIFIED_CHINESE_POLICY", "normalize"))
+    batch.add_argument("--api-timeout", type=int, default=None, help="provider read timeout upper bound in seconds")
+    batch.add_argument("--api-connect-timeout", type=int, default=None, help="provider connect timeout in seconds")
     batch.add_argument("--dry-run", action="store_true", help="build packages only; do not call NVIDIA API")
     batch.add_argument("--no-progress", action="store_true", help="disable live NTPE progress messages")
 
@@ -107,8 +115,10 @@ def build_parser() -> argparse.ArgumentParser:
     )
     regression.add_argument("--stage", default=os.environ.get("NTPE_PS_STAGE", "PS-03"), help="output archive stage name under tests/literary/outputs")
     regression.add_argument("--profile", choices=("fast", "balanced", "novel", "literary", "quality", "premium"), default=os.environ.get("NTPE_TRANSLATION_PROFILE", "literary"))
-    regression.add_argument("--chunk-size", type=int, default=int(os.environ.get("NTPE_CHUNK_SIZE", "1000")))
+    regression.add_argument("--chunk-size", type=int, default=None)
+    regression.add_argument("--speed", choices=("fast", "balanced", "quality"), default=os.environ.get("NTPE_TRANSLATION_SPEED", "balanced"))
     regression.add_argument("--model", default=DEFAULT_MODEL)
+    regression.add_argument("--fallback-models", default=os.environ.get("NTPE_FALLBACK_MODELS", ""), help="comma-separated fallback NVIDIA model IDs")
     regression.add_argument("--dry-run", action="store_true", help="build prompt packages and reports without calling NVIDIA API")
     regression.add_argument("--overwrite", action="store_true", help="clear the stage output folder before running")
     regression.add_argument("--no-evaluate", action="store_true", help="skip PS-03 quality evaluation report")
@@ -149,18 +159,26 @@ def _print_regression_result(report: dict) -> int:
 
 
 def _apply_runtime_timeout_env(args: argparse.Namespace) -> None:
-    """Apply CLI timeout overrides before TranslationRuntime creates NvidiaClient.
+    """Apply CLI timeout overrides before Translation Runtime calls providers.
 
     Regression/golden tests are often longer than smoke tests, so the CLI must
     propagate timeout settings explicitly instead of silently falling back to the
-    NvidiaClient 60-second default.
+    provider transport default.
     """
     api_timeout = getattr(args, "api_timeout", None)
     api_connect_timeout = getattr(args, "api_connect_timeout", None)
     if api_timeout is not None:
         os.environ["NTPE_API_TIMEOUT"] = str(max(1, int(api_timeout)))
+        os.environ["NTPE_API_TIMEOUT_EXPLICIT"] = "1"
     if api_connect_timeout is not None:
         os.environ["NTPE_API_CONNECT_TIMEOUT"] = str(max(1, int(api_connect_timeout)))
+
+
+
+def _apply_provider_env(args: argparse.Namespace) -> None:
+    fallback_models = getattr(args, "fallback_models", None)
+    if fallback_models is not None:
+        os.environ["NTPE_FALLBACK_MODELS"] = str(fallback_models).strip()
 
 def _normalize_regression_sets(values: list[str] | None) -> tuple[str, ...]:
     if not values:
@@ -203,6 +221,7 @@ def run_doctor(strict: bool = False) -> int:
     checks.append(("NTPE_CHUNK_SIZE", True, os.environ.get("NTPE_CHUNK_SIZE", "1000")))
     checks.append(("NTPE_TRANSLATION_PROFILE", True, os.environ.get("NTPE_TRANSLATION_PROFILE", "literary")))
     checks.append(("NTPE_MAX_OUTPUT_TOKENS", True, os.environ.get("NTPE_MAX_OUTPUT_TOKENS", "auto")))
+    checks.append(("NTPE_FALLBACK_MODELS", True, os.environ.get("NTPE_FALLBACK_MODELS", "not configured")))
     checks.append(("literary_corpus", (ROOT / "tests" / "literary").exists(), "tests/literary"))
     failed = False
     for name, ok, detail in checks:
@@ -213,11 +232,14 @@ def run_doctor(strict: bool = False) -> int:
 
 
 def run_txt(args: argparse.Namespace) -> int:
+    _apply_runtime_timeout_env(args)
+    _apply_provider_env(args)
     runtime = TranslationRuntime(root=ROOT)
     options = TxtTranslationOptions(
         input_path=_resolve(args.input),
         output_dir=_resolve(args.output),
-        chunk_size=max(300, args.chunk_size),
+        chunk_size=max(300, args.chunk_size) if args.chunk_size is not None else 1000,
+        chunk_size_explicit=args.chunk_size is not None,
         model=args.model,
         resume=not args.no_resume,
         dry_run=args.dry_run,
@@ -233,17 +255,21 @@ def run_txt(args: argparse.Namespace) -> int:
         quality_profile=args.profile,
         simplified_chinese_policy=args.simplified_chinese_policy,
         progress_enabled=not getattr(args, "no_progress", False),
+        speed=args.speed,
     )
     return _print_result("NTPE Production TXT Translation", runtime.translate_txt(options))
 
 
 def run_batch(args: argparse.Namespace) -> int:
+    _apply_runtime_timeout_env(args)
+    _apply_provider_env(args)
     runtime = TranslationRuntime(root=ROOT)
     options = BatchTranslationOptions(
         input_dir=_resolve(args.input),
         output_dir=_resolve(args.output),
         recursive=args.recursive,
-        chunk_size=max(300, args.chunk_size),
+        chunk_size=max(300, args.chunk_size) if args.chunk_size is not None else 1000,
+        chunk_size_explicit=args.chunk_size is not None,
         model=args.model,
         resume=not args.no_resume,
         dry_run=args.dry_run,
@@ -257,6 +283,7 @@ def run_batch(args: argparse.Namespace) -> int:
         max_korean_chars=max(0, args.max_korean_chars),
         max_repeated_lines=max(0, args.max_repeated_lines),
         quality_profile=args.profile,
+        speed=args.speed,
         simplified_chinese_policy=args.simplified_chinese_policy,
         continue_on_failure=args.continue_on_failure,
         auto_recovery=args.auto_recovery,
@@ -298,12 +325,15 @@ def run_evaluate(args: argparse.Namespace) -> int:
 
 def run_regression(args: argparse.Namespace) -> int:
     _apply_runtime_timeout_env(args)
+    _apply_provider_env(args)
     options = LiteraryRegressionOptions(
         root=ROOT,
         test_sets=_normalize_regression_sets(args.sets),
         stage_name=args.stage,
         profile=args.profile,
-        chunk_size=max(300, args.chunk_size),
+        chunk_size=max(300, args.chunk_size) if args.chunk_size is not None else 1000,
+        chunk_size_explicit=args.chunk_size is not None,
+        speed=args.speed,
         model=args.model,
         dry_run=args.dry_run,
         overwrite=args.overwrite,

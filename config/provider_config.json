@@ -9,6 +9,28 @@
     "max_calls": 1000000000,
     "window_seconds": 60
   },
+  "translation_engine_v3": {
+    "enabled": true,
+    "fallback_models_env": "NTPE_FALLBACK_MODELS",
+    "fallback_models": [],
+    "retry_defaults": {
+      "max_attempts": 1,
+      "base_delay_seconds": 0.0,
+      "backoff_factor": 2.0
+    },
+    "retryable_error_patterns": [
+      "503",
+      "429",
+      "ResourceExhausted",
+      "DEGRADED",
+      "cannot be invoked",
+      "rate limit",
+      "too many requests",
+      "service unavailable",
+      "timeout",
+      "temporarily unavailable"
+    ]
+  },
   "providers": {
     "nvidia": {
       "env_var": "NVIDIA_API_KEY",

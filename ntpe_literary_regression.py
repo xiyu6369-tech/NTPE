@@ -37,6 +37,8 @@ class LiteraryRegressionOptions:
     stage_name: str = DEFAULT_STAGE_NAME
     profile: str = "literary"
     chunk_size: int = 1000
+    chunk_size_explicit: bool = False
+    speed: str = "balanced"
     model: str = "meta/llama-3.3-70b-instruct"
     dry_run: bool = False
     overwrite: bool = False
@@ -162,6 +164,7 @@ def run_literary_regression(options: LiteraryRegressionOptions) -> dict:
             input_path=Path(test["source"]),
             output_dir=stage_output_dir,
             chunk_size=max(300, int(options.chunk_size)),
+            chunk_size_explicit=options.chunk_size_explicit,
             model=options.model,
             resume=False,
             dry_run=options.dry_run,
@@ -171,6 +174,7 @@ def run_literary_regression(options: LiteraryRegressionOptions) -> dict:
             quality_profile=options.profile,
             simplified_chinese_policy=options.simplified_chinese_policy,
             progress_enabled=options.progress_enabled,
+            speed=options.speed,
         )
         try:
             result = runtime.translate_txt(txt_options)
@@ -200,6 +204,7 @@ def run_literary_regression(options: LiteraryRegressionOptions) -> dict:
         "status": "success" if summary["failed"] == 0 else "failed",
         "stage": stage_name,
         "profile": options.profile,
+        "speed": options.speed,
         "created_at": now_iso(),
         "literary_root": str(base),
         "output_dir": str(output_base),

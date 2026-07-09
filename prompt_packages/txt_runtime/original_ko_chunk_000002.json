@@ -9,7 +9,7 @@
     "session_id": "TXT_original_ko",
     "file_name": "original_ko.txt",
     "chunk_index": 2,
-    "chunk_total": 3,
+    "chunk_total": 5,
     "resume_key": "original_ko.txt:chunk:000002"
   },
   "model_profile": {
@@ -18,19 +18,19 @@
     "context_window": 131072,
     "temperature": 0.12,
     "top_p": 0.82,
-    "max_output_tokens": 1545
+    "max_output_tokens": 560
   },
   "source": {
-    "chunk_text": "정태의는 어차, 하고 자리에서 일어섰다. 카일은 프라이빗풀 옆의 벤치에서 정신없이 잠들어 있을 터였다. (일주일의 휴가를 위해 그가 이곳에 오기 직전까지 밤을 새며 퀭한 얼굴로 일했다는 걸 정태의는 알고 있었다. 그래서, 그가 막무가내로 여기에 오겠다고 하는 주장을 차마 거스를 수 없었다.) \n\n라군에서 바닷가는, 당연하다면 당연하지만, 엎어지면 코 닿을 거리였다. 근처만 서성이려면 바다 위로 뻗은 나무다리 위로 산책을 할 수도 있지만, 정태의는 천천히 섬을 한 바퀴 돌아보자고 생각하고 백사장 쪽을 택했다. 대충 걸어서 두어 시간이면 한 바퀴 다 돌 수 있을 정도로 작은 섬이라고 들었다. \n\n무릎까지 오는 반바지 위에 넉넉한 셔츠 하나만 대충 걸치고, 그가 막 로비에서 나서려던 때였다. \n\n새로운 손님이 왔는지, 바깥에서 약간 떠들썩하게―라고 해도 이곳이 워낙 조용해서, 단순한 말소리조차 그렇게 들릴 뿐이었지만―두세 명이 들어서고 있었다. \n\n정태의는 저도 모르게 걸음을 멈추었다. 귀에 익은 독일어가 들렸다. 목소리를 들어보건대 결코 그놈이 온 건 아니었지만 그래도 반사적으로 숨을 멈추고 만다. \n\n조용하지만 냉정하고 사무적인 말투는, 이곳에 같이 오기로 했던 동행과 따로 오게 되었다는 요지의 말을 하고 있었다. 그 동행도 한두 시간 안에 도착할 거라는 말을 하며, 그 독일인은 모습을 드러내었다. \n\n바늘 끝 하나 들어가지 않을 듯, 빈틈이라곤 없어 보이는 남자였다. 침착하고 담담해 보이는 남자였지만, 눈치 하나만으로 인생 역경을 헤쳐온 정태의는 저도 모르게 눈살을 찌푸렸다. 자칫 잘못 건드렸다간 뼈도 추리기 힘들 듯한 인간이다. 가급적이면 엮이지 않는 게 좋을. \n\n정태의는 못 본 척하고 걸음을 옮겼다. 굳이 엮일 일도 없을 테니, 하려던 대로 산책이나 하자. \n\n그러나, 그때 남자의 시선이 정태의에게 멎었다. 엉겁결에 정태의도 그를 마주본다.\n",
-    "source_hash": "317a32a20364b6c4053d8d9612fc1f51e6b8cebd",
-    "char_count": 936
+    "chunk_text": "“……하지만 지금 미리 걱정해본들 뭐 이미 벌어진 일은 어쩔 도리 없고……. 모처럼 쉬러 왔는데 한숨만 쉬며 일주일을 지내면 손해지.” \n\n정태의는 결국 합리적인 결론을 내리고 고개를 끄덕였다. \n\n짙은 청옥빛 바다로 둘러싸인 이 섬은 대단히 아름답고 한가로웠다. 오는 길에 카일에게 들은 바로는, 이곳의 호텔은 몇몇 재벌이 소유한 별장처럼 쓰이다시피 해 일반 관광객은 들어오지 못하기 때문에, 남의 눈에 띌 걱정 없이 한가롭고 넉넉한 휴가를 보내기에는 안성맞춤이라고 했다. \n\n과연 그의 말마따나, 어제 이곳에 들어온 이후 정태의가 구경한 사람이라곤 이곳의 관리인과 직원 외에는 열 손가락으로 꼽고도 넉넉하게 남을 정도였다. \n\n“인적 드문 바닷가 산책도 좋겠지.” \n\n정태의는 어차, 하고 자리에서 일어섰다. 카일은 프라이빗풀 옆의 벤치에서 정신없이 잠들어 있을 터였다. (일주일의 휴가를 위해 그가 이곳에 오기 직전까지 밤을 새며 퀭한 얼굴로 일했다는 걸 정태의는 알고 있었다. 그래서, 그가 막무가내로 여기에 오겠다고 하는 주장을 차마 거스를 수 없었다.)\n",
+    "source_hash": "7a0b1f639a986397cd857078a25accecc5fb9e25",
+    "char_count": 540
   },
   "context": {
     "previous_summary": "",
-    "previous_chunk_tail": "鄭泰義感到為難。他覺得這不是他應該感到為難的事情。被拋在遠方的那個男人，儘管像怪物一樣，但至少還是個理智清醒的人，應該能夠理解這種情況不是鄭泰義故意造成的。\n\n然而，凱爾卻堅持說：「幾個月前就開始計畫這次旅行，經過千辛萬苦才請到一周的假期，如果他因為工作延遲回來就要縮短我的假期，那是絕對不行的。」於是，凱爾拋下了要去鄰國工作的弟弟，只帶著鄭泰義來到這個遙遠的南國島嶼度假。鄭泰義擔心凱爾會不會因為這樣的行為而受到懲罰。（平時理性的凱爾不會做出這樣的事情，但他弟弟在出發前燒掉了他珍愛的書，讓他怒火中燒，才會做出這樣的決定。）\n\n無論如何，鄭泰義坐在這個南國島嶼上的酒店大廳的沙發上，沒有直通車，只能坐小型飛機過來。他現在雖然感到舒適，但他擔心回去柏林後會發生什麼事情。鄭泰義嘆了一口氣。\n\n「但是，現在擔心也沒有用，既然事情已經發生了。既然來了，就應該好好休息，不要浪費這一周的時間。」\n\n鄭泰義最終得出了合理的結論，並點了點頭。這個被深青色海水圍繞的島嶼非常美麗和平靜。據凱爾所說，這裡的酒店就像幾個富豪的別墅一樣，普通的觀光客人是不能進來的，所以可以在這裡享受悠閒的假期。\n\n果然，昨天開始，鄭泰義所看到的人除了酒店的管理人員和工作人員外，幾乎沒有其他人。這裡的人真的很少。\n\n「沿著海岸散步也很不錯。」",
+    "previous_chunk_tail": "鄭泰義感到很為難。然而，實際上這並不是他應該感到為難的事情。被拋在遠方的那個男人，儘管有些古怪，但至少還是個頭腦清醒、理智的人，鄭泰義相信他會理解這種情況不是他故意製造的。\n\n但是，凱爾卻堅持說：「幾個月前就開始計畫這次旅行，經過千辛萬苦才請到一周的假期，如果他因為工作延遲回來，就會毀了我的假期，我不能讓他這樣做。」於是，凱爾拋下了去別國工作的弟弟，帶著鄭泰義來到這個遙遠的南國島嶼度假。這種行為實在讓鄭泰義擔心，會不會有什麼麻煩事發生（平常的凱爾是不會做出這種事的，但因為他弟弟在出發前燒了他珍愛的書，讓他怒火中燒，才會做出這種事）。\n\n無論如何，鄭泰義坐在這個南國島嶼酒店的大廳沙發上，現在雖然很舒服，但他仍然擔心著回到柏林後會發生什麼事，於是他嘆了一口氣。",
     "recent_characters": [
-      "정태의",
-      "카일"
+      "鄭泰義",
+      "凱爾"
     ],
     "recent_terms": [
       "鄭泰義",
@@ -38,39 +38,26 @@
     ],
     "narrative_context": {
       "perspective": "第三人稱小說敘事",
-      "scene_hints": [
-        "場景可能包含酒店／大廳／島嶼／海邊等度假場域；用詞依作品背景自然選擇。",
-        "故事含德國／柏林背景，譯文不需要刻意本地化。"
-      ],
-      "mood_hints": [],
-      "lexical_hints": [
-        "주장하다 在小說中常可譯為堅持說、主張、理直氣壯地表示，需確認主詞。"
-      ],
-      "long_sentence_hints": [
-        "本段有長句或插入語，翻譯時應先切分敘事單位，再保持主詞與行為者正確。"
+      "hints": [
+        "場景含酒店／大廳／島嶼／海邊等度假場域；用詞依作品背景自然選擇。"
       ]
     },
     "character_context": {
       "current_focus": [
-        "정태의",
-        "카일"
+        "鄭泰義",
+        "凱爾"
       ],
       "mentioned": {
         "정태의": {
           "zh": "鄭泰義",
-          "role": "主要敘事焦點之一",
-          "voice": "自然、反應快、帶有自我吐槽感"
+          "voice": "自然、反應快、帶自我吐槽感"
         },
         "카일": {
           "zh": "凱爾",
-          "role": "與鄭泰義同行的人物",
-          "voice": "理性但偶爾強硬"
+          "voice": "理性，但情緒被觸及時強硬"
         }
       },
-      "subject_hints": [
-        "鄭泰義 可能是敘事焦點或心理描寫主體。",
-        "凱爾 可能是敘事焦點或心理描寫主體。"
-      ]
+      "subject_hints": []
     }
   },
   "knowledge": {
@@ -80,70 +67,156 @@
     }
   },
   "prompt": {
-    "system_prompt": "你是 NTPE 的文學級韓文小說翻譯引擎。你的任務不是逐字替換，而是先理解劇情、角色、主詞、敘事視角與語氣，再輸出自然流暢、符合故事背景與小說文體的繁體中文。 請嚴格遵守鎖定譯名與敘事主詞，並只輸出譯文。",
-    "user_prompt": "【Translation Objective】\n翻譯目標：忠於原文內容、人物關係與敘事節奏，產生像正式中文小說一樣可讀的繁體中文。不要刻意套用特定地區用語；用詞應依作品時代、地點、人物身份與文化氛圍選擇。\n\n【Literary Translation Rules】\n- 不得增刪劇情、不得摘要、不得自行補充設定。\n- 先判斷長句中的主詞與行為者，再翻譯；不要把 A 的動作翻成 B 的動作。\n- 人名、地名、術語與世界觀設定必須遵守鎖定譯名。\n- 心理描寫需依上下文選詞，例如 난감하다 可依語境處理為為難、傷腦筋、不知所措等，不可機械固定。\n- 對話使用「」；敘述、內心獨白與括號補充需自然分開。\n- 譯文應保留原文的文化距離與時代氛圍，不過度本地化。\n- 只輸出譯文，不要加入解釋、標題、Markdown 或翻譯說明。\n\n【Profile Guidance】\n- 文學翻譯預設模式；優先敘事自然、角色一致、主詞清楚與中文小說閱讀體驗。\n\n【Narrative Perspective】\n- 第三人稱小說敘事\n\n【Scene Hints】\n- 場景可能包含酒店／大廳／島嶼／海邊等度假場域；用詞依作品背景自然選擇。\n- 故事含德國／柏林背景，譯文不需要刻意本地化。\n\n【Mood / Psychological Hints】\n- 依原文判斷\n\n【Lexical Hints】\n- 주장하다 在小說中常可譯為堅持說、主張、理直氣壯地表示，需確認主詞。\n\n【Long Sentence Hints】\n- 本段有長句或插入語，翻譯時應先切分敘事單位，再保持主詞與行為者正確。\n\n【Character Context】\n目前可能敘事焦點：정태의、카일\n- 정태의 → 鄭泰義；角色：主要敘事焦點之一；語氣參考：自然、反應快、帶有自我吐槽感\n- 카일 → 凱爾；角色：與鄭泰義同行的人物；語氣參考：理性但偶爾強硬\n\n【Subject / Pronoun Hints】\n- 鄭泰義 可能是敘事焦點或心理描寫主體。\n- 凱爾 可能是敘事焦點或心理描寫主體。\n\n【Locked Glossary】\n- 정태의 → 鄭泰義（type=character, immutable=true）\n- 카일 → 凱爾（type=character, immutable=true）\n\n【Forbidden Alias Corrections】\n- 禁止使用「丁泰義」，必須改為「鄭泰義」\n- 禁止使用「定泰義」，必須改為「鄭泰義」\n- 禁止使用「正太義」，必須改為「鄭泰義」\n- 禁止使用「正泰義」，必須改為「鄭泰義」\n- 禁止使用「鄭太義」，必須改為「鄭泰義」\n- 禁止使用「鄭泰儀」，必須改為「鄭泰義」\n- 禁止使用「鄭泰宜」，必須改為「鄭泰義」\n\n【Previous Context】\n鄭泰義感到為難。他覺得這不是他應該感到為難的事情。被拋在遠方的那個男人，儘管像怪物一樣，但至少還是個理智清醒的人，應該能夠理解這種情況不是鄭泰義故意造成的。\n\n然而，凱爾卻堅持說：「幾個月前就開始計畫這次旅行，經過千辛萬苦才請到一周的假期，如果他因為工作延遲回來就要縮短我的假期，那是絕對不行的。」於是，凱爾拋下了要去鄰國工作的弟弟，只帶著鄭泰義來到這個遙遠的南國島嶼度假。鄭泰義擔心凱爾會不會因為這樣的行為而受到懲罰。（平時理性的凱爾不會做出這樣的事情，但他弟弟在出發前燒掉了他珍愛的書，讓他怒火中燒，才會做出這樣的決定。）\n\n無論如何，鄭泰義坐在這個南國島嶼上的酒店大廳的沙發上，沒有直通車，只能坐小型飛機過來。他現在雖然感到舒適，但他擔心回去柏林後會發生什麼事情。鄭泰義嘆了一口氣。\n\n「但是，現在擔心也沒有用，既然事情已經發生了。既然來了，就應該好好休息，不要浪費這一周的時間。」\n\n鄭泰義最終得出了合理的結論，並點了點頭。這個被深青色海水圍繞的島嶼非常美麗和平靜。據凱爾所說，這裡的酒店就像幾個富豪的別墅一樣，普通的觀光客人是不能進來的，所以可以在這裡享受悠閒的假期。\n\n果然，昨天開始，鄭泰義所看到的人除了酒店的管理人員和工作人員外，幾乎沒有其他人。這裡的人真的很少。\n\n「沿著海岸散步也很不錯。」\n\n【Current Korean Text】\n정태의는 어차, 하고 자리에서 일어섰다. 카일은 프라이빗풀 옆의 벤치에서 정신없이 잠들어 있을 터였다. (일주일의 휴가를 위해 그가 이곳에 오기 직전까지 밤을 새며 퀭한 얼굴로 일했다는 걸 정태의는 알고 있었다. 그래서, 그가 막무가내로 여기에 오겠다고 하는 주장을 차마 거스를 수 없었다.) \n\n라군에서 바닷가는, 당연하다면 당연하지만, 엎어지면 코 닿을 거리였다. 근처만 서성이려면 바다 위로 뻗은 나무다리 위로 산책을 할 수도 있지만, 정태의는 천천히 섬을 한 바퀴 돌아보자고 생각하고 백사장 쪽을 택했다. 대충 걸어서 두어 시간이면 한 바퀴 다 돌 수 있을 정도로 작은 섬이라고 들었다. \n\n무릎까지 오는 반바지 위에 넉넉한 셔츠 하나만 대충 걸치고, 그가 막 로비에서 나서려던 때였다. \n\n새로운 손님이 왔는지, 바깥에서 약간 떠들썩하게―라고 해도 이곳이 워낙 조용해서, 단순한 말소리조차 그렇게 들릴 뿐이었지만―두세 명이 들어서고 있었다. \n\n정태의는 저도 모르게 걸음을 멈추었다. 귀에 익은 독일어가 들렸다. 목소리를 들어보건대 결코 그놈이 온 건 아니었지만 그래도 반사적으로 숨을 멈추고 만다. \n\n조용하지만 냉정하고 사무적인 말투는, 이곳에 같이 오기로 했던 동행과 따로 오게 되었다는 요지의 말을 하고 있었다. 그 동행도 한두 시간 안에 도착할 거라는 말을 하며, 그 독일인은 모습을 드러내었다. \n\n바늘 끝 하나 들어가지 않을 듯, 빈틈이라곤 없어 보이는 남자였다. 침착하고 담담해 보이는 남자였지만, 눈치 하나만으로 인생 역경을 헤쳐온 정태의는 저도 모르게 눈살을 찌푸렸다. 자칫 잘못 건드렸다간 뼈도 추리기 힘들 듯한 인간이다. 가급적이면 엮이지 않는 게 좋을. \n\n정태의는 못 본 척하고 걸음을 옮겼다. 굳이 엮일 일도 없을 테니, 하려던 대로 산책이나 하자. \n\n그러나, 그때 남자의 시선이 정태의에게 멎었다. 엉겁결에 정태의도 그를 마주본다.\n\n\n【Output Requirement】\n請直接輸出繁體中文譯文。不要輸出分析、註解、標題或 Markdown。",
-    "prompt_mode": "literary_narrative_understanding_ps04",
+    "system_prompt": "韓文小說譯者。先判斷主詞與語氣，再直出自然繁體中文正文。",
+    "user_prompt": "[NTPE Translation Engine v3.0 Context Intelligence]\nprofile: dialogue_heavy\ntone: heated\nnarrative_state: continuing_scene\nprevious_key_info: 能讓他這樣做。」於是，凱爾拋下了去別國工作的弟弟，帶著鄭泰義來到這個遙遠的南國島嶼度假。這種行為實在讓鄭泰義擔心，會不會有什麼麻煩事發生（平常的凱爾是不會做出這種事的，但因為他弟弟在出發前燒了他珍愛的書，讓他怒火中燒，才會做出這種事）。 無論如何，鄭泰義坐在這個南國島嶼酒店的大廳沙發上，現在雖然很舒服，但他仍然擔心著回到柏林後會發生什麼事，於是他嘆了一口氣。\n- Translate according to the local scene context; do not translate word-by-word when it creates stiff or unnatural Traditional Chinese.\n- Preserve the original meaning, sequence, and emotional logic while using natural Traditional Chinese novel prose.\n- Use context-aware phrasing for breath, reaction, and body-action descriptions; avoid literal wording that sounds physically or semantically odd.\n- Avoid mechanical repeated structures and redundant phrasing; keep the sentence concise when the source meaning is already clear.\n- Keep continuity with the previous chunk's characters, tone, relationship distance, and narrative state.\n- For dialogue-heavy scenes, keep each speaker's voice distinct and avoid turning spoken lines into explanatory narration.\n[/NTPE Translation Engine v3.0 Context Intelligence]\n\n[NTPE Translation Engine v3.0 Prompt Intelligence]\nprofile: general\n- Translate the full source text into Traditional Chinese; do not summarize, omit, merge, or add scenes.\n- Use fluent Traditional Chinese suitable for novels, preserving the source's register and emotional pacing.\n- Render dialogue with Traditional Chinese corner quotes 「」 and keep speaker intent clear.\n- Maintain character voice, relationship distance, honorific nuance, and narrative point of view consistently.\n- Avoid forced Taiwanese colloquial wording; use it only when the source tone naturally supports it.\n- Balance accuracy, readability, and novel-like flow without changing the source meaning.\n[/NTPE Translation Engine v3.0 Prompt Intelligence]\n\n【Policy】忠於原文，不漏譯、不增刪。；先判斷主詞、行為者與指代，避免人物錯置。；Glossary 譯名逐字一致。；慣用語按中文小說語感處理，不機械直譯。；短答、反諷、模稜兩可語氣需保留，不擅自解釋。；避免生硬直譯，動作與心理描寫需像中文小說正文。；只輸出繁體中文譯文，對話用「」。\n【Profile】\n- 文學模式；主詞清楚、角色一致、中文像小說正文。\n【Narrative】場景含酒店／大廳／島嶼／海邊等度假場域；用詞依作品背景自然選擇。\n【Characters】정태의=鄭泰義；카일=凱爾\n【Previous】作的弟弟，帶著鄭泰義來到這個遙遠的南國島嶼度假。這種行為實在讓鄭泰義擔心，會不會有什麼麻煩事發生（平常的凱爾是不會做出這種事的，但因為他弟弟在出發前燒了他珍愛的書，讓他怒火中燒，才會做出這種事）。 無論如何，鄭泰義坐在這個南國島嶼酒店的大廳沙發上，現在雖然很舒服，但他仍然擔心著回到柏林後會發生什麼事，於是他嘆了一口氣。\n【Glossary】정태의=鄭泰義；카일=凱爾；禁:丁泰義->鄭泰義；禁:凯尔->凱爾；禁:凱爾爾->凱爾；禁:卡爾->凱爾；禁:定泰義->鄭泰義；禁:正太義->鄭泰義；禁:正泰義->鄭泰義；禁:鄭太義->鄭泰義；禁:鄭泰儀->鄭泰義；禁:鄭泰宜->鄭泰義\n【Korean】\n“……하지만 지금 미리 걱정해본들 뭐 이미 벌어진 일은 어쩔 도리 없고……. 모처럼 쉬러 왔는데 한숨만 쉬며 일주일을 지내면 손해지.” \n\n정태의는 결국 합리적인 결론을 내리고 고개를 끄덕였다. \n\n짙은 청옥빛 바다로 둘러싸인 이 섬은 대단히 아름답고 한가로웠다. 오는 길에 카일에게 들은 바로는, 이곳의 호텔은 몇몇 재벌이 소유한 별장처럼 쓰이다시피 해 일반 관광객은 들어오지 못하기 때문에, 남의 눈에 띌 걱정 없이 한가롭고 넉넉한 휴가를 보내기에는 안성맞춤이라고 했다. \n\n과연 그의 말마따나, 어제 이곳에 들어온 이후 정태의가 구경한 사람이라곤 이곳의 관리인과 직원 외에는 열 손가락으로 꼽고도 넉넉하게 남을 정도였다. \n\n“인적 드문 바닷가 산책도 좋겠지.” \n\n정태의는 어차, 하고 자리에서 일어섰다. 카일은 프라이빗풀 옆의 벤치에서 정신없이 잠들어 있을 터였다. (일주일의 휴가를 위해 그가 이곳에 오기 직전까지 밤을 새며 퀭한 얼굴로 일했다는 걸 정태의는 알고 있었다. 그래서, 그가 막무가내로 여기에 오겠다고 하는 주장을 차마 거스를 수 없었다.)\n【Output】直出譯文，禁止標題、註解、Markdown。",
+    "prompt_mode": "compact_literary_v6_ter_v1_5",
     "profile": "literary",
+    "prompt_profile": {
+      "system_tokens": 11,
+      "policy_tokens": 74,
+      "context_tokens": 100,
+      "glossary_tokens": 53,
+      "source_tokens": 228,
+      "total_tokens": 466,
+      "total_chars": 1123
+    },
     "narrative_context": {
       "perspective": "第三人稱小說敘事",
-      "scene_hints": [
-        "場景可能包含酒店／大廳／島嶼／海邊等度假場域；用詞依作品背景自然選擇。",
-        "故事含德國／柏林背景，譯文不需要刻意本地化。"
-      ],
-      "mood_hints": [],
-      "lexical_hints": [
-        "주장하다 在小說中常可譯為堅持說、主張、理直氣壯地表示，需確認主詞。"
-      ],
-      "long_sentence_hints": [
-        "本段有長句或插入語，翻譯時應先切分敘事單位，再保持主詞與行為者正確。"
+      "hints": [
+        "場景含酒店／大廳／島嶼／海邊等度假場域；用詞依作品背景自然選擇。"
       ]
     },
     "character_context": {
       "current_focus": [
-        "정태의",
-        "카일"
+        "鄭泰義",
+        "凱爾"
       ],
       "mentioned": {
         "정태의": {
           "zh": "鄭泰義",
-          "role": "主要敘事焦點之一",
-          "voice": "自然、反應快、帶有自我吐槽感"
+          "voice": "自然、反應快、帶自我吐槽感"
         },
         "카일": {
           "zh": "凱爾",
-          "role": "與鄭泰義同行的人物",
-          "voice": "理性但偶爾強硬"
+          "voice": "理性，但情緒被觸及時強硬"
         }
       },
-      "subject_hints": [
-        "鄭泰義 可能是敘事焦點或心理描寫主體。",
-        "凱爾 可能是敘事焦點或心理描寫主體。"
-      ]
+      "subject_hints": []
     },
     "glossary_context": {
       "matched_terms": [
         {
           "source": "정태의",
           "target": "鄭泰義",
-          "term_type": "character",
+          "term_type": "name",
           "immutable": true
         },
         {
           "source": "카일",
           "target": "凱爾",
-          "term_type": "character",
+          "term_type": "name",
           "immutable": true
         }
       ],
       "alias_map": {
-        "鄭泰宜": "鄭泰義",
-        "正太義": "鄭泰義",
-        "正泰義": "鄭泰義",
-        "定泰義": "鄭泰義",
         "鄭泰儀": "鄭泰義",
         "丁泰義": "鄭泰義",
-        "鄭太義": "鄭泰義"
+        "定泰義": "鄭泰義",
+        "鄭太義": "鄭泰義",
+        "正泰義": "鄭泰義",
+        "鄭泰宜": "鄭泰義",
+        "正太義": "鄭泰義",
+        "凱爾爾": "凱爾",
+        "凯尔": "凱爾",
+        "卡爾": "凱爾"
+      },
+      "max_terms": 24,
+      "max_aliases": 18
+    },
+    "prompt_intelligence": {
+      "version": "3.0-stage01",
+      "profile": "general",
+      "directives": [
+        "Translate the full source text into Traditional Chinese; do not summarize, omit, merge, or add scenes.",
+        "Use fluent Traditional Chinese suitable for novels, preserving the source's register and emotional pacing.",
+        "Render dialogue with Traditional Chinese corner quotes 「」 and keep speaker intent clear.",
+        "Maintain character voice, relationship distance, honorific nuance, and narrative point of view consistently.",
+        "Avoid forced Taiwanese colloquial wording; use it only when the source tone naturally supports it.",
+        "Balance accuracy, readability, and novel-like flow without changing the source meaning."
+      ]
+    },
+    "quality_directives": [
+      "Translate the full source text into Traditional Chinese; do not summarize, omit, merge, or add scenes.",
+      "Use fluent Traditional Chinese suitable for novels, preserving the source's register and emotional pacing.",
+      "Render dialogue with Traditional Chinese corner quotes 「」 and keep speaker intent clear.",
+      "Maintain character voice, relationship distance, honorific nuance, and narrative point of view consistently.",
+      "Avoid forced Taiwanese colloquial wording; use it only when the source tone naturally supports it.",
+      "Balance accuracy, readability, and novel-like flow without changing the source meaning."
+    ],
+    "context_snapshot": {
+      "version": "3.0-stage02",
+      "profile": "dialogue_heavy",
+      "characters": [
+        "鄭泰義感",
+        "到很為難",
+        "然而",
+        "實際上這",
+        "並不是他",
+        "應該感到",
+        "為難的事",
+        "被拋在遠"
+      ],
+      "locations": [],
+      "tone": "heated",
+      "narrative_state": "continuing_scene",
+      "previous_key_info": "能讓他這樣做。」於是，凱爾拋下了去別國工作的弟弟，帶著鄭泰義來到這個遙遠的南國島嶼度假。這種行為實在讓鄭泰義擔心，會不會有什麼麻煩事發生（平常的凱爾是不會做出這種事的，但因為他弟弟在出發前燒了他珍愛的書，讓他怒火中燒，才會做出這種事）。 無論如何，鄭泰義坐在這個南國島嶼酒店的大廳沙發上，現在雖然很舒服，但他仍然擔心著回到柏林後會發生什麼事，於是他嘆了一口氣。",
+      "naturalness_warnings": [],
+      "metadata": {
+        "package_id": "TXT_original_ko_000002"
       }
+    },
+    "context_directives": [
+      "Translate according to the local scene context; do not translate word-by-word when it creates stiff or unnatural Traditional Chinese.",
+      "Preserve the original meaning, sequence, and emotional logic while using natural Traditional Chinese novel prose.",
+      "Use context-aware phrasing for breath, reaction, and body-action descriptions; avoid literal wording that sounds physically or semantically odd.",
+      "Avoid mechanical repeated structures and redundant phrasing; keep the sentence concise when the source meaning is already clear.",
+      "Keep continuity with the previous chunk's characters, tone, relationship distance, and narrative state.",
+      "For dialogue-heavy scenes, keep each speaker's voice distinct and avoid turning spoken lines into explanatory narration."
+    ],
+    "context_intelligence": {
+      "version": "3.0-stage02",
+      "profile": "dialogue_heavy",
+      "snapshot": {
+        "version": "3.0-stage02",
+        "profile": "dialogue_heavy",
+        "characters": [
+          "鄭泰義感",
+          "到很為難",
+          "然而",
+          "實際上這",
+          "並不是他",
+          "應該感到",
+          "為難的事",
+          "被拋在遠"
+        ],
+        "locations": [],
+        "tone": "heated",
+        "narrative_state": "continuing_scene",
+        "previous_key_info": "能讓他這樣做。」於是，凱爾拋下了去別國工作的弟弟，帶著鄭泰義來到這個遙遠的南國島嶼度假。這種行為實在讓鄭泰義擔心，會不會有什麼麻煩事發生（平常的凱爾是不會做出這種事的，但因為他弟弟在出發前燒了他珍愛的書，讓他怒火中燒，才會做出這種事）。 無論如何，鄭泰義坐在這個南國島嶼酒店的大廳沙發上，現在雖然很舒服，但他仍然擔心著回到柏林後會發生什麼事，於是他嘆了一口氣。",
+        "naturalness_warnings": [],
+        "metadata": {
+          "package_id": "TXT_original_ko_000002"
+        }
+      },
+      "directives": [
+        "Translate according to the local scene context; do not translate word-by-word when it creates stiff or unnatural Traditional Chinese.",
+        "Preserve the original meaning, sequence, and emotional logic while using natural Traditional Chinese novel prose.",
+        "Use context-aware phrasing for breath, reaction, and body-action descriptions; avoid literal wording that sounds physically or semantically odd.",
+        "Avoid mechanical repeated structures and redundant phrasing; keep the sentence concise when the source meaning is already clear.",
+        "Keep continuity with the previous chunk's characters, tone, relationship distance, and narrative state.",
+        "For dialogue-heavy scenes, keep each speaker's voice distinct and avoid turning spoken lines into explanatory narration."
+      ],
+      "naturalness_warnings": []
     }
   },
   "qa_requirements": {
@@ -155,8 +228,56 @@
     "check_literary_policy": true
   },
   "metadata": {
-    "created_at": "2026-07-07T23:00:42",
-    "created_by": "NTPE 1.2 Production Stabilization PS-04 Narrative & Character Understanding Engine",
-    "package_version": "1.2-ps-04-narrative-character-understanding"
-  }
+    "created_at": "2026-07-09T03:47:18",
+    "created_by": "NTPE 1.2 Translation Engine Refactoring v2.0",
+    "package_version": "1.2-translation-engine-refactor-v2.0",
+    "prompt_intelligence": {
+      "version": "3.0-stage01",
+      "profile": "general",
+      "directives": [
+        "Translate the full source text into Traditional Chinese; do not summarize, omit, merge, or add scenes.",
+        "Use fluent Traditional Chinese suitable for novels, preserving the source's register and emotional pacing.",
+        "Render dialogue with Traditional Chinese corner quotes 「」 and keep speaker intent clear.",
+        "Maintain character voice, relationship distance, honorific nuance, and narrative point of view consistently.",
+        "Avoid forced Taiwanese colloquial wording; use it only when the source tone naturally supports it.",
+        "Balance accuracy, readability, and novel-like flow without changing the source meaning."
+      ]
+    },
+    "context_intelligence": {
+      "version": "3.0-stage02",
+      "profile": "dialogue_heavy",
+      "snapshot": {
+        "version": "3.0-stage02",
+        "profile": "dialogue_heavy",
+        "characters": [
+          "鄭泰義感",
+          "到很為難",
+          "然而",
+          "實際上這",
+          "並不是他",
+          "應該感到",
+          "為難的事",
+          "被拋在遠"
+        ],
+        "locations": [],
+        "tone": "heated",
+        "narrative_state": "continuing_scene",
+        "previous_key_info": "能讓他這樣做。」於是，凱爾拋下了去別國工作的弟弟，帶著鄭泰義來到這個遙遠的南國島嶼度假。這種行為實在讓鄭泰義擔心，會不會有什麼麻煩事發生（平常的凱爾是不會做出這種事的，但因為他弟弟在出發前燒了他珍愛的書，讓他怒火中燒，才會做出這種事）。 無論如何，鄭泰義坐在這個南國島嶼酒店的大廳沙發上，現在雖然很舒服，但他仍然擔心著回到柏林後會發生什麼事，於是他嘆了一口氣。",
+        "naturalness_warnings": [],
+        "metadata": {
+          "package_id": "TXT_original_ko_000002"
+        }
+      },
+      "directives": [
+        "Translate according to the local scene context; do not translate word-by-word when it creates stiff or unnatural Traditional Chinese.",
+        "Preserve the original meaning, sequence, and emotional logic while using natural Traditional Chinese novel prose.",
+        "Use context-aware phrasing for breath, reaction, and body-action descriptions; avoid literal wording that sounds physically or semantically odd.",
+        "Avoid mechanical repeated structures and redundant phrasing; keep the sentence concise when the source meaning is already clear.",
+        "Keep continuity with the previous chunk's characters, tone, relationship distance, and narrative state.",
+        "For dialogue-heavy scenes, keep each speaker's voice distinct and avoid turning spoken lines into explanatory narration."
+      ],
+      "naturalness_warnings": []
+    }
+  },
+  "qa_warnings": []
 }

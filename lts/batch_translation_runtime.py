@@ -119,6 +119,8 @@ class BatchTranslationOptions:
     output_formatter_enabled: bool = True
     taiwan_traditional_normalization: bool = True
     quality_profile: str = "novel"
+    speed: str = "balanced"
+    chunk_size_explicit: bool = False
     simplified_chinese_policy: str = "normalize"
     report_dir: Path | None = None
     progress: bool = True
@@ -160,6 +162,7 @@ def build_txt_options(input_file: Path, per_file_output_dir: Path, options: Batc
         input_path=input_file,
         output_dir=per_file_output_dir,
         chunk_size=options.chunk_size,
+        chunk_size_explicit=options.chunk_size_explicit,
         model=options.model,
         project_name=options.project_name,
         resume=options.resume,
@@ -177,6 +180,7 @@ def build_txt_options(input_file: Path, per_file_output_dir: Path, options: Batc
         output_formatter_enabled=options.output_formatter_enabled,
         taiwan_traditional_normalization=options.taiwan_traditional_normalization,
         quality_profile=options.quality_profile,
+        speed=options.speed,
         simplified_chinese_policy=options.simplified_chinese_policy,
         progress_enabled=options.progress_enabled,
     )
@@ -506,7 +510,8 @@ def parse_args(argv: Iterable[str] | None = None) -> BatchTranslationOptions:
     parser.add_argument("output", nargs="?", default="output", help="output directory")
     parser.add_argument("--recursive", action="store_true", help="scan TXT files recursively")
     parser.add_argument("--no-skip-completed", action="store_true", help="do not skip existing non-empty translated files")
-    parser.add_argument("--chunk-size", type=int, default=DEFAULT_CHUNK_SIZE)
+    parser.add_argument("--chunk-size", type=int, default=None)
+    parser.add_argument("--speed", choices=("fast", "balanced", "quality"), default="balanced")
     parser.add_argument("--model", default=DEFAULT_MODEL)
     parser.add_argument("--project-name", default="NTPE Batch Novel Translation")
     parser.add_argument("--no-resume", action="store_true")
@@ -539,7 +544,8 @@ def parse_args(argv: Iterable[str] | None = None) -> BatchTranslationOptions:
         output_dir=Path(ns.output),
         recursive=ns.recursive,
         skip_completed=not ns.no_skip_completed,
-        chunk_size=max(300, ns.chunk_size),
+        chunk_size=max(300, ns.chunk_size) if ns.chunk_size is not None else DEFAULT_CHUNK_SIZE,
+        chunk_size_explicit=ns.chunk_size is not None,
         model=ns.model,
         project_name=ns.project_name,
         resume=not ns.no_resume,
@@ -556,6 +562,7 @@ def parse_args(argv: Iterable[str] | None = None) -> BatchTranslationOptions:
         max_repeated_lines=max(0, ns.max_repeated_lines),
         output_formatter_enabled=not ns.no_output_formatter,
         taiwan_traditional_normalization=not ns.no_taiwan_normalization,
+        speed=ns.speed,
         report_dir=Path(ns.report_dir) if ns.report_dir else None,
         progress=not ns.quiet_progress,
         continue_on_failure=ns.continue_on_failure,

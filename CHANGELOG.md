@@ -1,3 +1,9 @@
+## Translation Engine Refactoring v2.1
+
+- Added degraded-provider detection for NVIDIA API `DEGRADED function cannot be invoked` failures.
+- Added `--fallback-models` and `NTPE_FALLBACK_MODELS` support in translator CLI.
+- Added degraded-model fast-fail when no fallback is configured.
+
 
 ## NTPE 1.2 Production Stabilization — PS-02 Literary Regression Runner
 

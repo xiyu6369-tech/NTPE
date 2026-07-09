@@ -17,3 +17,14 @@
 | TER-v1.8-retry | 100.0 | success | `D:\Python\NTPE\tests\literary\outputs\TER-v1.8-retry\Literary_Quality_Report.md` |
 | TER-v1.9 | 100.0 | success | `D:\Python\NTPE\tests\literary\outputs\TER-v1.9\Literary_Quality_Report.md` |
 | TER-v2.0 | 100.0 | success | `D:\Python\NTPE\tests\literary\outputs\TER-v2.0\Literary_Quality_Report.md` |
+| TER-v2.0-golden | 0.0 | failed | `D:\Python\NTPE\tests\literary\outputs\TER-v2.0-golden\Literary_Quality_Report.md` |
+| TER-v2.0-golden-small | 0.0 | failed | `D:\Python\NTPE\tests\literary\outputs\TER-v2.0-golden-small\Literary_Quality_Report.md` |
+| TER-v2.0-golden-fast | 0.0 | failed | `D:\Python\NTPE\tests\literary\outputs\TER-v2.0-golden-fast\Literary_Quality_Report.md` |
+| TER-v2.1-golden | 0.0 | failed | `D:\Python\NTPE\tests\literary\outputs\TER-v2.1-golden\Literary_Quality_Report.md` |
+| provider-v3-test | 0.0 | failed | `D:\Python\NTPE\tests\literary\outputs\provider-v3-test\Literary_Quality_Report.md` |
+| TER-v2.4-real-sample | 0.0 | failed | `D:\Python\NTPE\tests\literary\outputs\TER-v2.4-real-sample\Literary_Quality_Report.md` |
+| TE-v3.0-stage01-real-sample | 95.0 | success | `D:\Python\NTPE\tests\literary\outputs\TE-v3.0-stage01-real-sample\Literary_Quality_Report.md` |
+| TE-v3.0-stage02-real-sample | 95.0 | success | `D:\Python\NTPE\tests\literary\outputs\TE-v3.0-stage02-real-sample\Literary_Quality_Report.md` |
+| TE-v3.0-stage021-real-sample | 0.0 | failed | `D:\Python\NTPE\tests\literary\outputs\TE-v3.0-stage021-real-sample\Literary_Quality_Report.md` |
+| TE-v30-stage022-balanced | 0.0 | failed | `D:\Python\NTPE\tests\literary\outputs\TE-v30-stage022-balanced\Literary_Quality_Report.md` |
+| TE-v30-stage0221-balanced | 0.0 | failed | `D:\Python\NTPE\tests\literary\outputs\TE-v30-stage0221-balanced\Literary_Quality_Report.md` |
