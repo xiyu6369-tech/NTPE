@@ -17,6 +17,7 @@ from core.translation_engine.prompt_intelligence import apply_prompt_intelligenc
 from core.translation_engine.utils import now_iso, save_json, save_text
 from core.literary import LiteraryPromptBuilder, normalize_profile, normalize_literary_style
 from core.translation_runtime.runtime_qa import RuntimeQAPolicy, analyze_runtime_quality, soft_fail_naturalness_report
+from core.translation_quality_v5.runtime_integration import run_quality_v5_phase1, merge_quality_v5_into_runtime_qa
 from core.translation_runtime.runtime_speed_policy import (
     RuntimeSpeedPolicy,
     effective_timeout,
@@ -86,6 +87,8 @@ class TxtTranslationOptions:
     runtime_timeout: int | None = None
     user_api_timeout: int | None = None
     naturalness_retry_limit: int | None = None
+    quality_v5_enabled: bool = True
+    quality_v5_report_enabled: bool = True
 
 
 def read_text_auto(path: str | Path) -> str:
@@ -1186,8 +1189,30 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
                 if options.strict_lock_terms:
                     translation = apply_locked_dictionary(translation, locked_dictionary)
                 translation = format_translation_output(translation, options)
+                quality_v5_report = None
+                if options.quality_v5_enabled:
+                    quality_v5_report = run_quality_v5_phase1(
+                        chunk,
+                        translation,
+                        locked_terms=package.get("knowledge", {}).get("locked_dictionary", {}),
+                        config={"min_length_ratio": max(0.18, options.min_length_ratio)},
+                    )
+                    translation = str(quality_v5_report.get("normalized_text") or translation)
+                    if options.strict_lock_terms:
+                        translation = apply_locked_dictionary(translation, locked_dictionary)
+                    translation = format_translation_output(translation, options)
+                    if options.quality_v5_report_enabled:
+                        quality_report_path = chunk_out_dir / f"{input_path.stem}_chunk_{idx:06d}_quality_v5_attempt_{qa_attempt}.json"
+                        save_json(quality_report_path, quality_v5_report)
+                        emit_progress(
+                            f"chunk {idx}/{len(chunks)} quality-v5 score={quality_v5_report.get('quality_score', 0)} "
+                            f"status={quality_v5_report.get('status', 'unknown')} report={quality_report_path.name}",
+                            options=options,
+                        )
                 qa_report = analyze_translation_quality(chunk, translation, options, locked_dictionary=package.get("knowledge", {}).get("locked_dictionary", {})) if options.qa_enabled else {"passed": True, "issues": [], "metrics": {}}
-                qa_attempt_records.append({"qa_attempt": qa_attempt, "qa": qa_report})
+                if quality_v5_report is not None:
+                    qa_report = merge_quality_v5_into_runtime_qa(qa_report, quality_v5_report)
+                qa_attempt_records.append({"qa_attempt": qa_attempt, "qa": qa_report, "quality_v5": quality_v5_report})
                 emit_progress(f"chunk {idx}/{len(chunks)} QA {'PASS' if qa_report.get('passed') else 'FAIL'} issues={len(qa_report.get('issues', []))}", options=options)
                 if qa_report.get("passed") or options.qa_fail_policy == "warn":
                     break
@@ -1406,6 +1431,8 @@ def parse_args(argv: Iterable[str] | None = None) -> TxtTranslationOptions:
     parser.add_argument("--no-taiwan-normalization", action="store_true", help="disable built-in Taiwan Traditional Chinese normalization")
     parser.add_argument("--simplified-chinese-policy", choices=("normalize", "warn", "fail"), default="normalize", help="remaining simplified Chinese behavior after normalization")
     parser.add_argument("--quality-profile", choices=("fast", "balanced", "novel", "literary", "quality", "premium"), default="literary", help="translation quality profile")
+    parser.add_argument("--no-quality-v5", action="store_true", help="disable TE-v5.3 conservative quality runtime integration")
+    parser.add_argument("--no-quality-v5-report", action="store_true", help="disable per-attempt TE-v5 quality JSON reports")
     parser.add_argument("--dry-run", action="store_true", help="build prompt packages without calling provider")
     ns = parser.parse_args(list(argv) if argv is not None else None)
     return TxtTranslationOptions(
@@ -1432,6 +1459,8 @@ def parse_args(argv: Iterable[str] | None = None) -> TxtTranslationOptions:
         quality_profile=ns.quality_profile,
         simplified_chinese_policy=ns.simplified_chinese_policy,
         speed=ns.speed,
+        quality_v5_enabled=not ns.no_quality_v5,
+        quality_v5_report_enabled=not ns.no_quality_v5_report,
     )
 
 
