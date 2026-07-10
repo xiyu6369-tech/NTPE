@@ -123,6 +123,7 @@ def build_parser() -> argparse.ArgumentParser:
     regression.add_argument("--fallback-models", default=os.environ.get("NTPE_FALLBACK_MODELS", ""), help="comma-separated fallback NVIDIA model IDs")
     regression.add_argument("--dry-run", action="store_true", help="build prompt packages and reports without calling NVIDIA API")
     regression.add_argument("--overwrite", action="store_true", help="clear the stage output folder before running")
+    regression.add_argument("--no-resume", action="store_true", help="disable chunk resume for this regression run")
     regression.add_argument("--no-evaluate", action="store_true", help="skip PS-03 quality evaluation report")
     regression.add_argument("--previous-stage", default=None, help="optional previous stage folder for diff report")
     regression.add_argument("--max-retries", type=int, default=3)
@@ -342,6 +343,7 @@ def run_regression(args: argparse.Namespace) -> int:
         model=args.model,
         dry_run=args.dry_run,
         overwrite=args.overwrite,
+            resume=not args.no_resume,
         max_retries=max(0, args.max_retries),
         provider_attempts=max(1, args.provider_attempts) if args.provider_attempts is not None else None,
         retry_base_seconds=max(0.0, args.retry_base_seconds),

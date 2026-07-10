@@ -2,8 +2,41 @@ from __future__ import annotations
 
 import os
 import time
+import threading
+from collections import deque
 import requests
 from requests import Timeout, RequestException
+
+
+_NVIDIA_RATE_LOCK = threading.Lock()
+_NVIDIA_REQUEST_TIMES: deque[float] = deque()
+_NVIDIA_LAST_REQUEST_AT = 0.0
+
+
+def _global_nvidia_rate_limit(rpm_limit: int) -> float:
+    """Enforce a process-wide NVIDIA request ceiling and smooth request starts."""
+    global _NVIDIA_LAST_REQUEST_AT
+    limit = max(1, min(40, int(rpm_limit)))
+    window = 60.0
+    minimum_interval = window / limit
+    waited = 0.0
+    while True:
+        with _NVIDIA_RATE_LOCK:
+            now = time.monotonic()
+            while _NVIDIA_REQUEST_TIMES and now - _NVIDIA_REQUEST_TIMES[0] >= window:
+                _NVIDIA_REQUEST_TIMES.popleft()
+            wait_for_window = 0.0
+            if len(_NVIDIA_REQUEST_TIMES) >= limit:
+                wait_for_window = max(0.0, window - (now - _NVIDIA_REQUEST_TIMES[0]))
+            wait_for_spacing = max(0.0, minimum_interval - (now - _NVIDIA_LAST_REQUEST_AT)) if _NVIDIA_LAST_REQUEST_AT else 0.0
+            wait_for = max(wait_for_window, wait_for_spacing)
+            if wait_for <= 0:
+                stamp = time.monotonic()
+                _NVIDIA_REQUEST_TIMES.append(stamp)
+                _NVIDIA_LAST_REQUEST_AT = stamp
+                return waited
+        time.sleep(wait_for)
+        waited += wait_for
 
 
 class NvidiaClient:
@@ -23,8 +56,8 @@ class NvidiaClient:
         self.timeout = int(current_timeout or os.environ.get("NTPE_API_TIMEOUT", timeout))
         self.connect_timeout = int(os.environ.get("NTPE_API_CONNECT_TIMEOUT", 10))
         self.debug = os.environ.get("NTPE_TRANSLATE_DEBUG", "").lower() in {"1", "true", "yes", "on"}
-        self.rpm_limit = rpm_limit
-        self.request_times: list[float] = []
+        configured_rpm = int(os.environ.get("NTPE_NVIDIA_RPM_LIMIT", rpm_limit))
+        self.rpm_limit = max(1, min(40, configured_rpm))
 
         if not self.api_key:
             raise ValueError(
@@ -33,15 +66,13 @@ class NvidiaClient:
             )
 
     def _rate_limit(self) -> None:
-        now = time.time()
-        self.request_times = [t for t in self.request_times if now - t < 60]
-
-        if len(self.request_times) >= self.rpm_limit:
-            wait = 60 - (now - self.request_times[0]) + 0.5
-            if wait > 0:
-                time.sleep(wait)
-
-        self.request_times.append(time.time())
+        waited = _global_nvidia_rate_limit(self.rpm_limit)
+        if self.debug and waited > 0:
+            print(
+                f"[NTPE DEBUG] NVIDIA global rate limit waited={waited:.1f}s "
+                f"rpm_limit={self.rpm_limit}",
+                flush=True,
+            )
 
     def chat(
         self,

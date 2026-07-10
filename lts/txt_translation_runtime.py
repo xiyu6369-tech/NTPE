@@ -325,6 +325,21 @@ def timeout_retry_delay_seconds(attempt: int, base_seconds: float) -> float:
     return values[index]
 
 
+def capacity_retry_delay_seconds(attempt: int, base_seconds: float) -> float:
+    """Return provider-capacity backpressure delay (default 60/120/180s)."""
+    raw = os.environ.get("NTPE_CAPACITY_RETRY_DELAYS", "60,120,180")
+    values: list[float] = []
+    for item in raw.split(","):
+        try:
+            values.append(max(0.0, float(item.strip())))
+        except ValueError:
+            continue
+    if not values:
+        return max(60.0, retry_delay_seconds(attempt, base_seconds))
+    index = min(max(1, int(attempt)) - 1, len(values) - 1)
+    return values[index]
+
+
 def progress_enabled(options: TxtTranslationOptions | None = None) -> bool:
     if options is not None and not getattr(options, "progress_enabled", True):
         return False
@@ -514,7 +529,7 @@ def translate_package_with_retry(engine: TranslationEngine, package: dict, packa
         if degraded:
             delay = 0.0
         elif _is_provider_capacity_error(error):
-            delay = max(delay, float(os.environ.get("NTPE_CAPACITY_RETRY_WAIT", "30")))
+            delay = capacity_retry_delay_seconds(attempt, options.retry_base_seconds)
         if delay > 0:
             emit_progress(f"retry wait {delay:.1f}s before next provider request", options=options)
             time.sleep(delay)

@@ -42,6 +42,7 @@ class LiteraryRegressionOptions:
     model: str = "meta/llama-3.3-70b-instruct"
     dry_run: bool = False
     overwrite: bool = False
+    resume: bool = True
     max_retries: int = 3
     provider_attempts: int | None = None
     retry_base_seconds: float = 5.0
@@ -167,7 +168,7 @@ def run_literary_regression(options: LiteraryRegressionOptions) -> dict:
             chunk_size=max(300, int(options.chunk_size)),
             chunk_size_explicit=options.chunk_size_explicit,
             model=options.model,
-            resume=False,
+            resume=bool(options.resume),
             dry_run=options.dry_run,
             max_retries=max(0, int(options.max_retries)),
             provider_attempts=max(1, int(options.provider_attempts)) if options.provider_attempts is not None else None,
