@@ -305,6 +305,26 @@ def retry_delay_seconds(attempt: int, base_seconds: float) -> float:
     return max(0.0, float(base_seconds)) * (2 ** max(0, attempt - 1))
 
 
+def timeout_retry_delay_seconds(attempt: int, base_seconds: float) -> float:
+    """Return the configured delay after a provider timeout.
+
+    NTPE_TIMEOUT_RETRY_DELAYS accepts a comma-separated sequence such as
+    ``5,15,30``.  When attempts exceed the sequence, the last value is reused.
+    Invalid or empty configuration falls back to the normal exponential delay.
+    """
+    raw = os.environ.get("NTPE_TIMEOUT_RETRY_DELAYS", "5,15,30")
+    values: list[float] = []
+    for item in raw.split(","):
+        try:
+            values.append(max(0.0, float(item.strip())))
+        except ValueError:
+            continue
+    if not values:
+        return retry_delay_seconds(attempt, base_seconds)
+    index = min(max(1, int(attempt)) - 1, len(values) - 1)
+    return values[index]
+
+
 def progress_enabled(options: TxtTranslationOptions | None = None) -> bool:
     if options is not None and not getattr(options, "progress_enabled", True):
         return False
@@ -332,7 +352,10 @@ def apply_runtime_speed_policy(options: TxtTranslationOptions) -> TxtTranslation
         chunk_size=max(300, int(chunk_size)),
         provider_attempts=options.provider_attempts or policy.provider_attempts,
         qa_attempts=options.qa_attempts or policy.qa_attempts,
-        runtime_timeout=options.runtime_timeout or effective_timeout(policy, user_timeout),
+        runtime_timeout=(
+            options.runtime_timeout
+            or (max(1, int(user_timeout)) if user_timeout is not None and os.environ.get("NTPE_API_TIMEOUT_EXPLICIT") == "1" else effective_timeout(policy, user_timeout))
+        ),
         user_api_timeout=user_timeout,
         naturalness_retry_limit=policy.naturalness_retry_limit if options.naturalness_retry_limit is None else options.naturalness_retry_limit,
     )
@@ -380,9 +403,6 @@ def _effective_provider_timeout(package: dict, attempt: int) -> int:
         try:
             policy_timeout = max(1, int(float(runtime_timeout)))
             if os.environ.get("NTPE_API_TIMEOUT_EXPLICIT") == "1":
-                # TE v5.2.1: the caller's explicit API timeout is authoritative.
-                # The speed policy remains the default only when no explicit
-                # --api-timeout value was supplied.
                 return base_timeout
             return policy_timeout
         except ValueError:
@@ -486,7 +506,11 @@ def translate_package_with_retry(engine: TranslationEngine, package: dict, packa
         if len(model_chain) > 1:
             next_model = model_chain[(attempt) % len(model_chain)]
             emit_progress(f"provider fallback candidate next_model={next_model}", options=options)
-        delay = retry_delay_seconds(attempt, options.retry_base_seconds)
+        delay = (
+            timeout_retry_delay_seconds(attempt, options.retry_base_seconds)
+            if _is_provider_timeout_error(error)
+            else retry_delay_seconds(attempt, options.retry_base_seconds)
+        )
         if degraded:
             delay = 0.0
         elif _is_provider_capacity_error(error):

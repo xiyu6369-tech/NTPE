@@ -83,14 +83,7 @@ def effective_timeout(policy: RuntimeSpeedPolicy, user_timeout: int | None = Non
                 user_timeout = None
     if user_timeout is None:
         return policy.timeout_seconds
-
-    normalized_timeout = max(1, int(user_timeout))
-    # TE v5.2.1: a timeout explicitly supplied by the CLI is authoritative.
-    # Speed profiles still provide defaults, but must not silently clamp
-    # --api-timeout (for example 180 seconds) back to 90/120 seconds.
-    if os.environ.get("NTPE_API_TIMEOUT_EXPLICIT") == "1":
-        return normalized_timeout
-    return min(policy.timeout_seconds, normalized_timeout)
+    return min(policy.timeout_seconds, max(1, int(user_timeout)))
 
 
 def naturalness_guard_policy_for_speed(speed: str | None) -> str:

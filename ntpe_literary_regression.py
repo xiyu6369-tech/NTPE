@@ -43,6 +43,7 @@ class LiteraryRegressionOptions:
     dry_run: bool = False
     overwrite: bool = False
     max_retries: int = 3
+    provider_attempts: int | None = None
     retry_base_seconds: float = 5.0
     qa_fail_policy: str = "retry"
     simplified_chinese_policy: str = "normalize"
@@ -169,6 +170,7 @@ def run_literary_regression(options: LiteraryRegressionOptions) -> dict:
             resume=False,
             dry_run=options.dry_run,
             max_retries=max(0, int(options.max_retries)),
+            provider_attempts=max(1, int(options.provider_attempts)) if options.provider_attempts is not None else None,
             retry_base_seconds=max(0.0, float(options.retry_base_seconds)),
             qa_fail_policy=options.qa_fail_policy,
             quality_profile=options.profile,

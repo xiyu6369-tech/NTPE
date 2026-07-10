@@ -63,6 +63,7 @@ def build_parser() -> argparse.ArgumentParser:
     txt.add_argument("--glossary", default=None)
     txt.add_argument("--character-memory", default=None)
     txt.add_argument("--max-retries", type=int, default=3)
+    txt.add_argument("--provider-attempts", type=int, default=None, help="total provider request attempts; overrides speed-profile default")
     txt.add_argument("--retry-base-seconds", type=float, default=5.0)
     txt.add_argument("--qa-fail-policy", choices=("retry", "fail", "warn"), default="retry")
     txt.add_argument("--min-length-ratio", type=float, default=0.25)
@@ -88,6 +89,7 @@ def build_parser() -> argparse.ArgumentParser:
     batch.add_argument("--glossary", default=None)
     batch.add_argument("--character-memory", default=None)
     batch.add_argument("--max-retries", type=int, default=3)
+    batch.add_argument("--provider-attempts", type=int, default=None, help="total provider request attempts; overrides speed-profile default")
     batch.add_argument("--retry-base-seconds", type=float, default=5.0)
     batch.add_argument("--qa-fail-policy", choices=("retry", "fail", "warn"), default="retry")
     batch.add_argument("--min-length-ratio", type=float, default=0.25)
@@ -124,6 +126,7 @@ def build_parser() -> argparse.ArgumentParser:
     regression.add_argument("--no-evaluate", action="store_true", help="skip PS-03 quality evaluation report")
     regression.add_argument("--previous-stage", default=None, help="optional previous stage folder for diff report")
     regression.add_argument("--max-retries", type=int, default=3)
+    regression.add_argument("--provider-attempts", type=int, default=None, help="total provider request attempts; overrides speed-profile default")
     regression.add_argument("--retry-base-seconds", type=float, default=5.0)
     regression.add_argument("--qa-fail-policy", choices=("retry", "fail", "warn"), default="retry")
     regression.add_argument("--simplified-chinese-policy", choices=("normalize", "warn", "fail"), default=os.environ.get("NTPE_SIMPLIFIED_CHINESE_POLICY", "normalize"))
@@ -244,6 +247,7 @@ def run_txt(args: argparse.Namespace) -> int:
         resume=not args.no_resume,
         dry_run=args.dry_run,
         max_retries=max(0, args.max_retries),
+        provider_attempts=max(1, args.provider_attempts) if args.provider_attempts is not None else None,
         retry_base_seconds=max(0.0, args.retry_base_seconds),
         glossary_path=Path(args.glossary) if args.glossary else None,
         character_memory_path=Path(args.character_memory) if args.character_memory else None,
@@ -274,6 +278,7 @@ def run_batch(args: argparse.Namespace) -> int:
         resume=not args.no_resume,
         dry_run=args.dry_run,
         max_retries=max(0, args.max_retries),
+        provider_attempts=max(1, args.provider_attempts) if args.provider_attempts is not None else None,
         retry_base_seconds=max(0.0, args.retry_base_seconds),
         glossary_path=Path(args.glossary) if args.glossary else None,
         character_memory_path=Path(args.character_memory) if args.character_memory else None,
@@ -338,6 +343,7 @@ def run_regression(args: argparse.Namespace) -> int:
         dry_run=args.dry_run,
         overwrite=args.overwrite,
         max_retries=max(0, args.max_retries),
+        provider_attempts=max(1, args.provider_attempts) if args.provider_attempts is not None else None,
         retry_base_seconds=max(0.0, args.retry_base_seconds),
         qa_fail_policy=args.qa_fail_policy,
         simplified_chinese_policy=args.simplified_chinese_policy,

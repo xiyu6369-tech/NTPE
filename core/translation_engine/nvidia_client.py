@@ -96,9 +96,9 @@ class NvidiaClient:
         except Timeout as e:
             raise RuntimeError(
                 f"NVIDIA API timeout after connect={self.connect_timeout}s/read={self.timeout}s. "
-                "Increase the read timeout with NTPE_API_TIMEOUT=180 or use "
-                "launcher_translate.py regression --api-timeout 180. "
-                "For large literary regression sets, 180-300 seconds is recommended."
+                "The configured timeout was applied correctly; the provider did not respond in time. "
+                "Retry later, increase --provider-attempts, configure NTPE_TIMEOUT_RETRY_DELAYS, "
+                "or use --fallback-models with an available model."
             ) from e
         except RequestException as e:
             raise RuntimeError(f"NVIDIA API request failed: {e}") from e
