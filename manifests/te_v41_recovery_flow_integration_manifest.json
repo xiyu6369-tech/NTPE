@@ -1,0 +1,21 @@
+{
+  "version": "TE-v4.1",
+  "stage": "4.1.5",
+  "release_id": "TE-v4.1-stage-4.1.5-recovery-flow-integration",
+  "layer": "translation_reliability_execution",
+  "component": "recovery_flow_integration",
+  "provider_runtime_modified": false,
+  "translation_runtime_modified": false,
+  "launcher_modified": false,
+  "http_called": false,
+  "api_key_accessed": false,
+  "real_translation_runtime_used": false,
+  "scenarios": [
+    "default_disabled",
+    "read_timeout_then_success",
+    "provider_not_attempted_then_rebuild",
+    "too_short_rejected",
+    "authentication_error_rejected"
+  ],
+  "next_stage": "TE-v4.1 Stage-4.1.6 Recovery Flow Boundary Regression"
+}

@@ -380,7 +380,10 @@ def _effective_provider_timeout(package: dict, attempt: int) -> int:
         try:
             policy_timeout = max(1, int(float(runtime_timeout)))
             if os.environ.get("NTPE_API_TIMEOUT_EXPLICIT") == "1":
-                return min(policy_timeout, base_timeout)
+                # TE v5.2.1: the caller's explicit API timeout is authoritative.
+                # The speed policy remains the default only when no explicit
+                # --api-timeout value was supplied.
+                return base_timeout
             return policy_timeout
         except ValueError:
             pass

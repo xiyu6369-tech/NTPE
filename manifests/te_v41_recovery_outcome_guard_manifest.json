@@ -1,0 +1,23 @@
+{
+  "version": "TE-v4.1",
+  "stage": "4.1.3",
+  "release_id": "TE-v4.1-stage-4.1.3-recovery-outcome-guard",
+  "layer": "translation_reliability_execution",
+  "component": "recovery_outcome_guard",
+  "provider_runtime_modified": false,
+  "translation_runtime_modified": false,
+  "launcher_modified": false,
+  "http_called": false,
+  "api_key_accessed": false,
+  "real_translation_executed": false,
+  "checks": [
+    "empty_output",
+    "too_short",
+    "too_long",
+    "hangul_residue",
+    "duplicate_output",
+    "recovery_not_successful",
+    "recovery_final_outcome_not_success"
+  ],
+  "next_stage": "TE-v4.1 Stage-4.1.4 Recovery Result Bundle"
+}

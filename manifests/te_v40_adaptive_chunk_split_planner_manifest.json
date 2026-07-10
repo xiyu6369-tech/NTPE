@@ -1,0 +1,22 @@
+{
+  "version": "TE-v4.0",
+  "stage": "4.0.3",
+  "release_id": "TE-v4.0-stage-4.0.3-adaptive-chunk-split-planner",
+  "layer": "translation_reliability",
+  "component": "adaptive_chunk_split_planner",
+  "provider_runtime_modified": false,
+  "translation_runtime_modified": false,
+  "launcher_modified": false,
+  "http_called": false,
+  "api_key_accessed": false,
+  "translation_executed": false,
+  "split_outcomes": [
+    "read_timeout",
+    "connect_timeout",
+    "empty_output",
+    "too_short",
+    "hangul_residue",
+    "duplicate_output"
+  ],
+  "next_stage": "TE-v4.0 Stage-4.0.4 Translation Failure Analyzer"
+}

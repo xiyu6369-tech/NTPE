@@ -1,0 +1,23 @@
+{
+  "version": "TE-v4.0",
+  "stage": "4.0.2",
+  "release_id": "TE-v4.0-stage-4.0.2-adaptive-retry-policy",
+  "layer": "translation_reliability",
+  "component": "adaptive_retry_policy",
+  "provider_runtime_modified": false,
+  "translation_runtime_modified": false,
+  "launcher_modified": false,
+  "http_called": false,
+  "api_key_accessed": false,
+  "sleep_executed": false,
+  "decisions": [
+    "retry",
+    "stop",
+    "delay_seconds",
+    "next_timeout_seconds",
+    "next_chunk_size",
+    "rebuild_provider_session",
+    "switch_provider"
+  ],
+  "next_stage": "TE-v4.0 Stage-4.0.3 Adaptive Chunk Split Planner"
+}

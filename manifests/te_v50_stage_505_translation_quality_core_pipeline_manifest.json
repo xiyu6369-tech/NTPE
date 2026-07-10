@@ -1,0 +1,11 @@
+{
+  "version": "TE-v5.0",
+  "stage": "5.0.5",
+  "component": "translation_quality_core_pipeline",
+  "translation_runtime_modified": false,
+  "provider_runtime_modified": false,
+  "launcher_modified": false,
+  "http_called": false,
+  "api_key_accessed": false,
+  "real_translation_executed": false
+}

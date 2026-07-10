@@ -1,0 +1,20 @@
+{
+  "version": "TE-v4.0",
+  "stage": "4.0.7",
+  "release_id": "TE-v4.0-stage-4.0.7-runtime-shadow-observation",
+  "layer": "translation_reliability",
+  "component": "runtime_shadow_observation",
+  "default_mode": "disabled",
+  "enabled_mode": "shadow_observation",
+  "read_only": true,
+  "provider_runtime_modified": false,
+  "translation_runtime_modified": false,
+  "launcher_modified": false,
+  "provider_called": false,
+  "http_called": false,
+  "api_key_accessed": false,
+  "retry_executed": false,
+  "split_executed": false,
+  "real_translation_executed": false,
+  "next_stage": "TE-v4.0 Stage-4.0.8 Reliability Freeze"
+}

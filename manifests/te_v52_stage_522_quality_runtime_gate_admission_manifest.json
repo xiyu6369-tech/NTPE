@@ -1,0 +1,12 @@
+{
+  "version": "TE-v5.2",
+  "stage": "5.2.2",
+  "component": "quality_runtime_gate_admission",
+  "translation_runtime_modified": false,
+  "provider_runtime_modified": false,
+  "launcher_modified": false,
+  "provider_called": false,
+  "http_called": false,
+  "api_key_accessed": false,
+  "real_translation_executed": false
+}

@@ -1,0 +1,21 @@
+{
+  "version": "TE-v4.0",
+  "stage": "4.0.4",
+  "release_id": "TE-v4.0-stage-4.0.4-translation-failure-analyzer",
+  "layer": "translation_reliability",
+  "component": "translation_failure_analyzer",
+  "provider_runtime_modified": false,
+  "translation_runtime_modified": false,
+  "launcher_modified": false,
+  "http_called": false,
+  "api_key_accessed": false,
+  "real_translation_executed": false,
+  "outputs": [
+    "failure_ranking",
+    "priority_actions",
+    "diagnostics",
+    "top_failure",
+    "critical_failures"
+  ],
+  "next_stage": "TE-v4.0 Stage-4.0.5 Retry Strategy Benchmark"
+}

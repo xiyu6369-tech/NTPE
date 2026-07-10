@@ -1,0 +1,41 @@
+{
+  "version": "TE-v5.0",
+  "stage": "5.0.6",
+  "release_id": "TE-v5.0-quality-core-freeze",
+  "layer": "translation_quality_core",
+  "frozen": true,
+  "stages": [
+    "5.0.1",
+    "5.0.2",
+    "5.0.3",
+    "5.0.4",
+    "5.0.5"
+  ],
+  "components": [
+    "TranslationQualityBaseline",
+    "CompletenessGuard",
+    "TerminologyConsistencyGuard",
+    "TraditionalChineseNormalizer",
+    "TranslationQualityCorePipeline"
+  ],
+  "quality_checks": [
+    "empty_output",
+    "too_short",
+    "too_long",
+    "hangul_residue",
+    "duplicate_paragraph",
+    "duplicate_line",
+    "paragraph_omission_suspected",
+    "sentence_omission_suspected",
+    "locked_term_missing",
+    "dialogue_quote_format",
+    "simplified_chinese_residue"
+  ],
+  "translation_runtime_modified": false,
+  "provider_runtime_modified": false,
+  "launcher_modified": false,
+  "http_called": false,
+  "api_key_accessed": false,
+  "real_translation_executed": false,
+  "next_milestone": "TE-v5.1 Quality Repair and Runtime Gate Integration"
+}

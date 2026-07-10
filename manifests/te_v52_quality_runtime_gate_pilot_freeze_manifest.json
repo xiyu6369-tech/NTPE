@@ -1,0 +1,32 @@
+{
+  "version": "TE-v5.2",
+  "stage": "5.2.6",
+  "release_id": "TE-v5.2-quality-runtime-gate-pilot-freeze",
+  "layer": "translation_quality_runtime_gate",
+  "frozen": true,
+  "stages": [
+    "5.2.1",
+    "5.2.2",
+    "5.2.3",
+    "5.2.4",
+    "5.2.5"
+  ],
+  "components": [
+    "QualityRuntimeGateContract",
+    "QualityRuntimeGateAdmission",
+    "QualityRuntimeGateDecision",
+    "QualityRuntimeGatePilot",
+    "QualityRuntimeGateBoundaryRegression"
+  ],
+  "default_mode": "disabled",
+  "enabled_mode": "single_chunk_quality_gate",
+  "runtime_result_unchanged": true,
+  "provider_called": false,
+  "http_called": false,
+  "api_key_accessed": false,
+  "real_translation_executed": false,
+  "translation_runtime_modified": false,
+  "provider_runtime_modified": false,
+  "launcher_modified": false,
+  "next_milestone": "TE-v5.3 Quality Gate Controlled Runtime Integration"
+}

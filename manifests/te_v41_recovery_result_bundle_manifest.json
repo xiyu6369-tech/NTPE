@@ -1,0 +1,21 @@
+{
+  "version": "TE-v4.1",
+  "stage": "4.1.4",
+  "release_id": "TE-v4.1-stage-4.1.4-recovery-result-bundle",
+  "layer": "translation_reliability_execution",
+  "component": "recovery_result_bundle",
+  "provider_runtime_modified": false,
+  "translation_runtime_modified": false,
+  "launcher_modified": false,
+  "http_called": false,
+  "api_key_accessed": false,
+  "real_translation_runtime_used": false,
+  "outputs": [
+    "recovery_summary",
+    "guard_summary",
+    "hook_status",
+    "final_outcome",
+    "integration_status"
+  ],
+  "next_stage": "TE-v4.1 Stage-4.1.5 Recovery Flow Integration Test"
+}

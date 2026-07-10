@@ -1,0 +1,16 @@
+{
+  "version": "TE-v4.1",
+  "stage": "4.1.1",
+  "release_id": "TE-v4.1-stage-4.1.1-adaptive-retry-execution-harness",
+  "layer": "translation_reliability_execution",
+  "component": "adaptive_retry_execution_harness",
+  "default_mode": "disabled",
+  "enabled_mode": "isolated_callback",
+  "provider_runtime_modified": false,
+  "translation_runtime_modified": false,
+  "launcher_modified": false,
+  "http_client_imported": false,
+  "api_key_accessed": false,
+  "real_translation_runtime_used": false,
+  "next_stage": "TE-v4.1 Stage-4.1.2 Runtime Recovery Hook Adapter"
+}

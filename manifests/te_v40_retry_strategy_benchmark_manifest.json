@@ -1,0 +1,27 @@
+{
+  "version": "TE-v4.0",
+  "stage": "4.0.5",
+  "release_id": "TE-v4.0-stage-4.0.5-retry-strategy-benchmark",
+  "layer": "translation_reliability",
+  "component": "retry_strategy_benchmark",
+  "provider_runtime_modified": false,
+  "translation_runtime_modified": false,
+  "launcher_modified": false,
+  "http_called": false,
+  "api_key_accessed": false,
+  "sleep_executed": false,
+  "real_translation_executed": false,
+  "strategies": [
+    "fixed_retry",
+    "adaptive_retry",
+    "adaptive_chunk_split"
+  ],
+  "comparison_metrics": [
+    "success_rate_gain",
+    "retry_reduction",
+    "estimated_time_reduction_ms",
+    "split_recoveries",
+    "provider_rebuild_recoveries"
+  ],
+  "next_stage": "TE-v4.0 Stage-4.0.6 Reliability Integration Contract"
+}

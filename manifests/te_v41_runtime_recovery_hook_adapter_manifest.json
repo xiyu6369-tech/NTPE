@@ -1,0 +1,17 @@
+{
+  "version": "TE-v4.1",
+  "stage": "4.1.2",
+  "release_id": "TE-v4.1-stage-4.1.2-runtime-recovery-hook-adapter",
+  "layer": "translation_reliability_execution",
+  "component": "runtime_recovery_hook_adapter",
+  "default_mode": "disabled",
+  "enabled_mode": "isolated_recovery",
+  "allowed_caller": "translation_runtime",
+  "provider_runtime_modified": false,
+  "translation_runtime_modified": false,
+  "launcher_modified": false,
+  "http_client_imported": false,
+  "api_key_accessed": false,
+  "real_translation_runtime_used": false,
+  "next_stage": "TE-v4.1 Stage-4.1.3 Recovery Outcome Guard"
+}

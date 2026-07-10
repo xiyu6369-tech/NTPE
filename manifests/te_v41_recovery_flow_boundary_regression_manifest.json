@@ -1,0 +1,24 @@
+{
+  "version": "TE-v4.1",
+  "stage": "4.1.6",
+  "release_id": "TE-v4.1-stage-4.1.6-recovery-flow-boundary-regression",
+  "layer": "translation_reliability_execution",
+  "component": "recovery_flow_boundary_regression",
+  "program_changes": false,
+  "provider_runtime_modified": false,
+  "translation_runtime_modified": false,
+  "launcher_modified": false,
+  "http_called": false,
+  "api_key_accessed": false,
+  "real_translation_runtime_used": false,
+  "source_text_retained": false,
+  "translated_text_retained": false,
+  "validated_components": [
+    "AdaptiveRetryExecutionHarness",
+    "RuntimeRecoveryHookAdapter",
+    "RecoveryOutcomeGuard",
+    "RecoveryResultBundle",
+    "RecoveryFlowIntegration"
+  ],
+  "next_stage": "TE-v4.1 Stage-4.1.7 Translation Reliability Execution Freeze"
+}

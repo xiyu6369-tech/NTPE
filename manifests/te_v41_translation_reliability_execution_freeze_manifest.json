@@ -1,0 +1,48 @@
+{
+  "version": "TE-v4.1",
+  "stage": "4.1.7",
+  "release_id": "TE-v4.1-translation-reliability-execution-freeze",
+  "layer": "translation_reliability_execution",
+  "frozen": true,
+  "stages": [
+    "4.1.1",
+    "4.1.2",
+    "4.1.3",
+    "4.1.4",
+    "4.1.5",
+    "4.1.6"
+  ],
+  "components": [
+    "AdaptiveRetryExecutionHarness",
+    "RuntimeRecoveryHookAdapter",
+    "RecoveryOutcomeGuard",
+    "RecoveryResultBundle",
+    "RecoveryFlowIntegration",
+    "RecoveryFlowBoundaryRegression"
+  ],
+  "default_mode": "disabled",
+  "enabled_mode": "isolated_callback",
+  "guarantees": {
+    "provider_runtime_modified": false,
+    "translation_runtime_modified": false,
+    "launcher_modified": false,
+    "http_called": false,
+    "api_key_accessed": false,
+    "real_translation_runtime_used": false,
+    "source_text_retained": false,
+    "translated_text_retained": false,
+    "authentication_error_retried": false,
+    "too_short_output_accepted": false
+  },
+  "validation_commands": [
+    "python ntpe_te_v41_stage411_adaptive_retry_execution_harness_test.py",
+    "python ntpe_te_v41_stage412_runtime_recovery_hook_adapter_test.py",
+    "python ntpe_te_v41_stage413_recovery_outcome_guard_test.py",
+    "python ntpe_te_v41_stage414_recovery_result_bundle_test.py",
+    "python ntpe_te_v41_stage415_recovery_flow_integration_test.py",
+    "python ntpe_te_v41_stage416_recovery_flow_boundary_regression_test.py",
+    "python ntpe_te_v41_stage417_translation_reliability_execution_freeze_test.py",
+    "python ntpe_validate.py"
+  ],
+  "next_stage": "TE-v4.2 Real Runtime Recovery Pilot Planning"
+}
