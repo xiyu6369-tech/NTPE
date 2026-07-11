@@ -1,0 +1,20 @@
+{
+  "stage": "TE v6.0 Stage 11.3",
+  "name": "Evidence-to-Retry Integration",
+  "version": "6.0.0-stage11.3",
+  "runtime_integrated": true,
+  "provider_calls_added": 0,
+  "fail_closed": true,
+  "files": {
+    "modified": [
+      "core/translation_discipline/__init__.py",
+      "core/translation_discipline/runtime_integration.py"
+    ],
+    "added": [
+      "core/translation_discipline/evidence_retry_integration.py",
+      "ntpe_te_v611_stage113_evidence_to_retry_integration_test.py",
+      "tests/integration/translation_evidence_to_retry_integration_v611_stage113_test.py",
+      "docs/releases/te_v6_0/TE_V6_0_STAGE11_3_EVIDENCE_TO_RETRY_INTEGRATION.md"
+    ]
+  }
+}

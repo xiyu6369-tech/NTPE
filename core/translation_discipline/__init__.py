@@ -47,6 +47,11 @@ from .runtime_integration import (
     integrate_translation_discipline_runtime,
 )
 from .retry_evidence import RETRY_EVIDENCE_VERSION, RetryEvidence, collect_retry_evidence, extract_retry_evidence
+from .evidence_retry_integration import (
+    EVIDENCE_RETRY_INTEGRATION_VERSION,
+    EvidenceRetryIntegrationResult,
+    integrate_alignment_evidence_for_retry,
+)
 from .targeted_retry_plan import TARGETED_RETRY_PLAN_VERSION, TargetedRetryUnit, build_targeted_retry_units, merge_targeted_retry_result
 from .adaptive_retry_policy import (
     ADAPTIVE_RETRY_POLICY_VERSION, NONE, TARGETED_RETRY, FULL_RETRY,
@@ -101,6 +106,9 @@ __all__ = [
     "RetryEvidence",
     "collect_retry_evidence",
     "extract_retry_evidence",
+    "EVIDENCE_RETRY_INTEGRATION_VERSION",
+    "EvidenceRetryIntegrationResult",
+    "integrate_alignment_evidence_for_retry",
     "TARGETED_RETRY_PLAN_VERSION",
     "TargetedRetryUnit",
     "build_targeted_retry_units",
@@ -135,18 +143,4 @@ __all__.extend([
     "compare_stage_outputs",
     "summarize_retry_metrics",
     "write_comparison_reports",
-])
-
-from .freeze_readiness import (
-    FREEZE_READINESS_VERSION,
-    FreezeReadinessResult,
-    evaluate_freeze_readiness,
-    write_freeze_readiness_report,
-)
-
-__all__.extend([
-    "FREEZE_READINESS_VERSION",
-    "FreezeReadinessResult",
-    "evaluate_freeze_readiness",
-    "write_freeze_readiness_report",
 ])

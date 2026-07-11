@@ -10,8 +10,9 @@ from .quality_enforcement import DisciplineQualityEnforcer
 from .runtime_orchestrator import orchestrate_runtime_discipline
 from .adaptive_retry_policy import build_adaptive_retry_plan
 from .audit_trail import build_discipline_audit_trail
+from .evidence_retry_integration import integrate_alignment_evidence_for_retry
 
-DISCIPLINE_RUNTIME_INTEGRATION_VERSION = "6.0.0-stage10"
+DISCIPLINE_RUNTIME_INTEGRATION_VERSION = "6.0.0-stage11.3"
 
 QualityRunner = Callable[[str], Mapping[str, Any]]
 LegacyQARunner = Callable[[str, Mapping[str, Any]], Mapping[str, Any]]
@@ -119,6 +120,14 @@ def integrate_translation_discipline_runtime(
     )
     final_qa = outcome.qa_report
     unified = dict(final_qa.get("unified_quality_report") or {})
+    evidence_retry = integrate_alignment_evidence_for_retry(
+        unified,
+        source_text=context.source_text,
+        translated_text=outcome.text,
+    )
+    unified = evidence_retry.report
+    final_qa["unified_quality_report"] = unified
+    final_qa["evidence_retry_integration"] = evidence_retry.to_metadata()
     plan = build_adaptive_retry_plan(
         unified,
         source_text=context.source_text,
@@ -158,10 +167,13 @@ def integrate_translation_discipline_runtime(
         "full_retry_required": plan.tier == "full_retry",
         "active_rule_codes": list(active_rules),
         "issue_codes": list(issue_codes),
+        "evidence_retry_integration": evidence_retry.to_metadata(),
     }
     final_qa["discipline_runtime_integration"] = integration
     final_qa["adaptive_retry_policy"] = plan_metadata
+    final_qa["evidence_retry_integration"] = evidence_retry.to_metadata()
     unified["discipline_runtime_integration"] = integration
+    unified["evidence_retry_integration"] = evidence_retry.to_metadata()
     unified["adaptive_retry_policy"] = plan_metadata
     final_qa["unified_quality_report"] = unified
     final_qa["adaptive_feedback"] = adaptive_feedback
@@ -194,7 +206,7 @@ def integrate_translation_discipline_runtime(
         matched_issue_codes=issue_codes,
         adaptive_feedback=adaptive_feedback,
         audit_report=audit,
-        metadata={**dict(context.runtime_metadata), "discipline_runtime_integration": integration, "adaptive_retry_policy": plan_metadata},
+        metadata={**dict(context.runtime_metadata), "discipline_runtime_integration": integration, "adaptive_retry_policy": plan_metadata, "evidence_retry_integration": evidence_retry.to_metadata()},
         retry_tier=plan.tier,
         adaptive_retry_plan=plan_metadata,
         provider_call_budget=plan.provider_call_budget.to_metadata(),

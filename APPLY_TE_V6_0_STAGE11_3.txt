@@ -1,0 +1,10 @@
+TE v6.0 Stage 11.3 — Evidence-to-Retry Integration
+
+Copy all files into D:\Python\NTPE and merge directories.
+
+Validation:
+python ntpe_te_v611_stage113_evidence_to_retry_integration_test.py
+python -m pytest -q tests\integration\translation_evidence_to_retry_integration_v611_stage113_test.py
+python ntpe_te_v611_stage112_source_translation_semantic_alignment_test.py
+python ntpe_te_v600_stage10_adaptive_retry_policy_v2_test.py
+python ntpe_validate.py
