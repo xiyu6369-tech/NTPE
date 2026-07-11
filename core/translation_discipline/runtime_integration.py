@@ -8,8 +8,10 @@ from .engine import TranslationDisciplineEngine
 from .quality_adapter import UnifiedQualityGateAdapter
 from .quality_enforcement import DisciplineQualityEnforcer
 from .runtime_orchestrator import orchestrate_runtime_discipline
+from .adaptive_retry_policy import build_adaptive_retry_plan
+from .audit_trail import build_discipline_audit_trail
 
-DISCIPLINE_RUNTIME_INTEGRATION_VERSION = "6.0.0-stage09"
+DISCIPLINE_RUNTIME_INTEGRATION_VERSION = "6.0.0-stage10"
 
 QualityRunner = Callable[[str], Mapping[str, Any]]
 LegacyQARunner = Callable[[str, Mapping[str, Any]], Mapping[str, Any]]
@@ -52,6 +54,13 @@ class DisciplineRuntimeResult:
     adaptive_feedback: dict[str, Any]
     audit_report: dict[str, Any]
     metadata: dict[str, Any]
+    retry_tier: str = "none"
+    adaptive_retry_plan: dict[str, Any] = field(default_factory=dict)
+    provider_call_budget: dict[str, int] = field(default_factory=dict)
+    targeted_retry_required: bool = False
+    full_retry_required: bool = False
+    retry_evidence: tuple[dict[str, Any], ...] = ()
+    targeted_retry_units: tuple[dict[str, Any], ...] = ()
 
 
 def _run_quality(
@@ -110,6 +119,17 @@ def integrate_translation_discipline_runtime(
     )
     final_qa = outcome.qa_report
     unified = dict(final_qa.get("unified_quality_report") or {})
+    plan = build_adaptive_retry_plan(
+        unified,
+        source_text=context.source_text,
+        provider_budget_limit=context.runtime_metadata.get("provider_call_budget_limit"),
+        provider_budget_used=int(context.runtime_metadata.get("provider_call_budget_used") or 0),
+        post_targeted_retry=bool(context.runtime_metadata.get("post_targeted_retry")),
+    )
+    plan_metadata = plan.to_metadata()
+    # Preserve the frozen Stage 05/09 public action vocabulary. Stage 10
+    # exposes the finer route through retry_tier/adaptive_retry_plan.
+    final_action = outcome.final_action
     retry = dict(final_qa.get("adaptive_retry_decision") or {})
     audit = dict(final_qa.get("discipline_audit_trail") or {})
     issue_codes = tuple(str(code) for code in retry.get("issue_codes") or ())
@@ -129,36 +149,57 @@ def integrate_translation_discipline_runtime(
         "version": DISCIPLINE_RUNTIME_INTEGRATION_VERSION,
         "entrypoint": "core.translation_discipline.runtime_integration",
         "initial_action": outcome.initial_action,
-        "final_action": outcome.final_action,
+        "final_action": final_action,
         "local_repair_applied": outcome.local_repair_result.changed,
         "revalidated": outcome.revalidated,
-        "provider_retry_required": outcome.final_action == "provider_retry",
+        "provider_retry_required": plan.tier in {"targeted_retry", "full_retry"},
+        "retry_tier": plan.tier,
+        "targeted_retry_required": plan.tier == "targeted_retry",
+        "full_retry_required": plan.tier == "full_retry",
         "active_rule_codes": list(active_rules),
         "issue_codes": list(issue_codes),
     }
     final_qa["discipline_runtime_integration"] = integration
+    final_qa["adaptive_retry_policy"] = plan_metadata
     unified["discipline_runtime_integration"] = integration
+    unified["adaptive_retry_policy"] = plan_metadata
     final_qa["unified_quality_report"] = unified
     final_qa["adaptive_feedback"] = adaptive_feedback
+    audit = build_discipline_audit_trail(
+        final_qa,
+        initial_action=outcome.initial_action,
+        final_action=final_action,
+        revalidated=outcome.revalidated,
+        local_repair=outcome.local_repair_result.to_metadata(),
+    ).to_metadata()
+    final_qa["discipline_audit_trail"] = audit
+    final_qa["unified_quality_report"]["discipline_audit_trail"] = audit
     if report_writer is not None:
         report_writer(audit)
 
-    accepted = outcome.final_action in {"accept", "accept_with_warnings"}
+    accepted = final_action in {"accept", "accept_with_warnings"}
     return DisciplineRuntimeResult(
         final_text=outcome.text,
         initial_quality_report=initial_qa,
         final_quality_report=final_qa,
         initial_action=outcome.initial_action,
-        final_action=outcome.final_action,
+        final_action=final_action,
         accepted=accepted,
-        accepted_with_warnings=outcome.final_action == "accept_with_warnings",
-        provider_retry_required=outcome.final_action == "provider_retry",
-        rejected=outcome.final_action == "reject",
+        accepted_with_warnings=final_action == "accept_with_warnings",
+        provider_retry_required=plan.tier in {"targeted_retry", "full_retry"},
+        rejected=final_action == "reject",
         local_repair_applied=outcome.local_repair_result.changed,
         revalidated=outcome.revalidated,
         active_rule_codes=active_rules,
         matched_issue_codes=issue_codes,
         adaptive_feedback=adaptive_feedback,
         audit_report=audit,
-        metadata={**dict(context.runtime_metadata), "discipline_runtime_integration": integration},
+        metadata={**dict(context.runtime_metadata), "discipline_runtime_integration": integration, "adaptive_retry_policy": plan_metadata},
+        retry_tier=plan.tier,
+        adaptive_retry_plan=plan_metadata,
+        provider_call_budget=plan.provider_call_budget.to_metadata(),
+        targeted_retry_required=plan.tier == "targeted_retry",
+        full_retry_required=plan.tier == "full_retry",
+        retry_evidence=tuple(item.to_metadata() for item in plan.retry_evidence),
+        targeted_retry_units=tuple(item.to_metadata() for item in plan.targeted_retry_units),
     )

@@ -46,6 +46,12 @@ from .runtime_integration import (
     DisciplineRuntimeResult,
     integrate_translation_discipline_runtime,
 )
+from .retry_evidence import RETRY_EVIDENCE_VERSION, RetryEvidence, collect_retry_evidence, extract_retry_evidence
+from .targeted_retry_plan import TARGETED_RETRY_PLAN_VERSION, TargetedRetryUnit, build_targeted_retry_units, merge_targeted_retry_result
+from .adaptive_retry_policy import (
+    ADAPTIVE_RETRY_POLICY_VERSION, NONE, TARGETED_RETRY, FULL_RETRY,
+    ProviderCallBudget, AdaptiveRetryPlan, AdaptiveRetryPolicy, build_adaptive_retry_plan,
+)
 from .registry import DisciplineRuleRegistry
 from .report import build_discipline_report
 from .rule import CATEGORIES, PHASES, DisciplineRule
@@ -91,7 +97,25 @@ __all__ = [
     "DisciplineRuntimeContext",
     "DisciplineRuntimeResult",
     "integrate_translation_discipline_runtime",
+    "RETRY_EVIDENCE_VERSION",
+    "RetryEvidence",
+    "collect_retry_evidence",
+    "extract_retry_evidence",
+    "TARGETED_RETRY_PLAN_VERSION",
+    "TargetedRetryUnit",
+    "build_targeted_retry_units",
+    "merge_targeted_retry_result",
+    "ADAPTIVE_RETRY_POLICY_VERSION",
+    "NONE",
+    "TARGETED_RETRY",
+    "FULL_RETRY",
+    "ProviderCallBudget",
+    "AdaptiveRetryPlan",
+    "AdaptiveRetryPolicy",
+    "build_adaptive_retry_plan",
     "build_discipline_report",
     "CATEGORIES",
     "PHASES",
 ]
+
+from .production_validation import PRODUCTION_VALIDATION_VERSION, ProductionValidationSummary, summarize_stage_output, write_validation_report
