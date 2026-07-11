@@ -1,0 +1,40 @@
+{
+  "stage": "TE-v7.0-Stage02",
+  "version": "7.0.0-stage02",
+  "status": "candidate",
+  "runtime_auto_hook": false,
+  "default_mode": "disabled",
+  "provider_calls_added": 0,
+  "frozen_files_modified": false,
+  "inventory": [
+    "core/adaptive_context_integration/__init__.py",
+    "core/adaptive_context_integration/model.py",
+    "core/adaptive_context_integration/mode.py",
+    "core/adaptive_context_integration/adapter.py",
+    "core/adaptive_context_integration/utils.py",
+    "core/adaptive_context_integration/admission.py",
+    "core/adaptive_context_integration/integration.py",
+    "ntpe_te_v700_stage02_ace_runtime_integration_test.py",
+    "tests/integration/translation_engine_v700_stage02_ace_runtime_integration_test.py",
+    "tests/integration/translation_engine_v700_stage02_shadow_benchmark_test.py",
+    "docs/releases/te_v7_0/TE_V7_0_STAGE02_ACE_RUNTIME_INTEGRATION.md",
+    "artifacts/te_v7_stage02/TE_V7_STAGE02_SHADOW_BENCHMARK.json"
+  ],
+  "integrity": {
+    "algorithm": "sha256",
+    "files": {
+      "core/adaptive_context_integration/__init__.py": "80763ad15e47e45889b291f5fd93fd4b9465db861780d1296ce50b1dd5670b1a",
+      "core/adaptive_context_integration/model.py": "6a916ab6a07176afc4872fc070ef81930c1d858daf15bf09a878387ff05229b7",
+      "core/adaptive_context_integration/mode.py": "0dbaefd56edfb53624e29a55a80b6c8f5af67ef0d9872278f87cba1c7066c6a5",
+      "core/adaptive_context_integration/adapter.py": "67ce49ea980ab77d4ab5d624fe93df4213f172f5ca0dde0e02fe7cfb41e29505",
+      "core/adaptive_context_integration/utils.py": "81548622bb9bb33d90b65c0dc272b8b5f5c785c42e3118ffb9c37d8663f69280",
+      "core/adaptive_context_integration/admission.py": "467dad668034d3a2d9b88723b38aa6233e657050f8df701e0e03349161f38cb4",
+      "core/adaptive_context_integration/integration.py": "81b0571cdd19a12b221ec73d950fd5108ddf88c2d3bbe0332da8677767f9dd34",
+      "ntpe_te_v700_stage02_ace_runtime_integration_test.py": "a88371dfad8d40adf5febdfacc0faee48f185425051eea7249cbcd82478d5fbd",
+      "tests/integration/translation_engine_v700_stage02_ace_runtime_integration_test.py": "d45d212f36ebdb3d8a88ab1a690ba17f2b9d789dec9b73e52451925cd6b3eb80",
+      "tests/integration/translation_engine_v700_stage02_shadow_benchmark_test.py": "0ed9888c5c970521f36ef8d5ad3aca78840285ad81a5e26a29a7c9e69be4a285",
+      "docs/releases/te_v7_0/TE_V7_0_STAGE02_ACE_RUNTIME_INTEGRATION.md": "da7c990dd992f17af95e32f9faa7fcd6c8b6358b57b661e5ee2a28a0b04642fc",
+      "artifacts/te_v7_stage02/TE_V7_STAGE02_SHADOW_BENCHMARK.json": "ede5989c41f9fd556fe763c8f03f2dca64765bba24fe7b26d789227b05b933e7"
+    }
+  }
+}
