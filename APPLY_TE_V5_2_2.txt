@@ -1,0 +1,15 @@
+Copy all contents into D:\Python\NTPE and merge folders.
+
+Test:
+python ntpe_te_v522_provider_timeout_resilience_test.py
+python ntpe_validate.py
+
+Golden Set:
+python launcher_translate.py regression ^
+--set golden ^
+--stage TE-v5.2.2-ProviderTimeoutResilience ^
+--profile literary ^
+--chunk-size 600 ^
+--api-timeout 180 ^
+--provider-attempts 4 ^
+--overwrite

@@ -1,0 +1,7 @@
+Copy all files into D:\Python\NTPE and merge folders.
+
+Run:
+python ntpe_te_v5533_segment_level_completeness_recovery_test.py
+python ntpe_te_v5532_adaptive_retry_failure_fallback_test.py
+python ntpe_te_v5531_completeness_recovery_best_attempt_test.py
+python ntpe_validate.py

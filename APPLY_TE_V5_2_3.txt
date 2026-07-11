@@ -1,0 +1,15 @@
+TE v5.2.3 Provider Backpressure and Regression Resume
+
+Copy all files and folders from this DELTA package into:
+D:\Python\NTPE
+
+Merge folders and overwrite only the files included in this package.
+
+Validation:
+python ntpe_te_v523_provider_backpressure_resume_test.py
+python ntpe_te_v522_provider_timeout_resilience_test.py
+python ntpe_te_v30_stage022_runtime_speed_policy_test.py
+python ntpe_validate.py
+
+Fresh Golden Set run: include --overwrite.
+Resume after failure: run the same stage again WITHOUT --overwrite.

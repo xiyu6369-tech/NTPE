@@ -1,0 +1,24 @@
+TE v5.2.1 Regression Timeout Propagation Fix
+============================================
+
+Copy this DELTA package over the project root:
+
+D:\Python\NTPE
+
+Files updated:
+- core\translation_runtime\runtime_speed_policy.py
+- lts\txt_translation_runtime.py
+
+Files added:
+- ntpe_te_v521_timeout_propagation_fix_test.py
+- tests\integration\translation_timeout_propagation_fix_test.py
+- docs\releases\TE_v5_2_1_REGRESSION_TIMEOUT_PROPAGATION_FIX.md
+
+Run:
+
+cd /d D:\Python\NTPE
+python ntpe_te_v521_timeout_propagation_fix_test.py
+python ntpe_te_v30_stage022_runtime_speed_policy_test.py
+python ntpe_validate.py
+
+Then run Golden Set using the command in the release document.

@@ -73,16 +73,20 @@ def get_runtime_speed_policy(speed: str | None = None) -> RuntimeSpeedPolicy:
 
 
 def effective_timeout(policy: RuntimeSpeedPolicy, user_timeout: int | None = None) -> int:
+    explicit_timeout = False
     if user_timeout is None:
         explicit = os.environ.get("NTPE_API_TIMEOUT_EXPLICIT") == "1"
         env_value = os.environ.get("NTPE_API_TIMEOUT")
         if explicit and env_value:
             try:
                 user_timeout = max(1, int(float(env_value)))
+                explicit_timeout = True
             except ValueError:
                 user_timeout = None
     if user_timeout is None:
         return policy.timeout_seconds
+    if explicit_timeout:
+        return max(1, int(user_timeout))
     return min(policy.timeout_seconds, max(1, int(user_timeout)))
 
 

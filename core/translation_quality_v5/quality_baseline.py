@@ -85,18 +85,50 @@ class TranslationQualityBaseline:
                 "deduplicate_or_retranslate",
                 {"count": duplicate_lines}
             ))
-        if (
+        paragraph_ratio = (
+            translated_paragraphs / source_paragraphs
+            if source_paragraphs else 0.0
+        )
+        sentence_ratio = (
+            translated_sentences / source_sentences
+            if source_sentences else 0.0
+        )
+        paragraph_ratio_low = (
             source_paragraphs >= cfg["paragraph_check_min"]
             and translated_paragraphs
             < max(1, round(source_paragraphs * cfg["min_paragraph_ratio"]))
-        ):
+        )
+        if paragraph_ratio_low:
+            # TE v5.3.1.1: literary Chinese may legitimately merge adjacent
+            # Korean paragraphs.  Paragraph count alone is therefore not
+            # sufficient evidence of omitted content.  Escalate to a retry
+            # only when sentence or length coverage independently supports
+            # the omission suspicion; otherwise retain a non-blocking warning.
+            corroborated = (
+                ratio < cfg["paragraph_omission_length_ratio"]
+                or (
+                    source_sentences >= cfg["sentence_check_min"]
+                    and sentence_ratio < cfg["paragraph_omission_sentence_ratio"]
+                )
+            )
             issues.append(QualityIssue(
-                "paragraph_omission_suspected", "high",
-                "譯文段落數明顯少於原文，疑似漏段。",
-                "retranslate_original_chunk",
+                "paragraph_omission_suspected" if corroborated
+                else "paragraph_structure_merged",
+                "high" if corroborated else "medium",
+                "譯文段落數明顯少於原文，且句數或長度覆蓋不足，疑似漏段。"
+                if corroborated else
+                "譯文合併了部分原文段落；內容覆蓋未顯示明顯漏譯。",
+                "retranslate_original_chunk" if corroborated
+                else "review_paragraph_structure",
                 {
                     "source_paragraphs": source_paragraphs,
                     "translated_paragraphs": translated_paragraphs,
+                    "paragraph_ratio": round(paragraph_ratio, 4),
+                    "source_sentences": source_sentences,
+                    "translated_sentences": translated_sentences,
+                    "sentence_ratio": round(sentence_ratio, 4),
+                    "length_ratio": ratio,
+                    "corroborated": corroborated,
                 }
             ))
         if (
@@ -190,6 +222,12 @@ class TranslationQualityBaseline:
             "max_duplicate_lines": int(src.get("max_duplicate_lines", 1)),
             "paragraph_check_min": int(src.get("paragraph_check_min", 3)),
             "min_paragraph_ratio": float(src.get("min_paragraph_ratio", 0.5)),
+            "paragraph_omission_length_ratio": float(
+                src.get("paragraph_omission_length_ratio", 0.45)
+            ),
+            "paragraph_omission_sentence_ratio": float(
+                src.get("paragraph_omission_sentence_ratio", 0.60)
+            ),
             "sentence_check_min": int(src.get("sentence_check_min", 4)),
             "min_sentence_ratio": float(src.get("min_sentence_ratio", 0.5)),
         }

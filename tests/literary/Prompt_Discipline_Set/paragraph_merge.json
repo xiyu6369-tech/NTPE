@@ -1,0 +1,7 @@
+{
+  "case_id": "paragraph_merge",
+  "purpose": "preserve paragraph intent without forcing mechanical one-to-one formatting",
+  "previous_context": "",
+  "source_ko": "그는 자리에서 일어났다.\n\n바닷가를 걷기로 했다.",
+  "required_future_rules": ["PRESERVE_PARAGRAPH_INTENT", "PRESERVE_INFORMATION_ORDER"]
+}

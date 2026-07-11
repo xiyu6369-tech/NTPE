@@ -1,0 +1,9 @@
+Copy all files into D:\Python\NTPE and merge folders.
+
+Run:
+python ntpe_te_v552_prompt_discipline_test.py
+python ntpe_te_v551_prompt_compiler_foundation_test.py
+python ntpe_validate.py
+
+Rollback/A-B switch:
+set NTPE_PROMPT_DISCIPLINE=0

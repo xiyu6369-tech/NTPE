@@ -21,3 +21,11 @@ __all__ = [
     "enabled_discipline_rules",
     "render_discipline_block",
 ]
+
+from .adaptive_feedback import (
+    ADAPTIVE_FEEDBACK_VERSION,
+    AdaptiveFeedback,
+    adaptive_feedback_enabled,
+    build_adaptive_feedback,
+    render_adaptive_feedback_block,
+)

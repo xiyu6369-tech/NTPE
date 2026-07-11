@@ -1,0 +1,7 @@
+Copy all files into D:\Python\NTPE and merge folders.
+
+Run:
+  python ntpe_te_v540_smart_local_repair_pipeline_test.py
+  python ntpe_te_v532_semantic_repetition_guard_test.py
+  python ntpe_te_v531_unified_quality_gate_test.py
+  python ntpe_validate.py

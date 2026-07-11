@@ -3,7 +3,6 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 from .model import CompiledPrompt, PromptSections
-from .rules import enabled_discipline_rules, render_discipline_block
 
 
 PROMPT_COMPILER_VERSION = "5.5.2-discipline"
@@ -11,19 +10,22 @@ PROMPT_COMPILER_VERSION = "5.5.2-discipline"
 
 @dataclass(frozen=True)
 class PromptCompiler:
-    """Compile provider-ready prompts with optional literary discipline rules."""
+    """Compile provider-ready prompts using the unified discipline policy boundary."""
 
     version: str = PROMPT_COMPILER_VERSION
     discipline_enabled: bool = False
+    discipline_profile: str = "literary"
 
     def compile(self, sections: PromptSections) -> CompiledPrompt:
+        from core.translation_discipline.engine import TranslationDisciplineEngine
+
+        engine = TranslationDisciplineEngine(profile=self.discipline_profile)
+        active_rules = engine.generation_rules(enabled=self.discipline_enabled)
+        discipline = engine.render_generation_policy(enabled=self.discipline_enabled)
+
         optional = list(sections.optional)
-        active_rules = ()
-        if self.discipline_enabled:
-            active_rules = enabled_discipline_rules()
-            discipline = render_discipline_block(active_rules)
-            if discipline:
-                optional.append(discipline)
+        if discipline:
+            optional.append(discipline)
 
         compiled_sections = PromptSections(
             system=sections.system,
@@ -35,6 +37,7 @@ class PromptCompiler:
             optional=tuple(optional),
         )
         user_prompt = "\n".join(compiled_sections.ordered_user_sections())
+        discipline_metadata = engine.metadata(enabled=bool(active_rules))
         return CompiledPrompt(
             system_prompt=sections.system,
             user_prompt=user_prompt,
@@ -45,5 +48,6 @@ class PromptCompiler:
                 "discipline_enabled": bool(active_rules),
                 "discipline_rule_codes": [rule.code for rule in active_rules],
                 "discipline_rule_count": len(active_rules),
+                **discipline_metadata,
             },
         )

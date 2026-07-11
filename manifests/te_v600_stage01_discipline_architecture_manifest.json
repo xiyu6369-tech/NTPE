@@ -1,0 +1,18 @@
+{
+  "schema_version": "6.0.0-stage01",
+  "stage": "TE-v6.0-stage01-discipline-architecture-foundation",
+  "engine_version": "6.0.0",
+  "default_profile": "literary_balanced",
+  "legacy_rule_count": 8,
+  "compatibility": {
+    "prompt_output_equivalent": true,
+    "prompt_token_profile_unchanged": true,
+    "quality_decision_unchanged": true,
+    "provider_requests_added": false
+  },
+  "entrypoint": "core.translation_discipline.TranslationDisciplineEngine",
+  "tests": [
+    "ntpe_te_v600_stage01_discipline_architecture_test.py",
+    "tests/integration/translation_discipline_architecture_v600_stage01_test.py"
+  ]
+}

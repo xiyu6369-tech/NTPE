@@ -1,0 +1,14 @@
+解壓縮到 D:\Python\NTPE 後執行：
+python tools\apply_te_v50_quality_core.py
+python ntpe_te_v50_quality_core_milestone_test.py
+python ntpe_te_v50_stage506_quality_core_freeze_test.py
+python -m pytest tests\integration\translation_quality_v50_quality_core_milestone_test.py tests\integration\translation_quality_v50_stage506_freeze_test.py -q
+python ntpe_validate.py
+
+Manifest 若受 .gitignore 忽略：
+git add -f manifests\te_v50_stage_501_translation_quality_baseline_manifest.json
+git add -f manifests\te_v50_stage_502_completeness_guard_manifest.json
+git add -f manifests\te_v50_stage_503_terminology_consistency_guard_manifest.json
+git add -f manifests\te_v50_stage_504_traditional_chinese_normalizer_manifest.json
+git add -f manifests\te_v50_stage_505_translation_quality_core_pipeline_manifest.json
+git add -f manifests\te_v50_quality_core_freeze_manifest.json

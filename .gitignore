@@ -133,5 +133,6 @@ tests/literary/outputs/
 output/
 *_resume_state.json
 *_manifest.json
+!manifests/te_v600_stage01_discipline_architecture_manifest.json
 *_chunk_*.json
 *_zh.txt

@@ -1,0 +1,6 @@
+將 ZIP 解壓縮到 D:\Python\NTPE 後執行：
+python tools\apply_stage_411.py
+python ntpe_te_v41_stage411_adaptive_retry_execution_harness_test.py
+python -m pytest tests\integration\translation_reliability_stage411_adaptive_retry_execution_harness_test.py -q
+python ntpe_validate.py
+Manifest 若被忽略：git add -f manifests\te_v41_adaptive_retry_execution_harness_manifest.json

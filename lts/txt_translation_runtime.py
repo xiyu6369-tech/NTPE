@@ -28,6 +28,13 @@ from core.translation_quality_v5.runtime_integration import run_quality_v5_phase
 from core.translation_quality_v5.unified_quality_gate import attach_unified_report
 from core.translation_quality_v5.smart_local_repair import apply_smart_local_repair_decision
 from core.translation_quality_v5.best_attempt import AttemptCandidate, select_best_attempt, selection_metadata
+from core.translation_quality_v5.segment_recovery import (
+    SEGMENT_RECOVERY_VERSION,
+    completeness_issue_codes,
+    recovery_metadata,
+    should_use_segment_recovery,
+    split_recovery_segments,
+)
 from core.translation_runtime.runtime_speed_policy import (
     RuntimeSpeedPolicy,
     effective_timeout,
@@ -889,8 +896,10 @@ def _ensure_runtime_prompt_compiler_wiring(prompt_result) -> tuple[str, str, dic
     user_prompt = prompt_result.user_prompt
     compiler_meta = dict(getattr(prompt_result, "prompt_compiler", {}) or {})
     enabled = _runtime_prompt_discipline_enabled()
-    rules = enabled_discipline_rules() if enabled else ()
-    discipline = render_discipline_block(rules) if rules else ""
+    from core.translation_discipline.engine import TranslationDisciplineEngine
+    discipline_engine = TranslationDisciplineEngine(profile="literary")
+    rules = discipline_engine.generation_rules(enabled=enabled)
+    discipline = discipline_engine.render_generation_policy(enabled=enabled)
 
     if discipline and "【翻譯紀律】" not in user_prompt:
         marker = "【Korean】"
@@ -907,6 +916,8 @@ def _ensure_runtime_prompt_compiler_wiring(prompt_result) -> tuple[str, str, dic
         "discipline_rule_count": len(rules),
         "runtime_wiring_verified": (not rules) or ("【翻譯紀律】" in user_prompt),
     })
+
+    compiler_meta.update(discipline_engine.metadata(enabled=bool(rules)))
 
     # Count discipline as policy/generation guidance so the runtime profile reflects
     # the actual provider payload rather than the pre-compiler prompt.
@@ -1002,6 +1013,14 @@ def build_prompt_package(
             "prompt_discipline_enabled": compiler_meta["discipline_enabled"],
             "discipline_rule_count": compiler_meta["discipline_rule_count"],
             "runtime_wiring_verified": compiler_meta["runtime_wiring_verified"],
+            "discipline_engine_version": compiler_meta["discipline_engine_version"],
+            "discipline_profile": compiler_meta["discipline_profile"],
+            "discipline_policy_version": compiler_meta["discipline_policy_version"],
+            "discipline_policy_source": compiler_meta["discipline_policy_source"],
+            "active_rule_codes": compiler_meta["active_rule_codes"],
+            "active_rule_count": compiler_meta["active_rule_count"],
+            "generation_rule_count": compiler_meta["generation_rule_count"],
+            "adaptive_rule_count": compiler_meta["adaptive_rule_count"],
         },
         "qa_requirements": {
             "check_korean_residue": True,
@@ -1120,6 +1139,115 @@ def has_retry_worthy_naturalness_issue(qa_report: dict) -> bool:
         if isinstance(issue, dict) and issue.get("code") == "NATURALNESS_GUARD" and issue.get("retry_worthy"):
             return True
     return False
+
+
+def _segment_recovery_provider_attempts() -> int:
+    try:
+        return max(1, min(2, int(os.environ.get("NTPE_SEGMENT_RECOVERY_PROVIDER_ATTEMPTS", "1"))))
+    except ValueError:
+        return 1
+
+
+def translate_completeness_segments(
+    *,
+    engine: TranslationEngine,
+    options: TxtTranslationOptions,
+    root_path: Path,
+    stage_dir: Path,
+    chunk_out_dir: Path,
+    input_path: Path,
+    chunk_text: str,
+    chunk_index: int,
+    chunk_total: int,
+    locked_dictionary: dict[str, str],
+    previous_context: str,
+    qa_report: dict,
+    parent_package: dict,
+) -> dict:
+    issue_codes = completeness_issue_codes(qa_report)
+    segments = split_recovery_segments(chunk_text)
+    metadata = recovery_metadata(chunk_text, segments, issue_codes)
+    parent_package.setdefault("prompt_runtime", {})["segment_completeness_recovery"] = metadata
+
+    if len(segments) < 2:
+        return {"status": "not_applicable", "error": "source could not be split safely"}
+
+    emit_progress(
+        f"chunk {chunk_index}/{chunk_total} segment-completeness-recovery "
+        f"segments={len(segments)} codes={','.join(issue_codes)}",
+        options=options,
+    )
+    recovered: list[str] = []
+    segment_records: list[dict] = []
+    segment_options = replace(options, provider_attempts=_segment_recovery_provider_attempts())
+
+    for segment_index, segment_text in enumerate(segments, start=1):
+        local_previous = previous_context
+        if recovered:
+            local_previous = (local_previous + "\n\n" + recovered[-1])[-options.previous_context_chars:]
+        subpackage = build_prompt_package(
+            options=segment_options,
+            chunk_text=segment_text,
+            chunk_index=chunk_index,
+            chunk_total=chunk_total,
+            locked_dictionary=locked_dictionary,
+            previous_context=local_previous,
+        )
+        subpackage["package_id"] = f"{parent_package['package_id']}_RECOVERY_{segment_index:02d}"
+        subpackage["session"]["recovery_parent_package_id"] = parent_package["package_id"]
+        subpackage["session"]["recovery_segment_index"] = segment_index
+        subpackage["session"]["recovery_segment_total"] = len(segments)
+        subpackage.setdefault("prompt_runtime", {})["segment_completeness_recovery"] = {
+            **metadata,
+            "segment_index": segment_index,
+        }
+        recovery_note = (
+            "\n\n【NTPE 分段完整性修復】\n"
+            f"這是原文缺漏修復的第 {segment_index}/{len(segments)} 段。只翻譯本段 Korean，完整保留本段所有資訊；"
+            "不得摘要、補寫、重述 Previous，也不要輸出分析。\n"
+            "[/NTPE 分段完整性修復]"
+        )
+        subpackage["prompt"]["user_prompt"] = subpackage["prompt"]["user_prompt"].rstrip() + recovery_note
+        sub_path = stage_dir / f"{input_path.stem}_chunk_{chunk_index:06d}_recovery_{segment_index:02d}.json"
+        save_json(sub_path, subpackage)
+        emit_progress(
+            f"chunk {chunk_index}/{chunk_total} recovery segment {segment_index}/{len(segments)} chars={len(segment_text)}",
+            options=options,
+        )
+        sub_result = translate_package_with_retry(engine, subpackage, sub_path, segment_options)
+        segment_records.append({
+            "segment_index": segment_index,
+            "package_path": str(sub_path),
+            "status": sub_result.get("status"),
+            "error": sub_result.get("error"),
+        })
+        if sub_result.get("status") != "success":
+            parent_package["prompt_runtime"]["segment_completeness_recovery"]["segments"] = segment_records
+            return {
+                "status": "failed",
+                "error": f"segment recovery {segment_index}/{len(segments)} failed: {sub_result.get('error', 'unknown error')}",
+                "segment_recovery": metadata,
+            }
+        generated = Path(sub_result["output_path"]).read_text(encoding="utf-8").strip()
+        recovered.append(generated)
+
+    combined = "\n\n".join(part for part in recovered if part).strip() + "\n"
+    combined_path = chunk_out_dir / f"{input_path.stem}_chunk_{chunk_index:06d}_segment_recovery_candidate_zh.txt"
+    save_text(combined_path, combined)
+    metadata["segments"] = segment_records
+    metadata["combined_output_path"] = str(combined_path)
+    parent_package["prompt_runtime"]["segment_completeness_recovery"] = metadata
+    emit_progress(
+        f"chunk {chunk_index}/{chunk_total} segment-completeness-recovery completed output={combined_path.name}",
+        options=options,
+    )
+    return {
+        "status": "success",
+        "output_path": str(combined_path),
+        "attempt": 1,
+        "provider_model": parent_package.get("model_profile", {}).get("model"),
+        "segment_recovery": metadata,
+    }
 
 
 def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None) -> dict:
@@ -1262,6 +1390,13 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
                     feedback_meta = feedback.to_metadata()
                     feedback_meta["qa_attempt"] = qa_attempt
                     package["prompt"]["user_prompt"] = build_qa_retry_user_prompt(original_user_prompt, qa_report, qa_attempt)
+                    from core.translation_discipline.engine import TranslationDisciplineEngine
+                    adaptive_rules = TranslationDisciplineEngine(profile="literary").adaptive_rules(
+                        feedback_meta.get("issue_codes", []),
+                        enabled=bool(feedback_meta.get("enabled", True)),
+                    )
+                    feedback_meta["discipline_rule_codes"] = [rule.code for rule in adaptive_rules]
+                    feedback_meta["discipline_policy_version"] = "6.0.0-stage02"
                     package.setdefault("prompt_runtime", {})["adaptive_feedback"] = feedback_meta
                     package["prompt_runtime"]["adaptive_feedback_version"] = ADAPTIVE_FEEDBACK_VERSION
                     emit_progress(
@@ -1271,7 +1406,25 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
                         options=options,
                     )
                     save_json(package_path, package)
-                result = translate_package_with_retry(engine, package, package_path, options)
+                if qa_attempt > 1 and should_use_segment_recovery(qa_report, chunk):
+                    result = translate_completeness_segments(
+                        engine=engine,
+                        options=options,
+                        root_path=root_path,
+                        stage_dir=stage_dir,
+                        chunk_out_dir=chunk_out_dir,
+                        input_path=input_path,
+                        chunk_text=chunk,
+                        chunk_index=idx,
+                        chunk_total=len(chunks),
+                        locked_dictionary=locked_dictionary,
+                        previous_context="\n\n".join(translated_chunks[-2:])[-options.previous_context_chars:] if translated_chunks else "",
+                        qa_report=qa_report,
+                        parent_package=package,
+                    )
+                    save_json(package_path, package)
+                else:
+                    result = translate_package_with_retry(engine, package, package_path, options)
                 result["qa_attempt"] = qa_attempt
                 if result.get("status") != "success":
                     if attempt_candidates:

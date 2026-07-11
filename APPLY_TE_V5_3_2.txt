@@ -1,0 +1,16 @@
+TE v5.3.2 Semantic Repetition Guard
+
+Copy all files in this DELTA package into:
+
+D:\Python\NTPE
+
+Merge folders and overwrite only the included files.
+
+Validation:
+
+python ntpe_te_v532_semantic_repetition_guard_test.py
+python ntpe_te_v531_unified_quality_gate_test.py
+python ntpe_te_v530_quality_runtime_integration_phase1_test.py
+python ntpe_validate.py
+
+Then rerun the same Golden Set stage WITHOUT --overwrite so completed chunks resume.

@@ -1,0 +1,7 @@
+Copy all files into D:\Python\NTPE and merge folders.
+
+Run:
+python ntpe_te_v5312_unified_nonblocking_issue_mapping_test.py
+python ntpe_te_v5311_paragraph_coverage_corroboration_test.py
+python ntpe_te_v531_unified_quality_gate_test.py
+python ntpe_validate.py

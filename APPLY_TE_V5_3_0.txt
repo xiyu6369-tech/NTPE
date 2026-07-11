@@ -1,0 +1,29 @@
+TE v5.3.0 Quality Runtime Integration Phase 1
+
+Copy all files and folders from this DELTA package into:
+
+D:\Python\NTPE
+
+Merge folders and overwrite only the files included in this package.
+
+Validation:
+
+python ntpe_te_v530_quality_runtime_integration_phase1_test.py
+python ntpe_te_v523_provider_backpressure_resume_test.py
+python ntpe_te_v522_provider_timeout_resilience_test.py
+python ntpe_validate.py
+
+Golden Set:
+
+python launcher_translate.py regression ^
+--set golden ^
+--stage TE-v5.3.0-QualityRuntimePhase1 ^
+--profile literary ^
+--chunk-size 600 ^
+--api-timeout 180 ^
+--provider-attempts 4 ^
+--overwrite
+
+Expected new progress line:
+
+quality-v5 score=... status=... report=..._quality_v5_attempt_1.json

@@ -9,7 +9,7 @@
     "session_id": "TXT_original_ko",
     "file_name": "original_ko.txt",
     "chunk_index": 1,
-    "chunk_total": 3,
+    "chunk_total": 5,
     "resume_key": "original_ko.txt:chunk:000001"
   },
   "model_profile": {
@@ -18,12 +18,12 @@
     "context_window": 131072,
     "temperature": 0.12,
     "top_p": 0.82,
-    "max_output_tokens": 1066
+    "max_output_tokens": 560
   },
   "source": {
-    "chunk_text": "정태의는 난감해하고 있었다. \n\n그러나 실상 그것은 그가 난감해할 일은 아니었다. 먼 타국에 떼어놓고 온 괴물 같은 남자는 어쨌든 이지가 제대로 돌아가고 있는, 나름대로 이성적인 인간이었고, 그는 이 상황이 결코 정태의가 의도해서 벌어진 상황이 아니란 걸 이해해줄 것이다. \n\n그러나, ‘몇 달 전부터 벼르고 별러서 천신만고 끝에 겨우 일주일 휴가를 뺐는데, 그놈이 일 때문에 예정보다 늦게 돌아온다고 해서 내 휴가를 깎아먹을 수는 없다’라고 분연히 주장하며, 이웃나라까지 일하러 간 동생을 내팽개치고 정태의만 홀랑 데리고 머나먼 남국의 섬으로 휴가를 와버린 카일이 무사할 수 있을지가 사뭇 걱정이 되었다. (카일도 평소의 이성적인 그였더라면 이런 짓을 막 벌이진 않았을 테지만, 일하러 떠나기 직전에 카일이 아끼던 책을 불살라버린 동생의 작태에 사흘을 앓아누울 정도로 광분했던 탓이 다분했다.) \n\n어찌 되었든, 직통이라곤 없이 경비행기로 따로 들어와야 하는 이 여유로운 남국의 섬에 있는 호텔의 로비 소파에 앉아, 지금이야 좋지만 베를린으로 돌아간 뒤에 어떤 사단이 날지 그저 걱정스럽기만 한 정태의는 한숨을 쉬고 있었다. \n\n“……하지만 지금 미리 걱정해본들 뭐 이미 벌어진 일은 어쩔 도리 없고……. 모처럼 쉬러 왔는데 한숨만 쉬며 일주일을 지내면 손해지.” \n\n정태의는 결국 합리적인 결론을 내리고 고개를 끄덕였다. \n\n짙은 청옥빛 바다로 둘러싸인 이 섬은 대단히 아름답고 한가로웠다. 오는 길에 카일에게 들은 바로는, 이곳의 호텔은 몇몇 재벌이 소유한 별장처럼 쓰이다시피 해 일반 관광객은 들어오지 못하기 때문에, 남의 눈에 띌 걱정 없이 한가롭고 넉넉한 휴가를 보내기에는 안성맞춤이라고 했다. \n\n과연 그의 말마따나, 어제 이곳에 들어온 이후 정태의가 구경한 사람이라곤 이곳의 관리인과 직원 외에는 열 손가락으로 꼽고도 넉넉하게 남을 정도였다. \n\n“인적 드문 바닷가 산책도 좋겠지.”\n",
-    "source_hash": "376e9690fabf65e3c4ab121773c0fe34e64e2a17",
-    "char_count": 951
+    "chunk_text": "정태의는 난감해하고 있었다. \n\n그러나 실상 그것은 그가 난감해할 일은 아니었다. 먼 타국에 떼어놓고 온 괴물 같은 남자는 어쨌든 이지가 제대로 돌아가고 있는, 나름대로 이성적인 인간이었고, 그는 이 상황이 결코 정태의가 의도해서 벌어진 상황이 아니란 걸 이해해줄 것이다. \n\n그러나, ‘몇 달 전부터 벼르고 별러서 천신만고 끝에 겨우 일주일 휴가를 뺐는데, 그놈이 일 때문에 예정보다 늦게 돌아온다고 해서 내 휴가를 깎아먹을 수는 없다’라고 분연히 주장하며, 이웃나라까지 일하러 간 동생을 내팽개치고 정태의만 홀랑 데리고 머나먼 남국의 섬으로 휴가를 와버린 카일이 무사할 수 있을지가 사뭇 걱정이 되었다. (카일도 평소의 이성적인 그였더라면 이런 짓을 막 벌이진 않았을 테지만, 일하러 떠나기 직전에 카일이 아끼던 책을 불살라버린 동생의 작태에 사흘을 앓아누울 정도로 광분했던 탓이 다분했다.) \n\n어찌 되었든, 직통이라곤 없이 경비행기로 따로 들어와야 하는 이 여유로운 남국의 섬에 있는 호텔의 로비 소파에 앉아, 지금이야 좋지만 베를린으로 돌아간 뒤에 어떤 사단이 날지 그저 걱정스럽기만 한 정태의는 한숨을 쉬고 있었다.\n",
+    "source_hash": "96a562eb9afa479fab00054c4863e7f5e7a411e6",
+    "char_count": 575
   },
   "context": {
     "previous_summary": "",
@@ -75,17 +75,17 @@
   },
   "prompt": {
     "system_prompt": "韓文小說譯者。先判斷主詞與語氣，再直出自然繁體中文正文。",
-    "user_prompt": "[NTPE Translation Engine v3.0 Context Intelligence]\nprofile: dialogue_heavy\ntone: neutral\nnarrative_state: current_scene\n- Translate according to the local scene context; do not translate word-by-word when it creates stiff or unnatural Traditional Chinese.\n- Preserve the original meaning, sequence, and emotional logic while using natural Traditional Chinese novel prose.\n- Use context-aware phrasing for breath, reaction, and body-action descriptions; avoid literal wording that sounds physically or semantically odd.\n- Avoid mechanical repeated structures and redundant phrasing; keep the sentence concise when the source meaning is already clear.\n- Keep continuity with the previous chunk's characters, tone, relationship distance, and narrative state.\n- For dialogue-heavy scenes, keep each speaker's voice distinct and avoid turning spoken lines into explanatory narration.\n[/NTPE Translation Engine v3.0 Context Intelligence]\n\n[NTPE Translation Engine v3.0 Prompt Intelligence]\nprofile: literary\n- Translate the full source text into Traditional Chinese; do not summarize, omit, merge, or add scenes.\n- Use fluent Traditional Chinese suitable for novels, preserving the source's register and emotional pacing.\n- Render dialogue with Traditional Chinese corner quotes 「」 and keep speaker intent clear.\n- Maintain character voice, relationship distance, honorific nuance, and narrative point of view consistently.\n- Avoid forced Taiwanese colloquial wording; use it only when the source tone naturally supports it.\n- Preserve literary imagery, cadence, restraint, and implied emotion without over-explaining.\n- Use polished novel prose rather than literal sentence-by-sentence stiffness.\n[/NTPE Translation Engine v3.0 Prompt Intelligence]\n\n【Policy】忠於原文，不漏譯、不增刪。；先判斷主詞、行為者與指代，避免人物錯置。；Glossary 譯名逐字一致。；慣用語按中文小說語感處理，不機械直譯。；短答、反諷、模稜兩可語氣需保留，不擅自解釋。；避免生硬直譯，動作與心理描寫需像中文小說正文。；只輸出繁體中文譯文，對話用「」。\n【Profile】\n- 文學模式；主詞清楚、角色一致、中文像小說正文。\n【Narrative】場景含酒店／大廳／島嶼／海邊等度假場域；用詞依作品背景自然選擇。；含德國／柏林背景；保留作品文化距離，不刻意本地化。；난감하다 依語境處理為為難、傷腦筋、不知如何是好等心理狀態。；카일이 주장... 結構中，主張與相關動作優先歸於凱爾。；本段有長句；先切分敘事單位，再保持主詞與行為者正確。\n【Characters】정태의=鄭泰義；카일=凱爾\n【Subject】鄭泰義是心理描寫主體；난감 不等於身體不舒服。；凱爾是『主張／堅持說』的主體，後續相關行為不要誤歸鄭泰義。\n【Glossary】정태의=鄭泰義；카일=凱爾；禁:丁泰義->鄭泰義；禁:凯尔->凱爾；禁:凱爾爾->凱爾；禁:卡爾->凱爾；禁:定泰義->鄭泰義；禁:正太義->鄭泰義；禁:正泰義->鄭泰義；禁:鄭太義->鄭泰義；禁:鄭泰儀->鄭泰義；禁:鄭泰宜->鄭泰義\n【Korean】\n정태의는 난감해하고 있었다. \n\n그러나 실상 그것은 그가 난감해할 일은 아니었다. 먼 타국에 떼어놓고 온 괴물 같은 남자는 어쨌든 이지가 제대로 돌아가고 있는, 나름대로 이성적인 인간이었고, 그는 이 상황이 결코 정태의가 의도해서 벌어진 상황이 아니란 걸 이해해줄 것이다. \n\n그러나, ‘몇 달 전부터 벼르고 별러서 천신만고 끝에 겨우 일주일 휴가를 뺐는데, 그놈이 일 때문에 예정보다 늦게 돌아온다고 해서 내 휴가를 깎아먹을 수는 없다’라고 분연히 주장하며, 이웃나라까지 일하러 간 동생을 내팽개치고 정태의만 홀랑 데리고 머나먼 남국의 섬으로 휴가를 와버린 카일이 무사할 수 있을지가 사뭇 걱정이 되었다. (카일도 평소의 이성적인 그였더라면 이런 짓을 막 벌이진 않았을 테지만, 일하러 떠나기 직전에 카일이 아끼던 책을 불살라버린 동생의 작태에 사흘을 앓아누울 정도로 광분했던 탓이 다분했다.) \n\n어찌 되었든, 직통이라곤 없이 경비행기로 따로 들어와야 하는 이 여유로운 남국의 섬에 있는 호텔의 로비 소파에 앉아, 지금이야 좋지만 베를린으로 돌아간 뒤에 어떤 사단이 날지 그저 걱정스럽기만 한 정태의는 한숨을 쉬고 있었다. \n\n“……하지만 지금 미리 걱정해본들 뭐 이미 벌어진 일은 어쩔 도리 없고……. 모처럼 쉬러 왔는데 한숨만 쉬며 일주일을 지내면 손해지.” \n\n정태의는 결국 합리적인 결론을 내리고 고개를 끄덕였다. \n\n짙은 청옥빛 바다로 둘러싸인 이 섬은 대단히 아름답고 한가로웠다. 오는 길에 카일에게 들은 바로는, 이곳의 호텔은 몇몇 재벌이 소유한 별장처럼 쓰이다시피 해 일반 관광객은 들어오지 못하기 때문에, 남의 눈에 띌 걱정 없이 한가롭고 넉넉한 휴가를 보내기에는 안성맞춤이라고 했다. \n\n과연 그의 말마따나, 어제 이곳에 들어온 이후 정태의가 구경한 사람이라곤 이곳의 관리인과 직원 외에는 열 손가락으로 꼽고도 넉넉하게 남을 정도였다. \n\n“인적 드문 바닷가 산책도 좋겠지.”\n【Output】直出譯文，禁止標題、註解、Markdown。",
+    "user_prompt": "[NTPE Translation Engine v3.0 Context Intelligence]\nprofile: narration_heavy\ntone: neutral\nnarrative_state: current_scene\n- Translate according to the local scene context; do not translate word-by-word when it creates stiff or unnatural Traditional Chinese.\n- Preserve the original meaning, sequence, and emotional logic while using natural Traditional Chinese novel prose.\n- Use context-aware phrasing for breath, reaction, and body-action descriptions; avoid literal wording that sounds physically or semantically odd.\n- Avoid mechanical repeated structures and redundant phrasing; keep the sentence concise when the source meaning is already clear.\n- Keep continuity with the previous chunk's characters, tone, relationship distance, and narrative state.\n- For narration-heavy scenes, prioritize smooth transitions, clear viewpoint, and readable paragraph flow.\n[/NTPE Translation Engine v3.0 Context Intelligence]\n\n[NTPE Translation Engine v3.0 Prompt Intelligence]\nprofile: literary\n- Translate the full source text into Traditional Chinese; do not summarize, omit, merge, or add scenes.\n- Use fluent Traditional Chinese suitable for novels, preserving the source's register and emotional pacing.\n- Render dialogue with Traditional Chinese corner quotes 「」 and keep speaker intent clear.\n- Maintain character voice, relationship distance, honorific nuance, and narrative point of view consistently.\n- Avoid forced Taiwanese colloquial wording; use it only when the source tone naturally supports it.\n- Preserve literary imagery, cadence, restraint, and implied emotion without over-explaining.\n- Use polished novel prose rather than literal sentence-by-sentence stiffness.\n[/NTPE Translation Engine v3.0 Prompt Intelligence]\n\n【Policy】忠於原文，不漏譯、不增刪。；先判斷主詞、行為者與指代，避免人物錯置。；Glossary 譯名逐字一致。；慣用語按中文小說語感處理，不機械直譯。；短答、反諷、模稜兩可語氣需保留，不擅自解釋。；避免生硬直譯，動作與心理描寫需像中文小說正文。；只輸出繁體中文譯文，對話用「」。\n【Profile】\n- 文學模式；主詞清楚、角色一致、中文像小說正文。\n【Narrative】場景含酒店／大廳／島嶼／海邊等度假場域；用詞依作品背景自然選擇。；含德國／柏林背景；保留作品文化距離，不刻意本地化。；난감하다 依語境處理為為難、傷腦筋、不知如何是好等心理狀態。；카일이 주장... 結構中，主張與相關動作優先歸於凱爾。；本段有長句；先切分敘事單位，再保持主詞與行為者正確。\n【Characters】정태의=鄭泰義；카일=凱爾\n【Subject】鄭泰義是心理描寫主體；난감 不等於身體不舒服。；凱爾是『主張／堅持說』的主體，後續相關行為不要誤歸鄭泰義。\n【Glossary】정태의=鄭泰義；카일=凱爾；禁:丁泰義->鄭泰義；禁:凯尔->凱爾；禁:凱爾爾->凱爾；禁:卡爾->凱爾；禁:定泰義->鄭泰義；禁:正太義->鄭泰義；禁:正泰義->鄭泰義；禁:鄭太義->鄭泰義；禁:鄭泰儀->鄭泰義；禁:鄭泰宜->鄭泰義\n【翻譯紀律】\n- 不得新增原文不存在的事件、設定或劇情。\n- 不得重述前文、上一段或本段已翻譯過的資訊。\n- 不得為了銜接或流暢而自行增加過渡敘述。\n- 不得自行補充原文未表達的人物心理、動機或判斷。\n- 不得摘要、濃縮、概括或省略原文資訊。\n- 保持資訊與事件出現順序，不任意前移、後置或重組。\n- 保留段落功能與敘事推進；可依中文節奏調整，但不得造成內容重述或遺漏。\n- 僅翻譯【Korean】中的當前內容；【Previous】只供承接語境，不得翻譯或改寫進輸出。\n【Korean】\n정태의는 난감해하고 있었다. \n\n그러나 실상 그것은 그가 난감해할 일은 아니었다. 먼 타국에 떼어놓고 온 괴물 같은 남자는 어쨌든 이지가 제대로 돌아가고 있는, 나름대로 이성적인 인간이었고, 그는 이 상황이 결코 정태의가 의도해서 벌어진 상황이 아니란 걸 이해해줄 것이다. \n\n그러나, ‘몇 달 전부터 벼르고 별러서 천신만고 끝에 겨우 일주일 휴가를 뺐는데, 그놈이 일 때문에 예정보다 늦게 돌아온다고 해서 내 휴가를 깎아먹을 수는 없다’라고 분연히 주장하며, 이웃나라까지 일하러 간 동생을 내팽개치고 정태의만 홀랑 데리고 머나먼 남국의 섬으로 휴가를 와버린 카일이 무사할 수 있을지가 사뭇 걱정이 되었다. (카일도 평소의 이성적인 그였더라면 이런 짓을 막 벌이진 않았을 테지만, 일하러 떠나기 직전에 카일이 아끼던 책을 불살라버린 동생의 작태에 사흘을 앓아누울 정도로 광분했던 탓이 다분했다.) \n\n어찌 되었든, 직통이라곤 없이 경비행기로 따로 들어와야 하는 이 여유로운 남국의 섬에 있는 호텔의 로비 소파에 앉아, 지금이야 좋지만 베를린으로 돌아간 뒤에 어떤 사단이 날지 그저 걱정스럽기만 한 정태의는 한숨을 쉬고 있었다.\n【Output】直出譯文，禁止標題、註解、Markdown。",
     "prompt_mode": "compact_literary_v6_ter_v1_5",
     "profile": "literary",
     "prompt_profile": {
       "system_tokens": 11,
-      "policy_tokens": 74,
+      "policy_tokens": 171,
       "context_tokens": 102,
       "glossary_tokens": 53,
-      "source_tokens": 399,
-      "total_tokens": 639,
-      "total_chars": 1539
+      "source_tokens": 242,
+      "total_tokens": 579,
+      "total_chars": 1398
     },
     "narrative_context": {
       "perspective": "第三人稱小說敘事",
@@ -133,20 +133,47 @@
         }
       ],
       "alias_map": {
-        "丁泰義": "鄭泰義",
-        "鄭太義": "鄭泰義",
-        "鄭泰儀": "鄭泰義",
-        "鄭泰宜": "鄭泰義",
         "正泰義": "鄭泰義",
         "正太義": "鄭泰義",
         "定泰義": "鄭泰義",
-        "凯尔": "凱爾",
+        "鄭泰儀": "鄭泰義",
+        "鄭泰宜": "鄭泰義",
+        "鄭太義": "鄭泰義",
+        "丁泰義": "鄭泰義",
+        "卡爾": "凱爾",
         "凱爾爾": "凱爾",
-        "卡爾": "凱爾"
+        "凯尔": "凱爾"
       },
       "max_terms": 24,
       "max_aliases": 18
     },
+    "prompt_compiler": {
+      "version": "5.5.2-discipline",
+      "section_order": [
+        "policy",
+        "context",
+        "glossary",
+        "optional",
+        "source",
+        "output"
+      ],
+      "mode": "prompt_discipline",
+      "discipline_enabled": true,
+      "discipline_rule_codes": [
+        "NO_ADDED_PLOT",
+        "NO_PREVIOUS_RESTATEMENT",
+        "NO_ADDED_TRANSITION",
+        "NO_ADDED_PSYCHOLOGY",
+        "NO_SUMMARIZATION",
+        "PRESERVE_INFORMATION_ORDER",
+        "PRESERVE_PARAGRAPH_INTENT",
+        "PREVIOUS_CONTEXT_ONLY"
+      ],
+      "discipline_rule_count": 8,
+      "runtime_wiring_verified": true
+    },
+    "prompt_discipline_enabled": true,
+    "discipline_rule_count": 8,
     "prompt_intelligence": {
       "version": "3.0-stage01",
       "profile": "literary",
@@ -171,7 +198,7 @@
     ],
     "context_snapshot": {
       "version": "3.0-stage02",
-      "profile": "dialogue_heavy",
+      "profile": "narration_heavy",
       "characters": [],
       "locations": [],
       "tone": "neutral",
@@ -188,14 +215,14 @@
       "Use context-aware phrasing for breath, reaction, and body-action descriptions; avoid literal wording that sounds physically or semantically odd.",
       "Avoid mechanical repeated structures and redundant phrasing; keep the sentence concise when the source meaning is already clear.",
       "Keep continuity with the previous chunk's characters, tone, relationship distance, and narrative state.",
-      "For dialogue-heavy scenes, keep each speaker's voice distinct and avoid turning spoken lines into explanatory narration."
+      "For narration-heavy scenes, prioritize smooth transitions, clear viewpoint, and readable paragraph flow."
     ],
     "context_intelligence": {
       "version": "3.0-stage02",
-      "profile": "dialogue_heavy",
+      "profile": "narration_heavy",
       "snapshot": {
         "version": "3.0-stage02",
-        "profile": "dialogue_heavy",
+        "profile": "narration_heavy",
         "characters": [],
         "locations": [],
         "tone": "neutral",
@@ -212,10 +239,16 @@
         "Use context-aware phrasing for breath, reaction, and body-action descriptions; avoid literal wording that sounds physically or semantically odd.",
         "Avoid mechanical repeated structures and redundant phrasing; keep the sentence concise when the source meaning is already clear.",
         "Keep continuity with the previous chunk's characters, tone, relationship distance, and narrative state.",
-        "For dialogue-heavy scenes, keep each speaker's voice distinct and avoid turning spoken lines into explanatory narration."
+        "For narration-heavy scenes, prioritize smooth transitions, clear viewpoint, and readable paragraph flow."
       ],
       "naturalness_warnings": []
     }
+  },
+  "prompt_runtime": {
+    "prompt_compiler": "5.5.2-discipline",
+    "prompt_discipline_enabled": true,
+    "discipline_rule_count": 8,
+    "runtime_wiring_verified": true
   },
   "qa_requirements": {
     "check_korean_residue": true,
@@ -233,7 +266,7 @@
     "naturalness_retry_limit": 1
   },
   "metadata": {
-    "created_at": "2026-07-09T22:42:50",
+    "created_at": "2026-07-11T15:33:40",
     "created_by": "NTPE 1.2 Translation Engine Refactoring v2.0",
     "package_version": "1.2-translation-engine-refactor-v2.0",
     "prompt_intelligence": {
@@ -251,10 +284,10 @@
     },
     "context_intelligence": {
       "version": "3.0-stage02",
-      "profile": "dialogue_heavy",
+      "profile": "narration_heavy",
       "snapshot": {
         "version": "3.0-stage02",
-        "profile": "dialogue_heavy",
+        "profile": "narration_heavy",
         "characters": [],
         "locations": [],
         "tone": "neutral",
@@ -271,7 +304,7 @@
         "Use context-aware phrasing for breath, reaction, and body-action descriptions; avoid literal wording that sounds physically or semantically odd.",
         "Avoid mechanical repeated structures and redundant phrasing; keep the sentence concise when the source meaning is already clear.",
         "Keep continuity with the previous chunk's characters, tone, relationship distance, and narrative state.",
-        "For dialogue-heavy scenes, keep each speaker's voice distinct and avoid turning spoken lines into explanatory narration."
+        "For narration-heavy scenes, prioritize smooth transitions, clear viewpoint, and readable paragraph flow."
       ],
       "naturalness_warnings": []
     }

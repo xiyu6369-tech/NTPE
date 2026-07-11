@@ -28,3 +28,14 @@
 | TE-v3.0-stage021-real-sample | 0.0 | failed | `D:\Python\NTPE\tests\literary\outputs\TE-v3.0-stage021-real-sample\Literary_Quality_Report.md` |
 | TE-v30-stage022-balanced | 0.0 | failed | `D:\Python\NTPE\tests\literary\outputs\TE-v30-stage022-balanced\Literary_Quality_Report.md` |
 | TE-v30-stage0221-balanced | 0.0 | failed | `D:\Python\NTPE\tests\literary\outputs\TE-v30-stage0221-balanced\Literary_Quality_Report.md` |
+| TE-v5.2-Golden | 0.0 | failed | `D:\Python\NTPE\tests\literary\outputs\TE-v5.2-Golden\Literary_Quality_Report.md` |
+| TE-v5.2.1-TimeoutPropagation | 0.0 | failed | `D:\Python\NTPE\tests\literary\outputs\TE-v5.2.1-TimeoutPropagation\Literary_Quality_Report.md` |
+| TE-v5.2.2-ProviderTimeoutResilience | 0.0 | failed | `D:\Python\NTPE\tests\literary\outputs\TE-v5.2.2-ProviderTimeoutResilience\Literary_Quality_Report.md` |
+| TE-v5.2.3-ProviderBackpressureResume | 96.0 | success | `D:\Python\NTPE\tests\literary\outputs\TE-v5.2.3-ProviderBackpressureResume\Literary_Quality_Report.md` |
+| TE-v5.3.0-QualityRuntimePhase1 | 95.0 | success | `D:\Python\NTPE\tests\literary\outputs\TE-v5.3.0-QualityRuntimePhase1\Literary_Quality_Report.md` |
+| TE-v5.3.1-UnifiedQualityGate | 95.0 | success | `D:\Python\NTPE\tests\literary\outputs\TE-v5.3.1-UnifiedQualityGate\Literary_Quality_Report.md` |
+| TE-v5.3.2-SemanticRepetitionGuard | 95.0 | success | `D:\Python\NTPE\tests\literary\outputs\TE-v5.3.2-SemanticRepetitionGuard\Literary_Quality_Report.md` |
+| TE-v5.5.2-PromptDiscipline | 95.0 | success | `D:\Python\NTPE\tests\literary\outputs\TE-v5.5.2-PromptDiscipline\Literary_Quality_Report.md` |
+| TE-v5.5.2.1-WiringCheck | 0.0 | failed | `D:\Python\NTPE\tests\literary\outputs\TE-v5.5.2.1-WiringCheck\Literary_Quality_Report.md` |
+| TE-v5.5.2.1-RuntimePromptWiring | 95.2 | success | `D:\Python\NTPE\tests\literary\outputs\TE-v5.5.2.1-RuntimePromptWiring\Literary_Quality_Report.md` |
+| TE-v5.5.3-AdaptivePromptFeedback | 95.0 | success | `D:\Python\NTPE\tests\literary\outputs\TE-v5.5.3-AdaptivePromptFeedback\Literary_Quality_Report.md` |

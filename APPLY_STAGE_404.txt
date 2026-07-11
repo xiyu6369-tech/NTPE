@@ -1,0 +1,9 @@
+將 ZIP 解壓縮到 D:\Python\NTPE 後執行：
+python tools\apply_stage_404.py
+python ntpe_te_v40_stage401_translation_reliability_baseline_test.py
+python ntpe_te_v40_stage402_adaptive_retry_policy_test.py
+python ntpe_te_v40_stage403_adaptive_chunk_split_planner_test.py
+python ntpe_te_v40_stage404_translation_failure_analyzer_test.py
+python -m pytest tests\integration\translation_reliability_stage401_baseline_test.py tests\integration\translation_reliability_stage402_adaptive_retry_policy_test.py tests\integration\translation_reliability_stage403_adaptive_chunk_split_planner_test.py tests\integration\translation_reliability_stage404_failure_analyzer_test.py -q
+python ntpe_validate.py
+Manifest 若被忽略：git add -f manifests\te_v40_translation_failure_analyzer_manifest.json

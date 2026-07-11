@@ -12,6 +12,8 @@ from .quality_runtime_gate_contract import QualityRuntimeGateContract
 from .quality_runtime_gate_admission import QualityRuntimeGateAdmission
 from .quality_runtime_gate_decision import QualityRuntimeGateDecision
 from .quality_runtime_gate_pilot import QualityRuntimeGatePilot
+from .quality_issue import UnifiedQualityIssue
+from .unified_quality_gate import run_unified_quality_gate
 
 __all__ = [
     "QualityIssue",
@@ -29,6 +31,10 @@ __all__ = [
     "QualityRuntimeGateAdmission",
     "QualityRuntimeGateDecision",
     "QualityRuntimeGatePilot",
+    "UnifiedQualityIssue",
+    "run_unified_quality_gate",
 ]
 
 from .runtime_integration import run_quality_v5_phase1, merge_quality_v5_into_runtime_qa
+
+from .smart_local_repair import apply_smart_local_repair_decision

@@ -1,0 +1,7 @@
+{
+  "case_id": "duplicate_narration",
+  "purpose": "detect prompts that permit restating previously translated narration",
+  "previous_context": "人物坐在旅館大廳，想到返程後的麻煩而嘆氣。",
+  "source_ko": "그는 이제 걱정해도 소용없다고 생각하며 고개를 끄덕였다.",
+  "required_future_rules": ["NO_PREVIOUS_RESTATEMENT", "NO_ADDED_TRANSITION"]
+}

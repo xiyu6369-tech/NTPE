@@ -1,0 +1,8 @@
+{
+  "case_id": "prompt_budget",
+  "purpose": "reserve source-text budget when context, glossary, and character memory are large",
+  "previous_context": "A compact previous-context placeholder.",
+  "source_ko": "짧은 원문.",
+  "required_future_rules": ["NO_SUMMARIZATION"],
+  "future_budget_expectation": "source section must never be truncated before optional context"
+}

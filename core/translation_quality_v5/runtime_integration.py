@@ -3,6 +3,8 @@ from __future__ import annotations
 from typing import Any, Mapping, Optional
 
 from .quality_repair_pipeline import QualityRepairPipeline
+from .semantic_repetition import analyze_semantic_repetition
+from .unified_quality_gate import build_runtime_qa_view, run_unified_quality_gate
 
 
 _PHASE1_SAFE_REPLACEMENTS = {
@@ -53,6 +55,13 @@ def run_quality_v5_phase1(
     quality = dict(result.get("quality_result") or {})
     baseline = dict(quality.get("baseline_report") or {})
     issues = list(baseline.get("issues") or [])
+    metrics = dict(baseline.get("metrics") or {})
+
+    semantic_repetition = analyze_semantic_repetition(
+        str(source_text or ""), normalized_text
+    )
+    issues.extend(semantic_repetition.get("issues") or [])
+    metrics.update(semantic_repetition.get("metrics") or {})
 
     return {
         "stage": "TE-v5.3-phase1",
@@ -63,7 +72,7 @@ def run_quality_v5_phase1(
         "normalized_text": normalized_text,
         "safe_replacements": safe_replacements,
         "issues": issues,
-        "metrics": dict(baseline.get("metrics") or {}),
+        "metrics": metrics,
         "repair_actions": list(quality.get("repair_actions") or []),
         "quality_result": quality,
         "repair_plan": result.get("repair_plan") or {},
@@ -79,40 +88,18 @@ def run_quality_v5_phase1(
     }
 
 
-def merge_quality_v5_into_runtime_qa(runtime_qa: Mapping[str, Any], report: Mapping[str, Any]) -> dict[str, Any]:
-    merged = dict(runtime_qa or {})
-    existing = list(merged.get("issues") or [])
-    seen = {str(item.get("code")) for item in existing if isinstance(item, Mapping)}
-    for issue in report.get("issues") or []:
-        if not isinstance(issue, Mapping):
-            continue
-        code = f"V5_{str(issue.get('code') or 'QUALITY_ISSUE').upper()}"
-        if code in seen:
-            continue
-        existing.append({
-            "code": code,
-            "severity": issue.get("severity", "medium"),
-            "message": issue.get("message", code),
-            "repair_action": issue.get("repair_action", "quality_review"),
-            "details": issue.get("details", {}),
-            "source": "translation_quality_v5",
-        })
-        seen.add(code)
-
-    merged["issues"] = existing
-    merged["quality_v5"] = {
-        "stage": report.get("stage"),
-        "status": report.get("status"),
-        "accepted": report.get("accepted"),
-        "retry_required": report.get("retry_required"),
-        "quality_score": report.get("quality_score"),
-        "safe_replacements": report.get("safe_replacements", []),
-    }
-    blocking = any(
-        str(item.get("severity", "")).lower() in {"critical", "high"}
-        for item in existing if isinstance(item, Mapping) and item.get("source") == "translation_quality_v5"
+def merge_quality_v5_into_runtime_qa(
+    runtime_qa: Mapping[str, Any],
+    report: Mapping[str, Any],
+    *,
+    attempt: int | None = None,
+    chunk_id: str = "",
+) -> dict[str, Any]:
+    """Backward-compatible entry point backed by the v5.3.1 unified gate."""
+    unified = run_unified_quality_gate(
+        report or None,
+        runtime_qa,
+        attempt=attempt,
+        chunk_id=chunk_id,
     )
-    merged["passed"] = bool(merged.get("passed", True)) and not blocking
-    if blocking:
-        merged["status"] = "fail"
-    return merged
+    return build_runtime_qa_view(runtime_qa, unified, report or None)

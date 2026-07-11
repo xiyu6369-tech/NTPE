@@ -1,0 +1,9 @@
+TE v5.5.3.2 Adaptive Retry Failure Fallback
+
+Copy all files into D:\Python\NTPE and merge folders.
+
+Run:
+  python ntpe_te_v5532_adaptive_retry_failure_fallback_test.py
+  python ntpe_te_v5531_completeness_recovery_best_attempt_test.py
+  python ntpe_te_v553_adaptive_prompt_feedback_test.py
+  python ntpe_validate.py

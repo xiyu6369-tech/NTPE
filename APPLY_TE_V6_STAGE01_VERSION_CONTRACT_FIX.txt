@@ -1,0 +1,22 @@
+TE v6.0 Stage 01 - Adaptive Feedback Version Contract Test Fix
+
+Copy all contents of this DELTA package into:
+D:\Python\NTPE
+
+This update changes only:
+tests\integration\translation_adaptive_prompt_feedback_v553_test.py
+
+It does not change Runtime, Provider, Prompt, token profile, Quality decision, or Stage 01 implementation.
+
+Validation:
+python -m pytest -q ^
+tests\integration\translation_discipline_architecture_v600_stage01_test.py ^
+tests\integration\translation_adaptive_prompt_feedback_v553_test.py ^
+tests\integration\translation_segment_level_completeness_recovery_v5533_test.py ^
+tests\integration\translation_runtime_prompt_compiler_wiring_v5521_test.py
+
+python ntpe_validate.py
+
+Expected:
+4 passed
+ALL PASS

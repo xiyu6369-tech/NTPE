@@ -1,0 +1,12 @@
+TE v5.3.1.1 Paragraph Coverage Corroboration Fix
+
+1. Copy all contents of this folder into D:\Python\NTPE.
+2. Merge folders and overwrite the listed quality_baseline.py file.
+3. Run:
+
+python ntpe_te_v5311_paragraph_coverage_corroboration_test.py
+python ntpe_te_v531_unified_quality_gate_test.py
+python ntpe_te_v530_quality_runtime_integration_phase1_test.py
+python ntpe_validate.py
+
+4. Resume the same Golden Set stage WITHOUT --overwrite.

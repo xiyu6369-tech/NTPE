@@ -1,0 +1,12 @@
+TE v6.0 Stage 02 — Discipline Policy Activation
+
+Copy all files into:
+D:\Python\NTPE
+
+Then run:
+python ntpe_te_v600_stage02_discipline_policy_activation_test.py
+python ntpe_te_v600_stage01_discipline_architecture_test.py
+python ntpe_te_v5533_segment_level_completeness_recovery_test.py
+python ntpe_te_v5521_runtime_prompt_compiler_wiring_test.py
+python -m pytest -q tests\integration\translation_discipline_policy_activation_v600_stage02_test.py tests\integration\translation_discipline_architecture_v600_stage01_test.py tests\integration\translation_adaptive_prompt_feedback_v553_test.py tests\integration\translation_segment_level_completeness_recovery_v5533_test.py tests\integration\translation_runtime_prompt_compiler_wiring_v5521_test.py
+python ntpe_validate.py

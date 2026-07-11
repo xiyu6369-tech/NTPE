@@ -1,0 +1,7 @@
+Copy all files into D:\Python\NTPE and merge folders.
+
+Run:
+python ntpe_te_v5531_completeness_recovery_best_attempt_test.py
+python ntpe_te_v553_adaptive_prompt_feedback_test.py
+python ntpe_te_v531_unified_quality_gate_test.py
+python ntpe_validate.py
