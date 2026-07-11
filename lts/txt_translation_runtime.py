@@ -26,8 +26,7 @@ from core.prompt_compiler.rules import enabled_discipline_rules, render_discipli
 from core.translation_runtime.runtime_qa import RuntimeQAPolicy, analyze_runtime_quality, soft_fail_naturalness_report
 from core.translation_quality_v5.runtime_integration import run_quality_v5_phase1, merge_quality_v5_into_runtime_qa
 from core.translation_quality_v5.unified_quality_gate import attach_unified_report
-from core.translation_quality_v5.smart_local_repair import apply_smart_local_repair_decision
-from core.translation_discipline import apply_adaptive_local_repairs
+from core.translation_discipline import apply_adaptive_local_repairs, apply_adaptive_retry_decision
 from core.translation_quality_v5.best_attempt import AttemptCandidate, select_best_attempt, selection_metadata
 from core.translation_quality_v5.segment_recovery import (
     SEGMENT_RECOVERY_VERSION,
@@ -1502,14 +1501,20 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
                 elif local_repair_result.attempted_codes:
                     qa_report.setdefault("unified_quality_report", {})["adaptive_local_repair"] = local_repair_result.to_metadata()
                     qa_report["adaptive_local_repair"] = local_repair_result.to_metadata()
-                qa_report = apply_smart_local_repair_decision(
+                qa_report = apply_adaptive_retry_decision(
                     qa_report,
-                    local_repairs=(
-                        list((quality_v5_report or {}).get("safe_replacements") or [])
-                        + [dict(item) for item in local_repair_result.actions]
-                    ),
+                    local_repair_result=local_repair_result,
+                    post_repair=True,
                 )
                 unified_report = qa_report["unified_quality_report"]
+                retry_decision = qa_report.get("adaptive_retry_decision") or {}
+                emit_progress(
+                    f"chunk {idx}/{len(chunks)} adaptive-retry-decision "
+                    f"action={retry_decision.get('action', 'unknown')} "
+                    f"local={len(retry_decision.get('local_repair_codes', []))} "
+                    f"provider={len(retry_decision.get('provider_retry_codes', []))}",
+                    options=options,
+                )
                 if qa_report.get("smart_local_repair", {}).get("provider_retry_skipped"):
                     emit_progress(
                         f"chunk {idx}/{len(chunks)} smart-local-repair accepted_with_warnings "

@@ -1,0 +1,20 @@
+{
+  "stage": "TE-v6.0-stage05",
+  "name": "Adaptive Retry Decision Engine",
+  "version": "6.0.0-stage05",
+  "provider_calls_added": 0,
+  "quality_score_changed": false,
+  "runtime_actions": [
+    "accept",
+    "accept_with_warnings",
+    "local_repair",
+    "provider_retry",
+    "reject"
+  ],
+  "compatibility": {
+    "smart_local_repair_metadata": true,
+    "prompt_unchanged": true,
+    "provider_unchanged": true,
+    "resume_unchanged": true
+  }
+}
