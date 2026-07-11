@@ -15,6 +15,23 @@ from .quality_enforcement import (
     DisciplineQualityEnforcer,
     discipline_route_codes,
 )
+from .retry_decision_engine import (
+    RETRY_DECISION_ENGINE_VERSION,
+    ACCEPT,
+    ACCEPT_WITH_WARNINGS,
+    LOCAL_REPAIR,
+    PROVIDER_RETRY,
+    REJECT,
+    AdaptiveRetryDecisionEngine,
+    RetryDecision,
+    apply_adaptive_retry_decision,
+)
+from .runtime_orchestrator import (
+    RUNTIME_ORCHESTRATOR_VERSION,
+    DisciplineRuntimeOutcome,
+    TranslationDisciplineRuntimeOrchestrator,
+    orchestrate_runtime_discipline,
+)
 from .registry import DisciplineRuleRegistry
 from .report import build_discipline_report
 from .rule import CATEGORIES, PHASES, DisciplineRule
@@ -40,6 +57,19 @@ __all__ = [
     "AdaptiveLocalRepairFramework",
     "LocalRepairResult",
     "apply_adaptive_local_repairs",
+    "RETRY_DECISION_ENGINE_VERSION",
+    "ACCEPT",
+    "ACCEPT_WITH_WARNINGS",
+    "LOCAL_REPAIR",
+    "PROVIDER_RETRY",
+    "REJECT",
+    "AdaptiveRetryDecisionEngine",
+    "RetryDecision",
+    "apply_adaptive_retry_decision",
+    "RUNTIME_ORCHESTRATOR_VERSION",
+    "DisciplineRuntimeOutcome",
+    "TranslationDisciplineRuntimeOrchestrator",
+    "orchestrate_runtime_discipline",
     "build_discipline_report",
     "CATEGORIES",
     "PHASES",

@@ -26,7 +26,7 @@ from core.prompt_compiler.rules import enabled_discipline_rules, render_discipli
 from core.translation_runtime.runtime_qa import RuntimeQAPolicy, analyze_runtime_quality, soft_fail_naturalness_report
 from core.translation_quality_v5.runtime_integration import run_quality_v5_phase1, merge_quality_v5_into_runtime_qa
 from core.translation_quality_v5.unified_quality_gate import attach_unified_report
-from core.translation_discipline import apply_adaptive_local_repairs, apply_adaptive_retry_decision
+from core.translation_discipline import orchestrate_runtime_discipline
 from core.translation_quality_v5.best_attempt import AttemptCandidate, select_best_attempt, selection_metadata
 from core.translation_quality_v5.segment_recovery import (
     SEGMENT_RECOVERY_VERSION,
@@ -1459,12 +1459,9 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
                     attempt=qa_attempt,
                     chunk_id=package["package_id"],
                 )
-                local_repair_result = apply_adaptive_local_repairs(
-                    translation,
-                    qa_report.get("unified_quality_report") or {},
-                )
-                if local_repair_result.changed:
-                    translation = format_translation_output(local_repair_result.text, options)
+                def _revalidate_after_local_repair(repaired_text: str) -> dict:
+                    nonlocal translation, quality_v5_report
+                    translation = format_translation_output(repaired_text, options)
                     if options.strict_lock_terms:
                         translation = apply_locked_dictionary(translation, locked_dictionary)
                     if options.quality_v5_enabled:
@@ -1478,33 +1475,39 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
                         if options.strict_lock_terms:
                             translation = apply_locked_dictionary(translation, locked_dictionary)
                         translation = format_translation_output(translation, options)
-                    qa_report = analyze_translation_quality(
+                    repaired_qa = analyze_translation_quality(
                         chunk,
                         translation,
                         options,
                         locked_dictionary=package.get("knowledge", {}).get("locked_dictionary", {}),
                     ) if options.qa_enabled else {"passed": True, "issues": [], "metrics": {}}
-                    qa_report = merge_quality_v5_into_runtime_qa(
-                        qa_report,
+                    return merge_quality_v5_into_runtime_qa(
+                        repaired_qa,
                         quality_v5_report or {},
                         attempt=qa_attempt,
                         chunk_id=package["package_id"],
                     )
-                    qa_report.setdefault("unified_quality_report", {})["adaptive_local_repair"] = local_repair_result.to_metadata()
-                    qa_report["adaptive_local_repair"] = local_repair_result.to_metadata()
+
+                discipline_outcome = orchestrate_runtime_discipline(
+                    translation,
+                    qa_report,
+                    revalidate=_revalidate_after_local_repair,
+                )
+                translation = discipline_outcome.text
+                qa_report = discipline_outcome.qa_report
+                local_repair_result = discipline_outcome.local_repair_result
+                if local_repair_result.changed:
                     emit_progress(
                         f"chunk {idx}/{len(chunks)} adaptive-local-repair "
                         f"repaired={','.join(local_repair_result.repaired_codes) or 'none'} "
-                        f"actions={len(local_repair_result.actions)} revalidated=true",
+                        f"actions={len(local_repair_result.actions)} revalidated={str(discipline_outcome.revalidated).lower()}",
                         options=options,
                     )
-                elif local_repair_result.attempted_codes:
-                    qa_report.setdefault("unified_quality_report", {})["adaptive_local_repair"] = local_repair_result.to_metadata()
-                    qa_report["adaptive_local_repair"] = local_repair_result.to_metadata()
-                qa_report = apply_adaptive_retry_decision(
-                    qa_report,
-                    local_repair_result=local_repair_result,
-                    post_repair=True,
+                emit_progress(
+                    f"chunk {idx}/{len(chunks)} discipline-runtime-orchestrator "
+                    f"initial={discipline_outcome.initial_action} final={discipline_outcome.final_action} "
+                    f"revalidated={str(discipline_outcome.revalidated).lower()}",
+                    options=options,
                 )
                 unified_report = qa_report["unified_quality_report"]
                 retry_decision = qa_report.get("adaptive_retry_decision") or {}

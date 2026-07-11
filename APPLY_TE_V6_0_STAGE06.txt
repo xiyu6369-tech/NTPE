@@ -1,0 +1,9 @@
+TE v6.0 Stage 06 — Discipline Runtime Orchestrator
+
+Copy all files into D:\Python\NTPE and merge folders.
+
+Run:
+python ntpe_te_v600_stage06_discipline_runtime_orchestrator_test.py
+python ntpe_te_v600_stage05_adaptive_retry_decision_engine_test.py
+python ntpe_te_v600_stage04_adaptive_local_repair_framework_test.py
+python ntpe_validate.py

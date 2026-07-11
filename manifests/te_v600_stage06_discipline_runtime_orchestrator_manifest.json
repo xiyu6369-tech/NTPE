@@ -1,0 +1,18 @@
+{
+  "stage": "TE-v6.0-stage06",
+  "name": "Discipline Runtime Orchestrator",
+  "version": "6.0.0-stage06",
+  "modified": [
+    "core/translation_discipline/__init__.py",
+    "lts/txt_translation_runtime.py"
+  ],
+  "added": [
+    "core/translation_discipline/runtime_orchestrator.py",
+    "ntpe_te_v600_stage06_discipline_runtime_orchestrator_test.py",
+    "tests/integration/translation_discipline_runtime_orchestrator_v600_stage06_test.py",
+    "docs/releases/te_v6_0/TE_V6_0_STAGE06_DISCIPLINE_RUNTIME_ORCHESTRATOR.md",
+    "APPLY_TE_V6_0_STAGE06.txt"
+  ],
+  "provider_calls_added": 0,
+  "backward_compatible": true
+}

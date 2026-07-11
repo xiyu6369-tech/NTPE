@@ -56,8 +56,8 @@ def main() -> int:
     print("Provider-blocking issues remain untouched PASS")
 
     runtime = Path("lts/txt_translation_runtime.py").read_text(encoding="utf-8")
-    assert "apply_adaptive_local_repairs" in runtime
-    assert "revalidated=true" in runtime
+    assert "orchestrate_runtime_discipline" in runtime
+    assert "revalidated={str(discipline_outcome.revalidated).lower()}" in runtime
     assert "run_quality_v5_phase1" in runtime
     print("Runtime repair and revalidation wired    PASS")
 

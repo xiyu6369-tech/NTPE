@@ -49,6 +49,6 @@ def test_stage05_centralizes_runtime_retry_routing() -> None:
     assert result["smart_local_repair"]["provider_retry_skipped"] is True
 
     runtime_source = Path("lts/txt_translation_runtime.py").read_text(encoding="utf-8")
-    assert "apply_adaptive_retry_decision" in runtime_source
+    assert "orchestrate_runtime_discipline" in runtime_source
     assert "adaptive-retry-decision" in runtime_source
     assert "apply_smart_local_repair_decision(" not in runtime_source
