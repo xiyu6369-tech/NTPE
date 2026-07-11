@@ -12,7 +12,7 @@ from .adaptive_retry_policy import build_adaptive_retry_plan
 from .audit_trail import build_discipline_audit_trail
 from .evidence_retry_integration import integrate_alignment_evidence_for_retry
 
-DISCIPLINE_RUNTIME_INTEGRATION_VERSION = "6.0.0-stage11.3"
+DISCIPLINE_RUNTIME_INTEGRATION_VERSION = "6.0.0-stage11.5"
 
 QualityRunner = Callable[[str], Mapping[str, Any]]
 LegacyQARunner = Callable[[str, Mapping[str, Any]], Mapping[str, Any]]
@@ -177,6 +177,7 @@ def integrate_translation_discipline_runtime(
     unified["adaptive_retry_policy"] = plan_metadata
     final_qa["unified_quality_report"] = unified
     final_qa["adaptive_feedback"] = adaptive_feedback
+    final_qa["targeted_retry_execution"] = dict(context.runtime_metadata.get("targeted_retry_execution") or {})
     audit = build_discipline_audit_trail(
         final_qa,
         initial_action=outcome.initial_action,

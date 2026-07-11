@@ -1,0 +1,1 @@
+Copy into D:\Python\NTPE, merge folders, then run Stage 11.5 tests and ntpe_validate.py.

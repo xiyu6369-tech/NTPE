@@ -156,3 +156,6 @@ __all__.extend([
     "TargetedMergeValidationResult",
     "validate_targeted_merge",
 ])
+
+from .evidence_audit import EVIDENCE_AUDIT_VERSION, EvidenceAuditTrail, build_evidence_audit_trail
+__all__.extend(["EVIDENCE_AUDIT_VERSION","EvidenceAuditTrail","build_evidence_audit_trail"])

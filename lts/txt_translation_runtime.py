@@ -1607,6 +1607,7 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
                             "provider_call_budget_limit": _chunk_recovery_provider_budget(),
                             "provider_call_budget_used": recovery_provider_calls_used,
                             "post_targeted_retry": bool(result.get("targeted_retry")),
+                            "targeted_retry_execution": dict(result.get("targeted_retry") or {}),
                         },
                     ),
                     quality_runner=_discipline_quality_runner,
