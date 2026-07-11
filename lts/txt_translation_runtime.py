@@ -16,12 +16,18 @@ from core.translation_engine.translation_engine import TranslationEngine
 from core.translation_engine.prompt_intelligence import apply_prompt_intelligence
 from core.translation_engine.utils import now_iso, save_json, save_text
 from core.literary import LiteraryPromptBuilder, normalize_profile, normalize_literary_style
-from core.prompt_compiler import PROMPT_COMPILER_VERSION
+from core.prompt_compiler import (
+    PROMPT_COMPILER_VERSION,
+    ADAPTIVE_FEEDBACK_VERSION,
+    build_adaptive_feedback,
+    render_adaptive_feedback_block,
+)
 from core.prompt_compiler.rules import enabled_discipline_rules, render_discipline_block
 from core.translation_runtime.runtime_qa import RuntimeQAPolicy, analyze_runtime_quality, soft_fail_naturalness_report
 from core.translation_quality_v5.runtime_integration import run_quality_v5_phase1, merge_quality_v5_into_runtime_qa
 from core.translation_quality_v5.unified_quality_gate import attach_unified_report
 from core.translation_quality_v5.smart_local_repair import apply_smart_local_repair_decision
+from core.translation_quality_v5.best_attempt import AttemptCandidate, select_best_attempt, selection_metadata
 from core.translation_runtime.runtime_speed_policy import (
     RuntimeSpeedPolicy,
     effective_timeout,
@@ -1023,28 +1029,32 @@ def build_prompt_package(
 
 
 def build_qa_retry_user_prompt(original_user_prompt: str, qa_report: dict, qa_attempt: int) -> str:
-    """Create a stricter retry prompt after QA rejects a provider output."""
+    """Build an issue-directed QA retry prompt while preserving legacy wording."""
+    feedback = build_adaptive_feedback(qa_report)
+    feedback_block = render_adaptive_feedback_block(feedback, qa_attempt)
+
     issues = qa_report.get("issues", []) if isinstance(qa_report, dict) else []
-    issue_lines = []
-    locked_lines = []
-    for issue in issues[:8]:
-        if isinstance(issue, dict):
-            code = issue.get("code") or issue.get("type") or "QA_ISSUE"
-            message = issue.get("message") or ""
-            issue_lines.append(f"- {code}: {message}")
-            for sample in issue.get("samples", []) if isinstance(issue.get("samples"), list) else []:
-                if isinstance(sample, dict) and sample.get("source") and sample.get("target"):
-                    locked_lines.append(f"- {sample['source']} => {sample['target']}")
-    issue_text = "\n".join(issue_lines) or "- QA_FAILED: previous output did not pass validation"
+    issue_lines: list[str] = []
+    locked_lines: list[str] = []
     naturalness_samples: list[dict] = []
-    for issue in issues:
-        if isinstance(issue, dict) and issue.get("code") == "NATURALNESS_GUARD":
-            samples = issue.get("samples", [])
-            if isinstance(samples, list):
-                naturalness_samples.extend(sample for sample in samples if isinstance(sample, dict))
-    naturalness_directives = build_naturalness_repair_directives(naturalness_samples)
-    naturalness_text = "\n".join(f"- {directive}" for directive in naturalness_directives) or "- No Naturalness Guard repair directive."
+    for issue in issues[:8]:
+        if not isinstance(issue, dict):
+            continue
+        code = issue.get("code") or issue.get("type") or "QA_ISSUE"
+        message = issue.get("message") or ""
+        issue_lines.append(f"- {code}: {message}")
+        samples = issue.get("samples", []) if isinstance(issue.get("samples"), list) else []
+        if code == "NATURALNESS_GUARD":
+            naturalness_samples.extend(sample for sample in samples if isinstance(sample, dict))
+        for sample in samples:
+            if isinstance(sample, dict) and sample.get("source") and sample.get("target"):
+                locked_lines.append(f"- {sample['source']} => {sample['target']}")
+
+    issue_text = "\n".join(issue_lines) or "- QA_FAILED: previous output did not pass validation"
     locked_text = "\n".join(dict.fromkeys(locked_lines)) or "- 依 Glossary 欄位嚴格執行"
+    naturalness_directives = build_naturalness_repair_directives(naturalness_samples)
+    naturalness_text = "\n".join(f"- {item}" for item in naturalness_directives) or "- No Naturalness Guard repair directive."
+
     retry_note = f"""
 
 【NTPE 自動重試指令】
@@ -1063,7 +1073,9 @@ def build_qa_retry_user_prompt(original_user_prompt: str, qa_report: dict, qa_at
 - 保留段落順序與劇情資訊，不可摘要。
 - 這是第 {qa_attempt} 次 QA 重試。
 """
-    retry_note += f"\n\nNaturalness Guard repair directives:\n{naturalness_text}\n"
+    if feedback_block:
+        retry_note += "\n" + feedback_block + "\n"
+    retry_note += f"\nNaturalness Guard repair directives:\n{naturalness_text}\n"
     return original_user_prompt.rstrip() + retry_note
 
 
@@ -1225,6 +1237,8 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
             save_resume_state(resume_state_path, resume_state)
         else:
             qa_attempt_records: list[dict] = []
+            attempt_candidates: list[AttemptCandidate] = []
+            later_provider_error: dict | None = None
             qa_report = {"passed": True, "issues": [], "metrics": {}}
             translation = ""
             result = {"status": "failed", "error": "translation was not attempted", "attempt": 0}
@@ -1244,11 +1258,28 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
                     "updated_at": now_iso(),
                 })
                 if qa_attempt > 1:
+                    feedback = build_adaptive_feedback(qa_report)
+                    feedback_meta = feedback.to_metadata()
+                    feedback_meta["qa_attempt"] = qa_attempt
                     package["prompt"]["user_prompt"] = build_qa_retry_user_prompt(original_user_prompt, qa_report, qa_attempt)
+                    package.setdefault("prompt_runtime", {})["adaptive_feedback"] = feedback_meta
+                    package["prompt_runtime"]["adaptive_feedback_version"] = ADAPTIVE_FEEDBACK_VERSION
+                    emit_progress(
+                        f"chunk {idx}/{len(chunks)} adaptive-prompt-feedback "
+                        f"codes={','.join(feedback_meta.get('issue_codes', [])) or 'generic'} "
+                        f"directives={feedback_meta.get('directive_count', 0)}",
+                        options=options,
+                    )
                     save_json(package_path, package)
                 result = translate_package_with_retry(engine, package, package_path, options)
                 result["qa_attempt"] = qa_attempt
                 if result.get("status") != "success":
+                    if attempt_candidates:
+                        later_provider_error = {
+                            "qa_attempt": qa_attempt,
+                            "error": str(result.get("error") or "unknown provider error"),
+                            "attempt": result.get("attempt", 1),
+                        }
                     break
                 generated_path = Path(result["output_path"])
                 emit_progress(f"chunk {idx}/{len(chunks)} provider output received", options=options)
@@ -1299,6 +1330,13 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
                         options=options,
                     )
                 qa_attempt_records.append({"qa_attempt": qa_attempt, "qa": qa_report, "quality_v5": quality_v5_report})
+                attempt_candidates.append(AttemptCandidate(
+                    qa_attempt=qa_attempt,
+                    translation=translation,
+                    qa_report=dict(qa_report),
+                    quality_v5_report=dict(quality_v5_report) if quality_v5_report is not None else None,
+                    result=dict(result),
+                ))
                 emit_progress(
                     f"chunk {idx}/{len(chunks)} QA {qa_report.get('decision', 'runtime_error').upper()} "
                     f"issues={len(qa_report.get('issues', []))}",
@@ -1316,6 +1354,42 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
                 delay = qa_retry_delay_seconds(qa_attempt, options.retry_base_seconds)
                 if delay > 0:
                     time.sleep(delay)
+
+            best_candidate = select_best_attempt(attempt_candidates)
+            if best_candidate is not None:
+                latest_attempt = attempt_candidates[-1].qa_attempt
+                selected_meta = selection_metadata(
+                    attempt_candidates,
+                    best_candidate,
+                    selection_reason="later_provider_error" if later_provider_error else None,
+                    later_provider_error=(later_provider_error or {}).get("error"),
+                    later_qa_attempt=(later_provider_error or {}).get("qa_attempt"),
+                )
+                package.setdefault("prompt_runtime", {})["best_attempt_selection"] = selected_meta
+                save_json(package_path, package)
+                if later_provider_error:
+                    emit_progress(
+                        f"chunk {idx}/{len(chunks)} best-attempt-fallback "
+                        f"selected={best_candidate.qa_attempt} "
+                        f"later_qa_attempt={later_provider_error.get('qa_attempt')} "
+                        f"reason={selected_meta.get('later_error_type', 'provider_error')}",
+                        options=options,
+                    )
+                elif best_candidate.qa_attempt != latest_attempt:
+                    latest_score = attempt_candidates[-1].unified.get("score", 0)
+                    selected_score = best_candidate.unified.get("score", 0)
+                    emit_progress(
+                        f"chunk {idx}/{len(chunks)} best-attempt-selection "
+                        f"selected={best_candidate.qa_attempt} latest={latest_attempt} "
+                        f"score={selected_score}>{latest_score}",
+                        options=options,
+                    )
+                translation = best_candidate.translation
+                qa_report = dict(best_candidate.qa_report)
+                result = dict(best_candidate.result)
+                result["best_attempt_selection"] = selected_meta
+                if later_provider_error:
+                    result["later_provider_error"] = dict(later_provider_error)
 
             if result.get("status") != "success":
                 resume_state["chunks"][chunk_key] = {
@@ -1400,6 +1474,11 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
                     "error": error,
                     "updated_at": now_iso(),
                 })
+                if translation.strip():
+                    best_failed_path = chunk_out_dir / f"{input_path.stem}_chunk_{idx:06d}_best_failed_zh.txt"
+                    save_text(best_failed_path, translation)
+                    resume_state["chunks"][chunk_key]["best_failed_output_path"] = str(best_failed_path)
+                    save_resume_state(resume_state_path, resume_state)
                 emit_progress(f"chunk {idx}/{len(chunks)} FAILED QA error={error[:180]}", options=options)
                 partial = save_partial_translation_output(
                     output_dir=output_dir,
