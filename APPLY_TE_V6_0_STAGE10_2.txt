@@ -1,0 +1,1 @@
+Copy all files into the NTPE project root, preserving paths. Run the Stage 10.2 root test, integration test, and ntpe_validate.py.

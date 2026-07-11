@@ -119,3 +119,20 @@ __all__ = [
 ]
 
 from .production_validation import PRODUCTION_VALIDATION_VERSION, ProductionValidationSummary, summarize_stage_output, write_validation_report
+from .production_comparison import (
+    PRODUCTION_COMPARISON_VERSION,
+    ProductionComparison,
+    StageRetryMetrics,
+    compare_stage_outputs,
+    summarize_retry_metrics,
+    write_comparison_reports,
+)
+
+__all__.extend([
+    "PRODUCTION_COMPARISON_VERSION",
+    "ProductionComparison",
+    "StageRetryMetrics",
+    "compare_stage_outputs",
+    "summarize_retry_metrics",
+    "write_comparison_reports",
+])

@@ -1,0 +1,15 @@
+{
+  "stage": "TE v6.0 Stage 10.2",
+  "title": "Production Retry Metrics & Comparison",
+  "version": "6.0.0-stage10.2",
+  "provider_called": false,
+  "http_called": false,
+  "runtime_behavior_changed": false,
+  "files": [
+    "core/translation_discipline/production_comparison.py",
+    "core/translation_discipline/__init__.py",
+    "ntpe_te_v600_stage102_production_retry_metrics_comparison_test.py",
+    "tests/integration/translation_discipline_production_retry_metrics_v600_stage102_test.py",
+    "docs/releases/te_v6_0/TE_V6_0_STAGE10_2_PRODUCTION_RETRY_METRICS_COMPARISON.md"
+  ]
+}
