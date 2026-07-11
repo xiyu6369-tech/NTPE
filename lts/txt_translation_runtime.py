@@ -31,6 +31,7 @@ from core.translation_discipline import (
     TargetedRetryUnit,
     integrate_translation_discipline_runtime,
     merge_targeted_retry_result,
+    validate_targeted_merge,
 )
 # Stage 04-06 compatibility: orchestrate_runtime_discipline( remains publicly
 # available as the implementation adapter behind the Stage 09 entrypoint.
@@ -1317,6 +1318,12 @@ def translate_targeted_retry_units(
             record["result"] = "unsafe_merge"
             records.append(record)
             return {"status": "not_applicable", "error": "targeted retry lacks a safe translated merge range", "targeted_retry": {"units": records, "provider_calls_used": used, "result": "unsafe_merge"}}
+        merge_validation = validate_targeted_merge(candidate, replacement, merged, unit)
+        record["merge_validation"] = merge_validation.to_metadata()
+        if not merge_validation.accepted:
+            record["result"] = "unsafe_merge_validation"
+            records.append(record)
+            return {"status": "not_applicable", "error": f"targeted retry merge validation failed: {merge_validation.reason}", "targeted_retry": {"units": records, "provider_calls_used": used, "result": "unsafe_merge_validation", "merge_validation": merge_validation.to_metadata()}}
         candidate = merged
         record["result"] = "merged_pending_revalidation"
         records.append(record)
@@ -1325,35 +1332,6 @@ def translate_targeted_retry_units(
     metadata = {"version": plan.get("version"), "tier": "targeted_retry", "units": records, "provider_calls_used": used, "result": "merged_pending_revalidation"}
     parent_package.setdefault("prompt_runtime", {})["targeted_retry"] = metadata
     return {"status": "success", "output_path": str(output_path), "attempt": 1, "provider_model": parent_package.get("model_profile", {}).get("model"), "targeted_retry": metadata}
-
-
-def resolve_adaptive_retry_execution_mode(
-    *,
-    qa_attempt: int,
-    retry_policy: dict,
-    has_attempt_candidate: bool,
-    legacy_segment_recovery_applicable: bool,
-) -> str:
-    """Resolve recovery execution without letting legacy routing pre-empt Stage 10 policy."""
-    if qa_attempt <= 1:
-        return "initial_translation"
-    tier = str(retry_policy.get("tier") or "").strip().lower()
-    if tier == "targeted_retry" and has_attempt_candidate:
-        return "targeted_retry"
-    if tier == "full_retry":
-        return "full_retry"
-    if tier == "reject":
-        return "reject"
-    if not tier and legacy_segment_recovery_applicable:
-        return "legacy_segment_recovery"
-    return "provider_retry"
-
-
-def _adaptive_retry_budget_metadata(retry_policy: dict, used: int) -> dict:
-    raw = dict(retry_policy.get("provider_call_budget") or {})
-    limit = max(0, int(raw.get("limit") or 0))
-    used = max(0, int(used))
-    return {"limit": limit, "used": used, "remaining": max(0, limit - used)}
 
 
 def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None) -> dict:
@@ -1514,30 +1492,13 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
                     )
                     save_json(package_path, package)
                 retry_policy = dict(qa_report.get("adaptive_retry_policy") or {})
-                retry_policy["provider_call_budget"] = _adaptive_retry_budget_metadata(
-                    retry_policy, recovery_provider_calls_used
-                )
-                retry_tier = str(retry_policy.get("tier") or "").strip().lower()
-                recovery_mode = resolve_adaptive_retry_execution_mode(
-                    qa_attempt=qa_attempt,
-                    retry_policy=retry_policy,
-                    has_attempt_candidate=bool(attempt_candidates),
-                    legacy_segment_recovery_applicable=should_use_segment_recovery(qa_report, chunk),
-                )
-                if qa_attempt > 1:
-                    budget_meta = dict(retry_policy.get("provider_call_budget") or {})
-                    emit_progress(
-                        f"chunk {idx}/{len(chunks)} adaptive-retry-policy "
-                        f"tier={retry_tier or 'legacy'} mode={recovery_mode} "
-                        f"units={len(retry_policy.get('targeted_retry_units') or [])} "
-                        f"budget={budget_meta.get('used', 0)}/{budget_meta.get('limit', 0)} "
-                        f"remaining={budget_meta.get('remaining', 0)}",
-                        options=options,
-                    )
-                    package.setdefault("prompt_runtime", {})["adaptive_retry_policy"] = retry_policy
-                    save_json(package_path, package)
-
-                if recovery_mode == "targeted_retry":
+                retry_tier = str(retry_policy.get("tier") or "")
+                if qa_attempt > 1 and retry_tier == "targeted_retry" and attempt_candidates:
+                    retry_policy["provider_call_budget"] = {
+                        **dict(retry_policy.get("provider_call_budget") or {}),
+                        "used": recovery_provider_calls_used,
+                        "remaining": max(0, int((retry_policy.get("provider_call_budget") or {}).get("limit") or 0) - recovery_provider_calls_used),
+                    }
                     result = translate_targeted_retry_units(
                         engine=engine, options=options, stage_dir=stage_dir,
                         chunk_out_dir=chunk_out_dir, input_path=input_path,
@@ -1547,61 +1508,12 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
                         parent_package=package, original_translation=attempt_candidates[-1].translation,
                         plan=retry_policy,
                     )
-                    targeted_meta = dict(result.get("targeted_retry") or {})
-                    recovery_provider_calls_used += int(targeted_meta.get("provider_calls_used") or 0)
-                    execution_meta = {
-                        "version": "6.0.0-stage10.1.1",
-                        "requested_tier": "targeted_retry",
-                        "executed_mode": "targeted_retry",
-                        "targeted_retry": targeted_meta,
-                        "fallback_reason": "",
-                    }
-                    budget_limit = int((retry_policy.get("provider_call_budget") or {}).get("limit") or 0)
-                    if (
-                        result.get("status") == "not_applicable"
-                        and str(retry_policy.get("fallback_action") or "") == "full_retry"
-                        and recovery_provider_calls_used < budget_limit
-                    ):
-                        execution_meta["executed_mode"] = "full_retry"
-                        execution_meta["fallback_reason"] = str(result.get("error") or "targeted_retry_not_applicable")
-                        result = translate_package_with_retry(
-                            engine, package, package_path, replace(options, provider_attempts=1)
-                        )
+                    recovery_provider_calls_used += int((result.get("targeted_retry") or {}).get("provider_calls_used") or 0)
+                    if result.get("status") == "not_applicable" and recovery_provider_calls_used < int((retry_policy.get("provider_call_budget") or {}).get("limit") or 0):
+                        # Policy fallback: one full retry, still inside the chunk recovery budget.
+                        result = translate_package_with_retry(engine, package, package_path, replace(options, provider_attempts=1))
                         recovery_provider_calls_used += 1
-                    result["adaptive_retry_execution"] = execution_meta
-                elif recovery_mode == "full_retry":
-                    budget_limit = int((retry_policy.get("provider_call_budget") or {}).get("limit") or 0)
-                    if recovery_provider_calls_used >= budget_limit:
-                        result = {
-                            "status": "failed",
-                            "error": "chunk recovery provider budget exhausted",
-                            "attempt": 0,
-                        }
-                    else:
-                        result = translate_package_with_retry(
-                            engine, package, package_path, replace(options, provider_attempts=1)
-                        )
-                        recovery_provider_calls_used += 1
-                    result["adaptive_retry_execution"] = {
-                        "version": "6.0.0-stage10.1.1",
-                        "requested_tier": "full_retry",
-                        "executed_mode": "full_retry",
-                        "fallback_reason": str(retry_policy.get("reason") or ""),
-                    }
-                elif recovery_mode == "reject":
-                    result = {
-                        "status": "failed",
-                        "error": str(retry_policy.get("reason") or "adaptive retry policy rejected recovery"),
-                        "attempt": 0,
-                        "adaptive_retry_execution": {
-                            "version": "6.0.0-stage10.1.1",
-                            "requested_tier": "reject",
-                            "executed_mode": "reject",
-                            "fallback_reason": str(retry_policy.get("reason") or ""),
-                        },
-                    }
-                elif recovery_mode == "legacy_segment_recovery":
-                    # Compatibility only: Stage 10 plans always take precedence.
+                elif qa_attempt > 1 and should_use_segment_recovery(qa_report, chunk):
                     result = translate_completeness_segments(
                         engine=engine,
                         options=options,
@@ -1617,24 +1529,16 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
                         qa_report=qa_report,
                         parent_package=package,
                     )
-                    result["adaptive_retry_execution"] = {
-                        "version": "6.0.0-stage10.1.1",
-                        "requested_tier": "legacy",
-                        "executed_mode": "legacy_segment_recovery",
-                        "fallback_reason": "no_stage10_retry_plan",
-                    }
                     save_json(package_path, package)
+                elif qa_attempt > 1 and retry_tier == "full_retry":
+                    budget_limit = int((retry_policy.get("provider_call_budget") or {}).get("limit") or 2)
+                    if recovery_provider_calls_used >= budget_limit:
+                        result = {"status": "failed", "error": "chunk recovery provider budget exhausted", "attempt": 0}
+                    else:
+                        result = translate_package_with_retry(engine, package, package_path, replace(options, provider_attempts=1))
+                        recovery_provider_calls_used += 1
                 else:
                     result = translate_package_with_retry(engine, package, package_path, options)
-
-                if qa_attempt > 1:
-                    package.setdefault("prompt_runtime", {})["adaptive_retry_execution"] = dict(
-                        result.get("adaptive_retry_execution") or {}
-                    )
-                    package["prompt_runtime"]["adaptive_retry_policy"]["provider_call_budget"] = (
-                        _adaptive_retry_budget_metadata(retry_policy, recovery_provider_calls_used)
-                    )
-                    save_json(package_path, package)
                 result["qa_attempt"] = qa_attempt
                 if result.get("status") != "success":
                     if attempt_candidates:
@@ -1727,7 +1631,6 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
                 save_json(audit_report_path, discipline_audit)
                 package.setdefault("prompt_runtime", {})["discipline_audit_trail"] = {"version": discipline_audit.get("schema_version", "6.0.0-stage07"), "report_path": str(audit_report_path), "initial_action": discipline_result.initial_action, "final_action": discipline_result.final_action, "revalidated": discipline_result.revalidated}
                 package["prompt_runtime"]["discipline_runtime_integration"] = discipline_result.metadata["discipline_runtime_integration"]
-                package["prompt_runtime"]["adaptive_retry_policy"] = discipline_result.adaptive_retry_plan
                 package["prompt_runtime"]["adaptive_feedback"] = discipline_result.adaptive_feedback
                 save_json(package_path, package)
                 emit_progress(f"chunk {idx}/{len(chunks)} discipline-audit rules={len((discipline_audit.get('discipline') or {}).get('active_rule_codes', []))} issues={(discipline_audit.get('quality') or {}).get('issue_count', 0)} final={discipline_result.final_action} report={audit_report_path.name}", options=options)

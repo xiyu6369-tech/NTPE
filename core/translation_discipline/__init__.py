@@ -144,3 +144,15 @@ __all__.extend([
     "summarize_retry_metrics",
     "write_comparison_reports",
 ])
+
+from .targeted_merge_validation import (
+    TARGETED_MERGE_VALIDATION_VERSION,
+    TargetedMergeValidationResult,
+    validate_targeted_merge,
+)
+
+__all__.extend([
+    "TARGETED_MERGE_VALIDATION_VERSION",
+    "TargetedMergeValidationResult",
+    "validate_targeted_merge",
+])

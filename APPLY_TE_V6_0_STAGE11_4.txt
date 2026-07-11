@@ -1,0 +1,2 @@
+TE v6.0 Stage 11.4 — Safe Targeted Merge Validation
+Copy all files into the NTPE root, merge folders, then run the Stage 11.4 root test, integration test, Stage 11.3 test, and ntpe_validate.py.

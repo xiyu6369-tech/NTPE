@@ -1,0 +1,16 @@
+{
+  "stage": "TE v6.0 Stage 11.4",
+  "version": "6.0.0-stage11.4",
+  "name": "Safe Targeted Merge Validation",
+  "runtime_integrated": true,
+  "fail_closed": true,
+  "provider_behavior_changed": false,
+  "files": [
+    "core/translation_discipline/targeted_merge_validation.py",
+    "core/translation_discipline/__init__.py",
+    "lts/txt_translation_runtime.py",
+    "ntpe_te_v611_stage114_safe_targeted_merge_validation_test.py",
+    "tests/integration/translation_safe_targeted_merge_validation_v611_stage114_test.py",
+    "docs/releases/te_v6_0/TE_V6_0_STAGE11_4_SAFE_TARGETED_MERGE_VALIDATION.md"
+  ]
+}
