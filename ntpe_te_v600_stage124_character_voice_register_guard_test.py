@@ -33,6 +33,8 @@ def main() -> int:
     engine = TranslationDisciplineEngine(profile="literary")
     mapped = engine.feedback.map_issue_code("UNSUPPORTED_EMOTIONAL_AMPLIFICATION")
     checks.append(("High-confidence issue maps to Discipline", mapped is not None and mapped.code == ISSUE_DISCIPLINE_MAPPING["UNSUPPORTED_EMOTIONAL_AMPLIFICATION"]))
+    voice_mapped = engine.feedback.map_issue_code("HONORIFIC_REGISTER_DRIFT")
+    checks.append(("Voice issue uses specific Discipline", voice_mapped is not None and voice_mapped.code == "HONORIFIC_REGISTER_CONSISTENCY"))
     checks.append(("No subjective local rewrite", all(not x.locally_repairable for x in honorific.issues + emotion.issues)))
     metadata = emotion.to_metadata()
     checks.append(("Offline fail-closed metadata", not metadata["provider_called"] and metadata["fail_closed"] and not metadata["semantic_rewrite_allowed"]))

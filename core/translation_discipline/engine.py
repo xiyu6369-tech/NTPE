@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from .feedback_adapter import AdaptiveFeedbackAdapter
-from .policy import POLICY_VERSION, legacy_prompt_discipline_rules, render_generation_policy
+from .policy import POLICY_VERSION, render_generation_policy, unified_discipline_rules
 from .profile import normalize_discipline_profile
 from .registry import DisciplineRuleRegistry
 from .report import build_discipline_report
@@ -12,7 +12,7 @@ ENGINE_VERSION = "6.0.0"
 class TranslationDisciplineEngine:
     def __init__(self, profile: str | None = None, registry: DisciplineRuleRegistry | None = None) -> None:
         self.profile = normalize_discipline_profile(profile)
-        self.registry = registry or DisciplineRuleRegistry(legacy_prompt_discipline_rules())
+        self.registry = registry or DisciplineRuleRegistry(unified_discipline_rules())
         self.feedback = AdaptiveFeedbackAdapter(self.registry)
 
     def active_rules(self, *, enabled: bool = True):

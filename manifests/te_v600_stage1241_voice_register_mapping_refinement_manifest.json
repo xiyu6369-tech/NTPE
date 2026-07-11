@@ -1,0 +1,22 @@
+{
+  "stage": "TE v6.0 Stage 12.4.1",
+  "name": "Voice/Register Discipline Mapping Refinement",
+  "version": "6.0.0-stage12.4.1",
+  "provider_calls_added": 0,
+  "http_requests_added": 0,
+  "quality_score_changed": false,
+  "unified_decision_changed": false,
+  "semantic_rewrite_allowed": false,
+  "stage_12_5_entered": false,
+  "files": [
+    "core/translation_discipline/policy.py",
+    "core/translation_discipline/engine.py",
+    "core/translation_discipline/__init__.py",
+    "core/translation_discipline/feedback_adapter.py",
+    "core/translation_naturalness/voice_register_guard.py",
+    "ntpe_te_v600_stage124_character_voice_register_guard_test.py",
+    "ntpe_te_v600_stage1241_voice_register_mapping_refinement_test.py",
+    "tests/integration/translation_voice_register_mapping_refinement_v600_stage1241_test.py",
+    "docs/releases/te_v6_0/TE_V6_0_STAGE12_4_1_VOICE_REGISTER_DISCIPLINE_MAPPING_REFINEMENT.md"
+  ]
+}

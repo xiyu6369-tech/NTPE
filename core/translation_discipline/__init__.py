@@ -15,7 +15,14 @@ from .local_repair import (
     LocalRepairResult,
     apply_adaptive_local_repairs,
 )
-from .policy import POLICY_VERSION, legacy_prompt_discipline_rules, render_generation_policy
+from .policy import (
+    POLICY_VERSION,
+    VOICE_REGISTER_DISCIPLINE_VERSION,
+    legacy_prompt_discipline_rules,
+    render_generation_policy,
+    unified_discipline_rules,
+    voice_register_discipline_rules,
+)
 from .profile import DISCIPLINE_PROFILES, DisciplineProfile, normalize_discipline_profile
 from .quality_adapter import UnifiedQualityGateAdapter
 from .quality_enforcement import (
@@ -76,6 +83,9 @@ __all__ = [
     "DISCIPLINE_PROFILES",
     "normalize_discipline_profile",
     "legacy_prompt_discipline_rules",
+    "VOICE_REGISTER_DISCIPLINE_VERSION",
+    "voice_register_discipline_rules",
+    "unified_discipline_rules",
     "render_generation_policy",
     "PromptCompilerAdapter",
     "AdaptiveFeedbackAdapter",
