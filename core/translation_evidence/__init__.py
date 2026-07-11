@@ -1,3 +1,11 @@
+from .alignment import (
+    ALIGNMENT_ENGINE_VERSION,
+    ALIGNMENT_SCHEMA_VERSION,
+    AlignmentSpan,
+    SemanticAlignmentResult,
+    build_source_translation_alignment,
+)
+from .alignment_evidence import ALIGNMENT_EVIDENCE_VERSION, build_alignment_evidence
 from .detector import (
     detect_dialogue_evidence,
     detect_narrative_evidence,
@@ -27,4 +35,7 @@ __all__ = [
     "coverage_ratio", "detect_dialogue_evidence", "detect_narrative_evidence", "detect_paragraph_evidence",
     "detect_sentence_evidence", "detect_terminology_evidence", "evidence_reliability", "locate_dialogues",
     "locate_paragraphs", "locate_sentences",
+    "ALIGNMENT_ENGINE_VERSION", "ALIGNMENT_SCHEMA_VERSION", "ALIGNMENT_EVIDENCE_VERSION",
+    "AlignmentSpan", "SemanticAlignmentResult", "build_source_translation_alignment",
+    "build_alignment_evidence",
 ]

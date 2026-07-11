@@ -1,0 +1,18 @@
+{
+  "stage": "TE v6.0 Stage 11.2",
+  "name": "Source-Translation Semantic Alignment",
+  "version": "6.0.0-stage11.2",
+  "runtime_integrated": false,
+  "provider_calls": false,
+  "http_requests": false,
+  "new_modules": [
+    "core/translation_evidence/alignment.py",
+    "core/translation_evidence/alignment_evidence.py"
+  ],
+  "compatibility": {
+    "stage_11_1": true,
+    "provider_unchanged": true,
+    "quality_decision_unchanged": true,
+    "retry_policy_unchanged": true
+  }
+}
