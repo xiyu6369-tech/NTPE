@@ -1,0 +1,12 @@
+TE v6.0 Stage 04 — Adaptive Local Repair Framework
+
+Copy all files into D:\Python\NTPE and merge directories.
+
+Run:
+  python ntpe_te_v600_stage04_adaptive_local_repair_framework_test.py
+  python ntpe_te_v600_stage03_discipline_quality_enforcement_test.py
+  python ntpe_te_v540_smart_local_repair_pipeline_test.py
+  python ntpe_validate.py
+
+The manifest may be ignored by the current .gitignore. Add it with:
+  git add -f manifests\te_v600_stage04_adaptive_local_repair_framework_manifest.json

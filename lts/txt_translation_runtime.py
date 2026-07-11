@@ -27,6 +27,7 @@ from core.translation_runtime.runtime_qa import RuntimeQAPolicy, analyze_runtime
 from core.translation_quality_v5.runtime_integration import run_quality_v5_phase1, merge_quality_v5_into_runtime_qa
 from core.translation_quality_v5.unified_quality_gate import attach_unified_report
 from core.translation_quality_v5.smart_local_repair import apply_smart_local_repair_decision
+from core.translation_discipline import apply_adaptive_local_repairs
 from core.translation_quality_v5.best_attempt import AttemptCandidate, select_best_attempt, selection_metadata
 from core.translation_quality_v5.segment_recovery import (
     SEGMENT_RECOVERY_VERSION,
@@ -1459,9 +1460,54 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
                     attempt=qa_attempt,
                     chunk_id=package["package_id"],
                 )
+                local_repair_result = apply_adaptive_local_repairs(
+                    translation,
+                    qa_report.get("unified_quality_report") or {},
+                )
+                if local_repair_result.changed:
+                    translation = format_translation_output(local_repair_result.text, options)
+                    if options.strict_lock_terms:
+                        translation = apply_locked_dictionary(translation, locked_dictionary)
+                    if options.quality_v5_enabled:
+                        quality_v5_report = run_quality_v5_phase1(
+                            chunk,
+                            translation,
+                            locked_terms=package.get("knowledge", {}).get("locked_dictionary", {}),
+                            config={"min_length_ratio": max(0.18, options.min_length_ratio)},
+                        )
+                        translation = str(quality_v5_report.get("normalized_text") or translation)
+                        if options.strict_lock_terms:
+                            translation = apply_locked_dictionary(translation, locked_dictionary)
+                        translation = format_translation_output(translation, options)
+                    qa_report = analyze_translation_quality(
+                        chunk,
+                        translation,
+                        options,
+                        locked_dictionary=package.get("knowledge", {}).get("locked_dictionary", {}),
+                    ) if options.qa_enabled else {"passed": True, "issues": [], "metrics": {}}
+                    qa_report = merge_quality_v5_into_runtime_qa(
+                        qa_report,
+                        quality_v5_report or {},
+                        attempt=qa_attempt,
+                        chunk_id=package["package_id"],
+                    )
+                    qa_report.setdefault("unified_quality_report", {})["adaptive_local_repair"] = local_repair_result.to_metadata()
+                    qa_report["adaptive_local_repair"] = local_repair_result.to_metadata()
+                    emit_progress(
+                        f"chunk {idx}/{len(chunks)} adaptive-local-repair "
+                        f"repaired={','.join(local_repair_result.repaired_codes) or 'none'} "
+                        f"actions={len(local_repair_result.actions)} revalidated=true",
+                        options=options,
+                    )
+                elif local_repair_result.attempted_codes:
+                    qa_report.setdefault("unified_quality_report", {})["adaptive_local_repair"] = local_repair_result.to_metadata()
+                    qa_report["adaptive_local_repair"] = local_repair_result.to_metadata()
                 qa_report = apply_smart_local_repair_decision(
                     qa_report,
-                    local_repairs=list((quality_v5_report or {}).get("safe_replacements") or []),
+                    local_repairs=(
+                        list((quality_v5_report or {}).get("safe_replacements") or [])
+                        + [dict(item) for item in local_repair_result.actions]
+                    ),
                 )
                 unified_report = qa_report["unified_quality_report"]
                 if qa_report.get("smart_local_repair", {}).get("provider_retry_skipped"):
