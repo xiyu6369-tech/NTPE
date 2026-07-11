@@ -1,0 +1,7 @@
+Copy all files into D:\Python\NTPE and merge folders.
+
+Run:
+python ntpe_te_v600_stage081_import_api_compatibility_test.py
+python ntpe_te_v600_stage08_translation_discipline_freeze_test.py
+python -m pytest -q tests\integration\translation_discipline_import_api_compatibility_v600_stage081_test.py tests\integration\translation_discipline_freeze_v600_stage08_test.py
+python ntpe_validate.py
