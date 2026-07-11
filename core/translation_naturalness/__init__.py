@@ -21,10 +21,19 @@ __all__ = [
     "UNSUPPORTED_DETAIL_GUARD_VERSION",
     "UnsupportedDetailGuardResult",
     "analyze_unsupported_details",
+    "LITERARY_COLLOCATION_GUARD_VERSION",
+    "LiteraryCollocationResult",
+    "apply_literary_collocation_guard",
 ]
 
 from .hallucination_guard import (
     UNSUPPORTED_DETAIL_GUARD_VERSION,
     UnsupportedDetailGuardResult,
     analyze_unsupported_details,
+)
+
+from .collocation_guard import (
+    LITERARY_COLLOCATION_GUARD_VERSION,
+    LiteraryCollocationResult,
+    apply_literary_collocation_guard,
 )

@@ -1,0 +1,16 @@
+{
+  "stage": "TE v6.0 Stage 12.3",
+  "name": "Literary Collocation and Direct-Translation Guard",
+  "version": "6.0.0-stage12.3",
+  "provider_calls_added": 0,
+  "semantic_rewrite_allowed": false,
+  "fail_closed": true,
+  "files": [
+    "core/translation_naturalness/collocation_guard.py",
+    "core/translation_naturalness/__init__.py",
+    "lts/txt_translation_runtime.py",
+    "ntpe_te_v600_stage123_literary_collocation_guard_test.py",
+    "tests/integration/translation_literary_collocation_guard_v600_stage123_test.py",
+    "docs/releases/te_v6_0/TE_V6_0_STAGE12_3_LITERARY_COLLOCATION_DIRECT_TRANSLATION_GUARD.md"
+  ]
+}

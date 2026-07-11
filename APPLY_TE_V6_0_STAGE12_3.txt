@@ -1,0 +1,10 @@
+TE v6.0 Stage 12.3 — Literary Collocation and Direct-Translation Guard
+
+Copy this package into D:\Python\NTPE and merge folders.
+
+Run:
+python ntpe_te_v600_stage123_literary_collocation_guard_test.py
+python -m pytest -q tests\integration\translation_literary_collocation_guard_v600_stage123_test.py
+python ntpe_te_v600_stage122_hallucination_unsupported_detail_guard_test.py
+python ntpe_te_v600_stage121_translation_naturalness_engine_test.py
+python ntpe_validate.py
