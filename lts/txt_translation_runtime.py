@@ -1509,6 +1509,12 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
                     f"revalidated={str(discipline_outcome.revalidated).lower()}",
                     options=options,
                 )
+                discipline_audit = qa_report.get("discipline_audit_trail") or {}
+                audit_report_path = chunk_out_dir / f"{input_path.stem}_chunk_{idx:06d}_discipline_audit_attempt_{qa_attempt}.json"
+                save_json(audit_report_path, discipline_audit)
+                package.setdefault("prompt_runtime", {})["discipline_audit_trail"] = {"version": discipline_audit.get("schema_version", "6.0.0-stage07"), "report_path": str(audit_report_path), "initial_action": discipline_outcome.initial_action, "final_action": discipline_outcome.final_action, "revalidated": discipline_outcome.revalidated}
+                save_json(package_path, package)
+                emit_progress(f"chunk {idx}/{len(chunks)} discipline-audit rules={len((discipline_audit.get('discipline') or {}).get('active_rule_codes', []))} issues={(discipline_audit.get('quality') or {}).get('issue_count', 0)} final={discipline_outcome.final_action} report={audit_report_path.name}", options=options)
                 unified_report = qa_report["unified_quality_report"]
                 retry_decision = qa_report.get("adaptive_retry_decision") or {}
                 emit_progress(

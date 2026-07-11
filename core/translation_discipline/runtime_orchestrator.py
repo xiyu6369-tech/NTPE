@@ -4,6 +4,7 @@ from copy import deepcopy
 from dataclasses import dataclass
 from typing import Any, Callable, Mapping
 
+from .audit_trail import build_discipline_audit_trail
 from .local_repair import LocalRepairResult, apply_adaptive_local_repairs
 from .retry_decision_engine import (
     LOCAL_REPAIR,
@@ -83,6 +84,9 @@ class TranslationDisciplineRuntimeOrchestrator:
         }
         current_qa["discipline_runtime_orchestrator"] = metadata
         current_qa.setdefault("unified_quality_report", {})["discipline_runtime_orchestrator"] = metadata
+        audit = build_discipline_audit_trail(current_qa, initial_action=initial.action, final_action=final_action, revalidated=revalidated, local_repair=local_result.to_metadata()).to_metadata()
+        current_qa["discipline_audit_trail"] = audit
+        current_qa.setdefault("unified_quality_report", {})["discipline_audit_trail"] = audit
 
         return DisciplineRuntimeOutcome(
             text=current_text,

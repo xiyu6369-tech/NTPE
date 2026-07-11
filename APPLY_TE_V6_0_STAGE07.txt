@@ -1,0 +1,2 @@
+TE v6.0 Stage 07 — Discipline Observability & Audit Trail
+Copy all files into D:\Python\NTPE and merge folders.

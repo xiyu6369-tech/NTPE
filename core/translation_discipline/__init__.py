@@ -1,3 +1,4 @@
+from .audit_trail import DISCIPLINE_AUDIT_VERSION, DisciplineAuditTrail, build_discipline_audit_trail
 from .compiler_adapter import PromptCompilerAdapter
 from .engine import ENGINE_VERSION, TranslationDisciplineEngine
 from .feedback_adapter import AdaptiveFeedbackAdapter
@@ -37,6 +38,9 @@ from .report import build_discipline_report
 from .rule import CATEGORIES, PHASES, DisciplineRule
 
 __all__ = [
+    "DISCIPLINE_AUDIT_VERSION",
+    "DisciplineAuditTrail",
+    "build_discipline_audit_trail",
     "ENGINE_VERSION",
     "POLICY_VERSION",
     "QUALITY_ENFORCEMENT_VERSION",
