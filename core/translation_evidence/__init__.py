@@ -1,3 +1,10 @@
+from .freeze import (
+    EVIDENCE_FREEZE_VERSION,
+    EVIDENCE_FROZEN_STAGES,
+    EVIDENCE_RELEASE_LINE,
+    TranslationEvidenceFreeze,
+    build_translation_evidence_freeze,
+)
 from .alignment import (
     ALIGNMENT_ENGINE_VERSION,
     ALIGNMENT_SCHEMA_VERSION,
@@ -38,4 +45,6 @@ __all__ = [
     "ALIGNMENT_ENGINE_VERSION", "ALIGNMENT_SCHEMA_VERSION", "ALIGNMENT_EVIDENCE_VERSION",
     "AlignmentSpan", "SemanticAlignmentResult", "build_source_translation_alignment",
     "build_alignment_evidence",
+    "EVIDENCE_FREEZE_VERSION", "EVIDENCE_FROZEN_STAGES", "EVIDENCE_RELEASE_LINE",
+    "TranslationEvidenceFreeze", "build_translation_evidence_freeze",
 ]

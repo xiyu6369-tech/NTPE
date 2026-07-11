@@ -1,0 +1,7 @@
+TE v6.0 Stage 11.6 — Translation Evidence Freeze
+
+Copy the package contents into the NTPE project root and merge directories.
+Run:
+  python ntpe_te_v611_stage116_translation_evidence_freeze_test.py
+  python -m pytest -q tests\integration\translation_evidence_freeze_v611_stage116_test.py
+  python ntpe_validate.py

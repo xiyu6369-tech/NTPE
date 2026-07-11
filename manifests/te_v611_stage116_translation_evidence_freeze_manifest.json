@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0",
+  "version": "6.0.0-stage11.6",
+  "release_line": "TE-v6.0",
+  "frozen": true,
+  "stages": [
+    "stage11.1-translation-evidence-foundation",
+    "stage11.2-source-translation-semantic-alignment",
+    "stage11.3-evidence-to-retry-integration",
+    "stage11.4-safe-targeted-merge-validation",
+    "stage11.5-evidence-runtime-integration-audit"
+  ],
+  "compatibility": {
+    "provider_calls_added": 0,
+    "prompt_text_changed": false,
+    "prompt_token_profile_changed": false,
+    "quality_score_changed": false,
+    "quality_decision_changed": false,
+    "retry_tier_changed": false,
+    "provider_budget_changed": false,
+    "timeout_changed": false,
+    "resume_changed": false,
+    "fail_closed": true,
+    "nvidia_rpm_ceiling": 40
+  }
+}
