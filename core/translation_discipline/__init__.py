@@ -136,3 +136,17 @@ __all__.extend([
     "summarize_retry_metrics",
     "write_comparison_reports",
 ])
+
+from .freeze_readiness import (
+    FREEZE_READINESS_VERSION,
+    FreezeReadinessResult,
+    evaluate_freeze_readiness,
+    write_freeze_readiness_report,
+)
+
+__all__.extend([
+    "FREEZE_READINESS_VERSION",
+    "FreezeReadinessResult",
+    "evaluate_freeze_readiness",
+    "write_freeze_readiness_report",
+])
