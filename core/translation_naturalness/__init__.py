@@ -24,6 +24,11 @@ __all__ = [
     "LITERARY_COLLOCATION_GUARD_VERSION",
     "LiteraryCollocationResult",
     "apply_literary_collocation_guard",
+    "VOICE_REGISTER_GUARD_VERSION",
+    "ISSUE_DISCIPLINE_MAPPING",
+    "VoiceRegisterIssue",
+    "VoiceRegisterGuardResult",
+    "analyze_voice_register",
 ]
 
 from .hallucination_guard import (
@@ -36,4 +41,12 @@ from .collocation_guard import (
     LITERARY_COLLOCATION_GUARD_VERSION,
     LiteraryCollocationResult,
     apply_literary_collocation_guard,
+)
+
+from .voice_register_guard import (
+    VOICE_REGISTER_GUARD_VERSION,
+    ISSUE_DISCIPLINE_MAPPING,
+    VoiceRegisterIssue,
+    VoiceRegisterGuardResult,
+    analyze_voice_register,
 )

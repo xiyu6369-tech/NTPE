@@ -1,0 +1,21 @@
+{
+  "stage": "TE v6.0 Stage 12.4",
+  "name": "Character Voice & Narrative Register Guard",
+  "version": "6.0.0-stage12.4",
+  "provider_calls_added": 0,
+  "http_requests_added": 0,
+  "semantic_rewrite_allowed": false,
+  "unified_decision_changed": false,
+  "fail_closed": true,
+  "files": [
+    "core/translation_naturalness/voice_register_guard.py",
+    "core/translation_naturalness/__init__.py",
+    "core/translation_naturalness/policy.py",
+    "core/prompt_compiler/compiler.py",
+    "core/translation_discipline/feedback_adapter.py",
+    "lts/txt_translation_runtime.py",
+    "ntpe_te_v600_stage124_character_voice_register_guard_test.py",
+    "tests/integration/translation_character_voice_register_guard_v600_stage124_test.py",
+    "docs/releases/te_v6_0/TE_V6_0_STAGE12_4_CHARACTER_VOICE_NARRATIVE_REGISTER_GUARD.md"
+  ]
+}

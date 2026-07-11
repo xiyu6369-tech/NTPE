@@ -32,7 +32,7 @@ class PromptCompiler:
         naturalness = ""
         naturalness_rule_count = 0
         if naturalness_enabled:
-            from core.translation_naturalness import NATURALNESS_RULES, render_naturalness_policy
+            from core.translation_naturalness import NATURALNESS_POLICY_VERSION, NATURALNESS_RULES, render_naturalness_policy
             naturalness = render_naturalness_policy()
             naturalness_rule_count = len(NATURALNESS_RULES)
             if naturalness:
@@ -59,7 +59,7 @@ class PromptCompiler:
                 "discipline_enabled": bool(active_rules),
                 "discipline_rule_codes": [rule.code for rule in active_rules],
                 "discipline_rule_count": len(active_rules),
-                "naturalness_policy_version": "6.0.0-stage12.1" if naturalness_enabled else None,
+                "naturalness_policy_version": NATURALNESS_POLICY_VERSION if naturalness_enabled else None,
                 "naturalness_policy_enabled": naturalness_enabled,
                 "naturalness_rule_count": naturalness_rule_count,
                 **discipline_metadata,

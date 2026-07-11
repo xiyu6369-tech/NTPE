@@ -15,6 +15,7 @@ from core.translation_engine.context_intelligence import apply_context_intellige
 from core.translation_naturalness import (
     analyze_unsupported_details,
     apply_literary_collocation_guard,
+    analyze_voice_register,
     canonicalize_novel_chinese,
 )
 from core.translation_engine.translation_engine import TranslationEngine
@@ -1563,8 +1564,10 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
                 translation = naturalness_canonicalization.text
                 literary_collocation = apply_literary_collocation_guard(translation)
                 translation = literary_collocation.text
+                voice_register_guard = analyze_voice_register(chunk, translation, profile=options.quality_profile)
                 package.setdefault("prompt_runtime", {})["naturalness_canonicalization"] = naturalness_canonicalization.to_metadata()
                 package.setdefault("prompt_runtime", {})["literary_collocation_guard"] = literary_collocation.to_metadata()
+                package.setdefault("prompt_runtime", {})["voice_register_guard"] = voice_register_guard.to_metadata()
                 if naturalness_canonicalization.changed or naturalness_canonicalization.warnings:
                     emit_progress(
                         f"chunk {idx}/{len(chunks)} naturalness-canonicalization "
@@ -1579,6 +1582,14 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
                         f"changed={str(literary_collocation.changed).lower()} "
                         f"actions={len(literary_collocation.actions)} "
                         f"warnings={len(literary_collocation.warnings)}",
+                        options=options,
+                    )
+                if voice_register_guard.issues or voice_register_guard.warnings:
+                    emit_progress(
+                        f"chunk {idx}/{len(chunks)} voice-register-guard "
+                        f"issues={len(voice_register_guard.issues)} "
+                        f"warnings={len(voice_register_guard.warnings)} "
+                        f"blocking={str(voice_register_guard.blocking).lower()}",
                         options=options,
                     )
                 quality_v5_report = None
@@ -1597,6 +1608,11 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
                             locked_terms=package.get("knowledge", {}).get("locked_dictionary", {}),
                             config={"min_length_ratio": max(0.18, options.min_length_ratio)},
                         )
+                        candidate_voice_register = analyze_voice_register(
+                            chunk, evaluated_text, profile=options.quality_profile
+                        )
+                        quality_v5_report.setdefault("metrics", {})["voice_register_guard"] = candidate_voice_register.to_metadata()
+                        package.setdefault("prompt_runtime", {})["voice_register_guard"] = candidate_voice_register.to_metadata()
                         unsupported_detail_guard = analyze_unsupported_details(chunk, evaluated_text)
                         quality_v5_report.setdefault("issues", []).extend(unsupported_detail_guard.issues)
                         quality_v5_report.setdefault("metrics", {})["unsupported_detail_guard"] = unsupported_detail_guard.to_metadata()

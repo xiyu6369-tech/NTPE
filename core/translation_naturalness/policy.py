@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-NATURALNESS_POLICY_VERSION = "6.0.0-stage12.1"
+NATURALNESS_POLICY_VERSION = "6.0.0-stage12.4"
 
 
 @dataclass(frozen=True)
@@ -30,7 +30,7 @@ NATURALNESS_RULES: tuple[NaturalnessRule, ...] = (
     ),
     NaturalnessRule(
         "PRESERVE_CHARACTER_VOICE",
-        "保持人物口吻、稱謂與敘事距離一致；自然潤飾不得改變人物態度、情緒強度或事件因果。",
+        "保持同一角色在相同情境中的稱呼、敬語層級與口吻一致；不得自行放大人物情緒或改變角色性格；保持原文敘事人稱、視角與敘事距離。",
         "characterization",
     ),
 )
