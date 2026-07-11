@@ -1,0 +1,12 @@
+TE v6.0 Stage 12.5 — Translation Naturalness Engine Freeze
+
+Apply the delta ZIP at the NTPE repository root while preserving directory structure.
+
+Run:
+python ntpe_te_v600_stage125_translation_naturalness_freeze_test.py
+python -m pytest -q tests/integration/translation_naturalness_freeze_v600_stage125_test.py
+python ntpe_validate.py
+
+Expected result: every command reports ALL PASS or all tests passed.
+
+This package adds no runtime wiring, Provider request, HTTP client, or NVIDIA API call.

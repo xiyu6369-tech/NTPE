@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.0",
+  "stage_id": "TE-v6.0-stage12.5",
+  "name": "Translation Naturalness Engine Freeze",
+  "freeze_version": "6.0.0-stage12.5",
+  "frozen": true,
+  "frozen_stages": ["12.1", "12.2", "12.3", "12.4", "12.4.1"],
+  "modified_files": [
+    "core/translation_naturalness/__init__.py",
+    "core/literary/literary_prompt_builder.py"
+  ],
+  "new_files": [
+    "core/translation_naturalness/freeze.py",
+    "ntpe_te_v600_stage125_translation_naturalness_freeze_test.py",
+    "tests/integration/translation_naturalness_freeze_v600_stage125_test.py",
+    "docs/releases/te_v6_0/TE_V6_0_STAGE12_5_TRANSLATION_NATURALNESS_ENGINE_FREEZE.md",
+    "manifests/te_v600_stage125_translation_naturalness_freeze_manifest.json",
+    "APPLY_TE_V6_0_STAGE12_5.txt",
+    "artifacts/NTPE_TE_V6_0_STAGE12_5_TRANSLATION_NATURALNESS_ENGINE_FREEZE_DELTA.zip"
+  ],
+  "public_api": [
+    "NATURALNESS_FREEZE_VERSION",
+    "NATURALNESS_FROZEN_STAGES",
+    "TranslationNaturalnessFreeze",
+    "build_translation_naturalness_freeze"
+  ],
+  "compatibility_guarantees": {
+    "existing_public_api_changed": false,
+    "runtime_wiring_added": false,
+    "detectors_added": 0,
+    "canonicalization_rules_added": 0,
+    "issue_codes_added": 0,
+    "voice_register_nonblocking": true,
+    "semantic_rewrite_allowed": false,
+    "active_generation_discipline_rule_count": 8,
+    "prompt_token_profile_corrected": true
+  },
+  "provider_invariants": {
+    "provider_calls_added": 0,
+    "provider_client_created": false,
+    "http_requests_added": 0,
+    "nvidia_api_called": false,
+    "nvidia_rpm_ceiling": 40,
+    "timeout_changed": false,
+    "provider_attempts_changed": false,
+    "retry_delay_changed": false,
+    "backpressure_changed": false,
+    "resume_changed": false,
+    "provider_budget_changed": false
+  },
+  "quality_invariants": {
+    "quality_score_changed": false,
+    "unified_decision_changed": false,
+    "best_attempt_selection_changed": false,
+    "adaptive_retry_tier_changed": false,
+    "targeted_retry_changed": false,
+    "full_retry_changed": false,
+    "stage11_evidence_api_changed": false
+  },
+  "rollback_environment_variable": "NTPE_NATURALNESS_POLICY",
+  "validation_commands": [
+    "python ntpe_te_v600_stage125_translation_naturalness_freeze_test.py",
+    "python -m pytest -q tests/integration/translation_naturalness_freeze_v600_stage125_test.py",
+    "python ntpe_te_v600_stage121_translation_naturalness_engine_test.py",
+    "python ntpe_te_v600_stage122_hallucination_unsupported_detail_guard_test.py",
+    "python ntpe_te_v600_stage123_literary_collocation_guard_test.py",
+    "python ntpe_te_v600_stage124_character_voice_register_guard_test.py",
+    "python ntpe_te_v600_stage1241_voice_register_mapping_refinement_test.py",
+    "python ntpe_te_v611_stage116_translation_evidence_freeze_test.py",
+    "python ntpe_te_v600_stage10_adaptive_retry_policy_v2_test.py",
+    "python ntpe_te_v600_stage081_import_api_compatibility_test.py",
+    "python ntpe_validate.py",
+    "git diff --check"
+  ],
+  "expected_results": "ALL PASS",
+  "integrity": {
+    "algorithm": "SHA-256",
+    "sha256": {
+      "core/translation_naturalness/freeze.py": "de27f81b64b15f449866e5d9d3c0c36b508cffde51c5287e60fc793a3366d6d8",
+      "core/translation_naturalness/__init__.py": "da227afc57126a35e579ea00b9faf31532ead64df405fe77714868778d96abad",
+      "core/literary/literary_prompt_builder.py": "7ea43a24155b66379f39bfc8a6a5d6f2797e78fa56086efc1ed3fce8d273f11c",
+      "ntpe_te_v600_stage125_translation_naturalness_freeze_test.py": "84b0e312c3bea2a8b3fa45a7c80c2dbe59ad4438db97c3ac0ffa2cfa8a669d0a",
+      "tests/integration/translation_naturalness_freeze_v600_stage125_test.py": "1b47d1c98eb0dcd5f5ee90d185365f9a87f5815b92af07c3371fd1e0e0a537af",
+      "docs/releases/te_v6_0/TE_V6_0_STAGE12_5_TRANSLATION_NATURALNESS_ENGINE_FREEZE.md": "a0909735f05760168f36c61b29b3360551818302ae0a076228e2b90f58ca2ed9",
+      "APPLY_TE_V6_0_STAGE12_5.txt": "a290644525c7377c01711dfc0c254a71009e0b62a0c11c304bfafd0d20cac4ca"
+    }
+  }
+}

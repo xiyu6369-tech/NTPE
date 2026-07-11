@@ -29,6 +29,10 @@ __all__ = [
     "VoiceRegisterIssue",
     "VoiceRegisterGuardResult",
     "analyze_voice_register",
+    "NATURALNESS_FREEZE_VERSION",
+    "NATURALNESS_FROZEN_STAGES",
+    "TranslationNaturalnessFreeze",
+    "build_translation_naturalness_freeze",
 ]
 
 from .hallucination_guard import (
@@ -49,4 +53,11 @@ from .voice_register_guard import (
     VoiceRegisterIssue,
     VoiceRegisterGuardResult,
     analyze_voice_register,
+)
+
+from .freeze import (
+    NATURALNESS_FREEZE_VERSION,
+    NATURALNESS_FROZEN_STAGES,
+    TranslationNaturalnessFreeze,
+    build_translation_naturalness_freeze,
 )

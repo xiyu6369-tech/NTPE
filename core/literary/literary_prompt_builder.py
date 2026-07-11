@@ -88,9 +88,15 @@ class LiteraryPromptBuilder:
         )
         system_prompt = compiled.system_prompt
         user_prompt = compiled.user_prompt
+        profiled_policy_text = policy_text
+        if compiled.metadata.get("naturalness_policy_enabled"):
+            from core.translation_naturalness import render_naturalness_policy
+            naturalness_policy = render_naturalness_policy()
+            if naturalness_policy:
+                profiled_policy_text += "\n" + naturalness_policy
         prompt_profile = build_prompt_profile(
             system_prompt=system_prompt,
-            policy_text=policy_text,
+            policy_text=profiled_policy_text,
             context_text=context_text,
             glossary_text=glossary_text,
             source_text=source_text,
