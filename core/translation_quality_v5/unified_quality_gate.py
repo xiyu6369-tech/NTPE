@@ -2,6 +2,9 @@ from __future__ import annotations
 
 from typing import Any, Mapping, Sequence
 
+from core.translation_discipline import DisciplineQualityEnforcer, TranslationDisciplineEngine
+from core.translation_discipline.quality_adapter import UnifiedQualityGateAdapter
+
 from .legacy_qa_adapter import adapt_legacy_qa_report
 from .quality_decision import (
     ACCEPTED,
@@ -101,7 +104,7 @@ def run_unified_quality_gate(
     merged_issues = deduplicate_issues([*v5_issues, *legacy_issues])
     score = calculate_unified_score(merged_issues)
     decision, final_reason = decide_quality(merged_issues)
-    return {
+    base_report = {
         "schema_version": "5.3.1",
         "stage": "TE-v5.3.1-unified-quality-gate",
         "quality_v5_issues": [issue.to_dict() for issue in v5_issues],
@@ -119,6 +122,9 @@ def run_unified_quality_gate(
         "quality_v5_enabled": bool(quality_v5_report),
         "legacy_qa_enabled": bool((legacy_qa_report or {}).get("enabled", True)),
     }
+    discipline = TranslationDisciplineEngine(profile="literary")
+    enforcer = DisciplineQualityEnforcer(UnifiedQualityGateAdapter(discipline.feedback))
+    return enforcer.enforce(base_report)
 
 
 def build_runtime_qa_view(

@@ -1,0 +1,16 @@
+{
+  "schema_version": "6.0.0-stage03",
+  "stage": "TE-v6.0-stage03-discipline-quality-enforcement",
+  "quality_enforcement_version": "6.0.0-stage03",
+  "compatibility": {
+    "quality_score_unchanged": true,
+    "quality_decision_unchanged": true,
+    "provider_requests_added": false,
+    "legacy_smart_repair_fallback_preserved": true
+  },
+  "entrypoint": "core.translation_discipline.DisciplineQualityEnforcer",
+  "tests": [
+    "ntpe_te_v600_stage03_discipline_quality_enforcement_test.py",
+    "tests/integration/translation_discipline_quality_enforcement_v600_stage03_test.py"
+  ]
+}

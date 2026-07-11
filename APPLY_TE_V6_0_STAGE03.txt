@@ -1,0 +1,10 @@
+TE v6.0 Stage 03 — Discipline Quality Enforcement
+
+Copy all files into D:\Python\NTPE and merge folders.
+
+Run:
+  python ntpe_te_v600_stage03_discipline_quality_enforcement_test.py
+  python ntpe_te_v600_stage02_discipline_policy_activation_test.py
+  python ntpe_te_v540_smart_local_repair_pipeline_test.py
+  python ntpe_te_v531_unified_quality_gate_test.py
+  python ntpe_validate.py

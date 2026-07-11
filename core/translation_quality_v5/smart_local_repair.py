@@ -3,6 +3,8 @@ from __future__ import annotations
 from copy import deepcopy
 from typing import Any, Mapping
 
+from core.translation_discipline import discipline_route_codes
+
 from .quality_decision import ACCEPTED_WITH_WARNINGS
 from .quality_issue import canonical_issue_code
 
@@ -59,10 +61,19 @@ def apply_smart_local_repair_decision(
         return result
 
     codes = _codes(unified)
-    if not codes or codes & _PROVIDER_REQUIRED_CODES:
-        return result
-    if not codes.issubset(_LOCAL_WARNING_CODES):
-        return result
+    discipline_local = discipline_route_codes(unified, "local_repair")
+    discipline_provider = discipline_route_codes(unified, "provider_retry")
+    if discipline_local or discipline_provider:
+        if not codes or discipline_provider:
+            return result
+        if codes != discipline_local:
+            return result
+    else:
+        # Backward-compatible fallback for reports produced before TE v6.0 Stage 03.
+        if not codes or codes & _PROVIDER_REQUIRED_CODES:
+            return result
+        if not codes.issubset(_LOCAL_WARNING_CODES):
+            return result
 
     merged = []
     for issue in unified.get("merged_issues") or []:
