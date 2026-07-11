@@ -1,7 +1,10 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+import os
 from typing import Mapping
+
+from core.prompt_compiler import PromptCompiler, PromptSections
 
 from .character_context import CharacterContext
 from .glossary_context import GlossaryContext
@@ -20,6 +23,7 @@ class LiteraryPromptResult:
     glossary_context: GlossaryContext
     prompt_profile: PromptProfile
     profile: str
+    prompt_compiler: dict
 
     def to_prompt_dict(self) -> dict:
         return {
@@ -31,6 +35,7 @@ class LiteraryPromptResult:
             "narrative_context": self.narrative_context.to_dict(),
             "character_context": self.character_context.to_dict(),
             "glossary_context": self.glossary_context.to_dict(),
+            "prompt_compiler": dict(self.prompt_compiler),
         }
 
 
@@ -70,7 +75,19 @@ class LiteraryPromptBuilder:
         source_text = "【Korean】\n" + chunk_text.strip()
         output_text = "【Output】直出譯文，禁止標題、註解、Markdown。"
 
-        user_prompt = "\n".join([policy_text, context_text, glossary_text, source_text, output_text])
+        discipline_enabled = os.environ.get("NTPE_PROMPT_DISCIPLINE", "1").strip().lower() not in {"0", "false", "no", "off"}
+        compiled = PromptCompiler(discipline_enabled=discipline_enabled).compile(
+            PromptSections(
+                system=system_prompt,
+                policy=policy_text,
+                context=context_text,
+                glossary=glossary_text,
+                source=source_text,
+                output=output_text,
+            )
+        )
+        system_prompt = compiled.system_prompt
+        user_prompt = compiled.user_prompt
         prompt_profile = build_prompt_profile(
             system_prompt=system_prompt,
             policy_text=policy_text,
@@ -86,6 +103,7 @@ class LiteraryPromptBuilder:
             glossary_context=glossary,
             prompt_profile=prompt_profile,
             profile=normalized_profile,
+            prompt_compiler=compiled.to_metadata(),
         )
 
 

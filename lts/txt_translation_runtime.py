@@ -16,8 +16,12 @@ from core.translation_engine.translation_engine import TranslationEngine
 from core.translation_engine.prompt_intelligence import apply_prompt_intelligence
 from core.translation_engine.utils import now_iso, save_json, save_text
 from core.literary import LiteraryPromptBuilder, normalize_profile, normalize_literary_style
+from core.prompt_compiler import PROMPT_COMPILER_VERSION
+from core.prompt_compiler.rules import enabled_discipline_rules, render_discipline_block
 from core.translation_runtime.runtime_qa import RuntimeQAPolicy, analyze_runtime_quality, soft_fail_naturalness_report
 from core.translation_quality_v5.runtime_integration import run_quality_v5_phase1, merge_quality_v5_into_runtime_qa
+from core.translation_quality_v5.unified_quality_gate import attach_unified_report
+from core.translation_quality_v5.smart_local_repair import apply_smart_local_repair_decision
 from core.translation_runtime.runtime_speed_policy import (
     RuntimeSpeedPolicy,
     effective_timeout,
@@ -864,6 +868,56 @@ def _dynamic_output_tokens(source_len: int, *, floor: int, small: int, mid: int,
         return max(floor, min(mid, math.ceil(source_len * ratio)))
     return max(floor, min(cap, math.ceil(source_len * ratio)))
 
+def _runtime_prompt_discipline_enabled() -> bool:
+    return os.environ.get("NTPE_PROMPT_DISCIPLINE", "1").strip().lower() not in {"0", "false", "no", "off"}
+
+
+def _ensure_runtime_prompt_compiler_wiring(prompt_result) -> tuple[str, str, dict, dict]:
+    """Guarantee that the provider-ready runtime prompt contains v5.5.2 discipline.
+
+    The LiteraryPromptBuilder remains the primary compiler path.  This runtime guard
+    prevents a stale or alternate builder path from silently omitting discipline in
+    regression/TXT packages.
+    """
+    system_prompt = prompt_result.system_prompt
+    user_prompt = prompt_result.user_prompt
+    compiler_meta = dict(getattr(prompt_result, "prompt_compiler", {}) or {})
+    enabled = _runtime_prompt_discipline_enabled()
+    rules = enabled_discipline_rules() if enabled else ()
+    discipline = render_discipline_block(rules) if rules else ""
+
+    if discipline and "【翻譯紀律】" not in user_prompt:
+        marker = "【Korean】"
+        if marker in user_prompt:
+            user_prompt = user_prompt.replace(marker, discipline + "\n" + marker, 1)
+        else:
+            user_prompt = user_prompt.rstrip() + "\n" + discipline
+
+    compiler_meta.update({
+        "version": compiler_meta.get("version") or PROMPT_COMPILER_VERSION,
+        "mode": "prompt_discipline" if rules else "legacy_equivalent",
+        "discipline_enabled": bool(rules),
+        "discipline_rule_codes": [rule.code for rule in rules],
+        "discipline_rule_count": len(rules),
+        "runtime_wiring_verified": (not rules) or ("【翻譯紀律】" in user_prompt),
+    })
+
+    # Count discipline as policy/generation guidance so the runtime profile reflects
+    # the actual provider payload rather than the pre-compiler prompt.
+    profile = prompt_result.prompt_profile
+    if discipline:
+        profile_dict = profile.to_dict()
+        from core.literary.prompt_profiler import estimate_tokens
+        discipline_tokens = estimate_tokens(discipline)
+        profile_dict["policy_tokens"] += discipline_tokens
+        profile_dict["total_tokens"] += discipline_tokens
+        profile_dict["total_chars"] += len(discipline) + 1
+    else:
+        profile_dict = profile.to_dict()
+
+    return system_prompt, user_prompt, compiler_meta, profile_dict
+
+
 def build_prompt_package(
     *,
     options: TxtTranslationOptions,
@@ -888,8 +942,7 @@ def build_prompt_package(
         previous_context=previous_context.strip(),
         profile=profile,
     )
-    system_prompt = prompt_result.system_prompt
-    user_prompt = prompt_result.user_prompt
+    system_prompt, user_prompt, compiler_meta, runtime_prompt_profile = _ensure_runtime_prompt_compiler_wiring(prompt_result)
 
     package = {
         "package_id": package_id,
@@ -929,7 +982,21 @@ def build_prompt_package(
         "knowledge": {
             "locked_dictionary": matched,
         },
-        "prompt": prompt_result.to_prompt_dict(),
+        "prompt": {
+            **prompt_result.to_prompt_dict(),
+            "system_prompt": system_prompt,
+            "user_prompt": user_prompt,
+            "prompt_profile": runtime_prompt_profile,
+            "prompt_compiler": compiler_meta,
+            "prompt_discipline_enabled": compiler_meta["discipline_enabled"],
+            "discipline_rule_count": compiler_meta["discipline_rule_count"],
+        },
+        "prompt_runtime": {
+            "prompt_compiler": compiler_meta["version"],
+            "prompt_discipline_enabled": compiler_meta["discipline_enabled"],
+            "discipline_rule_count": compiler_meta["discipline_rule_count"],
+            "runtime_wiring_verified": compiler_meta["runtime_wiring_verified"],
+        },
         "qa_requirements": {
             "check_korean_residue": True,
             "check_name_rules": True,
@@ -1201,19 +1268,42 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
                     if options.strict_lock_terms:
                         translation = apply_locked_dictionary(translation, locked_dictionary)
                     translation = format_translation_output(translation, options)
+                qa_report = analyze_translation_quality(chunk, translation, options, locked_dictionary=package.get("knowledge", {}).get("locked_dictionary", {})) if options.qa_enabled else {"passed": True, "issues": [], "metrics": {}}
+                qa_report = merge_quality_v5_into_runtime_qa(
+                    qa_report,
+                    quality_v5_report or {},
+                    attempt=qa_attempt,
+                    chunk_id=package["package_id"],
+                )
+                qa_report = apply_smart_local_repair_decision(
+                    qa_report,
+                    local_repairs=list((quality_v5_report or {}).get("safe_replacements") or []),
+                )
+                unified_report = qa_report["unified_quality_report"]
+                if qa_report.get("smart_local_repair", {}).get("provider_retry_skipped"):
+                    emit_progress(
+                        f"chunk {idx}/{len(chunks)} smart-local-repair accepted_with_warnings "
+                        f"codes={','.join(qa_report['smart_local_repair'].get('issue_codes', []))}",
+                        options=options,
+                    )
+                if quality_v5_report is not None:
+                    quality_v5_report = attach_unified_report(quality_v5_report, unified_report)
+                    report_suffix = ""
                     if options.quality_v5_report_enabled:
                         quality_report_path = chunk_out_dir / f"{input_path.stem}_chunk_{idx:06d}_quality_v5_attempt_{qa_attempt}.json"
                         save_json(quality_report_path, quality_v5_report)
-                        emit_progress(
-                            f"chunk {idx}/{len(chunks)} quality-v5 score={quality_v5_report.get('quality_score', 0)} "
-                            f"status={quality_v5_report.get('status', 'unknown')} report={quality_report_path.name}",
-                            options=options,
-                        )
-                qa_report = analyze_translation_quality(chunk, translation, options, locked_dictionary=package.get("knowledge", {}).get("locked_dictionary", {})) if options.qa_enabled else {"passed": True, "issues": [], "metrics": {}}
-                if quality_v5_report is not None:
-                    qa_report = merge_quality_v5_into_runtime_qa(qa_report, quality_v5_report)
+                        report_suffix = f" report={quality_report_path.name}"
+                    emit_progress(
+                        f"chunk {idx}/{len(chunks)} quality-v5 score={unified_report.get('score', 0)} "
+                        f"status={unified_report.get('decision', 'runtime_error')}{report_suffix}",
+                        options=options,
+                    )
                 qa_attempt_records.append({"qa_attempt": qa_attempt, "qa": qa_report, "quality_v5": quality_v5_report})
-                emit_progress(f"chunk {idx}/{len(chunks)} QA {'PASS' if qa_report.get('passed') else 'FAIL'} issues={len(qa_report.get('issues', []))}", options=options)
+                emit_progress(
+                    f"chunk {idx}/{len(chunks)} QA {qa_report.get('decision', 'runtime_error').upper()} "
+                    f"issues={len(qa_report.get('issues', []))}",
+                    options=options,
+                )
                 if qa_report.get("passed") or options.qa_fail_policy == "warn":
                     break
                 if options.qa_fail_policy == "fail" or qa_attempt >= qa_attempts:
