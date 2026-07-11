@@ -1,0 +1,5 @@
+Copy this DELTA into D:\Python\NTPE and merge folders.
+Run:
+  python ntpe_te_v600_stage121_translation_naturalness_engine_test.py
+  python -m pytest -q tests\integration\translation_naturalness_engine_v600_stage121_test.py
+  python ntpe_validate.py

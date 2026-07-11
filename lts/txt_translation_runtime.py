@@ -12,6 +12,7 @@ from pathlib import Path
 from typing import Iterable
 
 from core.translation_engine.context_intelligence import apply_context_intelligence, build_naturalness_repair_directives
+from core.translation_naturalness import canonicalize_novel_chinese
 from core.translation_engine.translation_engine import TranslationEngine
 from core.translation_engine.prompt_intelligence import apply_prompt_intelligence
 from core.translation_engine.utils import now_iso, save_json, save_text
@@ -1554,6 +1555,17 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
                 if options.strict_lock_terms:
                     translation = apply_locked_dictionary(translation, locked_dictionary)
                 translation = format_translation_output(translation, options)
+                naturalness_canonicalization = canonicalize_novel_chinese(translation)
+                translation = naturalness_canonicalization.text
+                package.setdefault("prompt_runtime", {})["naturalness_canonicalization"] = naturalness_canonicalization.to_metadata()
+                if naturalness_canonicalization.changed or naturalness_canonicalization.warnings:
+                    emit_progress(
+                        f"chunk {idx}/{len(chunks)} naturalness-canonicalization "
+                        f"changed={str(naturalness_canonicalization.changed).lower()} "
+                        f"actions={len(naturalness_canonicalization.actions)} "
+                        f"warnings={len(naturalness_canonicalization.warnings)}",
+                        options=options,
+                    )
                 quality_v5_report = None
                 quality_reports_by_text: dict[str, dict] = {}
 

@@ -1,0 +1,15 @@
+{
+  "stage": "TE-v6.0-stage12.1",
+  "name": "Translation Naturalness Policy & Safe Canonicalization",
+  "version": "6.0.0-stage12.1",
+  "provider_calls_added": 0,
+  "semantic_rewrite_allowed": false,
+  "rollback_env": "NTPE_NATURALNESS_POLICY",
+  "files": [
+    "core/translation_naturalness/__init__.py",
+    "core/translation_naturalness/policy.py",
+    "core/translation_naturalness/canonicalizer.py",
+    "core/prompt_compiler/compiler.py",
+    "lts/txt_translation_runtime.py"
+  ]
+}

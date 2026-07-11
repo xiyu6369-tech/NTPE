@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+import os
 
 from .model import CompiledPrompt, PromptSections
 
@@ -27,6 +28,16 @@ class PromptCompiler:
         if discipline:
             optional.append(discipline)
 
+        naturalness_enabled = os.getenv("NTPE_NATURALNESS_POLICY", "1").strip().lower() not in {"0", "false", "no", "off"}
+        naturalness = ""
+        naturalness_rule_count = 0
+        if naturalness_enabled:
+            from core.translation_naturalness import NATURALNESS_RULES, render_naturalness_policy
+            naturalness = render_naturalness_policy()
+            naturalness_rule_count = len(NATURALNESS_RULES)
+            if naturalness:
+                optional.append(naturalness)
+
         compiled_sections = PromptSections(
             system=sections.system,
             policy=sections.policy,
@@ -48,6 +59,9 @@ class PromptCompiler:
                 "discipline_enabled": bool(active_rules),
                 "discipline_rule_codes": [rule.code for rule in active_rules],
                 "discipline_rule_count": len(active_rules),
+                "naturalness_policy_version": "6.0.0-stage12.1" if naturalness_enabled else None,
+                "naturalness_policy_enabled": naturalness_enabled,
+                "naturalness_rule_count": naturalness_rule_count,
                 **discipline_metadata,
             },
         )
