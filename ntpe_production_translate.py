@@ -20,6 +20,11 @@ if str(ROOT) not in sys.path:
 from core.translation_runtime import TranslationRuntime
 from lts.txt_translation_runtime import TxtTranslationOptions
 from lts.batch_translation_runtime import BatchTranslationOptions
+from core.adaptive_context_runtime_shadow import install_txt_runtime_shadow_hook
+
+# TE v7 Stage 03: installs a no-op-unless-shadow wrapper around prompt package
+# construction. The wrapper returns the original package unchanged.
+install_txt_runtime_shadow_hook()
 
 DEFAULT_MODEL = "meta/llama-3.3-70b-instruct"
 
