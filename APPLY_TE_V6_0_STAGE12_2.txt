@@ -1,0 +1,8 @@
+TE v6.0 Stage 12.2 — Hallucination and Unsupported Detail Guard
+
+Copy all files into D:\Python\NTPE, preserving directories.
+
+Run:
+python ntpe_te_v600_stage122_hallucination_unsupported_detail_guard_test.py
+python -m pytest -q tests\integration\translation_hallucination_unsupported_detail_guard_v600_stage122_test.py
+python ntpe_validate.py

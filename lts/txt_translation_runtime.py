@@ -12,7 +12,7 @@ from pathlib import Path
 from typing import Iterable
 
 from core.translation_engine.context_intelligence import apply_context_intelligence, build_naturalness_repair_directives
-from core.translation_naturalness import canonicalize_novel_chinese
+from core.translation_naturalness import analyze_unsupported_details, canonicalize_novel_chinese
 from core.translation_engine.translation_engine import TranslationEngine
 from core.translation_engine.prompt_intelligence import apply_prompt_intelligence
 from core.translation_engine.utils import now_iso, save_json, save_text
@@ -1582,6 +1582,18 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
                             locked_terms=package.get("knowledge", {}).get("locked_dictionary", {}),
                             config={"min_length_ratio": max(0.18, options.min_length_ratio)},
                         )
+                        unsupported_detail_guard = analyze_unsupported_details(chunk, evaluated_text)
+                        quality_v5_report.setdefault("issues", []).extend(unsupported_detail_guard.issues)
+                        quality_v5_report.setdefault("metrics", {})["unsupported_detail_guard"] = unsupported_detail_guard.to_metadata()
+                        package.setdefault("prompt_runtime", {})["unsupported_detail_guard"] = unsupported_detail_guard.to_metadata()
+                        if unsupported_detail_guard.issues or unsupported_detail_guard.warnings:
+                            emit_progress(
+                                f"chunk {idx}/{len(chunks)} unsupported-detail-guard "
+                                f"issues={len(unsupported_detail_guard.issues)} "
+                                f"warnings={len(unsupported_detail_guard.warnings)} "
+                                f"blocking={str(unsupported_detail_guard.blocking).lower()}",
+                                options=options,
+                            )
                         evaluated_text = str(quality_v5_report.get("normalized_text") or evaluated_text)
                         if options.strict_lock_terms:
                             evaluated_text = apply_locked_dictionary(evaluated_text, locked_dictionary)

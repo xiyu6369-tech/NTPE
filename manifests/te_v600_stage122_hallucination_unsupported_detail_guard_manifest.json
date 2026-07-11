@@ -1,0 +1,19 @@
+{
+  "stage": "TE-v6.0-stage12.2",
+  "name": "Hallucination and Unsupported Detail Guard",
+  "version": "6.0.0-stage12.2",
+  "runtime_integrated": true,
+  "provider_called": false,
+  "fail_closed": true,
+  "new_files": [
+    "core/translation_naturalness/hallucination_guard.py",
+    "ntpe_te_v600_stage122_hallucination_unsupported_detail_guard_test.py",
+    "tests/integration/translation_hallucination_unsupported_detail_guard_v600_stage122_test.py",
+    "docs/releases/te_v6_0/TE_V6_0_STAGE12_2_HALLUCINATION_UNSUPPORTED_DETAIL_GUARD.md"
+  ],
+  "modified_files": [
+    "core/translation_naturalness/__init__.py",
+    "core/translation_quality_v5/quality_issue.py",
+    "lts/txt_translation_runtime.py"
+  ]
+}

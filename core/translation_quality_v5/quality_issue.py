@@ -43,6 +43,8 @@ _CATEGORIES = {
     "SIMPLIFIED_CHINESE": "orthography",
     "NATURALNESS_GUARD": "naturalness",
     "QUALITY_LOCK_VIOLATION": "semantic_guard",
+    "HALLUCINATION": "hallucination",
+    "ADDED_DETAIL": "hallucination",
 }
 
 

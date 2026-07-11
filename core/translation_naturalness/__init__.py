@@ -18,4 +18,13 @@ __all__ = [
     "NaturalnessRule",
     "canonicalize_novel_chinese",
     "render_naturalness_policy",
+    "UNSUPPORTED_DETAIL_GUARD_VERSION",
+    "UnsupportedDetailGuardResult",
+    "analyze_unsupported_details",
 ]
+
+from .hallucination_guard import (
+    UNSUPPORTED_DETAIL_GUARD_VERSION,
+    UnsupportedDetailGuardResult,
+    analyze_unsupported_details,
+)
