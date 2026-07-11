@@ -1,0 +1,9 @@
+{
+  "stage": "TE v6.0 Stage 11.1",
+  "name": "Translation Evidence Engine Foundation",
+  "version": "6.0.0-stage11.1",
+  "runtime_integrated": false,
+  "provider_calls": false,
+  "new_package": "core.translation_evidence",
+  "evidence_types": ["paragraph", "sentence", "dialogue", "terminology", "narrative"]
+}

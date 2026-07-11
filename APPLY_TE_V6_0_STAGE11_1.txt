@@ -1,0 +1,5 @@
+Copy all files into D:\Python\NTPE and merge folders.
+Run:
+python ntpe_te_v611_stage111_translation_evidence_foundation_test.py
+python -m pytest -q tests\integration\translation_evidence_foundation_v611_stage111_test.py
+python ntpe_validate.py
