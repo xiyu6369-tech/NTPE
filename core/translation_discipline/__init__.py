@@ -1,3 +1,10 @@
+from .freeze import (
+    DISCIPLINE_FREEZE_VERSION,
+    DISCIPLINE_FROZEN_STAGES,
+    DISCIPLINE_RELEASE_LINE,
+    TranslationDisciplineFreeze,
+    build_translation_discipline_freeze,
+)
 from .audit_trail import DISCIPLINE_AUDIT_VERSION, DisciplineAuditTrail, build_discipline_audit_trail
 from .compiler_adapter import PromptCompilerAdapter
 from .engine import ENGINE_VERSION, TranslationDisciplineEngine
@@ -32,6 +39,12 @@ from .runtime_orchestrator import (
     DisciplineRuntimeOutcome,
     TranslationDisciplineRuntimeOrchestrator,
     orchestrate_runtime_discipline,
+)
+from .runtime_integration import (
+    DISCIPLINE_RUNTIME_INTEGRATION_VERSION,
+    DisciplineRuntimeContext,
+    DisciplineRuntimeResult,
+    integrate_translation_discipline_runtime,
 )
 from .registry import DisciplineRuleRegistry
 from .report import build_discipline_report
@@ -74,6 +87,10 @@ __all__ = [
     "DisciplineRuntimeOutcome",
     "TranslationDisciplineRuntimeOrchestrator",
     "orchestrate_runtime_discipline",
+    "DISCIPLINE_RUNTIME_INTEGRATION_VERSION",
+    "DisciplineRuntimeContext",
+    "DisciplineRuntimeResult",
+    "integrate_translation_discipline_runtime",
     "build_discipline_report",
     "CATEGORIES",
     "PHASES",

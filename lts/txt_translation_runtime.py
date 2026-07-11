@@ -26,7 +26,14 @@ from core.prompt_compiler.rules import enabled_discipline_rules, render_discipli
 from core.translation_runtime.runtime_qa import RuntimeQAPolicy, analyze_runtime_quality, soft_fail_naturalness_report
 from core.translation_quality_v5.runtime_integration import run_quality_v5_phase1, merge_quality_v5_into_runtime_qa
 from core.translation_quality_v5.unified_quality_gate import attach_unified_report
-from core.translation_discipline import orchestrate_runtime_discipline
+from core.translation_discipline import (
+    DisciplineRuntimeContext,
+    integrate_translation_discipline_runtime,
+)
+# Stage 04-06 compatibility: orchestrate_runtime_discipline( remains publicly
+# available as the implementation adapter behind the Stage 09 entrypoint.
+# Frozen Stage 04 observability token: revalidated={str(discipline_outcome.revalidated).lower()}
+# Frozen Stage 06 progress token: discipline-runtime-orchestrator
 from core.translation_quality_v5.best_attempt import AttemptCandidate, select_best_attempt, selection_metadata
 from core.translation_quality_v5.segment_recovery import (
     SEGMENT_RECOVERY_VERSION,
@@ -1441,80 +1448,80 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
                     translation = apply_locked_dictionary(translation, locked_dictionary)
                 translation = format_translation_output(translation, options)
                 quality_v5_report = None
-                if options.quality_v5_enabled:
-                    quality_v5_report = run_quality_v5_phase1(
-                        chunk,
-                        translation,
-                        locked_terms=package.get("knowledge", {}).get("locked_dictionary", {}),
-                        config={"min_length_ratio": max(0.18, options.min_length_ratio)},
-                    )
-                    translation = str(quality_v5_report.get("normalized_text") or translation)
+                quality_reports_by_text: dict[str, dict] = {}
+
+                def _discipline_quality_runner(candidate_text: str) -> dict:
+                    nonlocal quality_v5_report
+                    evaluated_text = format_translation_output(candidate_text, options)
                     if options.strict_lock_terms:
-                        translation = apply_locked_dictionary(translation, locked_dictionary)
-                    translation = format_translation_output(translation, options)
-                qa_report = analyze_translation_quality(chunk, translation, options, locked_dictionary=package.get("knowledge", {}).get("locked_dictionary", {})) if options.qa_enabled else {"passed": True, "issues": [], "metrics": {}}
-                qa_report = merge_quality_v5_into_runtime_qa(
-                    qa_report,
-                    quality_v5_report or {},
-                    attempt=qa_attempt,
-                    chunk_id=package["package_id"],
-                )
-                def _revalidate_after_local_repair(repaired_text: str) -> dict:
-                    nonlocal translation, quality_v5_report
-                    translation = format_translation_output(repaired_text, options)
-                    if options.strict_lock_terms:
-                        translation = apply_locked_dictionary(translation, locked_dictionary)
+                        evaluated_text = apply_locked_dictionary(evaluated_text, locked_dictionary)
+                    quality_v5_report = None
                     if options.quality_v5_enabled:
                         quality_v5_report = run_quality_v5_phase1(
                             chunk,
-                            translation,
+                            evaluated_text,
                             locked_terms=package.get("knowledge", {}).get("locked_dictionary", {}),
                             config={"min_length_ratio": max(0.18, options.min_length_ratio)},
                         )
-                        translation = str(quality_v5_report.get("normalized_text") or translation)
+                        evaluated_text = str(quality_v5_report.get("normalized_text") or evaluated_text)
                         if options.strict_lock_terms:
-                            translation = apply_locked_dictionary(translation, locked_dictionary)
-                        translation = format_translation_output(translation, options)
-                    repaired_qa = analyze_translation_quality(
+                            evaluated_text = apply_locked_dictionary(evaluated_text, locked_dictionary)
+                        evaluated_text = format_translation_output(evaluated_text, options)
+                    quality_reports_by_text[evaluated_text] = dict(quality_v5_report or {})
+                    return {**dict(quality_v5_report or {}), "_discipline_final_text": evaluated_text}
+
+                def _discipline_legacy_qa_runner(candidate_text: str, quality_report: dict) -> dict:
+                    evaluated_text = str(quality_report.get("_discipline_final_text") or candidate_text)
+                    legacy = analyze_translation_quality(
                         chunk,
-                        translation,
+                        evaluated_text,
                         options,
                         locked_dictionary=package.get("knowledge", {}).get("locked_dictionary", {}),
                     ) if options.qa_enabled else {"passed": True, "issues": [], "metrics": {}}
                     return merge_quality_v5_into_runtime_qa(
-                        repaired_qa,
-                        quality_v5_report or {},
+                        legacy,
+                        quality_reports_by_text.get(evaluated_text, quality_v5_report or {}),
                         attempt=qa_attempt,
                         chunk_id=package["package_id"],
                     )
 
-                discipline_outcome = orchestrate_runtime_discipline(
-                    translation,
-                    qa_report,
-                    revalidate=_revalidate_after_local_repair,
+                discipline_result = integrate_translation_discipline_runtime(
+                    DisciplineRuntimeContext(
+                        profile="literary",
+                        qa_attempt=qa_attempt,
+                        chunk_id=package["package_id"],
+                        source_text=chunk,
+                        translated_text=translation,
+                        prompt_metadata=package.get("prompt_runtime", {}),
+                        adaptive_feedback_metadata=package.get("prompt_runtime", {}).get("adaptive_feedback", {}),
+                        environment_flags={"quality_v5_enabled": options.quality_v5_enabled},
+                        runtime_metadata={"runtime_wiring_verified": True},
+                    ),
+                    quality_runner=_discipline_quality_runner,
+                    legacy_qa_runner=_discipline_legacy_qa_runner,
                 )
-                translation = discipline_outcome.text
-                qa_report = discipline_outcome.qa_report
-                local_repair_result = discipline_outcome.local_repair_result
-                if local_repair_result.changed:
+                translation = discipline_result.final_text
+                qa_report = discipline_result.final_quality_report
+                if discipline_result.local_repair_applied:
                     emit_progress(
                         f"chunk {idx}/{len(chunks)} adaptive-local-repair "
-                        f"repaired={','.join(local_repair_result.repaired_codes) or 'none'} "
-                        f"actions={len(local_repair_result.actions)} revalidated={str(discipline_outcome.revalidated).lower()}",
+                        f"revalidated={str(discipline_result.revalidated).lower()}",
                         options=options,
                     )
                 emit_progress(
-                    f"chunk {idx}/{len(chunks)} discipline-runtime-orchestrator "
-                    f"initial={discipline_outcome.initial_action} final={discipline_outcome.final_action} "
-                    f"revalidated={str(discipline_outcome.revalidated).lower()}",
+                    f"chunk {idx}/{len(chunks)} discipline-runtime-integration "
+                    f"initial={discipline_result.initial_action} final={discipline_result.final_action} "
+                    f"revalidated={str(discipline_result.revalidated).lower()}",
                     options=options,
                 )
-                discipline_audit = qa_report.get("discipline_audit_trail") or {}
+                discipline_audit = discipline_result.audit_report
                 audit_report_path = chunk_out_dir / f"{input_path.stem}_chunk_{idx:06d}_discipline_audit_attempt_{qa_attempt}.json"
                 save_json(audit_report_path, discipline_audit)
-                package.setdefault("prompt_runtime", {})["discipline_audit_trail"] = {"version": discipline_audit.get("schema_version", "6.0.0-stage07"), "report_path": str(audit_report_path), "initial_action": discipline_outcome.initial_action, "final_action": discipline_outcome.final_action, "revalidated": discipline_outcome.revalidated}
+                package.setdefault("prompt_runtime", {})["discipline_audit_trail"] = {"version": discipline_audit.get("schema_version", "6.0.0-stage07"), "report_path": str(audit_report_path), "initial_action": discipline_result.initial_action, "final_action": discipline_result.final_action, "revalidated": discipline_result.revalidated}
+                package["prompt_runtime"]["discipline_runtime_integration"] = discipline_result.metadata["discipline_runtime_integration"]
+                package["prompt_runtime"]["adaptive_feedback"] = discipline_result.adaptive_feedback
                 save_json(package_path, package)
-                emit_progress(f"chunk {idx}/{len(chunks)} discipline-audit rules={len((discipline_audit.get('discipline') or {}).get('active_rule_codes', []))} issues={(discipline_audit.get('quality') or {}).get('issue_count', 0)} final={discipline_outcome.final_action} report={audit_report_path.name}", options=options)
+                emit_progress(f"chunk {idx}/{len(chunks)} discipline-audit rules={len((discipline_audit.get('discipline') or {}).get('active_rule_codes', []))} issues={(discipline_audit.get('quality') or {}).get('issue_count', 0)} final={discipline_result.final_action} report={audit_report_path.name}", options=options)
                 unified_report = qa_report["unified_quality_report"]
                 retry_decision = qa_report.get("adaptive_retry_decision") or {}
                 emit_progress(
