@@ -21,6 +21,11 @@ from core.translation_runtime import TranslationRuntime
 from lts.txt_translation_runtime import TxtTranslationOptions
 from lts.batch_translation_runtime import BatchTranslationOptions
 from core.adaptive_context_runtime_shadow import install_txt_runtime_shadow_hook
+from core.adaptive_context_production_validation import (
+    build_production_shadow_report,
+    production_shadow_session,
+    write_production_shadow_report,
+)
 
 # TE v7 Stage 03: installs a no-op-unless-shadow wrapper around prompt package
 # construction. The wrapper returns the original package unchanged.
@@ -139,6 +144,8 @@ def build_parser() -> argparse.ArgumentParser:
     regression.add_argument("--api-timeout", type=int, default=int(os.environ.get("NTPE_API_TIMEOUT", "180")), help="NVIDIA API read timeout in seconds; default 180 for literary regression")
     regression.add_argument("--api-connect-timeout", type=int, default=int(os.environ.get("NTPE_API_CONNECT_TIMEOUT", "10")), help="NVIDIA API connect timeout in seconds")
     regression.add_argument("--no-progress", action="store_true", help="disable live NTPE progress messages")
+    regression.add_argument("--ace-shadow-validate", action="store_true", help="run TE v7 ACE production shadow validation without changing prompt payload")
+    regression.add_argument("--ace-shadow-report", default=None, help="optional JSON report path for ACE production shadow validation")
 
     evaluate = sub.add_parser("evaluate", help="evaluate literary regression outputs without rerunning translation")
     evaluate.add_argument("--stage", default=os.environ.get("NTPE_PS_STAGE", "PS-03"), help="stage output folder under tests/literary/outputs")
@@ -358,7 +365,28 @@ def run_regression(args: argparse.Namespace) -> int:
         previous_stage=args.previous_stage,
         progress_enabled=not getattr(args, "no_progress", False),
     )
-    return _print_regression_result(run_literary_regression(options))
+    if not getattr(args, "ace_shadow_validate", False):
+        return _print_regression_result(run_literary_regression(options))
+
+    report_path = _resolve(args.ace_shadow_report) if args.ace_shadow_report else (
+        ROOT / "artifacts" / "te_v7_stage04" / "TE_V7_STAGE04_PRODUCTION_SHADOW_VALIDATION.json"
+    )
+    audit_path = str(report_path.with_suffix(".jsonl"))
+    with production_shadow_session(audit_path=audit_path):
+        regression_result = run_literary_regression(options)
+    report = build_production_shadow_report(
+        regression_result,
+        provider_execution_requested=not args.dry_run,
+        stage=args.stage,
+    )
+    write_production_shadow_report(report, report_path)
+    print(f"ace_shadow_report: {report_path}")
+    print(f"ace_shadow_status: {report.status}")
+    print(f"ace_shadow_records: {report.shadow_records}")
+    print(f"ace_payload_equivalent: {report.payload_equivalent_records}/{report.shadow_records}")
+    print(f"ace_latency_average_ms: {report.ace_latency_average_ms}")
+    base_rc = _print_regression_result(regression_result)
+    return 0 if base_rc == 0 and report.ready else 1
 
 
 def main(argv: Iterable[str] | None = None) -> int:

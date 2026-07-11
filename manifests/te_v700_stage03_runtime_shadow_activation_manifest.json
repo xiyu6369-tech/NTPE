@@ -30,7 +30,7 @@
       "core/adaptive_context_runtime_shadow/registry.py": "b14e48f697d50dbbdc2a2c2e7ad093aef8cfa975823eb848dda005f55b3b4d5d",
       "core/adaptive_context_runtime_shadow/audit.py": "1d8a3ef7f71481f55169082e243131bd24dfefea792c8142be1257103164e6ab",
       "core/adaptive_context_runtime_shadow/hook.py": "a0743575debed84cb3723f1d27236a10b418d6bd0d2778c9a6670a651040c1e3",
-      "ntpe_production_translate.py": "f11f419c84ef0f4587aa7c7defa16d0ff61e9b551b4b096e5f130d0a75842f8a",
+      "ntpe_production_translate.py": "fa7619a89c5f810b8c8fd889d3ac6385db4badb8fd7768967b4226510ab571ac",
       "ntpe_te_v700_stage03_runtime_shadow_activation_test.py": "ce1c864bbe45c3c962bb606ed4b05150c209354f3bb3de30aa02f719aaaa01f3",
       "tests/integration/translation_engine_v700_stage03_runtime_shadow_activation_test.py": "2709d90b6adae5c1c08acbcaf37abf3141be6a68d674c93eb95ac721d11efe6b",
       "tests/integration/translation_engine_v700_stage03_shadow_audit_test.py": "be9e18579f3f0afe1e4d4968e4f92922fbca5be5e0869ec665abfec0a79a9281",

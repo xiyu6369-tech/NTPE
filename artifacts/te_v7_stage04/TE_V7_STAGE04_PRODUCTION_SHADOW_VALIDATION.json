@@ -1,0 +1,12 @@
+{
+  "version": "7.0.0-stage04",
+  "stage": "TE-v7.0-Stage04-ProductionShadowValidation",
+  "status": "not_executed_with_provider",
+  "ready": false,
+  "execution_mode": "shadow",
+  "assembly_validation_available": true,
+  "provider_execution_observed": false,
+  "translation_quality_improvement_claimed": false,
+  "provider_latency_improvement_claimed": false,
+  "note": "Run the Stage 04 CLI without --dry-run in an NVIDIA-configured environment to produce provider-backed evidence."
+}

@@ -1,0 +1,38 @@
+{
+  "version": "7.0.0-stage04",
+  "stage": "TE-v7.0-Stage04-ProductionShadowValidation",
+  "inventory": [
+    "core/adaptive_context_production_validation/__init__.py",
+    "core/adaptive_context_production_validation/model.py",
+    "core/adaptive_context_production_validation/session.py",
+    "core/adaptive_context_production_validation/report.py",
+    "ntpe_production_translate.py",
+    "ntpe_te_v700_stage04_production_shadow_validation_test.py",
+    "tests/integration/translation_engine_v700_stage04_production_shadow_validation_test.py",
+    "docs/releases/te_v7_0/TE_V7_0_STAGE04_PRODUCTION_SHADOW_VALIDATION.md",
+    "artifacts/te_v7_stage04/TE_V7_STAGE04_PRODUCTION_SHADOW_VALIDATION.json",
+    "manifests/te_v700_stage03_runtime_shadow_activation_manifest.json"
+  ],
+  "integrity": {
+    "algorithm": "sha256",
+    "files": {
+      "core/adaptive_context_production_validation/__init__.py": "2ad03f1ad9179a54ef0bc0ff8172cfbc0cda0ea9d45afdd74bd2f6c06b43788d",
+      "core/adaptive_context_production_validation/model.py": "c5c607eeecbb2c45cf91ee963eabd606a37512a7c9846748b8c01d15cf53daf3",
+      "core/adaptive_context_production_validation/session.py": "c483cdad26ecacf371596f6a252ed67c9332f64ef750caceeebf66d95c09853e",
+      "core/adaptive_context_production_validation/report.py": "6d20de5918a074032a892fbd40ecb20c7a6b70777a6c100c164c5370b5ddc3b2",
+      "ntpe_production_translate.py": "fa7619a89c5f810b8c8fd889d3ac6385db4badb8fd7768967b4226510ab571ac",
+      "ntpe_te_v700_stage04_production_shadow_validation_test.py": "ff605edef61c1715d81ad147db228571003cbd9e5ca01b3d60601ea9c241b722",
+      "tests/integration/translation_engine_v700_stage04_production_shadow_validation_test.py": "03dd704b3f754fe1b65abb0f44c660194ec06cdf168b65bbb698d1372c7b4de1",
+      "docs/releases/te_v7_0/TE_V7_0_STAGE04_PRODUCTION_SHADOW_VALIDATION.md": "94fe3d365f5ee687ed241ca13a1f8f5af2a85a874de0581d464c740b1d750a1d",
+      "artifacts/te_v7_stage04/TE_V7_STAGE04_PRODUCTION_SHADOW_VALIDATION.json": "5c0cbdf7612e6e2c7fbcba5660502836fe512e4e4f3d04f7a3f903396e29e4f6",
+      "manifests/te_v700_stage03_runtime_shadow_activation_manifest.json": "278a0f3448b3d1d00b41748d819375a9a11fac531af1c4800c285bb0fa2443ce"
+    }
+  },
+  "frozen_boundary": {
+    "te_v6_modified": false,
+    "lts_modified": false,
+    "provider_modified": false,
+    "prompt_rules_modified": false
+  },
+  "provider_calls_added": 0
+}
