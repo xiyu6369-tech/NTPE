@@ -27,6 +27,13 @@ from core.adaptive_context_production_validation import (
     write_production_shadow_report,
 )
 from core.adaptive_context_canary_resume import prepare_canary_resume
+from core.adaptive_context_canary_ab import evaluate_canary_ab, load_stage_evidence, write_ab_report
+from core.adaptive_context_activation_policy import (
+    ActivationPolicyRequest,
+    evaluate_activation_policy,
+    load_activation_evidence,
+    write_activation_policy_report,
+)
 from core.adaptive_context_canary_validation import (
     build_canary_production_report,
     canary_validation_session,
@@ -157,6 +164,17 @@ def build_parser() -> argparse.ArgumentParser:
     regression.add_argument("--ace-canary-chunk", type=int, default=2, help="single chunk eligible for ACE canary activation")
     regression.add_argument("--ace-canary-context-tokens", type=int, default=128, help="context token budget for the ACE canary candidate")
     regression.add_argument("--ace-canary-resume-from-stage", default=None, help="seed completed chunks before the canary target from an earlier regression stage")
+    regression.add_argument("--ace-canary-ab-validate", action="store_true", help="compare completed baseline and canary quality evidence without calling Provider")
+    regression.add_argument("--ace-canary-ab-baseline-stage", default=None, help="baseline regression stage for A/B quality validation")
+    regression.add_argument("--ace-canary-ab-canary-stage", default=None, help="canary regression stage for A/B quality validation")
+    regression.add_argument("--ace-canary-ab-report", default=None, help="optional A/B quality validation JSON path")
+    regression.add_argument("--ace-production-policy-validate", action="store_true", help="evaluate TE v7 ACE production activation policy without calling Provider")
+    regression.add_argument("--ace-production-policy-ab-report", default=None, help="A/B quality report used by the production activation policy")
+    regression.add_argument("--ace-production-policy-canary-report", default=None, help="canary production report used by the activation policy")
+    regression.add_argument("--ace-production-policy-report", default=None, help="optional production activation policy decision JSON path")
+    regression.add_argument("--ace-production-rollout-percent", type=int, default=0, help="requested Stage 08.1 rollout percent; maximum 5")
+    regression.add_argument("--ace-production-enable", action="store_true", help="explicitly request production-canary eligibility evaluation")
+    regression.add_argument("--ace-production-kill-switch", action="store_true", help="force the production activation policy to fail closed")
 
     evaluate = sub.add_parser("evaluate", help="evaluate literary regression outputs without rerunning translation")
     evaluate.add_argument("--stage", default=os.environ.get("NTPE_PS_STAGE", "PS-03"), help="stage output folder under tests/literary/outputs")
@@ -353,6 +371,53 @@ def run_evaluate(args: argparse.Namespace) -> int:
 
 
 def run_regression(args: argparse.Namespace) -> int:
+    if bool(getattr(args, "ace_production_policy_validate", False)):
+        ab_path = _resolve(args.ace_production_policy_ab_report) if args.ace_production_policy_ab_report else ROOT / "artifacts" / "te_v7_stage075" / "TE_V7_STAGE075_CANARY_AB_QUALITY_VALIDATION.json"
+        canary_path = _resolve(args.ace_production_policy_canary_report) if args.ace_production_policy_canary_report else ROOT / "artifacts" / "te_v7_stage06" / "TE_V7_STAGE06_CANARY_PRODUCTION_VALIDATION.json"
+        out_path = _resolve(args.ace_production_policy_report) if args.ace_production_policy_report else ROOT / "artifacts" / "te_v7_stage081" / "TE_V7_STAGE081_PRODUCTION_ACTIVATION_POLICY.json"
+        try:
+            evidence = load_activation_evidence(ab_path, canary_path)
+            decision = evaluate_activation_policy(
+                evidence,
+                ActivationPolicyRequest(
+                    profile=args.profile,
+                    rollout_percent=max(0, int(args.ace_production_rollout_percent)),
+                    explicitly_enabled=bool(args.ace_production_enable),
+                    kill_switch=bool(args.ace_production_kill_switch),
+                ),
+            )
+        except (OSError, ValueError, TypeError) as exc:
+            print(f"ACE production policy validation error: {exc}")
+            return 2
+        write_activation_policy_report(decision, out_path)
+        print(f"ace_production_policy_report: {out_path}")
+        print(f"ace_production_policy_status: {decision.status}")
+        print(f"ace_production_policy_ready: {str(decision.ready).lower()}")
+        print(f"ace_production_policy_mode: {decision.mode}")
+        print(f"ace_production_policy_rollout_percent: {decision.rollout_percent}")
+        print(f"ace_production_policy_blockers: {','.join(decision.blockers) or 'none'}")
+        return 0 if decision.ready else 1
+    if bool(getattr(args, "ace_canary_ab_validate", False)):
+        baseline_stage=str(getattr(args,"ace_canary_ab_baseline_stage","") or "").strip()
+        canary_stage=str(getattr(args,"ace_canary_ab_canary_stage","") or "").strip()
+        if not baseline_stage or not canary_stage:
+            print("ACE A/B validation error: baseline and canary stages are required")
+            return 2
+        chunk=max(1,int(getattr(args,"ace_canary_chunk",2)))
+        try:
+            baseline=load_stage_evidence(ROOT,baseline_stage,chunk)
+            canary=load_stage_evidence(ROOT,canary_stage,chunk)
+            report=evaluate_canary_ab(baseline,canary)
+        except (OSError,ValueError,TypeError) as exc:
+            print(f"ACE A/B validation error: {exc}")
+            return 2
+        path=_resolve(args.ace_canary_ab_report) if args.ace_canary_ab_report else ROOT/"artifacts"/"te_v7_stage075"/"TE_V7_STAGE075_CANARY_AB_QUALITY_VALIDATION.json"
+        write_ab_report(report,path)
+        print(f"ace_canary_ab_report: {path}")
+        print(f"ace_canary_ab_status: {report.status}")
+        print(f"ace_canary_ab_ready: {str(report.ready).lower()}")
+        print(f"ace_canary_ab_blockers: {','.join(report.blockers) or 'none'}")
+        return 0 if report.ready else 1
     _apply_runtime_timeout_env(args)
     _apply_provider_env(args)
     options = LiteraryRegressionOptions(

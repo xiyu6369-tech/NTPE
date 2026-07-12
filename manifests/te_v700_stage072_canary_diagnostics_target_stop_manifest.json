@@ -1,6 +1,31 @@
 {
-  "version": "7.0.0-stage07.2",
-  "stage": "TE-v7.0-Stage07.2-CanaryDiagnosticsTargetStop",
+  "contract": {
+    "fallback_reasons_redacted": true,
+    "ordinary_regression_unchanged": true,
+    "target_chunk_stop_only": true
+  },
+  "frozen_boundary": {
+    "automatic_active_expansion": false,
+    "lts_modified": false,
+    "prompt_rules_modified": false,
+    "provider_calls_added": 0,
+    "provider_modified": false,
+    "te_v6_modified": false
+  },
+  "integrity": {
+    "files": {
+      "core/adaptive_context_canary_validation/__init__.py": "6a2474e97a2a752918ba67a10b05dc119dbda740a9c473cc964eee68f1067962",
+      "core/adaptive_context_canary_validation/model.py": "89edfacc8ffdf547840e11617799f4ab13fd54302689430648a007f7807623fd",
+      "core/adaptive_context_canary_validation/report.py": "3d6c9d12cbf979eec62be76052c4692e9458bdb76871c04141ed547bbb17e6ed",
+      "core/adaptive_context_canary_validation/session.py": "a76be15ee50d5f83289057f18e90fa6c3fe529371d023b0408fed7542f891952",
+      "core/adaptive_context_canary_validation/stop.py": "318e11648978f405c16fa7284facd4eaad8f9d9d097bd205879084adf077163b",
+      "core/adaptive_context_runtime_shadow/hook.py": "67a62d0aba8139cc08948e8a39816d6ce063f2c820a0223e395c5aa80061ea73",
+      "docs/releases/te_v7_0/TE_V7_0_STAGE07_2_CANARY_DIAGNOSTICS_TARGET_STOP.md": "b4828b21bb7eaa1374fbd669d3af85bc8dd5042ccff150c1a4890d27a006bc1f",
+      "ntpe_production_translate.py": "99d2625f1cfcf15460e7430d617f09ab687abfc7ea458061121b1de945c4369a",
+      "ntpe_te_v700_stage072_canary_diagnostics_target_stop_test.py": "22f1b4fc18b93525030c0dc358717b21e1010cf3d8d0adf3473dd2b31f146cb2",
+      "tests/integration/translation_engine_v700_stage072_canary_diagnostics_target_stop_test.py": "e903cdbbb8e7de6037ddb4dd8e2749dbc490efb5cf52ef950e3520009e0a33cf"
+    }
+  },
   "inventory": [
     "core/adaptive_context_canary_validation/__init__.py",
     "core/adaptive_context_canary_validation/model.py",
@@ -13,31 +38,6 @@
     "tests/integration/translation_engine_v700_stage072_canary_diagnostics_target_stop_test.py",
     "docs/releases/te_v7_0/TE_V7_0_STAGE07_2_CANARY_DIAGNOSTICS_TARGET_STOP.md"
   ],
-  "integrity": {
-    "files": {
-      "core/adaptive_context_canary_validation/__init__.py": "6a2474e97a2a752918ba67a10b05dc119dbda740a9c473cc964eee68f1067962",
-      "core/adaptive_context_canary_validation/model.py": "89edfacc8ffdf547840e11617799f4ab13fd54302689430648a007f7807623fd",
-      "core/adaptive_context_canary_validation/report.py": "3d6c9d12cbf979eec62be76052c4692e9458bdb76871c04141ed547bbb17e6ed",
-      "core/adaptive_context_canary_validation/session.py": "a76be15ee50d5f83289057f18e90fa6c3fe529371d023b0408fed7542f891952",
-      "core/adaptive_context_canary_validation/stop.py": "318e11648978f405c16fa7284facd4eaad8f9d9d097bd205879084adf077163b",
-      "core/adaptive_context_runtime_shadow/hook.py": "67a62d0aba8139cc08948e8a39816d6ce063f2c820a0223e395c5aa80061ea73",
-      "ntpe_production_translate.py": "d007b8f876f0575c7e84af519b4eca154d6bb2f6bbb953b58da20e758ffbe3c5",
-      "ntpe_te_v700_stage072_canary_diagnostics_target_stop_test.py": "22f1b4fc18b93525030c0dc358717b21e1010cf3d8d0adf3473dd2b31f146cb2",
-      "tests/integration/translation_engine_v700_stage072_canary_diagnostics_target_stop_test.py": "e903cdbbb8e7de6037ddb4dd8e2749dbc490efb5cf52ef950e3520009e0a33cf",
-      "docs/releases/te_v7_0/TE_V7_0_STAGE07_2_CANARY_DIAGNOSTICS_TARGET_STOP.md": "b4828b21bb7eaa1374fbd669d3af85bc8dd5042ccff150c1a4890d27a006bc1f"
-    }
-  },
-  "frozen_boundary": {
-    "te_v6_modified": false,
-    "lts_modified": false,
-    "provider_modified": false,
-    "prompt_rules_modified": false,
-    "provider_calls_added": 0,
-    "automatic_active_expansion": false
-  },
-  "contract": {
-    "fallback_reasons_redacted": true,
-    "target_chunk_stop_only": true,
-    "ordinary_regression_unchanged": true
-  }
+  "stage": "TE-v7.0-Stage07.2-CanaryDiagnosticsTargetStop",
+  "version": "7.0.0-stage07.2"
 }
