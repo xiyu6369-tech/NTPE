@@ -34,6 +34,11 @@ from core.adaptive_context_activation_policy import (
     load_activation_evidence,
     write_activation_policy_report,
 )
+from core.adaptive_context_profile_budget import (
+    ProfileBudgetRequest,
+    evaluate_profile_budget,
+    write_profile_budget_report,
+)
 from core.adaptive_context_canary_validation import (
     build_canary_production_report,
     canary_validation_session,
@@ -175,6 +180,13 @@ def build_parser() -> argparse.ArgumentParser:
     regression.add_argument("--ace-production-rollout-percent", type=int, default=0, help="requested Stage 08.1 rollout percent; maximum 5")
     regression.add_argument("--ace-production-enable", action="store_true", help="explicitly request production-canary eligibility evaluation")
     regression.add_argument("--ace-production-kill-switch", action="store_true", help="force the production activation policy to fail closed")
+    regression.add_argument("--ace-profile-budget-validate", action="store_true", help="evaluate TE v7 profile-aware context budget without calling Provider")
+    regression.add_argument("--ace-profile-budget-report", default=None, help="optional profile-aware context budget JSON path")
+    regression.add_argument("--ace-profile-budget-model-limit", type=int, default=8192, help="model context limit used by the assembly-only budget validator")
+    regression.add_argument("--ace-profile-budget-fixed-prompt-tokens", type=int, default=512, help="fixed prompt tokens reserved before context")
+    regression.add_argument("--ace-profile-budget-source-tokens", type=int, default=1024, help="source tokens reserved before context")
+    regression.add_argument("--ace-profile-budget-output-tokens", type=int, default=1024, help="output tokens reserved before context")
+    regression.add_argument("--ace-profile-budget-requested-tokens", type=int, default=None, help="optional requested context tokens; clamped by profile and hard limit")
 
     evaluate = sub.add_parser("evaluate", help="evaluate literary regression outputs without rerunning translation")
     evaluate.add_argument("--stage", default=os.environ.get("NTPE_PS_STAGE", "PS-03"), help="stage output folder under tests/literary/outputs")
@@ -371,6 +383,27 @@ def run_evaluate(args: argparse.Namespace) -> int:
 
 
 def run_regression(args: argparse.Namespace) -> int:
+    if bool(getattr(args, "ace_profile_budget_validate", False)):
+        out_path = _resolve(args.ace_profile_budget_report) if args.ace_profile_budget_report else ROOT / "artifacts" / "te_v7_stage082" / "TE_V7_STAGE082_PROFILE_AWARE_CONTEXT_BUDGET.json"
+        decision = evaluate_profile_budget(
+            ProfileBudgetRequest(
+                profile=args.profile,
+                model_context_limit=int(args.ace_profile_budget_model_limit),
+                fixed_prompt_tokens=int(args.ace_profile_budget_fixed_prompt_tokens),
+                source_tokens=int(args.ace_profile_budget_source_tokens),
+                reserved_output_tokens=int(args.ace_profile_budget_output_tokens),
+                requested_context_tokens=args.ace_profile_budget_requested_tokens,
+            )
+        )
+        write_profile_budget_report(decision, out_path)
+        print(f"ace_profile_budget_report: {out_path}")
+        print(f"ace_profile_budget_status: {decision.status}")
+        print(f"ace_profile_budget_ready: {str(decision.ready).lower()}")
+        print(f"ace_profile_budget_profile: {decision.profile}")
+        print(f"ace_profile_budget_effective_tokens: {decision.effective_context_tokens}")
+        print(f"ace_profile_budget_blockers: {','.join(decision.blockers) or 'none'}")
+        print(f"ace_profile_budget_limitations: {','.join(decision.limitations) or 'none'}")
+        return 0 if decision.ready else 1
     if bool(getattr(args, "ace_production_policy_validate", False)):
         ab_path = _resolve(args.ace_production_policy_ab_report) if args.ace_production_policy_ab_report else ROOT / "artifacts" / "te_v7_stage075" / "TE_V7_STAGE075_CANARY_AB_QUALITY_VALIDATION.json"
         canary_path = _resolve(args.ace_production_policy_canary_report) if args.ace_production_policy_canary_report else ROOT / "artifacts" / "te_v7_stage06" / "TE_V7_STAGE06_CANARY_PRODUCTION_VALIDATION.json"

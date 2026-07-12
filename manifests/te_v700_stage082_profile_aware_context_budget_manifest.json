@@ -1,0 +1,16 @@
+{
+  "files": {
+    "core/adaptive_context_profile_budget/__init__.py": "2cbd23b3f2af17f62785a78ba208102d9409b7849c74c627aab8146718b53023",
+    "core/adaptive_context_profile_budget/model.py": "1b6d0dd55fa84c67f042df52ddf71db38d04392914cbd7dc63678b04395b2e80",
+    "core/adaptive_context_profile_budget/budget.py": "5ba63a7c643ce70481cd717d9437145c765542544532a7c8c5f60f82d59d0bec",
+    "core/adaptive_context_profile_budget/io.py": "20aa4f69ab54a266c23197efaad34d81c64bf9cc05e408acb5b1b63c4528549e",
+    "ntpe_production_translate.py": "8b497aff7b8e456420b9de940cd85ec1c39a6712390ab2ccff7f30153e6f8deb",
+    "ntpe_te_v700_stage082_profile_aware_context_budget_test.py": "3c1178a26eca4363edd4e74eaf48f6c445870ff6827b68cd249ff0697746000c",
+    "tests/integration/translation_engine_v700_stage082_profile_aware_context_budget_test.py": "9c1d77561afdfc57b984d10f2a6aac8993a2f77a0c03923a9fd1a67b01eaad14",
+    "docs/releases/te_v7_0/TE_V7_0_STAGE08_2_PROFILE_AWARE_CONTEXT_BUDGET.md": "55562a8038a01843079144b289d22d90f2dabc977d41385cf102360e2b735ace",
+    "artifacts/te_v7_stage082/TE_V7_STAGE082_PROFILE_AWARE_CONTEXT_BUDGET.json": "mutable-structured-artifact",
+    "manifests/te_v700_stage082_profile_aware_context_budget_manifest.json": "self-describing-manifest"
+  },
+  "stage": "TE-v7.0-Stage08.2",
+  "version": "7.0.0-stage08.2"
+}

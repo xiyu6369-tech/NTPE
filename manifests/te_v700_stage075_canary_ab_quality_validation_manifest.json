@@ -6,7 +6,7 @@
     "core/adaptive_context_canary_ab/io.py": "4244423f476581a33f063bd9c35f36b6b9883b00c0e2ef4cac280009f2fcd5fb",
     "core/adaptive_context_canary_ab/model.py": "45d45c2b1b49a85e3dddbe666df0c95c96b31cdfeab6c45e6eae1b0fba1cb238",
     "docs/releases/te_v7_0/TE_V7_0_STAGE07_5_CANARY_AB_QUALITY_VALIDATION.md": "472a8e02a9f89ddea71197d7e62115f9fde796b7378bdee671797880ee4ddc9a",
-    "ntpe_production_translate.py": "99d2625f1cfcf15460e7430d617f09ab687abfc7ea458061121b1de945c4369a",
+    "ntpe_production_translate.py": "8b497aff7b8e456420b9de940cd85ec1c39a6712390ab2ccff7f30153e6f8deb",
     "ntpe_te_v700_stage075_canary_ab_quality_validation_test.py": "cce46bd77d92c3e1c7654d79e0be56c4616d858c3216e9ebe05b09b76de02708",
     "tests/integration/translation_engine_v700_stage075_canary_ab_quality_validation_test.py": "165cc2c3c7719939e4f92438f3e256bb896e3e4ce67c87436417055e39b6abaf"
   },
