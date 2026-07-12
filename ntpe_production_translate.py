@@ -26,6 +26,12 @@ from core.adaptive_context_production_validation import (
     production_shadow_session,
     write_production_shadow_report,
 )
+from core.adaptive_context_canary_resume import prepare_canary_resume
+from core.adaptive_context_canary_validation import (
+    build_canary_production_report,
+    canary_validation_session,
+    write_canary_production_report,
+)
 
 # TE v7 Stage 03: installs a no-op-unless-shadow wrapper around prompt package
 # construction. The wrapper returns the original package unchanged.
@@ -146,6 +152,11 @@ def build_parser() -> argparse.ArgumentParser:
     regression.add_argument("--no-progress", action="store_true", help="disable live NTPE progress messages")
     regression.add_argument("--ace-shadow-validate", action="store_true", help="run TE v7 ACE production shadow validation without changing prompt payload")
     regression.add_argument("--ace-shadow-report", default=None, help="optional JSON report path for ACE production shadow validation")
+    regression.add_argument("--ace-canary-validate", action="store_true", help="run TE v7 single-chunk ACE production canary validation")
+    regression.add_argument("--ace-canary-report", default=None, help="optional JSON report path for ACE production canary validation")
+    regression.add_argument("--ace-canary-chunk", type=int, default=2, help="single chunk eligible for ACE canary activation")
+    regression.add_argument("--ace-canary-context-tokens", type=int, default=128, help="context token budget for the ACE canary candidate")
+    regression.add_argument("--ace-canary-resume-from-stage", default=None, help="seed completed chunks before the canary target from an earlier regression stage")
 
     evaluate = sub.add_parser("evaluate", help="evaluate literary regression outputs without rerunning translation")
     evaluate.add_argument("--stage", default=os.environ.get("NTPE_PS_STAGE", "PS-03"), help="stage output folder under tests/literary/outputs")
@@ -365,8 +376,66 @@ def run_regression(args: argparse.Namespace) -> int:
         previous_stage=args.previous_stage,
         progress_enabled=not getattr(args, "no_progress", False),
     )
-    if not getattr(args, "ace_shadow_validate", False):
+    shadow_validate = bool(getattr(args, "ace_shadow_validate", False))
+    canary_validate = bool(getattr(args, "ace_canary_validate", False))
+    if shadow_validate and canary_validate:
+        print("ACE validation error: --ace-shadow-validate and --ace-canary-validate are mutually exclusive")
+        return 2
+    if not shadow_validate and not canary_validate:
         return _print_regression_result(run_literary_regression(options))
+
+    if canary_validate:
+        report_path = _resolve(args.ace_canary_report) if args.ace_canary_report else (
+            ROOT / "artifacts" / "te_v7_stage06" / "TE_V7_STAGE06_CANARY_PRODUCTION_VALIDATION.json"
+        )
+        target_chunk = max(1, int(args.ace_canary_chunk))
+        context_tokens = max(1, int(args.ace_canary_context_tokens))
+        audit_path = str(report_path.with_suffix(".jsonl"))
+        if getattr(args, "ace_canary_resume_from_stage", None):
+            if args.overwrite:
+                options = LiteraryRegressionOptions(**{**options.__dict__, "overwrite": False})
+            resume_plan = prepare_canary_resume(
+                ROOT, source_stage=args.ace_canary_resume_from_stage, target_stage=args.stage, target_chunk=target_chunk
+            )
+            print(f"ace_canary_resume_ready: {str(resume_plan.ready).lower()}")
+            print(f"ace_canary_resume_copied: {len(resume_plan.copied_chunks)}")
+            if not resume_plan.ready:
+                print(f"ace_canary_resume_missing: {','.join(map(str, resume_plan.missing_chunks))}")
+                return 2
+        with canary_validation_session(
+            target_chunk=target_chunk,
+            context_tokens=context_tokens,
+            audit_path=audit_path,
+        ):
+            regression_result = run_literary_regression(options)
+        report = build_canary_production_report(
+            regression_result,
+            target_chunk=target_chunk,
+            provider_execution_requested=not args.dry_run,
+            stage=args.stage,
+        )
+        write_canary_production_report(report, report_path)
+        print(f"ace_canary_report: {report_path}")
+        print(f"ace_canary_status: {report.status}")
+        print(f"ace_canary_records: {report.records}")
+        print(f"ace_canary_activated: {report.activated_records}")
+        print(f"ace_canary_tokens_saved: {report.estimated_tokens_saved}")
+        print(f"ace_canary_fallback_reasons: {','.join(report.fallback_reasons) or 'none'}")
+        print(f"ace_canary_target_complete: {str(report.target_chunk_completed).lower()}")
+        print(f"ace_canary_latency_average_ms: {report.canary_latency_average_ms}")
+        display_result = regression_result
+        if report.target_chunk_completed and not report.blockers:
+            display_result = dict(regression_result)
+            display_result["status"] = "target_complete"
+            summary = dict(regression_result.get("summary", {}))
+            summary["failed"] = 0
+            summary["success"] = max(1, int(summary.get("success", 0) or 0))
+            display_result["summary"] = summary
+        base_rc = _print_regression_result(display_result)
+        canary_gate_passed = report.ready or (bool(args.dry_run) and not report.blockers)
+        if report.target_chunk_completed and not report.blockers:
+            base_rc = 0
+        return 0 if base_rc == 0 and canary_gate_passed else 1
 
     report_path = _resolve(args.ace_shadow_report) if args.ace_shadow_report else (
         ROOT / "artifacts" / "te_v7_stage04" / "TE_V7_STAGE04_PRODUCTION_SHADOW_VALIDATION.json"

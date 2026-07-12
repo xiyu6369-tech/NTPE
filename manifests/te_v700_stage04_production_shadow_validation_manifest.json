@@ -13,8 +13,8 @@
       "core/adaptive_context_production_validation/report.py": "6d20de5918a074032a892fbd40ecb20c7a6b70777a6c100c164c5370b5ddc3b2",
       "core/adaptive_context_production_validation/session.py": "c483cdad26ecacf371596f6a252ed67c9332f64ef750caceeebf66d95c09853e",
       "docs/releases/te_v7_0/TE_V7_0_STAGE04_PRODUCTION_SHADOW_VALIDATION.md": "94fe3d365f5ee687ed241ca13a1f8f5af2a85a874de0581d464c740b1d750a1d",
-      "manifests/te_v700_stage03_runtime_shadow_activation_manifest.json": "8c2cd4229101ae16ef49366cd7956e81a91ce17d4d18b8f21a2767997bb5cb79",
-      "ntpe_production_translate.py": "fa7619a89c5f810b8c8fd889d3ac6385db4badb8fd7768967b4226510ab571ac",
+      "manifests/te_v700_stage03_runtime_shadow_activation_manifest.json": "e5a00961764f7936c202cda6db3ff66555a043de2cbdb0bc071a407e333a23db",
+      "ntpe_production_translate.py": "d007b8f876f0575c7e84af519b4eca154d6bb2f6bbb953b58da20e758ffbe3c5",
       "ntpe_te_v700_stage04_production_shadow_validation_test.py": "dd8a3db56d4177799fadaacf0e4c9610a84367abf25f812c581d646555ba31a6",
       "tests/integration/translation_engine_v700_stage04_production_shadow_validation_test.py": "03dd704b3f754fe1b65abb0f44c660194ec06cdf168b65bbb698d1372c7b4de1"
     }

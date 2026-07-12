@@ -9,7 +9,7 @@
       "manifests/te_v700_stage03_runtime_shadow_activation_manifest.json": "e5a00961764f7936c202cda6db3ff66555a043de2cbdb0bc071a407e333a23db",
       "manifests/te_v700_stage04_production_shadow_validation_manifest.json": "46abe4ca315fdea86286f6508323b502ba6fbba40bc1b9e4ab30807a72e8c615",
       "manifests/te_v700_stage06_ace_canary_production_validation_manifest.json": "d3b2068b58b092ea89c59f56d7d6caf2e5f94da2e65890727edc947675ebd9fb",
-      "ntpe_production_translate.py": "249f2234394d8a94054baa98aa9979d3bdf4d1baedb5f6fb55c0491c0fd13084",
+      "ntpe_production_translate.py": "d007b8f876f0575c7e84af519b4eca154d6bb2f6bbb953b58da20e758ffbe3c5",
       "ntpe_te_v700_stage07_ace_canary_resume_test.py": "a7efd4424fb2e344fac610ada75515406d73d764900eb99f52a28236d0d2dc69",
       "tests/integration/translation_engine_v700_stage07_ace_canary_resume_test.py": "16d833d2eb7d4e42aadbb92aa29399f4e9f70ce0563828f0380f3d3038862884"
     }

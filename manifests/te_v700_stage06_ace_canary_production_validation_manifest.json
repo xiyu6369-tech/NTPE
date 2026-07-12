@@ -4,16 +4,16 @@
   "integrity": {
     "algorithm": "sha256",
     "files": {
-      "core/adaptive_context_canary_validation/__init__.py": "b4b5f792dff14c1386f10591457ba3a2a7767a18d7f448162d8257ea11e2f46a",
-      "core/adaptive_context_canary_validation/model.py": "56403ad4f0fe5e9fa66ac77b534dca1b94e2fff0d7c8787e4eefbd496f697ffc",
-      "core/adaptive_context_canary_validation/report.py": "ae8679b71c0258a28be6e0b8188c9342616e15b2af32e2eeea4c8a60bd7816a8",
-      "core/adaptive_context_canary_validation/session.py": "68a00cdb575ba1af7457dffaeb0c6f180c535dfaa44df4e319ea8eb672b30447",
+      "core/adaptive_context_canary_validation/__init__.py": "6a2474e97a2a752918ba67a10b05dc119dbda740a9c473cc964eee68f1067962",
+      "core/adaptive_context_canary_validation/model.py": "89edfacc8ffdf547840e11617799f4ab13fd54302689430648a007f7807623fd",
+      "core/adaptive_context_canary_validation/report.py": "3d6c9d12cbf979eec62be76052c4692e9458bdb76871c04141ed547bbb17e6ed",
+      "core/adaptive_context_canary_validation/session.py": "a76be15ee50d5f83289057f18e90fa6c3fe529371d023b0408fed7542f891952",
       "docs/releases/te_v7_0/TE_V7_0_STAGE06_ACE_CANARY_PRODUCTION_VALIDATION.md": "aea00bd0d3bf697d974d89d12b39bc4faf7d698501dd9c4536d1435c95fe64bf",
       "manifests/te_v700_stage03_runtime_shadow_activation_manifest.json": "e5a00961764f7936c202cda6db3ff66555a043de2cbdb0bc071a407e333a23db",
       "manifests/te_v700_stage04_production_shadow_validation_manifest.json": "46abe4ca315fdea86286f6508323b502ba6fbba40bc1b9e4ab30807a72e8c615",
       "manifests/te_v700_stage051_mutable_validation_artifact_integrity_fix_manifest.json": "b251a50f1d1e9e6680279a9d117642dc5237631a3dbd1e36afc4777435f29304",
       "manifests/te_v700_stage05_ace_active_canary_activation_manifest.json": "8694f5bb9a86b13068bfbefc653ec10aeff5ff20f82fd464789639e0703367df",
-      "ntpe_production_translate.py": "249f2234394d8a94054baa98aa9979d3bdf4d1baedb5f6fb55c0491c0fd13084",
+      "ntpe_production_translate.py": "d007b8f876f0575c7e84af519b4eca154d6bb2f6bbb953b58da20e758ffbe3c5",
       "ntpe_te_v700_stage06_ace_canary_production_validation_test.py": "73f0d6079e2ab094d35dc772ac820f6840290517f83c9b4851d678639828147a",
       "tests/integration/translation_engine_v700_stage06_ace_canary_production_validation_test.py": "3b1908d4e52135d6fbb76f9d529f97c1cee862c6847cd9fb1911dfa63c4fd9d8"
     },

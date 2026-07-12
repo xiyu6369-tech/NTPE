@@ -7,6 +7,7 @@ from typing import Any
 from core.adaptive_context_integration import integrate_adaptive_context, resolve_mode
 from core.adaptive_context_integration.utils import canonical_hash
 from core.adaptive_context_canary import apply_prompt_package_canary
+from core.adaptive_context_canary_validation.stop import should_stop_before_chunk, target_complete_error
 
 from .audit import write_shadow_audit
 from .model import ShadowAuditRecord
@@ -64,6 +65,15 @@ def install_txt_runtime_shadow_hook() -> bool:
     @functools.wraps(original)
     def wrapped(*args: Any, **kwargs: Any) -> dict[str, object]:
         package = original(*args, **kwargs)
+        session = package.get("session", {})
+        session = session if isinstance(session, dict) else {}
+        chunk_index = int(session.get("chunk_index", 0) or 0)
+        try:
+            target_chunk = int(str(__import__("os").environ.get("NTPE_TE_V7_ACE_CANARY_CHUNK", "2")).strip())
+        except (TypeError, ValueError):
+            target_chunk = 2
+        if should_stop_before_chunk(chunk_index, target_chunk):
+            raise target_complete_error(target_chunk)
         apply_prompt_package_canary(package)
         analyze_prompt_package_shadow(package)
         return package
