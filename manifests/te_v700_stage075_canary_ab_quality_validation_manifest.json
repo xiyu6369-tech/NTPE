@@ -1,0 +1,15 @@
+{
+  "files": {
+    "artifacts/te_v7_stage075/TE_V7_STAGE075_CANARY_AB_QUALITY_VALIDATION.json": "990df57839ec51fe4673e73272b143535aea69a4a6ca4d1eeccfa8e9d9c5b07b",
+    "core/adaptive_context_canary_ab/__init__.py": "3da87743e4c04aa9cfbffa588fd184f1bd96160d7cb665e5d7ed03bac86d6785",
+    "core/adaptive_context_canary_ab/evaluate.py": "8404a01c2b203f5dd8eb288fd8aa2a0eae5454b9ac22d9a2e5c3dd8cf6db4bfb",
+    "core/adaptive_context_canary_ab/io.py": "4244423f476581a33f063bd9c35f36b6b9883b00c0e2ef4cac280009f2fcd5fb",
+    "core/adaptive_context_canary_ab/model.py": "45d45c2b1b49a85e3dddbe666df0c95c96b31cdfeab6c45e6eae1b0fba1cb238",
+    "docs/releases/te_v7_0/TE_V7_0_STAGE07_5_CANARY_AB_QUALITY_VALIDATION.md": "472a8e02a9f89ddea71197d7e62115f9fde796b7378bdee671797880ee4ddc9a",
+    "ntpe_production_translate.py": "9959c4defc0d98e23e419d7e4671f772fba72d8d4e92e51a03d612884ed03869",
+    "ntpe_te_v700_stage075_canary_ab_quality_validation_test.py": "cce46bd77d92c3e1c7654d79e0be56c4616d858c3216e9ebe05b09b76de02708",
+    "tests/integration/translation_engine_v700_stage075_canary_ab_quality_validation_test.py": "165cc2c3c7719939e4f92438f3e256bb896e3e4ce67c87436417055e39b6abaf"
+  },
+  "stage": "TE-v7.0-Stage07.5",
+  "version": "7.0.0-stage07.5"
+}

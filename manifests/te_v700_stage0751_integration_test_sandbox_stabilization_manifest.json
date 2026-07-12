@@ -1,0 +1,11 @@
+{
+  "files": {
+    "docs/releases/te_v7_0/TE_V7_0_STAGE07_5_1_INTEGRATION_TEST_SANDBOX_STABILIZATION.md": "085f75c64e5467658fc26058fbb7e8cb6d24cb6550ee23d09dd0844e9515af8b",
+    "manifests/te_v700_stage0751_integration_test_sandbox_stabilization_manifest.json": "self-describing-manifest",
+    "manifests/te_v700_stage075_canary_ab_quality_validation_manifest.json": "1d79cd1c680aea955c9c5fccab738c2684542842afc0b46d16a0be4cddff21e1",
+    "ntpe_te_v700_stage0751_integration_test_sandbox_stabilization_test.py": "fe77268fbe7a53c5dfafcd63a30fc221405d9f26b802ec323768230435d7411e",
+    "tests/integration/translation_engine_v700_stage075_canary_ab_quality_validation_test.py": "165cc2c3c7719939e4f92438f3e256bb896e3e4ce67c87436417055e39b6abaf"
+  },
+  "stage": "TE-v7.0-Stage07.5.1",
+  "version": "7.0.0-stage07.5.1"
+}
