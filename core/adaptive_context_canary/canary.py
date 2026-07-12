@@ -3,6 +3,7 @@ import os,time
 from typing import Any
 from core.adaptive_context import ContextItem, build_adaptive_context, estimate_tokens
 from core.adaptive_context_integration.utils import canonical_hash
+from core.adaptive_context_prompt_anchor import anchored_context_text, replace_anchored_context, resolve_prompt_context_anchor
 from .audit import write_canary_audit
 from .model import CanaryRecord
 from .registry import already_activated, append_canary_record
@@ -27,13 +28,14 @@ def apply_prompt_package_canary(package:dict[str,object])->CanaryRecord|None:
     start=time.perf_counter_ns(); reasons=[]
     context=package.get("context",{}); prompt=package.get("prompt",{})
     if not isinstance(context,dict) or not isinstance(prompt,dict): reasons.append("invalid-package-shape")
-    original=str(context.get("previous_chunk_tail","") if isinstance(context,dict) else "")
-    user_prompt=str(prompt.get("user_prompt","") if isinstance(prompt,dict) else "")
+    anchor=resolve_prompt_context_anchor(package)
+    original=anchored_context_text(package,anchor)
     baseline=estimate_tokens(original) if original else 0
     candidate=""; candidate_tokens=0
+    base={**base,"prompt_context_anchor_version":anchor.version,"prompt_context_anchor_strategy":anchor.strategy}
     if not reasons:
-        if not original: reasons.append("empty-previous-context")
-        elif user_prompt.count(original)!=1: reasons.append("previous-context-not-uniquely-addressable")
+        if not anchor.addressable: reasons.append(anchor.reason or "prompt-context-anchor-unavailable")
+        elif not original: reasons.append("prompt-context-anchor-content-unavailable")
         else:
             budget=min(max(1,_integer_env(BUDGET_ENV,128)),max(1,baseline-1))
             item=ContextItem("previous_chunk_tail","narrative",original,relevance=1.0,recency=1.0,continuity=1.0)
@@ -44,10 +46,8 @@ def apply_prompt_package_canary(package:dict[str,object])->CanaryRecord|None:
                 candidate=result.selected[0].content;candidate_tokens=result.selected[0].estimated_tokens
                 if not candidate or candidate==original or candidate_tokens>=baseline: reasons.append("no-token-reduction")
     activated=not reasons
-    if activated:
-        new_prompt=dict(prompt);new_prompt["user_prompt"]=user_prompt.replace(original,candidate,1)
-        new_context=dict(context);new_context["previous_chunk_tail"]=candidate
-        package["prompt"]=new_prompt;package["context"]=new_context
+    if activated and not replace_anchored_context(package,anchor,candidate):
+        reasons.append("prompt-context-anchor-replacement-failed");activated=False
     after=canonical_hash(package);elapsed=round((time.perf_counter_ns()-start)/1_000_000,3)
     if activated and after==before: reasons.append("payload-not-changed");activated=False
     if not activated and after!=before: raise RuntimeError("ACE canary fail-closed invariant violated")

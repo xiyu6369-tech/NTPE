@@ -1,0 +1,40 @@
+{
+  "version": "7.0.0-stage07.3",
+  "stage": "TE-v7.0-Stage07.3-PromptContextAnchorContract",
+  "inventory": [
+    "core/adaptive_context_prompt_anchor/__init__.py",
+    "core/adaptive_context_prompt_anchor/model.py",
+    "core/adaptive_context_prompt_anchor/anchor.py",
+    "core/adaptive_context_canary/canary.py",
+    "ntpe_te_v700_stage073_prompt_context_anchor_contract_test.py",
+    "tests/integration/translation_engine_v700_stage073_prompt_context_anchor_contract_test.py",
+    "docs/releases/te_v7_0/TE_V7_0_STAGE07_3_PROMPT_CONTEXT_ANCHOR_CONTRACT.md"
+  ],
+  "integrity": {
+    "files": {
+      "core/adaptive_context_prompt_anchor/__init__.py": "d2e028bd1d241d79e413663325c24749e26db31aecaf2ae9bab6761d9cc09da9",
+      "core/adaptive_context_prompt_anchor/model.py": "3086ab4a05018098d1780806092e1e0f5a604c6cdcb4748b55786978b9d3cb33",
+      "core/adaptive_context_prompt_anchor/anchor.py": "77efd9ed5bdd2a2711b1cb31fa424c75d68d67268317455f5f35372c35327d2b",
+      "core/adaptive_context_canary/canary.py": "b86bf5b19bcfa1a0258631699eba327329a184bb9cdd6d6028a6e874045d46bb",
+      "ntpe_te_v700_stage073_prompt_context_anchor_contract_test.py": "5a0cd10bf7e941ebb77c30a611dd41c7c29f48b5096e4dcb9706e196856da211",
+      "tests/integration/translation_engine_v700_stage073_prompt_context_anchor_contract_test.py": "f39f6594de948b6c7a2580c562166bbee491d09ecb381f8fbe6519b2db937379",
+      "docs/releases/te_v7_0/TE_V7_0_STAGE07_3_PROMPT_CONTEXT_ANCHOR_CONTRACT.md": "25862603fb699b327a37797bdfc059ddf54bf997b29b240f99b0455db1469172"
+    }
+  },
+  "frozen_boundary": {
+    "te_v6_modified": false,
+    "lts_modified": false,
+    "provider_modified": false,
+    "prompt_rules_modified": false,
+    "provider_calls_added": 0,
+    "automatic_active_expansion": false
+  },
+  "contract": {
+    "offset_addressing_required": true,
+    "content_hash_required": true,
+    "prefix_suffix_byte_equivalent": true,
+    "content_redacted": true,
+    "full_prompt_string_replace_forbidden": true,
+    "single_chunk_only": true
+  }
+}
