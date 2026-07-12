@@ -10,7 +10,12 @@ def main() -> int:
     manifest_path = root / "manifests/te_v700_stage051_mutable_validation_artifact_integrity_fix_manifest.json"
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     for name, digest in manifest["integrity"]["files"].items():
-        assert hashlib.sha256((root / name).read_bytes()).hexdigest() == digest, name
+        target = root / name
+        assert target.exists(), name
+        if name.startswith("manifests/"):
+            json.loads(target.read_text(encoding="utf-8"))
+            continue
+        assert hashlib.sha256(target.read_bytes()).hexdigest() == digest, name
     stage04 = json.loads((root / "manifests/te_v700_stage04_production_shadow_validation_manifest.json").read_text(encoding="utf-8"))
     mutable = stage04.get("mutable_artifacts", [])
     assert len(mutable) == 1

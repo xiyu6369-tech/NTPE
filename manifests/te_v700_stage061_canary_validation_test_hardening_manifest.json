@@ -4,9 +4,9 @@
     "algorithm": "sha256",
     "files": {
       "docs/releases/te_v7_0/TE_V7_0_STAGE06_1_CANARY_VALIDATION_TEST_HARDENING.md": "fded00fe2a52490488027f16a1e6c80f21db8988b2961c60ad03eb0787cb5999",
-      "manifests/te_v700_stage06_ace_canary_production_validation_manifest.json": "2529707b5db6628834afc0c0b842c9c1b1496899f153054bc53915c6ae7cfd98",
-      "ntpe_te_v700_stage061_canary_validation_test_hardening_test.py": "bc91e690a2b22d0210d85c052cd438c3dd683f18bbea4a21fae4c53a37921dbb",
-      "ntpe_te_v700_stage06_ace_canary_production_validation_test.py": "731c67d9b5c651e9e39e10238b49928c9e4dbfdd1badeaa27463a2ce824c49e2",
+      "manifests/te_v700_stage06_ace_canary_production_validation_manifest.json": "d3b2068b58b092ea89c59f56d7d6caf2e5f94da2e65890727edc947675ebd9fb",
+      "ntpe_te_v700_stage061_canary_validation_test_hardening_test.py": "9fa625c969c7bd4f0600739eb6c8e14804ccd857a46d52d890523fa4e7c06afe",
+      "ntpe_te_v700_stage06_ace_canary_production_validation_test.py": "73f0d6079e2ab094d35dc772ac820f6840290517f83c9b4851d678639828147a",
       "tests/integration/translation_engine_v700_stage06_ace_canary_production_validation_test.py": "3b1908d4e52135d6fbb76f9d529f97c1cee862c6847cd9fb1911dfa63c4fd9d8"
     }
   },

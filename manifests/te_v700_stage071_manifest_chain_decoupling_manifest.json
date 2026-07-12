@@ -1,0 +1,28 @@
+{
+  "version": "7.0.0-stage07.1",
+  "stage": "TE-v7.0-Stage07.1-ManifestChainDecoupling",
+  "inventory": [
+    "ntpe_te_v700_stage071_manifest_chain_decoupling_test.py",
+    "ntpe_te_v700_stage051_mutable_validation_artifact_integrity_fix_test.py",
+    "ntpe_te_v700_stage06_ace_canary_production_validation_test.py",
+    "ntpe_te_v700_stage061_canary_validation_test_hardening_test.py",
+    "ntpe_te_v700_stage07_ace_canary_resume_test.py",
+    "docs/releases/te_v7_0/TE_V7_0_STAGE07_1_MANIFEST_CHAIN_DECOUPLING.md"
+  ],
+  "integrity": {
+    "files": {
+      "ntpe_te_v700_stage071_manifest_chain_decoupling_test.py": "f23c0dfd735cd64a52146f9b42dc38a356d45bcb7562f0f6928d2e4f45d3bc8e",
+      "ntpe_te_v700_stage051_mutable_validation_artifact_integrity_fix_test.py": "c7009c620704cd783b69aae994d0960846d0210953de921626be06c854c3c770",
+      "ntpe_te_v700_stage06_ace_canary_production_validation_test.py": "73f0d6079e2ab094d35dc772ac820f6840290517f83c9b4851d678639828147a",
+      "ntpe_te_v700_stage061_canary_validation_test_hardening_test.py": "9fa625c969c7bd4f0600739eb6c8e14804ccd857a46d52d890523fa4e7c06afe",
+      "ntpe_te_v700_stage07_ace_canary_resume_test.py": "a7efd4424fb2e344fac610ada75515406d73d764900eb99f52a28236d0d2dc69",
+      "docs/releases/te_v7_0/TE_V7_0_STAGE07_1_MANIFEST_CHAIN_DECOUPLING.md": "1d340f1258b1b4f9e394119aacd48ba5bb55637c8781bc09a2de39b9e7e9785d"
+    }
+  },
+  "frozen_boundary": {
+    "te_v6_modified": false,
+    "runtime_modified": false,
+    "provider_modified": false,
+    "prompt_modified": false
+  }
+}

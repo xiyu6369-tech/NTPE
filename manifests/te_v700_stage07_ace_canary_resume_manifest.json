@@ -1,0 +1,32 @@
+{
+  "frozen_files_modified": false,
+  "integrity": {
+    "algorithm": "sha256",
+    "files": {
+      "core/adaptive_context_canary_resume/__init__.py": "c6250bc0535344dfabc5be59e522c446ffceb71535024617cf67cd3ccf4c0be3",
+      "core/adaptive_context_canary_resume/resume.py": "d4a099f6f71f47dba8ae6673ab949697894a982946567479d68c50572efb8f09",
+      "docs/releases/te_v7_0/TE_V7_0_STAGE07_ACE_CANARY_RESUME.md": "a09e745a05251b6c457b34cb2ae2f2bd4a7c98fe8b7a2b8778e74b8742eb8326",
+      "manifests/te_v700_stage03_runtime_shadow_activation_manifest.json": "e5a00961764f7936c202cda6db3ff66555a043de2cbdb0bc071a407e333a23db",
+      "manifests/te_v700_stage04_production_shadow_validation_manifest.json": "46abe4ca315fdea86286f6508323b502ba6fbba40bc1b9e4ab30807a72e8c615",
+      "manifests/te_v700_stage06_ace_canary_production_validation_manifest.json": "d3b2068b58b092ea89c59f56d7d6caf2e5f94da2e65890727edc947675ebd9fb",
+      "ntpe_production_translate.py": "249f2234394d8a94054baa98aa9979d3bdf4d1baedb5f6fb55c0491c0fd13084",
+      "ntpe_te_v700_stage07_ace_canary_resume_test.py": "a7efd4424fb2e344fac610ada75515406d73d764900eb99f52a28236d0d2dc69",
+      "tests/integration/translation_engine_v700_stage07_ace_canary_resume_test.py": "16d833d2eb7d4e42aadbb92aa29399f4e9f70ce0563828f0380f3d3038862884"
+    }
+  },
+  "inventory": [
+    "core/adaptive_context_canary_resume/__init__.py",
+    "core/adaptive_context_canary_resume/resume.py",
+    "ntpe_production_translate.py",
+    "ntpe_te_v700_stage07_ace_canary_resume_test.py",
+    "tests/integration/translation_engine_v700_stage07_ace_canary_resume_test.py",
+    "docs/releases/te_v7_0/TE_V7_0_STAGE07_ACE_CANARY_RESUME.md",
+    "manifests/te_v700_stage03_runtime_shadow_activation_manifest.json",
+    "manifests/te_v700_stage04_production_shadow_validation_manifest.json",
+    "manifests/te_v700_stage06_ace_canary_production_validation_manifest.json"
+  ],
+  "provider_calls_added": 0,
+  "stage": "TE-v7.0-Stage07-ACE-Canary-Resume",
+  "status": "complete",
+  "version": "7.0.0-stage07"
+}

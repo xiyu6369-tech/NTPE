@@ -9,12 +9,12 @@
       "core/adaptive_context_canary_validation/report.py": "ae8679b71c0258a28be6e0b8188c9342616e15b2af32e2eeea4c8a60bd7816a8",
       "core/adaptive_context_canary_validation/session.py": "68a00cdb575ba1af7457dffaeb0c6f180c535dfaa44df4e319ea8eb672b30447",
       "docs/releases/te_v7_0/TE_V7_0_STAGE06_ACE_CANARY_PRODUCTION_VALIDATION.md": "aea00bd0d3bf697d974d89d12b39bc4faf7d698501dd9c4536d1435c95fe64bf",
-      "manifests/te_v700_stage03_runtime_shadow_activation_manifest.json": "365439cc55474946af55a0df455d9235f6224a72f7d21722cdb96109aeab6354",
-      "manifests/te_v700_stage04_production_shadow_validation_manifest.json": "59ebb62c43de9a6b7639fcfa4b2a79fba7037e0152b28331aa59f4f166d6e632",
-      "manifests/te_v700_stage051_mutable_validation_artifact_integrity_fix_manifest.json": "608ff6b527d2ddc75ca518b18233e5ad830378d4dcc00fa9b61fe0b8085f51fd",
-      "manifests/te_v700_stage05_ace_active_canary_activation_manifest.json": "23c2de674996114385c33b617cc1ee6c113368c8e325745f8dfa509c1e0644d1",
-      "ntpe_production_translate.py": "8907a2f31f75710f01153a8665f17d64e2efd6ebe05ee7425e665bba17392cb1",
-      "ntpe_te_v700_stage06_ace_canary_production_validation_test.py": "731c67d9b5c651e9e39e10238b49928c9e4dbfdd1badeaa27463a2ce824c49e2",
+      "manifests/te_v700_stage03_runtime_shadow_activation_manifest.json": "e5a00961764f7936c202cda6db3ff66555a043de2cbdb0bc071a407e333a23db",
+      "manifests/te_v700_stage04_production_shadow_validation_manifest.json": "46abe4ca315fdea86286f6508323b502ba6fbba40bc1b9e4ab30807a72e8c615",
+      "manifests/te_v700_stage051_mutable_validation_artifact_integrity_fix_manifest.json": "b251a50f1d1e9e6680279a9d117642dc5237631a3dbd1e36afc4777435f29304",
+      "manifests/te_v700_stage05_ace_active_canary_activation_manifest.json": "8694f5bb9a86b13068bfbefc653ec10aeff5ff20f82fd464789639e0703367df",
+      "ntpe_production_translate.py": "249f2234394d8a94054baa98aa9979d3bdf4d1baedb5f6fb55c0491c0fd13084",
+      "ntpe_te_v700_stage06_ace_canary_production_validation_test.py": "73f0d6079e2ab094d35dc772ac820f6840290517f83c9b4851d678639828147a",
       "tests/integration/translation_engine_v700_stage06_ace_canary_production_validation_test.py": "3b1908d4e52135d6fbb76f9d529f97c1cee862c6847cd9fb1911dfa63c4fd9d8"
     },
     "mutable_artifacts": [
