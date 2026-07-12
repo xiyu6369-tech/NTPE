@@ -1,0 +1,44 @@
+{
+  "automatic_expansion": false,
+  "canary_mode": "explicit-opt-in",
+  "default_mode": "disabled",
+  "frozen_files_modified": false,
+  "integrity": {
+    "algorithm": "sha256",
+    "files": {
+      "artifacts/te_v7_stage05/TE_V7_STAGE05_ACE_ACTIVE_CANARY_VALIDATION.json": "4b49cce515ca77aa8976dc0dece227c7954621333bdba973cc574b9da09ff6ff",
+      "core/adaptive_context_canary/__init__.py": "241cba859c84b4a2affc5b23719b1b1641f82a9098df0a004850df20f5e52c98",
+      "core/adaptive_context_canary/audit.py": "2ebc41bac90394628c6400028776f176522b7ecb1f54ac7c6cdd49c5e5363235",
+      "core/adaptive_context_canary/canary.py": "329a28a1ac96d874d1fbc9d8a0f0ed7df26685c9ee8128fcc4fc56898fe1e4c1",
+      "core/adaptive_context_canary/model.py": "317dfc56a7bd683e8f7aef59a7c6a101e436c4561d5ac192acc9e3ec235a4f36",
+      "core/adaptive_context_canary/registry.py": "118ffc7d3bcd9a50038833261b32fd8893419fac00b1faca1d7d0919631501ad",
+      "core/adaptive_context_canary/report.py": "87ec5fab9998b9a75cfb615849c1c273eaadfc3154bfefc3154c5d3b14bd41a9",
+      "core/adaptive_context_runtime_shadow/hook.py": "041591162c6e3ae60b706b9fcde6c4e49c7967b4010d485e8df9bdd8b4ad6a3f",
+      "docs/releases/te_v7_0/TE_V7_0_STAGE05_ACE_ACTIVE_CANARY_ACTIVATION.md": "bb4f2286dd1c62abfb213696c3829d5b2a8a6e61aaa486dc5e1300653fb0730f",
+      "manifests/te_v700_stage03_runtime_shadow_activation_manifest.json": "8c2cd4229101ae16ef49366cd7956e81a91ce17d4d18b8f21a2767997bb5cb79",
+      "manifests/te_v700_stage04_production_shadow_validation_manifest.json": "7c0e22cb62b2e784d666c6d21ff96be1a401974da58a97aea921753141cb6ea1",
+      "ntpe_te_v700_stage05_ace_active_canary_activation_test.py": "d78f78878153586303d88aadae3aad6ab53cb6dc77c624819a25814a55a1bf33",
+      "tests/integration/translation_engine_v700_stage05_ace_active_canary_activation_test.py": "9da0ef22796ec2ffc2dffd7cc4d600d4a4ba1c007f144f66f03b397a8174eed3"
+    }
+  },
+  "inventory": [
+    "core/adaptive_context_canary/__init__.py",
+    "core/adaptive_context_canary/model.py",
+    "core/adaptive_context_canary/registry.py",
+    "core/adaptive_context_canary/audit.py",
+    "core/adaptive_context_canary/canary.py",
+    "core/adaptive_context_canary/report.py",
+    "core/adaptive_context_runtime_shadow/hook.py",
+    "ntpe_te_v700_stage05_ace_active_canary_activation_test.py",
+    "tests/integration/translation_engine_v700_stage05_ace_active_canary_activation_test.py",
+    "docs/releases/te_v7_0/TE_V7_0_STAGE05_ACE_ACTIVE_CANARY_ACTIVATION.md",
+    "artifacts/te_v7_stage05/TE_V7_STAGE05_ACE_ACTIVE_CANARY_VALIDATION.json",
+    "manifests/te_v700_stage03_runtime_shadow_activation_manifest.json",
+    "manifests/te_v700_stage04_production_shadow_validation_manifest.json"
+  ],
+  "maximum_activated_chunks": 1,
+  "provider_calls_added": 0,
+  "stage": "TE-v7.0-Stage05-ACE-Active-Canary-Activation",
+  "status": "candidate",
+  "version": "7.0.0-stage05"
+}

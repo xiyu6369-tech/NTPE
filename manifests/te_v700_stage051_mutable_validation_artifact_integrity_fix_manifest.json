@@ -1,0 +1,25 @@
+{
+  "frozen_files_modified": false,
+  "integrity": {
+    "algorithm": "sha256",
+    "files": {
+      "docs/releases/te_v7_0/TE_V7_0_STAGE05_1_MUTABLE_VALIDATION_ARTIFACT_INTEGRITY_FIX.md": "b50ef205de967d740bd9a19af8c69f3d3edb44ac1f687f74cc1b43e38e0281cc",
+      "manifests/te_v700_stage04_production_shadow_validation_manifest.json": "7c0e22cb62b2e784d666c6d21ff96be1a401974da58a97aea921753141cb6ea1",
+      "manifests/te_v700_stage05_ace_active_canary_activation_manifest.json": "737d2cf7267faf0828b96684f2ac5127f255701de05b59d13641f6e18d8eadc0",
+      "ntpe_te_v700_stage04_production_shadow_validation_test.py": "dd8a3db56d4177799fadaacf0e4c9610a84367abf25f812c581d646555ba31a6",
+      "ntpe_te_v700_stage051_mutable_validation_artifact_integrity_fix_test.py": "567afba46e890bf71fbb7c4127e72d6df8e57ce523151e3d5a0d9aade02c29b6"
+    }
+  },
+  "inventory": [
+    "ntpe_te_v700_stage04_production_shadow_validation_test.py",
+    "manifests/te_v700_stage04_production_shadow_validation_manifest.json",
+    "manifests/te_v700_stage05_ace_active_canary_activation_manifest.json",
+    "docs/releases/te_v7_0/TE_V7_0_STAGE05_1_MUTABLE_VALIDATION_ARTIFACT_INTEGRITY_FIX.md",
+    "ntpe_te_v700_stage051_mutable_validation_artifact_integrity_fix_test.py"
+  ],
+  "prompt_modified": false,
+  "provider_modified": false,
+  "runtime_behavior_modified": false,
+  "stage": "TE-v7.0-Stage05.1-Mutable-Validation-Artifact-Integrity-Fix",
+  "version": "7.0.0-stage05.1"
+}

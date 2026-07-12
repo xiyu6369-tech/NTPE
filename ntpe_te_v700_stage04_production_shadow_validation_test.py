@@ -25,6 +25,22 @@ def main() -> int:
         manifest = json.loads((root/'manifests/te_v700_stage04_production_shadow_validation_manifest.json').read_text(encoding='utf-8'))
         for name,digest in manifest['integrity']['files'].items():
             assert hashlib.sha256((root/name).read_bytes()).hexdigest() == digest, name
+        for spec in manifest.get('mutable_artifacts', []):
+            artifact_path = root / spec['path']
+            payload = json.loads(artifact_path.read_text(encoding='utf-8'))
+            assert payload.get('version') == spec['version'], spec['path']
+            assert isinstance(payload.get('status'), str), spec['path']
+            assert isinstance(payload.get('ready'), bool), spec['path']
+            assert payload.get('execution_mode') == 'shadow', spec['path']
+            if 'provider_calls_added' in payload:
+                assert payload.get('provider_calls_added') == 0, spec['path']
+            if 'metadata' in payload:
+                assert payload.get('metadata', {}).get('content_redacted') is True, spec['path']
+                assert payload.get('metadata', {}).get('prompt_payload_unchanged') is True, spec['path']
+            else:
+                assert payload.get('provider_execution_observed') is False, spec['path']
+                assert payload.get('translation_quality_improvement_claimed') is False, spec['path']
+                assert payload.get('provider_latency_improvement_claimed') is False, spec['path']
     finally:
         runtime.now_iso = old_now
         clear_shadow_records()
