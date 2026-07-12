@@ -7,6 +7,7 @@ from typing import Any
 from core.adaptive_context_integration import integrate_adaptive_context, resolve_mode
 from core.adaptive_context_integration.utils import canonical_hash
 from core.adaptive_context_canary import apply_prompt_package_canary
+from core.adaptive_context_prompt_anchor import bind_prompt_context_anchor
 from core.adaptive_context_canary_validation.stop import should_stop_before_chunk, target_complete_error
 
 from .audit import write_shadow_audit
@@ -74,6 +75,8 @@ def install_txt_runtime_shadow_hook() -> bool:
             target_chunk = 2
         if should_stop_before_chunk(chunk_index, target_chunk):
             raise target_complete_error(target_chunk)
+        if str(__import__("os").environ.get("NTPE_TE_V7_ACE_MODE", "disabled")).strip().lower() == "canary":
+            bind_prompt_context_anchor(package)
         apply_prompt_package_canary(package)
         analyze_prompt_package_shadow(package)
         return package

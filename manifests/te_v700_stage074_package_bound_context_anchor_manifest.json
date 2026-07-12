@@ -1,0 +1,41 @@
+{
+  "version": "7.0.0-stage07.4",
+  "stage": "TE-v7.0-Stage07.4-PackageBoundContextAnchor",
+  "inventory": [
+    "core/adaptive_context_prompt_anchor/__init__.py",
+    "core/adaptive_context_prompt_anchor/model.py",
+    "core/adaptive_context_prompt_anchor/anchor.py",
+    "core/adaptive_context_runtime_shadow/hook.py",
+    "ntpe_te_v700_stage074_package_bound_context_anchor_test.py",
+    "tests/integration/translation_engine_v700_stage074_package_bound_context_anchor_test.py",
+    "docs/releases/te_v7_0/TE_V7_0_STAGE07_4_PACKAGE_BOUND_CONTEXT_ANCHOR.md"
+  ],
+  "integrity": {
+    "files": {
+      "core/adaptive_context_prompt_anchor/__init__.py": "a5116850e2beb8e1ecd75d7913ae8a581ff6d66560a2cbd896cc6a512f9776f4",
+      "core/adaptive_context_prompt_anchor/model.py": "3086ab4a05018098d1780806092e1e0f5a604c6cdcb4748b55786978b9d3cb33",
+      "core/adaptive_context_prompt_anchor/anchor.py": "4126e2c7ebad48f75b1b2edfc86535d00dc2d270dcbff06dbe12cdfc985d75c6",
+      "core/adaptive_context_runtime_shadow/hook.py": "67a62d0aba8139cc08948e8a39816d6ce063f2c820a0223e395c5aa80061ea73",
+      "ntpe_te_v700_stage074_package_bound_context_anchor_test.py": "89ab1d91a2d422a2f133e0ec7a534c51bf9db246d1077a227434d617b627e1fc",
+      "tests/integration/translation_engine_v700_stage074_package_bound_context_anchor_test.py": "36d5042b5d5e0f6cf3037c92244286b2402055ead064bda4b5f7bd53c81ca161",
+      "docs/releases/te_v7_0/TE_V7_0_STAGE07_4_PACKAGE_BOUND_CONTEXT_ANCHOR.md": "83e6cac32a055006ad704f738631c09305073deb1ffed9cb680797da8ff5bbb9"
+    }
+  },
+  "contract": {
+    "package_bound_offsets": true,
+    "prompt_hash_required": true,
+    "content_hash_required": true,
+    "source_hash_required": true,
+    "content_redacted": true,
+    "single_chunk_only": true,
+    "global_marker_uniqueness_required": false,
+    "fail_closed": true
+  },
+  "frozen_boundary": {
+    "te_v6_modified": false,
+    "lts_modified": false,
+    "provider_modified": false,
+    "prompt_rules_modified": false,
+    "provider_calls_added": 0
+  }
+}
