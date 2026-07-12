@@ -1,0 +1,44 @@
+{
+  "default_mode": "disabled",
+  "frozen_files_modified": false,
+  "integrity": {
+    "algorithm": "sha256",
+    "files": {
+      "core/adaptive_context_canary_validation/__init__.py": "b4b5f792dff14c1386f10591457ba3a2a7767a18d7f448162d8257ea11e2f46a",
+      "core/adaptive_context_canary_validation/model.py": "56403ad4f0fe5e9fa66ac77b534dca1b94e2fff0d7c8787e4eefbd496f697ffc",
+      "core/adaptive_context_canary_validation/report.py": "ae8679b71c0258a28be6e0b8188c9342616e15b2af32e2eeea4c8a60bd7816a8",
+      "core/adaptive_context_canary_validation/session.py": "68a00cdb575ba1af7457dffaeb0c6f180c535dfaa44df4e319ea8eb672b30447",
+      "docs/releases/te_v7_0/TE_V7_0_STAGE06_ACE_CANARY_PRODUCTION_VALIDATION.md": "aea00bd0d3bf697d974d89d12b39bc4faf7d698501dd9c4536d1435c95fe64bf",
+      "manifests/te_v700_stage03_runtime_shadow_activation_manifest.json": "365439cc55474946af55a0df455d9235f6224a72f7d21722cdb96109aeab6354",
+      "manifests/te_v700_stage04_production_shadow_validation_manifest.json": "59ebb62c43de9a6b7639fcfa4b2a79fba7037e0152b28331aa59f4f166d6e632",
+      "manifests/te_v700_stage051_mutable_validation_artifact_integrity_fix_manifest.json": "608ff6b527d2ddc75ca518b18233e5ad830378d4dcc00fa9b61fe0b8085f51fd",
+      "manifests/te_v700_stage05_ace_active_canary_activation_manifest.json": "23c2de674996114385c33b617cc1ee6c113368c8e325745f8dfa509c1e0644d1",
+      "ntpe_production_translate.py": "8907a2f31f75710f01153a8665f17d64e2efd6ebe05ee7425e665bba17392cb1",
+      "ntpe_te_v700_stage06_ace_canary_production_validation_test.py": "731c67d9b5c651e9e39e10238b49928c9e4dbfdd1badeaa27463a2ce824c49e2",
+      "tests/integration/translation_engine_v700_stage06_ace_canary_production_validation_test.py": "3b1908d4e52135d6fbb76f9d529f97c1cee862c6847cd9fb1911dfa63c4fd9d8"
+    },
+    "mutable_artifacts": [
+      "artifacts/te_v7_stage06/TE_V7_STAGE06_CANARY_PRODUCTION_VALIDATION.json"
+    ]
+  },
+  "inventory": [
+    "core/adaptive_context_canary_validation/__init__.py",
+    "core/adaptive_context_canary_validation/model.py",
+    "core/adaptive_context_canary_validation/session.py",
+    "core/adaptive_context_canary_validation/report.py",
+    "ntpe_production_translate.py",
+    "ntpe_te_v700_stage06_ace_canary_production_validation_test.py",
+    "tests/integration/translation_engine_v700_stage06_ace_canary_production_validation_test.py",
+    "docs/releases/te_v7_0/TE_V7_0_STAGE06_ACE_CANARY_PRODUCTION_VALIDATION.md",
+    "artifacts/te_v7_stage06/TE_V7_STAGE06_CANARY_PRODUCTION_VALIDATION.json",
+    "manifests/te_v700_stage03_runtime_shadow_activation_manifest.json",
+    "manifests/te_v700_stage04_production_shadow_validation_manifest.json",
+    "manifests/te_v700_stage05_ace_active_canary_activation_manifest.json",
+    "manifests/te_v700_stage051_mutable_validation_artifact_integrity_fix_manifest.json"
+  ],
+  "provider_calls_added": 0,
+  "single_chunk_only": true,
+  "stage": "TE-v7.0-Stage06-ACE-Canary-Production-Validation",
+  "status": "stabilized",
+  "version": "7.0.0-stage06.1"
+}
