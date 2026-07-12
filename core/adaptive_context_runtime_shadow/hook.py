@@ -6,6 +6,7 @@ from typing import Any
 
 from core.adaptive_context_integration import integrate_adaptive_context, resolve_mode
 from core.adaptive_context_integration.utils import canonical_hash
+from core.adaptive_context_canary import apply_prompt_package_canary
 
 from .audit import write_shadow_audit
 from .model import ShadowAuditRecord
@@ -63,6 +64,7 @@ def install_txt_runtime_shadow_hook() -> bool:
     @functools.wraps(original)
     def wrapped(*args: Any, **kwargs: Any) -> dict[str, object]:
         package = original(*args, **kwargs)
+        apply_prompt_package_canary(package)
         analyze_prompt_package_shadow(package)
         return package
 

@@ -1,14 +1,23 @@
 {
-  "stage": "TE-v7.0-Stage03",
-  "version": "7.0.0-stage03",
-  "status": "candidate",
-  "runtime_shadow_hook": true,
   "default_mode": "disabled",
-  "production_active_replacement": false,
-  "provider_calls_added": 0,
-  "http_requests_added": 0,
-  "lts_source_modified": false,
   "frozen_files_modified": false,
+  "http_requests_added": 0,
+  "integrity": {
+    "algorithm": "sha256",
+    "files": {
+      "artifacts/te_v7_stage03/TE_V7_STAGE03_RUNTIME_SHADOW_BENCHMARK.json": "d4812263dc63a796f0093bc59b03735a448b1577100816f37ce2905a928291b6",
+      "core/adaptive_context_runtime_shadow/__init__.py": "f918bada6405589063ee33794e1c8476564be4fb6b441b6eb136c16d97521952",
+      "core/adaptive_context_runtime_shadow/audit.py": "1d8a3ef7f71481f55169082e243131bd24dfefea792c8142be1257103164e6ab",
+      "core/adaptive_context_runtime_shadow/hook.py": "041591162c6e3ae60b706b9fcde6c4e49c7967b4010d485e8df9bdd8b4ad6a3f",
+      "core/adaptive_context_runtime_shadow/model.py": "21b62e16d4404e47d09c75718864c944073af2e4ede64e8669805ae435cabd84",
+      "core/adaptive_context_runtime_shadow/registry.py": "b14e48f697d50dbbdc2a2c2e7ad093aef8cfa975823eb848dda005f55b3b4d5d",
+      "docs/releases/te_v7_0/TE_V7_0_STAGE03_RUNTIME_SHADOW_ACTIVATION.md": "fcfd9d06b2e4c182b764db844e5166fad573d9bc06e7bea2dee78180e7d36448",
+      "ntpe_production_translate.py": "fa7619a89c5f810b8c8fd889d3ac6385db4badb8fd7768967b4226510ab571ac",
+      "ntpe_te_v700_stage03_runtime_shadow_activation_test.py": "ce1c864bbe45c3c962bb606ed4b05150c209354f3bb3de30aa02f719aaaa01f3",
+      "tests/integration/translation_engine_v700_stage03_runtime_shadow_activation_test.py": "2709d90b6adae5c1c08acbcaf37abf3141be6a68d674c93eb95ac721d11efe6b",
+      "tests/integration/translation_engine_v700_stage03_shadow_audit_test.py": "be9e18579f3f0afe1e4d4968e4f92922fbca5be5e0869ec665abfec0a79a9281"
+    }
+  },
   "inventory": [
     "core/adaptive_context_runtime_shadow/__init__.py",
     "core/adaptive_context_runtime_shadow/model.py",
@@ -22,20 +31,11 @@
     "docs/releases/te_v7_0/TE_V7_0_STAGE03_RUNTIME_SHADOW_ACTIVATION.md",
     "artifacts/te_v7_stage03/TE_V7_STAGE03_RUNTIME_SHADOW_BENCHMARK.json"
   ],
-  "integrity": {
-    "algorithm": "sha256",
-    "files": {
-      "core/adaptive_context_runtime_shadow/__init__.py": "f918bada6405589063ee33794e1c8476564be4fb6b441b6eb136c16d97521952",
-      "core/adaptive_context_runtime_shadow/model.py": "21b62e16d4404e47d09c75718864c944073af2e4ede64e8669805ae435cabd84",
-      "core/adaptive_context_runtime_shadow/registry.py": "b14e48f697d50dbbdc2a2c2e7ad093aef8cfa975823eb848dda005f55b3b4d5d",
-      "core/adaptive_context_runtime_shadow/audit.py": "1d8a3ef7f71481f55169082e243131bd24dfefea792c8142be1257103164e6ab",
-      "core/adaptive_context_runtime_shadow/hook.py": "a0743575debed84cb3723f1d27236a10b418d6bd0d2778c9a6670a651040c1e3",
-      "ntpe_production_translate.py": "fa7619a89c5f810b8c8fd889d3ac6385db4badb8fd7768967b4226510ab571ac",
-      "ntpe_te_v700_stage03_runtime_shadow_activation_test.py": "ce1c864bbe45c3c962bb606ed4b05150c209354f3bb3de30aa02f719aaaa01f3",
-      "tests/integration/translation_engine_v700_stage03_runtime_shadow_activation_test.py": "2709d90b6adae5c1c08acbcaf37abf3141be6a68d674c93eb95ac721d11efe6b",
-      "tests/integration/translation_engine_v700_stage03_shadow_audit_test.py": "be9e18579f3f0afe1e4d4968e4f92922fbca5be5e0869ec665abfec0a79a9281",
-      "docs/releases/te_v7_0/TE_V7_0_STAGE03_RUNTIME_SHADOW_ACTIVATION.md": "fcfd9d06b2e4c182b764db844e5166fad573d9bc06e7bea2dee78180e7d36448",
-      "artifacts/te_v7_stage03/TE_V7_STAGE03_RUNTIME_SHADOW_BENCHMARK.json": "d4812263dc63a796f0093bc59b03735a448b1577100816f37ce2905a928291b6"
-    }
-  }
+  "lts_source_modified": false,
+  "production_active_replacement": false,
+  "provider_calls_added": 0,
+  "runtime_shadow_hook": true,
+  "stage": "TE-v7.0-Stage03",
+  "status": "candidate",
+  "version": "7.0.0-stage03"
 }
