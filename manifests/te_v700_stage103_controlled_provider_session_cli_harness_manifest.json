@@ -1,0 +1,32 @@
+{
+  "stage": "TE-v7.0-Stage10.3",
+  "version": "7.0.0-stage10.3",
+  "name": "Controlled Provider Session CLI Harness",
+  "nested_manifest_sha256_chain": false,
+  "real_provider_execution": "forbidden",
+  "files": {
+    "core/adaptive_context_provider_session_cli/__init__.py": "5ccfcd153205d5b5d6c1918f8b7c18427e17bdd68ba979ac218239492e874c18",
+    "core/adaptive_context_provider_session_cli/config.py": "81e06b7117c5cafd50808e589b5484d3ed998f91c8dc73b92017c2a3e0e94650",
+    "core/adaptive_context_provider_session_cli/parser.py": "5d2e069d1922659e6113796653bdcbe289e15ccc9c8efaf9b0bcd0f39d9c09bd",
+    "core/adaptive_context_provider_session_cli/harness.py": "6f2d3afd6057309330774ced3f999e82da0dc303a90c417090746d213a3c3f18",
+    "core/adaptive_context_provider_session_cli/mock_provider.py": "700fe1ece185c6eb37be2e66da5fa3e6b9476a2d636fcb6dcfc33dd2bf3333c9",
+    "ntpe_provider_benchmark_session.py": "0e3a44bfdfa0434ddb7da2d53aa7cee1d3b3aa90f259afbc489787e54e0f28fe",
+    "ntpe_te_v700_stage103_controlled_provider_session_cli_harness_test.py": "ffa89aa9c2ea80595da0805e92c9f0a8a0414d07e61e43618d5b9cbcaed86fd7",
+    "tests/integration/translation_engine_v700_stage103_controlled_provider_session_cli_harness_test.py": "30606da30e3276566c5ee3344615d7d49f7cdeb11fd5c40e77c4e4c2f4dd87b7",
+    "docs/releases/te_v7_0/TE_V7_0_STAGE10_3_CONTROLLED_PROVIDER_SESSION_CLI_HARNESS.md": "a7c8cf3e102101508cce366a2b877c4e590c49f0b5e8ce4a2d2ce28367219cc7"
+  },
+  "boundaries": {
+    "disabled_by_default": true,
+    "single_chunk_only": true,
+    "mock_only": true,
+    "real_provider_forbidden": true,
+    "raw_payload_inputs_forbidden": true,
+    "production_path_connected": false,
+    "baseline_candidate_comparison": false,
+    "readiness_evaluated": false,
+    "stage09_artifact_overwrite_forbidden": true,
+    "te_v6_frozen_runtime_unchanged": true,
+    "launcher_translate_unchanged": true,
+    "ntpe_production_translate_unchanged": true
+  }
+}
