@@ -1,0 +1,72 @@
+{
+  "version": "TE-v3.7",
+  "stage": "3.7.1",
+  "release_id": "TE-v3.7-stage-3.7.1-runtime-readiness-gate-contract",
+  "layer": "runtime_readiness_gate",
+  "default_mode": "disabled",
+  "enabled_mode": "mock_only",
+  "runtime_touch_mode": "none",
+  "launcher_touch_mode": "none",
+  "provider_touch_mode": "none",
+  "real_translation": false,
+  "required_freezes": [
+    "TE-v3.2",
+    "TE-v3.3",
+    "TE-v3.4",
+    "TE-v3.5",
+    "TE-v3.6"
+  ],
+  "readiness_checks": [
+    "feature_flag_present",
+    "disabled_guard_present",
+    "optin_hook_present",
+    "preflight_present",
+    "boundary_regression_present"
+  ],
+  "forbidden_side_effects": [
+    "provider_runtime",
+    "http_client",
+    "api_key",
+    "launcher_flow",
+    "translation_runtime_flow",
+    "real_translation"
+  ],
+  "expected_outputs": [
+    "readiness_status",
+    "readiness_report",
+    "missing_requirements",
+    "metadata"
+  ],
+  "guarantees": [
+    "disabled_by_default",
+    "enabled_mode_mock_only",
+    "runtime_touch_mode_none",
+    "launcher_touch_mode_none",
+    "provider_touch_mode_none",
+    "no_translation_runtime_dependency",
+    "no_provider_runtime_dependency",
+    "no_http_client_calls",
+    "no_api_key_read_write",
+    "launcher_translate_flow_unchanged",
+    "translation_runtime_flow_unchanged",
+    "prompt_context_naturalness_guard_unchanged",
+    "no_real_translation_execution_path",
+    "no_real_translation_output",
+    "te_v32_runtime_scheduler_freeze_preserved",
+    "te_v33_runtime_integration_freeze_preserved",
+    "te_v34_runtime_optin_hook_freeze_preserved",
+    "te_v35_runtime_disabled_trial_freeze_preserved",
+    "te_v36_runtime_safe_hook_preflight_freeze_preserved"
+  ],
+  "validation_commands": [
+    "python ntpe_te_v32_runtime_scheduler_freeze_test.py",
+    "python ntpe_te_v33_runtime_integration_freeze_test.py",
+    "python ntpe_te_v34_runtime_optin_hook_freeze_test.py",
+    "python ntpe_te_v35_runtime_disabled_trial_freeze_test.py",
+    "python ntpe_te_v36_runtime_safe_hook_preflight_freeze_test.py",
+    "python ntpe_te_v37_stage371_runtime_readiness_gate_contract_test.py",
+    "python -m pytest tests\\integration\\translation_scheduler_v32_runtime_scheduler_freeze_test.py tests\\integration\\translation_scheduler_v33_runtime_integration_freeze_test.py tests\\integration\\translation_scheduler_v34_runtime_optin_hook_freeze_test.py tests\\integration\\translation_scheduler_v35_runtime_disabled_trial_freeze_test.py tests\\integration\\translation_scheduler_v36_runtime_safe_hook_preflight_freeze_test.py tests\\integration\\translation_scheduler_stage371_runtime_readiness_gate_contract_test.py -q",
+    "python ntpe_validate.py"
+  ],
+  "next_stage": "TE-v3.7 Stage-3.7.2 Runtime Readiness Gate Evaluator"
+}

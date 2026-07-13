@@ -1,0 +1,34 @@
+{
+  "release_id": "TE-v3.1-scheduler-layer-freeze",
+  "version": "3.1",
+  "layer": "translation_scheduler",
+  "status": "frozen",
+  "frozen_at": "2026-07-10T00:00:00+08:00",
+  "components": [
+    "scheduler",
+    "job",
+    "queue",
+    "collector",
+    "journal",
+    "dashboard",
+    "performance_regression"
+  ],
+  "stage_tests": [
+    "Stage-3.1.1",
+    "Stage-3.1.2",
+    "Stage-3.1.3",
+    "Stage-3.1.4",
+    "Stage-3.1.5",
+    "Stage-3.1.6"
+  ],
+  "guarantees": [
+    "no_provider_runtime_dependency",
+    "no_api_key_dependency",
+    "no_http_call",
+    "no_launcher_integration",
+    "schema_serializable",
+    "resume_journal_supported",
+    "performance_regression_supported"
+  ],
+  "next_stage": "TE-v3.2 Runtime Scheduler Adapter"
+}

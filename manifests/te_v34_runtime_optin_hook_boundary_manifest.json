@@ -1,0 +1,41 @@
+{
+  "version": "TE-v3.4",
+  "stage": "3.4.4",
+  "layer": "runtime_optin_hook_boundary",
+  "scope": "boundary_regression",
+  "components": [
+    "RuntimeOptInHookContract",
+    "RuntimeOptInHookGuard",
+    "RuntimeOptInHookMockBridge"
+  ],
+  "expected_modes": [
+    "hook_blocked",
+    "hook_mock_completed"
+  ],
+  "guarantees": [
+    "disabled_by_default",
+    "enabled_mode_mock_only",
+    "no_translation_runtime_dependency",
+    "no_provider_runtime_dependency",
+    "no_http_client_calls",
+    "no_api_key_read_write",
+    "launcher_translate_flow_unchanged",
+    "translation_runtime_flow_unchanged",
+    "no_real_translation_execution_path",
+    "no_real_translation_output",
+    "request_summary_does_not_store_source_text",
+    "te_v32_runtime_scheduler_freeze_preserved",
+    "te_v33_runtime_integration_freeze_preserved"
+  ],
+  "validation_commands": [
+    "python ntpe_te_v32_runtime_scheduler_freeze_test.py",
+    "python ntpe_te_v33_runtime_integration_freeze_test.py",
+    "python ntpe_te_v34_stage341_runtime_optin_hook_contract_test.py",
+    "python ntpe_te_v34_stage342_runtime_optin_hook_guard_test.py",
+    "python ntpe_te_v34_stage343_runtime_optin_hook_mock_bridge_test.py",
+    "python ntpe_te_v34_stage344_runtime_optin_hook_boundary_regression_test.py",
+    "python -m pytest tests\\integration\\translation_scheduler_v32_runtime_scheduler_freeze_test.py tests\\integration\\translation_scheduler_v33_runtime_integration_freeze_test.py tests\\integration\\translation_scheduler_stage341_runtime_optin_hook_contract_test.py tests\\integration\\translation_scheduler_stage342_runtime_optin_hook_guard_test.py tests\\integration\\translation_scheduler_stage343_runtime_optin_hook_mock_bridge_test.py tests\\integration\\translation_scheduler_stage344_runtime_optin_hook_boundary_regression_test.py -q",
+    "python ntpe_validate.py"
+  ],
+  "next_stage": "TE-v3.4 Stage-3.4.5 Runtime Opt-in Hook Freeze"
+}

@@ -9,7 +9,7 @@
     "session_id": "TXT_original_ko",
     "file_name": "original_ko.txt",
     "chunk_index": 1,
-    "chunk_total": 5,
+    "chunk_total": 1,
     "resume_key": "original_ko.txt:chunk:000001"
   },
   "model_profile": {
@@ -21,128 +21,112 @@
     "max_output_tokens": 560
   },
   "source": {
-    "chunk_text": "정태의는 난감해하고 있었다. \n\n그러나 실상 그것은 그가 난감해할 일은 아니었다. 먼 타국에 떼어놓고 온 괴물 같은 남자는 어쨌든 이지가 제대로 돌아가고 있는, 나름대로 이성적인 인간이었고, 그는 이 상황이 결코 정태의가 의도해서 벌어진 상황이 아니란 걸 이해해줄 것이다. \n\n그러나, ‘몇 달 전부터 벼르고 별러서 천신만고 끝에 겨우 일주일 휴가를 뺐는데, 그놈이 일 때문에 예정보다 늦게 돌아온다고 해서 내 휴가를 깎아먹을 수는 없다’라고 분연히 주장하며, 이웃나라까지 일하러 간 동생을 내팽개치고 정태의만 홀랑 데리고 머나먼 남국의 섬으로 휴가를 와버린 카일이 무사할 수 있을지가 사뭇 걱정이 되었다. (카일도 평소의 이성적인 그였더라면 이런 짓을 막 벌이진 않았을 테지만, 일하러 떠나기 직전에 카일이 아끼던 책을 불살라버린 동생의 작태에 사흘을 앓아누울 정도로 광분했던 탓이 다분했다.) \n\n어찌 되었든, 직통이라곤 없이 경비행기로 따로 들어와야 하는 이 여유로운 남국의 섬에 있는 호텔의 로비 소파에 앉아, 지금이야 좋지만 베를린으로 돌아간 뒤에 어떤 사단이 날지 그저 걱정스럽기만 한 정태의는 한숨을 쉬고 있었다.\n",
-    "source_hash": "96a562eb9afa479fab00054c4863e7f5e7a411e6",
-    "char_count": 575
+    "chunk_text": "「일레이!」\n\n걸음을 돌리려는 그를, 정태의는 반쯤 엉겁결에 불렀다. 일레이가 눈썹을 슬쩍 치켜올리며 고개만 돌려 돌아보았다. 정태의는 무거운 마음으로 잠시 그를 노려보다가 우울하게 말했다.\n\n「억지스러운 방법을 쓰면, ……나는 절대로 가만히 있지 않을거다.」\n\n그러자 일레이는 유쾌하게 웃었다. 「물론.」이라고, 어떤 쪽으로도 해석할 수 있는 짤막한 대답만을 남기고 그는 걸음을 옮겼다.\n\n그가 모퉁이를 돌아서 더 이상 모습이 보이지 않게 될 때까지 그 자리에 우두커니 서 잇던 정태의는, 그가 시야에서 사라지자마자 벽에 기댄 채 스르륵 주저앉았다. 갑자기 수십 년치의 피로가 쏟아지는 것 같았다.\n\n일이 최악으로 꼬여버렸다. 어차피 그의 제안을 거절할 수도 없었을 테고--끝까지 싫다고 뻗대었다간 아주 막가라는 식으로 나오지 않으리란 보장도 없다--거절할 명목도 없었지만, 이런 상황은 결코 바라지 않았는데.\n",
+    "source_hash": "b5e46051b99a323f575bf31576574a1e4b39cd93",
+    "char_count": 455
   },
   "context": {
     "previous_summary": "",
     "previous_chunk_tail": "",
     "recent_characters": [
       "鄭泰義",
-      "凱爾"
+      "伊萊"
     ],
     "recent_terms": [
-      "鄭泰義",
-      "凱爾"
+      "伊萊",
+      "鄭泰義"
     ],
     "narrative_context": {
       "perspective": "第三人稱小說敘事",
-      "hints": [
-        "場景含酒店／大廳／島嶼／海邊等度假場域；用詞依作品背景自然選擇。",
-        "含德國／柏林背景；保留作品文化距離，不刻意本地化。",
-        "난감하다 依語境處理為為難、傷腦筋、不知如何是好等心理狀態。",
-        "카일이 주장... 結構中，主張與相關動作優先歸於凱爾。",
-        "本段有長句；先切分敘事單位，再保持主詞與行為者正確。"
-      ]
+      "hints": []
     },
     "character_context": {
       "current_focus": [
         "鄭泰義",
-        "凱爾"
+        "伊萊"
       ],
       "mentioned": {
         "정태의": {
           "zh": "鄭泰義",
           "voice": "自然、反應快、帶自我吐槽感"
         },
-        "카일": {
-          "zh": "凱爾",
-          "voice": "理性，但情緒被觸及時強硬"
+        "일레이": {
+          "zh": "伊萊",
+          "voice": "冷、短、直接、有壓迫感"
         }
       },
-      "subject_hints": [
-        "鄭泰義是心理描寫主體；난감 不等於身體不舒服。",
-        "凱爾是『主張／堅持說』的主體，後續相關行為不要誤歸鄭泰義。"
-      ]
+      "subject_hints": []
     }
   },
   "knowledge": {
     "locked_dictionary": {
       "정태의": "鄭泰義",
-      "카일": "凱爾"
+      "일레이": "伊萊"
     }
   },
   "prompt": {
     "system_prompt": "韓文小說譯者。先判斷主詞與語氣，再直出自然繁體中文正文。",
-    "user_prompt": "[NTPE Translation Engine v3.0 Context Intelligence]\nprofile: narration_heavy\ntone: neutral\nnarrative_state: current_scene\n- Translate according to the local scene context; do not translate word-by-word when it creates stiff or unnatural Traditional Chinese.\n- Preserve the original meaning, sequence, and emotional logic while using natural Traditional Chinese novel prose.\n- Use context-aware phrasing for breath, reaction, and body-action descriptions; avoid literal wording that sounds physically or semantically odd.\n- Avoid mechanical repeated structures and redundant phrasing; keep the sentence concise when the source meaning is already clear.\n- Keep continuity with the previous chunk's characters, tone, relationship distance, and narrative state.\n- For narration-heavy scenes, prioritize smooth transitions, clear viewpoint, and readable paragraph flow.\n[/NTPE Translation Engine v3.0 Context Intelligence]\n\n[NTPE Translation Engine v3.0 Prompt Intelligence]\nprofile: literary\n- Translate the full source text into Traditional Chinese; do not summarize, omit, merge, or add scenes.\n- Use fluent Traditional Chinese suitable for novels, preserving the source's register and emotional pacing.\n- Render dialogue with Traditional Chinese corner quotes 「」 and keep speaker intent clear.\n- Maintain character voice, relationship distance, honorific nuance, and narrative point of view consistently.\n- Avoid forced Taiwanese colloquial wording; use it only when the source tone naturally supports it.\n- Preserve literary imagery, cadence, restraint, and implied emotion without over-explaining.\n- Use polished novel prose rather than literal sentence-by-sentence stiffness.\n[/NTPE Translation Engine v3.0 Prompt Intelligence]\n\n【Policy】忠於原文，不漏譯、不增刪。；先判斷主詞、行為者與指代，避免人物錯置。；Glossary 譯名逐字一致。；慣用語按中文小說語感處理，不機械直譯。；短答、反諷、模稜兩可語氣需保留，不擅自解釋。；避免生硬直譯，動作與心理描寫需像中文小說正文。；只輸出繁體中文譯文，對話用「」。\n【Profile】\n- 文學模式；主詞清楚、角色一致、中文像小說正文。\n【Narrative】場景含酒店／大廳／島嶼／海邊等度假場域；用詞依作品背景自然選擇。；含德國／柏林背景；保留作品文化距離，不刻意本地化。；난감하다 依語境處理為為難、傷腦筋、不知如何是好等心理狀態。；카일이 주장... 結構中，主張與相關動作優先歸於凱爾。；本段有長句；先切分敘事單位，再保持主詞與行為者正確。\n【Characters】정태의=鄭泰義；카일=凱爾\n【Subject】鄭泰義是心理描寫主體；난감 不等於身體不舒服。；凱爾是『主張／堅持說』的主體，後續相關行為不要誤歸鄭泰義。\n【Glossary】정태의=鄭泰義；카일=凱爾；禁:丁泰義->鄭泰義；禁:凯尔->凱爾；禁:凱爾爾->凱爾；禁:卡爾->凱爾；禁:定泰義->鄭泰義；禁:正太義->鄭泰義；禁:正泰義->鄭泰義；禁:鄭太義->鄭泰義；禁:鄭泰儀->鄭泰義；禁:鄭泰宜->鄭泰義\n【翻譯紀律】\n- 不得新增原文不存在的事件、設定或劇情。\n- 不得重述前文、上一段或本段已翻譯過的資訊。\n- 不得為了銜接或流暢而自行增加過渡敘述。\n- 不得自行補充原文未表達的人物心理、動機或判斷。\n- 不得摘要、濃縮、概括或省略原文資訊。\n- 保持資訊與事件出現順序，不任意前移、後置或重組。\n- 保留段落功能與敘事推進；可依中文節奏調整，但不得造成內容重述或遺漏。\n- 僅翻譯【Korean】中的當前內容；【Previous】只供承接語境，不得翻譯或改寫進輸出。\n【Korean】\n정태의는 난감해하고 있었다. \n\n그러나 실상 그것은 그가 난감해할 일은 아니었다. 먼 타국에 떼어놓고 온 괴물 같은 남자는 어쨌든 이지가 제대로 돌아가고 있는, 나름대로 이성적인 인간이었고, 그는 이 상황이 결코 정태의가 의도해서 벌어진 상황이 아니란 걸 이해해줄 것이다. \n\n그러나, ‘몇 달 전부터 벼르고 별러서 천신만고 끝에 겨우 일주일 휴가를 뺐는데, 그놈이 일 때문에 예정보다 늦게 돌아온다고 해서 내 휴가를 깎아먹을 수는 없다’라고 분연히 주장하며, 이웃나라까지 일하러 간 동생을 내팽개치고 정태의만 홀랑 데리고 머나먼 남국의 섬으로 휴가를 와버린 카일이 무사할 수 있을지가 사뭇 걱정이 되었다. (카일도 평소의 이성적인 그였더라면 이런 짓을 막 벌이진 않았을 테지만, 일하러 떠나기 직전에 카일이 아끼던 책을 불살라버린 동생의 작태에 사흘을 앓아누울 정도로 광분했던 탓이 다분했다.) \n\n어찌 되었든, 직통이라곤 없이 경비행기로 따로 들어와야 하는 이 여유로운 남국의 섬에 있는 호텔의 로비 소파에 앉아, 지금이야 좋지만 베를린으로 돌아간 뒤에 어떤 사단이 날지 그저 걱정스럽기만 한 정태의는 한숨을 쉬고 있었다.\n【Output】直出譯文，禁止標題、註解、Markdown。",
+    "user_prompt": "[NTPE Translation Engine v3.0 Context Intelligence]\nprofile: dialogue_heavy\ntone: neutral\nnarrative_state: current_scene\n- Translate according to the local scene context; do not translate word-by-word when it creates stiff or unnatural Traditional Chinese.\n- Preserve the original meaning, sequence, and emotional logic while using natural Traditional Chinese novel prose.\n- Use context-aware phrasing for breath, reaction, and body-action descriptions; avoid literal wording that sounds physically or semantically odd.\n- Avoid mechanical repeated structures and redundant phrasing; keep the sentence concise when the source meaning is already clear.\n- Keep continuity with the previous chunk's characters, tone, relationship distance, and narrative state.\n- For dialogue-heavy scenes, keep each speaker's voice distinct and avoid turning spoken lines into explanatory narration.\n[/NTPE Translation Engine v3.0 Context Intelligence]\n\n[NTPE Translation Engine v3.0 Prompt Intelligence]\nprofile: dialogue_heavy\n- Translate the full source text into Traditional Chinese; do not summarize, omit, merge, or add scenes.\n- Use fluent Traditional Chinese suitable for novels, preserving the source's register and emotional pacing.\n- Render dialogue with Traditional Chinese corner quotes 「」 and keep speaker intent clear.\n- Maintain character voice, relationship distance, honorific nuance, and narrative point of view consistently.\n- Avoid forced Taiwanese colloquial wording; use it only when the source tone naturally supports it.\n- Prioritize natural spoken rhythm while preserving each character's distinct voice.\n- Keep dialogue lines complete and avoid converting speech into narration.\n[/NTPE Translation Engine v3.0 Prompt Intelligence]\n\n【Policy】忠於原文，不漏譯、不增刪。；先判斷主詞、行為者與指代，避免人物錯置。；Glossary 譯名逐字一致。；慣用語按中文小說語感處理，不機械直譯。；短答、反諷、模稜兩可語氣需保留，不擅自解釋。；避免生硬直譯，動作與心理描寫需像中文小說正文。；只輸出繁體中文譯文，對話用「」。\n【Profile】\n- 文學模式；主詞清楚、角色一致、中文像小說正文。\n【Narrative】依原文判斷敘事、場景與情緒\n【Characters】정태의=鄭泰義；일레이=伊萊\n【Glossary】일레이=伊萊；정태의=鄭泰義；禁:一萊->伊萊；禁:丁泰義->鄭泰義；禁:伊來->伊萊；禁:伊莱->伊萊；禁:伊蕾->伊萊；禁:伊雷->伊萊；禁:定泰義->鄭泰義；禁:正太義->鄭泰義；禁:正泰義->鄭泰義；禁:鄭太義->鄭泰義；禁:鄭泰儀->鄭泰義；禁:鄭泰宜->鄭泰義\n【翻譯紀律】\n- 不得新增原文不存在的事件、設定或劇情。\n- 不得重述前文、上一段或本段已翻譯過的資訊。\n- 不得為了銜接或流暢而自行增加過渡敘述。\n- 不得自行補充原文未表達的人物心理、動機或判斷。\n- 不得摘要、濃縮、概括或省略原文資訊。\n- 保持資訊與事件出現順序，不任意前移、後置或重組。\n- 保留段落功能與敘事推進；可依中文節奏調整，但不得造成內容重述或遺漏。\n- 僅翻譯【Korean】中的當前內容；【Previous】只供承接語境，不得翻譯或改寫進輸出。\n【小說語感規範】\n- 依繁體中文小說語序自然重組句子，避免保留韓文或外語的生硬修飾順序與機械句型。\n- 依作品時代、地域與人物身分選詞；不強制使用台灣特有用語，也不得使用不合背景的現代口語。\n- 不得把原文含糊資訊具體化，不得自行新增地名、交通方式、時間長度、動作強度或背景設定。\n- 保持同一角色在相同情境中的稱呼、敬語層級與口吻一致；不得自行放大人物情緒或改變角色性格；保持原文敘事人稱、視角與敘事距離。\n【Korean】\n「일레이!」\n\n걸음을 돌리려는 그를, 정태의는 반쯤 엉겁결에 불렀다. 일레이가 눈썹을 슬쩍 치켜올리며 고개만 돌려 돌아보았다. 정태의는 무거운 마음으로 잠시 그를 노려보다가 우울하게 말했다.\n\n「억지스러운 방법을 쓰면, ……나는 절대로 가만히 있지 않을거다.」\n\n그러자 일레이는 유쾌하게 웃었다. 「물론.」이라고, 어떤 쪽으로도 해석할 수 있는 짤막한 대답만을 남기고 그는 걸음을 옮겼다.\n\n그가 모퉁이를 돌아서 더 이상 모습이 보이지 않게 될 때까지 그 자리에 우두커니 서 잇던 정태의는, 그가 시야에서 사라지자마자 벽에 기댄 채 스르륵 주저앉았다. 갑자기 수십 년치의 피로가 쏟아지는 것 같았다.\n\n일이 최악으로 꼬여버렸다. 어차피 그의 제안을 거절할 수도 없었을 테고--끝까지 싫다고 뻗대었다간 아주 막가라는 식으로 나오지 않으리란 보장도 없다--거절할 명목도 없었지만, 이런 상황은 결코 바라지 않았는데.\n【Output】直出譯文，禁止標題、註解、Markdown。",
     "prompt_mode": "compact_literary_v6_ter_v1_5",
     "profile": "literary",
     "prompt_profile": {
       "system_tokens": 11,
-      "policy_tokens": 171,
-      "context_tokens": 102,
-      "glossary_tokens": 53,
-      "source_tokens": 242,
-      "total_tokens": 579,
-      "total_chars": 1398
+      "policy_tokens": 257,
+      "context_tokens": 21,
+      "glossary_tokens": 60,
+      "source_tokens": 192,
+      "total_tokens": 541,
+      "total_chars": 1307
     },
     "narrative_context": {
       "perspective": "第三人稱小說敘事",
-      "hints": [
-        "場景含酒店／大廳／島嶼／海邊等度假場域；用詞依作品背景自然選擇。",
-        "含德國／柏林背景；保留作品文化距離，不刻意本地化。",
-        "난감하다 依語境處理為為難、傷腦筋、不知如何是好等心理狀態。",
-        "카일이 주장... 結構中，主張與相關動作優先歸於凱爾。",
-        "本段有長句；先切分敘事單位，再保持主詞與行為者正確。"
-      ]
+      "hints": []
     },
     "character_context": {
       "current_focus": [
         "鄭泰義",
-        "凱爾"
+        "伊萊"
       ],
       "mentioned": {
         "정태의": {
           "zh": "鄭泰義",
           "voice": "自然、反應快、帶自我吐槽感"
         },
-        "카일": {
-          "zh": "凱爾",
-          "voice": "理性，但情緒被觸及時強硬"
+        "일레이": {
+          "zh": "伊萊",
+          "voice": "冷、短、直接、有壓迫感"
         }
       },
-      "subject_hints": [
-        "鄭泰義是心理描寫主體；난감 不等於身體不舒服。",
-        "凱爾是『主張／堅持說』的主體，後續相關行為不要誤歸鄭泰義。"
-      ]
+      "subject_hints": []
     },
     "glossary_context": {
       "matched_terms": [
+        {
+          "source": "일레이",
+          "target": "伊萊",
+          "term_type": "name",
+          "immutable": true
+        },
         {
           "source": "정태의",
           "target": "鄭泰義",
           "term_type": "name",
           "immutable": true
-        },
-        {
-          "source": "카일",
-          "target": "凱爾",
-          "term_type": "name",
-          "immutable": true
         }
       ],
       "alias_map": {
+        "丁泰義": "鄭泰義",
         "正泰義": "鄭泰義",
+        "鄭泰宜": "鄭泰義",
         "正太義": "鄭泰義",
         "定泰義": "鄭泰義",
-        "鄭泰儀": "鄭泰義",
-        "鄭泰宜": "鄭泰義",
         "鄭太義": "鄭泰義",
-        "丁泰義": "鄭泰義",
-        "卡爾": "凱爾",
-        "凱爾爾": "凱爾",
-        "凯尔": "凱爾"
+        "鄭泰儀": "鄭泰義",
+        "伊蕾": "伊萊",
+        "一萊": "伊萊",
+        "伊雷": "伊萊",
+        "伊來": "伊萊",
+        "伊莱": "伊萊"
       },
       "max_terms": 24,
       "max_aliases": 18
@@ -170,21 +154,42 @@
         "PREVIOUS_CONTEXT_ONLY"
       ],
       "discipline_rule_count": 8,
+      "naturalness_policy_version": "6.0.0-stage12.4",
+      "naturalness_policy_enabled": true,
+      "naturalness_rule_count": 4,
+      "discipline_engine_version": "6.0.0",
+      "discipline_policy_version": "6.0.0-stage02",
+      "discipline_policy_source": "core.translation_discipline",
+      "discipline_profile": "literary_balanced",
+      "active_rule_codes": [
+        "NO_ADDED_PLOT",
+        "NO_PREVIOUS_RESTATEMENT",
+        "NO_ADDED_TRANSITION",
+        "NO_ADDED_PSYCHOLOGY",
+        "NO_SUMMARIZATION",
+        "PRESERVE_INFORMATION_ORDER",
+        "PRESERVE_PARAGRAPH_INTENT",
+        "PREVIOUS_CONTEXT_ONLY"
+      ],
+      "active_rule_count": 8,
+      "generation_rule_count": 8,
+      "adaptive_rule_codes": [],
+      "adaptive_rule_count": 0,
       "runtime_wiring_verified": true
     },
     "prompt_discipline_enabled": true,
     "discipline_rule_count": 8,
     "prompt_intelligence": {
       "version": "3.0-stage01",
-      "profile": "literary",
+      "profile": "dialogue_heavy",
       "directives": [
         "Translate the full source text into Traditional Chinese; do not summarize, omit, merge, or add scenes.",
         "Use fluent Traditional Chinese suitable for novels, preserving the source's register and emotional pacing.",
         "Render dialogue with Traditional Chinese corner quotes 「」 and keep speaker intent clear.",
         "Maintain character voice, relationship distance, honorific nuance, and narrative point of view consistently.",
         "Avoid forced Taiwanese colloquial wording; use it only when the source tone naturally supports it.",
-        "Preserve literary imagery, cadence, restraint, and implied emotion without over-explaining.",
-        "Use polished novel prose rather than literal sentence-by-sentence stiffness."
+        "Prioritize natural spoken rhythm while preserving each character's distinct voice.",
+        "Keep dialogue lines complete and avoid converting speech into narration."
       ]
     },
     "quality_directives": [
@@ -193,12 +198,12 @@
       "Render dialogue with Traditional Chinese corner quotes 「」 and keep speaker intent clear.",
       "Maintain character voice, relationship distance, honorific nuance, and narrative point of view consistently.",
       "Avoid forced Taiwanese colloquial wording; use it only when the source tone naturally supports it.",
-      "Preserve literary imagery, cadence, restraint, and implied emotion without over-explaining.",
-      "Use polished novel prose rather than literal sentence-by-sentence stiffness."
+      "Prioritize natural spoken rhythm while preserving each character's distinct voice.",
+      "Keep dialogue lines complete and avoid converting speech into narration."
     ],
     "context_snapshot": {
       "version": "3.0-stage02",
-      "profile": "narration_heavy",
+      "profile": "dialogue_heavy",
       "characters": [],
       "locations": [],
       "tone": "neutral",
@@ -215,14 +220,14 @@
       "Use context-aware phrasing for breath, reaction, and body-action descriptions; avoid literal wording that sounds physically or semantically odd.",
       "Avoid mechanical repeated structures and redundant phrasing; keep the sentence concise when the source meaning is already clear.",
       "Keep continuity with the previous chunk's characters, tone, relationship distance, and narrative state.",
-      "For narration-heavy scenes, prioritize smooth transitions, clear viewpoint, and readable paragraph flow."
+      "For dialogue-heavy scenes, keep each speaker's voice distinct and avoid turning spoken lines into explanatory narration."
     ],
     "context_intelligence": {
       "version": "3.0-stage02",
-      "profile": "narration_heavy",
+      "profile": "dialogue_heavy",
       "snapshot": {
         "version": "3.0-stage02",
-        "profile": "narration_heavy",
+        "profile": "dialogue_heavy",
         "characters": [],
         "locations": [],
         "tone": "neutral",
@@ -239,7 +244,7 @@
         "Use context-aware phrasing for breath, reaction, and body-action descriptions; avoid literal wording that sounds physically or semantically odd.",
         "Avoid mechanical repeated structures and redundant phrasing; keep the sentence concise when the source meaning is already clear.",
         "Keep continuity with the previous chunk's characters, tone, relationship distance, and narrative state.",
-        "For narration-heavy scenes, prioritize smooth transitions, clear viewpoint, and readable paragraph flow."
+        "For dialogue-heavy scenes, keep each speaker's voice distinct and avoid turning spoken lines into explanatory narration."
       ],
       "naturalness_warnings": []
     }
@@ -248,7 +253,24 @@
     "prompt_compiler": "5.5.2-discipline",
     "prompt_discipline_enabled": true,
     "discipline_rule_count": 8,
-    "runtime_wiring_verified": true
+    "runtime_wiring_verified": true,
+    "discipline_engine_version": "6.0.0",
+    "discipline_profile": "literary_balanced",
+    "discipline_policy_version": "6.0.0-stage02",
+    "discipline_policy_source": "core.translation_discipline",
+    "active_rule_codes": [
+      "NO_ADDED_PLOT",
+      "NO_PREVIOUS_RESTATEMENT",
+      "NO_ADDED_TRANSITION",
+      "NO_ADDED_PSYCHOLOGY",
+      "NO_SUMMARIZATION",
+      "PRESERVE_INFORMATION_ORDER",
+      "PRESERVE_PARAGRAPH_INTENT",
+      "PREVIOUS_CONTEXT_ONLY"
+    ],
+    "active_rule_count": 8,
+    "generation_rule_count": 8,
+    "adaptive_rule_count": 0
   },
   "qa_requirements": {
     "check_korean_residue": true,
@@ -262,32 +284,32 @@
     "speed": "balanced",
     "provider_attempts": 2,
     "qa_attempts": 2,
-    "speed_timeout": 120,
+    "speed_timeout": 180,
     "naturalness_retry_limit": 1
   },
   "metadata": {
-    "created_at": "2026-07-11T15:33:40",
+    "created_at": "2026-07-13T23:14:45",
     "created_by": "NTPE 1.2 Translation Engine Refactoring v2.0",
     "package_version": "1.2-translation-engine-refactor-v2.0",
     "prompt_intelligence": {
       "version": "3.0-stage01",
-      "profile": "literary",
+      "profile": "dialogue_heavy",
       "directives": [
         "Translate the full source text into Traditional Chinese; do not summarize, omit, merge, or add scenes.",
         "Use fluent Traditional Chinese suitable for novels, preserving the source's register and emotional pacing.",
         "Render dialogue with Traditional Chinese corner quotes 「」 and keep speaker intent clear.",
         "Maintain character voice, relationship distance, honorific nuance, and narrative point of view consistently.",
         "Avoid forced Taiwanese colloquial wording; use it only when the source tone naturally supports it.",
-        "Preserve literary imagery, cadence, restraint, and implied emotion without over-explaining.",
-        "Use polished novel prose rather than literal sentence-by-sentence stiffness."
+        "Prioritize natural spoken rhythm while preserving each character's distinct voice.",
+        "Keep dialogue lines complete and avoid converting speech into narration."
       ]
     },
     "context_intelligence": {
       "version": "3.0-stage02",
-      "profile": "narration_heavy",
+      "profile": "dialogue_heavy",
       "snapshot": {
         "version": "3.0-stage02",
-        "profile": "narration_heavy",
+        "profile": "dialogue_heavy",
         "characters": [],
         "locations": [],
         "tone": "neutral",
@@ -304,7 +326,7 @@
         "Use context-aware phrasing for breath, reaction, and body-action descriptions; avoid literal wording that sounds physically or semantically odd.",
         "Avoid mechanical repeated structures and redundant phrasing; keep the sentence concise when the source meaning is already clear.",
         "Keep continuity with the previous chunk's characters, tone, relationship distance, and narrative state.",
-        "For narration-heavy scenes, prioritize smooth transitions, clear viewpoint, and readable paragraph flow."
+        "For dialogue-heavy scenes, keep each speaker's voice distinct and avoid turning spoken lines into explanatory narration."
       ],
       "naturalness_warnings": []
     }

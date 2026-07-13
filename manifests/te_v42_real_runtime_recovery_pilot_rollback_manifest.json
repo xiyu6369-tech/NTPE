@@ -1,0 +1,63 @@
+{
+  "version": "TE-v4.2",
+  "stage": "4.2.3",
+  "release_id": "TE-v4.2-stage-4.2.3-real-runtime-recovery-pilot-rollback-controller",
+  "layer": "real_runtime_recovery_pilot_rollback_controller",
+  "rollback_available": true,
+  "rollback_complete": true,
+  "idempotent": true,
+  "default_mode": "disabled",
+  "current_mode_after_rollback": "disabled",
+  "pilot_status_after_rollback": "disabled",
+  "admission_status_after_rollback": "revoked",
+  "execution_allowed": false,
+  "real_provider_request_allowed": false,
+  "real_translation_allowed": false,
+  "provider_runtime_touch_mode": "none",
+  "translation_runtime_touch_mode": "none",
+  "launcher_touch_mode": "none",
+  "supported_previous_states": [
+    "missing state",
+    "disabled",
+    "admitted_for_single_chunk_dry_run",
+    "single_chunk_dry_run",
+    "dry_run_running",
+    "dry_run_completed",
+    "recovery_completed",
+    "recovery_rejected",
+    "error",
+    "unknown"
+  ],
+  "forbidden_inputs": [
+    "source_text",
+    "translated_text",
+    "text",
+    "chunks",
+    "api_key",
+    "provider_client"
+  ],
+  "guarantees": {
+    "provider_runtime_modified": false,
+    "translation_runtime_modified": false,
+    "launcher_modified": false,
+    "http_called": false,
+    "api_key_accessed": false,
+    "admission_gate_called": false,
+    "recovery_flow_executed": false,
+    "adaptive_retry_harness_executed": false,
+    "real_provider_request_created": false,
+    "real_translation_executed": false,
+    "source_text_retained": false,
+    "translated_text_retained": false
+  },
+  "validation_commands": [
+    "python ntpe_te_v40_stage408_translation_reliability_freeze_test.py",
+    "python ntpe_te_v41_stage417_translation_reliability_execution_freeze_test.py",
+    "python ntpe_te_v42_stage421_real_runtime_recovery_pilot_contract_test.py",
+    "python ntpe_te_v42_stage422_real_runtime_recovery_pilot_admission_gate_test.py",
+    "python ntpe_te_v42_stage423_real_runtime_recovery_pilot_rollback_controller_test.py",
+    "python -m pytest tests\\integration\\translation_reliability_stage408_freeze_test.py tests\\integration\\translation_reliability_stage417_execution_freeze_test.py tests\\integration\\translation_reliability_stage421_real_runtime_recovery_pilot_contract_test.py tests\\integration\\translation_reliability_stage422_real_runtime_recovery_pilot_admission_gate_test.py tests\\integration\\translation_reliability_stage423_real_runtime_recovery_pilot_rollback_controller_test.py -q",
+    "python ntpe_validate.py"
+  ],
+  "next_stage": "TE-v4.2 Stage-4.2.4 Single-Chunk Dry-Run Runner"
+}

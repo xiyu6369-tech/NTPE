@@ -27,7 +27,7 @@
   },
   "context": {
     "previous_summary": "",
-    "previous_chunk_tail": "鄭泰義感到很為難。然而，實際上這並不是他應該感到為難的事情。被拋在遠國的怪物般的男人，至少是個理智清醒的人，鄭泰義也明白這種情況不是他故意安排的。\n\n但是，凱爾堅持說：「幾個月前就開始計畫這次旅行，經過千辛萬苦才請到一週的假期，如果他因為工作延遲回來，就會毀了我的假期，我不能讓他這樣做。」於是，凱爾拋下了去別國工作的弟弟，帶著鄭泰義來到遠方島嶼度假，現在鄭泰義擔心凱爾會不會沒事（平時理性的凱爾不會做出這種事，但在出發前，他最愛的書被弟弟燒掉了，讓他怒不可遏）。\n\n無論如何，鄭泰義坐在這個南國島嶼酒店的大廳沙發上，現在雖然很愜意，但他擔心回到柏林後會發生什麼事，只能嘆息。",
+    "previous_chunk_tail": "鄭泰義感到很為難。然而，實際上這並不是他應該感到為難的事情。被拋在遠國的怪物般的男人，至少還是個理智清醒的人，鄭泰義也明白這種情況不可能是他故意安排的。\n\n但是，凱爾堅持說：「幾個月前就開始計畫這次旅行，經過千辛萬苦才請到一週的假期，如果他因為工作延遲回來，讓我的假期白白浪費，那是絕對不行的。」於是，凱爾拋下了去別國工作的弟弟，帶著鄭泰義來到遠在南國的島嶼度假，讓鄭泰義擔心這樣下去會不會出事。（如果凱爾仍然保持他平常的理智，可能就不會做出這種事，但是，他在出發前幾天，弟弟卻把他珍愛的書給燒了，讓他怒不可遏，幾天來一直在生氣。）\n\n無論如何，鄭泰義坐在南國島上的一家酒店大廳的沙發上，現在雖然很愜意，但他卻擔心回到柏林後會遇到什麼樣的麻煩，於是他嘆了口氣。",
     "recent_characters": [
       "鄭泰義",
       "凱爾"
@@ -58,6 +58,16 @@
         }
       },
       "subject_hints": []
+    },
+    "prompt_context_anchor_bound": {
+      "version": "7.0.0-stage07.4",
+      "strategy": "package-bound",
+      "start": 2124,
+      "end": 2284,
+      "content_sha256": "dca682c528540d24b6814c5409497be00c397ab88a970db615e2a8785caa6105",
+      "source_sha256": "4a15d5196d25a80742acfb65fddb95d43d13118322a07c124acc9c0371b42626",
+      "prompt_sha256": "a81da98c174ca9680251bdbba03d677000f3fcae6ac3eb47e44bd1492c06cce6",
+      "content_redacted": true
     }
   },
   "knowledge": {
@@ -68,17 +78,17 @@
   },
   "prompt": {
     "system_prompt": "韓文小說譯者。先判斷主詞與語氣，再直出自然繁體中文正文。",
-    "user_prompt": "[NTPE Translation Engine v3.0 Context Intelligence]\nprofile: dialogue_heavy\ntone: heated\nnarrative_state: continuing_scene\nprevious_key_info: 到一週的假期，如果他因為工作延遲回來，就會毀了我的假期，我不能讓他這樣做。」於是，凱爾拋下了去別國工作的弟弟，帶著鄭泰義來到遠方島嶼度假，現在鄭泰義擔心凱爾會不會沒事（平時理性的凱爾不會做出這種事，但在出發前，他最愛的書被弟弟燒掉了，讓他怒不可遏）。 無論如何，鄭泰義坐在這個南國島嶼酒店的大廳沙發上，現在雖然很愜意，但他擔心回到柏林後會發生什麼事，只能嘆息。\n- Translate according to the local scene context; do not translate word-by-word when it creates stiff or unnatural Traditional Chinese.\n- Preserve the original meaning, sequence, and emotional logic while using natural Traditional Chinese novel prose.\n- Use context-aware phrasing for breath, reaction, and body-action descriptions; avoid literal wording that sounds physically or semantically odd.\n- Avoid mechanical repeated structures and redundant phrasing; keep the sentence concise when the source meaning is already clear.\n- Keep continuity with the previous chunk's characters, tone, relationship distance, and narrative state.\n- For dialogue-heavy scenes, keep each speaker's voice distinct and avoid turning spoken lines into explanatory narration.\n[/NTPE Translation Engine v3.0 Context Intelligence]\n\n[NTPE Translation Engine v3.0 Prompt Intelligence]\nprofile: general\n- Translate the full source text into Traditional Chinese; do not summarize, omit, merge, or add scenes.\n- Use fluent Traditional Chinese suitable for novels, preserving the source's register and emotional pacing.\n- Render dialogue with Traditional Chinese corner quotes 「」 and keep speaker intent clear.\n- Maintain character voice, relationship distance, honorific nuance, and narrative point of view consistently.\n- Avoid forced Taiwanese colloquial wording; use it only when the source tone naturally supports it.\n- Balance accuracy, readability, and novel-like flow without changing the source meaning.\n[/NTPE Translation Engine v3.0 Prompt Intelligence]\n\n【Policy】忠於原文，不漏譯、不增刪。；先判斷主詞、行為者與指代，避免人物錯置。；Glossary 譯名逐字一致。；慣用語按中文小說語感處理，不機械直譯。；短答、反諷、模稜兩可語氣需保留，不擅自解釋。；避免生硬直譯，動作與心理描寫需像中文小說正文。；只輸出繁體中文譯文，對話用「」。\n【Profile】\n- 文學模式；主詞清楚、角色一致、中文像小說正文。\n【Narrative】場景含酒店／大廳／島嶼／海邊等度假場域；用詞依作品背景自然選擇。\n【Characters】정태의=鄭泰義；카일=凱爾\n【Previous】會毀了我的假期，我不能讓他這樣做。」於是，凱爾拋下了去別國工作的弟弟，帶著鄭泰義來到遠方島嶼度假，現在鄭泰義擔心凱爾會不會沒事（平時理性的凱爾不會做出這種事，但在出發前，他最愛的書被弟弟燒掉了，讓他怒不可遏）。 無論如何，鄭泰義坐在這個南國島嶼酒店的大廳沙發上，現在雖然很愜意，但他擔心回到柏林後會發生什麼事，只能嘆息。\n【Glossary】정태의=鄭泰義；카일=凱爾；禁:丁泰義->鄭泰義；禁:凯尔->凱爾；禁:凱爾爾->凱爾；禁:卡爾->凱爾；禁:定泰義->鄭泰義；禁:正太義->鄭泰義；禁:正泰義->鄭泰義；禁:鄭太義->鄭泰義；禁:鄭泰儀->鄭泰義；禁:鄭泰宜->鄭泰義\n【翻譯紀律】\n- 不得新增原文不存在的事件、設定或劇情。\n- 不得重述前文、上一段或本段已翻譯過的資訊。\n- 不得為了銜接或流暢而自行增加過渡敘述。\n- 不得自行補充原文未表達的人物心理、動機或判斷。\n- 不得摘要、濃縮、概括或省略原文資訊。\n- 保持資訊與事件出現順序，不任意前移、後置或重組。\n- 保留段落功能與敘事推進；可依中文節奏調整，但不得造成內容重述或遺漏。\n- 僅翻譯【Korean】中的當前內容；【Previous】只供承接語境，不得翻譯或改寫進輸出。\n【Korean】\n“……하지만 지금 미리 걱정해본들 뭐 이미 벌어진 일은 어쩔 도리 없고……. 모처럼 쉬러 왔는데 한숨만 쉬며 일주일을 지내면 손해지.” \n\n정태의는 결국 합리적인 결론을 내리고 고개를 끄덕였다. \n\n짙은 청옥빛 바다로 둘러싸인 이 섬은 대단히 아름답고 한가로웠다. 오는 길에 카일에게 들은 바로는, 이곳의 호텔은 몇몇 재벌이 소유한 별장처럼 쓰이다시피 해 일반 관광객은 들어오지 못하기 때문에, 남의 눈에 띌 걱정 없이 한가롭고 넉넉한 휴가를 보내기에는 안성맞춤이라고 했다. \n\n과연 그의 말마따나, 어제 이곳에 들어온 이후 정태의가 구경한 사람이라곤 이곳의 관리인과 직원 외에는 열 손가락으로 꼽고도 넉넉하게 남을 정도였다. \n\n“인적 드문 바닷가 산책도 좋겠지.” \n\n정태의는 어차, 하고 자리에서 일어섰다. 카일은 프라이빗풀 옆의 벤치에서 정신없이 잠들어 있을 터였다. (일주일의 휴가를 위해 그가 이곳에 오기 직전까지 밤을 새며 퀭한 얼굴로 일했다는 걸 정태의는 알고 있었다. 그래서, 그가 막무가내로 여기에 오겠다고 하는 주장을 차마 거스를 수 없었다.)\n【Output】直出譯文，禁止標題、註解、Markdown。",
+    "user_prompt": "[NTPE Translation Engine v3.0 Context Intelligence]\nprofile: dialogue_heavy\ntone: heated\nnarrative_state: continuing_scene\nprevious_key_info: 是，凱爾拋下了去別國工作的弟弟，帶著鄭泰義來到遠在南國的島嶼度假，讓鄭泰義擔心這樣下去會不會出事。（如果凱爾仍然保持他平常的理智，可能就不會做出這種事，但是，他在出發前幾天，弟弟卻把他珍愛的書給燒了，讓他怒不可遏，幾天來一直在生氣。） 無論如何，鄭泰義坐在南國島上的一家酒店大廳的沙發上，現在雖然很愜意，但他卻擔心回到柏林後會遇到什麼樣的麻煩，於是他嘆了口氣。\n- Translate according to the local scene context; do not translate word-by-word when it creates stiff or unnatural Traditional Chinese.\n- Preserve the original meaning, sequence, and emotional logic while using natural Traditional Chinese novel prose.\n- Use context-aware phrasing for breath, reaction, and body-action descriptions; avoid literal wording that sounds physically or semantically odd.\n- Avoid mechanical repeated structures and redundant phrasing; keep the sentence concise when the source meaning is already clear.\n- Keep continuity with the previous chunk's characters, tone, relationship distance, and narrative state.\n- For dialogue-heavy scenes, keep each speaker's voice distinct and avoid turning spoken lines into explanatory narration.\n[/NTPE Translation Engine v3.0 Context Intelligence]\n\n[NTPE Translation Engine v3.0 Prompt Intelligence]\nprofile: general\n- Translate the full source text into Traditional Chinese; do not summarize, omit, merge, or add scenes.\n- Use fluent Traditional Chinese suitable for novels, preserving the source's register and emotional pacing.\n- Render dialogue with Traditional Chinese corner quotes 「」 and keep speaker intent clear.\n- Maintain character voice, relationship distance, honorific nuance, and narrative point of view consistently.\n- Avoid forced Taiwanese colloquial wording; use it only when the source tone naturally supports it.\n- Balance accuracy, readability, and novel-like flow without changing the source meaning.\n[/NTPE Translation Engine v3.0 Prompt Intelligence]\n\n【Policy】忠於原文，不漏譯、不增刪。；先判斷主詞、行為者與指代，避免人物錯置。；Glossary 譯名逐字一致。；慣用語按中文小說語感處理，不機械直譯。；短答、反諷、模稜兩可語氣需保留，不擅自解釋。；避免生硬直譯，動作與心理描寫需像中文小說正文。；只輸出繁體中文譯文，對話用「」。\n【Profile】\n- 文學模式；主詞清楚、角色一致、中文像小說正文。\n【Narrative】場景含酒店／大廳／島嶼／海邊等度假場域；用詞依作品背景自然選擇。\n【Characters】정태의=鄭泰義；카일=凱爾\n【Previous】義來到遠在南國的島嶼度假，讓鄭泰義擔心這樣下去會不會出事。（如果凱爾仍然保持他平常的理智，可能就不會做出這種事，但是，他在出發前幾天，弟弟卻把他珍愛的書給燒了，讓他怒不可遏，幾天來一直在生氣。） 無論如何，鄭泰義坐在南國島上的一家酒店大廳的沙發上，現在雖然很愜意，但他卻擔心回到柏林後會遇到什麼樣的麻煩，於是他嘆了口氣。\n【Glossary】정태의=鄭泰義；카일=凱爾；禁:丁泰義->鄭泰義；禁:凯尔->凱爾；禁:凱爾爾->凱爾；禁:卡爾->凱爾；禁:定泰義->鄭泰義；禁:正太義->鄭泰義；禁:正泰義->鄭泰義；禁:鄭太義->鄭泰義；禁:鄭泰儀->鄭泰義；禁:鄭泰宜->鄭泰義\n【翻譯紀律】\n- 不得新增原文不存在的事件、設定或劇情。\n- 不得重述前文、上一段或本段已翻譯過的資訊。\n- 不得為了銜接或流暢而自行增加過渡敘述。\n- 不得自行補充原文未表達的人物心理、動機或判斷。\n- 不得摘要、濃縮、概括或省略原文資訊。\n- 保持資訊與事件出現順序，不任意前移、後置或重組。\n- 保留段落功能與敘事推進；可依中文節奏調整，但不得造成內容重述或遺漏。\n- 僅翻譯【Korean】中的當前內容；【Previous】只供承接語境，不得翻譯或改寫進輸出。\n【小說語感規範】\n- 依繁體中文小說語序自然重組句子，避免保留韓文或外語的生硬修飾順序與機械句型。\n- 依作品時代、地域與人物身分選詞；不強制使用台灣特有用語，也不得使用不合背景的現代口語。\n- 不得把原文含糊資訊具體化，不得自行新增地名、交通方式、時間長度、動作強度或背景設定。\n- 保持同一角色在相同情境中的稱呼、敬語層級與口吻一致；不得自行放大人物情緒或改變角色性格；保持原文敘事人稱、視角與敘事距離。\n【Korean】\n“……하지만 지금 미리 걱정해본들 뭐 이미 벌어진 일은 어쩔 도리 없고……. 모처럼 쉬러 왔는데 한숨만 쉬며 일주일을 지내면 손해지.” \n\n정태의는 결국 합리적인 결론을 내리고 고개를 끄덕였다. \n\n짙은 청옥빛 바다로 둘러싸인 이 섬은 대단히 아름답고 한가로웠다. 오는 길에 카일에게 들은 바로는, 이곳의 호텔은 몇몇 재벌이 소유한 별장처럼 쓰이다시피 해 일반 관광객은 들어오지 못하기 때문에, 남의 눈에 띌 걱정 없이 한가롭고 넉넉한 휴가를 보내기에는 안성맞춤이라고 했다. \n\n과연 그의 말마따나, 어제 이곳에 들어온 이후 정태의가 구경한 사람이라곤 이곳의 관리인과 직원 외에는 열 손가락으로 꼽고도 넉넉하게 남을 정도였다. \n\n“인적 드문 바닷가 산책도 좋겠지.” \n\n정태의는 어차, 하고 자리에서 일어섰다. 카일은 프라이빗풀 옆의 벤치에서 정신없이 잠들어 있을 터였다. (일주일의 휴가를 위해 그가 이곳에 오기 직전까지 밤을 새며 퀭한 얼굴로 일했다는 걸 정태의는 알고 있었다. 그래서, 그가 막무가내로 여기에 오겠다고 하는 주장을 차마 거스를 수 없었다.)\n【Output】直出譯文，禁止標題、註解、Markdown。",
     "prompt_mode": "compact_literary_v6_ter_v1_5",
     "profile": "literary",
     "prompt_profile": {
       "system_tokens": 11,
-      "policy_tokens": 171,
+      "policy_tokens": 257,
       "context_tokens": 100,
       "glossary_tokens": 53,
       "source_tokens": 228,
-      "total_tokens": 563,
-      "total_chars": 1358
+      "total_tokens": 649,
+      "total_chars": 1563
     },
     "narrative_context": {
       "perspective": "第三人稱小說敘事",
@@ -119,13 +129,13 @@
         }
       ],
       "alias_map": {
-        "正泰義": "鄭泰義",
-        "正太義": "鄭泰義",
+        "鄭泰宜": "鄭泰義",
         "定泰義": "鄭泰義",
         "鄭泰儀": "鄭泰義",
-        "鄭泰宜": "鄭泰義",
-        "鄭太義": "鄭泰義",
         "丁泰義": "鄭泰義",
+        "正泰義": "鄭泰義",
+        "鄭太義": "鄭泰義",
+        "正太義": "鄭泰義",
         "卡爾": "凱爾",
         "凱爾爾": "凱爾",
         "凯尔": "凱爾"
@@ -156,6 +166,27 @@
         "PREVIOUS_CONTEXT_ONLY"
       ],
       "discipline_rule_count": 8,
+      "naturalness_policy_version": "6.0.0-stage12.4",
+      "naturalness_policy_enabled": true,
+      "naturalness_rule_count": 4,
+      "discipline_engine_version": "6.0.0",
+      "discipline_policy_version": "6.0.0-stage02",
+      "discipline_policy_source": "core.translation_discipline",
+      "discipline_profile": "literary_balanced",
+      "active_rule_codes": [
+        "NO_ADDED_PLOT",
+        "NO_PREVIOUS_RESTATEMENT",
+        "NO_ADDED_TRANSITION",
+        "NO_ADDED_PSYCHOLOGY",
+        "NO_SUMMARIZATION",
+        "PRESERVE_INFORMATION_ORDER",
+        "PRESERVE_PARAGRAPH_INTENT",
+        "PREVIOUS_CONTEXT_ONLY"
+      ],
+      "active_rule_count": 8,
+      "generation_rule_count": 8,
+      "adaptive_rule_codes": [],
+      "adaptive_rule_count": 0,
       "runtime_wiring_verified": true
     },
     "prompt_discipline_enabled": true,
@@ -196,7 +227,7 @@
       "locations": [],
       "tone": "heated",
       "narrative_state": "continuing_scene",
-      "previous_key_info": "到一週的假期，如果他因為工作延遲回來，就會毀了我的假期，我不能讓他這樣做。」於是，凱爾拋下了去別國工作的弟弟，帶著鄭泰義來到遠方島嶼度假，現在鄭泰義擔心凱爾會不會沒事（平時理性的凱爾不會做出這種事，但在出發前，他最愛的書被弟弟燒掉了，讓他怒不可遏）。 無論如何，鄭泰義坐在這個南國島嶼酒店的大廳沙發上，現在雖然很愜意，但他擔心回到柏林後會發生什麼事，只能嘆息。",
+      "previous_key_info": "是，凱爾拋下了去別國工作的弟弟，帶著鄭泰義來到遠在南國的島嶼度假，讓鄭泰義擔心這樣下去會不會出事。（如果凱爾仍然保持他平常的理智，可能就不會做出這種事，但是，他在出發前幾天，弟弟卻把他珍愛的書給燒了，讓他怒不可遏，幾天來一直在生氣。） 無論如何，鄭泰義坐在南國島上的一家酒店大廳的沙發上，現在雖然很愜意，但他卻擔心回到柏林後會遇到什麼樣的麻煩，於是他嘆了口氣。",
       "naturalness_warnings": [],
       "metadata": {
         "package_id": "TXT_original_ko_000002"
@@ -229,7 +260,7 @@
         "locations": [],
         "tone": "heated",
         "narrative_state": "continuing_scene",
-        "previous_key_info": "到一週的假期，如果他因為工作延遲回來，就會毀了我的假期，我不能讓他這樣做。」於是，凱爾拋下了去別國工作的弟弟，帶著鄭泰義來到遠方島嶼度假，現在鄭泰義擔心凱爾會不會沒事（平時理性的凱爾不會做出這種事，但在出發前，他最愛的書被弟弟燒掉了，讓他怒不可遏）。 無論如何，鄭泰義坐在這個南國島嶼酒店的大廳沙發上，現在雖然很愜意，但他擔心回到柏林後會發生什麼事，只能嘆息。",
+        "previous_key_info": "是，凱爾拋下了去別國工作的弟弟，帶著鄭泰義來到遠在南國的島嶼度假，讓鄭泰義擔心這樣下去會不會出事。（如果凱爾仍然保持他平常的理智，可能就不會做出這種事，但是，他在出發前幾天，弟弟卻把他珍愛的書給燒了，讓他怒不可遏，幾天來一直在生氣。） 無論如何，鄭泰義坐在南國島上的一家酒店大廳的沙發上，現在雖然很愜意，但他卻擔心回到柏林後會遇到什麼樣的麻煩，於是他嘆了口氣。",
         "naturalness_warnings": [],
         "metadata": {
           "package_id": "TXT_original_ko_000002"
@@ -250,7 +281,24 @@
     "prompt_compiler": "5.5.2-discipline",
     "prompt_discipline_enabled": true,
     "discipline_rule_count": 8,
-    "runtime_wiring_verified": true
+    "runtime_wiring_verified": true,
+    "discipline_engine_version": "6.0.0",
+    "discipline_profile": "literary_balanced",
+    "discipline_policy_version": "6.0.0-stage02",
+    "discipline_policy_source": "core.translation_discipline",
+    "active_rule_codes": [
+      "NO_ADDED_PLOT",
+      "NO_PREVIOUS_RESTATEMENT",
+      "NO_ADDED_TRANSITION",
+      "NO_ADDED_PSYCHOLOGY",
+      "NO_SUMMARIZATION",
+      "PRESERVE_INFORMATION_ORDER",
+      "PRESERVE_PARAGRAPH_INTENT",
+      "PREVIOUS_CONTEXT_ONLY"
+    ],
+    "active_rule_count": 8,
+    "generation_rule_count": 8,
+    "adaptive_rule_count": 0
   },
   "qa_requirements": {
     "check_korean_residue": true,
@@ -264,11 +312,11 @@
     "speed": "balanced",
     "provider_attempts": 2,
     "qa_attempts": 2,
-    "speed_timeout": 120,
+    "speed_timeout": 180,
     "naturalness_retry_limit": 1
   },
   "metadata": {
-    "created_at": "2026-07-11T15:33:40",
+    "created_at": "2026-07-13T02:35:20",
     "created_by": "NTPE 1.2 Translation Engine Refactoring v2.0",
     "package_version": "1.2-translation-engine-refactor-v2.0",
     "prompt_intelligence": {
@@ -302,7 +350,7 @@
         "locations": [],
         "tone": "heated",
         "narrative_state": "continuing_scene",
-        "previous_key_info": "到一週的假期，如果他因為工作延遲回來，就會毀了我的假期，我不能讓他這樣做。」於是，凱爾拋下了去別國工作的弟弟，帶著鄭泰義來到遠方島嶼度假，現在鄭泰義擔心凱爾會不會沒事（平時理性的凱爾不會做出這種事，但在出發前，他最愛的書被弟弟燒掉了，讓他怒不可遏）。 無論如何，鄭泰義坐在這個南國島嶼酒店的大廳沙發上，現在雖然很愜意，但他擔心回到柏林後會發生什麼事，只能嘆息。",
+        "previous_key_info": "是，凱爾拋下了去別國工作的弟弟，帶著鄭泰義來到遠在南國的島嶼度假，讓鄭泰義擔心這樣下去會不會出事。（如果凱爾仍然保持他平常的理智，可能就不會做出這種事，但是，他在出發前幾天，弟弟卻把他珍愛的書給燒了，讓他怒不可遏，幾天來一直在生氣。） 無論如何，鄭泰義坐在南國島上的一家酒店大廳的沙發上，現在雖然很愜意，但他卻擔心回到柏林後會遇到什麼樣的麻煩，於是他嘆了口氣。",
         "naturalness_warnings": [],
         "metadata": {
           "package_id": "TXT_original_ko_000002"

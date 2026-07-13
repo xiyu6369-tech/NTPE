@@ -50,10 +50,22 @@ from core.adaptive_context_canary_validation import (
     canary_validation_session,
     write_canary_production_report,
 )
+from core.adaptive_context_production_rollout import (
+    RollbackController,
+    RolloutConfig,
+    RolloutMetrics,
+    evaluate_automatic_rollback,
+    install_production_rollout_hook,
+    load_production_evidence,
+    production_rollout_session,
+    write_metrics_report,
+)
+from core.adaptive_context_production_rollout.model import RollbackDecision
 
 # TE v7 Stage 03: installs a no-op-unless-shadow wrapper around prompt package
 # construction. The wrapper returns the original package unchanged.
 install_txt_runtime_shadow_hook()
+install_production_rollout_hook()
 
 DEFAULT_MODEL = "meta/llama-3.3-70b-instruct"
 
@@ -199,6 +211,15 @@ def build_parser() -> argparse.ArgumentParser:
     regression.add_argument("--ace-strategy-report", default=None, help="optional adaptive context strategy selection JSON path")
     regression.add_argument("--ace-strategy-enable", action="store_true", help="explicitly request adaptive context strategy selection")
     regression.add_argument("--ace-strategy-kill-switch", action="store_true", help="force strategy selection to fail closed")
+    regression.add_argument("--ace-production-rollout", action="store_true", help="explicitly opt in to TE v7 Stage 08.4 production rollout")
+    regression.add_argument("--ace-production-budget-report", default=None, help="Stage 08.2 budget evidence for production rollout")
+    regression.add_argument("--ace-production-strategy-report", default=None, help="Stage 08.3 strategy evidence for production rollout")
+    regression.add_argument("--ace-production-metrics-report", default=None, help="redacted Stage 08.4 rollout metrics JSON path")
+    regression.add_argument("--ace-production-rollback-report", default=None, help="redacted Stage 08.4 rollback decision JSON path")
+    regression.add_argument("--ace-production-validation-mode", choices=("assembly-only", "shadow-compatible", "provider"), default=None)
+    regression.add_argument("--ace-production-resume-from-stage", default=None, help="resume completed chunks before the production validation target")
+    regression.add_argument("--ace-production-target-chunk", type=int, default=None, help="stop production validation after this chunk")
+    regression.add_argument("--ace-production-simulate-rollback", action="store_true", help="simulate fail-closed automatic rollback")
 
     evaluate = sub.add_parser("evaluate", help="evaluate literary regression outputs without rerunning translation")
     evaluate.add_argument("--stage", default=os.environ.get("NTPE_PS_STAGE", "PS-03"), help="stage output folder under tests/literary/outputs")
@@ -395,6 +416,105 @@ def run_evaluate(args: argparse.Namespace) -> int:
 
 
 def run_regression(args: argparse.Namespace) -> int:
+    if bool(getattr(args, "ace_production_rollout", False)):
+        conflicting = (
+            bool(getattr(args, "ace_strategy_select_validate", False)),
+            bool(getattr(args, "ace_profile_budget_validate", False)),
+            bool(getattr(args, "ace_production_policy_validate", False)),
+            bool(getattr(args, "ace_canary_validate", False)),
+            bool(getattr(args, "ace_shadow_validate", False)),
+        )
+        if any(conflicting):
+            print("ACE production rollout error: rollout and earlier-stage validation modes are mutually exclusive")
+            return 2
+        required = {
+            "policy": getattr(args, "ace_production_policy_report", None),
+            "budget": getattr(args, "ace_production_budget_report", None),
+            "strategy": getattr(args, "ace_production_strategy_report", None),
+            "metrics": getattr(args, "ace_production_metrics_report", None),
+            "rollback": getattr(args, "ace_production_rollback_report", None),
+        }
+        missing = [name for name, value in required.items() if not value]
+        if missing:
+            print(f"ACE production rollout error: missing required reports: {','.join(missing)}")
+            return 2
+        percent = int(getattr(args, "ace_production_rollout_percent", 0) or 0)
+        if percent < 1 or percent > 5:
+            print("ACE production rollout error: rollout percent must be from 1 through 5")
+            return 2
+        try:
+            evidence = load_production_evidence(
+                _resolve(required["policy"]), _resolve(required["budget"]), _resolve(required["strategy"])
+            )
+        except (OSError, ValueError, TypeError) as exc:
+            print(f"ACE production rollout evidence error: {exc}")
+            return 2
+        mode = getattr(args, "ace_production_validation_mode", None) or ("assembly-only" if args.dry_run else "provider")
+        if mode == "assembly-only" and not args.dry_run:
+            print("ACE production rollout error: assembly-only requires --dry-run")
+            return 2
+        if mode == "provider" and args.dry_run:
+            print("ACE production rollout error: provider validation cannot use --dry-run")
+            return 2
+        config = RolloutConfig(
+            enabled=True,
+            rollout_percent=percent,
+            profile=args.profile,
+            kill_switch=bool(getattr(args, "ace_production_kill_switch", False)),
+            validation_mode=mode,
+            target_chunk=max(1, int(args.ace_production_target_chunk)) if args.ace_production_target_chunk else None,
+        )
+        if getattr(args, "ace_production_resume_from_stage", None):
+            if not config.target_chunk:
+                print("ACE production rollout error: resume requires --ace-production-target-chunk")
+                return 2
+            plan = prepare_canary_resume(ROOT, source_stage=args.ace_production_resume_from_stage, target_stage=args.stage, target_chunk=config.target_chunk)
+            if not plan.ready:
+                print(f"ACE production rollout resume error: missing chunks {','.join(map(str, plan.missing_chunks))}")
+                return 2
+        _apply_runtime_timeout_env(args)
+        _apply_provider_env(args)
+        options = LiteraryRegressionOptions(
+            root=ROOT, test_sets=_normalize_regression_sets(args.sets), stage_name=args.stage, profile=args.profile,
+            chunk_size=max(300, args.chunk_size) if args.chunk_size is not None else 1000,
+            chunk_size_explicit=args.chunk_size is not None, speed=args.speed, model=args.model, dry_run=args.dry_run,
+            overwrite=args.overwrite, resume=not args.no_resume, max_retries=max(0, args.max_retries),
+            provider_attempts=max(1, args.provider_attempts) if args.provider_attempts is not None else None,
+            retry_base_seconds=max(0.0, args.retry_base_seconds), qa_fail_policy=args.qa_fail_policy,
+            simplified_chinese_policy=args.simplified_chinese_policy, evaluate=not args.no_evaluate,
+            previous_stage=args.previous_stage, progress_enabled=not getattr(args, "no_progress", False),
+        )
+        metrics = RolloutMetrics()
+        controller = RollbackController()
+        audit_path = _resolve(required["metrics"]).with_suffix(".jsonl")
+        with production_rollout_session(config, evidence, metrics=metrics, controller=controller, audit_path=audit_path):
+            regression_result = run_literary_regression(options)
+        provider_text = f"{regression_result.get('status', '')} {regression_result.get('error', '')}".lower()
+        provider_status = "timeout" if "timeout" in provider_text else "503" if "503" in provider_text else "success"
+        metrics.observe_provider(provider_status)
+        if getattr(args, "ace_production_simulate_rollback", False):
+            controller.trigger("rollback-simulation")
+        rollback = evaluate_automatic_rollback(
+            provider_calls_added=metrics.provider_calls_added,
+            metrics_complete=metrics.total_packages > 0,
+            evidence_match=not evidence.blockers,
+            kill_switch=config.kill_switch,
+            artifact_integrity=evidence.evidence_integrity,
+            provider_status=provider_status,
+        )
+        if controller.disabled:
+            rollback = RollbackDecision(rollback.version, True, "disabled", tuple(dict.fromkeys((*controller.reasons, *rollback.reasons))), rollback.provider_limitation)
+        write_metrics_report(metrics, _resolve(required["metrics"]))
+        rollback_path = _resolve(required["rollback"])
+        rollback_path.parent.mkdir(parents=True, exist_ok=True)
+        import json as _json
+        rollback_path.write_text(_json.dumps(rollback.to_dict(), ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        print(f"ace_production_metrics_report: {_resolve(required['metrics'])}")
+        print(f"ace_production_rollback_report: {rollback_path}")
+        print(f"ace_production_activated: {metrics.activated_packages}")
+        print(f"ace_production_provider_limitation: {rollback.provider_limitation or 'none'}")
+        base_rc = _print_regression_result(regression_result)
+        return 1 if rollback.rollback else base_rc
     if bool(getattr(args, "ace_strategy_select_validate", False)):
         policy_path = _resolve(args.ace_strategy_policy_report) if args.ace_strategy_policy_report else ROOT / "artifacts" / "te_v7_stage081" / "TE_V7_STAGE081_PRODUCTION_ACTIVATION_POLICY.json"
         budget_path = _resolve(args.ace_strategy_budget_report) if args.ace_strategy_budget_report else ROOT / "artifacts" / "te_v7_stage082" / "TE_V7_STAGE082_PROFILE_AWARE_CONTEXT_BUDGET.json"

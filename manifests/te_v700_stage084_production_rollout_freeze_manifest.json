@@ -1,0 +1,41 @@
+{
+  "stage": "TE-v7.0-Stage08.4",
+  "version": "7.0.0-stage08.4",
+  "status": "stage08-production-rollout-layer-frozen",
+  "default_mode": "disabled",
+  "maximum_rollout_percent": 5,
+  "provider_calls_added": 0,
+  "te_v6_backward_compatible": true,
+  "te_v7_final_release": false,
+  "nested_manifest_sha256_chain": false,
+  "mutable_artifact_validation": "structure-and-safe-fields",
+  "files": {
+    "core/adaptive_context_production_rollout/__init__.py": "3c965f88ba8d1533721ffea955c258d32a134227079ca476e52c02d267f575ae",
+    "core/adaptive_context_production_rollout/model.py": "08d6a2fd25d1de701f814eb7702f45485048a1ba0055cf1bf4dcf41b2a2cd932",
+    "core/adaptive_context_production_rollout/config.py": "37c284fab9c567b493dcb7d521fa934ad2020c7cb64706ef495e9ed1ae40e230",
+    "core/adaptive_context_production_rollout/eligibility.py": "2702d2050e347ba1ed435ba832eefe6088f43a34e750838b8ace4ea25da1c168",
+    "core/adaptive_context_production_rollout/sampling.py": "80bda2b3c9b496a671dc2b14a4a044757a3bfc489f933c0e29865fc5f86f57dc",
+    "core/adaptive_context_production_rollout/runtime.py": "4b12e09560ec337f63b3846e51ad77a564b48659d4cd6332551c3ab369f2ef24",
+    "core/adaptive_context_production_rollout/rollback.py": "f9a870b6d9b3445c4b438474e35fde896c859ab34e3d184b0543ae9c6a85356c",
+    "core/adaptive_context_production_rollout/metrics.py": "652299e9f4c2c1035e5e45c9c4f6fa6e1f2adf81066017e50f569a714149caa3",
+    "core/adaptive_context_production_rollout/audit.py": "f70d858b7f7c25068086589545006e2acb81f0d853c0cfa146aa8c088d5480f2",
+    "core/adaptive_context_production_rollout/freeze.py": "8a9f3e6622024c0ca3a5d97f57bb67e95b1333440e1f32bc75764af05e7e5cd2",
+    "ntpe_production_translate.py": "aaa201c56db36f912fde68ac48c9918a236822d9421bb98f9f6cebc9608c5696",
+    "ntpe_te_v700_stage084_production_rollout_freeze_test.py": "3f1871932ce4eef5197fb7584a625f7720ffc92882c815a1d87e54625523b7d8",
+    "tests/integration/translation_engine_v700_stage084_production_rollout_test.py": "e66ba2cda73c6144c1c1aa7f10eb0b816f8d26d4998235bb8140f761c8d949e2",
+    "docs/releases/te_v7_0/TE_V7_0_STAGE08_4_PRODUCTION_ROLLOUT_FREEZE.md": "4f68e7ee23891126a59856f86d322d94f5288bba25f2be1d898d38c87b3809b5",
+    "artifacts/te_v7_stage084/TE_V7_STAGE084_PRODUCTION_ROLLOUT_METRICS.json": "mutable-structured-artifact",
+    "artifacts/te_v7_stage084/TE_V7_STAGE084_PRODUCTION_ROLLBACK.json": "mutable-structured-artifact",
+    "manifests/te_v700_stage084_production_rollout_freeze_manifest.json": "self-describing-manifest"
+  },
+  "frozen_boundaries": {
+    "activation_policy": "7.0.0-stage08.1",
+    "profile_budget": "7.0.0-stage08.2",
+    "strategy_selection": "7.0.0-stage08.3",
+    "deterministic_rollout": "sha256-10000-buckets",
+    "package_bound_anchor": "7.0.0-stage07.4",
+    "admission_gate": "fail-closed",
+    "kill_switch": "next-chunk-immediate",
+    "provider_zero_additional_call": true
+  }
+}

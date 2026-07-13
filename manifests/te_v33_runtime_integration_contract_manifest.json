@@ -1,0 +1,43 @@
+{
+  "version": "TE-v3.3",
+  "stage": "3.3.1",
+  "layer": "runtime_scheduler_integration",
+  "contract": "RuntimeIntegrationContract",
+  "enabled": false,
+  "default_mode": "disabled",
+  "required_boundaries": {
+    "provider_runtime": "external",
+    "http_client": "forbidden",
+    "api_key": "forbidden",
+    "launcher_flow": "unchanged",
+    "translation_runtime_flow": "unchanged"
+  },
+  "required_inputs": [
+    "runtime_state",
+    "scheduler_snapshot",
+    "resume_plan"
+  ],
+  "expected_outputs": [
+    "runtime_report",
+    "export_outputs",
+    "integration_status"
+  ],
+  "guarantees": [
+    "disabled_by_default",
+    "no_provider_runtime_dependency",
+    "no_http_client_calls",
+    "no_api_key_read_write",
+    "launcher_translate_flow_unchanged",
+    "translation_runtime_flow_unchanged",
+    "prompt_context_naturalness_guard_unchanged",
+    "no_real_translation_execution_path",
+    "te_v32_runtime_scheduler_freeze_preserved"
+  ],
+  "validation_commands": [
+    "python ntpe_te_v32_runtime_scheduler_freeze_test.py",
+    "python ntpe_te_v33_stage331_runtime_integration_contract_test.py",
+    "python -m pytest tests\\integration\\translation_scheduler_v32_runtime_scheduler_freeze_test.py tests\\integration\\translation_scheduler_stage331_runtime_integration_contract_test.py -q",
+    "python ntpe_validate.py"
+  ],
+  "next_stage": "TE-v3.3 Stage-3.3.2 Runtime Integration Feature Flag"
+}

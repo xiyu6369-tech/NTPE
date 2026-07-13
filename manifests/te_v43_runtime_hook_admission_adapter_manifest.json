@@ -1,0 +1,11 @@
+{
+  "version": "TE-v4.3",
+  "stage": "4.3.2",
+  "layer": "translation_runtime_recovery_hook",
+  "component": "RuntimeHookAdmissionAdapter",
+  "default_mode": "disabled",
+  "enabled_mode": "runtime_shadow_hook",
+  "execution_allowed": false,
+  "result_replacement_allowed": false,
+  "rollback_available": true
+}

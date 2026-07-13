@@ -12,7 +12,6 @@
       "core/adaptive_context_runtime_shadow/model.py": "21b62e16d4404e47d09c75718864c944073af2e4ede64e8669805ae435cabd84",
       "core/adaptive_context_runtime_shadow/registry.py": "b14e48f697d50dbbdc2a2c2e7ad093aef8cfa975823eb848dda005f55b3b4d5d",
       "docs/releases/te_v7_0/TE_V7_0_STAGE03_RUNTIME_SHADOW_ACTIVATION.md": "fcfd9d06b2e4c182b764db844e5166fad573d9bc06e7bea2dee78180e7d36448",
-      "ntpe_production_translate.py": "675bb1ba9d83471e68fb58d1b96f7933856928f1c18719a68e61c6ebe8e59489",
       "ntpe_te_v700_stage03_runtime_shadow_activation_test.py": "ce1c864bbe45c3c962bb606ed4b05150c209354f3bb3de30aa02f719aaaa01f3",
       "tests/integration/translation_engine_v700_stage03_runtime_shadow_activation_test.py": "2709d90b6adae5c1c08acbcaf37abf3141be6a68d674c93eb95ac721d11efe6b",
       "tests/integration/translation_engine_v700_stage03_shadow_audit_test.py": "be9e18579f3f0afe1e4d4968e4f92922fbca5be5e0869ec665abfec0a79a9281"

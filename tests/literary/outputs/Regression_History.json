@@ -258,6 +258,55 @@
       "status": "success",
       "overall_score": 95.0,
       "report_md": "D:\\Python\\NTPE\\tests\\literary\\outputs\\TE-v5.5.3-AdaptivePromptFeedback\\Literary_Quality_Report.md"
+    },
+    {
+      "stage": "TE-v6.0-Stage10.1-ProductionValidation",
+      "created_at": "2026-07-11T22:26:20",
+      "status": "success",
+      "overall_score": 95.0,
+      "report_md": "D:\\Python\\NTPE\\tests\\literary\\outputs\\TE-v6.0-Stage10.1-ProductionValidation\\Literary_Quality_Report.md"
+    },
+    {
+      "stage": "TE-v7.0-Stage04-ProductionShadowValidation",
+      "created_at": "2026-07-12T02:44:53",
+      "status": "failed",
+      "overall_score": 0.0,
+      "report_md": "D:\\Python\\NTPE\\tests\\literary\\outputs\\TE-v7.0-Stage04-ProductionShadowValidation\\Literary_Quality_Report.md"
+    },
+    {
+      "stage": "TE-v7.0-Stage04-ProductionShadowValidation-Retry",
+      "created_at": "2026-07-12T03:05:43",
+      "status": "failed",
+      "overall_score": 0.0,
+      "report_md": "D:\\Python\\NTPE\\tests\\literary\\outputs\\TE-v7.0-Stage04-ProductionShadowValidation-Retry\\Literary_Quality_Report.md"
+    },
+    {
+      "stage": "TE-v7.0-Stage05-Canary",
+      "created_at": "2026-07-12T22:50:00",
+      "status": "failed",
+      "overall_score": 0.0,
+      "report_md": "D:\\Python\\NTPE\\tests\\literary\\outputs\\TE-v7.0-Stage05-Canary\\Literary_Quality_Report.md"
+    },
+    {
+      "stage": "TE-v7.0-Stage06-CanaryProductionValidation",
+      "created_at": "2026-07-12T23:16:16",
+      "status": "failed",
+      "overall_score": 0.0,
+      "report_md": "D:\\Python\\NTPE\\tests\\literary\\outputs\\TE-v7.0-Stage06-CanaryProductionValidation\\Literary_Quality_Report.md"
+    },
+    {
+      "stage": "TE-v7.0-Stage07-CanaryResumeValidation",
+      "created_at": "2026-07-13T00:00:10",
+      "status": "failed",
+      "overall_score": 0.0,
+      "report_md": "D:\\Python\\NTPE\\tests\\literary\\outputs\\TE-v7.0-Stage07-CanaryResumeValidation\\Literary_Quality_Report.md"
+    },
+    {
+      "stage": "TE-v7.0-Stage07-CanaryChunk3Validation",
+      "created_at": "2026-07-13T02:40:53",
+      "status": "failed",
+      "overall_score": 0.0,
+      "report_md": "D:\\Python\\NTPE\\tests\\literary\\outputs\\TE-v7.0-Stage07-CanaryChunk3Validation\\Literary_Quality_Report.md"
     }
   ]
 }

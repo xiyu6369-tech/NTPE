@@ -13,7 +13,6 @@
       "manifests/te_v700_stage04_production_shadow_validation_manifest.json": "46abe4ca315fdea86286f6508323b502ba6fbba40bc1b9e4ab30807a72e8c615",
       "manifests/te_v700_stage051_mutable_validation_artifact_integrity_fix_manifest.json": "b251a50f1d1e9e6680279a9d117642dc5237631a3dbd1e36afc4777435f29304",
       "manifests/te_v700_stage05_ace_active_canary_activation_manifest.json": "8694f5bb9a86b13068bfbefc653ec10aeff5ff20f82fd464789639e0703367df",
-      "ntpe_production_translate.py": "675bb1ba9d83471e68fb58d1b96f7933856928f1c18719a68e61c6ebe8e59489",
       "ntpe_te_v700_stage06_ace_canary_production_validation_test.py": "73f0d6079e2ab094d35dc772ac820f6840290517f83c9b4851d678639828147a",
       "tests/integration/translation_engine_v700_stage06_ace_canary_production_validation_test.py": "3b1908d4e52135d6fbb76f9d529f97c1cee862c6847cd9fb1911dfa63c4fd9d8"
     },

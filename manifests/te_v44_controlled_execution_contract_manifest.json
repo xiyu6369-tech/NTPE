@@ -1,0 +1,10 @@
+{
+  "version": "TE-v4.4",
+  "stage": "4.4.1",
+  "component": "ControlledExecutionContract",
+  "default_mode": "disabled",
+  "scope": "single_chunk",
+  "replacement_mode": "guarded_controlled_only",
+  "real_provider_request_allowed": false,
+  "real_translation_allowed": false
+}

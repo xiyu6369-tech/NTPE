@@ -136,3 +136,5 @@ output/
 !manifests/te_v600_stage01_discipline_architecture_manifest.json
 *_chunk_*.json
 *_zh.txt
+
+!manifests/te_*.json

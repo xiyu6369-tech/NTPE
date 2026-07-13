@@ -1,0 +1,12 @@
+{
+  "version": "TE-v4.3",
+  "stage": "4.3.5",
+  "layer": "translation_runtime_recovery_hook",
+  "component": "RuntimeHookBoundaryRegression",
+  "default_mode": "disabled",
+  "enabled_mode": "shadow_only",
+  "provider_runtime_modified": false,
+  "translation_runtime_main_flow_modified": false,
+  "launcher_modified": false,
+  "real_translation_allowed": false
+}

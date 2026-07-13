@@ -1,0 +1,9 @@
+{
+  "version": "TE-v4.4",
+  "stage": "4.4.5",
+  "component": "ControlledExecutionBoundaryRegression",
+  "provider_runtime_unchanged": true,
+  "translation_runtime_main_flow_unchanged": true,
+  "launcher_unchanged": true,
+  "real_translation_allowed": false
+}

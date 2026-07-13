@@ -1,0 +1,10 @@
+TE v6.0 Stage 08 — Translation Discipline Freeze & Release Validation
+
+Copy all files into D:\Python\NTPE and merge folders.
+
+Validation:
+  python ntpe_te_v600_stage08_translation_discipline_freeze_test.py
+  python -m pytest -q tests\integration\translation_discipline_freeze_v600_stage08_test.py
+  python ntpe_validate.py
+
+No NVIDIA API call is required.

@@ -1,0 +1,33 @@
+{
+  "version": "TE-v4.2",
+  "stage": "4.2.4",
+  "release_id": "TE-v4.2-stage-4.2.4-real-runtime-recovery-pilot-dry-run-runner",
+  "layer": "real_runtime_recovery_pilot_dry_run_runner",
+  "single_chunk_only": true,
+  "handler_mode": "injected_metadata_handler",
+  "default_mode": "blocked",
+  "real_provider_request_allowed": false,
+  "real_translation_allowed": false,
+  "execution_allowed": false,
+  "rollback_available": true,
+  "forbidden_inputs": [
+    "source_text",
+    "translated_text",
+    "text",
+    "chunks",
+    "api_key",
+    "provider_client"
+  ],
+  "guarantees": {
+    "provider_runtime_modified": false,
+    "translation_runtime_modified": false,
+    "launcher_modified": false,
+    "http_called": false,
+    "api_key_accessed": false,
+    "real_provider_request_created": false,
+    "real_translation_executed": false,
+    "source_text_retained": false,
+    "translated_text_retained": false
+  },
+  "next_stage": "TE-v4.2 Stage-4.2.5 Dry-Run Result Bundle"
+}

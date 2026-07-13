@@ -1,0 +1,50 @@
+{
+  "version": "TE-v4.2",
+  "stage": "4.2.1",
+  "release_id": "TE-v4.2-real-runtime-recovery-pilot-contract",
+  "layer": "real_runtime_recovery_pilot",
+  "contract_only": true,
+  "default_mode": "disabled",
+  "activation_mode": "explicit_opt_in_only",
+  "execution_mode": "contract_only",
+  "allowed_scope": "single_chunk",
+  "max_chunks_per_request": 1,
+  "max_recovery_flows_per_chunk": 1,
+  "real_provider_request_allowed": false,
+  "real_translation_allowed": false,
+  "provider_runtime_touch_mode": "none",
+  "translation_runtime_touch_mode": "none",
+  "launcher_touch_mode": "none",
+  "rollback_mode": "immediate_disable",
+  "required_freezes": [
+    "TE-v4.0",
+    "TE-v4.1"
+  ],
+  "required_components": [
+    "RecoveryFlowIntegration",
+    "RuntimeRecoveryHookAdapter",
+    "AdaptiveRetryExecutionHarness",
+    "RecoveryOutcomeGuard",
+    "RecoveryResultBundle"
+  ],
+  "guarantees": {
+    "provider_runtime_modified": false,
+    "translation_runtime_modified": false,
+    "launcher_modified": false,
+    "http_called": false,
+    "api_key_accessed": false,
+    "recovery_flow_executed": false,
+    "real_provider_request_created": false,
+    "real_translation_executed": false,
+    "source_text_retained": false,
+    "translated_text_retained": false
+  },
+  "validation_commands": [
+    "python ntpe_te_v40_stage408_translation_reliability_freeze_test.py",
+    "python ntpe_te_v41_stage417_translation_reliability_execution_freeze_test.py",
+    "python ntpe_te_v42_stage421_real_runtime_recovery_pilot_contract_test.py",
+    "python -m pytest tests\\integration\\translation_reliability_stage408_freeze_test.py tests\\integration\\translation_reliability_stage417_execution_freeze_test.py tests\\integration\\translation_reliability_stage421_real_runtime_recovery_pilot_contract_test.py -q",
+    "python ntpe_validate.py"
+  ],
+  "next_stage": "TE-v4.2 Stage-4.2.2 Real Runtime Recovery Pilot Admission Gate"
+}

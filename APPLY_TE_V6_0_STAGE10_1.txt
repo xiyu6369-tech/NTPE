@@ -1,0 +1,1 @@
+Copy all files into D:\Python\NTPE and merge folders. Run the Stage 10.1 tests, then run a new Golden Set stage.

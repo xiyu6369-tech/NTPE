@@ -1,0 +1,55 @@
+{
+  "schema_version": "1.0",
+  "stage": "TE-v7.0-Stage01.1-AdaptiveContextSafetyStabilization",
+  "version": "7.0.0-stage01.1",
+  "status": "implemented",
+  "runtime_auto_hook": false,
+  "contract_changes": {
+    "multilingual_token_estimation": true,
+    "narrative_complete_sentences_only": true,
+    "required_context_fail_closed": true,
+    "input_validation": true,
+    "adaptive_context_result_fields_added": ["admissible", "fallback_required", "fallback_reasons"],
+    "existing_call_signature_changed": false,
+    "fingerprint_payload": ["selected_item_id", "selected_item_kind", "selected_content_sha256"]
+  },
+  "frozen_boundaries": {
+    "te_v6_runtime_modified": false,
+    "provider_modified": false,
+    "prompt_builder_modified": false,
+    "lts_modified": false,
+    "te_v6_release_contract_modified": false,
+    "provider_client_created": false,
+    "http_requests_added": 0,
+    "nvidia_api_called": false
+  },
+  "validation_commands": [
+    "python ntpe_te_v700_stage011_adaptive_context_safety_stabilization_test.py",
+    "python -m pytest -q tests/integration/translation_engine_v700_stage011_adaptive_context_safety_boundary_test.py",
+    "python ntpe_te_v700_stage01_adaptive_context_engine_test.py",
+    "python ntpe_te_v600_final_release_freeze_test.py",
+    "python ntpe_validate.py",
+    "git diff --check"
+  ],
+  "integrity": {
+    "algorithm": "SHA-256",
+    "files": {
+      "core/adaptive_context/__init__.py": "644593277c6f5cbd94af6a18c43f9d86da22d360592c6e94d7d56e949f057b7c",
+      "core/adaptive_context/budget.py": "7c47f36e56e9c2714b04e0df1b65905bd6e7bcabd68d215c993c1af4184468a6",
+      "core/adaptive_context/compression.py": "1269e3bf51bb70f6bbe9f7da8f26b3256fdb69f572202ba8cf23f7ddf5dfa637",
+      "core/adaptive_context/diff.py": "aa13543e55a985dc7f811cdd8c5fbedee59aca820d802ca6431f32f706bc067f",
+      "core/adaptive_context/engine.py": "80a0bbd8d12369a9579ea2ad195c0e49d0aa03ac254ab6b71c8cdbc94306fa7b",
+      "core/adaptive_context/fingerprint.py": "130b6fdd690dd2bc11ace7165c9559bdf93eee1538a5caab8cd401485c66e2e9",
+      "core/adaptive_context/model.py": "3691cba6e44b75f83b6aa97a27600e48455be133f8f6faaab69c1dc33be1df9f",
+      "core/adaptive_context/observability.py": "3e895dae126352b415b17528065399de7bc94871cb2e72fe7d01c5bc9674555a",
+      "core/adaptive_context/preservation.py": "82cc2597c7e6fae58140db856fdfb19c30a939784c00551e9dd7924eccabbb57",
+      "core/adaptive_context/ranking.py": "2879fd6cb051515b378e732ce3f7850fea3beabf63eac69f884063593c3540b1",
+      "ntpe_te_v700_stage01_adaptive_context_engine_test.py": "390a1a59f8776a23fb900f15c99e44dc812f4052d777a8e0a0699f498cc946db",
+      "ntpe_te_v700_stage011_adaptive_context_safety_stabilization_test.py": "397f5f3c2dead740a91217746ab6077fea0e51244c417bc073ca92dd9d6dc95a",
+      "tests/integration/translation_engine_v700_stage01_adaptive_context_engine_test.py": "fce890f1abb39956f177f6a27a9faa5b2ca37fd6b70a7aed99881ea3cbad19dc",
+      "tests/integration/translation_engine_v700_stage011_adaptive_context_safety_boundary_test.py": "57337cc8f6267d36b2f3a06b4d79e2b2f2588975f23a0f0aceffb9777a471d26",
+      "docs/releases/te_v7_0/TE_V7_0_STAGE01_ADAPTIVE_CONTEXT_ENGINE.md": "5c6ea2657c1ea0f6b7982de897ea6ae0bbac65ee0e6ce3b868151fc127645731",
+      "docs/releases/te_v7_0/TE_V7_0_STAGE01_1_ADAPTIVE_CONTEXT_SAFETY_STABILIZATION.md": "4f964efa6a1b38b8b07e3a87a30b68d6bf77bef6cf48b888f6825e2ac7a40f9c"
+    }
+  }
+}

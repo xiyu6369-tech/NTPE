@@ -1,0 +1,8 @@
+{
+  "version": "TE-v4.4",
+  "stage": "4.4.2",
+  "component": "ControlledExecutionAdmissionGate",
+  "default_decision": "rejected",
+  "enabled_mode": "single_chunk_controlled_recovery",
+  "replacement_requires_guard": true
+}

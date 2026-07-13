@@ -1,0 +1,28 @@
+{
+  "version": "TE-v4.0",
+  "stage": "4.0.1",
+  "release_id": "TE-v4.0-stage-4.0.1-translation-reliability-baseline",
+  "layer": "translation_reliability",
+  "component": "baseline",
+  "provider_runtime_modified": false,
+  "translation_runtime_modified": false,
+  "launcher_modified": false,
+  "http_called": false,
+  "api_key_accessed": false,
+  "real_translation_executed": false,
+  "metrics": [
+    "total_chunks",
+    "success_chunks",
+    "failed_chunks",
+    "success_rate",
+    "reliability_score",
+    "avg_latency_ms",
+    "total_retries",
+    "max_retry",
+    "provider_attempts_zero",
+    "failure_breakdown",
+    "provider_breakdown",
+    "model_breakdown"
+  ],
+  "next_stage": "TE-v4.0 Stage-4.0.2 Adaptive Retry Policy"
+}

@@ -1,0 +1,14 @@
+{
+  "stage": "TE-v6.0-stage02",
+  "name": "Discipline Policy Activation",
+  "policy_version": "6.0.0-stage02",
+  "provider_calls": false,
+  "backward_compatible": true,
+  "modified": [
+    "core/prompt_compiler/compiler.py",
+    "core/translation_discipline/__init__.py",
+    "core/translation_discipline/engine.py",
+    "core/translation_discipline/policy.py",
+    "lts/txt_translation_runtime.py"
+  ]
+}

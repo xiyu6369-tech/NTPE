@@ -1,0 +1,9 @@
+{
+  "version": "TE-v4.4",
+  "stage": "4.4.3",
+  "component": "SingleChunkControlledRecoveryExecutor",
+  "execution": "injected_callback_only",
+  "single_chunk_only": true,
+  "result_replaced": false,
+  "real_provider_request_executed": false
+}

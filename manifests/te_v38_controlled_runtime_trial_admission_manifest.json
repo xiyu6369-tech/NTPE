@@ -1,0 +1,38 @@
+{
+  "version": "TE-v3.8",
+  "stage": "3.8.2",
+  "release_id": "TE-v3.8-stage-3.8.2-controlled-runtime-trial-admission-gate",
+  "layer": "controlled_runtime_trial_admission_gate",
+  "default_decision": "rejected",
+  "admitted_status": "admitted_for_isolated_dry_run",
+  "next_allowed_mode": "isolated_dry_run",
+  "execution_allowed": false,
+  "real_runtime_allowed": false,
+  "rollback_available": true,
+  "provider_access": "forbidden",
+  "http_access": "forbidden",
+  "api_key_access": "forbidden",
+  "launcher_touch_mode": "none",
+  "translation_runtime_touch_mode": "none",
+  "forbidden_inputs": ["source_text", "text", "chunks", "api_key", "provider_client"],
+  "guarantees": [
+    "fail_closed",
+    "recursive_forbidden_input_detection",
+    "decision_only",
+    "no_scheduler_or_adapter_execution",
+    "no_provider_runtime_dependency",
+    "no_http_client_calls",
+    "no_api_key_read_write",
+    "launcher_translate_flow_unchanged",
+    "translation_runtime_flow_unchanged",
+    "te_v32_through_te_v37_freezes_preserved",
+    "te_v38_stage381_contract_preserved"
+  ],
+  "validation_commands": [
+    "python ntpe_te_v38_stage381_controlled_runtime_trial_contract_test.py",
+    "python ntpe_te_v38_stage382_controlled_runtime_trial_admission_gate_test.py",
+    "python -m pytest tests\\integration\\translation_scheduler_stage381_controlled_runtime_trial_contract_test.py tests\\integration\\translation_scheduler_stage382_controlled_runtime_trial_admission_gate_test.py -q",
+    "python ntpe_validate.py"
+  ],
+  "next_stage": "TE-v3.8 Stage-3.8.3 Controlled Runtime Trial Rollback Controller"
+}

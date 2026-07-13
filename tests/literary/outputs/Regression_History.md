@@ -39,3 +39,10 @@
 | TE-v5.5.2.1-WiringCheck | 0.0 | failed | `D:\Python\NTPE\tests\literary\outputs\TE-v5.5.2.1-WiringCheck\Literary_Quality_Report.md` |
 | TE-v5.5.2.1-RuntimePromptWiring | 95.2 | success | `D:\Python\NTPE\tests\literary\outputs\TE-v5.5.2.1-RuntimePromptWiring\Literary_Quality_Report.md` |
 | TE-v5.5.3-AdaptivePromptFeedback | 95.0 | success | `D:\Python\NTPE\tests\literary\outputs\TE-v5.5.3-AdaptivePromptFeedback\Literary_Quality_Report.md` |
+| TE-v6.0-Stage10.1-ProductionValidation | 95.0 | success | `D:\Python\NTPE\tests\literary\outputs\TE-v6.0-Stage10.1-ProductionValidation\Literary_Quality_Report.md` |
+| TE-v7.0-Stage04-ProductionShadowValidation | 0.0 | failed | `D:\Python\NTPE\tests\literary\outputs\TE-v7.0-Stage04-ProductionShadowValidation\Literary_Quality_Report.md` |
+| TE-v7.0-Stage04-ProductionShadowValidation-Retry | 0.0 | failed | `D:\Python\NTPE\tests\literary\outputs\TE-v7.0-Stage04-ProductionShadowValidation-Retry\Literary_Quality_Report.md` |
+| TE-v7.0-Stage05-Canary | 0.0 | failed | `D:\Python\NTPE\tests\literary\outputs\TE-v7.0-Stage05-Canary\Literary_Quality_Report.md` |
+| TE-v7.0-Stage06-CanaryProductionValidation | 0.0 | failed | `D:\Python\NTPE\tests\literary\outputs\TE-v7.0-Stage06-CanaryProductionValidation\Literary_Quality_Report.md` |
+| TE-v7.0-Stage07-CanaryResumeValidation | 0.0 | failed | `D:\Python\NTPE\tests\literary\outputs\TE-v7.0-Stage07-CanaryResumeValidation\Literary_Quality_Report.md` |
+| TE-v7.0-Stage07-CanaryChunk3Validation | 0.0 | failed | `D:\Python\NTPE\tests\literary\outputs\TE-v7.0-Stage07-CanaryChunk3Validation\Literary_Quality_Report.md` |

@@ -1,0 +1,11 @@
+{
+  "version": "TE-v4.3",
+  "stage": "4.3.3",
+  "layer": "translation_runtime_recovery_hook",
+  "component": "RuntimeSingleChunkShadowHook",
+  "mode": "shadow_only",
+  "single_chunk_only": true,
+  "callback_source": "injected_metadata_callback",
+  "result_replacement_allowed": false,
+  "real_provider_request_allowed": false
+}

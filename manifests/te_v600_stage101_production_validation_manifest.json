@@ -1,0 +1,1 @@
+{"stage":"TE v6.0 Stage 10.1","version":"6.0.0-stage10.1","type":"production-validation","provider_behavior_changed":false,"files":["core/translation_discipline/production_validation.py","core/translation_discipline/adaptive_retry_policy.py","core/translation_discipline/runtime_integration.py"]}

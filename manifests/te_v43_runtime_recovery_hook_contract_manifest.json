@@ -1,0 +1,11 @@
+{
+  "version": "TE-v4.3",
+  "stage": "4.3.1",
+  "layer": "translation_runtime_recovery_hook",
+  "component": "TranslationRuntimeRecoveryHookContract",
+  "default_mode": "disabled",
+  "execution_mode": "shadow_only",
+  "result_replacement_allowed": false,
+  "provider_fallback_allowed": false,
+  "real_provider_request_allowed": false
+}

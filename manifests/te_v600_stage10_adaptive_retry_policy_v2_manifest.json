@@ -1,0 +1,23 @@
+{
+  "stage": "TE-v6.0-stage10",
+  "name": "Adaptive Retry Policy 2.0",
+  "version": "6.0.0-stage10",
+  "integration_entrypoint": "core.translation_discipline.runtime_integration",
+  "tiers": ["none", "local_repair", "targeted_retry", "full_retry", "reject"],
+  "new_modules": [
+    "core/translation_discipline/adaptive_retry_policy.py",
+    "core/translation_discipline/retry_evidence.py",
+    "core/translation_discipline/targeted_retry_plan.py"
+  ],
+  "compatibility": {
+    "public_apis_preserved": true,
+    "provider_attempts_semantics_preserved": true,
+    "nvidia_rpm_limit": 40,
+    "http_calls_in_stage10_modules": false
+  },
+  "required_tests": [
+    "ntpe_te_v600_stage10_adaptive_retry_policy_v2_test.py",
+    "tests/integration/translation_discipline_adaptive_retry_policy_v2_v600_stage10_test.py",
+    "ntpe_validate.py"
+  ]
+}

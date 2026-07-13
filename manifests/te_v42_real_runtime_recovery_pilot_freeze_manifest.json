@@ -1,0 +1,51 @@
+{
+  "version": "TE-v4.2",
+  "stage": "4.2.7",
+  "release_id": "TE-v4.2-real-runtime-recovery-pilot-freeze",
+  "layer": "real_runtime_recovery_pilot",
+  "frozen": true,
+  "stages": [
+    "4.2.1",
+    "4.2.2",
+    "4.2.3",
+    "4.2.4",
+    "4.2.5",
+    "4.2.6"
+  ],
+  "components": [
+    "RealRuntimeRecoveryPilotContract",
+    "RealRuntimeRecoveryPilotAdmissionGate",
+    "RealRuntimeRecoveryPilotRollbackController",
+    "RealRuntimeRecoveryPilotDryRunRunner",
+    "RealRuntimeRecoveryPilotDryRunBundle",
+    "PilotBoundaryRegression"
+  ],
+  "default_mode": "disabled",
+  "enabled_mode": "single_chunk_dry_run",
+  "real_provider_request_allowed": false,
+  "real_translation_allowed": false,
+  "translation_runtime_modified": false,
+  "provider_runtime_modified": false,
+  "launcher_modified": false,
+  "guarantees": {
+    "http_called": false,
+    "api_key_accessed": false,
+    "real_provider_request_created": false,
+    "real_translation_executed": false,
+    "source_text_retained": false,
+    "translated_text_retained": false
+  },
+  "validation_commands": [
+    "python ntpe_te_v40_stage408_translation_reliability_freeze_test.py",
+    "python ntpe_te_v41_stage417_translation_reliability_execution_freeze_test.py",
+    "python ntpe_te_v42_stage421_real_runtime_recovery_pilot_contract_test.py",
+    "python ntpe_te_v42_stage422_real_runtime_recovery_pilot_admission_gate_test.py",
+    "python ntpe_te_v42_stage423_real_runtime_recovery_pilot_rollback_controller_test.py",
+    "python ntpe_te_v42_stage424_real_runtime_recovery_pilot_dry_run_runner_test.py",
+    "python ntpe_te_v42_stage425_real_runtime_recovery_pilot_dry_run_bundle_test.py",
+    "python ntpe_te_v42_stage426_real_runtime_recovery_pilot_boundary_regression_test.py",
+    "python ntpe_te_v42_stage427_real_runtime_recovery_pilot_freeze_test.py",
+    "python ntpe_validate.py"
+  ],
+  "next_stage": "TE-v4.3 Translation Runtime Recovery Hook Pilot"
+}

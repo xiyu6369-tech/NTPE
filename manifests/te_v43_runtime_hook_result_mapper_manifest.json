@@ -1,0 +1,10 @@
+{
+  "version": "TE-v4.3",
+  "stage": "4.3.4",
+  "layer": "translation_runtime_recovery_hook",
+  "component": "RuntimeHookResultMapper",
+  "result_replacement_allowed": false,
+  "original_runtime_result_unchanged": true,
+  "provider_fallback_executed": false,
+  "real_provider_request_executed": false
+}

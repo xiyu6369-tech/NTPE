@@ -2,7 +2,7 @@
   "result": {
     "status": "success",
     "package_id": "TXT_original_ko_000001",
-    "translated_at": "2026-07-11T12:13:00",
+    "translated_at": "2026-07-12T23:13:11",
     "output_path": "D:\\Python\\NTPE\\translated\\original_ko_chunk_000001_zh.txt",
     "cache_path": "D:\\Python\\NTPE\\translation_cache\\original_ko_chunk_000001_result.json",
     "qa": {
@@ -10,15 +10,15 @@
       "issues": [],
       "korean_residue_count": 0,
       "source_length": 574,
-      "translation_length": 290
+      "translation_length": 353
     },
     "package_path": "D:\\Python\\NTPE\\prompt_packages\\txt_runtime\\original_ko_chunk_000001.json",
     "provider": {
-      "text": "鄭泰義感到很為難。然而，實際上這並不是他應該感到為難的事情。被拋在遠國的怪物般的男人，至少是個理智清醒的人，鄭泰義也明白這種情況不是他故意安排的。 \n\n但是，凱爾堅持說：「幾個月前就開始計畫這次旅行，經過千辛萬苦才請到一周的假期，如果他因為工作延遲回來，就會毀了我的假期，我不能讓他這樣做。」於是，凱爾拋下了去別國工作的弟弟，帶著鄭泰義來到遠方島嶼度假，現在鄭泰義擔心凱爾會不會沒事（平時理性的凱爾不會做出這種事，但在出發前，他最愛的書被弟弟燒掉了，讓他怒不可遏）。 \n\n無論如何，鄭泰義坐在這個南國島嶼酒店的大廳沙發上，現在雖然很愜意，但他擔心回到柏林後會發生什麼事，只能嘆息。",
+      "text": "鄭泰義感到很為難。然而，實際上這並不是他應該感到為難的事情。被拋在遠方的那個男人，儘管像怪物一樣，但至少還是個理智清醒的人，鄭泰義也明白這種情況不可能是他故意安排的。\n\n但是，凱爾卻堅持說：「幾個月前我就開始計畫這次旅行，經過千辛萬苦才請到一周的假期，如果他因為工作延遲回來，就會壞了我的假期，我不能讓他這樣做。」於是，凱爾把去別國工作的弟弟丟下不管，帶著鄭泰義來到這個遙遠的南國島上度假。這樣的凱爾，究竟會不會沒事，鄭泰義實在是很擔心。（如果凱爾仍然保持他平常的理智的話，他是不會做出這種事的，但就在他出發前，弟弟竟然燒掉了他最珍愛的書，凱爾因此而大發雷霆，整整四天都在生氣。）\n\n無論如何，鄭泰義現在坐在這個南國島上的酒店大廳的沙發上，雖然現在還很舒服，但他卻擔心著回到柏林之後會發生什麼事，嘆了口氣。",
       "provider": "nvidia",
       "model": "meta/llama-3.3-70b-instruct",
       "success": true,
-      "latency_ms": 72616.04142189026,
+      "latency_ms": 101819.00119781494,
       "metadata": {
         "transport": "nvidia_client",
         "provider_type": "nvidia"
@@ -36,7 +36,7 @@
       }
     }
   },
-  "translation": "鄭泰義感到很為難。然而，實際上這並不是他應該感到為難的事情。被拋在遠國的怪物般的男人，至少是個理智清醒的人，鄭泰義也明白這種情況不是他故意安排的。 \n\n但是，凱爾堅持說：「幾個月前就開始計畫這次旅行，經過千辛萬苦才請到一周的假期，如果他因為工作延遲回來，就會毀了我的假期，我不能讓他這樣做。」於是，凱爾拋下了去別國工作的弟弟，帶著鄭泰義來到遠方島嶼度假，現在鄭泰義擔心凱爾會不會沒事（平時理性的凱爾不會做出這種事，但在出發前，他最愛的書被弟弟燒掉了，讓他怒不可遏）。 \n\n無論如何，鄭泰義坐在這個南國島嶼酒店的大廳沙發上，現在雖然很愜意，但他擔心回到柏林後會發生什麼事，只能嘆息。\n",
+  "translation": "鄭泰義感到很為難。然而，實際上這並不是他應該感到為難的事情。被拋在遠方的那個男人，儘管像怪物一樣，但至少還是個理智清醒的人，鄭泰義也明白這種情況不可能是他故意安排的。\n\n但是，凱爾卻堅持說：「幾個月前我就開始計畫這次旅行，經過千辛萬苦才請到一周的假期，如果他因為工作延遲回來，就會壞了我的假期，我不能讓他這樣做。」於是，凱爾把去別國工作的弟弟丟下不管，帶著鄭泰義來到這個遙遠的南國島上度假。這樣的凱爾，究竟會不會沒事，鄭泰義實在是很擔心。（如果凱爾仍然保持他平常的理智的話，他是不會做出這種事的，但就在他出發前，弟弟竟然燒掉了他最珍愛的書，凱爾因此而大發雷霆，整整四天都在生氣。）\n\n無論如何，鄭泰義現在坐在這個南國島上的酒店大廳的沙發上，雖然現在還很舒服，但他卻擔心著回到柏林之後會發生什麼事，嘆了口氣。\n",
   "package": {
     "package_id": "TXT_original_ko_000001",
     "project": {
@@ -114,17 +114,17 @@
     },
     "prompt": {
       "system_prompt": "韓文小說譯者。先判斷主詞與語氣，再直出自然繁體中文正文。",
-      "user_prompt": "[NTPE Translation Engine v3.0 Context Intelligence]\nprofile: narration_heavy\ntone: neutral\nnarrative_state: current_scene\n- Translate according to the local scene context; do not translate word-by-word when it creates stiff or unnatural Traditional Chinese.\n- Preserve the original meaning, sequence, and emotional logic while using natural Traditional Chinese novel prose.\n- Use context-aware phrasing for breath, reaction, and body-action descriptions; avoid literal wording that sounds physically or semantically odd.\n- Avoid mechanical repeated structures and redundant phrasing; keep the sentence concise when the source meaning is already clear.\n- Keep continuity with the previous chunk's characters, tone, relationship distance, and narrative state.\n- For narration-heavy scenes, prioritize smooth transitions, clear viewpoint, and readable paragraph flow.\n[/NTPE Translation Engine v3.0 Context Intelligence]\n\n[NTPE Translation Engine v3.0 Prompt Intelligence]\nprofile: literary\n- Translate the full source text into Traditional Chinese; do not summarize, omit, merge, or add scenes.\n- Use fluent Traditional Chinese suitable for novels, preserving the source's register and emotional pacing.\n- Render dialogue with Traditional Chinese corner quotes 「」 and keep speaker intent clear.\n- Maintain character voice, relationship distance, honorific nuance, and narrative point of view consistently.\n- Avoid forced Taiwanese colloquial wording; use it only when the source tone naturally supports it.\n- Preserve literary imagery, cadence, restraint, and implied emotion without over-explaining.\n- Use polished novel prose rather than literal sentence-by-sentence stiffness.\n[/NTPE Translation Engine v3.0 Prompt Intelligence]\n\n【Policy】忠於原文，不漏譯、不增刪。；先判斷主詞、行為者與指代，避免人物錯置。；Glossary 譯名逐字一致。；慣用語按中文小說語感處理，不機械直譯。；短答、反諷、模稜兩可語氣需保留，不擅自解釋。；避免生硬直譯，動作與心理描寫需像中文小說正文。；只輸出繁體中文譯文，對話用「」。\n【Profile】\n- 文學模式；主詞清楚、角色一致、中文像小說正文。\n【Narrative】場景含酒店／大廳／島嶼／海邊等度假場域；用詞依作品背景自然選擇。；含德國／柏林背景；保留作品文化距離，不刻意本地化。；난감하다 依語境處理為為難、傷腦筋、不知如何是好等心理狀態。；카일이 주장... 結構中，主張與相關動作優先歸於凱爾。；本段有長句；先切分敘事單位，再保持主詞與行為者正確。\n【Characters】정태의=鄭泰義；카일=凱爾\n【Subject】鄭泰義是心理描寫主體；난감 不等於身體不舒服。；凱爾是『主張／堅持說』的主體，後續相關行為不要誤歸鄭泰義。\n【Glossary】정태의=鄭泰義；카일=凱爾；禁:丁泰義->鄭泰義；禁:凯尔->凱爾；禁:凱爾爾->凱爾；禁:卡爾->凱爾；禁:定泰義->鄭泰義；禁:正太義->鄭泰義；禁:正泰義->鄭泰義；禁:鄭太義->鄭泰義；禁:鄭泰儀->鄭泰義；禁:鄭泰宜->鄭泰義\n【翻譯紀律】\n- 不得新增原文不存在的事件、設定或劇情。\n- 不得重述前文、上一段或本段已翻譯過的資訊。\n- 不得為了銜接或流暢而自行增加過渡敘述。\n- 不得自行補充原文未表達的人物心理、動機或判斷。\n- 不得摘要、濃縮、概括或省略原文資訊。\n- 保持資訊與事件出現順序，不任意前移、後置或重組。\n- 保留段落功能與敘事推進；可依中文節奏調整，但不得造成內容重述或遺漏。\n- 僅翻譯【Korean】中的當前內容；【Previous】只供承接語境，不得翻譯或改寫進輸出。\n【Korean】\n정태의는 난감해하고 있었다. \n\n그러나 실상 그것은 그가 난감해할 일은 아니었다. 먼 타국에 떼어놓고 온 괴물 같은 남자는 어쨌든 이지가 제대로 돌아가고 있는, 나름대로 이성적인 인간이었고, 그는 이 상황이 결코 정태의가 의도해서 벌어진 상황이 아니란 걸 이해해줄 것이다. \n\n그러나, ‘몇 달 전부터 벼르고 별러서 천신만고 끝에 겨우 일주일 휴가를 뺐는데, 그놈이 일 때문에 예정보다 늦게 돌아온다고 해서 내 휴가를 깎아먹을 수는 없다’라고 분연히 주장하며, 이웃나라까지 일하러 간 동생을 내팽개치고 정태의만 홀랑 데리고 머나먼 남국의 섬으로 휴가를 와버린 카일이 무사할 수 있을지가 사뭇 걱정이 되었다. (카일도 평소의 이성적인 그였더라면 이런 짓을 막 벌이진 않았을 테지만, 일하러 떠나기 직전에 카일이 아끼던 책을 불살라버린 동생의 작태에 사흘을 앓아누울 정도로 광분했던 탓이 다분했다.) \n\n어찌 되었든, 직통이라곤 없이 경비행기로 따로 들어와야 하는 이 여유로운 남국의 섬에 있는 호텔의 로비 소파에 앉아, 지금이야 좋지만 베를린으로 돌아간 뒤에 어떤 사단이 날지 그저 걱정스럽기만 한 정태의는 한숨을 쉬고 있었다.\n【Output】直出譯文，禁止標題、註解、Markdown。",
+      "user_prompt": "[NTPE Translation Engine v3.0 Context Intelligence]\nprofile: narration_heavy\ntone: neutral\nnarrative_state: current_scene\n- Translate according to the local scene context; do not translate word-by-word when it creates stiff or unnatural Traditional Chinese.\n- Preserve the original meaning, sequence, and emotional logic while using natural Traditional Chinese novel prose.\n- Use context-aware phrasing for breath, reaction, and body-action descriptions; avoid literal wording that sounds physically or semantically odd.\n- Avoid mechanical repeated structures and redundant phrasing; keep the sentence concise when the source meaning is already clear.\n- Keep continuity with the previous chunk's characters, tone, relationship distance, and narrative state.\n- For narration-heavy scenes, prioritize smooth transitions, clear viewpoint, and readable paragraph flow.\n[/NTPE Translation Engine v3.0 Context Intelligence]\n\n[NTPE Translation Engine v3.0 Prompt Intelligence]\nprofile: literary\n- Translate the full source text into Traditional Chinese; do not summarize, omit, merge, or add scenes.\n- Use fluent Traditional Chinese suitable for novels, preserving the source's register and emotional pacing.\n- Render dialogue with Traditional Chinese corner quotes 「」 and keep speaker intent clear.\n- Maintain character voice, relationship distance, honorific nuance, and narrative point of view consistently.\n- Avoid forced Taiwanese colloquial wording; use it only when the source tone naturally supports it.\n- Preserve literary imagery, cadence, restraint, and implied emotion without over-explaining.\n- Use polished novel prose rather than literal sentence-by-sentence stiffness.\n[/NTPE Translation Engine v3.0 Prompt Intelligence]\n\n【Policy】忠於原文，不漏譯、不增刪。；先判斷主詞、行為者與指代，避免人物錯置。；Glossary 譯名逐字一致。；慣用語按中文小說語感處理，不機械直譯。；短答、反諷、模稜兩可語氣需保留，不擅自解釋。；避免生硬直譯，動作與心理描寫需像中文小說正文。；只輸出繁體中文譯文，對話用「」。\n【Profile】\n- 文學模式；主詞清楚、角色一致、中文像小說正文。\n【Narrative】場景含酒店／大廳／島嶼／海邊等度假場域；用詞依作品背景自然選擇。；含德國／柏林背景；保留作品文化距離，不刻意本地化。；난감하다 依語境處理為為難、傷腦筋、不知如何是好等心理狀態。；카일이 주장... 結構中，主張與相關動作優先歸於凱爾。；本段有長句；先切分敘事單位，再保持主詞與行為者正確。\n【Characters】정태의=鄭泰義；카일=凱爾\n【Subject】鄭泰義是心理描寫主體；난감 不等於身體不舒服。；凱爾是『主張／堅持說』的主體，後續相關行為不要誤歸鄭泰義。\n【Glossary】정태의=鄭泰義；카일=凱爾；禁:丁泰義->鄭泰義；禁:凯尔->凱爾；禁:凱爾爾->凱爾；禁:卡爾->凱爾；禁:定泰義->鄭泰義；禁:正太義->鄭泰義；禁:正泰義->鄭泰義；禁:鄭太義->鄭泰義；禁:鄭泰儀->鄭泰義；禁:鄭泰宜->鄭泰義\n【翻譯紀律】\n- 不得新增原文不存在的事件、設定或劇情。\n- 不得重述前文、上一段或本段已翻譯過的資訊。\n- 不得為了銜接或流暢而自行增加過渡敘述。\n- 不得自行補充原文未表達的人物心理、動機或判斷。\n- 不得摘要、濃縮、概括或省略原文資訊。\n- 保持資訊與事件出現順序，不任意前移、後置或重組。\n- 保留段落功能與敘事推進；可依中文節奏調整，但不得造成內容重述或遺漏。\n- 僅翻譯【Korean】中的當前內容；【Previous】只供承接語境，不得翻譯或改寫進輸出。\n【小說語感規範】\n- 依繁體中文小說語序自然重組句子，避免保留韓文或外語的生硬修飾順序與機械句型。\n- 依作品時代、地域與人物身分選詞；不強制使用台灣特有用語，也不得使用不合背景的現代口語。\n- 不得把原文含糊資訊具體化，不得自行新增地名、交通方式、時間長度、動作強度或背景設定。\n- 保持同一角色在相同情境中的稱呼、敬語層級與口吻一致；不得自行放大人物情緒或改變角色性格；保持原文敘事人稱、視角與敘事距離。\n【Korean】\n정태의는 난감해하고 있었다. \n\n그러나 실상 그것은 그가 난감해할 일은 아니었다. 먼 타국에 떼어놓고 온 괴물 같은 남자는 어쨌든 이지가 제대로 돌아가고 있는, 나름대로 이성적인 인간이었고, 그는 이 상황이 결코 정태의가 의도해서 벌어진 상황이 아니란 걸 이해해줄 것이다. \n\n그러나, ‘몇 달 전부터 벼르고 별러서 천신만고 끝에 겨우 일주일 휴가를 뺐는데, 그놈이 일 때문에 예정보다 늦게 돌아온다고 해서 내 휴가를 깎아먹을 수는 없다’라고 분연히 주장하며, 이웃나라까지 일하러 간 동생을 내팽개치고 정태의만 홀랑 데리고 머나먼 남국의 섬으로 휴가를 와버린 카일이 무사할 수 있을지가 사뭇 걱정이 되었다. (카일도 평소의 이성적인 그였더라면 이런 짓을 막 벌이진 않았을 테지만, 일하러 떠나기 직전에 카일이 아끼던 책을 불살라버린 동생의 작태에 사흘을 앓아누울 정도로 광분했던 탓이 다분했다.) \n\n어찌 되었든, 직통이라곤 없이 경비행기로 따로 들어와야 하는 이 여유로운 남국의 섬에 있는 호텔의 로비 소파에 앉아, 지금이야 좋지만 베를린으로 돌아간 뒤에 어떤 사단이 날지 그저 걱정스럽기만 한 정태의는 한숨을 쉬고 있었다.\n【Output】直出譯文，禁止標題、註解、Markdown。",
       "prompt_mode": "compact_literary_v6_ter_v1_5",
       "profile": "literary",
       "prompt_profile": {
         "system_tokens": 11,
-        "policy_tokens": 171,
+        "policy_tokens": 257,
         "context_tokens": 102,
         "glossary_tokens": 53,
         "source_tokens": 242,
-        "total_tokens": 579,
-        "total_chars": 1398
+        "total_tokens": 665,
+        "total_chars": 1603
       },
       "narrative_context": {
         "perspective": "第三人稱小說敘事",
@@ -172,16 +172,16 @@
           }
         ],
         "alias_map": {
-          "丁泰義": "鄭泰義",
-          "定泰義": "鄭泰義",
           "鄭泰宜": "鄭泰義",
-          "正太義": "鄭泰義",
-          "正泰義": "鄭泰義",
-          "鄭泰儀": "鄭泰義",
           "鄭太義": "鄭泰義",
+          "鄭泰儀": "鄭泰義",
+          "定泰義": "鄭泰義",
+          "正太義": "鄭泰義",
+          "丁泰義": "鄭泰義",
+          "正泰義": "鄭泰義",
           "凱爾爾": "凱爾",
-          "卡爾": "凱爾",
-          "凯尔": "凱爾"
+          "凯尔": "凱爾",
+          "卡爾": "凱爾"
         },
         "max_terms": 24,
         "max_aliases": 18
@@ -209,6 +209,27 @@
           "PREVIOUS_CONTEXT_ONLY"
         ],
         "discipline_rule_count": 8,
+        "naturalness_policy_version": "6.0.0-stage12.4",
+        "naturalness_policy_enabled": true,
+        "naturalness_rule_count": 4,
+        "discipline_engine_version": "6.0.0",
+        "discipline_policy_version": "6.0.0-stage02",
+        "discipline_policy_source": "core.translation_discipline",
+        "discipline_profile": "literary_balanced",
+        "active_rule_codes": [
+          "NO_ADDED_PLOT",
+          "NO_PREVIOUS_RESTATEMENT",
+          "NO_ADDED_TRANSITION",
+          "NO_ADDED_PSYCHOLOGY",
+          "NO_SUMMARIZATION",
+          "PRESERVE_INFORMATION_ORDER",
+          "PRESERVE_PARAGRAPH_INTENT",
+          "PREVIOUS_CONTEXT_ONLY"
+        ],
+        "active_rule_count": 8,
+        "generation_rule_count": 8,
+        "adaptive_rule_codes": [],
+        "adaptive_rule_count": 0,
         "runtime_wiring_verified": true
       },
       "prompt_discipline_enabled": true,
@@ -287,7 +308,24 @@
       "prompt_compiler": "5.5.2-discipline",
       "prompt_discipline_enabled": true,
       "discipline_rule_count": 8,
-      "runtime_wiring_verified": true
+      "runtime_wiring_verified": true,
+      "discipline_engine_version": "6.0.0",
+      "discipline_profile": "literary_balanced",
+      "discipline_policy_version": "6.0.0-stage02",
+      "discipline_policy_source": "core.translation_discipline",
+      "active_rule_codes": [
+        "NO_ADDED_PLOT",
+        "NO_PREVIOUS_RESTATEMENT",
+        "NO_ADDED_TRANSITION",
+        "NO_ADDED_PSYCHOLOGY",
+        "NO_SUMMARIZATION",
+        "PRESERVE_INFORMATION_ORDER",
+        "PRESERVE_PARAGRAPH_INTENT",
+        "PREVIOUS_CONTEXT_ONLY"
+      ],
+      "active_rule_count": 8,
+      "generation_rule_count": 8,
+      "adaptive_rule_count": 0
     },
     "qa_requirements": {
       "check_korean_residue": true,
@@ -306,7 +344,7 @@
       "provider_attempt": 1
     },
     "metadata": {
-      "created_at": "2026-07-11T12:11:47",
+      "created_at": "2026-07-12T23:11:29",
       "created_by": "NTPE 1.2 Translation Engine Refactoring v2.0",
       "package_version": "1.2-translation-engine-refactor-v2.0",
       "prompt_intelligence": {

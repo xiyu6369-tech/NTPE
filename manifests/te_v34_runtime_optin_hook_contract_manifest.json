@@ -1,0 +1,57 @@
+{
+  "version": "TE-v3.4",
+  "stage": "3.4.1",
+  "layer": "runtime_optin_adapter_hook",
+  "contract": "RuntimeOptInHookContract",
+  "enabled_by_default": false,
+  "activation_mode": "explicit_opt_in_only",
+  "execution_mode": "mock_only",
+  "allowed_callers": [
+    "translation_runtime"
+  ],
+  "forbidden_side_effects": [
+    "provider_runtime",
+    "http_client",
+    "api_key",
+    "launcher_flow",
+    "real_translation"
+  ],
+  "required_prechecks": [
+    "RuntimeIntegrationFeatureFlag",
+    "RuntimeIntegrationDisabledGuard",
+    "RuntimeIntegrationMockOrchestrator"
+  ],
+  "expected_hook_inputs": [
+    "runtime_state",
+    "resume_plan",
+    "config",
+    "env"
+  ],
+  "expected_hook_outputs": [
+    "hook_status",
+    "integration_status",
+    "runtime_report",
+    "export_outputs"
+  ],
+  "guarantees": [
+    "disabled_by_default",
+    "explicit_opt_in_only",
+    "mock_only",
+    "no_provider_runtime_dependency",
+    "no_http_client_calls",
+    "no_api_key_read_write",
+    "launcher_translate_flow_unchanged",
+    "translation_runtime_flow_unchanged",
+    "no_real_translation_execution_path",
+    "te_v32_runtime_scheduler_freeze_preserved",
+    "te_v33_runtime_integration_freeze_preserved"
+  ],
+  "validation_commands": [
+    "python ntpe_te_v32_runtime_scheduler_freeze_test.py",
+    "python ntpe_te_v33_runtime_integration_freeze_test.py",
+    "python ntpe_te_v34_stage341_runtime_optin_hook_contract_test.py",
+    "python -m pytest tests\\integration\\translation_scheduler_v32_runtime_scheduler_freeze_test.py tests\\integration\\translation_scheduler_v33_runtime_integration_freeze_test.py tests\\integration\\translation_scheduler_stage341_runtime_optin_hook_contract_test.py -q",
+    "python ntpe_validate.py"
+  ],
+  "next_stage": "TE-v3.4 Stage-3.4.2 Runtime Opt-in Hook Guard"
+}

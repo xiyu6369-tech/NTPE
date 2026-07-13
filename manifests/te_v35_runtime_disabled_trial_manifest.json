@@ -1,0 +1,66 @@
+{
+  "version": "TE-v3.5",
+  "release_id": "TE-v3.5-runtime-disabled-trial-freeze",
+  "layer": "runtime_disabled_trial",
+  "frozen": true,
+  "stages": [
+    {
+      "stage": "3.5.1",
+      "name": "Runtime Disabled Trial Contract",
+      "component": "RuntimeDisabledTrialContract"
+    },
+    {
+      "stage": "3.5.2",
+      "name": "Runtime Disabled Trial Guard",
+      "component": "RuntimeDisabledTrialGuard"
+    },
+    {
+      "stage": "3.5.3",
+      "name": "Runtime Disabled Trial Mock Bridge",
+      "component": "RuntimeDisabledTrialMockBridge"
+    },
+    {
+      "stage": "3.5.4",
+      "name": "Runtime Disabled Trial Boundary Regression",
+      "component": "boundary_regression"
+    }
+  ],
+  "default_mode": "disabled",
+  "enabled_mode": "mock_only",
+  "runtime_touch_mode": "none",
+  "launcher_touch_mode": "none",
+  "provider_touch_mode": "none",
+  "guarantees": [
+    "disabled_by_default",
+    "enabled_mode_mock_only",
+    "runtime_touch_mode_none",
+    "launcher_touch_mode_none",
+    "provider_touch_mode_none",
+    "no_translation_runtime_dependency",
+    "no_provider_runtime_dependency",
+    "no_http_client_calls",
+    "no_api_key_read_write",
+    "launcher_translate_flow_unchanged",
+    "translation_runtime_flow_unchanged",
+    "prompt_context_naturalness_guard_unchanged",
+    "no_real_translation_execution_path",
+    "no_real_translation_output",
+    "request_summary_does_not_store_source_text",
+    "te_v32_runtime_scheduler_freeze_preserved",
+    "te_v33_runtime_integration_freeze_preserved",
+    "te_v34_runtime_optin_hook_freeze_preserved"
+  ],
+  "validation_commands": [
+    "python ntpe_te_v32_runtime_scheduler_freeze_test.py",
+    "python ntpe_te_v33_runtime_integration_freeze_test.py",
+    "python ntpe_te_v34_runtime_optin_hook_freeze_test.py",
+    "python ntpe_te_v35_stage351_runtime_disabled_trial_contract_test.py",
+    "python ntpe_te_v35_stage352_runtime_disabled_trial_guard_test.py",
+    "python ntpe_te_v35_stage353_runtime_disabled_trial_mock_bridge_test.py",
+    "python ntpe_te_v35_stage354_runtime_disabled_trial_boundary_regression_test.py",
+    "python ntpe_te_v35_runtime_disabled_trial_freeze_test.py",
+    "python -m pytest tests\\integration\\translation_scheduler_v32_runtime_scheduler_freeze_test.py tests\\integration\\translation_scheduler_v33_runtime_integration_freeze_test.py tests\\integration\\translation_scheduler_v34_runtime_optin_hook_freeze_test.py tests\\integration\\translation_scheduler_stage351_runtime_disabled_trial_contract_test.py tests\\integration\\translation_scheduler_stage352_runtime_disabled_trial_guard_test.py tests\\integration\\translation_scheduler_stage353_runtime_disabled_trial_mock_bridge_test.py tests\\integration\\translation_scheduler_stage354_runtime_disabled_trial_boundary_regression_test.py tests\\integration\\translation_scheduler_v35_runtime_disabled_trial_freeze_test.py -q",
+    "python ntpe_validate.py"
+  ],
+  "next_stage": "TE-v3.6 Runtime Safe Adapter Hook Preflight"
+}

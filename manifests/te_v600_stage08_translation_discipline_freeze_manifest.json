@@ -1,0 +1,40 @@
+{
+  "schema_version": "6.0.0-stage08",
+  "stage": "TE-v6.0-stage08-translation-discipline-freeze",
+  "name": "Translation Discipline Freeze & Release Validation",
+  "release_line": "TE-v6.0",
+  "version": "6.0.0-stage08",
+  "frozen": true,
+  "stages": [
+    "stage01-discipline-architecture-foundation",
+    "stage02-discipline-policy-activation",
+    "stage03-discipline-quality-enforcement",
+    "stage04-adaptive-local-repair-framework",
+    "stage05-adaptive-retry-decision-engine",
+    "stage06-discipline-runtime-orchestrator",
+    "stage07-discipline-observability-audit-trail"
+  ],
+  "compatibility": {
+    "provider_calls_added": 0,
+    "prompt_text_changed": false,
+    "prompt_token_profile_changed": false,
+    "quality_score_changed": false,
+    "quality_decision_changed": false,
+    "timeout_changed": false,
+    "retry_policy_changed": false,
+    "resume_changed": false,
+    "nvidia_rpm_ceiling": 40
+  },
+  "public_entrypoints": [
+    "core.translation_discipline.TranslationDisciplineEngine",
+    "core.translation_discipline.DisciplineQualityEnforcer",
+    "core.translation_discipline.AdaptiveLocalRepairFramework",
+    "core.translation_discipline.AdaptiveRetryDecisionEngine",
+    "core.translation_discipline.TranslationDisciplineRuntimeOrchestrator",
+    "core.translation_discipline.DisciplineAuditTrail"
+  ],
+  "tests": [
+    "ntpe_te_v600_stage08_translation_discipline_freeze_test.py",
+    "tests/integration/translation_discipline_freeze_v600_stage08_test.py"
+  ]
+}

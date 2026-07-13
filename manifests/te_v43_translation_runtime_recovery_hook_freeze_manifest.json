@@ -1,0 +1,31 @@
+{
+  "version": "TE-v4.3",
+  "stage": "4.3.6",
+  "release_id": "TE-v4.3-translation-runtime-recovery-hook-freeze",
+  "layer": "translation_runtime_recovery_hook",
+  "frozen": true,
+  "stages": [
+    "4.3.1",
+    "4.3.2",
+    "4.3.3",
+    "4.3.4",
+    "4.3.5"
+  ],
+  "components": [
+    "TranslationRuntimeRecoveryHookContract",
+    "RuntimeHookAdmissionAdapter",
+    "RuntimeSingleChunkShadowHook",
+    "RuntimeHookResultMapper",
+    "RuntimeHookBoundaryRegression"
+  ],
+  "default_mode": "disabled",
+  "enabled_mode": "shadow_only",
+  "single_chunk_only": true,
+  "result_replacement_allowed": false,
+  "provider_fallback_allowed": false,
+  "real_provider_request_allowed": false,
+  "translation_runtime_main_flow_modified": false,
+  "provider_runtime_modified": false,
+  "launcher_modified": false,
+  "next_stage": "TE-v4.4 Translation Runtime Recovery Controlled Execution Pilot"
+}

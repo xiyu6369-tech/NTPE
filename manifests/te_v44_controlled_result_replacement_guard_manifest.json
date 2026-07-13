@@ -1,0 +1,8 @@
+{
+  "version": "TE-v4.4",
+  "stage": "4.4.4",
+  "component": "ControlledResultReplacementGuard",
+  "decision_only": true,
+  "replacement_scope": "controlled_mapping_only",
+  "runtime_state_modified": false
+}

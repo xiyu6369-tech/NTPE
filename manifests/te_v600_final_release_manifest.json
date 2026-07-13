@@ -1,0 +1,190 @@
+{
+  "version": "6.0.0",
+  "release_channel": "stable",
+  "frozen": true,
+  "frozen_stages": [
+    "01",
+    "02",
+    "03",
+    "04",
+    "05",
+    "06",
+    "07",
+    "08",
+    "08.1",
+    "09",
+    "10",
+    "10.1",
+    "10.1.1",
+    "10.2",
+    "10.3",
+    "11.1",
+    "11.2",
+    "11.3",
+    "11.4",
+    "11.5",
+    "11.6",
+    "12.1",
+    "12.2",
+    "12.3",
+    "12.4",
+    "12.4.1",
+    "12.5"
+  ],
+  "public_apis": [
+    "TEV6ReleaseContract",
+    "build_te_v6_release_contract",
+    "validate_te_v6_release"
+  ],
+  "provider_invariants": [
+    "nvidia-provider",
+    "meta/llama-3.3-70b-instruct",
+    "40-rpm-ceiling",
+    "timeout-propagation",
+    "provider-attempts",
+    "retry-wait",
+    "503-backpressure",
+    "provider-budget",
+    "provider-request-accounting"
+  ],
+  "prompt_invariants": [
+    "prompt-compiler",
+    "prompt-discipline",
+    "translation-discipline-policy",
+    "naturalness-policy",
+    "single-injection-source",
+    "prompt-token-observability",
+    "NTPE_PROMPT_DISCIPLINE",
+    "NTPE_ADAPTIVE_PROMPT_FEEDBACK",
+    "NTPE_NATURALNESS_POLICY",
+    "rollback"
+  ],
+  "quality_invariants": [
+    "quality-v5",
+    "legacy-qa-adapter",
+    "unified-quality-gate",
+    "score-decision-schema",
+    "smart-local-repair",
+    "adaptive-local-repair",
+    "blocking-warning-boundary",
+    "best-attempt-selection",
+    "provider-retry-fallback",
+    "semantic-repetition-guard",
+    "completeness-guard",
+    "unsupported-detail-guard"
+  ],
+  "retry_invariants": [
+    "local_repair",
+    "targeted_retry",
+    "full_retry",
+    "reject",
+    "provider-budget",
+    "targeted-retry-evidence-required",
+    "fail-closed-merge",
+    "best-attempt-fallback",
+    "legacy-segment-recovery",
+    "resume"
+  ],
+  "evidence_invariants": [
+    "evidence-model",
+    "alignment-offsets",
+    "monotonic-mapping",
+    "reliability-confidence",
+    "evidence-to-retry",
+    "safe-targeted-merge",
+    "evidence-audit",
+    "unreliable-evidence-cannot-authorize-targeted-retry"
+  ],
+  "naturalness_invariants": [
+    "period-appropriate-fluent-traditional-chinese",
+    "no-forced-taiwan-localization",
+    "faithfulness-before-naturalness",
+    "safe-canonicalization",
+    "hallucination-guard",
+    "literary-collocation-guard",
+    "voice-register-guard",
+    "no-subjective-rewriting"
+  ],
+  "production_validation": {
+    "stage": "TE-v6.0-Stage10.1-ProductionValidation",
+    "status": "success",
+    "sets": {
+      "total": 1,
+      "success": 1,
+      "skipped": 0,
+      "failed": 0,
+      "dry_run": false,
+      "elapsed_seconds": 159.4
+    }
+  },
+  "freeze_readiness": {
+    "ready": true,
+    "blockers": []
+  },
+  "validation_commands": [
+    "python ntpe_te_v600_final_release_freeze_test.py",
+    "python -m pytest -q tests/integration/translation_engine_v600_final_release_freeze_test.py tests/integration/translation_engine_v600_final_import_api_test.py",
+    "python ntpe_validate.py",
+    "git diff --check"
+  ],
+  "file_inventory": [
+    {
+      "path": "artifacts/te_v6_0_final_validation/TE_V6_0_FINAL_VALIDATION.json",
+      "sha256": "716e3d6e22b86a071acf56d6bd88f5293b609eae1f7fc5c35c43f6f3af2a0935"
+    },
+    {
+      "path": "artifacts/te_v6_0_final_validation/TE_V6_0_FINAL_VALIDATION.md",
+      "sha256": "15b5c788afd98fa0d0dc762882684de17bfd13b80c4e1b021614c5b007b92c8e"
+    },
+    {
+      "path": "core/translation_release/__init__.py",
+      "sha256": "939c15321752a8ad5d4ba5f90247eea9eb0fe18d442e9a77dc965bc8ba4db7a8"
+    },
+    {
+      "path": "core/translation_release/release_contract.py",
+      "sha256": "789377b4d3bc2ae7fc76304208a2c41d35d94e9f0046f8849ad0fb10c8deea8c"
+    },
+    {
+      "path": "core/translation_release/release_manifest.py",
+      "sha256": "a8eb5cf1e07f8a71e0cc919905ba08cf5c18a2903f074a27e8344ede7b2abf5a"
+    },
+    {
+      "path": "core/translation_release/release_validation.py",
+      "sha256": "d9d29194da730ac1417beeed5831cb34a845d2f742fb5966cc215551fd1d84e9"
+    },
+    {
+      "path": "core/translation_release/te_v6_release.py",
+      "sha256": "86d0d4bb50d6243eadd6f7fe7ef2ae8c6846a3302d5683903d7b8d72311f63e4"
+    },
+    {
+      "path": "docs/releases/te_v6_0/TE_V6_0_FINAL_RELEASE_FREEZE.md",
+      "sha256": "9df85c6db5c43dc363e6063cc3332ffb355d1acdf7602945706e7563f26e6f03"
+    },
+    {
+      "path": "ntpe_te_v600_final_release_freeze_test.py",
+      "sha256": "2911cee421554ac6e556787ca12ff28d9b8b3b5474712cfc03e49c130dac95c7"
+    },
+    {
+      "path": "tests/integration/translation_engine_v600_final_import_api_test.py",
+      "sha256": "39460ac19589bf7d87b9710fe657400657b93c7a15bb7178feb456d901fb574c"
+    },
+    {
+      "path": "tests/integration/translation_engine_v600_final_release_freeze_test.py",
+      "sha256": "7b9dad270a3ab381f235247c817604a497b63b9de362e041bfc7e3d068db8af1"
+    },
+    {
+      "path": "tests/literary/outputs/TE-v6.0-Stage10.1-ProductionValidation/Stage10_2_Comparison_Report.json",
+      "sha256": "40ebb9fd61ff882e066b3ad6961d91075dc820b0bfcf8918cc62e388474ae742"
+    },
+    {
+      "path": "tests/literary/outputs/TE-v6.0-Stage10.1-ProductionValidation/Stage10_2_Comparison_Report.md",
+      "sha256": "23d0d695cd145136bb833355f1f02af68b014189d7869182a4b25f1fe03efa92"
+    },
+    {
+      "path": "tests/literary/outputs/TE-v6.0-Stage10.1-ProductionValidation/Stage10_3_Freeze_Readiness.json",
+      "sha256": "597ba9ab6b8fb97794026ca003f5099b5e1b20b840c8dae0967e978452b6dad2"
+    }
+  ],
+  "git_commit": "<pending>",
+  "tag": "<pending: te-v6.0.0>"
+}

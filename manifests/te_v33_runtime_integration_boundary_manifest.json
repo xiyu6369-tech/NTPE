@@ -1,0 +1,44 @@
+{
+  "version": "TE-v3.3",
+  "stage": "3.3.5",
+  "layer": "runtime_scheduler_integration_boundary",
+  "scope": "boundary_regression",
+  "components": [
+    "RuntimeIntegrationContract",
+    "RuntimeIntegrationFeatureFlag",
+    "RuntimeIntegrationDisabledGuard",
+    "RuntimeIntegrationMockOrchestrator"
+  ],
+  "expected_modes": [
+    "blocked",
+    "mock"
+  ],
+  "forbidden_boundaries": {
+    "provider_runtime": ["not_connected", "external"],
+    "http_client": ["forbidden", "not_called"],
+    "api_key": ["forbidden", "not_used"],
+    "launcher_flow": ["unchanged"],
+    "translation_runtime_flow": ["unchanged"]
+  },
+  "guarantees": [
+    "no_provider_runtime_dependency",
+    "no_http_client_calls",
+    "no_api_key_read_write",
+    "launcher_translate_flow_unchanged",
+    "translation_runtime_flow_unchanged",
+    "no_real_translation_output",
+    "source_text_not_stored",
+    "te_v32_runtime_scheduler_freeze_preserved"
+  ],
+  "validation_commands": [
+    "python ntpe_te_v32_runtime_scheduler_freeze_test.py",
+    "python ntpe_te_v33_stage331_runtime_integration_contract_test.py",
+    "python ntpe_te_v33_stage332_runtime_integration_feature_flag_test.py",
+    "python ntpe_te_v33_stage333_runtime_integration_disabled_guard_test.py",
+    "python ntpe_te_v33_stage334_runtime_integration_mock_orchestrator_test.py",
+    "python ntpe_te_v33_stage335_runtime_integration_boundary_regression_test.py",
+    "python -m pytest tests\\integration\\translation_scheduler_v32_runtime_scheduler_freeze_test.py tests\\integration\\translation_scheduler_stage331_runtime_integration_contract_test.py tests\\integration\\translation_scheduler_stage332_runtime_integration_feature_flag_test.py tests\\integration\\translation_scheduler_stage333_runtime_integration_disabled_guard_test.py tests\\integration\\translation_scheduler_stage334_runtime_integration_mock_orchestrator_test.py tests\\integration\\translation_scheduler_stage335_runtime_integration_boundary_regression_test.py -q",
+    "python ntpe_validate.py"
+  ],
+  "next_stage": "TE-v3.3 Stage-3.3.6 Runtime Integration Freeze"
+}

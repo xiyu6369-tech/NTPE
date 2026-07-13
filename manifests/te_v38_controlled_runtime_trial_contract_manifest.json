@@ -1,0 +1,44 @@
+{
+  "version": "TE-v3.8",
+  "stage": "3.8.1",
+  "release_id": "TE-v3.8-stage-3.8.1-controlled-runtime-trial-contract",
+  "layer": "controlled_runtime_integration_trial",
+  "default_mode": "disabled",
+  "activation_mode": "explicit_opt_in_only",
+  "execution_mode": "contract_only",
+  "real_translation": false,
+  "real_runtime_execution": false,
+  "provider_access": "forbidden",
+  "http_access": "forbidden",
+  "api_key_access": "forbidden",
+  "launcher_touch_mode": "none",
+  "translation_runtime_touch_mode": "none",
+  "rollback_mode": "immediate_disable",
+  "required_freezes": ["TE-v3.2", "TE-v3.3", "TE-v3.4", "TE-v3.5", "TE-v3.6", "TE-v3.7"],
+  "required_prechecks": [
+    "RuntimeReadinessDecision",
+    "RuntimeIntegrationFeatureFlag",
+    "RuntimeOptInHookGuard",
+    "RuntimeSafeHookPreflightGuard"
+  ],
+  "guarantees": [
+    "contract_only",
+    "disabled_by_default",
+    "explicit_opt_in_required",
+    "execution_not_allowed",
+    "real_runtime_not_allowed",
+    "provider_runtime_unchanged",
+    "no_http_client_calls",
+    "no_api_key_read_write",
+    "launcher_translate_flow_unchanged",
+    "translation_runtime_flow_unchanged",
+    "no_raw_source_text_text_or_chunks_retention",
+    "te_v32_through_te_v37_freezes_preserved"
+  ],
+  "validation_commands": [
+    "python ntpe_te_v38_stage381_controlled_runtime_trial_contract_test.py",
+    "python -m pytest tests\\integration\\translation_scheduler_stage381_controlled_runtime_trial_contract_test.py -q",
+    "python ntpe_validate.py"
+  ],
+  "next_stage": "TE-v3.8 Stage-3.8.2 Controlled Runtime Trial Admission Gate"
+}

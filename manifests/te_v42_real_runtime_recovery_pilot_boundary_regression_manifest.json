@@ -1,0 +1,29 @@
+{
+  "version": "TE-v4.2",
+  "stage": "4.2.6",
+  "release_id": "TE-v4.2-stage-4.2.6-real-runtime-recovery-pilot-boundary-regression",
+  "layer": "real_runtime_recovery_pilot_boundary_regression",
+  "flow": [
+    "RealRuntimeRecoveryPilotContract",
+    "RealRuntimeRecoveryPilotAdmissionGate",
+    "RealRuntimeRecoveryPilotDryRunRunner",
+    "RealRuntimeRecoveryPilotDryRunBundle",
+    "RealRuntimeRecoveryPilotRollbackController"
+  ],
+  "default_mode": "disabled",
+  "enabled_mode": "single_chunk_dry_run",
+  "single_chunk_only": true,
+  "max_recovery_flow_per_chunk": 1,
+  "guarantees": {
+    "provider_runtime_modified": false,
+    "translation_runtime_modified": false,
+    "launcher_modified": false,
+    "http_called": false,
+    "api_key_accessed": false,
+    "real_provider_request_created": false,
+    "real_translation_executed": false,
+    "source_text_retained": false,
+    "translated_text_retained": false
+  },
+  "next_stage": "TE-v4.2 Stage-4.2.7 Real Runtime Recovery Pilot Freeze"
+}

@@ -1,0 +1,61 @@
+{
+  "version": "TE-v3.3",
+  "release_id": "TE-v3.3-runtime-integration-freeze",
+  "layer": "runtime_integration_planning",
+  "frozen": true,
+  "stages": [
+    {
+      "stage": "3.3.1",
+      "name": "Runtime Integration Planning Contract",
+      "component": "RuntimeIntegrationContract"
+    },
+    {
+      "stage": "3.3.2",
+      "name": "Runtime Integration Feature Flag",
+      "component": "RuntimeIntegrationFeatureFlag"
+    },
+    {
+      "stage": "3.3.3",
+      "name": "Runtime Integration Disabled Path Guard",
+      "component": "RuntimeIntegrationDisabledGuard"
+    },
+    {
+      "stage": "3.3.4",
+      "name": "Runtime Integration Mock Orchestrator",
+      "component": "RuntimeIntegrationMockOrchestrator"
+    },
+    {
+      "stage": "3.3.5",
+      "name": "Runtime Integration Boundary Regression",
+      "component": "boundary_regression"
+    }
+  ],
+  "default_mode": "disabled",
+  "enabled_mode": "mock_only",
+  "guarantees": [
+    "disabled_by_default",
+    "enabled_mode_mock_only",
+    "no_provider_runtime_dependency",
+    "no_http_client_calls",
+    "no_api_key_read_write",
+    "launcher_translate_flow_unchanged",
+    "translation_runtime_flow_unchanged",
+    "prompt_context_naturalness_guard_unchanged",
+    "no_real_translation_execution_path",
+    "no_real_translation_output",
+    "request_summary_does_not_store_source_text",
+    "te_v32_runtime_scheduler_freeze_preserved"
+  ],
+  "validation_commands": [
+    "python ntpe_te_v32_runtime_scheduler_freeze_test.py",
+    "python ntpe_te_v33_stage331_runtime_integration_contract_test.py",
+    "python ntpe_te_v33_stage332_runtime_integration_feature_flag_test.py",
+    "python ntpe_te_v33_stage333_runtime_integration_disabled_guard_test.py",
+    "python ntpe_te_v33_stage334_runtime_integration_mock_orchestrator_test.py",
+    "python ntpe_te_v33_stage335_runtime_integration_boundary_regression_test.py",
+    "python ntpe_te_v33_runtime_integration_freeze_test.py",
+    "python -m pytest tests\\integration\\translation_scheduler_v32_runtime_scheduler_freeze_test.py tests\\integration\\translation_scheduler_stage331_runtime_integration_contract_test.py tests\\integration\\translation_scheduler_stage332_runtime_integration_feature_flag_test.py tests\\integration\\translation_scheduler_stage333_runtime_integration_disabled_guard_test.py tests\\integration\\translation_scheduler_stage334_runtime_integration_mock_orchestrator_test.py tests\\integration\\translation_scheduler_stage335_runtime_integration_boundary_regression_test.py tests\\integration\\translation_scheduler_v33_runtime_integration_freeze_test.py -q",
+    "python ntpe_validate.py"
+  ],
+  "next_stage": "TE-v3.4 Runtime Opt-in Adapter Hook Planning"
+}

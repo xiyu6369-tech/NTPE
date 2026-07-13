@@ -1,0 +1,51 @@
+{
+  "version": "TE-v4.2",
+  "stage": "4.2.2",
+  "release_id": "TE-v4.2-real-runtime-recovery-pilot-admission-gate",
+  "layer": "real_runtime_recovery_pilot_admission_gate",
+  "default_decision": "rejected",
+  "next_allowed_mode": "single_chunk_dry_run",
+  "execution_allowed": false,
+  "real_provider_request_allowed": false,
+  "real_translation_allowed": false,
+  "rollback_available": true,
+  "provider_runtime_touch_mode": "none",
+  "translation_runtime_touch_mode": "none",
+  "launcher_touch_mode": "none",
+  "forbidden_inputs": [
+    "source_text",
+    "translated_text",
+    "text",
+    "chunks",
+    "api_key",
+    "provider_client"
+  ],
+  "required_inputs": [
+    "RealRuntimeRecoveryPilotContract",
+    "readiness_state",
+    "feature_flag_state",
+    "single_chunk_request_metadata"
+  ],
+  "guarantees": {
+    "provider_runtime_modified": false,
+    "translation_runtime_modified": false,
+    "launcher_modified": false,
+    "http_called": false,
+    "api_key_accessed": false,
+    "recovery_flow_executed": false,
+    "adaptive_retry_harness_executed": false,
+    "real_provider_request_created": false,
+    "real_translation_executed": false,
+    "source_text_retained": false,
+    "translated_text_retained": false
+  },
+  "validation_commands": [
+    "python ntpe_te_v40_stage408_translation_reliability_freeze_test.py",
+    "python ntpe_te_v41_stage417_translation_reliability_execution_freeze_test.py",
+    "python ntpe_te_v42_stage421_real_runtime_recovery_pilot_contract_test.py",
+    "python ntpe_te_v42_stage422_real_runtime_recovery_pilot_admission_gate_test.py",
+    "python -m pytest tests\\integration\\translation_reliability_stage408_freeze_test.py tests\\integration\\translation_reliability_stage417_execution_freeze_test.py tests\\integration\\translation_reliability_stage421_real_runtime_recovery_pilot_contract_test.py tests\\integration\\translation_reliability_stage422_real_runtime_recovery_pilot_admission_gate_test.py -q",
+    "python ntpe_validate.py"
+  ],
+  "next_stage": "TE-v4.2 Stage-4.2.3 Real Runtime Recovery Pilot Rollback Controller"
+}

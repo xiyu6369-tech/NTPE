@@ -1,0 +1,60 @@
+{
+  "version": "TE-v3.5",
+  "stage": "3.5.1",
+  "layer": "runtime_adapter_hook_disabled_trial",
+  "contract": "RuntimeDisabledTrialContract",
+  "default_mode": "disabled",
+  "enabled_mode": "mock_only",
+  "runtime_touch_mode": "none",
+  "launcher_touch_mode": "none",
+  "provider_touch_mode": "none",
+  "real_translation": false,
+  "required_prechecks": [
+    "RuntimeIntegrationFeatureFlag",
+    "RuntimeOptInHookGuard",
+    "RuntimeOptInHookMockBridge"
+  ],
+  "expected_trial_inputs": [
+    "runtime_state",
+    "resume_plan",
+    "config",
+    "env"
+  ],
+  "expected_trial_outputs": [
+    "trial_status",
+    "hook_status",
+    "integration_status",
+    "runtime_report",
+    "export_outputs"
+  ],
+  "forbidden_side_effects": [
+    "provider_runtime",
+    "http_client",
+    "api_key",
+    "launcher_flow",
+    "translation_runtime_flow",
+    "real_translation"
+  ],
+  "guarantees": [
+    "disabled_by_default",
+    "enabled_mode_mock_only",
+    "runtime_touch_mode_none",
+    "launcher_touch_mode_none",
+    "provider_touch_mode_none",
+    "no_http_client_calls",
+    "no_api_key_read_write",
+    "no_real_translation_execution_path",
+    "te_v32_runtime_scheduler_freeze_preserved",
+    "te_v33_runtime_integration_freeze_preserved",
+    "te_v34_runtime_optin_hook_freeze_preserved"
+  ],
+  "validation_commands": [
+    "python ntpe_te_v32_runtime_scheduler_freeze_test.py",
+    "python ntpe_te_v33_runtime_integration_freeze_test.py",
+    "python ntpe_te_v34_runtime_optin_hook_freeze_test.py",
+    "python ntpe_te_v35_stage351_runtime_disabled_trial_contract_test.py",
+    "python -m pytest tests\\integration\\translation_scheduler_v32_runtime_scheduler_freeze_test.py tests\\integration\\translation_scheduler_v33_runtime_integration_freeze_test.py tests\\integration\\translation_scheduler_v34_runtime_optin_hook_freeze_test.py tests\\integration\\translation_scheduler_stage351_runtime_disabled_trial_contract_test.py -q",
+    "python ntpe_validate.py"
+  ],
+  "next_stage": "TE-v3.5 Stage-3.5.2 Runtime Disabled Trial Guard"
+}

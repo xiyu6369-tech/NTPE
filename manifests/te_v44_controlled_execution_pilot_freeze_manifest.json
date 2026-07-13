@@ -1,0 +1,28 @@
+{
+  "version": "TE-v4.4",
+  "stage": "4.4.6",
+  "release_id": "TE-v4.4-controlled-execution-pilot-freeze",
+  "layer": "translation_runtime_controlled_recovery",
+  "frozen": true,
+  "stages": ["4.4.1", "4.4.2", "4.4.3", "4.4.4", "4.4.5"],
+  "components": [
+    "ControlledExecutionContract",
+    "ControlledExecutionAdmissionGate",
+    "SingleChunkControlledRecoveryExecutor",
+    "ControlledResultReplacementGuard",
+    "ControlledExecutionBoundaryRegression"
+  ],
+  "default_mode": "disabled",
+  "enabled_mode": "single_chunk_controlled_recovery",
+  "single_chunk_only": true,
+  "original_result_preserved": true,
+  "replacement_requires_guard": true,
+  "result_replacement_scope": "controlled_mapping_only",
+  "real_provider_request_allowed": false,
+  "provider_fallback_allowed": false,
+  "real_translation_allowed": false,
+  "translation_runtime_main_flow_modified": false,
+  "provider_runtime_modified": false,
+  "launcher_modified": false,
+  "next_stage": "TE-v4.5 Translation Runtime Optional Recovery Hook Integration"
+}

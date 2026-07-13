@@ -1,0 +1,43 @@
+{
+  "version": "TE-v3.5",
+  "stage": "3.5.4",
+  "layer": "runtime_disabled_trial_boundary",
+  "scope": "boundary_regression",
+  "components": [
+    "RuntimeDisabledTrialContract",
+    "RuntimeDisabledTrialGuard",
+    "RuntimeDisabledTrialMockBridge"
+  ],
+  "expected_modes": [
+    "trial_blocked",
+    "trial_mock_completed"
+  ],
+  "guarantees": [
+    "disabled_by_default",
+    "enabled_mode_mock_only",
+    "no_translation_runtime_dependency",
+    "no_provider_runtime_dependency",
+    "no_http_client_calls",
+    "no_api_key_read_write",
+    "launcher_translate_flow_unchanged",
+    "translation_runtime_flow_unchanged",
+    "no_real_translation_execution_path",
+    "no_real_translation_output",
+    "request_summary_does_not_store_source_text",
+    "te_v32_runtime_scheduler_freeze_preserved",
+    "te_v33_runtime_integration_freeze_preserved",
+    "te_v34_runtime_optin_hook_freeze_preserved"
+  ],
+  "validation_commands": [
+    "python ntpe_te_v32_runtime_scheduler_freeze_test.py",
+    "python ntpe_te_v33_runtime_integration_freeze_test.py",
+    "python ntpe_te_v34_runtime_optin_hook_freeze_test.py",
+    "python ntpe_te_v35_stage351_runtime_disabled_trial_contract_test.py",
+    "python ntpe_te_v35_stage352_runtime_disabled_trial_guard_test.py",
+    "python ntpe_te_v35_stage353_runtime_disabled_trial_mock_bridge_test.py",
+    "python ntpe_te_v35_stage354_runtime_disabled_trial_boundary_regression_test.py",
+    "python -m pytest tests\\integration\\translation_scheduler_v32_runtime_scheduler_freeze_test.py tests\\integration\\translation_scheduler_v33_runtime_integration_freeze_test.py tests\\integration\\translation_scheduler_v34_runtime_optin_hook_freeze_test.py tests\\integration\\translation_scheduler_stage351_runtime_disabled_trial_contract_test.py tests\\integration\\translation_scheduler_stage352_runtime_disabled_trial_guard_test.py tests\\integration\\translation_scheduler_stage353_runtime_disabled_trial_mock_bridge_test.py tests\\integration\\translation_scheduler_stage354_runtime_disabled_trial_boundary_regression_test.py -q",
+    "python ntpe_validate.py"
+  ],
+  "next_stage": "TE-v3.5 Stage-3.5.5 Runtime Disabled Trial Freeze"
+}

@@ -1,0 +1,54 @@
+{
+  "version": "TE-v3.2",
+  "release_id": "TE-v3.2-runtime-scheduler-freeze",
+  "layer": "runtime_scheduler_adapter",
+  "frozen": true,
+  "stages": [
+    {
+      "stage": "3.2.1",
+      "name": "Runtime Scheduler Adapter Skeleton",
+      "component": "RuntimeSchedulerAdapter"
+    },
+    {
+      "stage": "3.2.2",
+      "name": "Runtime Adapter Dry Run",
+      "component": "RuntimeAdapterDryRun"
+    },
+    {
+      "stage": "3.2.3",
+      "name": "Existing Scheduler Injection",
+      "component": "RuntimeSchedulerAdapter.run_with_scheduler"
+    },
+    {
+      "stage": "3.2.4",
+      "name": "Runtime Scheduler State Bridge",
+      "component": "RuntimeSchedulerStateBridge"
+    },
+    {
+      "stage": "3.2.5",
+      "name": "Runtime Scheduler Resume Contract",
+      "component": "RuntimeSchedulerResumeContract"
+    }
+  ],
+  "guarantees": [
+    "no_provider_runtime_dependency",
+    "no_http_client_calls",
+    "no_api_key_read_write",
+    "launcher_translate_flow_unchanged",
+    "translation_runtime_flow_unchanged",
+    "prompt_context_naturalness_guard_unchanged",
+    "no_frozen_dataclass_schema_changes",
+    "no_real_translation_execution_path"
+  ],
+  "validation_commands": [
+    "python ntpe_te_v32_stage321_runtime_scheduler_adapter_test.py",
+    "python ntpe_te_v32_stage322_runtime_adapter_dry_run_test.py",
+    "python ntpe_te_v32_stage323_existing_scheduler_injection_test.py",
+    "python ntpe_te_v32_stage324_runtime_scheduler_state_bridge_test.py",
+    "python ntpe_te_v32_stage325_runtime_scheduler_resume_contract_test.py",
+    "python ntpe_te_v32_runtime_scheduler_freeze_test.py",
+    "python -m pytest tests\\integration\\translation_scheduler_stage321_runtime_adapter_test.py tests\\integration\\translation_scheduler_stage322_runtime_adapter_dry_run_test.py tests\\integration\\translation_scheduler_stage323_existing_scheduler_injection_test.py tests\\integration\\translation_scheduler_stage324_runtime_state_bridge_test.py tests\\integration\\translation_scheduler_stage325_runtime_resume_contract_test.py tests\\integration\\translation_scheduler_v32_runtime_scheduler_freeze_test.py -q",
+    "python ntpe_validate.py"
+  ],
+  "next_stage": "TE-v3.3 Runtime Integration Planning"
+}

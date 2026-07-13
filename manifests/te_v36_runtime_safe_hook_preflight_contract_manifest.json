@@ -1,0 +1,70 @@
+{
+  "version": "TE-v3.6",
+  "stage": "3.6.1",
+  "layer": "runtime_safe_adapter_hook_preflight",
+  "contract": "RuntimeSafeHookPreflightContract",
+  "default_mode": "disabled",
+  "enabled_mode": "mock_only",
+  "runtime_touch_mode": "none",
+  "launcher_touch_mode": "none",
+  "provider_touch_mode": "none",
+  "real_translation": false,
+  "required_frozen_layers": [
+    "TE-v3.2 runtime_scheduler_adapter",
+    "TE-v3.3 runtime_integration_planning",
+    "TE-v3.4 runtime_optin_hook",
+    "TE-v3.5 runtime_disabled_trial"
+  ],
+  "required_prechecks": [
+    "RuntimeIntegrationFeatureFlag",
+    "RuntimeOptInHookGuard",
+    "RuntimeDisabledTrialGuard",
+    "RuntimeDisabledTrialMockBridge"
+  ],
+  "expected_preflight_inputs": [
+    "runtime_state",
+    "resume_plan",
+    "config",
+    "env"
+  ],
+  "expected_preflight_outputs": [
+    "preflight_status",
+    "trial_status",
+    "hook_status",
+    "integration_status",
+    "runtime_report",
+    "export_outputs"
+  ],
+  "forbidden_side_effects": [
+    "provider_runtime",
+    "http_client",
+    "api_key",
+    "launcher_flow",
+    "translation_runtime_flow",
+    "real_translation"
+  ],
+  "guarantees": [
+    "disabled_by_default",
+    "enabled_mode_mock_only",
+    "runtime_touch_mode_none",
+    "launcher_touch_mode_none",
+    "provider_touch_mode_none",
+    "no_http_client_calls",
+    "no_api_key_read_write",
+    "no_real_translation_execution_path",
+    "te_v32_runtime_scheduler_freeze_preserved",
+    "te_v33_runtime_integration_freeze_preserved",
+    "te_v34_runtime_optin_hook_freeze_preserved",
+    "te_v35_runtime_disabled_trial_freeze_preserved"
+  ],
+  "validation_commands": [
+    "python ntpe_te_v32_runtime_scheduler_freeze_test.py",
+    "python ntpe_te_v33_runtime_integration_freeze_test.py",
+    "python ntpe_te_v34_runtime_optin_hook_freeze_test.py",
+    "python ntpe_te_v35_runtime_disabled_trial_freeze_test.py",
+    "python ntpe_te_v36_stage361_runtime_safe_hook_preflight_contract_test.py",
+    "python -m pytest tests\\integration\\translation_scheduler_v32_runtime_scheduler_freeze_test.py tests\\integration\\translation_scheduler_v33_runtime_integration_freeze_test.py tests\\integration\\translation_scheduler_v34_runtime_optin_hook_freeze_test.py tests\\integration\\translation_scheduler_v35_runtime_disabled_trial_freeze_test.py tests\\integration\\translation_scheduler_stage361_runtime_safe_hook_preflight_contract_test.py -q",
+    "python ntpe_validate.py"
+  ],
+  "next_stage": "TE-v3.6 Stage-3.6.2 Runtime Safe Hook Preflight Guard"
+}
