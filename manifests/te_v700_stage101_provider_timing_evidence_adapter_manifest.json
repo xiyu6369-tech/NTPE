@@ -1,0 +1,33 @@
+{
+  "stage": "TE-v7.0-Stage10.1",
+  "version": "7.0.0-stage10.1",
+  "name": "Provider Timing Evidence Adapter",
+  "nested_manifest_sha256_chain": false,
+  "real_provider_execution": "not_executed_with_provider",
+  "files": {
+    "core/adaptive_context_provider_evidence/__init__.py": "f78fb6dd09f62bafca0bbb0669e91320d79c5f4d83c065545af3375c73df1792",
+    "core/adaptive_context_provider_evidence/model.py": "79c4595daa3f1ecd611c310d1d655a2c1937db65e9fec8eb3d243afc1f51221d",
+    "core/adaptive_context_provider_evidence/config.py": "be8fcf69a2e188527801490e55c0b99a0ba5c5ce70fd8c12247a03263141f753",
+    "core/adaptive_context_provider_evidence/timing.py": "538247f5e203a8f4b3143e832330a3fef8fe54723c734a354fb6efc9c2d786ab",
+    "core/adaptive_context_provider_evidence/token_usage.py": "82b51b036273dabe61eb6597f6c7bbe89574a74192d435ac050a84c72e197d7c",
+    "core/adaptive_context_provider_evidence/redaction.py": "74b9bedd13ffafefcd0ef5537ecf5bf952f61985d37b843f78b79ab6d1d31976",
+    "core/adaptive_context_provider_evidence/integrity.py": "358bbe9a702da32caf3cb49fcdc9010735b2ce3cdf9ecd577dbb64cab7299d73",
+    "core/adaptive_context_provider_evidence/collector.py": "ded05c216164dd6636ff1860c53130f167e6d07798699002037a3bc6afc0e739",
+    "core/adaptive_context_provider_evidence/report.py": "e4b6906ecef5bdb6e4a2d6ea53686fa41f7a7954581d15d7779cdeb823cfc375",
+    "ntpe_te_v700_stage101_provider_timing_evidence_adapter_test.py": "03f3a2218f798c79a70c2041f606d217db5242df87c58bd5beb3a477474fa268",
+    "tests/integration/translation_engine_v700_stage101_provider_timing_evidence_adapter_test.py": "65bc0d8b3f99f6312c6c41d85fce90ad3502e0deed84f5376afe4568d61dd036",
+    "docs/releases/te_v7_0/TE_V7_0_STAGE10_1_PROVIDER_TIMING_EVIDENCE_ADAPTER.md": "ecd020a0613e1f3815774f7f23b4ffebc285eaab538b25c170a99d3adac60170"
+  },
+  "boundaries": {
+    "explicit_call_only": true,
+    "mock_complete_is_not_ready": true,
+    "resume_chunks_excluded": true,
+    "raw_content_forbidden": true,
+    "provider_failure_decoupled": true,
+    "stage09_artifacts_unchanged": true,
+    "te_v6_frozen_runtime_unchanged": true,
+    "provider_client_changes": false,
+    "cli_changes": false,
+    "real_provider_calls": false
+  }
+}
