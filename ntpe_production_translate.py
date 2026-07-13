@@ -39,6 +39,12 @@ from core.adaptive_context_profile_budget import (
     evaluate_profile_budget,
     write_profile_budget_report,
 )
+from core.adaptive_context_strategy_selection import (
+    StrategySelectionRequest,
+    evaluate_strategy_selection,
+    load_strategy_selection_evidence,
+    write_strategy_selection_report,
+)
 from core.adaptive_context_canary_validation import (
     build_canary_production_report,
     canary_validation_session,
@@ -187,6 +193,12 @@ def build_parser() -> argparse.ArgumentParser:
     regression.add_argument("--ace-profile-budget-source-tokens", type=int, default=1024, help="source tokens reserved before context")
     regression.add_argument("--ace-profile-budget-output-tokens", type=int, default=1024, help="output tokens reserved before context")
     regression.add_argument("--ace-profile-budget-requested-tokens", type=int, default=None, help="optional requested context tokens; clamped by profile and hard limit")
+    regression.add_argument("--ace-strategy-select-validate", action="store_true", help="select a TE v7 ACE context strategy from policy and profile-budget evidence")
+    regression.add_argument("--ace-strategy-policy-report", default=None, help="production activation policy report used for strategy selection")
+    regression.add_argument("--ace-strategy-budget-report", default=None, help="profile-aware context budget report used for strategy selection")
+    regression.add_argument("--ace-strategy-report", default=None, help="optional adaptive context strategy selection JSON path")
+    regression.add_argument("--ace-strategy-enable", action="store_true", help="explicitly request adaptive context strategy selection")
+    regression.add_argument("--ace-strategy-kill-switch", action="store_true", help="force strategy selection to fail closed")
 
     evaluate = sub.add_parser("evaluate", help="evaluate literary regression outputs without rerunning translation")
     evaluate.add_argument("--stage", default=os.environ.get("NTPE_PS_STAGE", "PS-03"), help="stage output folder under tests/literary/outputs")
@@ -383,6 +395,33 @@ def run_evaluate(args: argparse.Namespace) -> int:
 
 
 def run_regression(args: argparse.Namespace) -> int:
+    if bool(getattr(args, "ace_strategy_select_validate", False)):
+        policy_path = _resolve(args.ace_strategy_policy_report) if args.ace_strategy_policy_report else ROOT / "artifacts" / "te_v7_stage081" / "TE_V7_STAGE081_PRODUCTION_ACTIVATION_POLICY.json"
+        budget_path = _resolve(args.ace_strategy_budget_report) if args.ace_strategy_budget_report else ROOT / "artifacts" / "te_v7_stage082" / "TE_V7_STAGE082_PROFILE_AWARE_CONTEXT_BUDGET.json"
+        out_path = _resolve(args.ace_strategy_report) if args.ace_strategy_report else ROOT / "artifacts" / "te_v7_stage083" / "TE_V7_STAGE083_ADAPTIVE_CONTEXT_STRATEGY_SELECTION.json"
+        try:
+            evidence = load_strategy_selection_evidence(policy_path, budget_path)
+            decision = evaluate_strategy_selection(
+                evidence,
+                StrategySelectionRequest(
+                    profile=args.profile,
+                    explicitly_enabled=bool(args.ace_strategy_enable),
+                    kill_switch=bool(args.ace_strategy_kill_switch),
+                ),
+            )
+        except (OSError, ValueError, TypeError) as exc:
+            print(f"ACE strategy selection error: {exc}")
+            return 2
+        write_strategy_selection_report(decision, out_path)
+        print(f"ace_strategy_report: {out_path}")
+        print(f"ace_strategy_status: {decision.status}")
+        print(f"ace_strategy_ready: {str(decision.ready).lower()}")
+        print(f"ace_strategy: {decision.strategy}")
+        print(f"ace_strategy_profile: {decision.profile}")
+        print(f"ace_strategy_rollout_percent: {decision.rollout_percent}")
+        print(f"ace_strategy_context_tokens: {decision.effective_context_tokens}")
+        print(f"ace_strategy_blockers: {','.join(decision.blockers) or 'none'}")
+        return 0 if decision.ready else 1
     if bool(getattr(args, "ace_profile_budget_validate", False)):
         out_path = _resolve(args.ace_profile_budget_report) if args.ace_profile_budget_report else ROOT / "artifacts" / "te_v7_stage082" / "TE_V7_STAGE082_PROFILE_AWARE_CONTEXT_BUDGET.json"
         decision = evaluate_profile_budget(

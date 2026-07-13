@@ -14,7 +14,7 @@
       "core/adaptive_context_production_validation/session.py": "c483cdad26ecacf371596f6a252ed67c9332f64ef750caceeebf66d95c09853e",
       "docs/releases/te_v7_0/TE_V7_0_STAGE04_PRODUCTION_SHADOW_VALIDATION.md": "94fe3d365f5ee687ed241ca13a1f8f5af2a85a874de0581d464c740b1d750a1d",
       "manifests/te_v700_stage03_runtime_shadow_activation_manifest.json": "e5a00961764f7936c202cda6db3ff66555a043de2cbdb0bc071a407e333a23db",
-      "ntpe_production_translate.py": "8b497aff7b8e456420b9de940cd85ec1c39a6712390ab2ccff7f30153e6f8deb",
+      "ntpe_production_translate.py": "675bb1ba9d83471e68fb58d1b96f7933856928f1c18719a68e61c6ebe8e59489",
       "ntpe_te_v700_stage04_production_shadow_validation_test.py": "dd8a3db56d4177799fadaacf0e4c9610a84367abf25f812c581d646555ba31a6",
       "tests/integration/translation_engine_v700_stage04_production_shadow_validation_test.py": "03dd704b3f754fe1b65abb0f44c660194ec06cdf168b65bbb698d1372c7b4de1"
     }
