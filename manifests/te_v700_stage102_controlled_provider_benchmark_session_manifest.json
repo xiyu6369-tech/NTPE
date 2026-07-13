@@ -1,0 +1,36 @@
+{
+  "stage": "TE-v7.0-Stage10.2",
+  "version": "7.0.0-stage10.2",
+  "name": "Controlled Provider Benchmark Session Wiring",
+  "nested_manifest_sha256_chain": false,
+  "real_provider_execution": "not_executed_with_provider",
+  "files": {
+    "core/adaptive_context_provider_benchmark_session/__init__.py": "cd17b19bab266d0894b661590fc03540cf5973070ca2fdbc7f3f77b035d68429",
+    "core/adaptive_context_provider_benchmark_session/config.py": "73467a5c4fdaf86525aef79f2e9d638a2a43ce3c3bb8a5dc01c3c04cdf529898",
+    "core/adaptive_context_provider_benchmark_session/model.py": "e0e5ec06fef74b7250d959bf46092900e61d971ec088c8f4566e09ed6b6bb097",
+    "core/adaptive_context_provider_benchmark_session/session.py": "f88aa6bbe1b4e46c67e40b0a4c20ff42a3a97467c0cae1fd41075869bb6c802b",
+    "core/adaptive_context_provider_benchmark_session/attempt_runner.py": "5db9d2d7b63de966f453747f65c247ca4ed6147dc3eea855ae47b2086512455c",
+    "core/adaptive_context_provider_benchmark_session/provider_bridge.py": "81935c85c98c1536d68b9f19a30412b6d30172d1cde8b8f01da5068200c7b507",
+    "core/adaptive_context_provider_benchmark_session/result.py": "affed2799a9d0bb343105bc7c14c3deae1f25bf26232a596ef579714bb91536e",
+    "core/adaptive_context_provider_benchmark_session/report.py": "d4d7a4042afaa5be59d0362bdbfed877d66b2abaf9db34b02991b13755d490a2",
+    "core/adaptive_context_provider_benchmark_session/integrity.py": "7c5a7991e23fb56fb71a4d48020d34d7e8bebdb67b72f648253f1551893540a9",
+    "ntpe_te_v700_stage102_controlled_provider_benchmark_session_test.py": "02771dc28e9cf48126f8435a2988464bdc4085f4cb39a7dc33a883a08cb4f2d7",
+    "tests/integration/translation_engine_v700_stage102_controlled_provider_benchmark_session_test.py": "02bcbdd4b1eb30438968a7c0677a134372866cf668a1b1424a3bf4d0a8ef5007",
+    "docs/releases/te_v7_0/TE_V7_0_STAGE10_2_CONTROLLED_PROVIDER_BENCHMARK_SESSION.md": "17a0e858a8497ff0a15e0817f5ba7261d681aa966d63bcddb9fac58cbdb6ed4f"
+  },
+  "boundaries": {
+    "disabled_by_default": true,
+    "explicit_call_only": true,
+    "single_chunk_only": true,
+    "caller_owned_attempt_plan": true,
+    "mock_only_validation": true,
+    "resume_chunks_excluded": true,
+    "payload_and_prompt_preserved": true,
+    "provider_failure_decoupled": true,
+    "stage10_readiness_evaluated": false,
+    "stage09_artifacts_unchanged": true,
+    "te_v6_frozen_runtime_unchanged": true,
+    "cli_changes": false,
+    "real_provider_calls": false
+  }
+}
