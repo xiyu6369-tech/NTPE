@@ -1,0 +1,37 @@
+{
+  "stage": "TE-v7.0-Stage08.4.1",
+  "version": "7.0.0-stage08.4.1",
+  "status": "production-quality-rollback-wired",
+  "default_mode": "disabled",
+  "provider_calls_added": 0,
+  "te_v6_backward_compatible": true,
+  "stage084_backward_compatible": true,
+  "te_v7_final_release": false,
+  "nested_manifest_sha256_chain": false,
+  "mutable_artifact_validation": "structure-and-safe-fields",
+  "files": {
+    "core/adaptive_context_production_rollout/__init__.py": "8e235a36d529f8b4c3bc27c1ef4012aa522f32c0ef82db5e0d8466baa0579954",
+    "core/adaptive_context_production_rollout/metrics.py": "351760ff4ad38ad8ac0a09281ab0e0e206cfb2ded7fd62febce05bd54ab757eb",
+    "core/adaptive_context_production_rollout/rollback.py": "e5659fb4234dcbbbf3cbf66232c9b455938fe33bc8dc0959b3e62838ea118204",
+    "core/adaptive_context_production_rollout/outcome.py": "7b28d13bf9f43fe7ff139f8b78ad38e90c2024c39e87460e3718832b08776b0b",
+    "core/adaptive_context_production_rollout/quality_bridge.py": "83d5156874624d737680040bc7ef8e16740062ca9e895793d74aca24e7cb6a96",
+    "ntpe_production_translate.py": "19c80f5ee3c33e2a38b96ec5ff284184723bb6b63e529697c31fff1a31efd916",
+    "ntpe_te_v700_stage084_production_rollout_freeze_test.py": "ed66f8c49176a23ac462421a01f0e23c9befd530673450786244e47b93593d5a",
+    "ntpe_te_v700_stage0841_production_quality_rollback_wiring_test.py": "f37f209875de93218b93b3fa39700093884fd477b7562f3a9437fb0c1b83b63c",
+    "tests/integration/translation_engine_v700_stage0841_production_quality_rollback_wiring_test.py": "b113585319c0908b9499d23e55a9e7cd22d742f67dee0f61c91aa569649b0f02",
+    "docs/releases/te_v7_0/TE_V7_0_STAGE08_4_1_PRODUCTION_QUALITY_ROLLBACK_WIRING.md": "e06bfa67c70fbb410e389623f5ed70f50550800baaa56b80d6753b6d2252ef35",
+    "artifacts/te_v7_stage084/TE_V7_STAGE084_PRODUCTION_ROLLOUT_METRICS.json": "mutable-structured-artifact",
+    "artifacts/te_v7_stage084/TE_V7_STAGE084_PRODUCTION_ROLLBACK.json": "mutable-structured-artifact",
+    "manifests/te_v700_stage0841_production_quality_rollback_wiring_manifest.json": "self-describing-manifest"
+  },
+  "boundaries": {
+    "activated_chunks_only": true,
+    "resume_chunks_excluded": true,
+    "unsampled_chunks_excluded": true,
+    "baseline_source": "same-set-same-chunk-same-source-hash-previous-stage",
+    "missing_baseline": "quality-evidence-incomplete",
+    "provider_limitation_is_not_functional_regression": true,
+    "prior_disabled_report_latches_next_session": true,
+    "content_redacted": true
+  }
+}

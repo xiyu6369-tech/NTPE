@@ -34,6 +34,10 @@ class RolloutMetrics:
     qa_failed: int = 0
     provider_timeout: int = 0
     provider_503: int = 0
+    quality_evidence_complete: bool = False
+    quality_rollback_evaluated: bool = False
+    quality_rollback_triggered: bool = False
+    quality_rollback_reasons: tuple[str, ...] = ()
     rollout_bucket: int = -1
     rollout_percent: int = 0
     policy_version: str = "7.0.0-stage08.4"
@@ -93,13 +97,27 @@ class RolloutMetrics:
         elif normalized in {"failed", "fail"}:
             self.qa_failed += 1
 
+    def observe_quality_outcome(self, outcome: object) -> None:
+        self.qa_accepted = int(getattr(outcome, "qa_accepted", 0))
+        self.qa_retry_required = int(getattr(outcome, "qa_retry_required", 0))
+        self.qa_failed = int(getattr(outcome, "qa_failed", 0))
+        self.provider_timeout = int(getattr(outcome, "provider_timeout", 0))
+        self.provider_503 = int(getattr(outcome, "provider_503", 0))
+        self.quality_evidence_complete = bool(getattr(outcome, "evidence_complete", False))
+
+    def observe_quality_rollback(self, *, evaluated: bool, triggered: bool, reasons: tuple[str, ...]) -> None:
+        self.quality_rollback_evaluated = bool(evaluated)
+        self.quality_rollback_triggered = bool(triggered)
+        self.quality_rollback_reasons = tuple(dict.fromkeys(str(reason) for reason in reasons if str(reason)))
+
     def to_dict(self) -> dict[str, object]:
         saved = max(0, self.estimated_tokens_saved)
         ratio = round(saved / self.baseline_context_tokens, 6) if self.baseline_context_tokens else 0.0
         values = {key: value for key, value in vars(self).items() if key != "records"}
+        values["quality_rollback_reasons"] = list(self.quality_rollback_reasons)
         return {
             "version": METRICS_VERSION,
-            "mode": "production_canary" if self.activated_packages else "disabled",
+            "mode": "production_canary" if self.activated_packages and not self.quality_rollback_triggered else "disabled",
             **values,
             "estimated_reduction_ratio": ratio,
             "records": list(self.records),

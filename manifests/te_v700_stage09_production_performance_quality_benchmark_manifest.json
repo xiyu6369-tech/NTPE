@@ -1,0 +1,43 @@
+{
+  "stage": "TE-v7.0-Stage09",
+  "version": "7.0.0-stage09",
+  "name": "ACE Production Performance & Quality Benchmark",
+  "nested_manifest_sha256_chain": false,
+  "real_provider_benchmark": "not_executed_with_provider",
+  "files": {
+    "core/adaptive_context_production_benchmark/__init__.py": "stage-source",
+    "core/adaptive_context_production_benchmark/model.py": "stage-source",
+    "core/adaptive_context_production_benchmark/config.py": "stage-source",
+    "core/adaptive_context_production_benchmark/session.py": "stage-source",
+    "core/adaptive_context_production_benchmark/collector.py": "stage-source",
+    "core/adaptive_context_production_benchmark/baseline.py": "stage-source",
+    "core/adaptive_context_production_benchmark/comparison.py": "stage-source",
+    "core/adaptive_context_production_benchmark/quality.py": "stage-source",
+    "core/adaptive_context_production_benchmark/performance.py": "stage-source",
+    "core/adaptive_context_production_benchmark/report.py": "stage-source",
+    "core/adaptive_context_production_benchmark/readiness.py": "stage-source",
+    "ntpe_te_v700_stage09_production_performance_quality_benchmark_test.py": "stage-test",
+    "tests/integration/translation_engine_v700_stage09_production_performance_quality_benchmark_test.py": "stage-test",
+    "docs/releases/te_v7_0/TE_V7_0_STAGE09_PRODUCTION_PERFORMANCE_QUALITY_BENCHMARK.md": "stage-documentation",
+    "artifacts/te_v7_stage09/TE_V7_STAGE09_BASELINE.json": "mutable-structured-artifact",
+    "artifacts/te_v7_stage09/TE_V7_STAGE09_CANDIDATE.json": "mutable-structured-artifact",
+    "artifacts/te_v7_stage09/TE_V7_STAGE09_COMPARISON.json": "mutable-structured-artifact",
+    "artifacts/te_v7_stage09/TE_V7_STAGE09_READINESS.json": "mutable-structured-artifact",
+    "manifests/te_v700_stage09_production_performance_quality_benchmark_manifest.json": "self-describing-manifest"
+  },
+  "legal_evolution_entrypoints": [
+    "ntpe_production_translate.py"
+  ],
+  "boundaries": {
+    "baseline_ace_disabled": true,
+    "candidate_explicit_rollout_required": true,
+    "maximum_rollout_percent": 5,
+    "comparison_provider_calls": 0,
+    "resume_provider_latency_excluded": true,
+    "activated_chunk_regression_blocks": true,
+    "provider_failure_decoupled": true,
+    "content_redacted": true,
+    "te_v6_frozen_runtime_unchanged": true,
+    "stage10_started": false
+  }
+}

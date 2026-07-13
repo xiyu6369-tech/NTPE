@@ -33,6 +33,7 @@ def evaluate_automatic_rollback(
     kill_switch: bool = False,
     artifact_integrity: bool = True,
     provider_status: str = "success",
+    quality_evidence_complete: bool | None = None,
 ) -> RollbackDecision:
     reasons: list[str] = []
     normalized = tuple(str(issue).upper() for issue in new_issues)
@@ -58,5 +59,7 @@ def evaluate_automatic_rollback(
         reasons.append("kill-switch-enabled")
     if not artifact_integrity:
         reasons.append("production-artifact-integrity-failure")
+    if quality_evidence_complete is False:
+        reasons.append("quality-evidence-incomplete")
     provider_limitation = provider_status if provider_status in {"timeout", "503"} else ""
     return RollbackDecision(ROLLBACK_VERSION, bool(reasons), "disabled" if reasons else "production_canary", tuple(dict.fromkeys(reasons)), provider_limitation)

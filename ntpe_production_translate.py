@@ -54,13 +54,24 @@ from core.adaptive_context_production_rollout import (
     RollbackController,
     RolloutConfig,
     RolloutMetrics,
+    collect_production_outcome,
     evaluate_automatic_rollback,
     install_production_rollout_hook,
     load_production_evidence,
+    prior_rollback_reasons,
     production_rollout_session,
+    rollback_quality_inputs,
+    snapshot_resume_chunks,
     write_metrics_report,
 )
 from core.adaptive_context_production_rollout.model import RollbackDecision
+from core.adaptive_context_production_benchmark import (
+    BenchmarkConfig,
+    collect_regression_run,
+    compare_runs,
+    load_run,
+    write_artifact,
+)
 
 # TE v7 Stage 03: installs a no-op-unless-shadow wrapper around prompt package
 # construction. The wrapper returns the original package unchanged.
@@ -220,6 +231,13 @@ def build_parser() -> argparse.ArgumentParser:
     regression.add_argument("--ace-production-resume-from-stage", default=None, help="resume completed chunks before the production validation target")
     regression.add_argument("--ace-production-target-chunk", type=int, default=None, help="stop production validation after this chunk")
     regression.add_argument("--ace-production-simulate-rollback", action="store_true", help="simulate fail-closed automatic rollback")
+    regression.add_argument("--ace-production-benchmark", action="store_true", help="run the redacted TE v7 Stage 09 production benchmark")
+    regression.add_argument("--ace-production-benchmark-mode", choices=("assembly", "provider", "comparison"), default="assembly")
+    regression.add_argument("--ace-production-benchmark-report", default=None, help="optional Stage 09 baseline, candidate, or comparison JSON path")
+    regression.add_argument("--ace-production-benchmark-baseline-stage", default=None, help="completed Stage 09 baseline artifact or stage name")
+    regression.add_argument("--ace-production-benchmark-candidate-stage", default=None, help="completed Stage 09 candidate artifact or stage name")
+    regression.add_argument("--ace-production-benchmark-target-chunk", type=int, default=None)
+    regression.add_argument("--ace-production-benchmark-resume-from-stage", default=None)
 
     evaluate = sub.add_parser("evaluate", help="evaluate literary regression outputs without rerunning translation")
     evaluate.add_argument("--stage", default=os.environ.get("NTPE_PS_STAGE", "PS-03"), help="stage output folder under tests/literary/outputs")
@@ -415,7 +433,105 @@ def run_evaluate(args: argparse.Namespace) -> int:
     return 0 if report.get("status") in ("success", "warning") else 1
 
 
+def _stage09_artifact(kind: str) -> Path:
+    return ROOT / "artifacts" / "te_v7_stage09" / f"TE_V7_STAGE09_{kind.upper()}.json"
+
+
+def _benchmark_input(value: str, kind: str) -> tuple[Path, str | None]:
+    candidate = _resolve(value)
+    if candidate.is_file():
+        return candidate, None
+    return _stage09_artifact(kind), value
+
+
+def _run_production_benchmark_comparison(args: argparse.Namespace) -> int:
+    baseline_path, expected_baseline = _benchmark_input(str(args.ace_production_benchmark_baseline_stage), "baseline")
+    candidate_path, expected_candidate = _benchmark_input(str(args.ace_production_benchmark_candidate_stage), "candidate")
+    try:
+        baseline = load_run(baseline_path)
+        candidate = load_run(candidate_path)
+        if expected_baseline and baseline.stage != expected_baseline:
+            raise ValueError("baseline stage artifact mismatch")
+        if expected_candidate and candidate.stage != expected_candidate:
+            raise ValueError("candidate stage artifact mismatch")
+        comparison = compare_runs(baseline, candidate)
+    except (OSError, ValueError, TypeError) as exc:
+        print(f"ACE production benchmark comparison error: {exc}")
+        return 2
+    report_path = _resolve(args.ace_production_benchmark_report) if args.ace_production_benchmark_report else _stage09_artifact("comparison")
+    readiness_path = _stage09_artifact("readiness")
+    write_artifact(comparison, report_path)
+    write_artifact({
+        "version": "7.0.0-stage09", "status": comparison.status, "ready": comparison.ready,
+        "blockers": list(comparison.blockers), "limitations": list(comparison.limitations),
+        "content_redacted": True,
+    }, readiness_path)
+    print(f"ace_production_benchmark_report: {report_path}")
+    print(f"ace_production_benchmark_readiness: {readiness_path}")
+    print(f"ace_production_benchmark_status: {comparison.status}")
+    print(f"ace_production_benchmark_ready: {str(comparison.ready).lower()}")
+    return 0 if comparison.ready else 1
+
+
+def _write_production_benchmark_run(
+    args: argparse.Namespace,
+    regression_result: dict,
+    mode: str,
+    rollout_records: Iterable[dict],
+    resume_snapshot: frozenset[tuple[str, int]],
+    *,
+    rollback_triggered: bool = False,
+) -> Path:
+    from core.translation_runtime.runtime_speed_policy import get_runtime_speed_policy
+
+    candidate = bool(getattr(args, "ace_production_rollout", False))
+    kind = "candidate" if candidate else "baseline"
+    speed_policy = get_runtime_speed_policy(args.speed)
+    run = collect_regression_run(
+        root=ROOT, regression_result=regression_result, run_kind=kind, mode=mode,
+        profile=args.profile, model=args.model, api_timeout=int(args.api_timeout or 0),
+        provider_attempts=max(1, int(args.provider_attempts or speed_policy.provider_attempts)),
+        chunk_size=max(300, int(args.chunk_size)) if args.chunk_size is not None else speed_policy.chunk_size,
+        max_output_tokens=4096, ace_enabled=candidate,
+        rollout_percent=int(args.ace_production_rollout_percent or 0) if candidate else 0,
+        rollout_records=rollout_records, resume_snapshot=resume_snapshot,
+        rollback_triggered=rollback_triggered,
+    )
+    path = _resolve(args.ace_production_benchmark_report) if args.ace_production_benchmark_report else _stage09_artifact(kind)
+    write_artifact(run, path)
+    print(f"ace_production_benchmark_report: {path}")
+    print(f"ace_production_benchmark_kind: {kind}")
+    print(f"ace_production_benchmark_provider_evidence_complete: {str(run.provider_evidence_complete).lower()}")
+    return path
+
+
 def run_regression(args: argparse.Namespace) -> int:
+    benchmark_enabled = bool(getattr(args, "ace_production_benchmark", False))
+    benchmark_mode = str(getattr(args, "ace_production_benchmark_mode", "assembly"))
+    if benchmark_enabled:
+        config = BenchmarkConfig(
+            benchmark_mode, getattr(args, "ace_production_benchmark_report", None),
+            getattr(args, "ace_production_benchmark_baseline_stage", None),
+            getattr(args, "ace_production_benchmark_candidate_stage", None),
+            getattr(args, "ace_production_benchmark_target_chunk", None),
+            getattr(args, "ace_production_benchmark_resume_from_stage", None),
+        )
+        blockers = config.validate()
+        if blockers:
+            print(f"ACE production benchmark error: {','.join(blockers)}")
+            return 2
+        if benchmark_mode == "comparison":
+            return _run_production_benchmark_comparison(args)
+        if benchmark_mode == "assembly" and not args.dry_run:
+            print("ACE production benchmark error: assembly mode requires --dry-run")
+            return 2
+        if benchmark_mode == "provider" and args.dry_run:
+            print("ACE production benchmark error: provider mode cannot use --dry-run")
+            return 2
+        if getattr(args, "ace_production_benchmark_target_chunk", None) and not getattr(args, "ace_production_target_chunk", None):
+            args.ace_production_target_chunk = args.ace_production_benchmark_target_chunk
+        if getattr(args, "ace_production_benchmark_resume_from_stage", None) and not getattr(args, "ace_production_resume_from_stage", None):
+            args.ace_production_resume_from_stage = args.ace_production_benchmark_resume_from_stage
     if bool(getattr(args, "ace_production_rollout", False)):
         conflicting = (
             bool(getattr(args, "ace_strategy_select_validate", False)),
@@ -487,25 +603,58 @@ def run_regression(args: argparse.Namespace) -> int:
         metrics = RolloutMetrics()
         controller = RollbackController()
         audit_path = _resolve(required["metrics"]).with_suffix(".jsonl")
+        rollback_path = _resolve(required["rollback"])
+        for reason in prior_rollback_reasons(rollback_path):
+            controller.trigger(reason)
+        stage_output = ROOT / "tests" / "literary" / "outputs" / args.stage
+        resume_snapshot = frozenset() if args.overwrite else snapshot_resume_chunks(stage_output)
         with production_rollout_session(config, evidence, metrics=metrics, controller=controller, audit_path=audit_path):
             regression_result = run_literary_regression(options)
-        provider_text = f"{regression_result.get('status', '')} {regression_result.get('error', '')}".lower()
+        provider_text = " ".join(
+            str(value)
+            for value in (
+                regression_result.get("status", ""),
+                regression_result.get("error", ""),
+                *(record.get("error", "") for record in regression_result.get("records", ()) if isinstance(record, dict)),
+            )
+        ).lower()
         provider_status = "timeout" if "timeout" in provider_text else "503" if "503" in provider_text else "success"
         metrics.observe_provider(provider_status)
+        outcome = collect_production_outcome(
+            regression_result,
+            metrics,
+            root=ROOT,
+            baseline_stage=args.previous_stage,
+            resume_snapshot=resume_snapshot,
+            provider_status=provider_status,
+        )
+        metrics.observe_quality_outcome(outcome)
+        quality_inputs = rollback_quality_inputs(outcome)
+        quality_evaluated = mode == "provider" and outcome.activated_chunks > 0
         if getattr(args, "ace_production_simulate_rollback", False):
             controller.trigger("rollback-simulation")
         rollback = evaluate_automatic_rollback(
+            new_issues=quality_inputs.new_issues if quality_evaluated else (),
+            quality_score=quality_inputs.quality_score if quality_evaluated else None,
+            baseline_quality_score=quality_inputs.baseline_quality_score if quality_evaluated else None,
+            qa_failure_rate=quality_inputs.qa_failure_rate if quality_evaluated else None,
+            baseline_qa_failure_rate=quality_inputs.baseline_qa_failure_rate if quality_evaluated else None,
             provider_calls_added=metrics.provider_calls_added,
+            anchor_mismatch=quality_inputs.anchor_mismatch,
+            replacement_count=quality_inputs.replacement_count if outcome.activated_chunks else 1,
             metrics_complete=metrics.total_packages > 0,
             evidence_match=not evidence.blockers,
             kill_switch=config.kill_switch,
             artifact_integrity=evidence.evidence_integrity,
             provider_status=provider_status,
+            quality_evidence_complete=outcome.evidence_complete if quality_evaluated else None,
         )
         if controller.disabled:
             rollback = RollbackDecision(rollback.version, True, "disabled", tuple(dict.fromkeys((*controller.reasons, *rollback.reasons))), rollback.provider_limitation)
+        if rollback.rollback:
+            controller.trigger(*rollback.reasons)
+        metrics.observe_quality_rollback(evaluated=quality_evaluated, triggered=rollback.rollback, reasons=rollback.reasons)
         write_metrics_report(metrics, _resolve(required["metrics"]))
-        rollback_path = _resolve(required["rollback"])
         rollback_path.parent.mkdir(parents=True, exist_ok=True)
         import json as _json
         rollback_path.write_text(_json.dumps(rollback.to_dict(), ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8")
@@ -513,6 +662,11 @@ def run_regression(args: argparse.Namespace) -> int:
         print(f"ace_production_rollback_report: {rollback_path}")
         print(f"ace_production_activated: {metrics.activated_packages}")
         print(f"ace_production_provider_limitation: {rollback.provider_limitation or 'none'}")
+        if benchmark_enabled:
+            _write_production_benchmark_run(
+                args, regression_result, benchmark_mode, metrics.records, resume_snapshot,
+                rollback_triggered=rollback.rollback,
+            )
         base_rc = _print_regression_result(regression_result)
         return 1 if rollback.rollback else base_rc
     if bool(getattr(args, "ace_strategy_select_validate", False)):
@@ -639,7 +793,15 @@ def run_regression(args: argparse.Namespace) -> int:
         print("ACE validation error: --ace-shadow-validate and --ace-canary-validate are mutually exclusive")
         return 2
     if not shadow_validate and not canary_validate:
-        return _print_regression_result(run_literary_regression(options))
+        benchmark_resume_snapshot = frozenset()
+        if benchmark_enabled and not args.overwrite:
+            from core.adaptive_context_production_rollout import snapshot_resume_chunks as _snapshot
+            raw = _snapshot(ROOT / "tests" / "literary" / "outputs" / args.stage)
+            benchmark_resume_snapshot = frozenset((str(row.get("name", "")), index) for row in discover_test_sets(ROOT, options.test_sets) for _, index in raw)
+        regression_result = run_literary_regression(options)
+        if benchmark_enabled:
+            _write_production_benchmark_run(args, regression_result, benchmark_mode, (), benchmark_resume_snapshot)
+        return _print_regression_result(regression_result)
 
     if canary_validate:
         report_path = _resolve(args.ace_canary_report) if args.ace_canary_report else (

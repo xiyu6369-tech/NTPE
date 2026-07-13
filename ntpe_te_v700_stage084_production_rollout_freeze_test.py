@@ -53,7 +53,7 @@ def main() -> int:
             continue
         assert hashlib.sha256(path.read_bytes()).hexdigest() == digest, name
     for prior in ROOT.glob("manifests/te_v700_stage0*.json"):
-        if prior.name == "te_v700_stage084_production_rollout_freeze_manifest.json":
+        if prior.name.startswith("te_v700_stage084"):
             continue
         data = json.loads(prior.read_text(encoding="utf-8"))
         pinned = data.get("files", data.get("integrity", {}).get("files", {}))
