@@ -1,0 +1,54 @@
+{
+  "stage": "TE-v7.1-Stage11.6",
+  "version": "7.1.0-stage11.6",
+  "status": "completed",
+  "files": {
+    "core/translation_quality_corpus_governance/__init__.py":"23b788fcb3157c9e4c6cc9a926a3d9f2050336e57bb6e8cf9dcea038415394a2",
+    "core/translation_quality_corpus_governance/governance_model.py":"04c8b9a566e991627d87db3e043c1aa9662e3ca6223cbe7c51cce0df5a579826",
+    "core/translation_quality_corpus_governance/lifecycle.py":"706babb2479e46355246c987bc360495b427304c0ff52ba62f62b29d38b77fd8",
+    "core/translation_quality_corpus_governance/approval_policy.py":"33d68836ffce13875d5759649c7d4dd8351c110395bd1b447de2860133c9b629",
+    "core/translation_quality_corpus_governance/governance_builder.py":"ebe0a640ca33e144a68c1929362184b8ab7df2e980d07c156a77f376b3dd84ef",
+    "core/translation_quality_corpus_governance/governance_validator.py":"f96ebc135044943d93c32a69ec47945fc05f884479ab37f414c82c1a78d5cd3c",
+    "core/translation_quality_corpus_governance/provenance.py":"d629b63ccc7414718b10e370047b8bf0d326d188d4540048ae43b5bd5178c555",
+    "core/translation_quality_corpus_governance/serialization.py":"c67e275cb1ef8b99ac992ed4fec42dd0d406b63a91938c329193aeeb9eb0d164",
+    "core/translation_quality_corpus_governance/integrity.py":"3c8fb9c10536b1fddc469d52b481ffb7fce7df4043fa7124605a27ef705aa63a",
+    "artifacts/te_v71_stage116/TE_V71_STAGE116_GOLDEN_CORPUS_GOVERNANCE.json":"2ba896687f3446fdbb67ce952d17411aefe8846ab671da9d5f26b15934fa1d1b",
+    "tests/integration/translation_engine_v710_stage116_golden_corpus_governance_test.py":"09b50aa957fb4e981b0e148ab85d4fe5afb1a67460378ef22aaa9ba981ee462a",
+    "ntpe_te_v710_stage116_golden_corpus_governance_test.py":"103d53f85b2b749de80cfa22050be1034af099312af9d391dc801194f53a02e5",
+    "docs/releases/te_v7_1/TE_V710_STAGE116_GOLDEN_CORPUS_GOVERNANCE.md":"0e09479b6e9c7447d592e0541d3ecb22263697c688b1c32f161372f80e091b01"
+  },
+  "sha256": {"algorithm": "sha256", "canonical_serialization": true, "self_hash_excluded": true},
+  "tests": {
+    "root": "ntpe_te_v710_stage116_golden_corpus_governance_test.py",
+    "focused_integration": "tests/integration/translation_engine_v710_stage116_golden_corpus_governance_test.py",
+    "expected": "ALL PASS"
+  },
+  "artifacts": ["artifacts/te_v71_stage116/TE_V71_STAGE116_GOLDEN_CORPUS_GOVERNANCE.json"],
+  "corpus_governance": {
+    "lifecycle_statuses": 6,
+    "allowed_transitions": 8,
+    "human_only_approval": true,
+    "approved_cases_created": 0,
+    "approved_translations_added": 0,
+    "existing_approved_translations_modified": 0,
+    "golden_corpus_content_modified": false
+  },
+  "boundaries": {
+    "network_requests": 0,
+    "real_provider_executed": false,
+    "provider_executed": false,
+    "new_translation_generated": false,
+    "translation_generated": false,
+    "prompt_modified": false,
+    "runtime_modified": false,
+    "provider_modified": false,
+    "translation_strategy_modified": false,
+    "plans_applied": 0,
+    "decision_applied": false,
+    "baseline_created": false,
+    "candidate_created": false,
+    "comparison_executed": false,
+    "readiness_evaluated": false,
+    "stage117_started": false
+  }
+}
