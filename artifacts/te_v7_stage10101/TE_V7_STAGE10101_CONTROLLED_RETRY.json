@@ -1,7 +1,22 @@
 {
-  "attempt_count": 0,
+  "attempt_count": 1,
   "attempt_limit": 1,
-  "attempts": [],
+  "attempts": [
+    {
+      "attempt_number": 1,
+      "attempt_status": "success",
+      "elapsed_milliseconds": 158034.322,
+      "estimated_input_tokens": 498,
+      "estimated_output_tokens": 800,
+      "external_condition_failure": false,
+      "fallback_used": false,
+      "http_503": false,
+      "retry_count": 0,
+      "suspicious_short_output": false,
+      "timeout": false,
+      "timing_complete": true
+    }
+  ],
   "baseline_created": false,
   "candidate_created": false,
   "chunk_identity": "Golden_Set:1",
@@ -12,11 +27,11 @@
   "human_review_required": true,
   "integrity": {
     "algorithm": "sha256",
-    "payload_sha256": "49c41b816b8022412764eb0c76c783dc703d6302a4b9e77c6511182dad268800"
+    "payload_sha256": "d91be3f604fec0da91dbb79b76a878c52aa106041cf5dd77d8bd4f885c205e51"
   },
   "invocation_id": "stage10101-controlled-retry-001",
   "model": "meta/llama-3.3-70b-instruct",
-  "network_requests": 0,
+  "network_requests": 1,
   "payload_preserved": true,
   "prior_invocation_integrity": "58cb6a987b3563ff9a12cc4d41f5128763f403a60df5ca74b40a7aba86236347",
   "prior_invocation_status": "single_real_invocation_failed",
@@ -26,22 +41,22 @@
   "production_ready": false,
   "prompt_preserved": true,
   "readiness_evaluated": false,
-  "real_provider_execution": false,
-  "retry_executed": false,
-  "review_status": "awaiting_explicit_real_retry_authorization",
+  "real_provider_execution": true,
+  "retry_executed": true,
+  "review_status": "awaiting_human_translation_review",
   "source_fingerprint": "ac76cf63de96d465d23ed6a131fbc1008ed06adae76c8e0668b27e58cde1c2b5",
   "stage": "TE-v7.0-Stage10.10.1",
-  "status": "controlled_retry_contract_prepared",
+  "status": "single_controlled_retry_completed",
   "timeout_detected": false,
   "timeout_seconds": 180,
   "token_evidence": {
     "actual_input_tokens": null,
     "actual_output_tokens": null,
-    "estimated_input_tokens": 0,
+    "estimated_input_tokens": 498,
     "estimated_output_token_budget": 800,
     "token_usage_complete": false,
-    "token_usage_source": "not_executed"
+    "token_usage_source": "estimate_only"
   },
-  "translation_output_generated": false,
+  "translation_output_generated": true,
   "version": "7.0.0-stage10.10.1"
 }
