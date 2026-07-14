@@ -1,0 +1,33 @@
+{
+  "stage": "TE-v7.0-Stage10.8",
+  "version": "7.0.0-stage10.8",
+  "name": "Fake-Transport End-to-End Freeze",
+  "nested_manifest_sha256_chain": false,
+  "network_requests": 0,
+  "real_provider_executed": false,
+  "files": {
+    "core/adaptive_context_provider_execution_freeze/__init__.py": "70ac6053bec01e6c687f8824e7bdb7739d944916a9d84796c4f7e068084da3f7",
+    "core/adaptive_context_provider_execution_freeze/contract.py": "9024a1c7645b164e2221e8c9292ed266444b8119247be9a34ff478552acd96bb",
+    "core/adaptive_context_provider_execution_freeze/validator.py": "71251006518c4020a97ab4d6079900123935b2b27cdf835d4cd1601b1c3a802c",
+    "core/adaptive_context_provider_execution_freeze/freeze.py": "d11e2f30ff9c528d2ea9415b96c7c0982bc3f299cc19c4ddff6fd68eb9cee054",
+    "core/adaptive_context_provider_execution_freeze/report.py": "62057d4edde585ba10a731ff24243b65ffc83dbed9e224e3d55edb8ae8440e40",
+    "tests/integration/translation_engine_v700_stage108_fake_transport_end_to_end_freeze_test.py": "cb1a3bd4278018eed904e679c18c11ab78afd9aee20cef64bba397a4f7a9e083",
+    "ntpe_te_v700_stage108_fake_transport_end_to_end_freeze_test.py": "f4bf1efeaabd6e0713ed0d3c66919570b4fbae3c172b7edef9ff5e2d39f6ecde",
+    "docs/releases/te_v7_0/TE_V7_0_STAGE10_8_FAKE_TRANSPORT_END_TO_END_FREEZE.md": "a3e34d27a55c28b63ea3a72687bc4934321cd7476c58888a7b419a354554aa08"
+  },
+  "mutable_artifact": "artifacts/te_v7_stage108/TE_V7_STAGE108_FAKE_TRANSPORT_FREEZE.json",
+  "boundaries": {
+    "fake_transport_only": true,
+    "single_chunk_only": true,
+    "single_controlled_session": true,
+    "payload_preserved": true,
+    "prompt_preserved": true,
+    "sensitive_content_redacted": true,
+    "stage09_artifacts_unchanged": true,
+    "te_v6_frozen_runtime_unchanged": true,
+    "production_launcher_connected": false,
+    "comparison_executed": false,
+    "readiness_evaluated": false,
+    "provider_benchmark_complete": false
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "stage": "TE-v7.0-Stage10.7",
+  "version": "7.0.0-stage10.7",
+  "name": "Provider Evidence Artifact Pipeline",
+  "nested_manifest_sha256_chain": false,
+  "network_requests": 0,
+  "real_provider_executed": false,
+  "files": {
+    "core/adaptive_context_provider_evidence_pipeline/__init__.py": "d3e059985aa360d2176ec0230970e3c8db83885205f90d255fdf0dcc57bf8aba",
+    "core/adaptive_context_provider_evidence_pipeline/config.py": "b548c31d68d3121ba8c1f0c0f5a699a70ec6b95f03570848ee5b31198a662b02",
+    "core/adaptive_context_provider_evidence_pipeline/model.py": "80d5008203cca7736705beefc8c49eb3b23fe7bed6c4611774928e977c398d21",
+    "core/adaptive_context_provider_evidence_pipeline/collector.py": "6bd97efb47a241fbd0575f26bb7d7873dd2cf1cf18212b1d66c3be1c96486675",
+    "core/adaptive_context_provider_evidence_pipeline/normalizer.py": "22472e5f416b2b8da4141d9291dad991ee872fa31c51f8ed2fbc9d667da3f817",
+    "core/adaptive_context_provider_evidence_pipeline/validator.py": "e2b2377b6b1ba06364b55ec9ad959bb44542f5b4b69a6fe9522a097ced45a9a2",
+    "core/adaptive_context_provider_evidence_pipeline/report.py": "15cd547cb15a31926c0a4bb1604ead373555a3192e7aa1b99519edb610427a1c",
+    "core/adaptive_context_provider_evidence_pipeline/integrity.py": "effbefde23727d49b897c71c41e3d8220e431f7c1a6da3eea04f6fd3078b82e8",
+    "tests/integration/translation_engine_v700_stage107_provider_evidence_artifact_pipeline_test.py": "038666c90e5d0d646a4e36534ceed44431bff1b8aa0f6258e37bcf2a79b7c7d5",
+    "ntpe_te_v700_stage107_provider_evidence_artifact_pipeline_test.py": "0dffe1a5b4846c37525e253722c6e564492d641dd7658ba313b95e958343df9c",
+    "docs/releases/te_v7_0/TE_V7_0_STAGE10_7_PROVIDER_EVIDENCE_ARTIFACT_PIPELINE.md": "45a5c4a23a04d585688e70d6b6eb655d99028a0b06774f80959cf8fdb6b5b5f2"
+  },
+  "boundaries": {
+    "metadata_only": true,
+    "fake_normalizes_to_mock_only": true,
+    "real_provenance_fail_closed": true,
+    "resume_excluded": true,
+    "short_output_guarded": true,
+    "integrity_sha256": true,
+    "raw_content_retained": false,
+    "comparison_evaluated": false,
+    "readiness_evaluated": false,
+    "quality_evaluated": false
+  }
+}

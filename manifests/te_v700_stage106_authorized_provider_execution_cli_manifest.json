@@ -1,0 +1,32 @@
+{
+  "stage": "TE-v7.0-Stage10.6",
+  "version": "7.0.0-stage10.6",
+  "name": "Authorized Provider Execution CLI",
+  "nested_manifest_sha256_chain": false,
+  "network_requests": 0,
+  "real_provider_executed": false,
+  "files": {
+    "core/adaptive_context_authorized_provider_cli/__init__.py": "b79d7825e6ca8e00a5958d4523c9391603a5f805d1b3b1eec0ed2dd1e93fe625",
+    "core/adaptive_context_authorized_provider_cli/config.py": "f9e566cd95e5d4aa3f33adaa75354450f3d80b0b259f286bf2675106c4c810db",
+    "core/adaptive_context_authorized_provider_cli/parser.py": "076553fd58914232ce21a1188a20fa3b48dba8ae0415235f9fb0273502389ed4",
+    "core/adaptive_context_authorized_provider_cli/runner.py": "c62fce63f7ec27ceb81d9f1669b4926a903717a57b92a0e99daf85725e86ff37",
+    "core/adaptive_context_authorized_provider_cli/report_path.py": "df402035396f6281ca66812bc3cc7a9e1b40432bbc7271d36d8632253657f2fd",
+    "ntpe_authorized_provider_invocation.py": "deb3bef3d3455495a743562901a65f41e89533e40bb6073753c768dc0c89df4b",
+    "tests/integration/translation_engine_v700_stage106_authorized_provider_execution_cli_test.py": "def8277ace13ffa51c6e8357b852b643917d26c44d0eef5cc295ebd7378799c4",
+    "ntpe_te_v700_stage106_authorized_provider_execution_cli_test.py": "0b83df71de4b700125f7a7b7b94c300a723b2ddd5de5e77a3f7134912e4e8bc8",
+    "docs/releases/te_v7_0/TE_V7_0_STAGE10_6_AUTHORIZED_PROVIDER_EXECUTION_CLI.md": "14ea3cbd77f4ccd8c6ad11ef5cf38b27e33afebbe460296057fa48a73f3f43a4"
+  },
+  "boundaries": {
+    "disabled_by_default": true,
+    "three_explicit_gates_required": true,
+    "stage105_harness_only": true,
+    "single_chunk_only": true,
+    "single_controlled_session": true,
+    "fake_transport_tests_only": true,
+    "credential_environment_only": "NVIDIA_API_KEY",
+    "raw_content_arguments": false,
+    "production_translation_connected": false,
+    "comparison_evaluated": false,
+    "readiness_evaluated": false
+  }
+}
