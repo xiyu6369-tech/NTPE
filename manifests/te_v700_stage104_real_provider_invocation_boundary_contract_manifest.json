@@ -1,0 +1,35 @@
+{
+  "stage": "TE-v7.0-Stage10.4",
+  "version": "7.0.0-stage10.4",
+  "name": "Real Provider Invocation Boundary Contract",
+  "nested_manifest_sha256_chain": false,
+  "real_provider_executed": false,
+  "files": {
+    "core/adaptive_context_real_provider_boundary/__init__.py": "1f3a6173f0a196cd01af3d6719f735492a5f057b5a68810b65a8d86072183ea2",
+    "core/adaptive_context_real_provider_boundary/config.py": "cd01bec89c49bb314781b221b257098a98a4e139103f5534eb9c653e72e3c989",
+    "core/adaptive_context_real_provider_boundary/bridge.py": "2113eaf3cf5dc4c8864064d92d8a3b7d9ed49a75756246acfcd59be3c18d8aac",
+    "core/adaptive_context_real_provider_boundary/model.py": "ea6a37778f9f0156aaf679e8dc35efc7a98890b0fdb26de92a37987274363299",
+    "core/adaptive_context_real_provider_boundary/boundary.py": "1050aa961237bdb4b54da23452e9d52767a046cbc8a092e8b4fda90b6c4e2f20",
+    "core/adaptive_context_real_provider_boundary/report.py": "0a7d79670c418dcb0224bf0b96ce870393c35cd2e1cadcf03f00b75094b20aa2",
+    "ntpe_te_v700_stage104_real_provider_invocation_boundary_contract_test.py": "9209a00b61673d2118a516e77ff776d586a8ed514a104a4455cf118f4d9a7232",
+    "tests/integration/translation_engine_v700_stage104_real_provider_invocation_boundary_contract_test.py": "c58e961ace625518a7ada29acccd6f6840df944ed9cab825a9b19f29c6b8ff39",
+    "docs/releases/te_v7_0/TE_V7_0_STAGE10_4_REAL_PROVIDER_INVOCATION_BOUNDARY_CONTRACT.md": "93fc537ea0ff3b96aacc3048cba272fee272984077f7e5cd17ec3f6e4abe6b76"
+  },
+  "boundaries": {
+    "disabled_by_default": true,
+    "additional_real_provider_enable_required": true,
+    "separate_execution_authorization_required": true,
+    "credential_from_allowlisted_environment_only": true,
+    "cli_plaintext_credentials_forbidden": true,
+    "provider_url_allowlisted": true,
+    "model_allowlisted": true,
+    "single_chunk_only": true,
+    "request_payload_persisted": false,
+    "independent_attempt_timing": true,
+    "fake_real_provenance_separated": true,
+    "default_tests_network_access": false,
+    "comparison_evaluated": false,
+    "readiness_evaluated": false,
+    "te_v6_frozen_runtime_unchanged": true
+  }
+}
