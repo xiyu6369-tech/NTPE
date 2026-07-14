@@ -1,0 +1,44 @@
+{
+  "stage": "TE-v7.1-Stage11.5",
+  "version": "7.1.0-stage11.5",
+  "status": "completed",
+  "files": {
+    "core/translation_quality_review_decision/__init__.py":"311176b4674981e0a21ba5192e5e014eac23c5914e6432ae5b6ef240559bc40b",
+    "core/translation_quality_review_decision/decision_model.py":"bcabaaea289bd8a437e94214491288c47c71e7d8b939fd27ae125937a2aa56f1",
+    "core/translation_quality_review_decision/decision_builder.py":"29c06eda9b5c0a51313806ff17af2cd00ac61875039d08e951157d87442b5201",
+    "core/translation_quality_review_decision/decision_validator.py":"8242d81340a0236267800a215756071e701529ce0ef3fd9ce3f1f84ceca54d46",
+    "core/translation_quality_review_decision/decision_schema.py":"efb9cf8c1ed1725ecc2c167fbf5bd70e36448174a9ab2d2aeb020f8393fafae5",
+    "core/translation_quality_review_decision/review_status.py":"03b44a410e1c8fe5f0245620cd1562e11bba17d0feed463eae5b5a959a2ae8e6",
+    "core/translation_quality_review_decision/serialization.py":"a1287fae43ee060ed04ca7256ad63b61b3ad17f06dee8231515acb112fd757c0",
+    "core/translation_quality_review_decision/integrity.py":"8997aeeb0c52131cce8aaafa469f80b16b89e89eb5257d0811b2368bffcb77a2",
+    "artifacts/te_v71_stage115/TE_V71_STAGE115_REVIEW_DECISION_CONTRACT.json":"da60c82ab99c5264452c2838d68b942e28c3d0a1642ca6d308cba8a739b4932b",
+    "tests/integration/translation_engine_v710_stage115_review_decision_contract_test.py":"18497735de700a72d65caa698445eab817996743141fb45e7a6a73a3494f5630",
+    "ntpe_te_v710_stage115_review_decision_contract_test.py":"4e54ee3339805b50a986bfae0333b87bb6504df8546fee40b367a618ffe8bcde",
+    "docs/releases/te_v7_1/TE_V710_STAGE115_REVIEW_DECISION_CONTRACT.md":"978c3bdbcb52dfe537eef828ae278197d27fbf192d2245c5cd45615b0cf46186"
+  },
+  "sha256": {"algorithm": "sha256", "canonical_json": true, "self_hash_excluded": true},
+  "tests": {
+    "root": "ntpe_te_v710_stage115_review_decision_contract_test.py",
+    "focused_integration": "tests/integration/translation_engine_v710_stage115_review_decision_contract_test.py",
+    "expected": "ALL PASS"
+  },
+  "artifacts": ["artifacts/te_v71_stage115/TE_V71_STAGE115_REVIEW_DECISION_CONTRACT.json"],
+  "boundaries": {
+    "human_only": true,
+    "decision_applied": false,
+    "golden_corpus_approved_translation_modified": false,
+    "provider_executed": false,
+    "real_provider_executed": false,
+    "new_translation_generated": false,
+    "prompt_modified": false,
+    "runtime_modified": false,
+    "provider_modified": false,
+    "plans_applied": 0,
+    "baseline_created": false,
+    "candidate_created": false,
+    "comparison_executed": false,
+    "readiness_evaluated": false,
+    "stage116_started": false,
+    "network_requests": 0
+  }
+}
