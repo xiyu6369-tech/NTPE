@@ -1,0 +1,42 @@
+{
+  "stage": "TE-v7.0-Stage10.9",
+  "version": "7.0.0-stage10.9",
+  "name": "Real Provider Execution Preflight Contract",
+  "nested_manifest_sha256_chain": false,
+  "network_requests": 0,
+  "provider_executed": false,
+  "translation_output_generated": false,
+  "comparison_executed": false,
+  "readiness_evaluated": false,
+  "files": {
+    "core/adaptive_context_real_provider_preflight/__init__.py": "54adbc393b55f860eab15737dafeaa8f9b2efeb957c4ac0e082f45b462ee97df",
+    "core/adaptive_context_real_provider_preflight/config.py": "3cb53dd219b49d906fcd6e49265ef5b50f151f43e86aed59608c67b56630e4e7",
+    "core/adaptive_context_real_provider_preflight/model.py": "823240ac40af2133b777059400773196b9c88a1311b2ed75b54cf0eb0d5db7b9",
+    "core/adaptive_context_real_provider_preflight/validator.py": "20762cb3fd28c3aa7e55e95304dc14ca2f224e44289f58d9e7e8c5b5fe7e43bc",
+    "core/adaptive_context_real_provider_preflight/authorization.py": "dbd48df052b90c560f6f28ebb56fda5d6c7c05d8da0f4eee424974acccd8664e",
+    "core/adaptive_context_real_provider_preflight/report.py": "2ce0df3d9167728fe06a509cd346a9c5872cb13aa6e422be98f4cf5f6d4699d4",
+    "core/adaptive_context_real_provider_preflight/integrity.py": "96d3356e2ffef16081b54117969222478807e82c0cd4a91b6ebd7678dffe4e10",
+    "tests/integration/translation_engine_v700_stage109_real_provider_execution_preflight_contract_test.py": "ad600900521ad22c7617f06e91d560cbd7cf0e6d1ea84f21a52e0f30d5ace14f",
+    "ntpe_te_v700_stage109_real_provider_execution_preflight_contract_test.py": "9beb802bfde662cebd60329488d2b51144fbf4992473be51930d37b6b1834ca0",
+    "docs/releases/te_v7_0/TE_V7_0_STAGE10_9_REAL_PROVIDER_EXECUTION_PREFLIGHT_CONTRACT.md": "1d08f87dd1fccc5c1d00deb859b34e870a1b22063eafcfb6b7353d156f832256"
+  },
+  "mutable_artifact": "artifacts/te_v7_stage109/TE_V7_STAGE109_REAL_PROVIDER_PREFLIGHT.json",
+  "boundaries": {
+    "disabled_by_default": true,
+    "eligible_state_is_authorization_only": true,
+    "credential_environment": "NVIDIA_API_KEY",
+    "credential_value_retained": false,
+    "authorization_id_retained": false,
+    "stage104_allowlists_reused": true,
+    "stage108_integrity_required": true,
+    "te_v6_manifest_hashes_required": true,
+    "single_chunk_only": true,
+    "single_controlled_session": true,
+    "resume_rejected": true,
+    "production_translation_connected": false,
+    "baseline_created": false,
+    "candidate_created": false,
+    "comparison_executed": false,
+    "readiness_evaluated": false
+  }
+}
