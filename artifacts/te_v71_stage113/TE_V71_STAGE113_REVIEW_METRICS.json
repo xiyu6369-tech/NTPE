@@ -1,0 +1,1 @@
+{"stage":"TE-v7.1-Stage11.3","review_id":"TE-V71-STAGE113-REVIEW-001","quality_pass":false,"metrics_artifact":"artifacts/te_v71_stage112/TE_V71_STAGE112_QUALITY_METRICS.json","overall_score":41.91,"blocking_defect_count":1,"content_redacted":true,"integrity":{"algorithm":"sha256","payload_sha256":"505a057877ceba9c8f44a4c4f860c75b0f0f3d0ff22b614e8620b7a81bc48f5e"}}

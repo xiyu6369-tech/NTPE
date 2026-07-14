@@ -1,0 +1,13 @@
+{
+  "corpus":"te_v71_initial_defects",
+  "human_review_only":true,
+  "cases":[
+    {"case_id":"TQ-DEF-A","source_excerpt":"인간","bad_translation":"相當理性的人間","preferred_direction":"Use a contextually valid expression for a rational person.","reason":"人間 does not denote a person in this context.","categories":["lexical_choice","chinese_fluency","narrative_naturalness"],"severity":"high","human_confirmed":true,"approved_final_translation":null},
+    {"case_id":"TQ-DEF-B","source_excerpt":"沒有直達交通，必須另搭小型飛機進入島嶼","bad_translation":null,"preferred_direction":"Preserve the reviewed transport and island-access clause.","reason":"A reviewed scene-setting clause is absent from the translation.","categories":["omission","context_continuity","semantic_precision"],"severity":"critical","human_confirmed":true,"approved_final_translation":null},
+    {"case_id":"TQ-DEF-C","source_excerpt":"氣得幾乎臥床三天","bad_translation":"足足哀號了三天","preferred_direction":"Preserve anger-induced illness or bedrest rather than wailing.","reason":"The action and emotional consequence are mistranslated.","categories":["semantic_mistranslation","action_intensity"],"severity":"high","human_confirmed":true,"approved_final_translation":null},
+    {"case_id":"TQ-DEF-D","source_excerpt":"不能因延遲而縮短或犧牲假期","bad_translation":"就會壞了我的假期","preferred_direction":"Retain the specific loss or shortening of the holiday.","reason":"The main idea remains but its concrete consequence is weakened.","categories":["semantic_precision","under_translation"],"severity":"medium","human_confirmed":true,"approved_final_translation":null},
+    {"case_id":"TQ-DEF-E","source_excerpt":null,"bad_translation":"被拋在遠國的怪物般的男人","preferred_direction":"Use natural narrative Chinese without the stiff 遠國 construction.","reason":"The wording is stiff and carries translated syntax.","categories":["narrative_naturalness","chinese_fluency"],"severity":"medium","human_confirmed":true,"approved_final_translation":null},
+    {"case_id":"TQ-DEF-F","source_excerpt":null,"bad_translation":"一周","preferred_direction":"Use consistent Traditional Chinese typography.","reason":"The reviewed style convention prefers 週 in this context.","categories":["traditional_chinese_style","style_consistency"],"severity":"low","human_confirmed":true,"approved_final_translation":null}
+  ],
+  "integrity":{"algorithm":"sha256","payload_sha256":"c41d3f0550c8f6f2bae3e7df37a5a2ccb3a318dbdd0e687cab15de92e8d632b1"}
+}

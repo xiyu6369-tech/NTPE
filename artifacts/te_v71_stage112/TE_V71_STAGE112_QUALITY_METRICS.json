@@ -1,0 +1,16 @@
+{
+  "stage":"TE-v7.1-Stage11.2","version":"7.1.0-stage11.2","quality_pass":false,"human_review_based":true,"provider_execution_performed":false,"new_translation_generated":false,
+  "metrics":[
+    {"dimension":"naturalness","score":63.0,"weight":0.16,"status":"evaluated","related_defect_ids":["TQ-DEF-A","TQ-DEF-E"],"evidence_count":2,"blocking_defect_count":0,"rationale":"Score derived from human-confirmed defect severity and blocking evidence."},
+    {"dimension":"fidelity","score":8.0,"weight":0.24,"status":"blocking","related_defect_ids":["TQ-DEF-B","TQ-DEF-C","TQ-DEF-D"],"evidence_count":3,"blocking_defect_count":1,"rationale":"Score derived from human-confirmed defect severity and blocking evidence."},
+    {"dimension":"completeness","score":33.0,"weight":0.2,"status":"blocking","related_defect_ids":["TQ-DEF-B","TQ-DEF-D"],"evidence_count":2,"blocking_defect_count":1,"rationale":"Score derived from human-confirmed defect severity and blocking evidence."},
+    {"dimension":"narrative","score":63.0,"weight":0.1,"status":"evaluated","related_defect_ids":["TQ-DEF-A","TQ-DEF-E"],"evidence_count":2,"blocking_defect_count":0,"rationale":"Score derived from human-confirmed defect severity and blocking evidence."},
+    {"dimension":"dialogue","score":50.0,"weight":0.05,"status":"insufficient_evidence","related_defect_ids":[],"evidence_count":0,"blocking_defect_count":0,"rationale":"Neutral placeholder; this dimension was not reviewed and is not treated as full score."},
+    {"dimension":"terminology","score":50.0,"weight":0.05,"status":"insufficient_evidence","related_defect_ids":[],"evidence_count":0,"blocking_defect_count":0,"rationale":"Neutral placeholder; this dimension was not reviewed and is not treated as full score."},
+    {"dimension":"consistency","score":40.0,"weight":0.06,"status":"blocking","related_defect_ids":["TQ-DEF-B","TQ-DEF-F"],"evidence_count":2,"blocking_defect_count":1,"rationale":"Score derived from human-confirmed defect severity and blocking evidence."},
+    {"dimension":"traditional_chinese_style","score":95.0,"weight":0.05,"status":"evaluated","related_defect_ids":["TQ-DEF-F"],"evidence_count":1,"blocking_defect_count":0,"rationale":"Score derived from human-confirmed defect severity and blocking evidence."},
+    {"dimension":"readability","score":63.0,"weight":0.09,"status":"evaluated","related_defect_ids":["TQ-DEF-A","TQ-DEF-E"],"evidence_count":2,"blocking_defect_count":0,"rationale":"Score derived from human-confirmed defect severity and blocking evidence."},
+    {"dimension":"overall","score":41.91,"weight":1.0,"status":"blocking","related_defect_ids":["TQ-DEF-A","TQ-DEF-B","TQ-DEF-C","TQ-DEF-D","TQ-DEF-E","TQ-DEF-F"],"evidence_count":6,"blocking_defect_count":1,"rationale":"Weighted evaluated dimensions with a fail-closed cap for blocking defects."}
+  ],
+  "integrity":{"algorithm":"sha256","payload_sha256":"77a1005c3a728c29e0b34275d6a3803885a015082b127d18d79362ac35c42005"}
+}
