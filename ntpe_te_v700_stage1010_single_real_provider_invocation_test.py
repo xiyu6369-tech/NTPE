@@ -43,8 +43,14 @@ def main() -> int:
     artifact = verify_invocation_artifact(
         ROOT / "artifacts/te_v7_stage1010/TE_V7_STAGE1010_SINGLE_REAL_INVOCATION.json"
     )
-    assert artifact.status == "stage1010a_fake_transport_validated"
-    assert artifact.network_requests == 0 and artifact.real_provider_execution is False
+    if artifact.stage == "TE-v7.0-Stage10.10B":
+        assert artifact.status == "single_real_invocation_failed"
+        assert artifact.network_requests == 1 and artifact.real_provider_execution is True
+        assert artifact.timeout_detected is True
+        assert artifact.translation_output_generated is False
+    else:
+        assert artifact.status == "stage1010a_fake_transport_validated"
+        assert artifact.network_requests == 0 and artifact.real_provider_execution is False
     print("TE v7.0 Stage 10.10A Single Real Provider Invocation Package ALL PASS")
     return 0
 

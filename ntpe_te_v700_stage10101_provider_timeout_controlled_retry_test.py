@@ -57,11 +57,30 @@ def main() -> int:
     artifact = verify_controlled_retry_artifact(
         ROOT / "artifacts/te_v7_stage10101/TE_V7_STAGE10101_CONTROLLED_RETRY.json"
     )
-    assert artifact.status == "controlled_retry_contract_prepared"
     assert artifact.prior_timeout_evidence_valid is True
     assert artifact.timeout_seconds == 180 and artifact.attempt_limit == 1
-    assert artifact.network_requests == 0 and artifact.real_provider_execution is False
-    assert artifact.retry_executed is False and artifact.translation_output_generated is False
+    assert artifact.fallback_allowed is False
+    if artifact.status == "controlled_retry_contract_prepared":
+        assert artifact.network_requests == 0
+        assert artifact.real_provider_execution is False
+        assert artifact.retry_executed is False
+        assert artifact.translation_output_generated is False
+    elif artifact.status == "single_controlled_retry_completed":
+        assert artifact.network_requests == 1
+        assert artifact.real_provider_execution is True
+        assert artifact.retry_executed is True
+        assert artifact.translation_output_generated is True
+        assert artifact.timeout_detected is False
+        assert artifact.http_503_detected is False
+        assert all(attempt.fallback_used is False for attempt in artifact.attempts)
+        assert artifact.human_review_required is True
+        assert artifact.comparison_executed is False
+        assert artifact.readiness_evaluated is False
+        assert artifact.baseline_created is False
+        assert artifact.candidate_created is False
+        assert artifact.production_ready is False
+    else:
+        raise AssertionError(f"unsupported controlled retry artifact status: {artifact.status}")
     print("TE v7.0 Stage 10.10.1 Provider Timeout Controlled Retry Contract ALL PASS")
     return 0
 
