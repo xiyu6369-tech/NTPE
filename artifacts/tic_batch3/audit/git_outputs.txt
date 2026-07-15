@@ -1,0 +1,27 @@
+﻿COMMAND: git diff --check
+
+EXIT_CODE: 0
+COMMAND: git diff --name-status
+
+COMMAND: git diff --cached --name-status
+D	-files --deleted
+COMMAND: git ls-files --deleted
+
+COMMAND: git status --short --untracked-files=all
+D  "-files --deleted"
+?? artifacts/tic_batch3/KNOWN_SUBJECT_SHIFT_HUMAN_REVIEW.json
+?? artifacts/tic_batch3/MANUAL_EVIDENCE_INVENTORY.json
+?? artifacts/tic_batch3/MANUAL_EVIDENCE_LINKS.json
+?? artifacts/tic_batch3/TRANSLATION_ALIGNMENT_INDEX.json
+?? artifacts/tic_batch3/TRANSLATION_ALIGNMENT_STATISTICS.json
+?? artifacts/tic_batch3/TRANSLATION_ALIGNMENT_UNITS.json
+?? artifacts/tic_batch3/audit/git_outputs.txt
+?? artifacts/tic_batch3/audit/package_report.json
+?? artifacts/tic_batch3/audit/regression_output.txt
+?? artifacts/tic_batch3/audit/validator_output.txt
+?? core/translation_intelligence_corpus/alignment.py
+?? core/translation_intelligence_corpus/evidence_linker.py
+?? core/translation_intelligence_corpus/segmentation.py
+?? docs/translation_intelligence/TIC_BATCH3_MANUAL_EVIDENCE_AND_ALIGNMENT.md
+?? ntpe_tic_batch3_manual_evidence_alignment_test.py
+?? tests/integration/tic_batch3_manual_evidence_alignment_test.py

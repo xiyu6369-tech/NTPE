@@ -1,0 +1,13 @@
+﻿COMMAND: python ntpe_tic_batch3_manual_evidence_alignment_test.py
+TIC Batch 3 Manual Evidence Linking and Fine-Grained Alignment ALL PASS
+EXIT_CODE: 0
+COMMAND: python -m pytest -q tests/integration/tic_batch3_manual_evidence_alignment_test.py
+...................                                                      [100%]
+19 passed in 1.21s
+EXIT_CODE: 0
+COMMAND: python ntpe_tic_batch1_translation_corpus_inventory_test.py
+TIC Batch 1 Historical Translation Corpus Inventory ALL PASS
+EXIT_CODE: 0
+COMMAND: python ntpe_tic_batch2_translation_case_extraction_test.py
+TIC Batch 2 Translation Case Extraction ALL PASS
+EXIT_CODE: 0
