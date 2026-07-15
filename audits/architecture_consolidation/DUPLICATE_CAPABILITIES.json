@@ -1,0 +1,166 @@
+{
+  "schema_version": "1.0",
+  "audit_date": "2026-07-15",
+  "groups": [
+    {
+      "capability": "sha256",
+      "file_count": 55,
+      "implementations": [
+        "Stage 11 integrity.py files",
+        "adaptive_context provider-evidence integrity/report files",
+        "translation_release and scheduler integrity helpers"
+      ],
+      "behavior_differences": "payload bytes vs canonical JSON vs file bytes; some return None on missing files",
+      "safe_to_merge": "partially",
+      "recommended_shared_module": "core/shared/integrity/",
+      "migration_risk": "HIGH"
+    },
+    {
+      "capability": "canonical JSON",
+      "file_count": 37,
+      "implementations": [
+        "Stage 11 integrity/serialization",
+        "adaptive_context reports",
+        "quality/export_layer.py",
+        "enterprise audit modules"
+      ],
+      "behavior_differences": "ensure_ascii and separators are mostly identical; envelope ownership differs",
+      "safe_to_merge": "yes after golden hash fixtures",
+      "recommended_shared_module": "core/shared/serialization/",
+      "migration_risk": "HIGH"
+    },
+    {
+      "capability": "serialization",
+      "file_count": 89,
+      "implementations": [
+        "workflow/export_formats.py",
+        "translation_scheduler",
+        "Stage 11 serialization.py files",
+        "plugin/resource managers"
+      ],
+      "behavior_differences": "dataclass-to-dict, schema validation, atomic file write, and envelope formats differ",
+      "safe_to_merge": "shared primitives only",
+      "recommended_shared_module": "core/shared/serialization/",
+      "migration_risk": "HIGH"
+    },
+    {
+      "capability": "schema validation",
+      "file_count": 29,
+      "implementations": [
+        "Stage 11 decision/corpus/integration validators",
+        "translation_scheduler journal/dashboard",
+        "translation_evidence"
+      ],
+      "behavior_differences": "strict exact-field schemas vs permissive manifests",
+      "safe_to_merge": "common validators only",
+      "recommended_shared_module": "core/shared/schema/",
+      "migration_risk": "HIGH"
+    },
+    {
+      "capability": "artifact reference",
+      "file_count": 10,
+      "implementations": [
+        "translation_quality_framework_integration",
+        "translation_quality_corpus_governance"
+      ],
+      "behavior_differences": "root-confined reference resolution vs direct Path hashing",
+      "safe_to_merge": "yes",
+      "recommended_shared_module": "core/shared/evidence/",
+      "migration_risk": "HIGH"
+    },
+    {
+      "capability": "boundary flags",
+      "file_count": 59,
+      "implementations": [
+        "translation_scheduler staged contracts",
+        "translation_reliability staged contracts",
+        "adaptive_context rollout/provider boundaries"
+      ],
+      "behavior_differences": "mock_only, shadow_only, execution_allowed, provider_calls_added, and planned_not_applied encode different safety domains",
+      "safe_to_merge": "no universal model; share vocabulary and validators",
+      "recommended_shared_module": "core/shared/boundaries/",
+      "migration_risk": "CRITICAL"
+    },
+    {
+      "capability": "immutable dataclass",
+      "file_count": 182,
+      "implementations": [
+        "models across adaptive_context, quality, reliability, runtime, scheduler"
+      ],
+      "behavior_differences": "domain schemas differ",
+      "safe_to_merge": "no; only provenance/time/hash value objects",
+      "recommended_shared_module": "core/shared/models/",
+      "migration_risk": "MEDIUM"
+    },
+    {
+      "capability": "created_at validation",
+      "file_count": 19,
+      "implementations": [
+        "Stage 11 validators",
+        "runtime recovery",
+        "scheduler journal",
+        "enterprise audits"
+      ],
+      "behavior_differences": "timezone required inconsistently",
+      "safe_to_merge": "yes",
+      "recommended_shared_module": "core/shared/schema/time.py",
+      "migration_risk": "MEDIUM"
+    },
+    {
+      "capability": "path validation",
+      "file_count": 37,
+      "implementations": [
+        "quality framework references",
+        "release manifests",
+        "enterprise config",
+        "provider evidence reports"
+      ],
+      "behavior_differences": "some enforce root containment; others only resolve or test absolute paths",
+      "safe_to_merge": "root-confined primitive only",
+      "recommended_shared_module": "core/shared/evidence/paths.py",
+      "migration_risk": "CRITICAL"
+    },
+    {
+      "capability": "redaction",
+      "file_count": 56,
+      "implementations": [
+        "ai_provider/secret_protection.py",
+        "provider evidence reports",
+        "translation_quality_review_artifacts/redaction.py",
+        "scheduler readiness evidence"
+      ],
+      "behavior_differences": "recursive scanning and forbidden-key sets vary",
+      "safe_to_merge": "shared scanner with domain policies",
+      "recommended_shared_module": "core/shared/evidence/redaction.py",
+      "migration_risk": "CRITICAL"
+    },
+    {
+      "capability": "sensitive-data scanning",
+      "file_count": 18,
+      "implementations": [
+        "provider evidence",
+        "scheduler/reliability guards",
+        "review artifacts"
+      ],
+      "behavior_differences": "raw source/prompt/credential rules differ by boundary",
+      "safe_to_merge": "engine yes, policy no",
+      "recommended_shared_module": "core/shared/evidence/sensitive.py",
+      "migration_risk": "CRITICAL"
+    },
+    {
+      "capability": "manifest validation",
+      "file_count": 16,
+      "implementations": [
+        "quality freeze",
+        "workflow freeze",
+        "translation_release",
+        "foundation/intelligence/enterprise freezes"
+      ],
+      "behavior_differences": "inventory, hash, version, and frozen-boundary assertions differ",
+      "safe_to_merge": "common inventory/hash layer only",
+      "recommended_shared_module": "core/shared/integrity/manifest.py",
+      "migration_risk": "HIGH"
+    }
+  ]
+}
+

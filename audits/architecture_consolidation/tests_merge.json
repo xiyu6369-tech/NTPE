@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "exact_duplicate_pairs": [
+    [
+      "ntpe_te_v32_stage322_runtime_adapter_dry_run_test.py",
+      "tests/integration/translation_scheduler_stage322_runtime_adapter_dry_run_test.py"
+    ],
+    [
+      "ntpe_te_v521_timeout_propagation_fix_test.py",
+      "tests/integration/translation_timeout_propagation_fix_test.py"
+    ],
+    [
+      "ntpe_te_v530_quality_runtime_integration_phase1_test.py",
+      "tests/integration/translation_quality_runtime_integration_phase1_test.py"
+    ],
+    [
+      "ntpe_te_v5311_paragraph_coverage_corroboration_test.py",
+      "tests/integration/translation_quality_paragraph_coverage_corroboration_v5311_test.py"
+    ],
+    [
+      "ntpe_te_v5312_unified_nonblocking_issue_mapping_test.py",
+      "tests/integration/translation_quality_unified_nonblocking_issue_mapping_v5312_test.py"
+    ],
+    [
+      "ntpe_te_v532_semantic_repetition_guard_test.py",
+      "tests/integration/translation_quality_semantic_repetition_guard_v532_test.py"
+    ],
+    [
+      "ntpe_te_v540_smart_local_repair_pipeline_test.py",
+      "tests/integration/translation_quality_smart_local_repair_v540_test.py"
+    ],
+    [
+      "ntpe_te_v5532_adaptive_retry_failure_fallback_test.py",
+      "tests/integration/translation_adaptive_retry_failure_fallback_v5532_test.py"
+    ]
+  ],
+  "wrapper_candidates": [
+    "ntpe_stage14_4_provider_orchestration_test.py",
+    "ntpe_stage14_5_provider_observability_test.py",
+    "ntpe_stage14_6_provider_security_test.py",
+    "ntpe_stage15_3_terminology_consistency_test.py",
+    "ntpe_stage15_5_structure_integrity_test.py",
+    "ntpe_stage15_8_translation_quality_engine_freeze_test.py"
+  ],
+  "parameterize": [
+    "scheduler stage boundary flags",
+    "reliability mock/shadow/controlled contracts",
+    "Adaptive Context admission/redaction flags",
+    "Stage 11 artifact schema/hash checks"
+  ],
+  "risk": "MEDIUM/HIGH; keep compatibility launchers until collection and behavior parity are demonstrated"
+}
+

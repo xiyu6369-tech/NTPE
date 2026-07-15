@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0",
+  "categories": [
+    "official production smoke and runtime contract",
+    "Provider credential/redaction/authorization boundaries",
+    "resume/recovery and output assembly",
+    "quality v5, discipline, naturalness, completeness, Hangul, repetition",
+    "latest freeze per active family",
+    "Stage 11 human provenance and corpus integrity"
+  ],
+  "examples": [
+    "runtime translation tests",
+    "timeout propagation",
+    "resume/recovery",
+    "quality v5 unified gate",
+    "translation discipline runtime integration",
+    "naturalness freeze",
+    "adaptive context production rollback",
+    "provider boundary redaction/authorization",
+    "Stage 11 human provenance"
+  ]
+}
+

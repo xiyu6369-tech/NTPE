@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0",
+  "candidates": [
+    {
+      "path": "ntpe_te_v40_stage408_translation_reliability_freeze_test.py",
+      "reason": "one-line non-test marker",
+      "risk": "LOW"
+    },
+    {
+      "group": "one side of each byte-identical root/integration pair",
+      "reason": "exact SHA-256 duplicate",
+      "risk": "MEDIUM"
+    },
+    {
+      "group": "artifact existence-only assertions superseded by hash/schema checks",
+      "reason": "low regression value",
+      "risk": "MEDIUM"
+    }
+  ],
+  "rule": "candidate only; no deletion in this audit"
+}
+

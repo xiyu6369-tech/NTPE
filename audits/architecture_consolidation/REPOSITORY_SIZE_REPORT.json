@@ -1,0 +1,376 @@
+{
+  "schema_version": "1.0",
+  "audit_date": "2026-07-15",
+  "total_files": 4542,
+  "total_directories": 748,
+  "total_size_bytes": 1188700660,
+  "workspace_files_excluding_git_and_audit": 4281,
+  "workspace_directories_excluding_git": 567,
+  "workspace_size_bytes_excluding_git_and_audit": 606846346,
+  "root_breakdown": [
+    {
+      "path": ".git",
+      "files": 239,
+      "bytes": 581496025
+    },
+    {
+      "path": "artifacts",
+      "files": 88,
+      "bytes": 204025
+    },
+    {
+      "path": "tests",
+      "files": 1251,
+      "bytes": 4132486
+    },
+    {
+      "path": "docs",
+      "files": 612,
+      "bytes": 539464
+    },
+    {
+      "path": "docs/releases",
+      "files": 161,
+      "bytes": 212213
+    },
+    {
+      "path": "core",
+      "files": 864,
+      "bytes": 2348254
+    },
+    {
+      "path": "manifests",
+      "files": 144,
+      "bytes": 211302
+    },
+    {
+      "path": "tests/literary/outputs",
+      "files": 651,
+      "bytes": 2973523
+    },
+    {
+      "path": "input",
+      "files": 7,
+      "bytes": 3029460
+    },
+    {
+      "path": "backup",
+      "files": 6,
+      "bytes": 2205429
+    },
+    {
+      "path": "prompt_packages",
+      "files": 131,
+      "bytes": 2509851
+    },
+    {
+      "path": "logs",
+      "files": 4,
+      "bytes": 95154
+    }
+  ],
+  "size_classes": {
+    "source_size_bytes_python": 5724397,
+    "git_history_size_bytes": 581496025,
+    "artifact_size_bytes": 204025,
+    "test_fixture_size_bytes": 1158963,
+    "regression_output_size_bytes": 2973523,
+    "duplicate_archive_size_bytes": 587838064,
+    "duplicate_content_wasted_bytes": 318846
+  },
+  "largest_50_files": [
+    {
+      "path": "NTPE.zip",
+      "bytes": 587775785
+    },
+    {
+      "path": "input/passion3.txt",
+      "bytes": 629729
+    },
+    {
+      "path": "input/passion2.txt",
+      "bytes": 615864
+    },
+    {
+      "path": "input/passion1.txt",
+      "bytes": 612616
+    },
+    {
+      "path": "input/passion5.txt",
+      "bytes": 578553
+    },
+    {
+      "path": "input/passion4.txt",
+      "bytes": 532239
+    },
+    {
+      "path": "backup/passion3_20260703_033155.txt",
+      "bytes": 452325
+    },
+    {
+      "path": "backup/passion1_20260703_033153.txt",
+      "bytes": 445943
+    },
+    {
+      "path": "backup/passion2_20260703_033154.txt",
+      "bytes": 445453
+    },
+    {
+      "path": "backup/passion5_20260703_033158.txt",
+      "bytes": 417437
+    },
+    {
+      "path": "backup/passion4_20260703_033156.txt",
+      "bytes": 382708
+    },
+    {
+      "path": "tests/literary/outputs/TE-v6.0-Stage10.1-ProductionValidation/Golden_Set/original_ko_resume_state.json",
+      "bytes": 184521
+    },
+    {
+      "path": ".pytest_cache/v/cache/nodeids",
+      "bytes": 175778
+    },
+    {
+      "path": "memory/character_database.json",
+      "bytes": 107725
+    },
+    {
+      "path": "tests/literary/outputs/TE-v5.3.0-QualityRuntimePhase1/Golden_Set/original_ko_translation_manifest.json",
+      "bytes": 106645
+    },
+    {
+      "path": "lts/txt_translation_runtime.py",
+      "bytes": 99158
+    },
+    {
+      "path": "tests/literary/outputs/TE-v7.0-Stage07-CanaryChunk3Validation/Golden_Set/original_ko_resume_state.json",
+      "bytes": 96545
+    },
+    {
+      "path": "tests/literary/outputs/TE-v7.0-Stage07-CanaryResumeValidation/Golden_Set/original_ko_partial_manifest.json",
+      "bytes": 92794
+    },
+    {
+      "path": "memory/knowledge_base.json",
+      "bytes": 86791
+    },
+    {
+      "path": "memory/knowledge_base_only.json",
+      "bytes": 84812
+    },
+    {
+      "path": "tests/literary/outputs/TE-v5.5.3-AdaptivePromptFeedback/Golden_Set/original_ko_translation_manifest.json",
+      "bytes": 76289
+    },
+    {
+      "path": "tests/literary/outputs/TE-v5.3.2-SemanticRepetitionGuard/Golden_Set/original_ko_partial_manifest.json",
+      "bytes": 71074
+    },
+    {
+      "path": "tests/literary/outputs/TE-v5.5.2-PromptDiscipline/Golden_Set/original_ko_translation_manifest.json",
+      "bytes": 67515
+    },
+    {
+      "path": "memory/character_memory.json",
+      "bytes": 64070
+    },
+    {
+      "path": "tests/literary/outputs/TE-v5.5.2.1-RuntimePromptWiring/Golden_Set/original_ko_partial_manifest.json",
+      "bytes": 63795
+    },
+    {
+      "path": "backup/passion6_20260703_033158.txt",
+      "bytes": 61563
+    },
+    {
+      "path": "input/passion6.txt",
+      "bytes": 60459
+    },
+    {
+      "path": "memory/character_memory_only.json",
+      "bytes": 57915
+    },
+    {
+      "path": "tests/literary/outputs/TE-v5.3.2-SemanticRepetitionGuard/Golden_Set/original_ko_translation_manifest.json",
+      "bytes": 56976
+    },
+    {
+      "path": "quality_reports/style_expansion_latest.json",
+      "bytes": 56261
+    },
+    {
+      "path": "ntpe_production_translate.py",
+      "bytes": 54738
+    },
+    {
+      "path": "tests/literary/outputs/TE-v6.0-Stage10.1-ProductionValidation/Golden_Set/original_ko_translation_manifest.json",
+      "bytes": 51452
+    },
+    {
+      "path": "tests/literary/outputs/TE-v5.5.2.1-RuntimePromptWiring/Golden_Set/original_ko_translation_manifest.json",
+      "bytes": 50917
+    },
+    {
+      "path": "tests/literary/outputs/TE-v5.5.2-PromptDiscipline/Golden_Set/original_ko_partial_manifest.json",
+      "bytes": 49157
+    },
+    {
+      "path": "logs/translation_engine_error.txt",
+      "bytes": 48968
+    },
+    {
+      "path": "tests/literary/outputs/TE-v5.5.3-AdaptivePromptFeedback/Golden_Set/original_ko_resume_state.json",
+      "bytes": 48447
+    },
+    {
+      "path": "tests/literary/outputs/TE-v5.3.1-UnifiedQualityGate/Golden_Set/original_ko_partial_manifest.json",
+      "bytes": 48183
+    },
+    {
+      "path": "tests/literary/outputs/TE-v7.0-Stage04-ProductionShadowValidation/Golden_Set/original_ko_partial_manifest.json",
+      "bytes": 47123
+    },
+    {
+      "path": "tests/literary/outputs/TE-v7.0-Stage07-CanaryResumeValidation/Golden_Set/original_ko_resume_state.json",
+      "bytes": 46652
+    },
+    {
+      "path": "tests/literary/outputs/TE-v7.0-Stage06-CanaryProductionValidation/Golden_Set/original_ko_resume_state.json",
+      "bytes": 43407
+    },
+    {
+      "path": "artifacts/NTPE_TE_V6_0_STAGE10_ADAPTIVE_RETRY_POLICY_V2_DELTA.zip",
+      "bytes": 37748
+    },
+    {
+      "path": "reports/pipeline_v1_live_report.json",
+      "bytes": 34342
+    },
+    {
+      "path": "reports/pipeline_v1_report_20260630_023036.json",
+      "bytes": 34342
+    },
+    {
+      "path": "logs/translation_engine_log.txt",
+      "bytes": 32204
+    },
+    {
+      "path": "prompt_packages/txt_runtime/original_ko_chunk_000003.json",
+      "bytes": 30796
+    },
+    {
+      "path": "lts/batch_translation_runtime.py",
+      "bytes": 28244
+    },
+    {
+      "path": "translation_cache/original_ko_chunk_000002_result.json",
+      "bytes": 27502
+    },
+    {
+      "path": "translation_cache/original_ko_chunk_000004_result.json",
+      "bytes": 27089
+    },
+    {
+      "path": "prompt_packages/passion1_normalized_chunk_000042_v1.json",
+      "bytes": 26907
+    },
+    {
+      "path": "tests/literary/outputs/TE-v5.3.1-UnifiedQualityGate/Golden_Set/original_ko_resume_state.json",
+      "bytes": 26768
+    }
+  ],
+  "largest_20_directories": [
+    {
+      "path": "tests",
+      "bytes": 4132486
+    },
+    {
+      "path": "input",
+      "bytes": 3029460
+    },
+    {
+      "path": "tests/literary",
+      "bytes": 2992026
+    },
+    {
+      "path": "tests/literary/outputs",
+      "bytes": 2973523
+    },
+    {
+      "path": "prompt_packages",
+      "bytes": 2509851
+    },
+    {
+      "path": "core",
+      "bytes": 2348254
+    },
+    {
+      "path": "backup",
+      "bytes": 2205429
+    },
+    {
+      "path": "docs",
+      "bytes": 539464
+    },
+    {
+      "path": "tests/integration",
+      "bytes": 498568
+    },
+    {
+      "path": "memory",
+      "bytes": 470956
+    },
+    {
+      "path": "tests/literary/outputs/TE-v6.0-Stage10.1-ProductionValidation",
+      "bytes": 335932
+    },
+    {
+      "path": "tests/literary/outputs/TE-v6.0-Stage10.1-ProductionValidation/Golden_Set",
+      "bytes": 317821
+    },
+    {
+      "path": "lts",
+      "bytes": 293462
+    },
+    {
+      "path": "docs/archive",
+      "bytes": 277407
+    },
+    {
+      "path": "docs/archive/release_history",
+      "bytes": 277407
+    },
+    {
+      "path": "tests/literary/outputs/TE-v5.3.2-SemanticRepetitionGuard",
+      "bytes": 248218
+    },
+    {
+      "path": "tests/literary/outputs/TE-v5.3.2-SemanticRepetitionGuard/Golden_Set",
+      "bytes": 236495
+    },
+    {
+      "path": "analysis",
+      "bytes": 230934
+    },
+    {
+      "path": "tests/literary/outputs/TE-v5.3.1-UnifiedQualityGate",
+      "bytes": 230047
+    },
+    {
+      "path": "core/translation_reliability",
+      "bytes": 222872
+    }
+  ],
+  "duplicate_files_by_sha256_report": "REPOSITORY_DUPLICATES.json",
+  "duplicate_group_count": 60,
+  "empty_file_count": 56,
+  "zip_near_600mb_analysis": [
+    "NTPE.zip is 587775785 bytes and accounts for 96.85 percent of the non-.git workspace.",
+    ".git is 581496025 bytes and is separate from the 606846346-byte non-.git workspace.",
+    "Excluding NTPE.zip, the non-.git workspace is about 19.07 MB.",
+    "tests/literary/outputs are 2.97 MB; input is 3.03 MB; prompt_packages are 2.51 MB; backup is 2.21 MB.",
+    "Content-level duplicate waste outside .git is only 318846 bytes; the oversized package is primarily a retained full-worktree ZIP."
+  ]
+}
+

@@ -1,0 +1,105 @@
+{
+  "schema_version": "1.0",
+  "audit_date": "2026-07-15",
+  "inventory_encoding": "Every inventory row has a profile; profile_flags supplies the required retention flags for that artifact.",
+  "collections": [
+    {
+      "path": "artifacts",
+      "files": 88,
+      "bytes": 204025
+    },
+    {
+      "path": "manifests",
+      "files": 144,
+      "bytes": 211302
+    },
+    {
+      "path": "docs/releases",
+      "files": 161,
+      "bytes": 212213
+    },
+    {
+      "path": "tests/literary/outputs",
+      "files": 651,
+      "bytes": 2973523
+    }
+  ],
+  "inventory_count": 1044,
+  "profile_flags": {
+    "current_release_anchor": {
+      "active_required": true,
+      "release_anchor": true,
+      "audit_evidence": true,
+      "rebuildable": false,
+      "historical_only": false,
+      "archive_candidate": false,
+      "delete_candidate": false,
+      "recommended_location": "active repository"
+    },
+    "provider_evidence": {
+      "active_required": false,
+      "release_anchor": true,
+      "audit_evidence": true,
+      "rebuildable": false,
+      "historical_only": true,
+      "archive_candidate": true,
+      "delete_candidate": false,
+      "recommended_location": "external archive"
+    },
+    "historical_release": {
+      "active_required": false,
+      "release_anchor": true,
+      "audit_evidence": true,
+      "rebuildable": false,
+      "historical_only": true,
+      "archive_candidate": true,
+      "delete_candidate": false,
+      "recommended_location": "GitHub Release asset"
+    },
+    "regression_output": {
+      "active_required": false,
+      "release_anchor": false,
+      "audit_evidence": true,
+      "rebuildable": true,
+      "historical_only": true,
+      "archive_candidate": true,
+      "delete_candidate": false,
+      "recommended_location": "external archive"
+    },
+    "rebuildable_non_evidence": {
+      "active_required": false,
+      "release_anchor": false,
+      "audit_evidence": false,
+      "rebuildable": true,
+      "historical_only": false,
+      "archive_candidate": false,
+      "delete_candidate": true,
+      "recommended_location": "delete"
+    },
+    "audit_evidence": {
+      "active_required": false,
+      "release_anchor": false,
+      "audit_evidence": true,
+      "rebuildable": false,
+      "historical_only": false,
+      "archive_candidate": false,
+      "delete_candidate": false,
+      "recommended_location": "local audit storage"
+    }
+  },
+  "inventory_files": [
+    "ARTIFACT_RETENTION_INVENTORY_001.json",
+    "ARTIFACT_RETENTION_INVENTORY_002.json",
+    "ARTIFACT_RETENTION_INVENTORY_003.json",
+    "ARTIFACT_RETENTION_INVENTORY_004.json",
+    "ARTIFACT_RETENTION_INVENTORY_005.json",
+    "ARTIFACT_RETENTION_INVENTORY_006.json"
+  ],
+  "policy_notes": [
+    "Stage 11 current artifacts/manifests remain active release anchors until compatibility wrappers and cross-stage hashes migrate.",
+    "Stage 12 Provider timeout, partial A/B, and execution metadata are audit evidence; archive externally with SHA-256 and do not package raw responses in the audit ZIP.",
+    "Literary regression outputs are rebuildable but can contain valuable historical baselines; externalize by stage rather than deleting blindly.",
+    "Empty Provider translation placeholders are evidence of incomplete execution, not ordinary empty-file deletion candidates."
+  ]
+}
+

@@ -1,0 +1,958 @@
+{
+  "schema_version": "1.0",
+  "audit_date": "2026-07-15",
+  "classification": "MERGE",
+  "count": 41,
+  "items": [
+    {
+      "module_path": "core/adaptive_context_activation_policy",
+      "classification": "MERGE",
+      "production_referenced": true,
+      "test_referenced": true,
+      "artifact_referenced": false,
+      "public_api": true,
+      "responsibility": "Adaptive Context policy, validation, rollout, or observability",
+      "duplicate_with": [
+        "adaptive_context/rollout facade"
+      ],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "active_or_optional_production_path",
+      "deletion_risk": "HIGH",
+      "recommended_action": "Merge overlapping domain behavior behind one facade, then deprecate the stage-specific import.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "AST import reachability from launcher_translate.py -> ntpe_production_translate.py",
+        "referenced by tests, artifacts, or package exports",
+        "no material artifact reference identified"
+      ]
+    },
+    {
+      "module_path": "core/adaptive_context_canary",
+      "classification": "MERGE",
+      "production_referenced": true,
+      "test_referenced": true,
+      "artifact_referenced": false,
+      "public_api": true,
+      "responsibility": "Adaptive Context policy, validation, rollout, or observability",
+      "duplicate_with": [
+        "adaptive_context/rollout facade"
+      ],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "active_or_optional_production_path",
+      "deletion_risk": "HIGH",
+      "recommended_action": "Merge overlapping domain behavior behind one facade, then deprecate the stage-specific import.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "AST import reachability from launcher_translate.py -> ntpe_production_translate.py",
+        "referenced by tests, artifacts, or package exports",
+        "no material artifact reference identified"
+      ]
+    },
+    {
+      "module_path": "core/adaptive_context_canary_ab",
+      "classification": "MERGE",
+      "production_referenced": true,
+      "test_referenced": true,
+      "artifact_referenced": false,
+      "public_api": true,
+      "responsibility": "Adaptive Context policy, validation, rollout, or observability",
+      "duplicate_with": [
+        "adaptive_context/rollout facade"
+      ],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "active_or_optional_production_path",
+      "deletion_risk": "HIGH",
+      "recommended_action": "Merge overlapping domain behavior behind one facade, then deprecate the stage-specific import.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "AST import reachability from launcher_translate.py -> ntpe_production_translate.py",
+        "referenced by tests, artifacts, or package exports",
+        "no material artifact reference identified"
+      ]
+    },
+    {
+      "module_path": "core/adaptive_context_canary_resume",
+      "classification": "MERGE",
+      "production_referenced": true,
+      "test_referenced": true,
+      "artifact_referenced": false,
+      "public_api": true,
+      "responsibility": "Adaptive Context policy, validation, rollout, or observability",
+      "duplicate_with": [
+        "adaptive_context/rollout facade"
+      ],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "active_or_optional_production_path",
+      "deletion_risk": "HIGH",
+      "recommended_action": "Merge overlapping domain behavior behind one facade, then deprecate the stage-specific import.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "AST import reachability from launcher_translate.py -> ntpe_production_translate.py",
+        "referenced by tests, artifacts, or package exports",
+        "no material artifact reference identified"
+      ]
+    },
+    {
+      "module_path": "core/adaptive_context_canary_validation",
+      "classification": "MERGE",
+      "production_referenced": true,
+      "test_referenced": true,
+      "artifact_referenced": false,
+      "public_api": true,
+      "responsibility": "Adaptive Context policy, validation, rollout, or observability",
+      "duplicate_with": [
+        "adaptive_context/rollout facade"
+      ],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "active_or_optional_production_path",
+      "deletion_risk": "HIGH",
+      "recommended_action": "Merge overlapping domain behavior behind one facade, then deprecate the stage-specific import.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "AST import reachability from launcher_translate.py -> ntpe_production_translate.py",
+        "referenced by tests, artifacts, or package exports",
+        "no material artifact reference identified"
+      ]
+    },
+    {
+      "module_path": "core/adaptive_context_production_benchmark",
+      "classification": "MERGE",
+      "production_referenced": true,
+      "test_referenced": true,
+      "artifact_referenced": false,
+      "public_api": true,
+      "responsibility": "Adaptive Context policy, validation, rollout, or observability",
+      "duplicate_with": [
+        "adaptive_context/rollout facade"
+      ],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "active_or_optional_production_path",
+      "deletion_risk": "HIGH",
+      "recommended_action": "Merge overlapping domain behavior behind one facade, then deprecate the stage-specific import.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "AST import reachability from launcher_translate.py -> ntpe_production_translate.py",
+        "referenced by tests, artifacts, or package exports",
+        "no material artifact reference identified"
+      ]
+    },
+    {
+      "module_path": "core/adaptive_context_production_validation",
+      "classification": "MERGE",
+      "production_referenced": true,
+      "test_referenced": true,
+      "artifact_referenced": false,
+      "public_api": true,
+      "responsibility": "Adaptive Context policy, validation, rollout, or observability",
+      "duplicate_with": [
+        "adaptive_context/rollout facade"
+      ],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "active_or_optional_production_path",
+      "deletion_risk": "HIGH",
+      "recommended_action": "Merge overlapping domain behavior behind one facade, then deprecate the stage-specific import.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "AST import reachability from launcher_translate.py -> ntpe_production_translate.py",
+        "referenced by tests, artifacts, or package exports",
+        "no material artifact reference identified"
+      ]
+    },
+    {
+      "module_path": "core/adaptive_context_profile_budget",
+      "classification": "MERGE",
+      "production_referenced": true,
+      "test_referenced": true,
+      "artifact_referenced": false,
+      "public_api": true,
+      "responsibility": "Adaptive Context policy, validation, rollout, or observability",
+      "duplicate_with": [
+        "adaptive_context/rollout facade"
+      ],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "active_or_optional_production_path",
+      "deletion_risk": "HIGH",
+      "recommended_action": "Merge overlapping domain behavior behind one facade, then deprecate the stage-specific import.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "AST import reachability from launcher_translate.py -> ntpe_production_translate.py",
+        "referenced by tests, artifacts, or package exports",
+        "no material artifact reference identified"
+      ]
+    },
+    {
+      "module_path": "core/adaptive_context_prompt_anchor",
+      "classification": "MERGE",
+      "production_referenced": true,
+      "test_referenced": true,
+      "artifact_referenced": false,
+      "public_api": true,
+      "responsibility": "Adaptive Context policy, validation, rollout, or observability",
+      "duplicate_with": [
+        "adaptive_context/rollout facade"
+      ],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "active_or_optional_production_path",
+      "deletion_risk": "HIGH",
+      "recommended_action": "Merge overlapping domain behavior behind one facade, then deprecate the stage-specific import.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "AST import reachability from launcher_translate.py -> ntpe_production_translate.py",
+        "referenced by tests, artifacts, or package exports",
+        "no material artifact reference identified"
+      ]
+    },
+    {
+      "module_path": "core/adaptive_context_strategy_selection",
+      "classification": "MERGE",
+      "production_referenced": true,
+      "test_referenced": true,
+      "artifact_referenced": false,
+      "public_api": true,
+      "responsibility": "Adaptive Context policy, validation, rollout, or observability",
+      "duplicate_with": [
+        "adaptive_context/rollout facade"
+      ],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "active_or_optional_production_path",
+      "deletion_risk": "HIGH",
+      "recommended_action": "Merge overlapping domain behavior behind one facade, then deprecate the stage-specific import.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "AST import reachability from launcher_translate.py -> ntpe_production_translate.py",
+        "referenced by tests, artifacts, or package exports",
+        "no material artifact reference identified"
+      ]
+    },
+    {
+      "module_path": "core/adaptive_context_authorized_provider_cli",
+      "classification": "MERGE",
+      "production_referenced": false,
+      "test_referenced": true,
+      "artifact_referenced": true,
+      "public_api": true,
+      "responsibility": "isolated Provider authorization, evidence, or execution boundary",
+      "duplicate_with": [
+        "provider/evidence toolchain"
+      ],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "isolated_execution_tooling",
+      "deletion_risk": "CRITICAL",
+      "recommended_action": "Consolidate stage wrappers into one isolated provider-evidence toolchain without weakening authorization, redaction, or single-attempt controls.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "not reachable from the official production entrypoint AST graph",
+        "referenced by tests, artifacts, or package exports",
+        "stage artifacts/manifests reference this component"
+      ]
+    },
+    {
+      "module_path": "core/adaptive_context_authorized_provider_harness",
+      "classification": "MERGE",
+      "production_referenced": false,
+      "test_referenced": true,
+      "artifact_referenced": true,
+      "public_api": true,
+      "responsibility": "isolated Provider authorization, evidence, or execution boundary",
+      "duplicate_with": [
+        "provider/evidence toolchain"
+      ],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "isolated_execution_tooling",
+      "deletion_risk": "CRITICAL",
+      "recommended_action": "Consolidate stage wrappers into one isolated provider-evidence toolchain without weakening authorization, redaction, or single-attempt controls.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "not reachable from the official production entrypoint AST graph",
+        "referenced by tests, artifacts, or package exports",
+        "stage artifacts/manifests reference this component"
+      ]
+    },
+    {
+      "module_path": "core/adaptive_context_controlled_provider_retry",
+      "classification": "MERGE",
+      "production_referenced": false,
+      "test_referenced": true,
+      "artifact_referenced": true,
+      "public_api": true,
+      "responsibility": "isolated Provider authorization, evidence, or execution boundary",
+      "duplicate_with": [
+        "provider/evidence toolchain"
+      ],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "isolated_execution_tooling",
+      "deletion_risk": "CRITICAL",
+      "recommended_action": "Consolidate stage wrappers into one isolated provider-evidence toolchain without weakening authorization, redaction, or single-attempt controls.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "not reachable from the official production entrypoint AST graph",
+        "referenced by tests, artifacts, or package exports",
+        "stage artifacts/manifests reference this component"
+      ]
+    },
+    {
+      "module_path": "core/adaptive_context_provider_benchmark_session",
+      "classification": "MERGE",
+      "production_referenced": false,
+      "test_referenced": true,
+      "artifact_referenced": true,
+      "public_api": true,
+      "responsibility": "isolated Provider authorization, evidence, or execution boundary",
+      "duplicate_with": [
+        "provider/evidence toolchain"
+      ],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "isolated_execution_tooling",
+      "deletion_risk": "CRITICAL",
+      "recommended_action": "Consolidate stage wrappers into one isolated provider-evidence toolchain without weakening authorization, redaction, or single-attempt controls.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "not reachable from the official production entrypoint AST graph",
+        "referenced by tests, artifacts, or package exports",
+        "stage artifacts/manifests reference this component"
+      ]
+    },
+    {
+      "module_path": "core/adaptive_context_provider_evidence",
+      "classification": "MERGE",
+      "production_referenced": false,
+      "test_referenced": true,
+      "artifact_referenced": true,
+      "public_api": true,
+      "responsibility": "isolated Provider authorization, evidence, or execution boundary",
+      "duplicate_with": [
+        "provider/evidence toolchain"
+      ],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "isolated_execution_tooling",
+      "deletion_risk": "CRITICAL",
+      "recommended_action": "Consolidate stage wrappers into one isolated provider-evidence toolchain without weakening authorization, redaction, or single-attempt controls.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "not reachable from the official production entrypoint AST graph",
+        "referenced by tests, artifacts, or package exports",
+        "stage artifacts/manifests reference this component"
+      ]
+    },
+    {
+      "module_path": "core/adaptive_context_provider_evidence_pipeline",
+      "classification": "MERGE",
+      "production_referenced": false,
+      "test_referenced": true,
+      "artifact_referenced": true,
+      "public_api": true,
+      "responsibility": "isolated Provider authorization, evidence, or execution boundary",
+      "duplicate_with": [
+        "provider/evidence toolchain"
+      ],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "isolated_execution_tooling",
+      "deletion_risk": "CRITICAL",
+      "recommended_action": "Consolidate stage wrappers into one isolated provider-evidence toolchain without weakening authorization, redaction, or single-attempt controls.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "not reachable from the official production entrypoint AST graph",
+        "referenced by tests, artifacts, or package exports",
+        "stage artifacts/manifests reference this component"
+      ]
+    },
+    {
+      "module_path": "core/adaptive_context_provider_execution_freeze",
+      "classification": "MERGE",
+      "production_referenced": false,
+      "test_referenced": true,
+      "artifact_referenced": true,
+      "public_api": true,
+      "responsibility": "isolated Provider authorization, evidence, or execution boundary",
+      "duplicate_with": [
+        "provider/evidence toolchain"
+      ],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "isolated_execution_tooling",
+      "deletion_risk": "CRITICAL",
+      "recommended_action": "Consolidate stage wrappers into one isolated provider-evidence toolchain without weakening authorization, redaction, or single-attempt controls.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "not reachable from the official production entrypoint AST graph",
+        "referenced by tests, artifacts, or package exports",
+        "stage artifacts/manifests reference this component"
+      ]
+    },
+    {
+      "module_path": "core/adaptive_context_provider_session_cli",
+      "classification": "MERGE",
+      "production_referenced": false,
+      "test_referenced": true,
+      "artifact_referenced": true,
+      "public_api": true,
+      "responsibility": "isolated Provider authorization, evidence, or execution boundary",
+      "duplicate_with": [
+        "provider/evidence toolchain"
+      ],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "isolated_execution_tooling",
+      "deletion_risk": "CRITICAL",
+      "recommended_action": "Consolidate stage wrappers into one isolated provider-evidence toolchain without weakening authorization, redaction, or single-attempt controls.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "not reachable from the official production entrypoint AST graph",
+        "referenced by tests, artifacts, or package exports",
+        "stage artifacts/manifests reference this component"
+      ]
+    },
+    {
+      "module_path": "core/adaptive_context_real_provider_boundary",
+      "classification": "MERGE",
+      "production_referenced": false,
+      "test_referenced": true,
+      "artifact_referenced": true,
+      "public_api": true,
+      "responsibility": "isolated Provider authorization, evidence, or execution boundary",
+      "duplicate_with": [
+        "provider/evidence toolchain"
+      ],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "isolated_execution_tooling",
+      "deletion_risk": "CRITICAL",
+      "recommended_action": "Consolidate stage wrappers into one isolated provider-evidence toolchain without weakening authorization, redaction, or single-attempt controls.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "not reachable from the official production entrypoint AST graph",
+        "referenced by tests, artifacts, or package exports",
+        "stage artifacts/manifests reference this component"
+      ]
+    },
+    {
+      "module_path": "core/adaptive_context_real_provider_preflight",
+      "classification": "MERGE",
+      "production_referenced": false,
+      "test_referenced": true,
+      "artifact_referenced": true,
+      "public_api": true,
+      "responsibility": "isolated Provider authorization, evidence, or execution boundary",
+      "duplicate_with": [
+        "provider/evidence toolchain"
+      ],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "isolated_execution_tooling",
+      "deletion_risk": "CRITICAL",
+      "recommended_action": "Consolidate stage wrappers into one isolated provider-evidence toolchain without weakening authorization, redaction, or single-attempt controls.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "not reachable from the official production entrypoint AST graph",
+        "referenced by tests, artifacts, or package exports",
+        "stage artifacts/manifests reference this component"
+      ]
+    },
+    {
+      "module_path": "core/adaptive_context_single_real_invocation",
+      "classification": "MERGE",
+      "production_referenced": false,
+      "test_referenced": true,
+      "artifact_referenced": true,
+      "public_api": true,
+      "responsibility": "isolated Provider authorization, evidence, or execution boundary",
+      "duplicate_with": [
+        "provider/evidence toolchain"
+      ],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "isolated_execution_tooling",
+      "deletion_risk": "CRITICAL",
+      "recommended_action": "Consolidate stage wrappers into one isolated provider-evidence toolchain without weakening authorization, redaction, or single-attempt controls.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "not reachable from the official production entrypoint AST graph",
+        "referenced by tests, artifacts, or package exports",
+        "stage artifacts/manifests reference this component"
+      ]
+    },
+    {
+      "module_path": "core/character_resolver",
+      "classification": "MERGE",
+      "production_referenced": false,
+      "test_referenced": true,
+      "artifact_referenced": false,
+      "public_api": true,
+      "responsibility": "legacy or parallel linguistic context capability",
+      "duplicate_with": [
+        "core/literary",
+        "core/translation_engine/context_intelligence"
+      ],
+      "quality_impact": "direct_or_potential",
+      "runtime_impact": "not_on_official_entrypoint",
+      "deletion_risk": "MEDIUM",
+      "recommended_action": "Merge overlapping domain behavior behind one facade, then deprecate the stage-specific import.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "not reachable from the official production entrypoint AST graph",
+        "referenced by tests, artifacts, or package exports",
+        "no material artifact reference identified"
+      ]
+    },
+    {
+      "module_path": "core/context",
+      "classification": "MERGE",
+      "production_referenced": false,
+      "test_referenced": true,
+      "artifact_referenced": false,
+      "public_api": true,
+      "responsibility": "legacy or parallel linguistic context capability",
+      "duplicate_with": [
+        "core/literary",
+        "core/translation_engine/context_intelligence"
+      ],
+      "quality_impact": "direct_or_potential",
+      "runtime_impact": "not_on_official_entrypoint",
+      "deletion_risk": "MEDIUM",
+      "recommended_action": "Merge overlapping domain behavior behind one facade, then deprecate the stage-specific import.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "not reachable from the official production entrypoint AST graph",
+        "referenced by tests, artifacts, or package exports",
+        "no material artifact reference identified"
+      ]
+    },
+    {
+      "module_path": "core/narrative",
+      "classification": "MERGE",
+      "production_referenced": false,
+      "test_referenced": true,
+      "artifact_referenced": false,
+      "public_api": true,
+      "responsibility": "legacy or parallel linguistic context capability",
+      "duplicate_with": [
+        "core/literary",
+        "core/translation_engine/context_intelligence"
+      ],
+      "quality_impact": "direct_or_potential",
+      "runtime_impact": "not_on_official_entrypoint",
+      "deletion_risk": "MEDIUM",
+      "recommended_action": "Merge overlapping domain behavior behind one facade, then deprecate the stage-specific import.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "not reachable from the official production entrypoint AST graph",
+        "referenced by tests, artifacts, or package exports",
+        "no material artifact reference identified"
+      ]
+    },
+    {
+      "module_path": "core/prompt_builder",
+      "classification": "MERGE",
+      "production_referenced": false,
+      "test_referenced": true,
+      "artifact_referenced": false,
+      "public_api": true,
+      "responsibility": "legacy platform or compatibility domain",
+      "duplicate_with": [
+        "core/literary",
+        "core/prompt_compiler"
+      ],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "not_on_official_entrypoint",
+      "deletion_risk": "MEDIUM",
+      "recommended_action": "Merge overlapping domain behavior behind one facade, then deprecate the stage-specific import.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "not reachable from the official production entrypoint AST graph",
+        "referenced by tests, artifacts, or package exports",
+        "no material artifact reference identified"
+      ]
+    },
+    {
+      "module_path": "core/quality",
+      "classification": "MERGE",
+      "production_referenced": false,
+      "test_referenced": true,
+      "artifact_referenced": false,
+      "public_api": true,
+      "responsibility": "translation quality detection, gating, or repair",
+      "duplicate_with": [
+        "translation/quality",
+        "core/translation_naturalness"
+      ],
+      "quality_impact": "direct_or_potential",
+      "runtime_impact": "not_on_official_entrypoint",
+      "deletion_risk": "MEDIUM",
+      "recommended_action": "Merge overlapping domain behavior behind one facade, then deprecate the stage-specific import.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "not reachable from the official production entrypoint AST graph",
+        "referenced by tests, artifacts, or package exports",
+        "no material artifact reference identified"
+      ]
+    },
+    {
+      "module_path": "core/runtime",
+      "classification": "MERGE",
+      "production_referenced": false,
+      "test_referenced": true,
+      "artifact_referenced": false,
+      "public_api": true,
+      "responsibility": "legacy platform or compatibility domain",
+      "duplicate_with": [
+        "lts",
+        "core/translation_runtime"
+      ],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "not_on_official_entrypoint",
+      "deletion_risk": "MEDIUM",
+      "recommended_action": "Merge overlapping domain behavior behind one facade, then deprecate the stage-specific import.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "not reachable from the official production entrypoint AST graph",
+        "referenced by tests, artifacts, or package exports",
+        "no material artifact reference identified"
+      ]
+    },
+    {
+      "module_path": "core/translation_pipeline",
+      "classification": "MERGE",
+      "production_referenced": true,
+      "test_referenced": true,
+      "artifact_referenced": false,
+      "public_api": true,
+      "responsibility": "runtime support surface imported by TranslationRuntime",
+      "duplicate_with": [
+        "workflow",
+        "core/translation_pipeline"
+      ],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "active_or_optional_production_path",
+      "deletion_risk": "HIGH",
+      "recommended_action": "Merge overlapping domain behavior behind one facade, then deprecate the stage-specific import.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "AST import reachability from launcher_translate.py -> ntpe_production_translate.py",
+        "referenced by tests, artifacts, or package exports",
+        "no material artifact reference identified"
+      ]
+    },
+    {
+      "module_path": "core/translation_plugins",
+      "classification": "MERGE",
+      "production_referenced": true,
+      "test_referenced": true,
+      "artifact_referenced": false,
+      "public_api": true,
+      "responsibility": "runtime support surface imported by TranslationRuntime",
+      "duplicate_with": [],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "active_or_optional_production_path",
+      "deletion_risk": "HIGH",
+      "recommended_action": "Merge overlapping domain behavior behind one facade, then deprecate the stage-specific import.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "AST import reachability from launcher_translate.py -> ntpe_production_translate.py",
+        "referenced by tests, artifacts, or package exports",
+        "no material artifact reference identified"
+      ]
+    },
+    {
+      "module_path": "core/translation_prompt_improvement_planner",
+      "classification": "MERGE",
+      "production_referenced": false,
+      "test_referenced": true,
+      "artifact_referenced": true,
+      "public_api": true,
+      "responsibility": "offline quality review, planning, or cross-stage integration",
+      "duplicate_with": [
+        "quality/review"
+      ],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "not_on_official_entrypoint",
+      "deletion_risk": "HIGH",
+      "recommended_action": "Consolidate behind quality/assessment, quality/review, or quality/corpus; keep the current import path as a temporary compatibility wrapper.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "not reachable from the official production entrypoint AST graph",
+        "referenced by tests, artifacts, or package exports",
+        "stage artifacts/manifests reference this component"
+      ]
+    },
+    {
+      "module_path": "core/translation_quality_corpus",
+      "classification": "MERGE",
+      "production_referenced": false,
+      "test_referenced": true,
+      "artifact_referenced": true,
+      "public_api": true,
+      "responsibility": "offline quality corpus and human provenance governance",
+      "duplicate_with": [
+        "quality/corpus"
+      ],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "not_on_official_entrypoint",
+      "deletion_risk": "HIGH",
+      "recommended_action": "Consolidate behind quality/assessment, quality/review, or quality/corpus; keep the current import path as a temporary compatibility wrapper.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "not reachable from the official production entrypoint AST graph",
+        "referenced by tests, artifacts, or package exports",
+        "stage artifacts/manifests reference this component"
+      ]
+    },
+    {
+      "module_path": "core/translation_quality_corpus_governance",
+      "classification": "MERGE",
+      "production_referenced": false,
+      "test_referenced": true,
+      "artifact_referenced": true,
+      "public_api": true,
+      "responsibility": "offline quality corpus and human provenance governance",
+      "duplicate_with": [
+        "quality/corpus"
+      ],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "not_on_official_entrypoint",
+      "deletion_risk": "HIGH",
+      "recommended_action": "Consolidate behind quality/assessment, quality/review, or quality/corpus; keep the current import path as a temporary compatibility wrapper.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "not reachable from the official production entrypoint AST graph",
+        "referenced by tests, artifacts, or package exports",
+        "stage artifacts/manifests reference this component"
+      ]
+    },
+    {
+      "module_path": "core/translation_quality_defects",
+      "classification": "MERGE",
+      "production_referenced": false,
+      "test_referenced": true,
+      "artifact_referenced": true,
+      "public_api": true,
+      "responsibility": "offline quality assessment and evidence",
+      "duplicate_with": [
+        "quality/assessment"
+      ],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "not_on_official_entrypoint",
+      "deletion_risk": "HIGH",
+      "recommended_action": "Consolidate behind quality/assessment, quality/review, or quality/corpus; keep the current import path as a temporary compatibility wrapper.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "not reachable from the official production entrypoint AST graph",
+        "referenced by tests, artifacts, or package exports",
+        "stage artifacts/manifests reference this component"
+      ]
+    },
+    {
+      "module_path": "core/translation_quality_framework_integration",
+      "classification": "MERGE",
+      "production_referenced": false,
+      "test_referenced": true,
+      "artifact_referenced": true,
+      "public_api": true,
+      "responsibility": "offline quality review, planning, or cross-stage integration",
+      "duplicate_with": [
+        "quality/review"
+      ],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "not_on_official_entrypoint",
+      "deletion_risk": "HIGH",
+      "recommended_action": "Consolidate behind quality/assessment, quality/review, or quality/corpus; keep the current import path as a temporary compatibility wrapper.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "not reachable from the official production entrypoint AST graph",
+        "referenced by tests, artifacts, or package exports",
+        "stage artifacts/manifests reference this component"
+      ]
+    },
+    {
+      "module_path": "core/translation_quality_metrics",
+      "classification": "MERGE",
+      "production_referenced": false,
+      "test_referenced": true,
+      "artifact_referenced": true,
+      "public_api": true,
+      "responsibility": "offline quality assessment and evidence",
+      "duplicate_with": [
+        "quality/assessment"
+      ],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "not_on_official_entrypoint",
+      "deletion_risk": "HIGH",
+      "recommended_action": "Consolidate behind quality/assessment, quality/review, or quality/corpus; keep the current import path as a temporary compatibility wrapper.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "not reachable from the official production entrypoint AST graph",
+        "referenced by tests, artifacts, or package exports",
+        "stage artifacts/manifests reference this component"
+      ]
+    },
+    {
+      "module_path": "core/translation_quality_review_artifacts",
+      "classification": "MERGE",
+      "production_referenced": false,
+      "test_referenced": true,
+      "artifact_referenced": true,
+      "public_api": true,
+      "responsibility": "offline quality review, planning, or cross-stage integration",
+      "duplicate_with": [
+        "quality/review"
+      ],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "not_on_official_entrypoint",
+      "deletion_risk": "HIGH",
+      "recommended_action": "Consolidate behind quality/assessment, quality/review, or quality/corpus; keep the current import path as a temporary compatibility wrapper.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "not reachable from the official production entrypoint AST graph",
+        "referenced by tests, artifacts, or package exports",
+        "stage artifacts/manifests reference this component"
+      ]
+    },
+    {
+      "module_path": "core/translation_quality_review_decision",
+      "classification": "MERGE",
+      "production_referenced": false,
+      "test_referenced": true,
+      "artifact_referenced": true,
+      "public_api": true,
+      "responsibility": "offline quality review, planning, or cross-stage integration",
+      "duplicate_with": [
+        "quality/review"
+      ],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "not_on_official_entrypoint",
+      "deletion_risk": "HIGH",
+      "recommended_action": "Consolidate behind quality/assessment, quality/review, or quality/corpus; keep the current import path as a temporary compatibility wrapper.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "not reachable from the official production entrypoint AST graph",
+        "referenced by tests, artifacts, or package exports",
+        "stage artifacts/manifests reference this component"
+      ]
+    },
+    {
+      "module_path": "core/translation_session",
+      "classification": "MERGE",
+      "production_referenced": true,
+      "test_referenced": true,
+      "artifact_referenced": false,
+      "public_api": true,
+      "responsibility": "runtime support surface imported by TranslationRuntime",
+      "duplicate_with": [
+        "workflow",
+        "core/translation_pipeline"
+      ],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "active_or_optional_production_path",
+      "deletion_risk": "HIGH",
+      "recommended_action": "Merge overlapping domain behavior behind one facade, then deprecate the stage-specific import.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "AST import reachability from launcher_translate.py -> ntpe_production_translate.py",
+        "referenced by tests, artifacts, or package exports",
+        "no material artifact reference identified"
+      ]
+    },
+    {
+      "module_path": "core/voice",
+      "classification": "MERGE",
+      "production_referenced": false,
+      "test_referenced": true,
+      "artifact_referenced": false,
+      "public_api": true,
+      "responsibility": "legacy or parallel linguistic context capability",
+      "duplicate_with": [
+        "core/literary",
+        "core/translation_engine/context_intelligence"
+      ],
+      "quality_impact": "direct_or_potential",
+      "runtime_impact": "not_on_official_entrypoint",
+      "deletion_risk": "MEDIUM",
+      "recommended_action": "Merge overlapping domain behavior behind one facade, then deprecate the stage-specific import.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "not reachable from the official production entrypoint AST graph",
+        "referenced by tests, artifacts, or package exports",
+        "no material artifact reference identified"
+      ]
+    },
+    {
+      "module_path": "core/workflow",
+      "classification": "MERGE",
+      "production_referenced": false,
+      "test_referenced": true,
+      "artifact_referenced": false,
+      "public_api": true,
+      "responsibility": "legacy platform or compatibility domain",
+      "duplicate_with": [
+        "workflow",
+        "core/translation_pipeline"
+      ],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "not_on_official_entrypoint",
+      "deletion_risk": "MEDIUM",
+      "recommended_action": "Merge overlapping domain behavior behind one facade, then deprecate the stage-specific import.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "not reachable from the official production entrypoint AST graph",
+        "referenced by tests, artifacts, or package exports",
+        "no material artifact reference identified"
+      ]
+    },
+    {
+      "module_path": "core/translation_release",
+      "classification": "MERGE",
+      "production_referenced": false,
+      "test_referenced": true,
+      "artifact_referenced": true,
+      "public_api": true,
+      "responsibility": "legacy platform or compatibility domain",
+      "duplicate_with": [],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "not_on_official_entrypoint",
+      "deletion_risk": "MEDIUM",
+      "recommended_action": "Merge overlapping domain behavior behind one facade, then deprecate the stage-specific import.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "not reachable from the official production entrypoint AST graph",
+        "referenced by tests, artifacts, or package exports",
+        "stage artifacts/manifests reference this component"
+      ]
+    }
+  ]
+}
+

@@ -1,0 +1,117 @@
+{
+  "schema_version": "1.0",
+  "audit_date": "2026-07-15",
+  "batches": [
+    {
+      "batch": 1,
+      "name": "Repository Hygiene",
+      "scope": "remove generated caches and externalize rebuildable/historical payloads; never delete audit-worthy Provider evidence",
+      "files_affected": [
+        "NTPE.zip",
+        ".pytest_cache",
+        "tests/literary/outputs historical stages",
+        "backup",
+        "prompt_packages",
+        "duplicate release copies",
+        "empty placeholders"
+      ],
+      "estimated_deletions": "1 ignored 587.8 MB ZIP plus selected generated files",
+      "estimated_merges": 0,
+      "risk": "LOW to HIGH by evidence class",
+      "required_tests": [
+        "ntpe_validate.py",
+        "artifact manifest reference scan",
+        "ZIP/package integrity checks"
+      ],
+      "rollback": "archive with SHA-256 and restore manifest before removal",
+      "commit_strategy": "one inventory commit, one archive/export commit, one deletion commit"
+    },
+    {
+      "batch": 2,
+      "name": "Test Consolidation",
+      "scope": "deduplicate root/integration mirrors and parameterize repeated boundary/freeze assertions",
+      "files_affected": [
+        "243 root tests",
+        "221 integration tests",
+        "74 freeze tests",
+        "historical RC/LTS suites"
+      ],
+      "estimated_deletions": "8 exact duplicate root files plus validated wrapper candidates",
+      "estimated_merges": "stage-family parameterized suites",
+      "risk": "MEDIUM to HIGH",
+      "required_tests": [
+        "pytest collection parity",
+        "current production smoke",
+        "latest family freeze gates",
+        "ntpe_validate.py"
+      ],
+      "rollback": "retain compatibility wrappers for one release",
+      "commit_strategy": "one family at a time"
+    },
+    {
+      "batch": 3,
+      "name": "Shared Utilities",
+      "scope": "centralize canonical JSON, hashes, references, time/path validation, and redaction engines",
+      "files_affected": [
+        "55 SHA files",
+        "37 canonical JSON files",
+        "Stage 11 and provider evidence helpers"
+      ],
+      "estimated_deletions": "duplicate helper bodies only",
+      "estimated_merges": "10 capability groups",
+      "risk": "HIGH/CRITICAL",
+      "required_tests": [
+        "golden hash fixtures",
+        "redaction adversarial tests",
+        "path traversal tests",
+        "all freeze manifests"
+      ],
+      "rollback": "compatibility functions delegate to shared implementation",
+      "commit_strategy": "primitive-by-primitive; never a big-bang migration"
+    },
+    {
+      "batch": 4,
+      "name": "Quality API Consolidation",
+      "scope": "converge Stage 11 into quality/assessment, quality/review, quality/corpus",
+      "files_affected": [
+        "8 Stage 11 packages",
+        "current artifacts/manifests/tests"
+      ],
+      "estimated_deletions": "integration facade internals after wrapper migration",
+      "estimated_merges": 8,
+      "risk": "HIGH",
+      "required_tests": [
+        "Stage 11.1-11.8 chain",
+        "human provenance tests",
+        "artifact hash parity",
+        "planned_not_applied invariant"
+      ],
+      "rollback": "retain old imports and serialized schemas",
+      "commit_strategy": "assessment, review, corpus, then compatibility facade"
+    },
+    {
+      "batch": 5,
+      "name": "Production Path Simplification",
+      "scope": "one CLI, one runtime, one prompt builder, explicit quality boundary, archive disconnected candidates",
+      "files_affected": [
+        "ntpe_production_translate.py",
+        "TranslationRuntime",
+        "lts runtime",
+        "optional Adaptive Context command families",
+        "SDK/API facades"
+      ],
+      "estimated_deletions": "legacy unreachable modules only after caller audit",
+      "estimated_merges": "runtime/prompt/API facades",
+      "risk": "CRITICAL",
+      "required_tests": [
+        "realistic dry-run only",
+        "production smoke without Provider",
+        "runtime/retry/resume/quality regressions",
+        "rollback rehearsal"
+      ],
+      "rollback": "feature flag and old runtime facade retained until parity",
+      "commit_strategy": "separate API facade, adapter migration, then dead-code removal"
+    }
+  ]
+}
+

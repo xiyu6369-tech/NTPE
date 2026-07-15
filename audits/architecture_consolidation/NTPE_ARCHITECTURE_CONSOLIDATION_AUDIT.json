@@ -1,0 +1,193 @@
+{
+  "schema_version": "1.0",
+  "audit_date": "2026-07-15",
+  "repository": "https://github.com/xiyu6369-tech/NTPE.git",
+  "branch": "main",
+  "baseline_commit": "77b11f5 chore: ignore local NTPE zip package",
+  "scope": "pure audit; no consolidation, Provider execution, translation, existing-file modification, commit, push, or tag",
+  "methodology": [
+    "AST import graph rooted at launcher_translate.py and ntpe_production_translate.py",
+    "static symbol and path reference search",
+    "entrypoint and runtime configuration tracing",
+    "test/artifact/manifest reference tracing",
+    "SHA-256 duplicate scan and recursive size scan"
+  ],
+  "conclusions": {
+    "architecture": "The official path is coherent at the launcher/runtime boundary but overloaded by optional rollout/audit commands and surrounded by large historical platform and stage-wrapper families.",
+    "size": "The near-600 MB workspace is overwhelmingly caused by ignored NTPE.zip (587,775,785 bytes), not source or ordinary artifact growth.",
+    "quality": "Naturalness, completeness, unsupported-detail, Hangul, repetition, glossary, character memory, discipline, and quality-v5 checks are wired into the active TXT runtime. Stage 11 is offline governance; Stage 12.1 is disconnected.",
+    "stage11": "Consolidate into quality/assessment, quality/review, and quality/corpus with frozen compatibility wrappers.",
+    "stage12": "Stage 12 A/B expansion should stop. Three execution rounds did not produce a complete reviewable pair or verified quality improvement.",
+    "deletion": "Start only with rebuildable packages/caches after archive and reference verification; legacy code deletion requires a separate dynamic-import and external-consumer audit."
+  },
+  "classification_counts": {
+    "KEEP": 15,
+    "MERGE": 41,
+    "DELETE_CANDIDATES": 22,
+    "ARCHIVE": 7,
+    "NEEDS_REVIEW": 2,
+    "total_core_level_components": 87
+  },
+  "core_reports": {
+    "KEEP": "KEEP.json",
+    "MERGE": "MERGE.json",
+    "DELETE_CANDIDATES": "DELETE_CANDIDATES.json",
+    "ARCHIVE": "ARCHIVE.json",
+    "NEEDS_REVIEW": "NEEDS_REVIEW.json"
+  },
+  "production_path": "PRODUCTION_PATH.json",
+  "quality_critical_path": "QUALITY_CRITICAL_PATH.json",
+  "duplicate_capabilities": "DUPLICATE_CAPABILITIES.json",
+  "test_consolidation": "TEST_CONSOLIDATION.json",
+  "artifact_retention": "ARTIFACT_RETENTION.json",
+  "repository_size": "REPOSITORY_SIZE_REPORT.json",
+  "public_api": "PUBLIC_API_REPORT.json",
+  "batch_plan": "CONSOLIDATION_BATCH_PLAN.json",
+  "stage11": {
+    "target_namespaces": [
+      "quality/assessment",
+      "quality/review",
+      "quality/corpus"
+    ],
+    "shared_models": [
+      "ArtifactReference(path, sha256)",
+      "IntegrityEnvelope(payload_sha256, boundary flags)",
+      "HumanProvenance(actor, source, created_at)",
+      "AuditEvent(action, actor, reason, at)",
+      "timezone-aware created_at validator"
+    ],
+    "duplicate_serialization": [
+      "canonical JSON hash helpers in defects, metrics, review artifacts, planner",
+      "serialize/deserialize in review decision, corpus governance, integration"
+    ],
+    "duplicate_integrity": [
+      "file/payload SHA-256",
+      "reference resolution",
+      "cross-artifact verification"
+    ],
+    "facade_assessment": "translation_quality_framework_integration is not behaviorless: it resolves, hashes, orders, and validates cross-stage references. Retain initially as a thin compatibility facade; move mechanics to shared evidence/integrity utilities.",
+    "planner_assessment": "Improvement Planner is offline human-governed planning, not a production runtime module. Fold into quality/review/planning.",
+    "provenance_assessment": "Human Decision and Corpus Governance should share actor/time/artifact provenance value objects while retaining different lifecycle schemas.",
+    "compatibility_wrappers": [
+      "all seven named Stage 11 package imports plus translation_quality_corpus during migration"
+    ],
+    "names_to_hide": [
+      "translation_quality_defects",
+      "translation_quality_metrics",
+      "translation_quality_review_artifacts",
+      "translation_prompt_improvement_planner",
+      "translation_quality_review_decision",
+      "translation_quality_corpus_governance",
+      "translation_quality_framework_integration"
+    ]
+  },
+  "stage12": {
+    "recommendation": "STOP",
+    "reason": "No complete reviewable baseline/candidate pair and no human quality decision.",
+    "evidence": [
+      {
+        "stage": "12.1",
+        "status": "prepared_not_validated",
+        "network_requests": 0,
+        "quality_improvement_verified": false
+      },
+      {
+        "stage": "12.2",
+        "status": "prepared_not_executed",
+        "network_requests": 0
+      },
+      {
+        "stage": "12.2.1",
+        "status": "ab_pair_incomplete",
+        "baseline_requests": 1,
+        "candidate_requests": 0
+      },
+      {
+        "stage": "12.2.2",
+        "status": "ab_pair_failed",
+        "baseline_requests": 1,
+        "candidate_requests": 1,
+        "baseline_success": false,
+        "candidate_success": false
+      },
+      {
+        "stage": "12.2.3",
+        "status": "ab_pair_partial",
+        "baseline_requests": 1,
+        "candidate_requests": 1,
+        "baseline_success": true,
+        "candidate_success": false,
+        "manual_review_completed": false
+      }
+    ],
+    "product_vs_experiment": "The candidate is an experiment, not a product feature. Keep it disabled and move it to experiments after preserving compatibility evidence.",
+    "retention": "Archive execution packages, raw/timeout metadata, manifests, and review templates externally with SHA-256. Do not keep expanding stage wrappers in active source.",
+    "test_action": "Merge five Stage 12 root/integration pairs into one parameterized package/integrity suite plus a compatibility wrapper."
+  },
+  "repository_size_summary": {
+    "total_files_including_git": 4520,
+    "total_directories_including_git": 746,
+    "total_bytes_including_git": 1188342371,
+    "workspace_files_excluding_git_and_audit": 4281,
+    "workspace_bytes_excluding_git_and_audit": 606846346,
+    "git_bytes": 581496025,
+    "ntpe_zip_bytes": 587775785,
+    "core_bytes": 2348254,
+    "tests_bytes": 4132486,
+    "literary_outputs_bytes": 2973523,
+    "artifacts_bytes": 204025,
+    "manifests_bytes": 211302,
+    "duplicate_content_wasted_bytes": 318846
+  },
+  "tests_summary": {
+    "all_test_python": 828,
+    "root": 243,
+    "integration": 221,
+    "unit": 24,
+    "smoke": 38,
+    "freeze": 74,
+    "historical": 218,
+    "exact_root_integration_duplicates": 8
+  },
+  "artifact_summary": {
+    "inventory_count": 1044,
+    "inventory_unique_paths": 1044,
+    "collections": {
+      "artifacts": 88,
+      "manifests": 144,
+      "docs_releases": 161,
+      "literary_outputs": 651
+    }
+  },
+  "highest_risks": [
+    {
+      "risk": "CRITICAL",
+      "item": "Consolidating Provider authorization/redaction boundaries can accidentally broaden execution or leak prompt/credential data."
+    },
+    {
+      "risk": "CRITICAL",
+      "item": "Merging runtime, production_runtime, and LTS paths can break retry, timeout, resume, or output assembly."
+    },
+    {
+      "risk": "CRITICAL",
+      "item": "Shared path/reference helpers can weaken root containment or artifact integrity if semantics are normalized incorrectly."
+    },
+    {
+      "risk": "HIGH",
+      "item": "Stage 11 hash/schema consolidation can invalidate frozen artifacts and public imports."
+    },
+    {
+      "risk": "HIGH",
+      "item": "Deleting legacy quality/context modules without dynamic-import and external-consumer evidence can remove latent user workflows."
+    }
+  ],
+  "validation_requirements": [
+    "python ntpe_validate.py",
+    "git diff --check",
+    "git diff --name-status",
+    "git ls-files --deleted",
+    "git status --short"
+  ],
+  "generated_files_policy": "Only audits/architecture_consolidation is added. No existing file is changed."
+}
+

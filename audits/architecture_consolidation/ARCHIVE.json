@@ -1,0 +1,156 @@
+{
+  "schema_version": "1.0",
+  "audit_date": "2026-07-15",
+  "classification": "ARCHIVE",
+  "count": 7,
+  "items": [
+    {
+      "module_path": "core/literary_prompt_quality_candidate_v72",
+      "classification": "ARCHIVE",
+      "production_referenced": false,
+      "test_referenced": true,
+      "artifact_referenced": true,
+      "public_api": true,
+      "responsibility": "translation quality detection, gating, or repair",
+      "duplicate_with": [],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "not_on_official_entrypoint",
+      "deletion_risk": "HIGH",
+      "recommended_action": "Move out of the active source tree only after preserving release evidence and a restoration tag.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "not reachable from the official production entrypoint AST graph",
+        "referenced by tests, artifacts, or package exports",
+        "stage artifacts/manifests reference this component"
+      ]
+    },
+    {
+      "module_path": "core/translation_scheduler",
+      "classification": "ARCHIVE",
+      "production_referenced": false,
+      "test_referenced": true,
+      "artifact_referenced": true,
+      "public_api": true,
+      "responsibility": "retry, recovery, scheduling, and rollback safety",
+      "duplicate_with": [],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "not_on_official_entrypoint",
+      "deletion_risk": "HIGH",
+      "recommended_action": "Move out of the active source tree only after preserving release evidence and a restoration tag.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "not reachable from the official production entrypoint AST graph",
+        "referenced by tests, artifacts, or package exports",
+        "stage artifacts/manifests reference this component"
+      ]
+    },
+    {
+      "module_path": "core/enterprise",
+      "classification": "ARCHIVE",
+      "production_referenced": false,
+      "test_referenced": true,
+      "artifact_referenced": false,
+      "public_api": true,
+      "responsibility": "legacy platform or compatibility domain",
+      "duplicate_with": [],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "not_on_official_entrypoint",
+      "deletion_risk": "HIGH",
+      "recommended_action": "Move out of the active source tree only after preserving release evidence and a restoration tag.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "not reachable from the official production entrypoint AST graph",
+        "referenced by tests, artifacts, or package exports",
+        "no material artifact reference identified"
+      ]
+    },
+    {
+      "module_path": "core/expansion",
+      "classification": "ARCHIVE",
+      "production_referenced": false,
+      "test_referenced": true,
+      "artifact_referenced": false,
+      "public_api": true,
+      "responsibility": "legacy platform or compatibility domain",
+      "duplicate_with": [],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "not_on_official_entrypoint",
+      "deletion_risk": "HIGH",
+      "recommended_action": "Move out of the active source tree only after preserving release evidence and a restoration tag.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "not reachable from the official production entrypoint AST graph",
+        "referenced by tests, artifacts, or package exports",
+        "no material artifact reference identified"
+      ]
+    },
+    {
+      "module_path": "core/foundation",
+      "classification": "ARCHIVE",
+      "production_referenced": false,
+      "test_referenced": true,
+      "artifact_referenced": false,
+      "public_api": true,
+      "responsibility": "legacy platform or compatibility domain",
+      "duplicate_with": [],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "not_on_official_entrypoint",
+      "deletion_risk": "HIGH",
+      "recommended_action": "Move out of the active source tree only after preserving release evidence and a restoration tag.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "not reachable from the official production entrypoint AST graph",
+        "referenced by tests, artifacts, or package exports",
+        "no material artifact reference identified"
+      ]
+    },
+    {
+      "module_path": "core/intelligence",
+      "classification": "ARCHIVE",
+      "production_referenced": false,
+      "test_referenced": true,
+      "artifact_referenced": false,
+      "public_api": true,
+      "responsibility": "legacy platform or compatibility domain",
+      "duplicate_with": [],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "not_on_official_entrypoint",
+      "deletion_risk": "HIGH",
+      "recommended_action": "Move out of the active source tree only after preserving release evidence and a restoration tag.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "not reachable from the official production entrypoint AST graph",
+        "referenced by tests, artifacts, or package exports",
+        "no material artifact reference identified"
+      ]
+    },
+    {
+      "module_path": "core/knowledge",
+      "classification": "ARCHIVE",
+      "production_referenced": false,
+      "test_referenced": true,
+      "artifact_referenced": false,
+      "public_api": true,
+      "responsibility": "legacy platform or compatibility domain",
+      "duplicate_with": [],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "not_on_official_entrypoint",
+      "deletion_risk": "HIGH",
+      "recommended_action": "Move out of the active source tree only after preserving release evidence and a restoration tag.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "not reachable from the official production entrypoint AST graph",
+        "referenced by tests, artifacts, or package exports",
+        "no material artifact reference identified"
+      ]
+    }
+  ]
+}
+

@@ -1,0 +1,341 @@
+{
+  "schema_version": "1.0",
+  "audit_date": "2026-07-15",
+  "classification": "KEEP",
+  "count": 15,
+  "items": [
+    {
+      "module_path": "core/adaptive_context",
+      "classification": "KEEP",
+      "production_referenced": true,
+      "test_referenced": true,
+      "artifact_referenced": true,
+      "public_api": true,
+      "responsibility": "Adaptive Context policy, validation, rollout, or observability",
+      "duplicate_with": [
+        "adaptive_context/rollout facade"
+      ],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "active_or_optional_production_path",
+      "deletion_risk": "HIGH",
+      "recommended_action": "Retain as an active boundary; reduce only behind regression-protected compatibility APIs.",
+      "migration_required": false,
+      "rollback_strategy": "Keep current module and validation anchors.",
+      "evidence": [
+        "AST import reachability from launcher_translate.py -> ntpe_production_translate.py",
+        "referenced by tests, artifacts, or package exports",
+        "stage artifacts/manifests reference this component"
+      ]
+    },
+    {
+      "module_path": "core/adaptive_context_integration",
+      "classification": "KEEP",
+      "production_referenced": true,
+      "test_referenced": true,
+      "artifact_referenced": false,
+      "public_api": true,
+      "responsibility": "Adaptive Context policy, validation, rollout, or observability",
+      "duplicate_with": [
+        "adaptive_context/rollout facade"
+      ],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "active_or_optional_production_path",
+      "deletion_risk": "HIGH",
+      "recommended_action": "Retain as an active boundary; reduce only behind regression-protected compatibility APIs.",
+      "migration_required": false,
+      "rollback_strategy": "Keep current module and validation anchors.",
+      "evidence": [
+        "AST import reachability from launcher_translate.py -> ntpe_production_translate.py",
+        "referenced by tests, artifacts, or package exports",
+        "no material artifact reference identified"
+      ]
+    },
+    {
+      "module_path": "core/adaptive_context_production_rollout",
+      "classification": "KEEP",
+      "production_referenced": true,
+      "test_referenced": true,
+      "artifact_referenced": true,
+      "public_api": true,
+      "responsibility": "Adaptive Context policy, validation, rollout, or observability",
+      "duplicate_with": [
+        "adaptive_context/rollout facade"
+      ],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "active_or_optional_production_path",
+      "deletion_risk": "HIGH",
+      "recommended_action": "Retain as an active boundary; reduce only behind regression-protected compatibility APIs.",
+      "migration_required": false,
+      "rollback_strategy": "Keep current module and validation anchors.",
+      "evidence": [
+        "AST import reachability from launcher_translate.py -> ntpe_production_translate.py",
+        "referenced by tests, artifacts, or package exports",
+        "stage artifacts/manifests reference this component"
+      ]
+    },
+    {
+      "module_path": "core/adaptive_context_runtime_shadow",
+      "classification": "KEEP",
+      "production_referenced": true,
+      "test_referenced": true,
+      "artifact_referenced": true,
+      "public_api": true,
+      "responsibility": "Adaptive Context policy, validation, rollout, or observability",
+      "duplicate_with": [
+        "adaptive_context/rollout facade"
+      ],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "active_or_optional_production_path",
+      "deletion_risk": "HIGH",
+      "recommended_action": "Retain as an active boundary; reduce only behind regression-protected compatibility APIs.",
+      "migration_required": false,
+      "rollback_strategy": "Keep current module and validation anchors.",
+      "evidence": [
+        "AST import reachability from launcher_translate.py -> ntpe_production_translate.py",
+        "referenced by tests, artifacts, or package exports",
+        "stage artifacts/manifests reference this component"
+      ]
+    },
+    {
+      "module_path": "core/ai_provider",
+      "classification": "KEEP",
+      "production_referenced": true,
+      "test_referenced": true,
+      "artifact_referenced": false,
+      "public_api": true,
+      "responsibility": "Provider routing, policy, credentials, retries, and telemetry",
+      "duplicate_with": [],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "active_or_optional_production_path",
+      "deletion_risk": "CRITICAL",
+      "recommended_action": "Retain as an active boundary; reduce only behind regression-protected compatibility APIs.",
+      "migration_required": false,
+      "rollback_strategy": "Keep current module and validation anchors.",
+      "evidence": [
+        "AST import reachability from launcher_translate.py -> ntpe_production_translate.py",
+        "referenced by tests, artifacts, or package exports",
+        "no material artifact reference identified"
+      ]
+    },
+    {
+      "module_path": "core/literary",
+      "classification": "KEEP",
+      "production_referenced": true,
+      "test_referenced": true,
+      "artifact_referenced": false,
+      "public_api": true,
+      "responsibility": "literary prompt assembly and policy compilation",
+      "duplicate_with": [],
+      "quality_impact": "direct_or_potential",
+      "runtime_impact": "active_or_optional_production_path",
+      "deletion_risk": "HIGH",
+      "recommended_action": "Retain as an active boundary; reduce only behind regression-protected compatibility APIs.",
+      "migration_required": false,
+      "rollback_strategy": "Keep current module and validation anchors.",
+      "evidence": [
+        "AST import reachability from launcher_translate.py -> ntpe_production_translate.py",
+        "referenced by tests, artifacts, or package exports",
+        "no material artifact reference identified"
+      ]
+    },
+    {
+      "module_path": "core/prompt_compiler",
+      "classification": "KEEP",
+      "production_referenced": true,
+      "test_referenced": true,
+      "artifact_referenced": false,
+      "public_api": true,
+      "responsibility": "literary prompt assembly and policy compilation",
+      "duplicate_with": [
+        "core/literary",
+        "core/prompt_compiler"
+      ],
+      "quality_impact": "direct_or_potential",
+      "runtime_impact": "active_or_optional_production_path",
+      "deletion_risk": "HIGH",
+      "recommended_action": "Retain as an active boundary; reduce only behind regression-protected compatibility APIs.",
+      "migration_required": false,
+      "rollback_strategy": "Keep current module and validation anchors.",
+      "evidence": [
+        "AST import reachability from launcher_translate.py -> ntpe_production_translate.py",
+        "referenced by tests, artifacts, or package exports",
+        "no material artifact reference identified"
+      ]
+    },
+    {
+      "module_path": "core/translation_discipline",
+      "classification": "KEEP",
+      "production_referenced": true,
+      "test_referenced": true,
+      "artifact_referenced": true,
+      "public_api": true,
+      "responsibility": "legacy platform or compatibility domain",
+      "duplicate_with": [],
+      "quality_impact": "direct_or_potential",
+      "runtime_impact": "active_or_optional_production_path",
+      "deletion_risk": "HIGH",
+      "recommended_action": "Retain as an active boundary; reduce only behind regression-protected compatibility APIs.",
+      "migration_required": false,
+      "rollback_strategy": "Keep current module and validation anchors.",
+      "evidence": [
+        "AST import reachability from launcher_translate.py -> ntpe_production_translate.py",
+        "referenced by tests, artifacts, or package exports",
+        "stage artifacts/manifests reference this component"
+      ]
+    },
+    {
+      "module_path": "core/translation_engine",
+      "classification": "KEEP",
+      "production_referenced": true,
+      "test_referenced": true,
+      "artifact_referenced": false,
+      "public_api": true,
+      "responsibility": "provider-facing translation engine",
+      "duplicate_with": [],
+      "quality_impact": "direct_or_potential",
+      "runtime_impact": "active_or_optional_production_path",
+      "deletion_risk": "HIGH",
+      "recommended_action": "Retain as an active boundary; reduce only behind regression-protected compatibility APIs.",
+      "migration_required": false,
+      "rollback_strategy": "Keep current module and validation anchors.",
+      "evidence": [
+        "AST import reachability from launcher_translate.py -> ntpe_production_translate.py",
+        "referenced by tests, artifacts, or package exports",
+        "no material artifact reference identified"
+      ]
+    },
+    {
+      "module_path": "core/translation_evidence",
+      "classification": "KEEP",
+      "production_referenced": true,
+      "test_referenced": true,
+      "artifact_referenced": true,
+      "public_api": true,
+      "responsibility": "legacy platform or compatibility domain",
+      "duplicate_with": [],
+      "quality_impact": "direct_or_potential",
+      "runtime_impact": "active_or_optional_production_path",
+      "deletion_risk": "HIGH",
+      "recommended_action": "Retain as an active boundary; reduce only behind regression-protected compatibility APIs.",
+      "migration_required": false,
+      "rollback_strategy": "Keep current module and validation anchors.",
+      "evidence": [
+        "AST import reachability from launcher_translate.py -> ntpe_production_translate.py",
+        "referenced by tests, artifacts, or package exports",
+        "stage artifacts/manifests reference this component"
+      ]
+    },
+    {
+      "module_path": "core/translation_naturalness",
+      "classification": "KEEP",
+      "production_referenced": true,
+      "test_referenced": true,
+      "artifact_referenced": true,
+      "public_api": true,
+      "responsibility": "legacy platform or compatibility domain",
+      "duplicate_with": [],
+      "quality_impact": "direct_or_potential",
+      "runtime_impact": "active_or_optional_production_path",
+      "deletion_risk": "HIGH",
+      "recommended_action": "Retain as an active boundary; reduce only behind regression-protected compatibility APIs.",
+      "migration_required": false,
+      "rollback_strategy": "Keep current module and validation anchors.",
+      "evidence": [
+        "AST import reachability from launcher_translate.py -> ntpe_production_translate.py",
+        "referenced by tests, artifacts, or package exports",
+        "stage artifacts/manifests reference this component"
+      ]
+    },
+    {
+      "module_path": "core/translation_quality_v5",
+      "classification": "KEEP",
+      "production_referenced": true,
+      "test_referenced": true,
+      "artifact_referenced": false,
+      "public_api": true,
+      "responsibility": "translation quality detection, gating, or repair",
+      "duplicate_with": [
+        "translation/quality",
+        "core/translation_naturalness"
+      ],
+      "quality_impact": "direct_or_potential",
+      "runtime_impact": "active_or_optional_production_path",
+      "deletion_risk": "HIGH",
+      "recommended_action": "Retain as an active boundary; reduce only behind regression-protected compatibility APIs.",
+      "migration_required": false,
+      "rollback_strategy": "Keep current module and validation anchors.",
+      "evidence": [
+        "AST import reachability from launcher_translate.py -> ntpe_production_translate.py",
+        "referenced by tests, artifacts, or package exports",
+        "no material artifact reference identified"
+      ]
+    },
+    {
+      "module_path": "core/translation_reliability",
+      "classification": "KEEP",
+      "production_referenced": true,
+      "test_referenced": true,
+      "artifact_referenced": false,
+      "public_api": true,
+      "responsibility": "retry, recovery, scheduling, and rollback safety",
+      "duplicate_with": [],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "active_or_optional_production_path",
+      "deletion_risk": "HIGH",
+      "recommended_action": "Retain as an active boundary; reduce only behind regression-protected compatibility APIs.",
+      "migration_required": false,
+      "rollback_strategy": "Keep current module and validation anchors.",
+      "evidence": [
+        "AST import reachability from launcher_translate.py -> ntpe_production_translate.py",
+        "referenced by tests, artifacts, or package exports",
+        "no material artifact reference identified"
+      ]
+    },
+    {
+      "module_path": "core/translation_runtime",
+      "classification": "KEEP",
+      "production_referenced": true,
+      "test_referenced": true,
+      "artifact_referenced": false,
+      "public_api": true,
+      "responsibility": "official production runtime orchestration",
+      "duplicate_with": [
+        "lts",
+        "core/translation_runtime"
+      ],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "active_or_optional_production_path",
+      "deletion_risk": "CRITICAL",
+      "recommended_action": "Retain as an active boundary; reduce only behind regression-protected compatibility APIs.",
+      "migration_required": false,
+      "rollback_strategy": "Keep current module and validation anchors.",
+      "evidence": [
+        "AST import reachability from launcher_translate.py -> ntpe_production_translate.py",
+        "referenced by tests, artifacts, or package exports",
+        "no material artifact reference identified"
+      ]
+    },
+    {
+      "module_path": "core/translation_resources",
+      "classification": "KEEP",
+      "production_referenced": true,
+      "test_referenced": true,
+      "artifact_referenced": false,
+      "public_api": true,
+      "responsibility": "runtime support surface imported by TranslationRuntime",
+      "duplicate_with": [],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "active_or_optional_production_path",
+      "deletion_risk": "HIGH",
+      "recommended_action": "Retain as an active boundary; reduce only behind regression-protected compatibility APIs.",
+      "migration_required": false,
+      "rollback_strategy": "Keep current module and validation anchors.",
+      "evidence": [
+        "AST import reachability from launcher_translate.py -> ntpe_production_translate.py",
+        "referenced by tests, artifacts, or package exports",
+        "no material artifact reference identified"
+      ]
+    }
+  ]
+}
+

@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0",
+  "audit_date": "2026-07-15",
+  "classification": "NEEDS_REVIEW",
+  "count": 2,
+  "items": [
+    {
+      "module_path": "core/production_runtime",
+      "classification": "NEEDS_REVIEW",
+      "production_referenced": false,
+      "test_referenced": true,
+      "artifact_referenced": false,
+      "public_api": true,
+      "responsibility": "legacy platform or compatibility domain",
+      "duplicate_with": [
+        "lts",
+        "core/translation_runtime"
+      ],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "not_on_official_entrypoint",
+      "deletion_risk": "CRITICAL",
+      "recommended_action": "Trace runtime configuration and external consumers before deciding KEEP, MERGE, or ARCHIVE.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "not reachable from the official production entrypoint AST graph",
+        "referenced by tests, artifacts, or package exports",
+        "no material artifact reference identified"
+      ]
+    },
+    {
+      "module_path": "core/translation",
+      "classification": "NEEDS_REVIEW",
+      "production_referenced": false,
+      "test_referenced": true,
+      "artifact_referenced": false,
+      "public_api": true,
+      "responsibility": "legacy platform or compatibility domain",
+      "duplicate_with": [],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "not_on_official_entrypoint",
+      "deletion_risk": "HIGH",
+      "recommended_action": "Trace runtime configuration and external consumers before deciding KEEP, MERGE, or ARCHIVE.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "not reachable from the official production entrypoint AST graph",
+        "referenced by tests, artifacts, or package exports",
+        "no material artifact reference identified"
+      ]
+    }
+  ]
+}
+

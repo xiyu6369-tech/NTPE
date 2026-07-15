@@ -1,0 +1,11 @@
+{
+  "schema_version": "1.0",
+  "index": true,
+  "count": 174,
+  "parts": [
+    "ARTIFACT_RETENTION_INVENTORY_003A.json",
+    "ARTIFACT_RETENTION_INVENTORY_003B.json",
+    "ARTIFACT_RETENTION_INVENTORY_003C.json"
+  ]
+}
+

@@ -1,0 +1,558 @@
+{
+  "schema_version": "1.0",
+  "audit_date": "2026-07-15",
+  "classification": "DELETE",
+  "count": 22,
+  "items": [
+    {
+      "module_path": "core/app_logger.py",
+      "classification": "DELETE",
+      "production_referenced": false,
+      "test_referenced": false,
+      "artifact_referenced": false,
+      "public_api": false,
+      "responsibility": "legacy standalone implementation superseded by package runtime paths",
+      "duplicate_with": [
+        "lts",
+        "core/translation_runtime",
+        "core/literary"
+      ],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "not_on_official_entrypoint",
+      "deletion_risk": "LOW",
+      "recommended_action": "Deletion candidate only: prove zero dynamic imports, preserve any user data, then remove in a dedicated hygiene batch.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "not reachable from the official production entrypoint AST graph",
+        "static test/artifact search found no direct core-module reference",
+        "no material artifact reference identified"
+      ]
+    },
+    {
+      "module_path": "core/character_database.py",
+      "classification": "DELETE",
+      "production_referenced": false,
+      "test_referenced": false,
+      "artifact_referenced": false,
+      "public_api": false,
+      "responsibility": "legacy standalone implementation superseded by package runtime paths",
+      "duplicate_with": [
+        "lts",
+        "core/translation_runtime",
+        "core/literary"
+      ],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "not_on_official_entrypoint",
+      "deletion_risk": "LOW",
+      "recommended_action": "Deletion candidate only: prove zero dynamic imports, preserve any user data, then remove in a dedicated hygiene batch.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "not reachable from the official production entrypoint AST graph",
+        "static test/artifact search found no direct core-module reference",
+        "no material artifact reference identified"
+      ]
+    },
+    {
+      "module_path": "core/character_memory_engine.py",
+      "classification": "DELETE",
+      "production_referenced": false,
+      "test_referenced": false,
+      "artifact_referenced": false,
+      "public_api": false,
+      "responsibility": "legacy standalone implementation superseded by package runtime paths",
+      "duplicate_with": [
+        "lts",
+        "core/translation_runtime",
+        "core/literary"
+      ],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "not_on_official_entrypoint",
+      "deletion_risk": "HIGH",
+      "recommended_action": "Deletion candidate only: prove zero dynamic imports, preserve any user data, then remove in a dedicated hygiene batch.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "not reachable from the official production entrypoint AST graph",
+        "static test/artifact search found no direct core-module reference",
+        "no material artifact reference identified"
+      ]
+    },
+    {
+      "module_path": "core/chunker.py",
+      "classification": "DELETE",
+      "production_referenced": false,
+      "test_referenced": false,
+      "artifact_referenced": false,
+      "public_api": false,
+      "responsibility": "legacy standalone implementation superseded by package runtime paths",
+      "duplicate_with": [
+        "lts",
+        "core/translation_runtime",
+        "core/literary"
+      ],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "not_on_official_entrypoint",
+      "deletion_risk": "HIGH",
+      "recommended_action": "Deletion candidate only: prove zero dynamic imports, preserve any user data, then remove in a dedicated hygiene batch.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "not reachable from the official production entrypoint AST graph",
+        "static test/artifact search found no direct core-module reference",
+        "no material artifact reference identified"
+      ]
+    },
+    {
+      "module_path": "core/config.py",
+      "classification": "DELETE",
+      "production_referenced": false,
+      "test_referenced": false,
+      "artifact_referenced": false,
+      "public_api": false,
+      "responsibility": "legacy standalone implementation superseded by package runtime paths",
+      "duplicate_with": [
+        "lts",
+        "core/translation_runtime",
+        "core/literary"
+      ],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "not_on_official_entrypoint",
+      "deletion_risk": "LOW",
+      "recommended_action": "Deletion candidate only: prove zero dynamic imports, preserve any user data, then remove in a dedicated hygiene batch.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "not reachable from the official production entrypoint AST graph",
+        "static test/artifact search found no direct core-module reference",
+        "no material artifact reference identified"
+      ]
+    },
+    {
+      "module_path": "core/document_analyzer.py",
+      "classification": "DELETE",
+      "production_referenced": false,
+      "test_referenced": false,
+      "artifact_referenced": false,
+      "public_api": false,
+      "responsibility": "legacy standalone implementation superseded by package runtime paths",
+      "duplicate_with": [
+        "lts",
+        "core/translation_runtime",
+        "core/literary"
+      ],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "not_on_official_entrypoint",
+      "deletion_risk": "LOW",
+      "recommended_action": "Deletion candidate only: prove zero dynamic imports, preserve any user data, then remove in a dedicated hygiene batch.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "not reachable from the official production entrypoint AST graph",
+        "static test/artifact search found no direct core-module reference",
+        "no material artifact reference identified"
+      ]
+    },
+    {
+      "module_path": "core/document_normalizer.py",
+      "classification": "DELETE",
+      "production_referenced": false,
+      "test_referenced": false,
+      "artifact_referenced": false,
+      "public_api": false,
+      "responsibility": "legacy standalone implementation superseded by package runtime paths",
+      "duplicate_with": [
+        "lts",
+        "core/translation_runtime",
+        "core/literary"
+      ],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "not_on_official_entrypoint",
+      "deletion_risk": "LOW",
+      "recommended_action": "Deletion candidate only: prove zero dynamic imports, preserve any user data, then remove in a dedicated hygiene batch.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "not reachable from the official production entrypoint AST graph",
+        "static test/artifact search found no direct core-module reference",
+        "no material artifact reference identified"
+      ]
+    },
+    {
+      "module_path": "core/encoding.py",
+      "classification": "DELETE",
+      "production_referenced": false,
+      "test_referenced": false,
+      "artifact_referenced": false,
+      "public_api": false,
+      "responsibility": "legacy standalone implementation superseded by package runtime paths",
+      "duplicate_with": [
+        "lts",
+        "core/translation_runtime",
+        "core/literary"
+      ],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "not_on_official_entrypoint",
+      "deletion_risk": "LOW",
+      "recommended_action": "Deletion candidate only: prove zero dynamic imports, preserve any user data, then remove in a dedicated hygiene batch.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "not reachable from the official production entrypoint AST graph",
+        "static test/artifact search found no direct core-module reference",
+        "no material artifact reference identified"
+      ]
+    },
+    {
+      "module_path": "core/exceptions.py",
+      "classification": "DELETE",
+      "production_referenced": false,
+      "test_referenced": false,
+      "artifact_referenced": false,
+      "public_api": false,
+      "responsibility": "legacy standalone implementation superseded by package runtime paths",
+      "duplicate_with": [
+        "lts",
+        "core/translation_runtime",
+        "core/literary"
+      ],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "not_on_official_entrypoint",
+      "deletion_risk": "LOW",
+      "recommended_action": "Deletion candidate only: prove zero dynamic imports, preserve any user data, then remove in a dedicated hygiene batch.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "not reachable from the official production entrypoint AST graph",
+        "static test/artifact search found no direct core-module reference",
+        "no material artifact reference identified"
+      ]
+    },
+    {
+      "module_path": "core/formatter.py",
+      "classification": "DELETE",
+      "production_referenced": false,
+      "test_referenced": false,
+      "artifact_referenced": false,
+      "public_api": false,
+      "responsibility": "legacy standalone implementation superseded by package runtime paths",
+      "duplicate_with": [
+        "lts",
+        "core/translation_runtime",
+        "core/literary"
+      ],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "not_on_official_entrypoint",
+      "deletion_risk": "HIGH",
+      "recommended_action": "Deletion candidate only: prove zero dynamic imports, preserve any user data, then remove in a dedicated hygiene batch.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "not reachable from the official production entrypoint AST graph",
+        "static test/artifact search found no direct core-module reference",
+        "no material artifact reference identified"
+      ]
+    },
+    {
+      "module_path": "core/glossary.py",
+      "classification": "DELETE",
+      "production_referenced": false,
+      "test_referenced": false,
+      "artifact_referenced": false,
+      "public_api": false,
+      "responsibility": "legacy standalone implementation superseded by package runtime paths",
+      "duplicate_with": [
+        "lts",
+        "core/translation_runtime",
+        "core/literary"
+      ],
+      "quality_impact": "direct_or_potential",
+      "runtime_impact": "not_on_official_entrypoint",
+      "deletion_risk": "HIGH",
+      "recommended_action": "Deletion candidate only: prove zero dynamic imports, preserve any user data, then remove in a dedicated hygiene batch.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "not reachable from the official production entrypoint AST graph",
+        "static test/artifact search found no direct core-module reference",
+        "no material artifact reference identified"
+      ]
+    },
+    {
+      "module_path": "core/glossary_builder.py",
+      "classification": "DELETE",
+      "production_referenced": false,
+      "test_referenced": false,
+      "artifact_referenced": false,
+      "public_api": false,
+      "responsibility": "legacy standalone implementation superseded by package runtime paths",
+      "duplicate_with": [
+        "lts",
+        "core/translation_runtime",
+        "core/literary"
+      ],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "not_on_official_entrypoint",
+      "deletion_risk": "LOW",
+      "recommended_action": "Deletion candidate only: prove zero dynamic imports, preserve any user data, then remove in a dedicated hygiene batch.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "not reachable from the official production entrypoint AST graph",
+        "static test/artifact search found no direct core-module reference",
+        "no material artifact reference identified"
+      ]
+    },
+    {
+      "module_path": "core/knowledge_base_builder.py",
+      "classification": "DELETE",
+      "production_referenced": false,
+      "test_referenced": false,
+      "artifact_referenced": false,
+      "public_api": false,
+      "responsibility": "legacy standalone implementation superseded by package runtime paths",
+      "duplicate_with": [
+        "lts",
+        "core/translation_runtime",
+        "core/literary"
+      ],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "not_on_official_entrypoint",
+      "deletion_risk": "LOW",
+      "recommended_action": "Deletion candidate only: prove zero dynamic imports, preserve any user data, then remove in a dedicated hygiene batch.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "not reachable from the official production entrypoint AST graph",
+        "static test/artifact search found no direct core-module reference",
+        "no material artifact reference identified"
+      ]
+    },
+    {
+      "module_path": "core/logger.py",
+      "classification": "DELETE",
+      "production_referenced": false,
+      "test_referenced": false,
+      "artifact_referenced": false,
+      "public_api": false,
+      "responsibility": "legacy standalone implementation superseded by package runtime paths",
+      "duplicate_with": [
+        "lts",
+        "core/translation_runtime",
+        "core/literary"
+      ],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "not_on_official_entrypoint",
+      "deletion_risk": "LOW",
+      "recommended_action": "Deletion candidate only: prove zero dynamic imports, preserve any user data, then remove in a dedicated hygiene batch.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "not reachable from the official production entrypoint AST graph",
+        "static test/artifact search found no direct core-module reference",
+        "no material artifact reference identified"
+      ]
+    },
+    {
+      "module_path": "core/project_profile.py",
+      "classification": "DELETE",
+      "production_referenced": false,
+      "test_referenced": false,
+      "artifact_referenced": false,
+      "public_api": false,
+      "responsibility": "legacy standalone implementation superseded by package runtime paths",
+      "duplicate_with": [
+        "lts",
+        "core/translation_runtime",
+        "core/literary"
+      ],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "not_on_official_entrypoint",
+      "deletion_risk": "LOW",
+      "recommended_action": "Deletion candidate only: prove zero dynamic imports, preserve any user data, then remove in a dedicated hygiene batch.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "not reachable from the official production entrypoint AST graph",
+        "static test/artifact search found no direct core-module reference",
+        "no material artifact reference identified"
+      ]
+    },
+    {
+      "module_path": "core/prompt_engine.py",
+      "classification": "DELETE",
+      "production_referenced": false,
+      "test_referenced": false,
+      "artifact_referenced": false,
+      "public_api": false,
+      "responsibility": "legacy standalone implementation superseded by package runtime paths",
+      "duplicate_with": [
+        "core/literary",
+        "core/prompt_compiler"
+      ],
+      "quality_impact": "direct_or_potential",
+      "runtime_impact": "not_on_official_entrypoint",
+      "deletion_risk": "HIGH",
+      "recommended_action": "Deletion candidate only: prove zero dynamic imports, preserve any user data, then remove in a dedicated hygiene batch.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "not reachable from the official production entrypoint AST graph",
+        "static test/artifact search found no direct core-module reference",
+        "no material artifact reference identified"
+      ]
+    },
+    {
+      "module_path": "core/prompt_package_validator.py",
+      "classification": "DELETE",
+      "production_referenced": false,
+      "test_referenced": false,
+      "artifact_referenced": false,
+      "public_api": false,
+      "responsibility": "legacy standalone implementation superseded by package runtime paths",
+      "duplicate_with": [
+        "lts",
+        "core/translation_runtime",
+        "core/literary"
+      ],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "not_on_official_entrypoint",
+      "deletion_risk": "LOW",
+      "recommended_action": "Deletion candidate only: prove zero dynamic imports, preserve any user data, then remove in a dedicated hygiene batch.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "not reachable from the official production entrypoint AST graph",
+        "static test/artifact search found no direct core-module reference",
+        "no material artifact reference identified"
+      ]
+    },
+    {
+      "module_path": "core/rules.py",
+      "classification": "DELETE",
+      "production_referenced": false,
+      "test_referenced": false,
+      "artifact_referenced": false,
+      "public_api": false,
+      "responsibility": "legacy standalone implementation superseded by package runtime paths",
+      "duplicate_with": [
+        "lts",
+        "core/translation_runtime",
+        "core/literary"
+      ],
+      "quality_impact": "direct_or_potential",
+      "runtime_impact": "not_on_official_entrypoint",
+      "deletion_risk": "HIGH",
+      "recommended_action": "Deletion candidate only: prove zero dynamic imports, preserve any user data, then remove in a dedicated hygiene batch.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "not reachable from the official production entrypoint AST graph",
+        "static test/artifact search found no direct core-module reference",
+        "no material artifact reference identified"
+      ]
+    },
+    {
+      "module_path": "core/scheduler.py",
+      "classification": "DELETE",
+      "production_referenced": false,
+      "test_referenced": false,
+      "artifact_referenced": false,
+      "public_api": false,
+      "responsibility": "retry, recovery, scheduling, and rollback safety",
+      "duplicate_with": [
+        "lts",
+        "core/translation_runtime",
+        "core/literary"
+      ],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "not_on_official_entrypoint",
+      "deletion_risk": "LOW",
+      "recommended_action": "Deletion candidate only: prove zero dynamic imports, preserve any user data, then remove in a dedicated hygiene batch.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "not reachable from the official production entrypoint AST graph",
+        "static test/artifact search found no direct core-module reference",
+        "no material artifact reference identified"
+      ]
+    },
+    {
+      "module_path": "core/translator.py",
+      "classification": "DELETE",
+      "production_referenced": false,
+      "test_referenced": false,
+      "artifact_referenced": false,
+      "public_api": false,
+      "responsibility": "legacy standalone implementation superseded by package runtime paths",
+      "duplicate_with": [
+        "lts",
+        "core/translation_runtime",
+        "core/literary"
+      ],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "not_on_official_entrypoint",
+      "deletion_risk": "HIGH",
+      "recommended_action": "Deletion candidate only: prove zero dynamic imports, preserve any user data, then remove in a dedicated hygiene batch.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "not reachable from the official production entrypoint AST graph",
+        "static test/artifact search found no direct core-module reference",
+        "no material artifact reference identified"
+      ]
+    },
+    {
+      "module_path": "core/utils.py",
+      "classification": "DELETE",
+      "production_referenced": false,
+      "test_referenced": false,
+      "artifact_referenced": false,
+      "public_api": false,
+      "responsibility": "legacy standalone implementation superseded by package runtime paths",
+      "duplicate_with": [
+        "lts",
+        "core/translation_runtime",
+        "core/literary"
+      ],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "not_on_official_entrypoint",
+      "deletion_risk": "LOW",
+      "recommended_action": "Deletion candidate only: prove zero dynamic imports, preserve any user data, then remove in a dedicated hygiene batch.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "not reachable from the official production entrypoint AST graph",
+        "static test/artifact search found no direct core-module reference",
+        "no material artifact reference identified"
+      ]
+    },
+    {
+      "module_path": "core/validator.py",
+      "classification": "DELETE",
+      "production_referenced": false,
+      "test_referenced": false,
+      "artifact_referenced": false,
+      "public_api": false,
+      "responsibility": "legacy standalone implementation superseded by package runtime paths",
+      "duplicate_with": [
+        "lts",
+        "core/translation_runtime",
+        "core/literary"
+      ],
+      "quality_impact": "indirect_or_none",
+      "runtime_impact": "not_on_official_entrypoint",
+      "deletion_risk": "LOW",
+      "recommended_action": "Deletion candidate only: prove zero dynamic imports, preserve any user data, then remove in a dedicated hygiene batch.",
+      "migration_required": true,
+      "rollback_strategy": "Preserve the pre-change tag, current import wrapper, manifests, and focused regression tests until two releases after migration.",
+      "evidence": [
+        "not reachable from the official production entrypoint AST graph",
+        "static test/artifact search found no direct core-module reference",
+        "no material artifact reference identified"
+      ]
+    }
+  ]
+}
+

@@ -1,0 +1,200 @@
+{
+  "schema_version": "1.0",
+  "audit_date": "2026-07-15",
+  "official_entrypoint": "launcher_translate.py",
+  "dependency_classes": [
+    "production runtime dependency",
+    "optional dependency",
+    "test-only dependency",
+    "artifact-only dependency",
+    "unused"
+  ],
+  "trace_method": [
+    "AST import reachability",
+    "static reference search",
+    "entrypoint tracing",
+    "test reference tracing",
+    "runtime configuration tracing"
+  ],
+  "entrypoints": [
+    {
+      "path": "launcher_translate.py",
+      "status": "official",
+      "role": "thin CLI launcher",
+      "evidence": "imports and calls ntpe_production_translate.main"
+    },
+    {
+      "path": "ntpe_production_translate.py",
+      "status": "official",
+      "role": "txt, batch, regression, evaluation, corpus, and doctor command router"
+    },
+    {
+      "path": "core/translation_runtime",
+      "status": "stable runtime facade",
+      "role": "formal TranslationRuntime used by official CLI"
+    },
+    {
+      "path": "lts/txt_translation_runtime.py",
+      "status": "active implementation",
+      "role": "TXT translation, resume, prompt packaging, Provider loop, QA, and output assembly"
+    },
+    {
+      "path": "lts/batch_translation_runtime.py",
+      "status": "active implementation",
+      "role": "batch orchestration around TXT runtime"
+    },
+    {
+      "path": "sdk",
+      "status": "parallel public surface; not used by official CLI",
+      "role": "SDK client and translation APIs"
+    },
+    {
+      "path": "runtime_api",
+      "status": "parallel public surface; not used by official CLI",
+      "role": "platform runtime API"
+    },
+    {
+      "path": "external_api",
+      "status": "parallel public surface; not used by official CLI",
+      "role": "REST facade"
+    },
+    {
+      "path": "core/translator.py",
+      "status": "legacy unused",
+      "role": "older direct NvidiaEngine translator; not reachable from official entrypoint"
+    }
+  ],
+  "production_path": [
+    {
+      "order": 1,
+      "stage": "CLI and runtime configuration",
+      "component": [
+        "launcher_translate.py",
+        "ntpe_production_translate.py"
+      ],
+      "dependency": "production runtime dependency",
+      "evidence": "main dispatches txt/batch; environment and CLI select profile, model, timeout, retry, QA, and dry-run"
+    },
+    {
+      "order": 2,
+      "stage": "formal runtime facade",
+      "component": [
+        "core.translation_runtime.TranslationRuntime"
+      ],
+      "dependency": "production runtime dependency",
+      "evidence": "ntpe_production_translate imports and constructs TranslationRuntime"
+    },
+    {
+      "order": 3,
+      "stage": "input loading and normalization",
+      "component": [
+        "lts.txt_translation_runtime.read_text_auto",
+        "lts.txt_translation_runtime.normalize_text"
+      ],
+      "dependency": "production runtime dependency",
+      "evidence": "translate_txt reads bytes, detects encoding, normalizes BOM/NUL/newlines"
+    },
+    {
+      "order": 4,
+      "stage": "chunk boundaries",
+      "component": [
+        "lts.txt_translation_runtime.split_text"
+      ],
+      "dependency": "production runtime dependency",
+      "evidence": "translate_txt splits normalized text by paragraphs and oversized-block fallback"
+    },
+    {
+      "order": 5,
+      "stage": "glossary and character memory",
+      "component": [
+        "load_locked_dictionary",
+        "resolve_character_memory_path",
+        "update_character_memory"
+      ],
+      "dependency": "production runtime dependency",
+      "evidence": "locked terms enter prompt package and output enforcement; memory updates after successful assembly"
+    },
+    {
+      "order": 6,
+      "stage": "prompt assembly",
+      "component": [
+        "build_prompt_package",
+        "core.literary.LiteraryPromptBuilder",
+        "core.prompt_compiler"
+      ],
+      "dependency": "production runtime dependency",
+      "evidence": "LiteraryPromptBuilder is the primary compiler path"
+    },
+    {
+      "order": 7,
+      "stage": "adaptive context",
+      "component": [
+        "core.adaptive_context_runtime_shadow",
+        "core.adaptive_context_production_rollout",
+        "activation/canary/budget/strategy modules"
+      ],
+      "dependency": "optional dependency",
+      "evidence": "hooks install at CLI import; activation remains governed by flags, policy evidence, rollout percent, and kill switch"
+    },
+    {
+      "order": 8,
+      "stage": "Provider request",
+      "component": [
+        "core.translation_engine.TranslationEngine",
+        "RuntimeProviderAdapter",
+        "engine.translate_package"
+      ],
+      "dependency": "production runtime dependency",
+      "evidence": "provider loop records attempts, effective timeout, model fallback, and retryability"
+    },
+    {
+      "order": 9,
+      "stage": "post-provider normalization and quality",
+      "component": [
+        "translation_naturalness",
+        "translation_quality_v5",
+        "translation_discipline",
+        "runtime_qa"
+      ],
+      "dependency": "production runtime dependency",
+      "evidence": "canonicalization, collocation, voice/register, unsupported-detail, completeness, Hangul, repetition, terminology, unified decision, and adaptive retry run before acceptance"
+    },
+    {
+      "order": 10,
+      "stage": "output and resume state",
+      "component": [
+        "format_translation_output",
+        "save_text",
+        "save_resume_state",
+        "translation manifest"
+      ],
+      "dependency": "production runtime dependency",
+      "evidence": "accepted chunks are saved, resume state is updated, final text is assembled, and character memory is updated"
+    }
+  ],
+  "optional_only": [
+    "Adaptive Context A/B, canary, validation, benchmark, and rollout CLI modes",
+    "regression/evaluate/corpus commands",
+    "session, pipeline, resource, and plugin surfaces exported through TranslationRuntime",
+    "SDK, runtime_api, and external_api platform facades"
+  ],
+  "test_only_families": [
+    "core/translation_scheduler",
+    "Stage 11 quality framework packages",
+    "Stage 12.1 prompt candidate",
+    "legacy enterprise/foundation/intelligence/knowledge/workflow families"
+  ],
+  "artifact_only_families": [
+    "Stage 11/12 execution evidence and freeze records",
+    "historical release manifests and literary regression outputs"
+  ],
+  "unused_examples": [
+    "core/translator.py",
+    "core/chunker.py",
+    "core/prompt_engine.py",
+    "core/rules.py",
+    "core/glossary.py",
+    "core/document_normalizer.py"
+  ]
+}
+

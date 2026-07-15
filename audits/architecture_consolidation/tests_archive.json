@@ -1,0 +1,12 @@
+{
+  "schema_version": "1.0",
+  "candidates": [
+    "tests/rc_stage_*",
+    "tests/lts_stage_* superseded platform milestones",
+    "tests/stable_release_* and beta/RC historical freeze suites",
+    "earlier TE family freezes after assertion mapping"
+  ],
+  "retention": "tests/archive with a release/tag index, not silent deletion",
+  "risk": "HIGH for any frozen compatibility contract"
+}
+

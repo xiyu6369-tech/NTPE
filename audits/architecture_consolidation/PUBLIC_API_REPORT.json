@@ -1,0 +1,118 @@
+{
+  "schema_version": "1.0",
+  "audit_date": "2026-07-15",
+  "current": [
+    {
+      "api": "launcher_translate.py",
+      "classification": "stable",
+      "consumers": [
+        "operators"
+      ],
+      "recommendation": "retain as the single CLI"
+    },
+    {
+      "api": "ntpe_production_translate.main",
+      "classification": "stable",
+      "consumers": [
+        "launcher_translate.py"
+      ],
+      "recommendation": "retain command router but move optional audit/rollout commands behind sub-facades later"
+    },
+    {
+      "api": "core.translation_runtime.TranslationRuntime",
+      "classification": "stable",
+      "consumers": [
+        "official CLI",
+        "tests"
+      ],
+      "recommendation": "retain as runtime boundary"
+    },
+    {
+      "api": "lts.txt_translation_runtime",
+      "classification": "compatibility_only",
+      "consumers": [
+        "TranslationRuntime",
+        "tests"
+      ],
+      "recommendation": "hide implementation behind runtime after compatibility migration"
+    },
+    {
+      "api": "sdk.translate / SDKTranslationAPI / NTPEClient",
+      "classification": "deprecated_candidate",
+      "consumers": [
+        "SDK tests; not official CLI"
+      ],
+      "recommendation": "decide whether SDK remains supported; if yes bind it to TranslationRuntime and publish a compatibility policy"
+    },
+    {
+      "api": "runtime_api.RuntimeApi",
+      "classification": "internal",
+      "consumers": [
+        "platform tests"
+      ],
+      "recommendation": "do not expose as translation API until it delegates to the official runtime"
+    },
+    {
+      "api": "external_api.RestApi",
+      "classification": "internal",
+      "consumers": [
+        "REST/platform tests"
+      ],
+      "recommendation": "archive or rebind after product decision"
+    },
+    {
+      "api": "core.translation_quality_v5.run_unified_quality_gate",
+      "classification": "internal",
+      "consumers": [
+        "active TXT runtime"
+      ],
+      "recommendation": "expose only through ntpe.quality.assess"
+    },
+    {
+      "api": "Stage 11 package __init__ exports",
+      "classification": "compatibility_only",
+      "consumers": [
+        "Stage 11 tests and artifacts"
+      ],
+      "recommendation": "preserve wrappers while consolidating to quality namespaces"
+    },
+    {
+      "api": "core.literary_prompt_quality_candidate_v72",
+      "classification": "unused",
+      "consumers": [
+        "Stage 12 tests/evidence only"
+      ],
+      "recommendation": "move to experiments after evidence archive"
+    }
+  ],
+  "recommended": [
+    {
+      "api": "ntpe.translate(...)",
+      "purpose": "single sync translation entry"
+    },
+    {
+      "api": "ntpe.runtime.run(...)",
+      "purpose": "explicit runtime/session execution"
+    },
+    {
+      "api": "ntpe.quality.assess(...)",
+      "purpose": "production quality assessment"
+    },
+    {
+      "api": "ntpe.quality.review(...)",
+      "purpose": "human review and offline governance"
+    },
+    {
+      "api": "ntpe.corpus.manage(...)",
+      "purpose": "approved corpus lifecycle"
+    }
+  ],
+  "compatibility_plan": [
+    "introduce facade without removing current imports",
+    "record caller telemetry/static inventory",
+    "migrate official CLI and SDK",
+    "keep frozen wrappers for two releases",
+    "remove only after regression and rollback rehearsal"
+  ]
+}
+

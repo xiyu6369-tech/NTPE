@@ -1,0 +1,169 @@
+{
+  "schema_version": "1.0",
+  "name": "TRANSLATION_QUALITY_CRITICAL_PATH",
+  "audit_date": "2026-07-15",
+  "items": [
+    {
+      "capability": "source normalization",
+      "status": "currently active",
+      "components": [
+        "lts.txt_translation_runtime.read_text_auto",
+        "normalize_text"
+      ],
+      "notes": "Encoding fallback and newline cleanup run before chunking."
+    },
+    {
+      "capability": "chunk boundaries",
+      "status": "currently active",
+      "components": [
+        "lts.txt_translation_runtime.split_text"
+      ],
+      "notes": "Paragraph-first split with oversized block fallback; legacy core/chunker.py is not active."
+    },
+    {
+      "capability": "context selection",
+      "status": "partially active",
+      "components": [
+        "LiteraryPromptBuilder",
+        "adaptive_context"
+      ],
+      "notes": "Literary context is active; ACE selection is policy/rollout gated."
+    },
+    {
+      "capability": "glossary",
+      "status": "currently active",
+      "components": [
+        "load_locked_dictionary",
+        "apply_locked_dictionary",
+        "GlossaryContext"
+      ],
+      "notes": "Prompt and output locks are active."
+    },
+    {
+      "capability": "character memory",
+      "status": "currently active",
+      "components": [
+        "resolve_character_memory_path",
+        "update_character_memory",
+        "CharacterContext"
+      ],
+      "notes": "Memory is read for prompt context and updated after successful output."
+    },
+    {
+      "capability": "subject and pronoun resolution",
+      "status": "partially active",
+      "components": [
+        "CharacterContext",
+        "context_intelligence"
+      ],
+      "notes": "Context guidance exists, but core/character_resolver.py is test-only and no deterministic resolver is wired into the official path."
+    },
+    {
+      "capability": "prompt policy",
+      "status": "currently active",
+      "components": [
+        "LiteraryPromptBuilder",
+        "prompt_compiler",
+        "translation_discipline"
+      ],
+      "notes": "The frozen literary builder remains primary; Stage 12.1 candidate is not connected."
+    },
+    {
+      "capability": "provider output",
+      "status": "currently active",
+      "components": [
+        "TranslationEngine",
+        "RuntimeProviderAdapter"
+      ],
+      "notes": "Provider output is received through the active LTS package path."
+    },
+    {
+      "capability": "completeness verification",
+      "status": "currently active",
+      "components": [
+        "translation_quality_v5.CompletenessGuard",
+        "segment completeness recovery"
+      ],
+      "notes": "Completeness issues can trigger bounded segment recovery."
+    },
+    {
+      "capability": "unsupported detail detection",
+      "status": "currently active",
+      "components": [
+        "translation_naturalness.analyze_unsupported_details"
+      ],
+      "notes": "Runs inside the quality runner before unified acceptance."
+    },
+    {
+      "capability": "Hangul residual check",
+      "status": "currently active",
+      "components": [
+        "runtime_qa.analyze_runtime_quality"
+      ],
+      "notes": "max_korean_chars is part of the active QA policy."
+    },
+    {
+      "capability": "repetition and broken output detection",
+      "status": "currently active",
+      "components": [
+        "runtime_qa",
+        "translation_quality_v5.semantic_repetition"
+      ],
+      "notes": "Line/sentence repetition and quality-lock failures affect acceptance."
+    },
+    {
+      "capability": "naturalness refinement",
+      "status": "currently active",
+      "components": [
+        "canonicalize_novel_chinese",
+        "apply_literary_collocation_guard",
+        "analyze_voice_register"
+      ],
+      "notes": "Naturalness Engine is truly wired after Provider output and before final quality decision."
+    },
+    {
+      "capability": "Stage 11 feedback",
+      "status": "not connected",
+      "components": [
+        "translation_quality_defects",
+        "translation_quality_metrics",
+        "translation_prompt_improvement_planner"
+      ],
+      "notes": "Offline governance only; plans remain planned_not_applied and require human approval."
+    },
+    {
+      "capability": "Stage 12.1 candidate",
+      "status": "not connected",
+      "components": [
+        "literary_prompt_quality_candidate_v72"
+      ],
+      "notes": "Disabled experimental builder used only by tests/evidence packages."
+    },
+    {
+      "capability": "output assembly",
+      "status": "currently active",
+      "components": [
+        "format_translation_output",
+        "save_text",
+        "resume state",
+        "translation manifest"
+      ],
+      "notes": "Final output joins accepted chunks and updates memory and manifests."
+    }
+  ],
+  "analysis": {
+    "subject_pronoun_errors": "Improve evidence and entity continuity in context selection/character memory, then add an explicit resolver contract before prompt assembly. Prompt wording alone is insufficient.",
+    "candidate_effectiveness": "Stage 12.1 can only adjust prompt policy. Existing evidence does not prove improvement and cannot replace entity-resolution or corpus-backed evaluation.",
+    "timeout_vs_prompt_quality": "Keep separate. Timeout is transport/runtime reliability evidence; prompt quality is semantic output evidence. A timeout cannot score or reject prompt quality.",
+    "naturalness_engine_wiring": "Confirmed active in lts/txt_translation_runtime.py after Provider output.",
+    "stage11_feedback": "Currently offline governance. It can inform a separately approved policy change but does not feed production automatically.",
+    "disconnected_quality_modules": [
+      "Stage 11 framework",
+      "Stage 12.1 prompt candidate",
+      "core/character_resolver.py",
+      "legacy core/context, core/narrative, core/voice",
+      "older core/quality family outside the active LTS integration"
+    ]
+  }
+}
+
