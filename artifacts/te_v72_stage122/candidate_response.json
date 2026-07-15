@@ -1,0 +1,11 @@
+{
+  "stage": "TE-v7.2-Stage12.2",
+  "arm": "candidate",
+  "status": "pending_execution",
+  "provider_executed": false,
+  "network_requests": 0,
+  "translation_generated": false,
+  "response_text": null,
+  "response_sha256": null,
+  "content_redacted": true
+}

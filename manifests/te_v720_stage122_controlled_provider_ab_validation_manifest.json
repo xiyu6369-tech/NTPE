@@ -1,0 +1,50 @@
+{
+  "stage": "TE-v7.2-Stage12.2",
+  "version": "7.2.0-stage12.2",
+  "status": "prepared_not_executed",
+  "files": {
+    "artifacts/te_v72_stage122/TE_V72_STAGE122_AB_EXECUTION_PACKAGE.json": "24fe99be14d585c479338ce3ed4c41125609bc52742559b44d9549f776b8cb7c",
+    "artifacts/te_v72_stage122/TE_V72_STAGE122_MANUAL_AB_REVIEW.json": "79e2af7fcd7fe84d2624ebf7fd296af5459db9bd4a0b4784b74c137f85b068c7",
+    "artifacts/te_v72_stage122/baseline_prompt_profile.json": "2a8b64a609b914e2cde2a3353d3a308c7097346529bb973eb95a9eb10d7077fd",
+    "artifacts/te_v72_stage122/baseline_request.json": "26c8a1634c1dd8ea6cb801975ad5cf5b358413832004b05683a98a649370f53f",
+    "artifacts/te_v72_stage122/baseline_response.json": "0bf89f128942c448adbfe323732a3ce8fa101f6b12d2e0c62e1e8995f787a175",
+    "artifacts/te_v72_stage122/candidate_prompt_profile.json": "af006bba463526340c281fc948b30ea9cbf5d5702c5e2adfa30d44bf34fbb339",
+    "artifacts/te_v72_stage122/candidate_request.json": "8d081f0360aae23e3dd622ab980ce93e3eb83105bfc99fb55ff2b2ef0d07364b",
+    "artifacts/te_v72_stage122/candidate_response.json": "40bcf65366767eb1b15685f5c305fbebb1f82e3be6f6d7c6ec0448375ffec3b5",
+    "ntpe_te_v720_stage122_controlled_provider_ab_validation_test.py": "2cedef4c74661562b7c1f92a2373e2920a4d9d7878338d95387e065420dd9ca3",
+    "tests/integration/translation_engine_v720_stage122_controlled_provider_ab_validation_test.py": "00aa028832163cfa9e964e912ae86b4dcf036833858d66c0e5e702fcbde10959",
+    "docs/releases/te_v7_2/TE_V720_STAGE122_CONTROLLED_PROVIDER_AB_QUALITY_VALIDATION.md": "eae8e056cb40020fb1500fc6ad5ed04a4cb948f4568ea94a1fb3c96ac7413b9e"
+  },
+  "compatibility_anchors": {
+    "manifests/te_v720_stage121_evidence_based_prompt_quality_candidate_manifest.json": "044516c63cbc935aa6c026d681768dcd7765aa2717b8ff68606fcee1385a5fe5",
+    "manifests/te_v710_stage118_translation_quality_framework_freeze_manifest.json": "b5eed41b1c17ebea77db7b021db9fd021d746a0822ce5071ade4dcfc3acbafcf",
+    "manifests/te_v600_stage125_translation_naturalness_freeze_manifest.json": "1195e4f18f700fec93cd57212fa553b5a68dc6c747ce910784d7f8447a0e3697"
+  },
+  "source_anchor": {
+    "path": "tests/literary/Golden_Set/original_ko.txt",
+    "chunk_identity": "Golden_Set:1",
+    "source_unit_sha256": "ac76cf63de96d465d23ed6a131fbc1008ed06adae76c8e0668b27e58cde1c2b5"
+  },
+  "comparison": {
+    "only_variable": "candidate_enabled",
+    "baseline": false,
+    "candidate": true,
+    "expected_requests_after_separate_authorization": 2,
+    "actual_requests": 0
+  },
+  "boundary": {
+    "provider_executed": false,
+    "network_requests": 0,
+    "comparison_executed": false,
+    "new_translation_generated": false,
+    "candidate_modified": false,
+    "runtime_modified": false,
+    "provider_modified": false,
+    "prompt_modified": false,
+    "stage123_started": false
+  },
+  "sha256": {
+    "algorithm": "sha256",
+    "self_hash_excluded": true
+  }
+}
