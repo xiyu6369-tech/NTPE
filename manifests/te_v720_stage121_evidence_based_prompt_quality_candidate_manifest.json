@@ -1,0 +1,46 @@
+{
+  "stage": "TE-v7.2-Stage12.1",
+  "version": "7.2.0-stage12.1",
+  "status": "completed_offline_prepared_not_validated_by_provider",
+  "files": {
+    "core/literary_prompt_quality_candidate_v72/__init__.py": "078765f24695586cae015e869b8c8a79d140d1dcceb4647b7cd88c119315e727",
+    "core/literary_prompt_quality_candidate_v72/candidate.py": "e6431dafc92ed5db8960901d0c625f84b22d92187d9af9e0dcd0fc2fedf957bb",
+    "ntpe_te_v720_stage121_evidence_based_prompt_quality_candidate_test.py": "cec76a055c45b4f240a32e6fae026a355e8dc36583b41c9f0fb2c151f9dcc57a",
+    "tests/integration/translation_engine_v720_stage121_evidence_based_prompt_quality_candidate_test.py": "75623e4aec86260bf819c967317a2d62ff0b2ed5bc9b6b9dede1f605064395d0",
+    "artifacts/te_v72_stage121/TE_V72_STAGE121_EVIDENCE_BASED_PROMPT_QUALITY_CANDIDATE.json": "777202774f71e270dcb112ef4e93afbaed574b3f8fed974a8a33861054f9b6eb",
+    "artifacts/te_v72_stage121/TE_V72_STAGE121_PROVIDER_EXECUTION_PACKAGE.json": "0285ec3c28bba2f1a353c086b5912e0da44f9935f91d8f76db8f5e6be16a1936",
+    "artifacts/te_v72_stage121/TE_V72_STAGE121_MANUAL_REVIEW_TEMPLATE.json": "f5561f1b33b04475d51437a8ab15dc504f2fa2d2551daecf4d5131e79769f9e7",
+    "docs/releases/te_v7_2/TE_V720_STAGE121_EVIDENCE_BASED_PROMPT_QUALITY_CANDIDATE.md": "5fdd862d2ccb9b23c35084fcc73d6dcc9123163d8004b4afa04faf91acc0dd38"
+  },
+  "compatibility_anchors": {
+    "manifests/te_v710_stage118_translation_quality_framework_freeze_manifest.json": "b5eed41b1c17ebea77db7b021db9fd021d746a0822ce5071ade4dcfc3acbafcf",
+    "manifests/te_v600_stage125_translation_naturalness_freeze_manifest.json": "1195e4f18f700fec93cd57212fa553b5a68dc6c747ce910784d7f8447a0e3697"
+  },
+  "source_anchor": {
+    "tests/literary/Golden_Set/original_ko.txt": "04132a4c761a7592f450d2dd8068092472d30782c69527e3ffcffb9ade3fd98a",
+    "stage10101_source_unit_sha256": "ac76cf63de96d465d23ed6a131fbc1008ed06adae76c8e0668b27e58cde1c2b5"
+  },
+  "candidate": {
+    "feature_flag": "--quality-candidate-v72",
+    "enabled_by_default": false,
+    "policy_sha256": "a41337d874ab12b64f87182866b0744d96edd4b806a53bb796f43ca24f37a211",
+    "token_delta_estimate": 109,
+    "character_delta": 263
+  },
+  "boundary": {
+    "network_requests": 0,
+    "real_provider_executed": false,
+    "new_translation_generated": false,
+    "runtime_modified": false,
+    "provider_modified": false,
+    "stage11_framework_modified": false,
+    "golden_corpus_modified": false,
+    "quality_improvement_verified": false,
+    "comparison_executed": false,
+    "te_v72_stage122_started": false
+  },
+  "sha256": {
+    "algorithm": "sha256",
+    "self_hash_excluded": true
+  }
+}
