@@ -1,0 +1,5 @@
+Command: python -m pytest -q tests/integration/architecture_consolidation_batch5a_dynamic_usage_audit_test.py
+Result: PASS
+Tests: 4 passed
+
+Coverage: production entrypoint tracing, unresolved dynamic-import fail-closed behavior, registry lookup evidence, serialized/config fixture evidence, high-risk exclusions, synthetic SAFE_DELETE hard conditions, JSON parsing, and 72-candidate partition integrity.

@@ -1,0 +1,23 @@
+NTPE Architecture Consolidation Batch 5A Validation Report
+===========================================================
+RESULT: PASS WITH DOCUMENTED LEGACY OBSERVATION
+
+Batch 5A Root Test: PASS (32 checks)
+Focused Integration: PASS (4 tests)
+Batch 1 Repository Hygiene: PASS (33 checks)
+Batch 2 Test Consolidation: PASS
+Batch 3 Shared Utilities Pilot: PASS (compatibility sentinel run with later Batch 4 paths temporarily neutralized, then fully restored)
+Batch 4 Quality API Consolidation: PASS (compatibility sentinel run with Batch 5A paths temporarily neutralized, then fully restored)
+TE v6.0.0 Final Release Freeze: PASS
+TE v7.1 Stage 11.8 Freeze: PASS
+TE v7.2 Stage 12.1 Candidate: PASS
+Runtime / Provider Security / Resume / Output Assembly / Quality: PASS
+ntpe_validate.py: ALL PASS (2259 Python files compiled; 579 pytest-style test files found)
+
+Documented legacy observation:
+tests/lts_stage_05/launcher_output_formatter_test.py has one pre-existing failure because the current launcher rejects historical --no-output-formatter and --no-taiwan-normalization flags. Batch 2 already records the same observation. Production and protected legacy tests were not modified. Current Result Collector and Safe Targeted Merge output paths pass.
+
+Provider executed: false
+New translation generated: false
+Production modified: false
+Batch 5B started: false
