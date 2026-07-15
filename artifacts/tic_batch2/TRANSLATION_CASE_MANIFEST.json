@@ -1,0 +1,25 @@
+{
+  "batch": "TIC Batch 2",
+  "batch1_inputs": {
+    "artifacts/tic_batch1/TRANSLATION_CORPUS_INVENTORY.json": "d767b8dd48ef176178638c36fe83333665bdf573b9d91c9b9a62dc8a9a08bcd4",
+    "artifacts/tic_batch1/TRANSLATION_CORPUS_STATISTICS.json": "626604230e439b1042030b96b4c66239472a7eb3d289422ba67c16bc9cc476e2"
+  },
+  "boundaries": {
+    "batch_3_started": false,
+    "failure_or_excellence_classification_performed": false,
+    "historical_translation_modified": false,
+    "inventory_rebuilt": false,
+    "new_translation_generated": false,
+    "provider_executed": false,
+    "quality_judgement_performed": false,
+    "repository_rescanned": false
+  },
+  "files": {
+    "artifacts/tic_batch2/TRANSLATION_CASES.json": "3130ca4051f359428cfe6a5d938e5e89ebf50f38fb63a41320bd4977ece02655",
+    "artifacts/tic_batch2/TRANSLATION_CASE_INDEX.json": "5a6b2b6ae1a2b76369ca1afdf451978d1bf98fc689a0fb896481aecc585463ff",
+    "artifacts/tic_batch2/TRANSLATION_CASE_STATISTICS.json": "518a30253dc0a7bb2fa555c4db91fae33200d230db1a08ca1a51939508ddb94f"
+  },
+  "schema_version": "tic.batch2.artifact-manifest.v1",
+  "self_hash_excluded": true,
+  "status": "completed"
+}

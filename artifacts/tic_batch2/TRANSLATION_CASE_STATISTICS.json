@@ -1,0 +1,23 @@
+{
+  "average_chunk_size": 778.33,
+  "average_translation_length": 429.91,
+  "cases_with_review": 1,
+  "cases_without_review": 124,
+  "completed_cases": 100,
+  "corpus_coverage": {
+    "case_numerator": 125,
+    "inventory_denominator": 130,
+    "percent": 96.15
+  },
+  "excluded_without_case_or_execution": 1,
+  "execution_evidence_only": 4,
+  "partial_cases": 25,
+  "schema_version": "tic.batch2.case-statistics.v1",
+  "total_translation_cases": 125,
+  "translation_sources": {
+    "artifacts/te_v72_stage1223/TE_V72_STAGE1223_SOURCE_EXCERPT_FREEZE.json": 1,
+    "tests/literary/Golden_Set/original_ko.txt": 100,
+    "tests/literary/Smoke_Set/original_ko.txt": 22,
+    "tests/literary/outputs/PS-02-smoke/Test_Set_0/original_ko.txt": 2
+  }
+}

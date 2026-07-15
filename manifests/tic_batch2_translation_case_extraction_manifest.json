@@ -1,0 +1,46 @@
+{
+  "batch": "Batch 2 - Translation Case Extraction",
+  "batch1_inputs": {
+    "artifacts/tic_batch1/TRANSLATION_CORPUS_INVENTORY.json": "d767b8dd48ef176178638c36fe83333665bdf573b9d91c9b9a62dc8a9a08bcd4",
+    "artifacts/tic_batch1/TRANSLATION_CORPUS_STATISTICS.json": "626604230e439b1042030b96b4c66239472a7eb3d289422ba67c16bc9cc476e2"
+  },
+  "boundaries": {
+    "batch_3_started": false,
+    "failure_or_excellence_classification_performed": false,
+    "golden_corpus_modified": false,
+    "historical_translation_modified": false,
+    "inventory_rebuilt": false,
+    "new_translation_generated": false,
+    "prompt_modified": false,
+    "provider_executed": false,
+    "quality_judgement_performed": false,
+    "repository_rescanned": false,
+    "runtime_modified": false,
+    "stage_11_modified": false,
+    "stage_12_modified": false
+  },
+  "corpus": "NTPE Translation Intelligence Corpus",
+  "files": {
+    "artifacts/tic_batch2/TRANSLATION_CASES.json": "3130ca4051f359428cfe6a5d938e5e89ebf50f38fb63a41320bd4977ece02655",
+    "artifacts/tic_batch2/TRANSLATION_CASE_INDEX.json": "5a6b2b6ae1a2b76369ca1afdf451978d1bf98fc689a0fb896481aecc585463ff",
+    "artifacts/tic_batch2/TRANSLATION_CASE_MANIFEST.json": "c717778c65d8db4220a9b8892a7752ab02454407837453072bd389ba1a8507af",
+    "artifacts/tic_batch2/TRANSLATION_CASE_STATISTICS.json": "518a30253dc0a7bb2fa555c4db91fae33200d230db1a08ca1a51939508ddb94f",
+    "core/translation_intelligence_corpus/case_extractor.py": "ebbbde5006ca1fdfa16d54e4d60364ec0003b18c60e0f119ef0ef8ec025cf9c5",
+    "core/translation_intelligence_corpus/case_index.py": "6bf63595255c168a92f52ce0b512c41db3d12124c1d3491ea13c0bbf6667535c",
+    "core/translation_intelligence_corpus/statistics.py": "30c9b4d9eebe7af8efdef6a108789e9e838980dcb518a8f417b4147e198a2901",
+    "docs/translation_intelligence/TIC_BATCH2_TRANSLATION_CASE_EXTRACTION.md": "5efb0259123f75cc4e1be01e9e47fcfdb010abfdcdb1ac9278f87ddd4c4aa955",
+    "ntpe_tic_batch2_translation_case_extraction_test.py": "c50272ef31d587e916d8543163d95ca048a2c066a334600829b9c9e8d6102f80",
+    "tests/integration/tic_batch2_translation_case_extraction_test.py": "79da5ef8d98feac2d8b5913200d07dd61463720f3005dce0ac637cc71cfe1d59"
+  },
+  "next_batch_status": "TIC Batch 3 Not Started",
+  "schema_version": "tic.batch2.release-manifest.v1",
+  "sha256": {
+    "algorithm": "sha256",
+    "self_hash_excluded": true
+  },
+  "status": "TIC Batch 2 Completed",
+  "tests": {
+    "focused_integration": "tests/integration/tic_batch2_translation_case_extraction_test.py",
+    "root": "ntpe_tic_batch2_translation_case_extraction_test.py"
+  }
+}
