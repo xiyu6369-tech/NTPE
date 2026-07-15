@@ -1,0 +1,30 @@
+NTPE Architecture Consolidation Batch 2 Validation Report
+Date: 2026-07-15 (Asia/Taipei)
+
+Batch-local validation
+- python ntpe_architecture_consolidation_batch2_test_consolidation_test.py
+  PASS - NTPE Architecture Consolidation Batch 2 Test Consolidation ALL PASS
+- python -m pytest -q tests/integration/architecture_consolidation_batch2_test_consolidation_test.py
+  PASS - 5 passed in 4.37s
+- python -m pytest -q tests/consolidated/test_exact_duplicate_contracts.py
+  PASS - 8 passed
+- python ntpe_te_v5312_unified_nonblocking_issue_mapping_test.py
+  PASS - legacy command preserved exact ALL PASS output
+
+Required freeze regression
+- python ntpe_te_v600_final_release_freeze_test.py - PASS
+- python ntpe_te_v710_stage118_translation_quality_framework_freeze_test.py - PASS
+- python ntpe_te_v720_stage121_evidence_based_prompt_quality_candidate_test.py - PASS
+- python ntpe_te_v700_stage10101_provider_timeout_controlled_retry_test.py - PASS
+- python ntpe_te_v700_stage108_fake_transport_end_to_end_freeze_test.py - PASS
+
+Repository validator
+- python ntpe_validate.py - ALL PASS (14.70s)
+  Required directories: PASS (6)
+  Legacy entrypoints: PASS (4)
+  Core imports: PASS (7)
+  Optional imports: PASS (4)
+  Python compile: PASS (2229 files)
+  Python cache: PASS
+  Test inventory: PASS (569 pytest-style files under tests/)
+  Root Python layout: PASS (294 scripts)

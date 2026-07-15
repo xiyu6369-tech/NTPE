@@ -1,0 +1,6 @@
+{
+  "schema_version": "1.0",
+  "deletions": [],
+  "approved_low_risk_exact_duplicate": [],
+  "reason": "Every byte-identical path is referenced or belongs to a protected critical category; no deletion satisfies every Batch 2 condition."
+}

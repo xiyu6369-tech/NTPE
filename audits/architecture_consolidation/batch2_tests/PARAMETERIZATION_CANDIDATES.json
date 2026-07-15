@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0",
+  "implemented": [
+    {
+      "id": "exact-duplicate-contracts",
+      "path": "tests/consolidated/test_exact_duplicate_contracts.py",
+      "cases": [
+        "v3.2-stage-3.2.2",
+        "v5.2.1",
+        "v5.3.0",
+        "v5.3.1.1",
+        "v5.3.1.2",
+        "v5.3.2",
+        "v5.4.0",
+        "v5.5.3.2"
+      ],
+      "risk": "LOW"
+    }
+  ],
+  "deferred": [
+    {
+      "family": "runtime/provider boundaries",
+      "reason": "behavior tests may not be downgraded to static artifact assertions"
+    },
+    {
+      "family": "Stage 11 artifacts",
+      "reason": "frozen hashes and human provenance remain under their existing freeze gate"
+    }
+  ]
+}

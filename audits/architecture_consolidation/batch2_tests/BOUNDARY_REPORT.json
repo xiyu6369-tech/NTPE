@@ -1,0 +1,16 @@
+{
+  "production_code_modified": false,
+  "runtime_modified": false,
+  "provider_modified": false,
+  "prompt_modified": false,
+  "candidate_modified": false,
+  "stage11_modified": false,
+  "critical_tests_deleted": 0,
+  "unique_assertions_removed": 0,
+  "exact_duplicate_tests_deleted": 0,
+  "compatibility_wrappers_created": 1,
+  "parameterized_tests_created": 1,
+  "provider_executed": false,
+  "new_translation_generated": false,
+  "batch3_started": false
+}

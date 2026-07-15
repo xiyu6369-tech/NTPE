@@ -1,0 +1,26 @@
+NTPE Architecture Consolidation Batch 2 Git Report
+Date: 2026-07-15 (Asia/Taipei)
+Baseline HEAD: 0f3adb7 chore: reset NTPE delivery and repository hygiene
+Branch: main
+Baseline upstream: origin/main (ahead 0, behind 0)
+Baseline status: clean
+Baseline tracked deletions: 0
+
+git diff --check
+PASS - no output
+
+git diff --name-status
+M ntpe_te_v5312_unified_nonblocking_issue_mapping_test.py
+
+git ls-files --deleted
+PASS - no output; tracked deletion count is 0
+
+git status --short (pre-package snapshot)
+ M ntpe_te_v5312_unified_nonblocking_issue_mapping_test.py
+?? audits/architecture_consolidation/batch2_tests/
+?? ntpe_architecture_consolidation_batch2_test_consolidation_test.py
+?? tests/consolidated/
+?? tests/integration/architecture_consolidation_batch2_test_consolidation_test.py
+?? tests/support/
+
+No commit, push, or tag was performed.
