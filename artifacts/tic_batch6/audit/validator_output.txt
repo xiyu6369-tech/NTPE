@@ -1,0 +1,27 @@
+COMMAND: python ntpe_te_v600_final_release_freeze_test.py
+TE v6.0.0 Final Release Freeze ALL PASS
+EXIT_CODE: 0
+COMMAND: python ntpe_te_v710_stage118_translation_quality_framework_freeze_test.py
+TE v7.1 Stage 11.8 Translation Quality Framework Freeze ALL PASS
+EXIT_CODE: 0
+COMMAND: python ntpe_te_v720_stage121_evidence_based_prompt_quality_candidate_test.py
+TE v7.2 Stage 12.1 Evidence-Based Prompt Quality Candidate ALL PASS
+EXIT_CODE: 0
+COMMAND: python ntpe_validate.py
+====================================
+NTPE Project Validation Report
+====================================
+Root: D:\Python\NTPE
+Elapsed: 23.22s
+------------------------------------
+Required directories   PASS  6 directories found
+Legacy entrypoints     PASS  4 entrypoints found
+Core imports           PASS  7 required imports OK
+Optional imports       PASS  4 optional imports OK
+Python compile         PASS  2297 Python files compile
+Python cache           PASS  No Python cache artifacts found
+Test inventory         PASS  589 pytest-style test files found
+Root Python layout     PASS  304 root Python scripts checked
+------------------------------------
+ALL PASS
+EXIT_CODE: 0

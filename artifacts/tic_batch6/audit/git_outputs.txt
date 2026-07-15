@@ -1,0 +1,34 @@
+COMMAND: git diff --check
+
+EXIT_CODE: 0
+COMMAND: git diff --name-status
+
+COMMAND: git diff --cached --name-status
+
+COMMAND: git ls-files --deleted
+
+COMMAND: git status --short --untracked-files=all
+?? artifacts/tic_batch6/HUMAN_CORRECTION_RECORDS.json
+?? artifacts/tic_batch6/QUALITY_REGRESSION_INDEX.json
+?? artifacts/tic_batch6/QUALITY_REGRESSION_VALIDATION.json
+?? artifacts/tic_batch6/ROOT_CAUSE_RECORDS.json
+?? artifacts/tic_batch6/TIC_BATCH6_STATISTICS.json
+?? artifacts/tic_batch6/TRANSLATION_QUALITY_REGRESSION_CASES.json
+?? artifacts/tic_batch6/audit/git_outputs.txt
+?? artifacts/tic_batch6/audit/package_report.json
+?? artifacts/tic_batch6/audit/regression_output.txt
+?? artifacts/tic_batch6/audit/validator_output.txt
+?? core/translation_intelligence_corpus/correction_records.py
+?? core/translation_intelligence_corpus/quality_regression.py
+?? core/translation_intelligence_corpus/root_cause_records.py
+?? docs/translation_intelligence/TIC_BATCH6_HUMAN_CORRECTION_ROOT_CAUSE_REGRESSION.md
+?? ntpe_tic_batch6_human_correction_root_cause_regression_test.py
+?? tests/integration/tic_batch6_human_correction_root_cause_regression_test.py
+
+COMMAND: git check-ignore -v manifests/tic_batch6_human_correction_root_cause_regression_manifest.json
+.gitignore:135:*_manifest.json manifests/tic_batch6_human_correction_root_cause_regression_manifest.json
+
+COMMAND: git rev-list --left-right --count origin/main...main
+0 0
+
+FORBIDDEN_CHANGED_PATH_COUNT: 0

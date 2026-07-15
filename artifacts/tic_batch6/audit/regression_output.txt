@@ -1,0 +1,21 @@
+COMMAND: python ntpe_tic_batch1_translation_corpus_inventory_test.py
+TIC Batch 1 Historical Translation Corpus Inventory ALL PASS
+EXIT_CODE: 0
+COMMAND: python ntpe_tic_batch2_translation_case_extraction_test.py
+TIC Batch 2 Translation Case Extraction ALL PASS
+EXIT_CODE: 0
+COMMAND: python ntpe_tic_batch3_manual_evidence_alignment_test.py
+TIC Batch 3 Manual Evidence Linking and Fine-Grained Alignment ALL PASS
+EXIT_CODE: 0
+COMMAND: python ntpe_tic_batch4_human_confirmed_failure_corpus_test.py
+TIC Batch 4 Human-Confirmed Failure Corpus ALL PASS
+EXIT_CODE: 0
+COMMAND: python ntpe_tic_batch5_historical_human_evidence_expansion_test.py
+TIC Batch 5 Historical Human Evidence Expansion ALL PASS
+EXIT_CODE: 0
+COMMAND: python ntpe_tic_batch6_human_correction_root_cause_regression_test.py
+TIC Batch 6 Human Correction, Root Cause, and Quality Regression ALL PASS
+EXIT_CODE: 0
+COMMAND: python -m pytest -q tests/integration/tic_batch1_translation_corpus_inventory_test.py tests/integration/tic_batch2_translation_case_extraction_test.py tests/integration/tic_batch3_manual_evidence_alignment_test.py tests/integration/tic_batch4_human_confirmed_failure_corpus_test.py tests/integration/tic_batch5_historical_human_evidence_expansion_test.py tests/integration/tic_batch6_human_correction_root_cause_regression_test.py
+104 passed in 27.72s
+EXIT_CODE: 0
