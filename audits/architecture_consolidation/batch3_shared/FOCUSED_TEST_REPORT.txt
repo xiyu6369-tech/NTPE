@@ -1,0 +1,10 @@
+Command scope:
+- tests/unit/shared/test_canonical_json.py
+- tests/unit/shared/test_hashing.py
+- tests/unit/shared/test_paths.py
+- tests/integration/architecture_consolidation_batch1_repository_hygiene_test.py
+- tests/integration/architecture_consolidation_batch2_test_consolidation_test.py
+- tests/integration/architecture_consolidation_batch3_shared_utilities_pilot_test.py
+
+Result: PASS
+Tests: 49 passed

@@ -1,0 +1,1 @@
+{"audit_package_inventory_after":["evidence/result.txt","evidence/結果.json"],"audit_package_inventory_before":["evidence/result.txt","evidence/結果.json"],"package_inventory_changed":false,"report_schema_compatible":true,"security_behavior_compatible":true,"source_package_inventory_after":["core/tracked.py"],"source_package_inventory_before":["core/tracked.py"]}

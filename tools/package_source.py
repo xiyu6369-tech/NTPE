@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import argparse
-import hashlib
 import json
 import os
 from pathlib import Path, PurePosixPath
@@ -11,6 +10,17 @@ import re
 import subprocess
 import sys
 import zipfile
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
+from core.shared.evidence import (
+    normalize_project_relative_path,
+    require_path_within_root,
+    sha256_file,
+    write_canonical_json,
+)
 
 
 class PackageError(RuntimeError):
@@ -106,12 +116,10 @@ SENSITIVE_NAMES = {
 def _normalise_relative(raw: str) -> str:
     if not raw or "\\" in raw:
         raise PackageError(f"unsafe or non-portable path: {raw!r}")
-    path = PurePosixPath(raw)
-    if path.is_absolute() or any(part in {"", ".", ".."} for part in path.parts):
-        raise PackageError(f"unsafe relative path: {raw!r}")
-    if path.parts and ":" in path.parts[0]:
-        raise PackageError(f"drive-qualified path: {raw!r}")
-    return path.as_posix()
+    try:
+        return normalize_project_relative_path(raw)
+    except (TypeError, ValueError) as exc:
+        raise PackageError(f"unsafe relative path: {raw!r}") from exc
 
 
 def _contains_component(path: str, excluded: str) -> bool:
@@ -192,10 +200,9 @@ def collect_source_files(root: Path, *, include_untracked: bool = False) -> list
         source = root.joinpath(*PurePosixPath(relative).parts)
         if source.is_symlink():
             raise PackageError(f"symbolic links are not packaged: {relative}")
-        resolved = source.resolve(strict=True)
         try:
-            resolved.relative_to(root)
-        except ValueError as exc:
+            resolved = require_path_within_root(root, source.resolve(strict=True))
+        except (OSError, ValueError) as exc:
             raise PackageError(f"path escapes worktree: {relative}") from exc
         if not resolved.is_file():
             raise PackageError(f"not a regular file: {relative}")
@@ -205,14 +212,6 @@ def collect_source_files(root: Path, *, include_untracked: bool = False) -> list
     if not selected:
         raise PackageError("source package selection is empty")
     return selected
-
-
-def _sha256(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as stream:
-        for block in iter(lambda: stream.read(1024 * 1024), b""):
-            digest.update(block)
-    return digest.hexdigest()
 
 
 def _verify_zip(output: Path, expected: list[str]) -> dict[str, object]:
@@ -265,14 +264,13 @@ def build_source_package(
         "include_untracked": include_untracked,
         "entries": len(files),
         "bytes": output.stat().st_size,
-        "sha256": _sha256(output),
+        "sha256": sha256_file(output),
         **verification,
     }
 
 
 def _write_report(report: Path, result: dict[str, object]) -> None:
-    report.parent.mkdir(parents=True, exist_ok=True)
-    report.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    write_canonical_json(report, result)
 
 
 def main(argv: list[str] | None = None) -> int:

@@ -111,7 +111,7 @@ def main() -> int:
     check("provider_not_executed", tree_digest(FROZEN_GROUPS["provider_evidence"][1]) == FROZEN_GROUPS["provider_evidence"][0])
     check("new_translation_not_generated", tree_digest(FROZEN_GROUPS["generated_translation"][1]) == FROZEN_GROUPS["generated_translation"][0])
     status = subprocess.run(["git", "status", "--porcelain", "-z"], cwd=ROOT, check=True, capture_output=True).stdout.decode("utf-8", "replace").lower()
-    check("batch3_not_started", "batch3" not in status and "batch_3" not in status)
+    check("batch4_not_started", "batch4" not in status and "batch_4" not in status)
 
     for name, passed in checks:
         print(f"{'PASS' if passed else 'FAIL'} {name}")

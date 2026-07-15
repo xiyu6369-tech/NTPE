@@ -74,7 +74,11 @@ def tree_digest(paths: list[str]) -> str:
         if candidate.is_file():
             files.append(candidate)
         elif candidate.is_dir():
-            files.extend(path for path in candidate.rglob("*") if path.is_file())
+            files.extend(
+                path
+                for path in candidate.rglob("*")
+                if path.is_file() and "__pycache__" not in path.parts and path.suffix != ".pyc"
+            )
     digest = hashlib.sha256()
     for path in sorted(files, key=lambda item: item.relative_to(ROOT).as_posix()):
         relative = path.relative_to(ROOT).as_posix()
@@ -229,7 +233,7 @@ def main() -> int:
     status = subprocess.run(
         ["git", "status", "--porcelain", "-z"], cwd=ROOT, check=True, capture_output=True
     ).stdout.decode("utf-8", "replace").lower()
-    check("batch2_not_started", "batch2" not in status and "batch_2" not in status)
+    check("batch4_not_started", "batch4" not in status and "batch_4" not in status)
 
     for name, passed in checks:
         print(f"{'PASS' if passed else 'FAIL'} {name}")

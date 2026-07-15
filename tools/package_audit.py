@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import argparse
-import hashlib
 import json
 import os
 from pathlib import Path, PurePosixPath
@@ -11,12 +10,24 @@ import re
 import sys
 import zipfile
 
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
+from core.shared.evidence import (
+    normalize_project_relative_path,
+    require_path_within_root,
+    require_sha256_hex,
+    sha256_bytes,
+    sha256_file,
+    write_canonical_json,
+)
+
 
 class PackageError(RuntimeError):
     """Raised when an audit package violates a delivery boundary."""
 
 
-SHA256_PATTERN = re.compile(r"^[0-9a-f]{64}$")
 SECRET_PATTERNS = (
     re.compile(rb"-----BEGIN [A-Z ]*PRIVATE KEY-----"),
     re.compile(rb"\bsk-[A-Za-z0-9_-]{20,}\b"),
@@ -37,23 +48,13 @@ SENSITIVE_NAMES = {
 }
 
 
-def sha256_file(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as stream:
-        for block in iter(lambda: stream.read(1024 * 1024), b""):
-            digest.update(block)
-    return digest.hexdigest()
-
-
 def _normalise_relative(raw: object) -> str:
     if not isinstance(raw, str) or not raw or "\\" in raw:
         raise PackageError(f"unsafe or non-portable manifest path: {raw!r}")
-    path = PurePosixPath(raw)
-    if path.is_absolute() or any(part in {"", ".", ".."} for part in path.parts):
-        raise PackageError(f"unsafe relative manifest path: {raw!r}")
-    if path.parts and ":" in path.parts[0]:
-        raise PackageError(f"drive-qualified manifest path: {raw!r}")
-    return path.as_posix()
+    try:
+        return normalize_project_relative_path(raw)
+    except (TypeError, ValueError) as exc:
+        raise PackageError(f"unsafe relative manifest path: {raw!r}") from exc
 
 
 def _reject_path(relative: str) -> None:
@@ -96,8 +97,9 @@ def load_manifest(root: Path, manifest: Path) -> list[tuple[str, Path, str]]:
             raise PackageError("each manifest entry must contain only path and sha256")
         relative = _normalise_relative(entry["path"])
         _reject_path(relative)
-        expected = entry["sha256"]
-        if not isinstance(expected, str) or not SHA256_PATTERN.fullmatch(expected):
+        try:
+            expected = require_sha256_hex(entry["sha256"], field_name=f"sha256 for {relative}")
+        except ValueError:
             raise PackageError(f"invalid SHA-256 for {relative}")
         key = relative.casefold()
         if key in seen:
@@ -106,8 +108,7 @@ def load_manifest(root: Path, manifest: Path) -> list[tuple[str, Path, str]]:
         if source.is_symlink():
             raise PackageError(f"symbolic links are not packaged: {relative}")
         try:
-            resolved = source.resolve(strict=True)
-            resolved.relative_to(root)
+            resolved = require_path_within_root(root, source.resolve(strict=True))
         except (OSError, ValueError) as exc:
             raise PackageError(f"missing or escaping manifest path: {relative}") from exc
         if not resolved.is_file():
@@ -150,7 +151,7 @@ def build_audit_package(root: Path, manifest: Path, output: Path) -> dict[str, o
         for info in archive.infolist():
             if not info.filename.isascii() and not (info.flag_bits & 0x800):
                 raise PackageError("Unicode ZIP entry is missing the UTF-8 flag")
-            if hashlib.sha256(archive.read(info)).hexdigest() != expected[info.filename]:
+            if sha256_bytes(archive.read(info)) != expected[info.filename]:
                 raise PackageError(f"packaged SHA-256 mismatch for {info.filename}")
     return {
         "package_type": "audit",
@@ -179,8 +180,7 @@ def main(argv: list[str] | None = None) -> int:
         result = build_audit_package(root, manifest, output)
         if args.report:
             report = args.report if args.report.is_absolute() else root / args.report
-            report.parent.mkdir(parents=True, exist_ok=True)
-            report.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+            write_canonical_json(report, result)
         print(json.dumps(result, ensure_ascii=False, indent=2))
         return 0
     except (PackageError, OSError, zipfile.BadZipFile) as exc:
