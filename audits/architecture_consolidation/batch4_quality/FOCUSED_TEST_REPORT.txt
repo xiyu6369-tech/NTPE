@@ -1,0 +1,9 @@
+Scope:
+- tests/unit/public_api/test_quality_assessment_api.py
+- tests/unit/public_api/test_quality_review_api.py
+- tests/unit/public_api/test_corpus_api.py
+- tests/unit/public_api/test_quality_api_compatibility.py
+- tests/integration/architecture_consolidation_batch4_quality_api_consolidation_test.py
+
+Result: PASS
+Tests: 19 passed

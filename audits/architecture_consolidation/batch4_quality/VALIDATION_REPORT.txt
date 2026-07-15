@@ -1,0 +1,41 @@
+NTPE Architecture Consolidation Batch 4 validation report
+Status: ALL PASS
+
+Preflight
+- Branch: main
+- Batch 3 baseline commit: 045e027
+- Worktree before Batch 4: clean
+- origin/main...main: 0/0
+- tracked deletions: 0
+
+Batch 4
+- Public API unit and focused integration: PASS (19 passed)
+- Batch 4 root test: PASS (29 checks)
+- Performance gate: PASS (1000 iterations, 100 warmups)
+
+Legacy regression
+- Batch 1 Repository Hygiene: PASS (33 checks)
+- Batch 2 Test Consolidation: PASS (28 checks)
+- Batch 3 Shared Utilities Pilot: PASS (24 checks)
+- Historical not-started sentinels were run with only new Batch 4 path names temporarily neutralized; no file content or Git metadata changed.
+
+Frozen and critical regression
+- TE v6.0.0 Final Release Freeze: PASS
+- TE v7.1 Stage 11.8 Translation Quality Framework Freeze: PASS
+- TE v7.2 Stage 12.1 Evidence-Based Prompt Quality Candidate: PASS
+- Provider Security: PASS
+- Runtime recovery, output formatter, Stage 11 integration: PASS (53 passed)
+
+Validator
+- Required directories: PASS
+- Legacy entrypoints: PASS
+- Core imports: PASS
+- Optional imports: PASS
+- Python compile: PASS (2256 files)
+- Python cache: PASS
+- Test inventory: PASS (578 files)
+- Root Python layout: PASS (296 scripts)
+- Result: ALL PASS
+
+Provider executed: false
+New translation generated: false
