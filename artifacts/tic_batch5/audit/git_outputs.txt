@@ -1,0 +1,28 @@
+COMMAND: git diff --check
+
+EXIT_CODE: 0
+COMMAND: git diff --name-status
+
+COMMAND: git diff --cached --name-status
+
+COMMAND: git ls-files --deleted
+
+COMMAND: git status --short --untracked-files=all
+?? artifacts/tic_batch5/FAILURE_CASE_INDEX_V2.json
+?? artifacts/tic_batch5/FAILURE_CORPUS_V2_STATISTICS.json
+?? artifacts/tic_batch5/FUTURE_EXCELLENCE_EVIDENCE_CANDIDATES.json
+?? artifacts/tic_batch5/HISTORICAL_HUMAN_EVIDENCE_EXPANSION.json
+?? artifacts/tic_batch5/HUMAN_CONFIRMED_FAILURE_CORPUS_V2.json
+?? artifacts/tic_batch5/HUMAN_EVIDENCE_SEARCH_REPORT.json
+?? artifacts/tic_batch5/UNRESOLVED_HUMAN_EVIDENCE.json
+?? artifacts/tic_batch5/audit/git_outputs.txt
+?? artifacts/tic_batch5/audit/package_report.json
+?? artifacts/tic_batch5/audit/regression_output.txt
+?? artifacts/tic_batch5/audit/validator_output.txt
+?? core/translation_intelligence_corpus/evidence_expansion.py
+?? core/translation_intelligence_corpus/failure_corpus_v2.py
+?? core/translation_intelligence_corpus/historical_evidence_search.py
+?? docs/translation_intelligence/TIC_BATCH5_HISTORICAL_HUMAN_EVIDENCE_EXPANSION.md
+?? ntpe_tic_batch5_historical_human_evidence_expansion_test.py
+?? tests/integration/tic_batch5_historical_human_evidence_expansion_test.py
+
