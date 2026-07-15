@@ -1,0 +1,57 @@
+{
+  "stage": "TE-v7.2-Stage12.2.2",
+  "version": "7.2.0-stage12.2.2",
+  "status": "ab_pair_failed",
+  "files": {
+    "artifacts/te_v72_stage1222/TE_V72_STAGE1222_INDEPENDENT_PAIR_EXECUTION.json": "c366c8b0aa8e13c2bb00dc91841041a4af8326d37cdca9282383454771040971",
+    "artifacts/te_v72_stage1222/TE_V72_STAGE1222_MANUAL_AB_REVIEW.json": "20876a059e9afd159bcda9f868816b1c42ce16de40d799d63cd90cc0b3cc53be",
+    "artifacts/te_v72_stage1222/baseline/request.json": "c27083c7a68ff90fea2db4c5bc225975249862f7d3686a9c3890ccc2335c3a5d",
+    "artifacts/te_v72_stage1222/baseline/prompt_profile.json": "fa39800ed6d48fae55715711a6a8eb6c34e742b7a227e7db3df5013adc640c16",
+    "artifacts/te_v72_stage1222/baseline/raw_response.json": "54e91d1d4f9b98860cc3f643fdb451ecc7f52d6d2087871aec3c59166e27d304",
+    "artifacts/te_v72_stage1222/baseline/translation.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "artifacts/te_v72_stage1222/baseline/execution_metadata.json": "07e3f4349807273bb6a7b043b093ff0c896816079a7d2826f2d6762cd0b1e3c2",
+    "artifacts/te_v72_stage1222/candidate/request.json": "ba88c93e43090ce7eebcf18ac12d80ba1fa8aa5bf177244487117761ab0bebe8",
+    "artifacts/te_v72_stage1222/candidate/prompt_profile.json": "48dc78c4c4178a2f26331e2b78b11d78b44030ef6c21bfd9619a3b73ffbe4786",
+    "artifacts/te_v72_stage1222/candidate/raw_response.json": "91d81d4ad2630fd146f91d2a87d0c249021b9cb18b946009df363b7177573c0d",
+    "artifacts/te_v72_stage1222/candidate/translation.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "artifacts/te_v72_stage1222/candidate/execution_metadata.json": "e7515b1ab5c5f302aa52e7f2b4cd8ad5c8e706d21523545411ca2e7be445fcc1",
+    "ntpe_te_v720_stage1222_independent_pair_recovery_execution_test.py": "cf2ab1c93a8cb3dd6b1bea7e1dcdf6bf4a06a54d8cb5c4ca0b9381b637726245",
+    "tests/integration/translation_engine_v720_stage1222_independent_pair_recovery_execution_test.py": "3a62ecbfdcb92818de1544ba0e842357985b41193546d5e3d596475d87fb731d",
+    "docs/releases/te_v7_2/TE_V720_STAGE1222_INDEPENDENT_PAIR_RECOVERY_EXECUTION.md": "bb31db1d272ccac8db612369a4d6cc5f57719248d5d181dec0dceba2fcbfdb91"
+  },
+  "compatibility_anchors": {
+    "manifests/te_v720_stage121_evidence_based_prompt_quality_candidate_manifest.json": "044516c63cbc935aa6c026d681768dcd7765aa2717b8ff68606fcee1385a5fe5",
+    "manifests/te_v720_stage122_controlled_provider_ab_validation_manifest.json": "f16f1a23b862759ef19c163486430bd19371c125f6bee483b58fd331e79f5fc6",
+    "manifests/te_v720_stage1221_controlled_provider_ab_execution_manifest.json": "6a2872b9f6b19bbcdb18f93109e96ff4cf983be3afef299ce28001416febfe5d",
+    "manifests/te_v710_stage118_translation_quality_framework_freeze_manifest.json": "b5eed41b1c17ebea77db7b021db9fd021d746a0822ce5071ade4dcfc3acbafcf",
+    "manifests/te_v600_stage125_translation_naturalness_freeze_manifest.json": "1195e4f18f700fec93cd57212fa553b5a68dc6c747ce910784d7f8447a0e3697"
+  },
+  "execution": {
+    "network_requests": 2,
+    "baseline_requests": 1,
+    "candidate_requests": 1,
+    "baseline_status": "timeout",
+    "candidate_status": "timeout",
+    "retries": 0,
+    "fallback_used": false,
+    "review_status": "not_reviewable_pair_incomplete"
+  },
+  "boundary": {
+    "real_provider_executed": true,
+    "new_translation_generated": false,
+    "prompt_modified": false,
+    "candidate_modified": false,
+    "runtime_modified": false,
+    "provider_modified": false,
+    "model_modified": false,
+    "timeout_modified": false,
+    "retry_modified": false,
+    "chunking_modified": false,
+    "comparison_executed": false,
+    "manual_review_completed": false,
+    "quality_improvement_verified": false,
+    "quality_candidate_accepted": false,
+    "stage123_started": false
+  },
+  "sha256": {"algorithm": "sha256", "self_hash_excluded": true}
+}
