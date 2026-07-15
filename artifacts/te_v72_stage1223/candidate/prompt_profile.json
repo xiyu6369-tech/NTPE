@@ -1,0 +1,22 @@
+{
+  "arm": "candidate",
+  "candidate_chars": 263,
+  "candidate_enabled": true,
+  "candidate_tokens": 109,
+  "candidate_version": "7.2.0-stage12.1",
+  "content_redacted": true,
+  "context_sha256": "c6595de618ed78735941ceac69c6723486820f64a0c1a9f0e613aaa1cf0bfeb2",
+  "context_tokens": 30,
+  "glossary_sha256": "6a6869f4e591acffddb490194f4f3f0e22f9b0c1fcc3d07e61f55d3b32281c88",
+  "glossary_tokens": 4,
+  "policy_sha256": "73d90ab84f6d6852c1945511e156478747c96144ea0c4971d288fbfeb9216977",
+  "policy_tokens": 269,
+  "prompt_sha256": "ac9975b7dec11639eab56364ec9697e6729d4f36fd4b44b8be3a699aadcf4923",
+  "source_section_sha256": "13b64e17d91e21cc3023921423fe1ac2df46b9b2c357527b466408e1095241fa",
+  "source_tokens": 67,
+  "stage": "TE-v7.2-Stage12.2.3",
+  "system_sha256": "b2d23d7df28ae19bf3cd13c5420343f698c2aa4d402927da746728e50d721e31",
+  "system_tokens": 11,
+  "total_chars": 921,
+  "total_tokens": 381
+}

@@ -1,0 +1,67 @@
+{
+  "stage": "TE-v7.2-Stage12.2.3",
+  "version": "7.2.0-stage12.2.3",
+  "status": "ab_pair_partial",
+  "files": {
+    "artifacts/te_v72_stage1223/TE_V72_STAGE1223_SOURCE_EXCERPT_FREEZE.json": "e178629e99e761add9808641c63dcd3de5ce070556c14c2874812909af778628",
+    "artifacts/te_v72_stage1223/TE_V72_STAGE1223_MINIMAL_EXCERPT_AB_EXECUTION.json": "f2792b05c921964c9e4f3f26a8f9faff80409cedbdfcb15f3b53de2cf3abe61e",
+    "artifacts/te_v72_stage1223/TE_V72_STAGE1223_MANUAL_AB_REVIEW.json": "0fb8a5e6457ee8e88469a84a42c7fafd98278af0cc99d89b4f560ec3ea20afeb",
+    "artifacts/te_v72_stage1223/baseline/request.json": "d60e631e377473e4b81203f2c6dff252b5c1a8784e98cc46090351094acfd738",
+    "artifacts/te_v72_stage1223/baseline/prompt_profile.json": "e484e0848a836391903bea3ec07168d759bc668481ea3792c0ecb6a93e775110",
+    "artifacts/te_v72_stage1223/baseline/raw_response.json": "eb2b470a690638fe0a15d5618492b18e6d1493aa753aa58b075abea82d48dbb8",
+    "artifacts/te_v72_stage1223/baseline/translation.txt": "38887550dbb858147bdefe9c2d012596ed4c40a1cdaf2372e4425acb5715e49a",
+    "artifacts/te_v72_stage1223/baseline/execution_metadata.json": "76c21a58e829b976d402c6fcdaca4aa7898d14170ad0c4f3b19679f2f960a093",
+    "artifacts/te_v72_stage1223/candidate/request.json": "df76313f1f8b4c74324255f2ec88fc0b954626d5fdca6c568008b27ccbf64e39",
+    "artifacts/te_v72_stage1223/candidate/prompt_profile.json": "dc6173ff3520013d2fe71725eb39c523979f8a6942a08582e93210aeff63208f",
+    "artifacts/te_v72_stage1223/candidate/raw_response.json": "6144586ca08a41eda0158d8d75947be0f702cb96a35c71d1614a1eaf4c65e903",
+    "artifacts/te_v72_stage1223/candidate/translation.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "artifacts/te_v72_stage1223/candidate/execution_metadata.json": "b12e1d843e9e63843e930bee20e8200208dece611cc23c25fa7b577004d92194",
+    "ntpe_te_v720_stage1223_minimal_excerpt_ab_quality_validation_test.py": "dd955d7fc1deef933d5480a6e18f8cc7653e6f44c07194a25bde3ea474b5e414",
+    "tests/integration/translation_engine_v720_stage1223_minimal_excerpt_ab_quality_validation_test.py": "558b63774811bc0416f5d75f59d51598b412fc70e1f27d2b2fdd355ae4725e16",
+    "docs/releases/te_v7_2/TE_V720_STAGE1223_MINIMAL_EXCERPT_AB_QUALITY_VALIDATION.md": "82093d4ca077119a98e7bc4fbbc63953c28160b517af09c1ce99277871b65ec3"
+  },
+  "compatibility_anchors": {
+    "manifests/te_v720_stage121_evidence_based_prompt_quality_candidate_manifest.json": "044516c63cbc935aa6c026d681768dcd7765aa2717b8ff68606fcee1385a5fe5",
+    "manifests/te_v720_stage122_controlled_provider_ab_validation_manifest.json": "f16f1a23b862759ef19c163486430bd19371c125f6bee483b58fd331e79f5fc6",
+    "manifests/te_v720_stage1221_controlled_provider_ab_execution_manifest.json": "6a2872b9f6b19bbcdb18f93109e96ff4cf983be3afef299ce28001416febfe5d",
+    "manifests/te_v720_stage1222_independent_pair_recovery_execution_manifest.json": "2d236adfbc71ccb3e7061bccf047cd3668b5e96538c6c6c4a8ff6ae48f157d9a",
+    "manifests/te_v710_stage118_translation_quality_framework_freeze_manifest.json": "b5eed41b1c17ebea77db7b021db9fd021d746a0822ce5071ade4dcfc3acbafcf",
+    "manifests/te_v600_stage125_translation_naturalness_freeze_manifest.json": "1195e4f18f700fec93cd57212fa553b5a68dc6c747ce910784d7f8447a0e3697"
+  },
+  "excerpt": {
+    "parent_source_unit_sha256": "ac76cf63de96d465d23ed6a131fbc1008ed06adae76c8e0668b27e58cde1c2b5",
+    "start_offset": 0,
+    "end_offset": 153,
+    "length": 153,
+    "sha256": "518ea1f76d7bca5f4ed1a9f534b14524e680d5593c7e17317fde026a4313e63b"
+  },
+  "execution": {
+    "network_requests": 2,
+    "baseline_requests": 1,
+    "candidate_requests": 1,
+    "baseline_status": "success",
+    "candidate_status": "timeout",
+    "retries": 0,
+    "fallback_used": false,
+    "review_status": "not_reviewable_pair_incomplete"
+  },
+  "boundary": {
+    "real_provider_executed": true,
+    "source_excerpt_created": true,
+    "parent_source_modified": false,
+    "new_translation_generated": true,
+    "prompt_modified": false,
+    "candidate_modified": false,
+    "runtime_modified": false,
+    "provider_modified": false,
+    "model_modified": false,
+    "timeout_modified": false,
+    "retry_modified": false,
+    "comparison_executed": false,
+    "manual_review_completed": false,
+    "quality_improvement_verified": false,
+    "quality_candidate_accepted": false,
+    "stage123_started": false
+  },
+  "sha256": {"algorithm": "sha256", "self_hash_excluded": true}
+}
