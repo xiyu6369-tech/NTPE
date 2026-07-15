@@ -1,0 +1,54 @@
+{
+  "stage": "TE-v7.2-Stage12.2.1",
+  "version": "7.2.0-stage12.2.1",
+  "status": "ab_pair_incomplete",
+  "files": {
+    "artifacts/te_v72_stage1221/TE_V72_STAGE1221_CONTROLLED_AB_EXECUTION.json": "ad8805d3a4ad5dfada12ed7108da84a971f3a39d43bcdd8b08918af06caf6a36",
+    "artifacts/te_v72_stage1221/TE_V72_STAGE1221_MANUAL_AB_REVIEW.json": "5d7e5ddbef5babcdb99e9fe4f70ab44c7b94d78233a434c69366b6761fffd9a8",
+    "artifacts/te_v72_stage1221/baseline/request.json": "9c376dc429dc292a2f606d5826e81205e82af1fbc0cec7ffd6f14219286ef3a5",
+    "artifacts/te_v72_stage1221/baseline/prompt_profile.json": "a43e73b825d51dc136787d8f6201ec690204b1e79d41ba7145b2fa8f1abfdb29",
+    "artifacts/te_v72_stage1221/baseline/raw_response.json": "1f09ff70f8a896d0000197142ab47435deb1e95b5e7313e45627db2f0050f014",
+    "artifacts/te_v72_stage1221/baseline/translation.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "artifacts/te_v72_stage1221/baseline/execution_metadata.json": "d5869eca05d0f805b21c81d680e5c7d48a1d3ff91ff9e01db3886ca840ac65df",
+    "artifacts/te_v72_stage1221/candidate/request.json": "b1d76f4bb585a7251cc0ba057640b75387bba74dcf0504d32d1a071ec6856bd5",
+    "artifacts/te_v72_stage1221/candidate/prompt_profile.json": "025fdabae30a552660d84f93faa496b2c337aaeecbe1ce5b872fa81de73fcf51",
+    "artifacts/te_v72_stage1221/candidate/raw_response.json": "4677c9d05f9e8c5a383b35ec4132e58290ab2550a475b58cd5c3f3439fd92995",
+    "artifacts/te_v72_stage1221/candidate/translation.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "artifacts/te_v72_stage1221/candidate/execution_metadata.json": "89bc24f55f2ff86c330a70cab720d0a817658e26a2da8b67d42edeaf5ca14287",
+    "ntpe_te_v720_stage1221_controlled_provider_ab_execution_test.py": "878ead4e8019ed3505a362aca49a7c743441f49445a35dda887be2bbf506c804",
+    "tests/integration/translation_engine_v720_stage1221_controlled_provider_ab_execution_test.py": "a1bd68cc13fcd58288e100294b530bacbe66c91931d2167e5cd9104322d0d6d2",
+    "docs/releases/te_v7_2/TE_V720_STAGE1221_CONTROLLED_PROVIDER_AB_EXECUTION.md": "3dadd71a4d6423de58db55ddd1e85ee534de3a8ec431c855a7983e2512fbf4fe"
+  },
+  "compatibility_anchors": {
+    "manifests/te_v720_stage121_evidence_based_prompt_quality_candidate_manifest.json": "044516c63cbc935aa6c026d681768dcd7765aa2717b8ff68606fcee1385a5fe5",
+    "manifests/te_v720_stage122_controlled_provider_ab_validation_manifest.json": "f16f1a23b862759ef19c163486430bd19371c125f6bee483b58fd331e79f5fc6",
+    "manifests/te_v710_stage118_translation_quality_framework_freeze_manifest.json": "b5eed41b1c17ebea77db7b021db9fd021d746a0822ce5071ade4dcfc3acbafcf",
+    "manifests/te_v600_stage125_translation_naturalness_freeze_manifest.json": "1195e4f18f700fec93cd57212fa553b5a68dc6c747ce910784d7f8447a0e3697"
+  },
+  "execution": {
+    "network_requests": 1,
+    "baseline_requests": 1,
+    "candidate_requests": 0,
+    "retries": 0,
+    "fallback_used": false,
+    "baseline_status": "timeout",
+    "candidate_status": "not_executed_baseline_failed"
+  },
+  "boundary": {
+    "real_provider_executed": true,
+    "new_translation_generated": false,
+    "prompt_modified": false,
+    "candidate_modified": false,
+    "runtime_modified": false,
+    "provider_modified": false,
+    "model_modified": false,
+    "timeout_modified": false,
+    "retry_modified": false,
+    "comparison_executed": false,
+    "manual_review_completed": false,
+    "quality_improvement_verified": false,
+    "quality_candidate_accepted": false,
+    "stage123_started": false
+  },
+  "sha256": {"algorithm": "sha256", "self_hash_excluded": true}
+}

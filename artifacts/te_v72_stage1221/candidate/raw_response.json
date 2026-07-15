@@ -1,0 +1,15 @@
+{
+  "api_key_persisted": false,
+  "arm": "candidate",
+  "authorization_header_persisted": false,
+  "content": null,
+  "content_capture": "not_executed",
+  "exception_category": "not_executed",
+  "headers_persisted": false,
+  "http_status": null,
+  "provider_model": "meta/llama-3.3-70b-instruct",
+  "response_sha256": "5eb018adc99c3fab2df3f7bed47b0426f7b50a11b516c27eebb5b7aa4fe2d0cd",
+  "sensitive_headers_removed": true,
+  "stage": "TE-v7.2-Stage12.2.1",
+  "status": "not_executed_baseline_failed"
+}
