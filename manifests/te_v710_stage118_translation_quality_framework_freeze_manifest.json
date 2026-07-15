@@ -1,0 +1,54 @@
+{
+  "stage": "TE-v7.1-Stage11.8",
+  "version": "7.1.0-stage11.8",
+  "status": "frozen",
+  "freeze": true,
+  "files": {
+    "artifacts/te_v71_stage118/TE_V71_STAGE118_TRANSLATION_QUALITY_FRAMEWORK_FREEZE.json":"51ef50bbaedfc945b2047fcbb90e4a40e3251fc3dbc033760dace221cfd65f5b",
+    "tests/integration/translation_engine_v710_stage118_translation_quality_framework_freeze_test.py":"79bf3bad0e54348dfd1d1a9e65e0cedcb5400d7b151170859f4ada9ca01b2949",
+    "ntpe_te_v710_stage118_translation_quality_framework_freeze_test.py":"1595dc222e42e769d112d065f673fc90db8e4fd27a2d618a5f56974ec44a63d5",
+    "docs/releases/te_v7_1/TE_V710_STAGE118_TRANSLATION_QUALITY_FRAMEWORK_FREEZE.md":"d72a4000bbcf27575738d2371266f9c703790d4c086b04f8d8f777297fc45c09"
+  },
+  "frozen_stage_manifests": {
+    "manifests/te_v710_stage111_translation_defect_classification_manifest.json":"d6a068f1775e8d3dab981b3193e98a55d81569724e8822b5ba8390ea611bac93",
+    "manifests/te_v710_stage112_translation_quality_metrics_manifest.json":"704c14457fe9d1d134e63965b66e524a88b041de91a63d0a0724df33ad09e497",
+    "manifests/te_v710_stage113_review_artifact_system_manifest.json":"09958b068ae2aebb2a9812669c00d44007bfd0577ca0a95a8a8cd69d298ab556",
+    "manifests/te_v710_stage114_prompt_improvement_planner_manifest.json":"7720b40cc4a7d51c8d75fc61540832a648067b06b5ab8eed39d44080f131fa0c",
+    "manifests/te_v710_stage115_review_decision_contract_manifest.json":"1b6abf9a4abd51ab97a3417571985e0cf7dc173568504389305d5fca0b44978a",
+    "manifests/te_v710_stage116_golden_corpus_governance_manifest.json":"ee0e14e869db73b268d5ff1b4baabb4c62a021c006c7e5bd1794ace656047afc",
+    "manifests/te_v710_stage117_quality_framework_integration_manifest.json":"0702be7e0ba63ff26bf6118b881bc4ff678fa65db938533c1fbd3408140e0b60"
+  },
+  "sha256": {"algorithm": "sha256", "transitive_manifest_anchor": true, "self_hash_excluded": true},
+  "tests": {
+    "root": "ntpe_te_v710_stage118_translation_quality_framework_freeze_test.py",
+    "focused_integration": "tests/integration/translation_engine_v710_stage118_translation_quality_framework_freeze_test.py",
+    "expected": "ALL PASS"
+  },
+  "artifacts": ["artifacts/te_v71_stage118/TE_V71_STAGE118_TRANSLATION_QUALITY_FRAMEWORK_FREEZE.json"],
+  "release_documents": ["docs/releases/te_v7_1/TE_V710_STAGE118_TRANSLATION_QUALITY_FRAMEWORK_FREEZE.md"],
+  "framework_scope": ["defects", "metrics", "review_artifacts", "improvement_plans", "human_review_decision", "golden_corpus_governance", "quality_framework_integration"],
+  "boundaries": {
+    "network_requests": 0,
+    "real_provider_executed": false,
+    "provider_executed": false,
+    "new_translation_generated": false,
+    "translation_generated": false,
+    "translation_quality_improved": false,
+    "prompt_modified": false,
+    "prompt_builder_modified": false,
+    "runtime_modified": false,
+    "provider_modified": false,
+    "translation_strategy_modified": false,
+    "plans_applied": 0,
+    "decisions_applied": 0,
+    "approved_cases_created": 0,
+    "approved_translations_added": 0,
+    "golden_corpus_content_modified": false,
+    "baseline_created": false,
+    "candidate_created": false,
+    "comparison_executed": false,
+    "readiness_evaluated": false,
+    "framework_frozen": true,
+    "te_v72_started": false
+  }
+}
