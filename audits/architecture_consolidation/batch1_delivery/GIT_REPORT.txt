@@ -1,0 +1,28 @@
+NTPE Architecture Consolidation Batch 1 Git Report
+Date: 2026-07-15 (Asia/Taipei)
+HEAD: 10b7b7a docs: add NTPE architecture consolidation audit
+Branch: main
+
+git diff --check
+PASS - no output
+
+git diff --name-status
+PASS - no tracked modifications; Batch 1 deliverables are untracked pending GPT review
+
+git ls-files --deleted
+PASS - no output; tracked deletion count is 0
+
+git status --short (pre-delivery-package snapshot)
+?? NTPE_ARCHITECTURE_AUDIT.zip
+?? audits/architecture_consolidation/batch1_delivery/
+?? docs/architecture/NTPE_ARTIFACT_RETENTION_POLICY.md
+?? docs/architecture/NTPE_DELIVERY_PACKAGE_POLICY.md
+?? ntpe_architecture_consolidation_batch1_repository_hygiene_test.py
+?? tests/integration/architecture_consolidation_batch1_repository_hygiene_test.py
+?? tools/package_audit.py
+?? tools/package_source.py
+
+Notes:
+- NTPE_ARCHITECTURE_AUDIT.zip is preserved prior-audit evidence and is not part of this Batch 1 package.
+- NTPE_BATCH1_AUDIT.zip is intentionally created after this snapshot and remains untracked for review.
+- No commit, push, or tag was performed.

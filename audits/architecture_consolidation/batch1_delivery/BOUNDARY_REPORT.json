@@ -1,0 +1,16 @@
+{
+  "production_code_modified": false,
+  "runtime_modified": false,
+  "provider_modified": false,
+  "prompt_modified": false,
+  "candidate_modified": false,
+  "stage11_modified": false,
+  "tracked_files_deleted": 0,
+  "untracked_full_zip_deleted": true,
+  "provider_executed": false,
+  "new_translation_generated": false,
+  "source_packager_created": true,
+  "audit_packager_created": true,
+  "full_backup_created": false,
+  "batch2_started": false
+}

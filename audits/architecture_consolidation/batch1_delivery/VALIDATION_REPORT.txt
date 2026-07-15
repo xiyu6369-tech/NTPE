@@ -1,0 +1,28 @@
+NTPE Architecture Consolidation Batch 1 Validation Report
+Date: 2026-07-15 (Asia/Taipei)
+
+1. python ntpe_architecture_consolidation_batch1_repository_hygiene_test.py
+   PASS - NTPE Architecture Consolidation Batch 1 Repository Hygiene ALL PASS (33 checks)
+
+2. python -m pytest -q tests/integration/architecture_consolidation_batch1_repository_hygiene_test.py
+   PASS - 9 passed in 4.37s
+
+3. python ntpe_te_v710_stage118_translation_quality_framework_freeze_test.py
+   PASS - TE v7.1 Stage 11.8 Translation Quality Framework Freeze ALL PASS
+
+4. python ntpe_te_v720_stage121_evidence_based_prompt_quality_candidate_test.py
+   PASS - TE v7.2 Stage 12.1 Evidence-Based Prompt Quality Candidate ALL PASS
+
+5. python ntpe_te_v600_final_release_freeze_test.py
+   PASS - TE v6.0.0 Final Release Freeze ALL PASS
+
+6. python ntpe_validate.py
+   PASS - ALL PASS (13.61s)
+   Required directories: PASS (6)
+   Legacy entrypoints: PASS (4)
+   Core imports: PASS (7)
+   Optional imports: PASS (4)
+   Python compile: PASS (2224 files)
+   Python cache: PASS
+   Test inventory: PASS (567 pytest-style files)
+   Root Python layout: PASS (293 scripts)

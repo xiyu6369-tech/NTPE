@@ -1,0 +1,13 @@
+{
+  "package_type": "source",
+  "output": "D:\\Temp\\NTPE_SOURCE_BATCH1_TEST_a57da00be3be4c9fa6d06aa9d1f9a652.zip",
+  "git_head": "10b7b7a8cf66887a67cf9055495fc28c5ddcde1a",
+  "tracked_only": true,
+  "include_untracked": false,
+  "entries": 1293,
+  "bytes": 1301367,
+  "sha256": "523247cb2ab6aeec28e61a957de607527a2f08f8651ac2b152574249041034dd",
+  "integrity": "PASS",
+  "path_separator_validation": "PASS",
+  "unicode_round_trip": "PASS"
+}

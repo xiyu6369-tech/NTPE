@@ -1,0 +1,18 @@
+{
+  "package_type": "audit",
+  "test_scope": "temporary-directory focused integration",
+  "tests_passed": 9,
+  "explicit_allowlist": "PASS",
+  "json_validation": "PASS",
+  "sha256_validation": "PASS",
+  "duplicate_rejection": "PASS",
+  "path_traversal_rejection": "PASS",
+  "secret_rejection": "PASS",
+  "git_and_nested_zip_rejection": "PASS",
+  "integrity": "PASS",
+  "path_separator_validation": "PASS",
+  "unicode_round_trip": "PASS",
+  "provider_execution": false,
+  "runtime_or_prompt_modification": false,
+  "temporary_packages_cleaned": true
+}

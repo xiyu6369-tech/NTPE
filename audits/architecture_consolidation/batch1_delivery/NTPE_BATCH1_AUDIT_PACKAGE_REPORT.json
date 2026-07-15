@@ -1,0 +1,11 @@
+{
+  "package_type": "audit",
+  "output": "D:\\Python\\NTPE\\NTPE_BATCH1_AUDIT.zip",
+  "entries": 13,
+  "bytes": 20387,
+  "sha256": "47d8dce22caee8c3816fd18c1ea9240ff2afd97e95ec120e30fed6f08ee09439",
+  "manifest_validation": "PASS",
+  "integrity": "PASS",
+  "path_separator_validation": "PASS",
+  "unicode_round_trip": "PASS"
+}
