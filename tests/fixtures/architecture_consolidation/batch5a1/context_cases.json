@@ -1,0 +1,12 @@
+{"domain":"context","cases":[
+  {"id":"empty","text":"","previous":"","locked":{},"states":{},"max_chars":1800},
+  {"id":"small","text":"A quiet room.","previous":"","locked":{},"states":{"scene_state":{"location":"room","objects":[]}},"max_chars":1800},
+  {"id":"large","text":"A long corridor.","previous":"prior","locked":{},"states":{"story_state":{"current_file":"novel.txt","current_chunk":9,"recent_events":[{"event":"one"},{"event":"two"}]}},"max_chars":1800},
+  {"id":"unicode","text":"林真在雨夜回頭。한글 문장.","previous":"前文","locked":{"林真":"林真"},"states":{"character_state":{"active_characters":["林真"],"characters":{"林真":{"emotion":"不安","focus":"門"}}}},"max_chars":1800},
+  {"id":"budget","text":"budget","previous":"0123456789","locked":{},"states":{"scene_state":{"location":"hall","objects":["a","b","c"]}},"max_chars":40},
+  {"id":"missing_fields","text":"missing","previous":"","locked":{},"states":{"story_state":{}},"max_chars":1800},
+  {"id":"extra_fields","text":"extra","previous":"","locked":{},"states":{"unknown":{"value":1},"scene_state":{"extra":true}},"max_chars":1800},
+  {"id":"empty_collections","text":"empty lists","previous":"","locked":{},"states":{"character_state":{"active_characters":[],"characters":{}},"dialogue_state":{"recent_dialogue":[]}},"max_chars":1800},
+  {"id":"ordering","text":"order","previous":"tail","locked":{"b":"乙","a":"甲"},"states":{"scene_state":{"objects":["z","a"]},"character_state":{"active_characters":["乙","甲"],"characters":{}}},"max_chars":1800},
+  {"id":"long_tail","text":"tail","previous":"尾" ,"locked":{},"states":{"narrative_state":{"tone":"calm","narrative_focus":["one","two"]}},"max_chars":1}
+]}

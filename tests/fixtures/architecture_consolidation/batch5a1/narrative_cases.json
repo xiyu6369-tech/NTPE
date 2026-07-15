@@ -1,0 +1,12 @@
+{"domain":"narrative","cases":[
+  {"id":"empty","text":"","previous":""},
+  {"id":"plain","text":"A plain sentence.","previous":""},
+  {"id":"rule_trigger","text":"rain crossed the window","previous":""},
+  {"id":"multi_paragraph","text":"one\n\ntwo\n\nthree","previous":""},
+  {"id":"unicode","text":"雨落在窗外。한글 문장.","previous":"前文"},
+  {"id":"dialogue","text":"\"Wait,\" she said.","previous":""},
+  {"id":"long","text":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx","previous":""},
+  {"id":"whitespace","text":"  spaced  ","previous":""},
+  {"id":"newline","text":"line one\nline two","previous":"prior"},
+  {"id":"symbols","text":"!?—…","previous":""}
+]}

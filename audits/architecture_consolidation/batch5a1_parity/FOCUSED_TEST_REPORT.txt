@@ -1,0 +1,5 @@
+Command: python -m pytest -q tests/characterization/test_context_replacement_parity.py tests/characterization/test_narrative_replacement_parity.py tests/characterization/test_voice_replacement_parity.py tests/integration/architecture_consolidation_batch5a1_replacement_parity_test.py
+Result: PASS
+Tests: 7 passed
+
+Coverage: actual legacy/replacement calls, deterministic fixtures, return shape/value comparison, mutation detection, exception mismatch, side-effect boundaries, performance gate, external compatibility fail-closed behavior, report parsing, and exact status partition.

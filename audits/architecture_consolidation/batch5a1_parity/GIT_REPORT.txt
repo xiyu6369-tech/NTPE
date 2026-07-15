@@ -1,0 +1,19 @@
+Preflight:
+git status --short: CLEAN
+git ls-files --deleted: EMPTY
+origin/main...main: 0 0
+HEAD: a8a1647 docs: add dynamic usage and compatibility audit
+branch: main
+Batch 5A archive: present
+
+Batch 5A.1 scope:
+existing tracked modifications: 0
+tracked deletions: 0
+files deleted: 0
+files moved: 0
+files renamed: 0
+production modifications: 0
+legacy module modifications: 0
+replacement module modifications: 0
+
+Only Batch 5A.1 audit evidence, fixtures, characterization/performance tests, root test, and focused integration test are added.

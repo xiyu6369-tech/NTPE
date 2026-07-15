@@ -1,0 +1,12 @@
+{"domain":"voice","cases":[
+  {"id":"empty","text":"","locked":{}},
+  {"id":"target","text":"林真 enters.","locked":{"림진":"林真"}},
+  {"id":"source","text":"림진 enters.","locked":{"림진":"林真"}},
+  {"id":"two","text":"림진 and 태의","locked":{"림진":"林真","태의":"泰義"}},
+  {"id":"unicode","text":"林真低聲說：你好。","locked":{"림진":"林真"}},
+  {"id":"unknown","text":"Unknown person","locked":{}},
+  {"id":"false_positive","text":"林","locked":{"림진":"林真"}},
+  {"id":"duplicate_text","text":"림진 림진","locked":{"림진":"林真"}},
+  {"id":"ordering","text":"태의 림진","locked":{"태의":"泰義","림진":"林真"}},
+  {"id":"whitespace","text":" 림진 ","locked":{"림진":"林真"}}
+]}
