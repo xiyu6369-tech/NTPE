@@ -1,0 +1,24 @@
+﻿COMMAND: git diff --check
+
+EXIT_CODE: 0
+COMMAND: git diff --name-status
+
+COMMAND: git diff --cached --name-status
+
+COMMAND: git ls-files --deleted
+
+COMMAND: git status --short --untracked-files=all
+?? artifacts/tic_batch4/EXCLUDED_FAILURE_CANDIDATES.json
+?? artifacts/tic_batch4/FAILURE_CASE_INDEX.json
+?? artifacts/tic_batch4/FAILURE_CORPUS_STATISTICS.json
+?? artifacts/tic_batch4/HUMAN_CONFIRMED_FAILURE_CORPUS.json
+?? artifacts/tic_batch4/audit/git_outputs.txt
+?? artifacts/tic_batch4/audit/package_report.json
+?? artifacts/tic_batch4/audit/regression_output.txt
+?? artifacts/tic_batch4/audit/validator_output.txt
+?? core/translation_intelligence_corpus/failure_corpus.py
+?? core/translation_intelligence_corpus/failure_index.py
+?? core/translation_intelligence_corpus/failure_statistics.py
+?? docs/translation_intelligence/TIC_BATCH4_HUMAN_CONFIRMED_FAILURE_CORPUS.md
+?? ntpe_tic_batch4_human_confirmed_failure_corpus_test.py
+?? tests/integration/tic_batch4_human_confirmed_failure_corpus_test.py
