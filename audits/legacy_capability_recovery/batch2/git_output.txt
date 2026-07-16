@@ -1,0 +1,21 @@
+COMMAND: git diff --check
+EXIT_CODE: 0
+
+COMMAND: git diff --name-status
+NO TRACKED DIFF (LCR Batch 2 files are new and untracked)
+
+COMMAND: git ls-files --deleted
+NO OUTPUT
+
+COMMAND: git diff --stat
+NO TRACKED DIFF (untracked files are not included by git diff)
+
+COMMAND: git rev-list --left-right --count origin/main...main
+0 0
+
+HEAD: c2bc164 LCR Batch 1: Legacy Capability Recovery audit and recovery plan
+
+TRACKED_TEST_SIDE_EFFECT_RESTORED:
+prompt_packages/txt_runtime/001_chunk_000001.json
+
+FORBIDDEN_CHANGED_PATH_COUNT: 0

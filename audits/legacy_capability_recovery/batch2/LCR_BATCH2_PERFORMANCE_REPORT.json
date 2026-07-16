@@ -1,0 +1,26 @@
+{
+  "environment": "local offline Python process",
+  "measurements": {
+    "add_merge_100_ms": 16.229,
+    "dedup_100_ms": 2.949,
+    "rollback_ms": 0.101,
+    "selection_100_ms": 1.205,
+    "serialization_round_trip_100_ms": 18.925
+  },
+  "network_requests": 0,
+  "notes": "Measurements are local wall-clock values; no provider tokenizer or network service is used.",
+  "provider_requests": 0,
+  "status": "PASS",
+  "threshold_results": {
+    "add_merge_100_ms": true,
+    "dedup_100_ms": true,
+    "selection_100_ms": true,
+    "serialization_round_trip_100_ms": true
+  },
+  "thresholds": {
+    "add_merge_100_ms": 100.0,
+    "dedup_100_ms": 100.0,
+    "selection_100_ms": 20.0,
+    "serialization_round_trip_100_ms": 50.0
+  }
+}

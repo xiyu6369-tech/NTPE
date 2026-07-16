@@ -1,0 +1,121 @@
+{
+  "added_core_files": [
+    "core/character_memory_v2/__init__.py",
+    "core/character_memory_v2/models.py",
+    "core/character_memory_v2/store.py",
+    "core/character_memory_v2/normalization.py",
+    "core/character_memory_v2/deduplication.py",
+    "core/character_memory_v2/lifecycle.py",
+    "core/character_memory_v2/selection.py",
+    "core/character_memory_v2/serialization.py",
+    "core/character_memory_v2/validation.py"
+  ],
+  "added_test_files": [
+    "ntpe_lcr_batch2_character_memory_v2_test.py",
+    "tests/unit/test_character_memory_v2.py",
+    "tests/integration/lcr_batch2_character_memory_v2_integration_test.py"
+  ],
+  "batch": "LCR Batch 2",
+  "data_model": {
+    "evidence_types": [
+      "source_observation",
+      "translation_observation",
+      "ai_inference",
+      "human_approved",
+      "human_rejected",
+      "historical_import"
+    ],
+    "expiry_kinds": [
+      "never",
+      "segment_scope",
+      "chapter_scope",
+      "session_scope",
+      "timestamp",
+      "manual_review_required"
+    ],
+    "fact_types": [
+      "canonical_name",
+      "name_variant",
+      "pronoun_or_gender_reference",
+      "role_or_identity",
+      "relationship",
+      "addressing_style",
+      "speech_style",
+      "personality_trait",
+      "appearance",
+      "temporal_state",
+      "location_state",
+      "terminology_preference",
+      "other"
+    ],
+    "statuses": [
+      "pending",
+      "active",
+      "rejected",
+      "superseded",
+      "expired",
+      "rolled_back",
+      "invalid"
+    ]
+  },
+  "governance": {
+    "ai_inference_default_prompt_eligible": false,
+    "confidence_separate_from_approval": true,
+    "deterministic_deduplication": true,
+    "human_approved_automatic_overwrite": false,
+    "rollback_preserves_evidence": true,
+    "same_tier_conflict_silent_overwrite": false,
+    "unbounded_append": false
+  },
+  "known_limitations": [
+    "No production/prompt integration",
+    "No automatic entity extraction, name completion, or transliteration",
+    "Estimated tokens are deterministic character-based estimates",
+    "No Scene/Narrative/Context/Chunk Cache/Dual-pass implementation"
+  ],
+  "next_batch_started": false,
+  "public_api": [
+    "SCHEMA_VERSION",
+    "DEFAULT_PROMPT_TOKEN_BUDGET",
+    "MAX_EVIDENCE_EXCERPT_CHARS",
+    "AddDisposition",
+    "AddResult",
+    "ApprovalMetadata",
+    "ApprovalStatus",
+    "CharacterMemoryValidationError",
+    "ConflictRecord",
+    "Evidence",
+    "EvidenceType",
+    "ExpiryKind",
+    "ExpiryPolicy",
+    "FactType",
+    "MemoryRecord",
+    "MemoryStatus",
+    "MemoryStore",
+    "PromptMemoryItem",
+    "SelectionResult",
+    "add_or_merge_memory",
+    "approve_memory",
+    "create_evidence",
+    "create_memory",
+    "deserialize_memory_store",
+    "estimate_memory_tokens",
+    "expire_memory",
+    "reject_memory",
+    "rollback_memory",
+    "select_prompt_eligible_memories",
+    "serialize_memory_store",
+    "supersede_memory",
+    "validate_memory_store",
+    "validate_record"
+  ],
+  "schema_version": "2.0",
+  "selection": {
+    "default_token_budget": 256,
+    "deterministic": true,
+    "provider_tokenizer_used": false,
+    "structured_traceable_compression": "selection omits over-budget facts; values are not rewritten"
+  },
+  "status": "implemented_offline",
+  "title": "Character Memory V2 Offline Core"
+}

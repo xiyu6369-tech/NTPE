@@ -1,0 +1,319 @@
+{
+  "$defs": {
+    "conflict": {
+      "additionalProperties": false,
+      "properties": {
+        "character_id": {
+          "type": "string"
+        },
+        "conflict_id": {
+          "type": "string"
+        },
+        "created_at": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "fact_type": {
+          "enum": [
+            "canonical_name",
+            "name_variant",
+            "pronoun_or_gender_reference",
+            "role_or_identity",
+            "relationship",
+            "addressing_style",
+            "speech_style",
+            "personality_trait",
+            "appearance",
+            "temporal_state",
+            "location_state",
+            "terminology_preference",
+            "other"
+          ]
+        },
+        "memory_ids": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 2,
+          "type": "array"
+        },
+        "preferred_memory_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "resolution": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "conflict_id",
+        "character_id",
+        "fact_type",
+        "memory_ids",
+        "created_at",
+        "resolution",
+        "preferred_memory_id"
+      ],
+      "type": "object"
+    },
+    "evidence": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence_id": {
+          "type": "string"
+        },
+        "evidence_type": {
+          "enum": [
+            "source_observation",
+            "translation_observation",
+            "ai_inference",
+            "human_approved",
+            "human_rejected",
+            "historical_import"
+          ]
+        },
+        "excerpt": {
+          "maxLength": 512,
+          "minLength": 1,
+          "type": "string"
+        },
+        "language": {
+          "type": "string"
+        },
+        "observed_at": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "source_case_id": {
+          "type": "string"
+        },
+        "source_segment_id": {
+          "type": "string"
+        },
+        "source_text_hash": {
+          "pattern": "^[0-9a-fA-F]{64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "evidence_id",
+        "evidence_type",
+        "source_case_id",
+        "source_segment_id",
+        "source_text_hash",
+        "excerpt",
+        "language",
+        "observed_at"
+      ],
+      "type": "object"
+    },
+    "memory": {
+      "additionalProperties": false,
+      "properties": {
+        "approval_metadata": {
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "approval_status": {
+          "enum": [
+            "pending",
+            "approved",
+            "rejected"
+          ]
+        },
+        "character_id": {
+          "type": "string"
+        },
+        "confidence": {
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "type": "number"
+        },
+        "created_at": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "evidence": {
+          "items": {
+            "$ref": "#/$defs/evidence"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "evidence_type": {
+          "enum": [
+            "source_observation",
+            "translation_observation",
+            "ai_inference",
+            "human_approved",
+            "human_rejected",
+            "historical_import"
+          ]
+        },
+        "expiry_policy": {
+          "additionalProperties": false,
+          "properties": {
+            "expires_at": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "kind": {
+              "enum": [
+                "never",
+                "segment_scope",
+                "chapter_scope",
+                "session_scope",
+                "timestamp",
+                "manual_review_required"
+              ]
+            },
+            "scope_id": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "required": [
+            "kind",
+            "scope_id",
+            "expires_at"
+          ],
+          "type": "object"
+        },
+        "fact_type": {
+          "enum": [
+            "canonical_name",
+            "name_variant",
+            "pronoun_or_gender_reference",
+            "role_or_identity",
+            "relationship",
+            "addressing_style",
+            "speech_style",
+            "personality_trait",
+            "appearance",
+            "temporal_state",
+            "location_state",
+            "terminology_preference",
+            "other"
+          ]
+        },
+        "memory_id": {
+          "type": "string"
+        },
+        "source_case_id": {
+          "type": "string"
+        },
+        "source_language": {
+          "type": "string"
+        },
+        "source_segment_id": {
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "pending",
+            "active",
+            "rejected",
+            "superseded",
+            "expired",
+            "rolled_back",
+            "invalid"
+          ]
+        },
+        "supersedes_memory_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "unresolved_identity": {
+          "type": "boolean"
+        },
+        "updated_at": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "value": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "version": {
+          "minimum": 1,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "memory_id",
+        "character_id",
+        "fact_type",
+        "value",
+        "evidence",
+        "evidence_type",
+        "confidence",
+        "approval_status",
+        "source_language",
+        "source_case_id",
+        "source_segment_id",
+        "created_at",
+        "updated_at",
+        "version",
+        "expiry_policy",
+        "status"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "ntpe.character-memory-v2.store.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "conflicts": {
+      "items": {
+        "$ref": "#/$defs/conflict"
+      },
+      "type": "array"
+    },
+    "history": {
+      "additionalProperties": {
+        "items": {
+          "$ref": "#/$defs/memory"
+        },
+        "type": "array"
+      },
+      "type": "object"
+    },
+    "records": {
+      "items": {
+        "$ref": "#/$defs/memory"
+      },
+      "type": "array"
+    },
+    "schema_version": {
+      "const": "2.0"
+    },
+    "snapshot_version": {
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "required": [
+    "schema_version",
+    "records",
+    "history",
+    "conflicts",
+    "snapshot_version"
+  ],
+  "schema_version": "2.0",
+  "title": "NTPE Character Memory V2 Offline Store",
+  "type": "object"
+}

@@ -1,0 +1,38 @@
+{
+  "focused_integration": {
+    "passed": 12,
+    "status": "PASS"
+  },
+  "regressions": {
+    "output_assembly": "PASS (5 tests)",
+    "provider_security": "PASS",
+    "resume_recovery": "PASS (12 tests)",
+    "runtime": "PASS (8 tests)",
+    "stage_11_8": "PASS",
+    "stage_12_1": "PASS",
+    "te_v6_final_freeze": "PASS",
+    "tic_batch7": "PASS"
+  },
+  "root_test": {
+    "checks": 25,
+    "final_line": "ALL PASS",
+    "status": "PASS"
+  },
+  "status": "PASS",
+  "tic_interoperability": {
+    "external_approved_references": 2,
+    "offline_quality_gate_behavior_unchanged": true,
+    "status": "PASS",
+    "tic_data_copied_or_modified": false
+  },
+  "unit": {
+    "passed": 26,
+    "status": "PASS"
+  },
+  "validator": {
+    "python_files_compiled": 2323,
+    "pytest_style_test_files": 594,
+    "root_scripts_checked": 308,
+    "status": "ALL PASS"
+  }
+}

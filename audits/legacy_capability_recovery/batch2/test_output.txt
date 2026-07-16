@@ -1,0 +1,10 @@
+LCR Batch 2 stage-local validation
+
+PASS  Unit and focused integration: 38 tests
+PASS  Root test: 25 checks, final line ALL PASS
+PASS  Evidence, confidence, and approval separation
+PASS  Deterministic deduplication and visible conflict handling
+PASS  Expiry, prompt eligibility, and token budgets
+PASS  Rollback and deterministic serialization
+PASS  Name safety and secret-like input rejection
+PASS  TIC Batch 7 external-reference interoperability

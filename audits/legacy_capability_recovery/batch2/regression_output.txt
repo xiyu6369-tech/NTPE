@@ -1,0 +1,14 @@
+LCR Batch 2 required regression summary
+
+PASS  TIC Batch 7 Offline Translation Quality Gate
+PASS  TE v6.0.0 Final Release Freeze
+PASS  TE v7.1 Stage 11.8 Translation Quality Framework Freeze
+PASS  TE v7.2 Stage 12.1 Evidence-Based Prompt Quality Candidate
+PASS  Runtime focused regression: 8 tests
+PASS  Provider Security: Stage, Redaction, Scanner, Policy, Config Compatibility
+PASS  Resume and Recovery: 12 tests
+PASS  Output Assembly and Formatter: 5 tests
+
+Provider executed: false
+Network requests: 0
+New translation generated: false

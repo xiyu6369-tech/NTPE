@@ -1,0 +1,22 @@
+{
+  "credential_storage": false,
+  "file_store_implemented": false,
+  "final_source_scan": "PASS",
+  "final_zip_scan": "PASS",
+  "input_executed": false,
+  "network_dependency": false,
+  "path_traversal_surface": false,
+  "patterns_scanned": [
+    "NVIDIA API key values",
+    "Bearer token values",
+    "populated Authorization headers",
+    "populated api_key assignments",
+    "private key blocks",
+    "AWS, Google, and GitHub token patterns"
+  ],
+  "pickle_used": false,
+  "provider_dependency": false,
+  "runtime_dependency": false,
+  "secret_like_memory_input_rejected": true,
+  "status": "PASS"
+}
