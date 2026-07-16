@@ -4,7 +4,7 @@ from dataclasses import dataclass
 from typing import Mapping
 
 
-HOOK_VERSION = "lcr-batch10.1-hook-1.0"
+HOOK_VERSION = "lcr-batch10.2-hook-1.0"
 HOOK_SYMBOL = "after_chunk_package_prepared"
 
 
@@ -22,6 +22,7 @@ class HookEvidence:
     result_discarded: bool
     duration_ms: float
     created_at: str
+    character_memory: "CharacterMemoryShadowResult | None" = None
 
 
 @dataclass(frozen=True)
@@ -40,6 +41,55 @@ class HookOutcome:
     output_contract_before_hash: str
     output_contract_after_hash: str
     warning_codes: tuple[str, ...] = ()
+    result_discarded: bool = False
+
+
+@dataclass(frozen=True)
+class CharacterMemoryShadowInput:
+    document_id: str
+    chunk_index: int
+    source_language: str
+    target_language: str
+    character_ids: tuple[str, ...]
+    snapshot_id: str
+    schema_version: str
+    store_fingerprint: str
+    scope: Mapping[str, str]
+    token_budget: int
+    created_at: str
+    records: tuple[object, ...]
+    conflicts: tuple[object, ...]
+
+
+@dataclass(frozen=True)
+class CharacterMemoryShadowResult:
+    module: str
+    status: str
+    snapshot_id: str
+    store_fingerprint: str
+    selected_memory_ids: tuple[str, ...]
+    selected_fact_types: tuple[str, ...]
+    selected_character_ids: tuple[str, ...]
+    selected_fingerprint: str
+    estimated_tokens: int
+    token_budget: int
+    available_count: int
+    eligible_count: int
+    selected_count: int
+    dropped_count: int
+    drop_reasons: Mapping[str, int]
+    dedup_savings: int
+    conflict_count: int
+    unresolved_identity_count: int
+    expired_count: int
+    inference_excluded_count: int
+    human_approved_count: int
+    memory_injected: bool = False
+    prompt_identity_changed: bool = False
+    production_output_changed: bool = False
+    cache_identity_impact_planned: bool = False
+    cache_identity_applied: bool = False
+    duration_ms: float = 0.0
     result_discarded: bool = False
 
 

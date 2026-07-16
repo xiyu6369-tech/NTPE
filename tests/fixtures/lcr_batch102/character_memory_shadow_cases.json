@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.0",
+  "synthetic": true,
+  "contains_production_text": false,
+  "cases": [
+    "human_approved_canonical_name",
+    "source_observed_relationship",
+    "ai_inference_excluded",
+    "expired_excluded",
+    "unresolved_conflict_excluded",
+    "budget_limited",
+    "metadata_unavailable"
+  ]
+}

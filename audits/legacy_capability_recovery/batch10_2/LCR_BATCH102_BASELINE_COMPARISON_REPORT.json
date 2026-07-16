@@ -1,0 +1,10 @@
+{
+  "baseline_prompt_tokens_modified": false,
+  "hypothetical_prompt_tokens_planning_only": true,
+  "output_contract_unchanged": true,
+  "prompt_identity_unchanged": true,
+  "provider_identity_unchanged": true,
+  "resume_identity_unchanged": true,
+  "shadow_memory_estimated_tokens": 7,
+  "status": "PASS"
+}

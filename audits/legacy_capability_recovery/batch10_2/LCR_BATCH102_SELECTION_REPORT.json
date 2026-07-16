@@ -1,0 +1,43 @@
+{
+  "available_count": 5,
+  "batch2_public_api_only": true,
+  "cache_identity_applied": false,
+  "cache_identity_impact_planned": true,
+  "conflict_count": 2,
+  "dedup_savings": 0,
+  "drop_reasons": {
+    "ai_inference": 1,
+    "expiry_or_scope": 1,
+    "unresolved_conflict": 2
+  },
+  "dropped_count": 4,
+  "duration_ms": 0.3601,
+  "eligible_count": 1,
+  "estimated_tokens": 7,
+  "expired_count": 1,
+  "human_approved_count": 1,
+  "inference_excluded_count": 1,
+  "memory_injected": false,
+  "module": "character_memory",
+  "production_output_changed": false,
+  "prompt_identity_changed": false,
+  "result_discarded": false,
+  "selected_character_ids": [
+    "char-1"
+  ],
+  "selected_count": 1,
+  "selected_fact_types": [
+    "canonical_name"
+  ],
+  "selected_fingerprint": "ee74580cbfe2adaf33bae7063e959b0d36edcb272d71e907b84b14cc54f6073c",
+  "selected_memory_ids": [
+    "cm2_6577a981057a3946f103a93a3beb0408"
+  ],
+  "selected_values_persisted": false,
+  "shadow_status": "completed_with_warnings",
+  "snapshot_id": "snapshot-1",
+  "status": "PASS",
+  "store_fingerprint": "5290263eca6431e29820e32e19d07990fbe54d9c7260c07d5dddf2a8857cfd74",
+  "token_budget": 128,
+  "unresolved_identity_count": 0
+}

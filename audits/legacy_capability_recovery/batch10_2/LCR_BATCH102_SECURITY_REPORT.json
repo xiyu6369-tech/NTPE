@@ -1,0 +1,14 @@
+{
+  "credential_stored": false,
+  "evidence_excerpt_redacted": true,
+  "files_scanned": 32,
+  "findings": [],
+  "full_store_in_snapshot": false,
+  "metadata_only_production_snapshot": true,
+  "path_traversal_rejected": true,
+  "prompt_stored": false,
+  "provider_payload_stored": false,
+  "source_text_stored": false,
+  "status": "PASS",
+  "symlink_escape_rejected": true
+}

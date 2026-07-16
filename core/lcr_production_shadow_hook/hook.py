@@ -5,14 +5,22 @@ import json
 import time
 from datetime import datetime, timezone
 from types import MappingProxyType
-from typing import Callable, Mapping
+from typing import Callable, Mapping, Sequence
+
+from core.character_memory_v2 import MemoryStore
 
 from core.lcr_production_shadow import create_shadow_input, deterministic_fingerprint, run_lcr_production_shadow
 
 from .bounded_execution import SHADOW_EXECUTOR
+from .character_memory_shadow import (
+    DEFAULT_SHADOW_SELECTION_BUDGET,
+    build_character_memory_shadow_input,
+    empty_character_memory_result,
+    evaluate_character_memory_shadow,
+)
 from .evidence_sink import DisabledEvidenceSink
-from .feature_flags import GLOBAL_FLAG, KILL_SWITCH, minimal_shadow_flags, resolve_hook_flags
-from .models import HOOK_SYMBOL, HOOK_VERSION, HookEvidence, HookOutcome
+from .feature_flags import CHARACTER_MEMORY_FLAG, GLOBAL_FLAG, KILL_SWITCH, minimal_shadow_flags, resolve_hook_flags
+from .models import CharacterMemoryShadowInput, HOOK_SYMBOL, HOOK_VERSION, HookEvidence, HookOutcome
 
 
 SOFT_BUDGET_MS = 10.0
@@ -42,6 +50,17 @@ def _canonical_hash(value: object) -> str:
 
 def _mapping(value: object) -> Mapping[str, object]:
     return value if isinstance(value, Mapping) else {}
+
+
+def _freeze(value: object) -> object:
+    """Detach recursively from the caller before work can outlive its deadline."""
+    if isinstance(value, Mapping):
+        return MappingProxyType({str(key): _freeze(item) for key, item in value.items()})
+    if isinstance(value, (list, tuple)):
+        return tuple(_freeze(item) for item in value)
+    if isinstance(value, (str, int, float, bool, type(None))):
+        return value
+    return str(value)
 
 
 def _extract_metadata(package: Mapping[str, object]) -> Mapping[str, object]:
@@ -146,13 +165,16 @@ def _discarded_outcome(
 def _compute_shadow_outcome(
     production_metadata: Mapping[str, object],
     *,
+    package_hash: str,
+    character_snapshot: CharacterMemoryShadowInput | None,
+    character_pre_status: str,
     clock_ns: Callable[[], int],
     created_at_factory: Callable[[], str] | None,
 ) -> HookOutcome:
     started = clock_ns()
     try:
-        before = _canonical_hash(production_metadata)
-        metadata = _extract_metadata(production_metadata)
+        before = package_hash
+        metadata = production_metadata
         prompt_hash = str(metadata["prompt_identity"])
         provider_identity = _canonical_hash({"provider": metadata["provider_identity"], "model": metadata["model_identity"]})
         resume_hash = str(metadata["resume_identity"])
@@ -171,7 +193,17 @@ def _compute_shadow_outcome(
             flags=minimal_shadow_flags(),
             module_overrides=_minimal_overrides(metadata),
         )
-        after = _canonical_hash(production_metadata)
+        character_result = None
+        modules = result.modules_evaluated
+        if character_pre_status:
+            character_result = empty_character_memory_result(status=character_pre_status)
+            modules = (*modules, "character_memory")
+        elif character_snapshot is not None:
+            character_result = evaluate_character_memory_shadow(
+                character_snapshot, now=character_snapshot.created_at or None,
+            )
+            modules = (*modules, "character_memory")
+        after = before
         duration_ms = max(0.0, (clock_ns() - started) / 1_000_000)
         warnings = list(result.warnings)
         status = result.readiness_result
@@ -186,7 +218,7 @@ def _compute_shadow_outcome(
             hook_id=HOOK_SYMBOL + "-" + result.input_fingerprint[:16],
             shadow_status=status,
             input_fingerprint=result.input_fingerprint,
-            modules_evaluated=result.modules_evaluated,
+            modules_evaluated=modules,
             provider_requests_executed=result.provider_requests_executed,
             production_output_changed=result.production_output_changed,
             baseline_changed=before != after or result.baseline_changed,
@@ -195,13 +227,14 @@ def _compute_shadow_outcome(
             result_discarded=False,
             duration_ms=round(duration_ms, 6),
             created_at=created_at,
+            character_memory=character_result,
         )
         return HookOutcome(
             status, True, evidence, before, after,
-            prompt_hash, str(_extract_metadata(production_metadata)["prompt_identity"]),
+            prompt_hash, str(metadata["prompt_identity"]),
             provider_identity, _canonical_hash({"provider": metadata["provider_identity"], "model": metadata["model_identity"]}),
-            resume_hash, str(_extract_metadata(production_metadata)["resume_identity"]),
-            output_hash, str(_extract_metadata(production_metadata)["output_contract_identity"]),
+            resume_hash, str(metadata["resume_identity"]),
+            output_hash, str(metadata["output_contract_identity"]),
             tuple(warnings), False,
         )
     except Exception:
@@ -215,6 +248,11 @@ def run_read_only_lcr_shadow_hook(
     evidence_sink: object | None = None,
     clock_ns: Callable[[], int] = time.perf_counter_ns,
     created_at_factory: Callable[[], str] | None = None,
+    character_memory_store: MemoryStore | None = None,
+    character_ids: Sequence[str] | None = None,
+    character_memory_snapshot_id: str | None = None,
+    character_memory_scope: Mapping[str, str] | None = None,
+    character_memory_token_budget: int = DEFAULT_SHADOW_SELECTION_BUDGET,
 ) -> HookOutcome:
     """Run the single metadata-only hook; every failure preserves baseline behavior."""
     try:
@@ -226,10 +264,40 @@ def run_read_only_lcr_shadow_hook(
     if not flags[GLOBAL_FLAG]:
         return _empty_outcome("skipped", "", "", "", "", "")
 
+    # Both snapshots are created on the caller thread. A timed-out worker never
+    # retains the mutable Production package or Character Memory Store.
+    try:
+        package_hash = _canonical_hash(production_metadata)
+        production_snapshot = _freeze(_extract_metadata(production_metadata))
+        if not isinstance(production_snapshot, Mapping):
+            raise TypeError("production metadata must be a mapping")
+    except Exception:
+        return _empty_outcome("invalid", "", "", "", "", "", "metadata_adapter_exception")
+    character_snapshot = None
+    character_pre_status = ""
+    if flags[CHARACTER_MEMORY_FLAG]:
+        if character_memory_store is None or character_memory_snapshot_id is None or character_ids is None:
+            character_pre_status = "metadata_unavailable"
+        else:
+            try:
+                metadata = production_snapshot
+                character_snapshot = build_character_memory_shadow_input(
+                    character_memory_store,
+                    document_id=str(metadata["document_id"]), chunk_index=int(metadata["chunk_index"]),
+                    source_language=str(metadata["source_language"]), target_language=str(metadata["target_language"]),
+                    character_ids=character_ids, snapshot_id=character_memory_snapshot_id,
+                    scope=character_memory_scope, token_budget=character_memory_token_budget,
+                    created_at=(created_at_factory or (lambda: ""))(),
+                )
+            except Exception:
+                character_pre_status = "invalid"
+
     caller_started = time.perf_counter_ns()
     submission = SHADOW_EXECUTOR.submit(
         lambda: _compute_shadow_outcome(
-            production_metadata, clock_ns=clock_ns, created_at_factory=created_at_factory,
+            production_snapshot, package_hash=package_hash, character_snapshot=character_snapshot,
+            character_pre_status=character_pre_status,
+            clock_ns=clock_ns, created_at_factory=created_at_factory,
         ),
         wait_ms=CALLER_WAIT_BUDGET_MS,
     )

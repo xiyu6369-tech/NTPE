@@ -1,0 +1,14 @@
+{
+  "historical_self_batch_sentinels": "deselected after committed baselines",
+  "integration": "2 passed",
+  "lcr_batches_2_through_10_1": "PASS",
+  "root": "9 passed",
+  "runtime_provider_resume_output": "PASS",
+  "status": "PASS",
+  "te_v6_final_freeze": "PASS",
+  "te_v7_1_stage_11_8": "PASS",
+  "te_v7_2_stage_12_1": "PASS",
+  "tic_batch7": "PASS",
+  "unit": "7 passed",
+  "validator": "PASS"
+}

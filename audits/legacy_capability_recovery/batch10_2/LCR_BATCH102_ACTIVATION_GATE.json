@@ -1,0 +1,28 @@
+{
+  "active_production_authorized": false,
+  "next_step_requires_manual_approval": true,
+  "reasons": [],
+  "requirements": {
+    "all_regressions_pass": true,
+    "bounded_deadline_pass": true,
+    "character_memory_flag_default_false": true,
+    "immutable_snapshot_verified": true,
+    "kill_switch_default_true": true,
+    "late_results_discarded": true,
+    "manual_approval_present": true,
+    "memory_injected_false": true,
+    "network_requests_zero": true,
+    "output_unchanged": true,
+    "prompt_identity_unchanged": true,
+    "provider_identity_unchanged": true,
+    "provider_requests_zero": true,
+    "queue_bounded": true,
+    "resume_unchanged": true,
+    "security_pass": true,
+    "selection_read_only": true,
+    "single_production_hook_unchanged": true,
+    "store_hash_unchanged": true,
+    "worker_count_bounded": true
+  },
+  "status": "ready_for_context_scene_shadow"
+}

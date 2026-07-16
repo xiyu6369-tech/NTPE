@@ -1,0 +1,15 @@
+{
+  "available_records": 5,
+  "budget": 128,
+  "dedup_savings": 0,
+  "drop_reasons": {
+    "ai_inference": 1,
+    "expiry_or_scope": 1,
+    "unresolved_conflict": 2
+  },
+  "dropped_records": 4,
+  "eligible_records": 1,
+  "estimated_tokens": 7,
+  "selected_records": 1,
+  "status": "PASS"
+}

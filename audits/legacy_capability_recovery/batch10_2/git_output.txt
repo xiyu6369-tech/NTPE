@@ -1,0 +1,38 @@
+$ git diff --check
+
+$ git ls-files --deleted
+
+$ git status --short
+ M core/lcr_production_shadow_hook/__init__.py
+ M core/lcr_production_shadow_hook/feature_flags.py
+ M core/lcr_production_shadow_hook/hook.py
+ M core/lcr_production_shadow_hook/models.py
+ M core/lcr_production_shadow_hook/validation.py
+?? NTPE_LCR_BATCH102_AUDIT.zip
+?? audits/legacy_capability_recovery/batch10_2/
+?? core/lcr_production_shadow_hook/character_memory_shadow.py
+?? ntpe_lcr_batch102_character_memory_shadow_test.py
+?? tests/fixtures/lcr_batch102/
+?? tests/integration/lcr_batch102_character_memory_shadow_integration_test.py
+?? tests/unit/test_lcr_character_memory_shadow.py
+
+$ git diff --stat
+ core/lcr_production_shadow_hook/__init__.py      | 14 +++-
+ core/lcr_production_shadow_hook/feature_flags.py | 12 +++-
+ core/lcr_production_shadow_hook/hook.py          | 90 +++++++++++++++++++++---
+ core/lcr_production_shadow_hook/models.py        | 52 +++++++++++++-
+ core/lcr_production_shadow_hook/validation.py    | 36 ++++++++++
+ 5 files changed, 187 insertions(+), 17 deletions(-)
+
+$ git diff --name-status
+M	core/lcr_production_shadow_hook/__init__.py
+M	core/lcr_production_shadow_hook/feature_flags.py
+M	core/lcr_production_shadow_hook/hook.py
+M	core/lcr_production_shadow_hook/models.py
+M	core/lcr_production_shadow_hook/validation.py
+
+$ git rev-list --left-right --count origin/main...main
+0	0
+
+$ git log -1 --oneline
+f6b746d LCR Batch 10.1: Add bounded read-only production shadow hook
