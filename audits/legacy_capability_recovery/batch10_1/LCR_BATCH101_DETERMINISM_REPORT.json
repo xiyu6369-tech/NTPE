@@ -1,0 +1,10 @@
+{
+  "created_at_in_identity": false,
+  "decisions_equal": true,
+  "duration_in_identity": false,
+  "evidence_order_equal": true,
+  "fingerprints_equal": true,
+  "module_lists_equal": true,
+  "runs": 3,
+  "status": "PASS"
+}

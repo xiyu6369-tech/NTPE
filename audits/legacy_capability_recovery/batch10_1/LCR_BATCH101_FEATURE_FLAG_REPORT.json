@@ -1,0 +1,11 @@
+{
+  "LCR_KILL_SWITCH_default": true,
+  "LCR_SHADOW_ENABLED_default": false,
+  "invalid_values_fail_closed": true,
+  "priority": [
+    "kill switch",
+    "global shadow flag",
+    "hook-local eligibility"
+  ],
+  "status": "PASS"
+}

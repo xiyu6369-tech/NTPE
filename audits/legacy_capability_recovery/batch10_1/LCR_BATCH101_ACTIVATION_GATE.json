@@ -1,0 +1,29 @@
+{
+  "active_production_authorized": false,
+  "meaning": "ready only to evaluate extended shadow in a separately approved batch",
+  "reasons": [],
+  "requirements": {
+    "all_regressions_pass": true,
+    "baseline_hash_unchanged": true,
+    "blocking_runner_test_passed": true,
+    "caller_deadline_enforced": true,
+    "hook_default_disabled": true,
+    "hook_exceptions_isolated": true,
+    "kill_switch_default_enabled": true,
+    "late_result_discarded": true,
+    "manual_approval_present": true,
+    "network_requests_zero": true,
+    "output_unchanged": true,
+    "production_files_within_limit": true,
+    "prompt_identity_unchanged": true,
+    "provider_identity_unchanged": true,
+    "provider_requests_zero": true,
+    "queue_bounded": true,
+    "resume_unchanged": true,
+    "security_pass": true,
+    "single_hook_only": true,
+    "timeout_budget_pass": true,
+    "worker_count_bounded": true
+  },
+  "status": "ready_for_extended_shadow"
+}

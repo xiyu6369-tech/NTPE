@@ -1,0 +1,11 @@
+{
+  "api_key_read": false,
+  "authorization_read": false,
+  "fallback_applied": false,
+  "network_requests": 0,
+  "prepare_only": true,
+  "provider_identity_changed": false,
+  "provider_requests_executed": 0,
+  "retry_applied": false,
+  "status": "PASS"
+}

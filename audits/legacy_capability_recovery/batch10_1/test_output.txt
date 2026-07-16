@@ -1,0 +1,28 @@
+[root]
+$ D:\Python\python.exe ntpe_lcr_batch101_production_shadow_hook_test.py
+...................                                                      [100%]
+19 passed in 1.16s
+UNIT: PASS
+.......                                                                  [100%]
+7 passed in 2.71s
+INTEGRATION: PASS
+SINGLE_GUARDED_HOOK: PASS
+DEFAULT_OFF_KILL_SWITCH_ON: PASS
+BASELINE_IMMUTABILITY: PASS
+PROVIDER_REQUESTS_EXECUTED_ZERO: PASS
+PRODUCTION_OUTPUT_UNCHANGED: PASS
+ALL PASS
+
+EXIT_CODE=0
+[unit]
+$ D:\Python\python.exe -m pytest tests/unit/test_lcr_production_shadow_hook.py -q
+...................                                                      [100%]
+19 passed in 1.14s
+
+EXIT_CODE=0
+[integration]
+$ D:\Python\python.exe -m pytest tests/integration/lcr_batch101_production_shadow_hook_integration_test.py -q
+.......                                                                  [100%]
+7 passed in 2.95s
+
+EXIT_CODE=0

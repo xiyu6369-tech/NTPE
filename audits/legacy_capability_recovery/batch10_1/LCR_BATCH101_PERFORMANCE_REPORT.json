@@ -1,0 +1,44 @@
+{
+  "measurements_ms": {
+    "100_default_off_calls_ms": 0.385,
+    "100_enabled_shadow_calls_ms": 96.534,
+    "100_exception_isolation_calls_ms": 7.798,
+    "100_immutable_adapter_operations_ms": 0.359,
+    "100_in_memory_evidence_writes_ms": 0.064,
+    "blocking_runner_caller_ms": 20.5782,
+    "bounded_queue_capacity": 1,
+    "bounded_worker_count": 1,
+    "repeated_blocking_calls_max_ms": 20.5782,
+    "single_hook_max_ms": 2.468,
+    "single_hook_p95_ms": 2.2165,
+    "three_deterministic_runs_ms": 275.497
+  },
+  "provider_latency_present": false,
+  "status": "PASS",
+  "thresholds_ms": {
+    "100_default_off_calls_ms": 10,
+    "100_enabled_shadow_calls_ms": 300,
+    "100_exception_isolation_calls_ms": 50,
+    "100_immutable_adapter_operations_ms": 50,
+    "100_in_memory_evidence_writes_ms": 25,
+    "blocking_runner_caller_ms": 25.0,
+    "bounded_queue_capacity": 2,
+    "bounded_worker_count": 2,
+    "repeated_blocking_calls_max_ms": 25.0,
+    "single_hook_max_ms": 25,
+    "single_hook_p95_ms": 10,
+    "three_deterministic_runs_ms": 1000
+  },
+  "timeout_isolation": {
+    "accepted_delta": 1,
+    "blocking_runner_test_passed": true,
+    "busy_calls_degraded": true,
+    "busy_rejected_delta": 99,
+    "caller_deadline_enforced": true,
+    "idle_after_release": true,
+    "late_discarded_delta": 1,
+    "late_result_discarded": true,
+    "queue_bounded": true,
+    "worker_count_bounded": true
+  }
+}

@@ -9,6 +9,7 @@ from core.adaptive_context_integration.utils import canonical_hash
 from core.adaptive_context_canary import apply_prompt_package_canary
 from core.adaptive_context_prompt_anchor import bind_prompt_context_anchor
 from core.adaptive_context_canary_validation.stop import should_stop_before_chunk, target_complete_error
+from core.lcr_production_shadow_hook import run_read_only_lcr_shadow_hook
 
 from .audit import write_shadow_audit
 from .model import ShadowAuditRecord
@@ -66,6 +67,10 @@ def install_txt_runtime_shadow_hook() -> bool:
     @functools.wraps(original)
     def wrapped(*args: Any, **kwargs: Any) -> dict[str, object]:
         package = original(*args, **kwargs)
+        try:
+            run_read_only_lcr_shadow_hook(package)
+        except Exception:
+            pass
         session = package.get("session", {})
         session = session if isinstance(session, dict) else {}
         chunk_index = int(session.get("chunk_index", 0) or 0)

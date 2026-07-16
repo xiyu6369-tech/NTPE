@@ -1,0 +1,75 @@
+{
+  "bounded_execution": {
+    "caller_wait_budget_ms": 20.0,
+    "late_result_policy": "discard without evidence sink write",
+    "maximum_in_flight": 1,
+    "queue_capacity": 1,
+    "waiting_backlog": 0,
+    "worker_count": 1,
+    "worker_daemon": true
+  },
+  "fixtures": [
+    "tests/fixtures/lcr_batch101/hook_metadata_cases.json",
+    "tests/fixtures/lcr_batch101/feature_flag_cases.json",
+    "tests/fixtures/lcr_batch101/exception_cases.json",
+    "tests/fixtures/lcr_batch101/activation_gate_cases.json"
+  ],
+  "hook_symbol": "after_chunk_package_prepared",
+  "hook_version": "lcr-batch10.1-hook-1.0",
+  "known_limitations": [
+    "single TXT prompt-package hook only",
+    "evidence disabled by default",
+    "no active Production integration",
+    "extended shadow requires separate manual approval"
+  ],
+  "minimal_modules": [
+    "chunk_cache identity",
+    "multilingual profile identity",
+    "provider routing prepare-only"
+  ],
+  "production_file": "core/adaptive_context_runtime_shadow/hook.py",
+  "shadow_hook_files": [
+    "core/lcr_production_shadow_hook/__init__.py",
+    "core/lcr_production_shadow_hook/models.py",
+    "core/lcr_production_shadow_hook/hook.py",
+    "core/lcr_production_shadow_hook/bounded_execution.py",
+    "core/lcr_production_shadow_hook/evidence_sink.py",
+    "core/lcr_production_shadow_hook/feature_flags.py",
+    "core/lcr_production_shadow_hook/validation.py"
+  ],
+  "shadow_metrics": {
+    "activation_gate_status": "ready_for_extended_shadow",
+    "default_off_calls": 100,
+    "enabled_shadow_calls": 100,
+    "late_results_discarded": 1,
+    "network_requests": 0,
+    "output_contract_changed": 0,
+    "production_output_changed": 0,
+    "prompt_identity_changed": 0,
+    "provider_identity_changed": 0,
+    "provider_requests_executed": 0,
+    "resume_changed": 0,
+    "shadow_blocked": 100,
+    "shadow_completed": 100,
+    "shadow_degraded": 99,
+    "shadow_timed_out": 1
+  },
+  "status": "PASS",
+  "tests": [
+    "ntpe_lcr_batch101_production_shadow_hook_test.py",
+    "tests/unit/test_lcr_production_shadow_hook.py",
+    "tests/integration/lcr_batch101_production_shadow_hook_integration_test.py"
+  ],
+  "timeout_isolation": {
+    "accepted_delta": 1,
+    "blocking_runner_test_passed": true,
+    "busy_calls_degraded": true,
+    "busy_rejected_delta": 99,
+    "caller_deadline_enforced": true,
+    "idle_after_release": true,
+    "late_discarded_delta": 1,
+    "late_result_discarded": true,
+    "queue_bounded": true,
+    "worker_count_bounded": true
+  }
+}

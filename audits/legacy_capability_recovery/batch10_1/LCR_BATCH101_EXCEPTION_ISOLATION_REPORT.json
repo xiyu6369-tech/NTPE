@@ -1,0 +1,30 @@
+{
+  "baseline_continues": true,
+  "cases": [
+    "flag parser",
+    "metadata adapter",
+    "shadow runner",
+    "profile selection",
+    "routing plan",
+    "evidence sink",
+    "serialization",
+    "timeout budget"
+  ],
+  "late_evidence_writes": 0,
+  "production_output_changed": false,
+  "provider_requests_executed": 0,
+  "real_blocking_timeout": {
+    "accepted_delta": 1,
+    "blocking_runner_test_passed": true,
+    "busy_calls_degraded": true,
+    "busy_rejected_delta": 99,
+    "caller_deadline_enforced": true,
+    "idle_after_release": true,
+    "late_discarded_delta": 1,
+    "late_result_discarded": true,
+    "queue_bounded": true,
+    "worker_count_bounded": true
+  },
+  "status": "PASS",
+  "timed_out_status": "timed_out"
+}

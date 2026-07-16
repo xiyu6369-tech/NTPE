@@ -1,0 +1,51 @@
+{
+  "HookEvidence": [
+    "hook_id",
+    "shadow_status",
+    "input_fingerprint",
+    "modules_evaluated",
+    "provider_requests_executed",
+    "production_output_changed",
+    "baseline_changed",
+    "warnings",
+    "blocking_reasons",
+    "result_discarded",
+    "duration_ms",
+    "created_at"
+  ],
+  "HookOutcome": [
+    "status",
+    "baseline_continues",
+    "evidence",
+    "before_hash",
+    "after_hash",
+    "prompt_before_hash",
+    "prompt_after_hash",
+    "provider_identity_before",
+    "provider_identity_after",
+    "resume_before_hash",
+    "resume_after_hash",
+    "output_contract_before_hash",
+    "output_contract_after_hash",
+    "warning_codes",
+    "result_discarded"
+  ],
+  "allowed_input": [
+    "document_id",
+    "chunk_index",
+    "source_hash",
+    "source_language",
+    "target_language",
+    "prompt_identity",
+    "provider_identity",
+    "model_identity",
+    "quality_policy_identity",
+    "resume_identity",
+    "output_contract_identity",
+    "context_fingerprint",
+    "glossary_fingerprint",
+    "runtime_version"
+  ],
+  "hook_symbol": "after_chunk_package_prepared",
+  "status": "PASS"
+}

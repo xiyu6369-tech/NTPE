@@ -1,0 +1,20 @@
+{
+  "data_migration_required": false,
+  "levels": [
+    {
+      "action": "LCR_KILL_SWITCH=true",
+      "level": 0
+    },
+    {
+      "action": "LCR_SHADOW_ENABLED=false",
+      "level": 1
+    },
+    {
+      "action": "revert single guarded hook call",
+      "level": 2
+    }
+  ],
+  "provider_required": false,
+  "resume_output_tic_cache_impact": false,
+  "status": "PASS"
+}

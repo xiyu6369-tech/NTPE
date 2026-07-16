@@ -1,0 +1,25 @@
+$ git diff --check
+
+$ git ls-files --deleted
+
+$ git status --short
+ M core/adaptive_context_runtime_shadow/hook.py
+?? audits/legacy_capability_recovery/batch10_1/
+?? core/lcr_production_shadow_hook/
+?? ntpe_lcr_batch101_production_shadow_hook_test.py
+?? tests/fixtures/lcr_batch101/
+?? tests/integration/lcr_batch101_production_shadow_hook_integration_test.py
+?? tests/unit/test_lcr_production_shadow_hook.py
+
+$ git diff --stat
+ core/adaptive_context_runtime_shadow/hook.py | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+$ git diff --name-status
+M	core/adaptive_context_runtime_shadow/hook.py
+
+$ git rev-list --left-right --count origin/main...main
+0	0
+
+$ git log -1 --oneline
+2d5df52 LCR Batch 10: Add production shadow integration planning

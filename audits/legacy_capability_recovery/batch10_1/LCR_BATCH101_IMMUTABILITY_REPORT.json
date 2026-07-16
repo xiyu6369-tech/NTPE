@@ -1,0 +1,11 @@
+{
+  "chunk_metadata_hash_equal": true,
+  "defensive_copy": true,
+  "frozen_dataclasses": true,
+  "immutable_mapping": true,
+  "output_contract_hash_equal": true,
+  "prompt_identity_hash_equal": true,
+  "provider_identity_hash_equal": true,
+  "resume_hash_equal": true,
+  "status": "PASS"
+}

@@ -1,0 +1,14 @@
+{
+  "atomic_test_write": true,
+  "credential_stored": false,
+  "files_scanned": 36,
+  "findings": [],
+  "metadata_only": true,
+  "path_traversal_rejected": true,
+  "raw_provider_request_stored": false,
+  "raw_provider_response_stored": false,
+  "source_text_stored": false,
+  "status": "PASS",
+  "symlink_escape_rejected": true,
+  "translation_text_stored": false
+}

@@ -1,0 +1,18 @@
+{
+  "event_block_late_discard": "PASS",
+  "historical_self_batch_allowlist_tests": "deselected",
+  "integration": "7 passed",
+  "lcr_batches_2_through_10": "PASS functional suites",
+  "performance": "PASS",
+  "real_blocking_runner": "PASS",
+  "repeated_100_timeout_stress": "PASS",
+  "root": "ALL PASS",
+  "runtime_provider_resume_output": "PASS",
+  "stage_11_8": "PASS",
+  "stage_12_1": "PASS",
+  "status": "PASS",
+  "te_v6": "PASS",
+  "tic_batch7": "PASS",
+  "unit": "19 passed",
+  "validator": "ALL PASS"
+}

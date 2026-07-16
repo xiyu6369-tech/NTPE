@@ -1,0 +1,17 @@
+{
+  "baseline_continues": true,
+  "cases": [
+    "disabled",
+    "kill_switch",
+    "success",
+    "degraded",
+    "exception",
+    "sink_failure",
+    "invalid_metadata"
+  ],
+  "output_changed": false,
+  "prompt_changed": false,
+  "provider_changed": false,
+  "resume_changed": false,
+  "status": "PASS"
+}

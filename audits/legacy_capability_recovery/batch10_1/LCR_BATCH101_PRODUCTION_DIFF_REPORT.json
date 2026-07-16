@@ -1,0 +1,24 @@
+{
+  "default_behavior_changed": false,
+  "diff_lines": [
+    "+from core.lcr_production_shadow_hook import run_read_only_lcr_shadow_hook",
+    "+        try:",
+    "+            run_read_only_lcr_shadow_hook(package)",
+    "+        except Exception:",
+    "+            pass"
+  ],
+  "hook_call_count": 1,
+  "hook_position": "immediately after build_prompt_package returns and before Provider request construction",
+  "hook_symbol": "after_chunk_package_prepared",
+  "lines_added": 5,
+  "lines_removed": 0,
+  "modified_file": "core/adaptive_context_runtime_shadow/hook.py",
+  "modified_symbol": "install_txt_runtime_shadow_hook.<locals>.wrapped",
+  "output_behavior_changed": false,
+  "production_files_modified": 1,
+  "prompt_changed": false,
+  "provider_behavior_changed": false,
+  "resume_changed": false,
+  "rollback_method": "LCR_KILL_SWITCH=true, then LCR_SHADOW_ENABLED=false, or revert the single hook-call commit",
+  "status": "PASS"
+}
