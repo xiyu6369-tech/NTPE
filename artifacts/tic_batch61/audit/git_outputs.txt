@@ -1,0 +1,33 @@
+COMMAND: git diff --check
+EXIT_CODE: 0
+
+COMMAND: git diff --name-status
+NO TRACKED DIFF (Batch 6.1 files are new and untracked)
+
+COMMAND: git ls-files --deleted
+NO OUTPUT
+
+COMMAND: git status --short --untracked-files=all
+?? artifacts/tic_batch61/ACTIVE_REGRESSION_INDEX.json
+?? artifacts/tic_batch61/ACTIVE_REGRESSION_VALIDATION.json
+?? artifacts/tic_batch61/ACTIVE_TRANSLATION_QUALITY_REGRESSIONS.json
+?? artifacts/tic_batch61/HUMAN_APPROVAL_RECORDS.json
+?? artifacts/tic_batch61/HUMAN_CORRECTION_RECORDS_V2.json
+?? artifacts/tic_batch61/TIC_BATCH61_STATISTICS.json
+?? artifacts/tic_batch61/audit/git_outputs.txt
+?? artifacts/tic_batch61/audit/package_report.json
+?? artifacts/tic_batch61/audit/regression_output.txt
+?? artifacts/tic_batch61/audit/validator_output.txt
+?? core/translation_intelligence_corpus/human_approval.py
+?? core/translation_intelligence_corpus/regression_activation.py
+?? docs/translation_intelligence/TIC_BATCH61_HUMAN_APPROVAL_AND_REGRESSION_ACTIVATION.md
+?? ntpe_tic_batch61_human_approval_regression_activation_test.py
+?? tests/integration/tic_batch61_human_approval_regression_activation_test.py
+
+COMMAND: git check-ignore -v manifests/tic_batch61_human_approval_regression_activation_manifest.json
+.gitignore:135:*_manifest.json manifests/tic_batch61_human_approval_regression_activation_manifest.json
+
+COMMAND: git rev-list --left-right --count origin/main...main
+0 0
+
+FORBIDDEN_CHANGED_PATH_COUNT: 0

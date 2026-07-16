@@ -1,0 +1,21 @@
+TIC Batch 6.1 required regression summary
+
+Root regression chain:
+PASS  ntpe_tic_batch1_translation_corpus_inventory_test.py
+PASS  ntpe_tic_batch2_translation_case_extraction_test.py
+PASS  ntpe_tic_batch3_manual_evidence_alignment_test.py
+PASS  ntpe_tic_batch4_human_confirmed_failure_corpus_test.py
+PASS  ntpe_tic_batch5_historical_human_evidence_expansion_test.py
+PASS  ntpe_tic_batch6_human_correction_root_cause_regression_test.py
+PASS  ntpe_tic_batch61_human_approval_regression_activation_test.py
+
+Focused integration chain:
+PASS  135 passed in 28.52s
+
+Compatibility regression:
+PASS  TE v6.0.0 Final Release Freeze ALL PASS
+PASS  TE v7.1 Stage 11.8 Translation Quality Framework Freeze ALL PASS
+PASS  TE v7.2 Stage 12.1 Evidence-Based Prompt Quality Candidate ALL PASS
+
+Provider execution: false
+Network requests: 0
