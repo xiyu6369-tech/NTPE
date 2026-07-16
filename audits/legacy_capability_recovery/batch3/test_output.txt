@@ -1,0 +1,26 @@
+LCR Batch 3 focused validation
+
+PASS 100 context add/merge
+PASS 100 participant operations
+PASS 100-record context selection
+PASS deterministic selection
+BENCHMARK serialization_round_trip_ms=6.663
+PASS serialization round trip
+PASS scene transition
+PASS rollback
+PASS Character Memory interoperability view
+PASS schema separation
+PASS production boundary
+BENCHMARK context_add_ms=40.481
+BENCHMARK participant_ops_ms=16.043
+BENCHMARK selection_ms=1.648
+BENCHMARK scene_transition_ms=1.043
+BENCHMARK rollback_ms=0.110
+BENCHMARK character_interop_view_ms=0.073
+ALL PASS
+
+..................                                                       [100%]
+18 passed in 1.40s
+
+.........                                                                [100%]
+9 passed in 2.18s

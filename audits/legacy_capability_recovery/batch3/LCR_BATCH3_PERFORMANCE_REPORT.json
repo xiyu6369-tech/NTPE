@@ -1,0 +1,23 @@
+{
+  "character_interoperability_view_ms": 0.073,
+  "milliseconds": {
+    "character_interop_view": 0.073,
+    "context_add": 40.481,
+    "participant_ops": 16.043,
+    "rollback": 0.11,
+    "scene_transition": 1.043,
+    "selection": 1.648,
+    "serialization_round_trip": 6.663
+  },
+  "network_requests": 0,
+  "provider_requests": 0,
+  "status": "PASS",
+  "thresholds_ms": {
+    "context_add": 100,
+    "participant_ops": 100,
+    "rollback": 10,
+    "scene_transition": 10,
+    "selection": 25,
+    "serialization_round_trip": 60
+  }
+}

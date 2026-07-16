@@ -1,0 +1,15 @@
+{
+  "character_memory_v2_behavior_changed": false,
+  "character_memory_v2_public_api_regressed": false,
+  "character_memory_v2_schema_changed": false,
+  "character_schema_version": "2.0",
+  "context_scene_schema_version": "1.0",
+  "direction": "Character Memory V2 -> Context/Scene adapter (read-only)",
+  "functions": [
+    "link_character_memory",
+    "resolve_scene_participant_reference",
+    "build_character_context_view"
+  ],
+  "scene_state_overwrites_character_memory": false,
+  "status": "PASS"
+}

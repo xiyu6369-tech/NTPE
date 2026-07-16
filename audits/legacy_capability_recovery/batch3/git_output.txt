@@ -1,0 +1,13 @@
+$ git diff --check
+$ git ls-files --deleted
+$ git status --short
+?? audits/legacy_capability_recovery/batch3/
+?? core/context_scene_memory/
+?? ntpe_lcr_batch3_context_scene_memory_test.py
+?? tests/integration/lcr_batch3_context_scene_memory_integration_test.py
+?? tests/unit/test_context_scene_memory.py
+$ git diff --stat
+$ git rev-list --left-right --count origin/main...main
+0	0
+$ git log -1 --oneline
+11a5605 LCR Batch 2: Add Character Memory V2 offline core

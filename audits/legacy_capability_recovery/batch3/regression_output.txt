@@ -1,0 +1,31 @@
+LCR Batch 3 required regression output
+PASS Character Memory V2 Root Test (clean HEAD clone; 25 checks, ALL PASS)
+COMMAND D:\Python\python.exe -m pytest tests/unit/test_character_memory_v2.py tests/integration/lcr_batch2_character_memory_v2_integration_test.py -q
+......................................                                   [100%]
+38 passed in 1.61s
+COMMAND D:\Python\python.exe ntpe_tic_batch7_offline_translation_quality_gate_test.py
+TIC Batch 7 Offline Translation Quality Gate Integration ALL PASS
+COMMAND D:\Python\python.exe ntpe_te_v600_final_release_freeze_test.py
+TE v6.0.0 Final Release Freeze ALL PASS
+COMMAND D:\Python\python.exe ntpe_te_v710_stage118_translation_quality_framework_freeze_test.py
+TE v7.1 Stage 11.8 Translation Quality Framework Freeze ALL PASS
+COMMAND D:\Python\python.exe ntpe_te_v720_stage121_evidence_based_prompt_quality_candidate_test.py
+TE v7.2 Stage 12.1 Evidence-Based Prompt Quality Candidate ALL PASS
+COMMAND D:\Python\python.exe ntpe_stage14_6_provider_security_test.py
+NTPE 1.2 Professional Stage-14.6 Provider Security Test
+================================================================
+Stage                    PASS
+Redaction                PASS
+Scanner                  PASS
+Policy                   PASS
+Config Compatibility     PASS
+PASS
+COMMAND D:\Python\python.exe -m pytest tests/runtime -q
+..........                                                               [100%]
+10 passed in 1.71s
+COMMAND D:\Python\python.exe -m pytest tests/runtime/translation_runtime_recovery_test.py tests/integration/translation_scheduler_stage314_resume_journal_test.py tests/lts_stage_02/test_resume_retry_runtime.py tests/integration/translation_scheduler_stage325_runtime_resume_contract_test.py -q
+............                                                             [100%]
+12 passed in 3.09s
+COMMAND D:\Python\python.exe -m pytest tests/integration/translation_scheduler_stage313_result_collector_test.py tests/runtime/translation_runtime_test.py tests/lts_stage_05/test_output_formatter.py -q
+.........                                                                [100%]
+9 passed in 2.69s

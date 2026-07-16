@@ -1,0 +1,62 @@
+{
+  "fields": [
+    "scene_id",
+    "scene_version",
+    "chapter_id",
+    "location",
+    "time_state",
+    "participants",
+    "active_speaker",
+    "point_of_view",
+    "event_state",
+    "unresolved_references",
+    "evidence",
+    "created_at",
+    "updated_at",
+    "status"
+  ],
+  "model": "SceneMemoryRecord",
+  "participant_fields": [
+    "character_id",
+    "memory_version",
+    "participant_status",
+    "presence_confidence",
+    "evidence_reference",
+    "unresolved_identity"
+  ],
+  "participant_states": [
+    "present",
+    "mentioned",
+    "absent",
+    "unknown",
+    "exited_scene"
+  ],
+  "resolution_states": [
+    "unresolved",
+    "candidate",
+    "resolved",
+    "human_approved",
+    "rejected",
+    "expired"
+  ],
+  "scene_boundaries": [
+    "same_scene",
+    "scene_transition",
+    "chapter_transition",
+    "unknown_transition",
+    "manual_boundary"
+  ],
+  "schema_version": "1.0",
+  "unresolved_reference_fields": [
+    "reference_id",
+    "surface_form",
+    "reference_type",
+    "candidate_targets",
+    "evidence",
+    "confidence",
+    "resolution_status",
+    "scope",
+    "expiry",
+    "resolved_target"
+  ]
+}

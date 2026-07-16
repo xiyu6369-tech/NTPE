@@ -1,0 +1,18 @@
+{
+  "files_scanned": 24,
+  "findings": [],
+  "malformed_json_rejected": true,
+  "path_traversal_rejected": true,
+  "patterns": [
+    "api_key_assignment",
+    "authorization_header",
+    "aws_access_key",
+    "bearer_token",
+    "nvidia_key",
+    "private_key"
+  ],
+  "pickle_used": false,
+  "status": "PASS",
+  "temporary_file_store_only": true,
+  "unknown_schema_rejected": true
+}

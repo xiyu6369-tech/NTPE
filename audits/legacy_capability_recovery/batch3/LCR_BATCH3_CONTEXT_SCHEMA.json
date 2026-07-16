@@ -1,0 +1,62 @@
+{
+  "context_types": [
+    "previous_translation_excerpt",
+    "source_context_excerpt",
+    "scene_summary",
+    "event_state",
+    "temporal_state",
+    "location_state",
+    "speaker_state",
+    "point_of_view",
+    "relationship_state",
+    "addressing_state",
+    "unresolved_reference",
+    "terminology_state",
+    "continuity_note",
+    "other"
+  ],
+  "evidence_types": [
+    "source_observation",
+    "translation_observation",
+    "rule_derived",
+    "ai_inference",
+    "human_approved",
+    "human_rejected",
+    "historical_import"
+  ],
+  "expiry_kinds": [
+    "never",
+    "segment_scope",
+    "scene_scope",
+    "chapter_scope",
+    "session_scope",
+    "timestamp",
+    "manual_review_required"
+  ],
+  "fields": [
+    "context_id",
+    "context_type",
+    "value",
+    "evidence",
+    "confidence",
+    "approval_status",
+    "source_language",
+    "source_case_id",
+    "source_segment_id",
+    "chapter_id",
+    "scene_id",
+    "sequence_index",
+    "scope",
+    "created_at",
+    "updated_at",
+    "version",
+    "expiry_policy",
+    "status",
+    "supersedes_context_id",
+    "experimental_only"
+  ],
+  "max_excerpt_chars": 512,
+  "max_value_chars": 1024,
+  "model": "ContextMemoryRecord",
+  "schema_version": "1.0"
+}

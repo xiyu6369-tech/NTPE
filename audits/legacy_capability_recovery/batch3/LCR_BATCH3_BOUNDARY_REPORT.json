@@ -1,0 +1,4228 @@
+{
+  "baseline_commit": "11a56056dcae7ba3872f24bc74e869f9f01ef605",
+  "character_memory_v2_core_modified": false,
+  "groups": {
+    "character_memory_v2": {
+      "aggregate_sha256": "e64b54948a32101a95c1eff53ed978fe65c7d05d789ec50e1c305936805b774a",
+      "count": 9,
+      "entries": [
+        {
+          "matches_head": true,
+          "path": "core/character_memory_v2/__init__.py",
+          "sha256": "07882b0f3c4cb27b477d27516f76c0196b9e6467e1a7694ebcd6a3991e1c766b"
+        },
+        {
+          "matches_head": true,
+          "path": "core/character_memory_v2/deduplication.py",
+          "sha256": "9334263ba07f0734a7c07580a83438f7a87737cf123580a143a0e8e09fb3d359"
+        },
+        {
+          "matches_head": true,
+          "path": "core/character_memory_v2/lifecycle.py",
+          "sha256": "a9e52697759de879a1b7c2a15d8d73792bd8e18312ebc70cbfeafa37f727a4f2"
+        },
+        {
+          "matches_head": true,
+          "path": "core/character_memory_v2/models.py",
+          "sha256": "4133715e37a7535115156daa82346eddbe6945ae4434bbec366309122a8b3697"
+        },
+        {
+          "matches_head": true,
+          "path": "core/character_memory_v2/normalization.py",
+          "sha256": "bb1755b2fcb685f7765d77c2f8350091056f5e6ff33da9dec642e96f555dd281"
+        },
+        {
+          "matches_head": true,
+          "path": "core/character_memory_v2/selection.py",
+          "sha256": "02d0853af3696616ecc54609190402931e43e677f6687f171d701f939ddad89c"
+        },
+        {
+          "matches_head": true,
+          "path": "core/character_memory_v2/serialization.py",
+          "sha256": "6d1423dae3d501d5a0a5d69aaea7434a14ff4d1f43cd1bf9d9fe718030b4c347"
+        },
+        {
+          "matches_head": true,
+          "path": "core/character_memory_v2/store.py",
+          "sha256": "fc25904e9e927ac7dc671c8ad9f2e714af81d4e4c1e73fca18fd0fc0f76434c3"
+        },
+        {
+          "matches_head": true,
+          "path": "core/character_memory_v2/validation.py",
+          "sha256": "a6c33b8e261c16c5801909f94902a1a53b13076a1188c4f25758a16c89f43c60"
+        }
+      ],
+      "matches_head": true
+    },
+    "output_assembly": {
+      "aggregate_sha256": "bb26109770be12682fd3ef558ab95a4fc0318f427da34cb007998700531f1115",
+      "count": 4,
+      "entries": [
+        {
+          "matches_head": true,
+          "path": "core/translation_runtime/runtime_output.py",
+          "sha256": "53ce3acdd6f752ef6078caf7cd2ff08e00161bc50dfc7b8dfacfe33bd6c5e303"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_scheduler/collector.py",
+          "sha256": "e283620b21b7e90eeca148a0acb0ffc5e78341ce9a7e34c46fd75cc1381da130"
+        },
+        {
+          "matches_head": true,
+          "path": "tests/lts_stage_05/launcher_output_formatter_test.py",
+          "sha256": "1faa767590a74e7f50e1bc00e4af3946562150a51aade28e3521353dc9fce771"
+        },
+        {
+          "matches_head": true,
+          "path": "tests/lts_stage_05/test_output_formatter.py",
+          "sha256": "f1e82da42e44f143f7454f896778258a470d40495d8ff2ffa0e3a9058d08f130"
+        }
+      ],
+      "matches_head": true
+    },
+    "production": {
+      "aggregate_sha256": "20e1fcc33b0e1fcbbee192fcc7459fd8be4d84809b79cc3337753d439afbe631",
+      "count": 18,
+      "entries": [
+        {
+          "matches_head": true,
+          "path": "core/production_runtime/__init__.py",
+          "sha256": "a2ab7bf43d7a1bec746027d3f35ce5163128493b1401d06edcb26009d88358e6"
+        },
+        {
+          "matches_head": true,
+          "path": "core/production_runtime/checkpoint.py",
+          "sha256": "4d5c374dcdd5dc4f60cf25c6e148c088846be310991285b321b3d3653fb82228"
+        },
+        {
+          "matches_head": true,
+          "path": "core/production_runtime/host.py",
+          "sha256": "88788edefded551fa8aa0003e7f6149c08da693aacc1f198554dbf413a8de794"
+        },
+        {
+          "matches_head": true,
+          "path": "core/production_runtime/manifest.py",
+          "sha256": "917c60556ea3a3025fc72cabab4631932c9ededb7fb5f16cf3316d9f9e43903f"
+        },
+        {
+          "matches_head": true,
+          "path": "core/production_runtime/metrics.py",
+          "sha256": "27e5310e14ac95b1cb1f57f861e274f2ab7428ed99cce9c4596b04cf7d68f030"
+        },
+        {
+          "matches_head": true,
+          "path": "core/production_runtime/recovery.py",
+          "sha256": "c873b5ecc0fb2fe93dc83a101dfe19a6bb688fe14576ced76ab84d7c5dfd5298"
+        },
+        {
+          "matches_head": true,
+          "path": "core/production_runtime/scheduler.py",
+          "sha256": "e72f7e105e9b628546cfa998f39a89953e550786f2942772be6fca898d3c9ae9"
+        },
+        {
+          "matches_head": true,
+          "path": "core/production_runtime/session.py",
+          "sha256": "6dd3d854db3b907605ff24152609bae659416da5ec9a67fc33566fe582a4690f"
+        },
+        {
+          "matches_head": true,
+          "path": "core/production_runtime/telemetry.py",
+          "sha256": "da1e47d1acca4ba2e33695ba8761a5aefb718cba5028da2784a8cf55b51234ad"
+        },
+        {
+          "matches_head": true,
+          "path": "core/workflow/production_platform_freeze.py",
+          "sha256": "947d8702eba6b2da60cb280cc858a392277da2480b9396e7b00a6889c3ca5cc7"
+        },
+        {
+          "matches_head": true,
+          "path": "core/workflow/production_runtime_bridge.py",
+          "sha256": "e88a6be6daa269d54bd224ab1d399715ec701b24f545d3bfdadfab46ac36102f"
+        },
+        {
+          "matches_head": true,
+          "path": "core/workflow/production_runtime_context.py",
+          "sha256": "fa964b9a22d3051b545c90e7d482f33322300e3b1f207424e489632b21641db3"
+        },
+        {
+          "matches_head": true,
+          "path": "core/workflow/production_runtime_events.py",
+          "sha256": "543ef9861a0908577f99b5cd1be49707d90a5b2ce949b24ad775d28d4add94bb"
+        },
+        {
+          "matches_head": true,
+          "path": "core/workflow/production_runtime_exceptions.py",
+          "sha256": "3caf9ed2e6fc4297e8b44af7e228146c73a4c0d5f5a8b97a826dff66b2144d0e"
+        },
+        {
+          "matches_head": true,
+          "path": "core/workflow/production_runtime_integration.py",
+          "sha256": "0545d5882efebe74aaaf2c8723b9c879d7c3f72c543abe6f6a8b124de66b2062"
+        },
+        {
+          "matches_head": true,
+          "path": "core/workflow/production_runtime_metrics.py",
+          "sha256": "e63a578dd14cf6c5d13fcf8c4beda7c1263e751485e9c8c857d1a004e8d5d859"
+        },
+        {
+          "matches_head": true,
+          "path": "core/workflow/production_runtime_result.py",
+          "sha256": "46da0b3cee91b2e93f4c33ad0466b8bf08f2a2b824785c0bfcebe039f12c76d0"
+        },
+        {
+          "matches_head": true,
+          "path": "ntpe_production_translate.py",
+          "sha256": "19c80f5ee3c33e2a38b96ec5ff284184723bb6b63e529697c31fff1a31efd916"
+        }
+      ],
+      "matches_head": true
+    },
+    "prompt": {
+      "aggregate_sha256": "205942aee801c08dd93d44e5947d07917b2f0c5d6948f8c5720de937d5394f77",
+      "count": 164,
+      "entries": [
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_prompt_anchor/__init__.py",
+          "sha256": "a5116850e2beb8e1ecd75d7913ae8a581ff6d66560a2cbd896cc6a512f9776f4"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_prompt_anchor/anchor.py",
+          "sha256": "4126e2c7ebad48f75b1b2edfc86535d00dc2d270dcbff06dbe12cdfc985d75c6"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_prompt_anchor/model.py",
+          "sha256": "3086ab4a05018098d1780806092e1e0f5a604c6cdcb4748b55786978b9d3cb33"
+        },
+        {
+          "matches_head": true,
+          "path": "core/expansion/expansion_prompt_builder.py",
+          "sha256": "f024f1e1764f1d4fe96972ad3054bc07af75016a7601eb0a708dd473c2512641"
+        },
+        {
+          "matches_head": true,
+          "path": "core/knowledge/runtime/prompt_runtime.py",
+          "sha256": "103194e5be0929c5e90e0628e668aac541a77e16b5cabac3800ebaecea1ca86b"
+        },
+        {
+          "matches_head": true,
+          "path": "core/literary/literary_prompt_builder.py",
+          "sha256": "7ea43a24155b66379f39bfc8a6a5d6f2797e78fa56086efc1ed3fce8d273f11c"
+        },
+        {
+          "matches_head": true,
+          "path": "core/literary/prompt_profiler.py",
+          "sha256": "fd20c281b19c6407e4b7acc058c2b49db308ab4fb8febff33537c70b2e00086f"
+        },
+        {
+          "matches_head": true,
+          "path": "core/literary_prompt_quality_candidate_v72/__init__.py",
+          "sha256": "078765f24695586cae015e869b8c8a79d140d1dcceb4647b7cd88c119315e727"
+        },
+        {
+          "matches_head": true,
+          "path": "core/literary_prompt_quality_candidate_v72/candidate.py",
+          "sha256": "e6431dafc92ed5db8960901d0c625f84b22d92187d9af9e0dcd0fc2fedf957bb"
+        },
+        {
+          "matches_head": true,
+          "path": "core/prompt_builder/__init__.py",
+          "sha256": "961a3b6116809ea2c9bab8b6df13e7a068d7796024c3de452ed2e1b3adf3a0b4"
+        },
+        {
+          "matches_head": true,
+          "path": "core/prompt_builder/character_selector.py",
+          "sha256": "a3af123098ec76f46de60b50b1668ad4a7a8f45d89e521b1d6b9eff2adcb019e"
+        },
+        {
+          "matches_head": true,
+          "path": "core/prompt_builder/glossary_selector.py",
+          "sha256": "fba28dc08fcc4507984cf2c5f3618b45d1f26e27a69d56a128df8704a34b4d79"
+        },
+        {
+          "matches_head": true,
+          "path": "core/prompt_builder/loader.py",
+          "sha256": "aee1dae1cf2da557d33411908e1a4b679a7cda044228f62acf4510fef530ad21"
+        },
+        {
+          "matches_head": false,
+          "path": "core/prompt_builder/package_builder.py",
+          "sha256": "6c77801db0aa3df97b3035723c4de44804a47abd65eed3c323dc8f0c24c88a89"
+        },
+        {
+          "matches_head": true,
+          "path": "core/prompt_builder/prompt_builder.py",
+          "sha256": "05e2610ec8526acc3c0fe5795e364f842356dbddcf4504e9c78414924df73fc7"
+        },
+        {
+          "matches_head": false,
+          "path": "core/prompt_builder/prompt_renderer.py",
+          "sha256": "73b87e9a14bd53aadd537e42a8438233c84408f786cf7d706fe4ac87189a1c87"
+        },
+        {
+          "matches_head": true,
+          "path": "core/prompt_builder/rule_generator.py",
+          "sha256": "8ce1b3306da7a76b1b5efa87182ca8a3ab923fbc69b68840d486416440c35795"
+        },
+        {
+          "matches_head": true,
+          "path": "core/prompt_builder/utils.py",
+          "sha256": "911ceb3e55d6f9bfbbaf4307b0b3facb9cca3fc87a795a0a3b19b40c893d9a8d"
+        },
+        {
+          "matches_head": true,
+          "path": "core/prompt_compiler/__init__.py",
+          "sha256": "5966fe223a39f4573971aa846abad62f9981a13a61a38f15ba33c95e1e79488b"
+        },
+        {
+          "matches_head": true,
+          "path": "core/prompt_compiler/adaptive_feedback.py",
+          "sha256": "300b36c0ee4c36c581db206823da11e2a9febf4483cd2923bbcba7ff84c8e03a"
+        },
+        {
+          "matches_head": true,
+          "path": "core/prompt_compiler/compiler.py",
+          "sha256": "dbe98ac6696435987172d63afc3835962bb47e8bc6c158f19343af06d2752c7a"
+        },
+        {
+          "matches_head": true,
+          "path": "core/prompt_compiler/model.py",
+          "sha256": "c38364ff3626066b7b0c87e9f92bacf55851adb9992343964a57fbd2233e6679"
+        },
+        {
+          "matches_head": true,
+          "path": "core/prompt_compiler/profile.py",
+          "sha256": "de009acb08e2a8d4ab85e2d0a1fe6beaa7c052dd935899fda309f3b4ee13f442"
+        },
+        {
+          "matches_head": true,
+          "path": "core/prompt_compiler/rules.py",
+          "sha256": "f5c6f63ba6773bd8e43a8542fc546f6f3022d99e3a6ad1f53bedf8185513213e"
+        },
+        {
+          "matches_head": true,
+          "path": "core/prompt_engine.py",
+          "sha256": "5cf931924812982408c6c9609176041f8db215f0f8d18a18b61a1c0bf2165bf8"
+        },
+        {
+          "matches_head": true,
+          "path": "core/prompt_package_validator.py",
+          "sha256": "605b8c8ef887c60da9708506c4afe93c8fbc52a832b94596fafe10769963b11d"
+        },
+        {
+          "matches_head": true,
+          "path": "core/quality/novel_prompt_engine.py",
+          "sha256": "fef6115b0753ccb3f9d81c92eb8de1ca1fb8cd839c6d38317c85c8248735525d"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_engine/prompt_intelligence.py",
+          "sha256": "4f578ddae36acac5c72ea894441806f2f0a1ff1ff3b8a05a3872274d735bbb21"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_prompt_improvement_planner/__init__.py",
+          "sha256": "0634264d5de5c1885f2b57c71b9f96c2a894d5a592bb05db7a48d1da80158231"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_prompt_improvement_planner/config.py",
+          "sha256": "dcade43f2d5ea5db36b77e9eeadd3228e99f38ef84183c82b829c897f6b5091e"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_prompt_improvement_planner/integrity.py",
+          "sha256": "9933c78fd3877edf1146947c4377f4375397fcfe634ee3a88aa7d3af09d207c6"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_prompt_improvement_planner/mapping.py",
+          "sha256": "87b1d743f8d2818d3ffef81b3b706508eff3aa4acb86eab409f3c4af3e3819b7"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_prompt_improvement_planner/model.py",
+          "sha256": "85a1fd6e94c4a6dc210d6740b76b1a0b6e99b262e71fe1c412c7e84f4d101c07"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_prompt_improvement_planner/planner.py",
+          "sha256": "c4b7d1502cdffc0cb7b7d792f7cf0e8a155d216ff11ac66234115e7b43cb3c90"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_prompt_improvement_planner/report.py",
+          "sha256": "fa694622f3f8fd9b20a183c58775489336a9c2d64eeb276cbf125a621e7150d3"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_prompt_improvement_planner/risk.py",
+          "sha256": "da55141eea6bd6ac178e4c8eaca4c515a4d6922f71df4362b7f1fb87a9d734ab"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_prompt_improvement_planner/validator.py",
+          "sha256": "3ead4941979db923fe52fefb3022e648f62d3f2a78ef158117df5c0d20dba63f"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_resources/prompt_resource.py",
+          "sha256": "772481f228cb20fcee466db95e119de8bfe39c9ec8786548517c06fe8bd17ed2"
+        },
+        {
+          "matches_head": true,
+          "path": "prompt_packages/.gitkeep",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/SESSION_PASSION_20260629_002851_chunk_000001.json",
+          "sha256": "1b2a49a367458583c83c6d82cb1cdde139739bac1a3fac8dc74e4b2108d793b6"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/character_voice_test_package.json",
+          "sha256": "0d5edb08c1ce45cf263f73b2dd027acdde18be3abe61232947e3032d1920516b"
+        },
+        {
+          "matches_head": true,
+          "path": "prompt_packages/context_memory_test_package.json",
+          "sha256": "10e63c0c375b7c89a1ce3a182162f62ee59a66f13b25f191ec1346fbd5388cdd"
+        },
+        {
+          "matches_head": true,
+          "path": "prompt_packages/literary_style_test_package.json",
+          "sha256": "7e7d16117b43cd2d071cf7db99c682b1ef9726cf37a47f113c2e63563c446ab8"
+        },
+        {
+          "matches_head": true,
+          "path": "prompt_packages/narrative_intelligence_test_package.json",
+          "sha256": "3c0176dce933c192ed9eb3aa113c1f171246dcd82d33a4e69bc542794f9f75dc"
+        },
+        {
+          "matches_head": true,
+          "path": "prompt_packages/narrative_prompt_integration_test_package.json",
+          "sha256": "cc65dc766e5f98e744740edb78191e2d29b3734ba0aa102199a2261fe551bc5c"
+        },
+        {
+          "matches_head": true,
+          "path": "prompt_packages/novel_prompt_test_package.json",
+          "sha256": "cc30a92a0b12855024a62070c099cc7f9a4777ee8a9f6c7b390a2e7764ddd4ac"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000001.json",
+          "sha256": "0a4c1bc45278a1e5972416b3eb143162dea6aadf63eee23bdc2ad222e1efa8a5"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000001_retranslate_sub_001.json",
+          "sha256": "556054905e62c7f6b3286a96c629fde5fe2d9bf0dfc80ebff2145567b578acb0"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000001_retranslate_sub_002.json",
+          "sha256": "fa53932328fb8412bf70bc014ed2b4951ce2c1f2513e1444c4ee172ac9516187"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000001_retranslate_sub_003.json",
+          "sha256": "ed47549ae48025bb80089901094cc6c7e44a446bad0b72f096b170fefe74890f"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000001_tqf031_sub_001.json",
+          "sha256": "d9c54df3090d7184f26e11c174aa82d606df4f2caa657d3db65e9069b68841e2"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000001_tqf032_sub_001.json",
+          "sha256": "9d205a582e5e9ff136abc4011ba61aab3117fea20cce159db62bccfa03d7090e"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000001_tqf032_sub_002.json",
+          "sha256": "704e837298e9471c8ec34b1aaadc41c5773b5311229b7967208052d35e2ee7a0"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000001_tqf032_sub_003.json",
+          "sha256": "ce390740a52eb8a71420ed20b37589b42495ecbd2086e3f8f257958ac7a5fa51"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000001_tqf032_sub_004.json",
+          "sha256": "551960278ed0b42a8ca4bcf087cf943d7490dd55796f1f05d411489b353aac81"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000001_tqf032_sub_005.json",
+          "sha256": "8b6e60e152e36af3315300cba0f697fe53b034387b3e9a3ab4601772f32f7d5d"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000001_tqf032_sub_006.json",
+          "sha256": "e8f705dafcded0cdab6edd1285bd89da4117ad417e34ab43e6a73571da94029f"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000001_tqf032_sub_007.json",
+          "sha256": "cd31ca1c55ed87b7aa1a987694e4ee4643c7d44df83a52fc87d1932d179a2e99"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000001_tqf032_sub_008.json",
+          "sha256": "3a482c2f3be718664259cb84de02b392fe51cdfef6e34b5485db8a43acd3584f"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000001_tqf03_sub_001.json",
+          "sha256": "4c9622b6923f5c0343669fba6b6e9fa02e7e411171268c2840cd7062a46e9d7b"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000001_tqf03_sub_002.json",
+          "sha256": "03c4e2bdee3f28f767872dd429318153b1ee0234c8061247b84ef57afb69f574"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000001_tqf03_sub_003.json",
+          "sha256": "957efe3042fbf39973efb95b171efaee8f16c28195a633d91e1db411a473fbe9"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000001_tqf03_sub_004.json",
+          "sha256": "64ed457a46c60d5aa2fbcae2663f5b5131a62e1690eaf1a88689306d9af685a2"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000002.json",
+          "sha256": "898932b905a8ab52a71a3dc80c972e277a2585a0c0f606a780c019a18f312316"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000003.json",
+          "sha256": "5c49704fff33e013ab21cd689e5edf48846ba3332794cb53334ff8e92aea382c"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000004.json",
+          "sha256": "4727dc2809b445347f7019770b7024bfbedb92cb2449541d9d60ca6a3c825908"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000005.json",
+          "sha256": "a29f7fed0802b1f5af16e61825ce560525637bd8ca6e7164b9366bc60e2fde03"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000006.json",
+          "sha256": "2f47803cd6e37a71614866f044dbf5e6ca3dba31d2db483ec28af8e88a581fd8"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000007.json",
+          "sha256": "ab854a60f49379458bb651fe8ed5d018ecb3ba05d5de40b1e59f559c3c1e32fb"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000008.json",
+          "sha256": "55030c1e8beacf7f786c003a8c98a9655ff3e456167b62f09873fd5a9f926574"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000009.json",
+          "sha256": "fe3e28de7a346cf5d87545aaf93e1c5f79c0dc4702d52ddca57c9a94f4583c4e"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000010.json",
+          "sha256": "7054af1af9bb53de9b665ff169b73e6e0a42236bdf067e20768d11383b1a3230"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000011.json",
+          "sha256": "102a11fb3f28f0899ab0c3866502c2b1aa8593cc393cfb9d42ab764cf8db4108"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000012.json",
+          "sha256": "2bb04501a71ba360e4362e01d8bf0bc3afd4ca4a3da64672e999996da87dbcab"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000013.json",
+          "sha256": "a0769193ab50cd2e8a3e24baafbcf32f6a1da8c8099ed52147725d51a5345bf3"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000014.json",
+          "sha256": "11c57e0d84786ebeefa069c474b8379c1b6c316229b4038f270fc33535ef3951"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000015.json",
+          "sha256": "cd42a626e8ec42db23edd7d384807d71152a709afe51ae925b9118d0ff477be3"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000016.json",
+          "sha256": "4d0dffbcd03a02f8a277f5da75d891e47d983dad07c053dd6d11ee08d8d7cc3f"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000017.json",
+          "sha256": "8e0d3d875ec0ff2e78b4b443c3c1fd6639e25a7d821c76c3528b56727fb221f4"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000018.json",
+          "sha256": "49ef36833e20e5189d6901d1a4fbf6296122ea8e21f21198c3fef26431379c98"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000019.json",
+          "sha256": "266551a729ed47ca384f581b83cc8d63c39a98c065575605339c8ccd1ed853bb"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000020.json",
+          "sha256": "431bebb939384190e67153c505e81a7a3c4c18ad28af90296461b56ae00fa7a0"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000021.json",
+          "sha256": "5a373e24d49ab481345f8019e0241126d13fd337022e73aab3587d9b641467cf"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000022.json",
+          "sha256": "eca6bfa730d450ea45d15f6cb832bbd19f755df1dc7b31f662422d4be57eb290"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000023.json",
+          "sha256": "af7f88dc44ad9ec60094f54dbf40e38eb77156f02bed4a990828a064c27ed884"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000024.json",
+          "sha256": "297254c99dbbdf732f965a27acb5945dec1c1cc07fcadf4b73407b3235813eaa"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000025.json",
+          "sha256": "c9152a2c990b10fcf85ffd18cd7c199a99c8d2731f712e6a474930dd67858622"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000026.json",
+          "sha256": "86463cab5a891ec81c33807a972b6ac74845afb9843c458337a91b6e5e4fd092"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000027.json",
+          "sha256": "2c670ddd90d609e8541c80daef332af93eb450831ed030a45d8f54460ffef572"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000028.json",
+          "sha256": "41d9b85345eac4ec5398d63da86bc2b427bfc7b644af7873bddb0813acfe74e2"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000029.json",
+          "sha256": "5171d89160051b18c6b5da85b61204d5edf47808f44ba86256a66babd2b5c8ac"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000030.json",
+          "sha256": "ec1afd541b5aa1293b5d0e494005e5a3e2f6ea26c4fcee2785d1a6d695e25e06"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000031.json",
+          "sha256": "703eff347fcaedda2edfddc4f2aec4b5e1b7ffef3aa4e8817100744880f39f27"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000032.json",
+          "sha256": "9ced7427eb5df6e600ce191ddd249969c460e390f8edb065b89a4eb0e8d0e4a2"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000033.json",
+          "sha256": "8c437a6cea1c2609dafc4131a83f97a9096ade1bc0abf97abf745d366e806398"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000034.json",
+          "sha256": "279360dcb1156e86b867dc55e5ca969b56e79e7eded1d2fbd5e4f771853af777"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000035.json",
+          "sha256": "3e1c56ee00b741982da90f92b6ff9c4545c259e57fe44446151213196075ce65"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000036.json",
+          "sha256": "4af817bf6ac9a7f93db60adf147bdbdbafc21e384bfee024a1b943176291b2dc"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000037.json",
+          "sha256": "dba475b23ac70fe3fe0c93bc6a66601dcdc8ed5a0405f096d3c42040f002d914"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000038.json",
+          "sha256": "de49994e2b9efd842be50817804bd91f7bbe8e1b45c42e700040479f2188b146"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000039.json",
+          "sha256": "69718b6fd99534f188c4a9b376268a4a1951890c338a20042b35b5a007653720"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000040.json",
+          "sha256": "671ee0bb96e2b2ba43a2df1f08e03f3c04cb057786599e77186b26766c1540f2"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000041.json",
+          "sha256": "40063801ff06c9bfcc7640ccbc582a1ad42fcd2bf02b5b6f1f4faa924a81a1d1"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000041_v1.json",
+          "sha256": "ce12300097c251f8af16ff84bb47e9339ab8984b16abbb294238a041a135bba0"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000042_v1.json",
+          "sha256": "f3f13629bced6432bd6e0a139fa3c076f44c09f156539331dfb1bc4562a7de8b"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000043_v1.json",
+          "sha256": "604a6a9d25c16109821562267693f97f69ceebfe6d2e349cb9b06ab9ca521402"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000044_v1.json",
+          "sha256": "ecf4af37822eb35885ea1e902dac49069a34d9dfb518b342f3393de0f920a9bf"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000045_v1.json",
+          "sha256": "ece552629c7c7f1ee33d88551005407382c25aa5df33df6cdcb247f135a230bb"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000046_v1.json",
+          "sha256": "c617f698b8059a01bae57452ca98d8d11b1e69ef5e266c46c2e9e3a5fb73f49f"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000047_v1.json",
+          "sha256": "0c8d55a25a159c454bc7f75088c51a51b2730c98cf6b4e2d58ff3af885325f30"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000048_v1.json",
+          "sha256": "d4814d975075a882232d811c1a6bd2b9f4397e169ffd2b973bf9614b79be0044"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000049_v1.json",
+          "sha256": "50c0978e7b3b993cc6ec18dc0ea091bb01c10f96e1c55348e31e12f8dc4e2493"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000050_v1.json",
+          "sha256": "fc169946207213a71538c3e3f02b6bed8811180ee377e29bc4fd0bea3fe7e1e6"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000051_v1.json",
+          "sha256": "ecdc4f6e29d9e71d981946da71c8cfac13706a34ccb7019568def3a49fa0c64c"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000052_v1.json",
+          "sha256": "642abf153c1fa92d546be62ac0fde6ad81eb8b896e7f92d25d018800ced8949c"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000053_v1.json",
+          "sha256": "1e6f4d5cc0358a2d2667b9090d5e41a44f53aaab5d882ba159458a42a696c5aa"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000054_v1.json",
+          "sha256": "c8ab4f96487a699425623216fcd68f701a755da44d601ef9e877fd313575f545"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000055_v1.json",
+          "sha256": "871f5b8916cc4ef7dc0256b7aa8b71c5c10713213e3b214b20c4adbcec78ed31"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000056_v1.json",
+          "sha256": "4d1b2dfbd72a6492c236f7997a65aa467f321c44fd12d9d3acd7acd4c7d00a55"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000057_v1.json",
+          "sha256": "cba6e52e63017b9a080d3c1393d48eed11943951a5029d74b6c538d608533924"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000058_v1.json",
+          "sha256": "7e682f6c249aa0ca5c025d1baeec4d95926fdeb25a76ef12655bb6edd474020f"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000059_v1.json",
+          "sha256": "ad2bfb0c468da3b4833db56214229cb193fd77e2b8a2236593abd5a81b46452f"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000060_v1.json",
+          "sha256": "892009b2eb610e906b42b3f44bae18a9f99f88a9e5f7d809da7662ff282033bf"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000061_v1.json",
+          "sha256": "f212e5d1c4a7c17b5c140a24ed87a082ad0219613a508a034951950a0464666d"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000062_v1.json",
+          "sha256": "3a0a6ff5ee995b7992ea2bf89f8dca659a7ee1d24d79f1a684165cb2affce16d"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000063_v1.json",
+          "sha256": "c209349eadeb6a83f35e1e2c1d9e20a689f7d1011f834aec3c4bd7e13f113bad"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000064_v1.json",
+          "sha256": "c7f6e2057bd8bd8926eba375749cc5a57f2b384c880f57dbe59a894f40d25173"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000065_v1.json",
+          "sha256": "60c86406ae6fb17fc974f6db09a93ddb148805d2dc94607c0a3351477c5da868"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000066_v1.json",
+          "sha256": "f88d43dba2dae7b4fa8b6de896ef13383bfaededf764e45728c934568ecfa3e8"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000067_v1.json",
+          "sha256": "aabd8ebdb2e45f3ae10cac293bb1fa0958239b17a0cc76a857f8a62830c497b9"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000068_v1.json",
+          "sha256": "056bd13956677461bfea14ad4b242c3d501bf4138803d13e05e4b31943877076"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000069_v1.json",
+          "sha256": "604b8d6c41fe56d30e1a6dfc598cccfdd67dc75d4803d859f2e1d3d848575efe"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000070_v1.json",
+          "sha256": "afa3009fb5909ce8d8713f0e4d89ce10d8f55400f1b672d84e4e075fb28766a5"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000071_v1.json",
+          "sha256": "02b56aad5d884e7f5f2d069d6f7aa5006aed93950db7f76cb696009787e7e4ef"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000072_v1.json",
+          "sha256": "6ba13565ff34fe55bee4480d3e7f3191833251f683a3ee77ecfab91966cc87fe"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000073_v1.json",
+          "sha256": "a1398f83b9b82f1866b3ad423f50a8908a23e6927c6592a716f6a11ca0d3cb5a"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000074_v1.json",
+          "sha256": "ad96c217a77adb07365c60a104e03f0eb5144063fd099d79ca5b15c5b54f4bd5"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000075_v1.json",
+          "sha256": "3ae7c4fe053177bd1c0fca1beec34913d40c0d1036d897ae200f8ad65e6e88c3"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000076_v1.json",
+          "sha256": "d7b4eb8c6b1a9412273e628b9156e29c7f7ce49c4c2030654f863c3f0996efd9"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000077_v1.json",
+          "sha256": "f1bfc0c5a91f3ea5f2628ac1900a12e57bf329215d6717b9e861cce709048ed6"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000078_v1.json",
+          "sha256": "29aa928d9db598c99a615154229cea730ae1563c92e05771d5c735eb5a32f81e"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000079_v1.json",
+          "sha256": "32351b1fa06c354e85cdc90814449dbe4187bf36ac786d2307bdbf0301d6a7a1"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000080_v1.json",
+          "sha256": "1fb884678b6fad27e7573b1575f7ad28d38c314a66739f0cc3dd5bf2e5ad6075"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000081_v1.json",
+          "sha256": "ac2e34eb74afd00c884d86624066323167195ce83fa2004681e96fc90051e17f"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000082_v1.json",
+          "sha256": "9c0813f14477f640a8be34646ec2386e6da3c6b94bbdc60a599795779f4c00df"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000083_v1.json",
+          "sha256": "29b439a40eaf9c344d0788c80bd3719345648e6192c82f6ff301051ecd983896"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000084_v1.json",
+          "sha256": "d49c2a2126e103b80ce5d20323741e9a4c468b64c3df56751d7ef36c75868372"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/passion1_normalized_chunk_000085_v1.json",
+          "sha256": "5a851348745544d1043dbf0067a0b95e735052a2dfe39d0647120be4ad8d4ace"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/prompt_package_sample.json",
+          "sha256": "e202c49bad36c75a8f0ff0664431e4a1631033ac29760491b6d7df3aaab8b3da"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/prompt_package_structure_test.json",
+          "sha256": "cebafd386d53bd8c625326e68b6f8ed7a5bd4d01c7be9ec23b4750d1013497ac"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/semantic_test_package.json",
+          "sha256": "da2eb3c661a0cbad541c2c7dbbd2f285b2974d06b1d6be8953dfce378d056d38"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/structure_test_package.json",
+          "sha256": "1dcae11272e698f7d81ec14e3690366a2074f4413e213ca860606864b927ad86"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/style_planner_test_package.json",
+          "sha256": "4e76d16ce042975923f21a251204fce7d7eacb69c09d52d1af7465c40c482b39"
+        },
+        {
+          "matches_head": true,
+          "path": "prompt_packages/txt_runtime/001_chunk_000001.json",
+          "sha256": "57baf771b839162a3963c7fa855d19b5b67c951e3e452e113bb4036287faf95f"
+        },
+        {
+          "matches_head": true,
+          "path": "prompt_packages/txt_runtime/input_chunk_000001.json",
+          "sha256": "1f5d158da11afdd6be40495ed48048cba478f9f275372ef4b08d3a91519dc3cf"
+        },
+        {
+          "matches_head": true,
+          "path": "prompt_packages/txt_runtime/novel_chunk_000001.json",
+          "sha256": "10dc44f275af611b780bae12eebf8f05396c0ddfce6c6086406f56db61fe1b05"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/txt_runtime/original_ko_chunk_000001.json",
+          "sha256": "62e0e3500d8f6172c86b686c149bc896b6f980a89c3aee60337fef58ad6717c4"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/txt_runtime/original_ko_chunk_000002.json",
+          "sha256": "f4637bd654c9f842356ed6c1ed0fff550d1332d257172c8eb2a1d5aea0703a11"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/txt_runtime/passion6_chunk_000001.json",
+          "sha256": "f1c626b6a453e50d9e5e8b0df0854e2d32a2bbddbbbd318107069167ee453c3d"
+        },
+        {
+          "matches_head": true,
+          "path": "prompt_packages/txt_runtime/sample_chunk_000001.json",
+          "sha256": "42fdaf465f2310c33319853454051672eabb0bb2a8cf2e84849e5a7237e8d981"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/txt_runtime/test_chunk_000001.json",
+          "sha256": "19bb5447103c68f843b7a7ef354220de81425effa026c4c67bf7d5aa7b52438f"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/txt_runtime/測試_chunk_000001.json",
+          "sha256": "aaffca8e4e381fa98eb2ae8b163d11c9eb5b09aeb8588fe34d60ba5b4a121c82"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/txt_runtime/測試_chunk_000002.json",
+          "sha256": "0eabb1a693bf8f89de33c67b68b421837558fef8b78784fde957d4a74dbc665c"
+        },
+        {
+          "matches_head": false,
+          "path": "prompt_packages/txt_runtime/測試_chunk_000003.json",
+          "sha256": "f4022e2e63b6104358c0277f6e379c6697baaea619c3a8b72562b5c98591daa7"
+        }
+      ],
+      "matches_head": false
+    },
+    "provider": {
+      "aggregate_sha256": "96f92da7274c92a37765dd9655c120a565534a3f6bf44634d866ae6bb8edb4df",
+      "count": 110,
+      "entries": [
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_authorized_provider_cli/__init__.py",
+          "sha256": "b79d7825e6ca8e00a5958d4523c9391603a5f805d1b3b1eec0ed2dd1e93fe625"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_authorized_provider_cli/config.py",
+          "sha256": "f9e566cd95e5d4aa3f33adaa75354450f3d80b0b259f286bf2675106c4c810db"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_authorized_provider_cli/parser.py",
+          "sha256": "076553fd58914232ce21a1188a20fa3b48dba8ae0415235f9fb0273502389ed4"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_authorized_provider_cli/report_path.py",
+          "sha256": "df402035396f6281ca66812bc3cc7a9e1b40432bbc7271d36d8632253657f2fd"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_authorized_provider_cli/runner.py",
+          "sha256": "c62fce63f7ec27ceb81d9f1669b4926a903717a57b92a0e99daf85725e86ff37"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_authorized_provider_harness/__init__.py",
+          "sha256": "3dd3214a7a3dd8f1f5cc156c63d753021c1259eb658cfaafe2ffceed11631425"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_authorized_provider_harness/config.py",
+          "sha256": "e4e32b492bde0b10bb8ce5054198b731c4b5ebfc301bfddbd531c0cf6f098838"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_authorized_provider_harness/harness.py",
+          "sha256": "c2af7fb9d14bb18cff6da012fcc354066f6fae1d586e1dccc17043addcb267c9"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_authorized_provider_harness/model.py",
+          "sha256": "ecf114c02f8437ccf2b7d75c35480e2618af565a4c1d1b9b5b7ad8c0fe0ed604"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_authorized_provider_harness/report.py",
+          "sha256": "841edb2327dd0c05ff3aff1e70181a262297561b6c30faa804d1f03bcf9f0eb7"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_authorized_provider_harness/transport.py",
+          "sha256": "94fe4668bc482d918e28e952b9310761db06f6b03cac13d1e1aa21a234249cba"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_controlled_provider_retry/__init__.py",
+          "sha256": "6a4cb91e6e6a080aff8106d88abe585528deeccd51fc3aaca875339191fc45e6"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_controlled_provider_retry/config.py",
+          "sha256": "277eda8b9f96367fdb0639d15c4b550628966c8f1a7d623a04c06c1262c1badb"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_controlled_provider_retry/integrity.py",
+          "sha256": "e8bfe470ecdc36c396ab74c3d067cc04fe4b4f9cbcb095db62542ca3fe7b33c4"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_controlled_provider_retry/model.py",
+          "sha256": "529eb793b54cb288b9b2030738ca6070326277aa9a69f72c0b78fd632a792c6f"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_controlled_provider_retry/report.py",
+          "sha256": "b262d870efd9507ea4a8cf95973fddf621b420b92c4aecf6c330f084b372f287"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_controlled_provider_retry/runner.py",
+          "sha256": "e6fe5080e5d9a626100cb33e9d9f91680068c00671972f398ccbfd7443f9c2b9"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_controlled_provider_retry/token_evidence.py",
+          "sha256": "0514ec43e2c257b7488ac01ab37ebd7d2c75fdd14e39cde054d471c0bfab372e"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_controlled_provider_retry/validator.py",
+          "sha256": "6fea7b10756237c87da0f9e171cf686474cca1e314830ec964953d71ff6a00b8"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_provider_benchmark_session/__init__.py",
+          "sha256": "cd17b19bab266d0894b661590fc03540cf5973070ca2fdbc7f3f77b035d68429"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_provider_benchmark_session/attempt_runner.py",
+          "sha256": "5db9d2d7b63de966f453747f65c247ca4ed6147dc3eea855ae47b2086512455c"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_provider_benchmark_session/config.py",
+          "sha256": "73467a5c4fdaf86525aef79f2e9d638a2a43ce3c3bb8a5dc01c3c04cdf529898"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_provider_benchmark_session/integrity.py",
+          "sha256": "7c5a7991e23fb56fb71a4d48020d34d7e8bebdb67b72f648253f1551893540a9"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_provider_benchmark_session/model.py",
+          "sha256": "e0e5ec06fef74b7250d959bf46092900e61d971ec088c8f4566e09ed6b6bb097"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_provider_benchmark_session/provider_bridge.py",
+          "sha256": "81935c85c98c1536d68b9f19a30412b6d30172d1cde8b8f01da5068200c7b507"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_provider_benchmark_session/report.py",
+          "sha256": "d4d7a4042afaa5be59d0362bdbfed877d66b2abaf9db34b02991b13755d490a2"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_provider_benchmark_session/result.py",
+          "sha256": "affed2799a9d0bb343105bc7c14c3deae1f25bf26232a596ef579714bb91536e"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_provider_benchmark_session/session.py",
+          "sha256": "f88aa6bbe1b4e46c67e40b0a4c20ff42a3a97467c0cae1fd41075869bb6c802b"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_provider_evidence/__init__.py",
+          "sha256": "f78fb6dd09f62bafca0bbb0669e91320d79c5f4d83c065545af3375c73df1792"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_provider_evidence/collector.py",
+          "sha256": "ded05c216164dd6636ff1860c53130f167e6d07798699002037a3bc6afc0e739"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_provider_evidence/config.py",
+          "sha256": "be8fcf69a2e188527801490e55c0b99a0ba5c5ce70fd8c12247a03263141f753"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_provider_evidence/integrity.py",
+          "sha256": "358bbe9a702da32caf3cb49fcdc9010735b2ce3cdf9ecd577dbb64cab7299d73"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_provider_evidence/model.py",
+          "sha256": "79c4595daa3f1ecd611c310d1d655a2c1937db65e9fec8eb3d243afc1f51221d"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_provider_evidence/redaction.py",
+          "sha256": "74b9bedd13ffafefcd0ef5537ecf5bf952f61985d37b843f78b79ab6d1d31976"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_provider_evidence/report.py",
+          "sha256": "e4b6906ecef5bdb6e4a2d6ea53686fa41f7a7954581d15d7779cdeb823cfc375"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_provider_evidence/timing.py",
+          "sha256": "538247f5e203a8f4b3143e832330a3fef8fe54723c734a354fb6efc9c2d786ab"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_provider_evidence/token_usage.py",
+          "sha256": "82b51b036273dabe61eb6597f6c7bbe89574a74192d435ac050a84c72e197d7c"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_provider_evidence_pipeline/__init__.py",
+          "sha256": "d3e059985aa360d2176ec0230970e3c8db83885205f90d255fdf0dcc57bf8aba"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_provider_evidence_pipeline/collector.py",
+          "sha256": "6bd97efb47a241fbd0575f26bb7d7873dd2cf1cf18212b1d66c3be1c96486675"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_provider_evidence_pipeline/config.py",
+          "sha256": "b548c31d68d3121ba8c1f0c0f5a699a70ec6b95f03570848ee5b31198a662b02"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_provider_evidence_pipeline/integrity.py",
+          "sha256": "effbefde23727d49b897c71c41e3d8220e431f7c1a6da3eea04f6fd3078b82e8"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_provider_evidence_pipeline/model.py",
+          "sha256": "80d5008203cca7736705beefc8c49eb3b23fe7bed6c4611774928e977c398d21"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_provider_evidence_pipeline/normalizer.py",
+          "sha256": "22472e5f416b2b8da4141d9291dad991ee872fa31c51f8ed2fbc9d667da3f817"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_provider_evidence_pipeline/report.py",
+          "sha256": "15cd547cb15a31926c0a4bb1604ead373555a3192e7aa1b99519edb610427a1c"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_provider_evidence_pipeline/validator.py",
+          "sha256": "e2b2377b6b1ba06364b55ec9ad959bb44542f5b4b69a6fe9522a097ced45a9a2"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_provider_execution_freeze/__init__.py",
+          "sha256": "70ac6053bec01e6c687f8824e7bdb7739d944916a9d84796c4f7e068084da3f7"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_provider_execution_freeze/contract.py",
+          "sha256": "9024a1c7645b164e2221e8c9292ed266444b8119247be9a34ff478552acd96bb"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_provider_execution_freeze/freeze.py",
+          "sha256": "d11e2f30ff9c528d2ea9415b96c7c0982bc3f299cc19c4ddff6fd68eb9cee054"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_provider_execution_freeze/report.py",
+          "sha256": "62057d4edde585ba10a731ff24243b65ffc83dbed9e224e3d55edb8ae8440e40"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_provider_execution_freeze/validator.py",
+          "sha256": "71251006518c4020a97ab4d6079900123935b2b27cdf835d4cd1601b1c3a802c"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_provider_session_cli/__init__.py",
+          "sha256": "5ccfcd153205d5b5d6c1918f8b7c18427e17bdd68ba979ac218239492e874c18"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_provider_session_cli/config.py",
+          "sha256": "81e06b7117c5cafd50808e589b5484d3ed998f91c8dc73b92017c2a3e0e94650"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_provider_session_cli/harness.py",
+          "sha256": "6f2d3afd6057309330774ced3f999e82da0dc303a90c417090746d213a3c3f18"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_provider_session_cli/mock_provider.py",
+          "sha256": "700fe1ece185c6eb37be2e66da5fa3e6b9476a2d636fcb6dcfc33dd2bf3333c9"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_provider_session_cli/parser.py",
+          "sha256": "5d2e069d1922659e6113796653bdcbe289e15ccc9c8efaf9b0bcd0f39d9c09bd"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_real_provider_boundary/__init__.py",
+          "sha256": "1f3a6173f0a196cd01af3d6719f735492a5f057b5a68810b65a8d86072183ea2"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_real_provider_boundary/boundary.py",
+          "sha256": "1050aa961237bdb4b54da23452e9d52767a046cbc8a092e8b4fda90b6c4e2f20"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_real_provider_boundary/bridge.py",
+          "sha256": "2113eaf3cf5dc4c8864064d92d8a3b7d9ed49a75756246acfcd59be3c18d8aac"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_real_provider_boundary/config.py",
+          "sha256": "cd01bec89c49bb314781b221b257098a98a4e139103f5534eb9c653e72e3c989"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_real_provider_boundary/model.py",
+          "sha256": "ea6a37778f9f0156aaf679e8dc35efc7a98890b0fdb26de92a37987274363299"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_real_provider_boundary/report.py",
+          "sha256": "0a7d79670c418dcb0224bf0b96ce870393c35cd2e1cadcf03f00b75094b20aa2"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_real_provider_preflight/__init__.py",
+          "sha256": "54adbc393b55f860eab15737dafeaa8f9b2efeb957c4ac0e082f45b462ee97df"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_real_provider_preflight/authorization.py",
+          "sha256": "dbd48df052b90c560f6f28ebb56fda5d6c7c05d8da0f4eee424974acccd8664e"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_real_provider_preflight/config.py",
+          "sha256": "3cb53dd219b49d906fcd6e49265ef5b50f151f43e86aed59608c67b56630e4e7"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_real_provider_preflight/integrity.py",
+          "sha256": "96d3356e2ffef16081b54117969222478807e82c0cd4a91b6ebd7678dffe4e10"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_real_provider_preflight/model.py",
+          "sha256": "823240ac40af2133b777059400773196b9c88a1311b2ed75b54cf0eb0d5db7b9"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_real_provider_preflight/report.py",
+          "sha256": "2ce0df3d9167728fe06a509cd346a9c5872cb13aa6e422be98f4cf5f6d4699d4"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_real_provider_preflight/validator.py",
+          "sha256": "20762cb3fd28c3aa7e55e95304dc14ca2f224e44289f58d9e7e8c5b5fe7e43bc"
+        },
+        {
+          "matches_head": true,
+          "path": "core/ai_provider/__init__.py",
+          "sha256": "5fa88bbc318a612bbba65ce80ad1b137aa386a989d726e73392bf07b99da8edd"
+        },
+        {
+          "matches_head": true,
+          "path": "core/ai_provider/adapters.py",
+          "sha256": "7369a6bc6b1e29061497d028b1600b7a85c4ed9c98efd6e326277668ad1d4aed"
+        },
+        {
+          "matches_head": true,
+          "path": "core/ai_provider/config.py",
+          "sha256": "ac9ab81b4ff64e4a6c2872423d0fc126c99892508947cd9b319956ced890c253"
+        },
+        {
+          "matches_head": true,
+          "path": "core/ai_provider/contracts.py",
+          "sha256": "08aac72b2ebca3ba7230b9fc3d3a1a08d3a556a5705d913518422fc34e1b46d3"
+        },
+        {
+          "matches_head": true,
+          "path": "core/ai_provider/credentials.py",
+          "sha256": "5877b5e622130da37a50417126dcdaf92dd9d4c7da4e0328f4fc426e7f8a5b73"
+        },
+        {
+          "matches_head": true,
+          "path": "core/ai_provider/diagnostics.py",
+          "sha256": "47540b2c535986b88716bc770169793dbf47f38663b326cc186ac2e0f631cec6"
+        },
+        {
+          "matches_head": true,
+          "path": "core/ai_provider/events.py",
+          "sha256": "81601b01eae0d6a71582923e01c6f37cc65868e49ff1986983485e624e25124f"
+        },
+        {
+          "matches_head": true,
+          "path": "core/ai_provider/execution_context.py",
+          "sha256": "9eed9177b206612d864a794d6020754cf82c8b12caeaf4930ff62344de89f54f"
+        },
+        {
+          "matches_head": true,
+          "path": "core/ai_provider/execution_events.py",
+          "sha256": "59aa6f7d6646a8cbff17a0647d062e8d4d3a2cb1cbb0bff9db6722c88b6e9417"
+        },
+        {
+          "matches_head": true,
+          "path": "core/ai_provider/execution_hooks.py",
+          "sha256": "5d70e784ca9b53c7cc2f6fd5d98026d9a9c1b605e0ac85838c6179cc0f6826a0"
+        },
+        {
+          "matches_head": true,
+          "path": "core/ai_provider/execution_limits.py",
+          "sha256": "67e68b77e8b682c9d5f14246f6dc6acd7937d2a699fc97bc59e4ac01e4864012"
+        },
+        {
+          "matches_head": true,
+          "path": "core/ai_provider/execution_policy.py",
+          "sha256": "d0c27f42c2585c5660fff727a5c63d4933cc70cd4e7345cf0bce828344b6f539"
+        },
+        {
+          "matches_head": true,
+          "path": "core/ai_provider/execution_result.py",
+          "sha256": "d4f43d2d5eee735a354eb8c3b42708bbb27c5c216673c468e55bec9e391fcf48"
+        },
+        {
+          "matches_head": true,
+          "path": "core/ai_provider/execution_retry.py",
+          "sha256": "8cf6103dd1b7c498233d51841272dba8d836a53d653ef493f7213dca042ce443"
+        },
+        {
+          "matches_head": true,
+          "path": "core/ai_provider/execution_scheduler.py",
+          "sha256": "c040462878fc8a53b0ea7c90908080550fb60a705517a5eeffe7658fcd73219a"
+        },
+        {
+          "matches_head": true,
+          "path": "core/ai_provider/execution_statistics.py",
+          "sha256": "3ff6ae2decc486dcf33f95b8830e177ad817249bfa1d7e9fe056a8bdff5b6280"
+        },
+        {
+          "matches_head": true,
+          "path": "core/ai_provider/fallback.py",
+          "sha256": "9c2817025ccb8fd364a8f5cfdc74496f34678137f35f227e999ea0dbd5b9b3c8"
+        },
+        {
+          "matches_head": true,
+          "path": "core/ai_provider/fallback_chain.py",
+          "sha256": "5621984d5bde24dc22ef12978e1158f4acd07ff713028ba4144728c6f2c04642"
+        },
+        {
+          "matches_head": true,
+          "path": "core/ai_provider/health.py",
+          "sha256": "95224df0b5ca92f907228c7d319c2a72ac7899798b4f9ab8526bd1176314f6d5"
+        },
+        {
+          "matches_head": true,
+          "path": "core/ai_provider/load_balancer.py",
+          "sha256": "8c8a7120150fec25888fa77fbcf7cd76612ed03b4eca951e27e91660b231e10f"
+        },
+        {
+          "matches_head": true,
+          "path": "core/ai_provider/manager.py",
+          "sha256": "885e8532a3f9aab868a3786bf9e2cb90a39ec8a1955e6f36d9fdc1bb36abb4aa"
+        },
+        {
+          "matches_head": true,
+          "path": "core/ai_provider/manifest.py",
+          "sha256": "a60d91e38f1eeccf55a866560591fe7f5578d66c26280676ef9722e875ae9baa"
+        },
+        {
+          "matches_head": true,
+          "path": "core/ai_provider/metrics.py",
+          "sha256": "ccda8506605a463b405cfb365e4a2ab3497b8e2bb6a252906a9056dd6e546a69"
+        },
+        {
+          "matches_head": true,
+          "path": "core/ai_provider/observability.py",
+          "sha256": "9d912ec3419b6103c72b67f32ce88bb6c02011f87ba503236aa2035002665a88"
+        },
+        {
+          "matches_head": true,
+          "path": "core/ai_provider/orchestration.py",
+          "sha256": "4614ec43124c36a29913b7d0c36be45f883d044aa3963a9061e4744a32ba6c57"
+        },
+        {
+          "matches_head": true,
+          "path": "core/ai_provider/orchestration_result.py",
+          "sha256": "c43abec83f437408884347032090e7d6e6b93a1b6a1ab93c6b20345d2fbd90fa"
+        },
+        {
+          "matches_head": true,
+          "path": "core/ai_provider/provider_pool.py",
+          "sha256": "627273d85e41589b8efef47c0e7bf8db0516c7007ef2a061b1161b1c349d99d2"
+        },
+        {
+          "matches_head": true,
+          "path": "core/ai_provider/provider_score.py",
+          "sha256": "95aba7f11f5995a8633e8597671f9067e8605ac7c52202a055867d0377cc24bf"
+        },
+        {
+          "matches_head": true,
+          "path": "core/ai_provider/rate_limiter.py",
+          "sha256": "4ee338bcf36e01a3526f874995e82b0b16f0ed6e214ba407923964bc3845ab79"
+        },
+        {
+          "matches_head": true,
+          "path": "core/ai_provider/registry.py",
+          "sha256": "a69be771e097a4f1540f298a4ff523974a31c14c8691b1c359da2c33054e85a4"
+        },
+        {
+          "matches_head": true,
+          "path": "core/ai_provider/retry.py",
+          "sha256": "3ba5c6783d8894b138c551914071d4997f3e3c121aa97f0fa272dff334b7c3d4"
+        },
+        {
+          "matches_head": true,
+          "path": "core/ai_provider/router.py",
+          "sha256": "f2a067c6334b6d45ccb3f4c1a2e1aec2cf41084fbbb196c98f5ebf03b2f6fb8a"
+        },
+        {
+          "matches_head": true,
+          "path": "core/ai_provider/routing_policy.py",
+          "sha256": "d71ab764e0548d764fccc4a4974833e4203104f30c2cf5e58235ccee7bace8f3"
+        },
+        {
+          "matches_head": true,
+          "path": "core/ai_provider/runtime_binding.py",
+          "sha256": "a39c1be2ece54d912a8c62ecdc492856418a09ea664d59e1e9151f8996ea52f6"
+        },
+        {
+          "matches_head": true,
+          "path": "core/ai_provider/runtime_bridge.py",
+          "sha256": "0b5971d036fba48af105a547f9092ba7942ab7feaa25dd9c4a782c8bf8eb3af6"
+        },
+        {
+          "matches_head": true,
+          "path": "core/ai_provider/runtime_telemetry.py",
+          "sha256": "7d92b0453194d406a40f140af7b899e262623a8d171046e3af4c4963a4b573e4"
+        },
+        {
+          "matches_head": true,
+          "path": "core/ai_provider/secret_protection.py",
+          "sha256": "60d16039568bd4f673c83fc8b98cfec62f7f1d2e819e42c9ac7696c89cf8d0cd"
+        },
+        {
+          "matches_head": true,
+          "path": "core/ai_provider/telemetry_events.py",
+          "sha256": "37d90c575603f35a180d960be5dab0ed9cf778d01d82f0a8872cb7b8e8c99739"
+        },
+        {
+          "matches_head": true,
+          "path": "core/ai_provider/telemetry_exporter.py",
+          "sha256": "8981353db890df4252b1f3470eb20053a3416a93204818826dca52de7440ec4d"
+        },
+        {
+          "matches_head": true,
+          "path": "core/ai_provider/telemetry_metrics.py",
+          "sha256": "796b46c52e458dc7e49cf24ad78d22545967325281445755a3f3fa6a76f76c4c"
+        },
+        {
+          "matches_head": true,
+          "path": "core/ai_provider/telemetry_sink.py",
+          "sha256": "9358c064864cad3e226cba3c62e888bbcd99f38646f888495d356ebf0170e26a"
+        },
+        {
+          "matches_head": true,
+          "path": "core/ai_provider/telemetry_trace.py",
+          "sha256": "0d8b2264256871fcfd8b7d4313da1b6f59e4d15792a0f346f033132827fbbd3d"
+        }
+      ],
+      "matches_head": true
+    },
+    "qa_engine": {
+      "aggregate_sha256": "8e1c16bc9a6bebb8acd714e95563c6a31662ed558a18e415c8dfc876f397898c",
+      "count": 90,
+      "entries": [
+        {
+          "matches_head": true,
+          "path": "core/translation_naturalness/__init__.py",
+          "sha256": "da227afc57126a35e579ea00b9faf31532ead64df405fe77714868778d96abad"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_naturalness/canonicalizer.py",
+          "sha256": "9e2e4bf0c098540038fcf90a2540f6724c35e2a71782b7a2883e7613970cf037"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_naturalness/collocation_guard.py",
+          "sha256": "8bbd4552b0cb8002fd1745b8b8fd2e95964df32a93e0d7ea42759ca391607aaa"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_naturalness/freeze.py",
+          "sha256": "de27f81b64b15f449866e5d9d3c0c36b508cffde51c5287e60fc793a3366d6d8"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_naturalness/hallucination_guard.py",
+          "sha256": "ba7c896e2c765679685e356dd480c630837d5234f49b1d917e97fb7aeaefd88d"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_naturalness/policy.py",
+          "sha256": "4964a80b95e3063bb40a01931b8c09dafd9a9f9e730294cf5d022f303ce6527d"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_naturalness/voice_register_guard.py",
+          "sha256": "fa84184b6d09602aef43fbfc2d799b021800b51b62515797762c6106d479e297"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_corpus/__init__.py",
+          "sha256": "fb21e301a7b448137bf66084b3d28e88df65b1097de4900a04ec54254e9c536a"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_corpus/exporter.py",
+          "sha256": "46fd177af4a896bbf421f896113f0bd7bd118220006ed1201c095f89dcb5a56a"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_corpus/integrity.py",
+          "sha256": "8ba741867ef82ec7fa22de6fd11801c3a9b65a73e7b543ee7c572caa6ddf4674"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_corpus/loader.py",
+          "sha256": "448ec52a20048bc349e82d21317acccb81f5504c95237080faa6707267f54e58"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_corpus/model.py",
+          "sha256": "c9f0688ca7a7a84db90ad6bd1c2e317251bef3fc8ac9a1780d2f4db09ed0c587"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_corpus/validator.py",
+          "sha256": "0fdc19ff5ac35fe6230af556287e31e94d7284f51ae28c6ea5f3123b1f3e2453"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_corpus_governance/__init__.py",
+          "sha256": "23b788fcb3157c9e4c6cc9a926a3d9f2050336e57bb6e8cf9dcea038415394a2"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_corpus_governance/approval_policy.py",
+          "sha256": "33d68836ffce13875d5759649c7d4dd8351c110395bd1b447de2860133c9b629"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_corpus_governance/governance_builder.py",
+          "sha256": "ebe0a640ca33e144a68c1929362184b8ab7df2e980d07c156a77f376b3dd84ef"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_corpus_governance/governance_model.py",
+          "sha256": "04c8b9a566e991627d87db3e043c1aa9662e3ca6223cbe7c51cce0df5a579826"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_corpus_governance/governance_validator.py",
+          "sha256": "f96ebc135044943d93c32a69ec47945fc05f884479ab37f414c82c1a78d5cd3c"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_corpus_governance/integrity.py",
+          "sha256": "3c8fb9c10536b1fddc469d52b481ffb7fce7df4043fa7124605a27ef705aa63a"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_corpus_governance/lifecycle.py",
+          "sha256": "706babb2479e46355246c987bc360495b427304c0ff52ba62f62b29d38b77fd8"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_corpus_governance/provenance.py",
+          "sha256": "d629b63ccc7414718b10e370047b8bf0d326d188d4540048ae43b5bd5178c555"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_corpus_governance/serialization.py",
+          "sha256": "c67e275cb1ef8b99ac992ed4fec42dd0d406b63a91938c329193aeeb9eb0d164"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_defects/__init__.py",
+          "sha256": "7c4a74d7c5f33b3f958ebc0cddf82eeb16680c9a40cf216407c539b88831276e"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_defects/catalog.py",
+          "sha256": "38904c43ccd790c1557113cdcbdcbcb37611c2433660cbdbb84582b46c31b73a"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_defects/categories.py",
+          "sha256": "48e486b96899e001e1db6385b8cd6ce2a1f1653dbf052001d6c01efc174633c8"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_defects/integrity.py",
+          "sha256": "f9f3ca03473547252e996e69ae0e29dfd1ff4bde3d22c15416fa3bec93b07e93"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_defects/location.py",
+          "sha256": "1e82d468245168088de5f551d3d14fa542e4273df3c1644dda2497f6e7a81762"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_defects/model.py",
+          "sha256": "3012c87a5b2eb597a556ab5c858efb47549be8106b0a219830839c54f01f6866"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_defects/serializer.py",
+          "sha256": "cc8d6cead05a5a9053299e75936c0fb8bf0ac2fd1164825513e5066c997f3118"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_defects/severity.py",
+          "sha256": "5910b96a223c048d1a96dccf215d480cb9ac69215b045664cddbf266a9487fc6"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_defects/validator.py",
+          "sha256": "8c4a40d087d487e562aed968c1ac1cf167e52cc2d31208bfe8e0f9bb97067f79"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_framework_integration/__init__.py",
+          "sha256": "7fb49754ff2da0220cb44d4ac015277de41511845a3f5d1711798d343d80dd07"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_framework_integration/integration_builder.py",
+          "sha256": "2c415fb27369b691219b41c39eebbbdf44f08b4bae80d9e813afac917b6f6a21"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_framework_integration/integration_model.py",
+          "sha256": "c88fe67ce61e0d3b32f9bec1f2952b7e29a697a760881c33466060997ce7056f"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_framework_integration/integration_validator.py",
+          "sha256": "0ef643e4a4275b288ffa09555dbc5d1b4f1208c463d3324b9adcab22984e65e8"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_framework_integration/integrity.py",
+          "sha256": "2aecb0738cf7867f7b15d0aa817da43edc6388f20e83a2ac64c6df10f1a1ac08"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_framework_integration/references.py",
+          "sha256": "154e7509bb3b77e05518ec43dc0731dffa4983fc5c25971cb5048da17ac0656c"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_framework_integration/serialization.py",
+          "sha256": "ae901aea16102ecd4395d23e3fe8eb8fb7691ad24da932d9b1d3642a33147dbb"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_framework_integration/stage_chain.py",
+          "sha256": "a84c43f02ece5440f9d85dad1cda1ffb17303fe3d824cace688c1ba9adc90558"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_metrics/__init__.py",
+          "sha256": "90c17c3c48b9f90ba4b47287f7d6328c2f9246edd839a70144d61ade108bf64a"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_metrics/aggregation.py",
+          "sha256": "9de207ddef9914462806c92c3f4c2660b3e9a24ec7a03388c2de6639f26d7443"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_metrics/config.py",
+          "sha256": "9c78051aa9f3fdb363619bb90cce5fbaa4f4801cd469f7e6a743cd2b0e58adfe"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_metrics/dimensions.py",
+          "sha256": "8b28b71fed87e58b0b5a2984b4c5f5f3c44489eb8a52232b09b6f5ae37847d56"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_metrics/evidence.py",
+          "sha256": "25acc5588300efa6f8856549b6238c7ef2e6be2a9e99288a0863c10bb3b00a74"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_metrics/integrity.py",
+          "sha256": "20ec6effd6251225bfb0b44618d8667fe62ac1e12c0afa42f96e4f0577f5a30d"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_metrics/model.py",
+          "sha256": "da544f38d328190f5fff376c55fd0ed09e55f1dc87f56cb3217cef6fa41bd72c"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_metrics/report.py",
+          "sha256": "9006f84ba6529822b4e306c27aea0a7d93762cc1be87b2be9c067919906d9009"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_metrics/scoring.py",
+          "sha256": "57c3c9c6363a15ca5cd267e2a50ff2f5a663e709f3130e96478c20310a2b52f2"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_metrics/weights.py",
+          "sha256": "92ae44d93b919872b1d5315a5410bd72e7258fed07519030dcad4b9fdad845e9"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_review_artifacts/__init__.py",
+          "sha256": "6f0fbeb3d6e80c4abfdf10ebb7d923a52419f01582f28b574d0f1526a39a0fc7"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_review_artifacts/builder.py",
+          "sha256": "fd1b94ce469b44ee7b2f58906581321433419efdc58c75ab689d8e9999fb3c3c"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_review_artifacts/config.py",
+          "sha256": "6942af6b45351b877485179822153aee47eb3fd1e34bd0810b9bcab55ad453d0"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_review_artifacts/exporter.py",
+          "sha256": "b53500a6bc0ff2272699dc596a0a2fb72f06d6039c987d2951ba4565bb895ce7"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_review_artifacts/integrity.py",
+          "sha256": "d515365e9e9287a445a45407c082c899f5ea05b4332e39438a14cfb0b0b78958"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_review_artifacts/model.py",
+          "sha256": "e69cd334ff99acbedc981bff93c8bbf9d9898c0ce7acfeb4d8ff81ca9f29e31b"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_review_artifacts/redaction.py",
+          "sha256": "c1230d8dc4d2431676d24fe9585d37c2619a12a5c25d36726802a4fea2acc836"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_review_artifacts/summary.py",
+          "sha256": "31085638e590d04a13fe0e71faf88e18a2135040d7bc4b80d3346755dbd1295e"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_review_artifacts/validator.py",
+          "sha256": "638f73022188e0154bfc4e756d7466e43bfed5b8275f5dadc337712829e84c71"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_review_decision/__init__.py",
+          "sha256": "311176b4674981e0a21ba5192e5e014eac23c5914e6432ae5b6ef240559bc40b"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_review_decision/decision_builder.py",
+          "sha256": "29c06eda9b5c0a51313806ff17af2cd00ac61875039d08e951157d87442b5201"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_review_decision/decision_model.py",
+          "sha256": "bcabaaea289bd8a437e94214491288c47c71e7d8b939fd27ae125937a2aa56f1"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_review_decision/decision_schema.py",
+          "sha256": "efb9cf8c1ed1725ecc2c167fbf5bd70e36448174a9ab2d2aeb020f8393fafae5"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_review_decision/decision_validator.py",
+          "sha256": "8242d81340a0236267800a215756071e701529ce0ef3fd9ce3f1f84ceca54d46"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_review_decision/integrity.py",
+          "sha256": "8997aeeb0c52131cce8aaafa469f80b16b89e89eb5257d0811b2368bffcb77a2"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_review_decision/review_status.py",
+          "sha256": "03b44a410e1c8fe5f0245620cd1562e11bba17d0feed463eae5b5a959a2ae8e6"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_review_decision/serialization.py",
+          "sha256": "a1287fae43ee060ed04ca7256ad63b61b3ad17f06dee8231515acb112fd757c0"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_v5/__init__.py",
+          "sha256": "b9e99ac963a4489e1ab6da3be964c764e82b3b93477bdbacc8a14c2511acb125"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_v5/best_attempt.py",
+          "sha256": "122cd1948e0af12da433cfb6993909654786e89cb2a019b30c3e0b3d29b383f4"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_v5/completeness_guard.py",
+          "sha256": "bcbc100716dff41a78e23eb792291f24d851dfd614b9324c1e28f04739f9ac10"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_v5/legacy_qa_adapter.py",
+          "sha256": "018f04192905f3b5a6c2b761e16ad4acc74e356fd576470c5b0994bb3b5d41be"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_v5/models.py",
+          "sha256": "ccb34376d26905996f1130d1bf3f2cfd51af9cebea826f216793a8c1a7090ae8"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_v5/quality_baseline.py",
+          "sha256": "1d9e30d1fec51415518b5c21b7fdf15c1a7334244b9a94617bcfdac97cbfc1d8"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_v5/quality_chunk_rebuild_planner.py",
+          "sha256": "86d5bf1b9b927f9a50002938d5498d8805186e9b210618cf85a0f2669f274182"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_v5/quality_core_pipeline.py",
+          "sha256": "aea3a9702a8ab72c5d43aabe8ea3a3c8da76c98d26ccc3febd346317443391f2"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_v5/quality_decision.py",
+          "sha256": "e3dd67f464da41183fa81c0f9d47a39f08ba3da3341678f0549ab27dab54aef4"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_v5/quality_issue.py",
+          "sha256": "b1d858ffa658622b61508ce64177e5f0fe780192618d7b169d042fcde14aba39"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_v5/quality_repair_pipeline.py",
+          "sha256": "5a7f873ba89f8309cfd36c4d1bf44752d351b812d8ca32fc402a840265edfd82"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_v5/quality_repair_planner.py",
+          "sha256": "e7d473b41520bd451a20cd382af6ffa8903cf110438f369cfd881333fd2186a5"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_v5/quality_retry_orchestrator.py",
+          "sha256": "20a0ce8d34f99f3d6b8ca6ee77508d6f5754cab1e78228332eb111091128ecfa"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_v5/quality_runtime_gate_admission.py",
+          "sha256": "39e305d59291987e8fb1e55a0c483f1dec1af2ec44bc37a2bea05edc2f0c4735"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_v5/quality_runtime_gate_contract.py",
+          "sha256": "c02aceff582d4065f32d3a523e7b0090467fa3657e15bbedd1282678ca75f3cc"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_v5/quality_runtime_gate_decision.py",
+          "sha256": "3eda77c605c6aa599d69c6afca23b41af09a09924b331073b8af20a990a59d74"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_v5/quality_runtime_gate_pilot.py",
+          "sha256": "86c96e330d85e6f91c91b62872a0d91d6f931cf8f08874641e012d2de3259a8e"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_v5/runtime_integration.py",
+          "sha256": "198701fbfe3714b8fafef59e6d59081bab9d235a0e187a514d2c4fb8b8b712bb"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_v5/segment_recovery.py",
+          "sha256": "9d65a8ea64077d89f745b1cb32bfd5beff6e8e3681ccaa1d9dc86cb7e8ee1642"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_v5/semantic_repetition.py",
+          "sha256": "1d2239e670264985fc331f46f7b27ce916e258e82abe1055ddcacffd4bac36e3"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_v5/smart_local_repair.py",
+          "sha256": "e7fbca19397befb54fcb080f280b4612ef6064eeeb55a10c59eca1be2c9cfb74"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_v5/terminology_guard.py",
+          "sha256": "95e91ceb8f50a85ffc1e5303b426286b87da2e9cc0df02b955dea847f391cb79"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_v5/traditional_chinese_normalizer.py",
+          "sha256": "aeb56bb987d2476aaf69d6e99e19fdfdac3ba0f704c9071ce823b2fc821ae083"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_v5/unified_quality_gate.py",
+          "sha256": "d8b0910d5f962a81edf957ba179b1618ef300e2f8a01bee8e6befd5bbb8524d7"
+        }
+      ],
+      "matches_head": true
+    },
+    "resume_recovery": {
+      "aggregate_sha256": "1c2d7a9958c289f23bd41499e8d64f2871229a6a3d1efdf718acc2a2841f6830",
+      "count": 174,
+      "entries": [
+        {
+          "matches_head": false,
+          "path": "audits/legacy_capability_recovery/batch1/CHARACTER_MEMORY_V2_DESIGN.json",
+          "sha256": "79916ddf9bb5e02cefea4e4b0c57e2e15164e4fb12068274f994638b12320597"
+        },
+        {
+          "matches_head": false,
+          "path": "audits/legacy_capability_recovery/batch1/CHARACTER_MEMORY_V2_DESIGN.md",
+          "sha256": "06c7b908844a45468171b7132f4112bb332b862f2ac2607c0d67fc2380883a78"
+        },
+        {
+          "matches_head": false,
+          "path": "audits/legacy_capability_recovery/batch1/CHUNK_CACHE_V2_DESIGN.json",
+          "sha256": "ad39b1ac0a8bae288477578cc6c93365900ba08d98f7f0982b3b129c8cf4979f"
+        },
+        {
+          "matches_head": false,
+          "path": "audits/legacy_capability_recovery/batch1/CHUNK_CACHE_V2_DESIGN.md",
+          "sha256": "f3709db373a8f30b43e3fbed3598941f1c95555048557ce6c595bfa553881773"
+        },
+        {
+          "matches_head": false,
+          "path": "audits/legacy_capability_recovery/batch1/CURRENT_NTPE_CAPABILITY_MAP.json",
+          "sha256": "2d337262044df40bd093f467cf840268d5c4f4059a315dc95f13c636d79dc07d"
+        },
+        {
+          "matches_head": false,
+          "path": "audits/legacy_capability_recovery/batch1/DUAL_PASS_RECOVERY_DESIGN.json",
+          "sha256": "746597397955743a617c5ab512c0365602930a8562896e3c35bfe609249bb655"
+        },
+        {
+          "matches_head": false,
+          "path": "audits/legacy_capability_recovery/batch1/DUAL_PASS_RECOVERY_DESIGN.md",
+          "sha256": "bfe02a806fa6df51ff525a2961f6a60659a0f1e83b3b9dd9951aa5fab302ffad"
+        },
+        {
+          "matches_head": true,
+          "path": "audits/legacy_capability_recovery/batch1/GIT_REPORT.txt",
+          "sha256": "90edcc7d74744c0d828a1e27e67da5e74c566fb4d16289c13b04a13359c1e8a4"
+        },
+        {
+          "matches_head": false,
+          "path": "audits/legacy_capability_recovery/batch1/LCR_BATCH1_AUDIT.json",
+          "sha256": "98607f54dffe6f4192be31c80d311bbe88a90f9f30ed1078170875d5814683fa"
+        },
+        {
+          "matches_head": false,
+          "path": "audits/legacy_capability_recovery/batch1/LCR_BATCH1_AUDIT.md",
+          "sha256": "48a05882b3d5013e38eb598fbf6baaf29dc1b9dc51c1e1d5e20723c63302008a"
+        },
+        {
+          "matches_head": false,
+          "path": "audits/legacy_capability_recovery/batch1/LCR_CAPABILITY_DECISION_MATRIX.json",
+          "sha256": "d6854ff4829e9048ef865557ab4972ec2d242b4ad0e49276543a4745293e88f7"
+        },
+        {
+          "matches_head": false,
+          "path": "audits/legacy_capability_recovery/batch1/LCR_CAPABILITY_DECISION_MATRIX.md",
+          "sha256": "5ce6d4f9ec1e3916816a4b52b14442c09dd1721c38ca995620056f644428bb32"
+        },
+        {
+          "matches_head": false,
+          "path": "audits/legacy_capability_recovery/batch1/LCR_IMPLEMENTATION_ROADMAP.json",
+          "sha256": "ec2607ff34e6d756594194bf319a2091e1b3171b43da1f643842089cd80a39e8"
+        },
+        {
+          "matches_head": false,
+          "path": "audits/legacy_capability_recovery/batch1/LCR_IMPLEMENTATION_ROADMAP.md",
+          "sha256": "610aee0bb4d9af56764248cb70c69a18784c38db0c48322e80d31fbd40b3b315"
+        },
+        {
+          "matches_head": false,
+          "path": "audits/legacy_capability_recovery/batch1/LEGACY_CAPABILITY_INVENTORY.json",
+          "sha256": "9713a304d1014ffea95794f948472228839c56f82528879eec7838bee20bd924"
+        },
+        {
+          "matches_head": false,
+          "path": "audits/legacy_capability_recovery/batch1/MULTILINGUAL_RECOVERY_IMPACT.json",
+          "sha256": "85320861ba44f956f9226dfa4167e735eb0e1a7f6ea3311f689115dde6d16275"
+        },
+        {
+          "matches_head": true,
+          "path": "audits/legacy_capability_recovery/batch1/PACKAGE_REPORT.json",
+          "sha256": "ab5a3dbd054635ced764111c513b676f3829278a5310c3aba4678001c7ce48ab"
+        },
+        {
+          "matches_head": false,
+          "path": "audits/legacy_capability_recovery/batch1/SECURITY_FINDINGS.json",
+          "sha256": "9b504504d675c37fd05f99b10407a14e61a19b1c5be0e7bcd4e7e2ae0a85ca90"
+        },
+        {
+          "matches_head": true,
+          "path": "audits/legacy_capability_recovery/batch1/VALIDATION_REPORT.txt",
+          "sha256": "9cb0023620a33274c2422ae3ef30bc21d12931067254946ac0d8b7b36028b152"
+        },
+        {
+          "matches_head": true,
+          "path": "audits/legacy_capability_recovery/batch1/generate_lcr_batch1_audit.py",
+          "sha256": "99bfcc94eb2ffca25a389df862ae00f68c149db1e029220c08407d2528d71e07"
+        },
+        {
+          "matches_head": false,
+          "path": "audits/legacy_capability_recovery/batch2/LCR_BATCH2_BOUNDARY_REPORT.json",
+          "sha256": "8b70e5e2e31cfca02d999f7be50d700c76130e2dc5fadeed6a919599377f77d2"
+        },
+        {
+          "matches_head": false,
+          "path": "audits/legacy_capability_recovery/batch2/LCR_BATCH2_CHARACTER_MEMORY_SCHEMA.json",
+          "sha256": "ddc482deaf8019d0cac9028aab1a4a129e6ec9ef4495c2730783d2230e67af07"
+        },
+        {
+          "matches_head": false,
+          "path": "audits/legacy_capability_recovery/batch2/LCR_BATCH2_CHARACTER_MEMORY_V2.md",
+          "sha256": "4f6594005689ba1964754bdc352db799a2d25d37e9020bf193ead3697cf9b6e0"
+        },
+        {
+          "matches_head": false,
+          "path": "audits/legacy_capability_recovery/batch2/LCR_BATCH2_IMPLEMENTATION_REPORT.json",
+          "sha256": "4b9f1d18e95f509f8819a08ef315797c27bfe5d446a090cc3b63d09f28e72661"
+        },
+        {
+          "matches_head": true,
+          "path": "audits/legacy_capability_recovery/batch2/LCR_BATCH2_PACKAGE_REPORT.json",
+          "sha256": "b8e4c2c8cd4e1eb249f84d73d00674fe4f542ab675cf3b61d48760ebffe1c2bd"
+        },
+        {
+          "matches_head": false,
+          "path": "audits/legacy_capability_recovery/batch2/LCR_BATCH2_PERFORMANCE_REPORT.json",
+          "sha256": "6cb6b9d7169b4f94577b0ff34327400b6d372bddd14167a00824c854553c5ad4"
+        },
+        {
+          "matches_head": true,
+          "path": "audits/legacy_capability_recovery/batch2/LCR_BATCH2_SECURITY_REPORT.json",
+          "sha256": "82c5c64b28072eab652b74061a6ae25937d60ad933fd962fff5ffd331110b4c8"
+        },
+        {
+          "matches_head": true,
+          "path": "audits/legacy_capability_recovery/batch2/LCR_BATCH2_TEST_REPORT.json",
+          "sha256": "5530618520a247207e5c4dc06d6e52683859a8f9b37e61c53a0c8c4c538e1863"
+        },
+        {
+          "matches_head": true,
+          "path": "audits/legacy_capability_recovery/batch2/generate_lcr_batch2_audit.py",
+          "sha256": "8b3383dee62e6a85f17df8239babd9c051214d433663bbd959e80e790d5b7137"
+        },
+        {
+          "matches_head": true,
+          "path": "audits/legacy_capability_recovery/batch2/git_output.txt",
+          "sha256": "37927a6c3c6f628c2244bb173c71b8947598c569a5a1a942b7eee3d385038eda"
+        },
+        {
+          "matches_head": true,
+          "path": "audits/legacy_capability_recovery/batch2/regression_output.txt",
+          "sha256": "e01302d4b09bed66105c19a10b2f13c9101233c88e39216d8d4aec22b9814bea"
+        },
+        {
+          "matches_head": true,
+          "path": "audits/legacy_capability_recovery/batch2/test_output.txt",
+          "sha256": "b917722c221a3d80d90d8462af984010c9fae95f46fa8bac6523e9b8ac8e18d9"
+        },
+        {
+          "matches_head": true,
+          "path": "audits/legacy_capability_recovery/batch2/validator_output.txt",
+          "sha256": "ba21ae272644509b85f30877361e53638ed02437c47e835d4ea83e8059454b94"
+        },
+        {
+          "matches_head": true,
+          "path": "audits/legacy_capability_recovery/source_material/translate_realtime_v2_legacy.txt",
+          "sha256": "3ceb663403925400ad7af645f5bb5bad336a82cacda4d3ea7c0f9a8ec6d8e3be"
+        },
+        {
+          "matches_head": true,
+          "path": "audits/legacy_capability_recovery/source_material/v12_dynamic_memory_legacy.txt",
+          "sha256": "fe3061bc867a4a5e296785bab06631dff2e7e987622ba82ce524cd4098151570"
+        },
+        {
+          "matches_head": true,
+          "path": "benchmark/runtime/recovery_benchmark.py",
+          "sha256": "1f4ce2b118c9665c005d58ca9954b41ff3ee748ce2c34b69c3ff973b60f13c4d"
+        },
+        {
+          "matches_head": true,
+          "path": "cli/commands/session_resume.py",
+          "sha256": "6fca99e80c37a42017ff74a68ba2135e44f70bfebd084b70ffe1e3386d615bd8"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_canary_resume/__init__.py",
+          "sha256": "c6250bc0535344dfabc5be59e522c446ffceb71535024617cf67cd3ccf4c0be3"
+        },
+        {
+          "matches_head": true,
+          "path": "core/adaptive_context_canary_resume/resume.py",
+          "sha256": "d4a099f6f71f47dba8ae6673ab949697894a982946567479d68c50572efb8f09"
+        },
+        {
+          "matches_head": true,
+          "path": "core/production_runtime/recovery.py",
+          "sha256": "c873b5ecc0fb2fe93dc83a101dfe19a6bb688fe14576ced76ab84d7c5dfd5298"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_engine/recovery.py",
+          "sha256": "535466d40645b868f17ef88f69c65392530ac47fb8a40fafaf102ed6aefef29f"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_v5/segment_recovery.py",
+          "sha256": "9d65a8ea64077d89f745b1cb32bfd5beff6e8e3681ccaa1d9dc86cb7e8ee1642"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_reliability/real_runtime_recovery_pilot_admission_gate.py",
+          "sha256": "4cef6649d50e48919fda52e41adf0b2d7d5ab58460875d76ae092e3cf676c12b"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_reliability/real_runtime_recovery_pilot_contract.py",
+          "sha256": "df8178e2868f18403d21f27ece5e0f1d9a6469b758ae40584a9b1cc2c20bee21"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_reliability/real_runtime_recovery_pilot_dry_run_bundle.py",
+          "sha256": "9f0663d8868a349c0e728001330e63a6e348f647f8fc0dd0958342dbd8275c51"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_reliability/real_runtime_recovery_pilot_dry_run_runner.py",
+          "sha256": "e37493be099a08c5386e7404c45ecf4abfe8390053d0d9e7c6b075c0d9048258"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_reliability/real_runtime_recovery_pilot_rollback_controller.py",
+          "sha256": "c2fbdcafd721a67720a0418ba3cc1476c63d4d6ae70f02577279fabbb6d7901c"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_reliability/recovery_flow_integration.py",
+          "sha256": "039bb27d348ad47d0331d4cffdfac7de04ea365fcfcd2084a7b5f197bc457412"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_reliability/recovery_outcome_guard.py",
+          "sha256": "5d88df0e6975b65f3de8b72f804a30e7635b58ec1518e919a856718d5d8415df"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_reliability/recovery_result_bundle.py",
+          "sha256": "d7a2c271adf0a73ffe703443eed7150ddbfd0ebb94671262d8c7b7e73492a171"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_reliability/runtime_recovery_hook_adapter.py",
+          "sha256": "d4db4469bcf94226f390e12d831224d5769e32ea70c94c1ab38c6c1be5551c9a"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_reliability/runtime_recovery_hook_contract.py",
+          "sha256": "bafe1295a1b8d7df2bdefd7ce85d27e32a48c27b0b6d4de1e7ed7c057f4947aa"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_reliability/single_chunk_controlled_recovery_executor.py",
+          "sha256": "53ea80b11825377784832d0fb2011b0c816c2bb448c99bba3a21a04eaac2bfa4"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_runtime/runtime_recovery.py",
+          "sha256": "d826df91f4ecc4cb1b5ef73d97d5adafef15ad8f89d2b5082d95797773f0baa2"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_scheduler/runtime_resume_contract.py",
+          "sha256": "b8178d2ba50def6d31f78316f7e34e22aca823a54a1c4e0848ce6ada60d18a54"
+        },
+        {
+          "matches_head": true,
+          "path": "docs/archive/release_history/CHANGELOG_Stage_04_Runtime_Resume_Recovery_Layer.md",
+          "sha256": "07fb5ef250e7693e57d1d45d588964ae8b6ba7fb5ae7788ac8f1c85509aa8fd5"
+        },
+        {
+          "matches_head": true,
+          "path": "docs/archive/release_history/LTS_Stage_02_Resume_Retry_Manifest.json",
+          "sha256": "6c603d51604d8c1adbe52bf8225d1d6ea4e404d2e018f779dde88e18f27a861b"
+        },
+        {
+          "matches_head": true,
+          "path": "docs/archive/release_history/LTS_Stage_02_Resume_Retry_Report.md",
+          "sha256": "d113c424766719986d5b9dd816ad15fd4eb28d85b62b2377584a0aabbc803656"
+        },
+        {
+          "matches_head": true,
+          "path": "docs/archive/release_history/LTS_Stage_08_Batch_Failure_Recovery_Report.md",
+          "sha256": "61bbdb72208a13dc00ca858786f026747c07bdb99bf50f4558d66ece99461ad1"
+        },
+        {
+          "matches_head": true,
+          "path": "docs/archive/release_history/README_NTPE_v0_9_1_1_Transactional_Recovery.txt",
+          "sha256": "ac3fd48be5af65b50acab3e60816ddb2fcd92bff58bba49f51b5c8d190fbe3d1"
+        },
+        {
+          "matches_head": true,
+          "path": "docs/archive/release_history/README_NTPE_v0_9_1_Production_Recovery.txt",
+          "sha256": "a458c09d20dcaab0cd5398d01ca3e7e5a53955c8919d3bf3917af0ded0d0d1e5"
+        },
+        {
+          "matches_head": true,
+          "path": "docs/archive/release_history/README_NTPE_v0_9_2_Adaptive_Chunk_Recovery.txt",
+          "sha256": "40f343e517a3401a39d99c06410695814e95f168994557258c110225d6d9fb92"
+        },
+        {
+          "matches_head": true,
+          "path": "docs/releases/TE_v5_2_3_PROVIDER_BACKPRESSURE_REGRESSION_RESUME.md",
+          "sha256": "2a417e9299c1e4c2bb084dffad81505800573a03af336e6d4d3b12c3f26fc1bd"
+        },
+        {
+          "matches_head": true,
+          "path": "docs/releases/te_v3_2/TE_v3_2_STAGE_3_2_5_RUNTIME_SCHEDULER_RESUME_CONTRACT.md",
+          "sha256": "8d8e9bb520dd50d1bee36f01b09269183ce992bf9858c8695818777d55827068"
+        },
+        {
+          "matches_head": true,
+          "path": "docs/releases/te_v4_1/TE_V4_1_STAGE_4_1_2_RUNTIME_RECOVERY_HOOK_ADAPTER.md",
+          "sha256": "60ddd0df01280ff2c438526df94034cecb05be896d2b80275c28965431cf073c"
+        },
+        {
+          "matches_head": true,
+          "path": "docs/releases/te_v4_1/TE_V4_1_STAGE_4_1_3_RECOVERY_OUTCOME_GUARD.md",
+          "sha256": "b1c0e9bb5d347e0e91709862008d8739335ddc8deac1bc7bb7368ab129cd7a9b"
+        },
+        {
+          "matches_head": true,
+          "path": "docs/releases/te_v4_1/TE_V4_1_STAGE_4_1_4_RECOVERY_RESULT_BUNDLE.md",
+          "sha256": "4b25cb2e71eea92a9306a65f53c5ae37a081fc5a7620101d68afef934cb0ecea"
+        },
+        {
+          "matches_head": true,
+          "path": "docs/releases/te_v4_1/TE_V4_1_STAGE_4_1_5_RECOVERY_FLOW_INTEGRATION.md",
+          "sha256": "3f5cf7c466647f9e53358a8b2eb66791083ef5faab49946e513cf064a7e823ed"
+        },
+        {
+          "matches_head": true,
+          "path": "docs/releases/te_v4_1/TE_V4_1_STAGE_4_1_6_RECOVERY_FLOW_BOUNDARY_REGRESSION.md",
+          "sha256": "e9ab478db115e837564c48b1b77ede9c848cd5f5cb11f4762dd339f5bafba3fa"
+        },
+        {
+          "matches_head": true,
+          "path": "docs/releases/te_v4_2/TE_V4_2_REAL_RUNTIME_RECOVERY_PILOT_FREEZE.md",
+          "sha256": "97fd37128715f9c003232d89df577d4bb37479ad3eeb5ba757c9d90d1e2dfe45"
+        },
+        {
+          "matches_head": true,
+          "path": "docs/releases/te_v4_2/TE_V4_2_STAGE_4_2_1_REAL_RUNTIME_RECOVERY_PILOT_CONTRACT.md",
+          "sha256": "1ba782a4aa268bf9066ca12c2de108e3453ccf9e50173e3fd514ace8d684c845"
+        },
+        {
+          "matches_head": true,
+          "path": "docs/releases/te_v4_2/TE_V4_2_STAGE_4_2_2_REAL_RUNTIME_RECOVERY_PILOT_ADMISSION_GATE.md",
+          "sha256": "92c1e610ee33f6809870acf4ee75a733cbb25327b798077773912fc66dc58513"
+        },
+        {
+          "matches_head": true,
+          "path": "docs/releases/te_v4_2/TE_V4_2_STAGE_4_2_3_REAL_RUNTIME_RECOVERY_PILOT_ROLLBACK_CONTROLLER.md",
+          "sha256": "f6c2973d628b694a48bda93cff0046632c4baa70280d1e5b6a91472acd8091dc"
+        },
+        {
+          "matches_head": true,
+          "path": "docs/releases/te_v4_2/TE_V4_2_STAGE_4_2_4_REAL_RUNTIME_RECOVERY_PILOT_DRY_RUN_RUNNER.md",
+          "sha256": "a7f177437f3e94a349281c7e7585ba7e593cc7a65f8628a2bb6db2e184a0240a"
+        },
+        {
+          "matches_head": true,
+          "path": "docs/releases/te_v4_2/TE_V4_2_STAGE_4_2_5_REAL_RUNTIME_RECOVERY_PILOT_DRY_RUN_BUNDLE.md",
+          "sha256": "d797dd3e21518eccfaf83cfb61527cd760a00fbb61f22bde3d9fd5dd4f816938"
+        },
+        {
+          "matches_head": true,
+          "path": "docs/releases/te_v4_2/TE_V4_2_STAGE_4_2_6_REAL_RUNTIME_RECOVERY_PILOT_BOUNDARY_REGRESSION.md",
+          "sha256": "e80d6d12a358507652d4451a47e980cf1449847dbfc551aa5c5f6ab597811f10"
+        },
+        {
+          "matches_head": true,
+          "path": "docs/releases/te_v4_3/TE_V4_3_STAGE_4_3_1_RUNTIME_RECOVERY_HOOK_CONTRACT.md",
+          "sha256": "64f3aaaa07e35d5daedfc7a5a21f966776eb894b0f6e5d574b1542b76ff1f8b7"
+        },
+        {
+          "matches_head": true,
+          "path": "docs/releases/te_v4_3/TE_V4_3_STAGE_4_3_5_RUNTIME_RECOVERY_HOOK_BOUNDARY_REGRESSION.md",
+          "sha256": "26bfda6985e8e64fdcd6c3975ab4ee1adc40df2d3db553eb63210a76cb7f0e00"
+        },
+        {
+          "matches_head": true,
+          "path": "docs/releases/te_v4_3/TE_V4_3_TRANSLATION_RUNTIME_RECOVERY_HOOK_FREEZE.md",
+          "sha256": "8d0fabcd2dcb5c85b2ab8af31065817aa3277b220595c10c4656514010b62903"
+        },
+        {
+          "matches_head": true,
+          "path": "docs/releases/te_v4_4/TE_V4_4_STAGE_4_4_3_SINGLE_CHUNK_CONTROLLED_RECOVERY_EXECUTOR.md",
+          "sha256": "b4c50d2835637b5c85b358b5787f98f639db722972b3b848d0ae1164e2d07959"
+        },
+        {
+          "matches_head": true,
+          "path": "docs/releases/te_v5_5/TE_V5_5_3_1_COMPLETENESS_RECOVERY_BEST_ATTEMPT.md",
+          "sha256": "96fe5ddf2171b7f8da58550be1cbf481000009a5306de7cb595be1006c1a4ce7"
+        },
+        {
+          "matches_head": true,
+          "path": "docs/releases/te_v5_5/TE_V5_5_3_3_SEGMENT_LEVEL_COMPLETENESS_RECOVERY.md",
+          "sha256": "291b6f617bfa4f2f29ed4cf1d35f0a5a4196900ec1f4f867b959a94853176751"
+        },
+        {
+          "matches_head": true,
+          "path": "docs/releases/te_v7_0/TE_V7_0_STAGE07_ACE_CANARY_RESUME.md",
+          "sha256": "a09e745a05251b6c457b34cb2ae2f2bd4a7c98fe8b7a2b8778e74b8742eb8326"
+        },
+        {
+          "matches_head": true,
+          "path": "docs/releases/te_v7_2/TE_V720_STAGE1222_INDEPENDENT_PAIR_RECOVERY_EXECUTION.md",
+          "sha256": "bb31db1d272ccac8db612369a4d6cc5f57719248d5d181dec0dceba2fcbfdb91"
+        },
+        {
+          "matches_head": true,
+          "path": "engine/pipeline/adaptive_recovery.py",
+          "sha256": "42a175e74d656842c11b8cc417602c35812408e6d130831e0282106fec752e1e"
+        },
+        {
+          "matches_head": true,
+          "path": "engine/pipeline/recovery_pipeline.py",
+          "sha256": "75e441ce1f546a4577dbd76eb0e54886b33b47a02e60f0532f4b29194873868d"
+        },
+        {
+          "matches_head": true,
+          "path": "launcher_adaptive_recovery.py",
+          "sha256": "8f01b60cb1d1216fc9e988c435a2f19f0653ef38946f7bb5cf900cc62ef84f68"
+        },
+        {
+          "matches_head": true,
+          "path": "launcher_pipeline_recovery.py",
+          "sha256": "2346543ac12f4923e86d85eafbb0cb68e3a36b228157d701bac14738151e0306"
+        },
+        {
+          "matches_head": true,
+          "path": "lts/long_run_recovery.py",
+          "sha256": "3344463809f41249ea91fcc08d228c648cb00a981e93a82584d12ed3cf10d75b"
+        },
+        {
+          "matches_head": true,
+          "path": "manifests/te_v41_recovery_flow_boundary_regression_manifest.json",
+          "sha256": "3d9942056404b8560ef4ca3d6340ce7f4cb828bdafe6e6c8ecf215ac2bc6e4ac"
+        },
+        {
+          "matches_head": true,
+          "path": "manifests/te_v41_recovery_flow_integration_manifest.json",
+          "sha256": "71a31604f98a669b156db7e166d0579f9963ef79777e09e39adda5cc143dcc3e"
+        },
+        {
+          "matches_head": true,
+          "path": "manifests/te_v41_recovery_outcome_guard_manifest.json",
+          "sha256": "9ba37a68b73192a05a53bf0c2c175d618163b217d9a53a7aec2f031a7718bc46"
+        },
+        {
+          "matches_head": true,
+          "path": "manifests/te_v41_recovery_result_bundle_manifest.json",
+          "sha256": "97226cc5ac3217a3dadac137e823c8bbe020071c277acc480aa5976c8eef1610"
+        },
+        {
+          "matches_head": true,
+          "path": "manifests/te_v41_runtime_recovery_hook_adapter_manifest.json",
+          "sha256": "43a48a617f57fe9d2408897e2c0f74d7b85fb99c210c33a61c4f42f080bc6d61"
+        },
+        {
+          "matches_head": true,
+          "path": "manifests/te_v42_real_runtime_recovery_pilot_admission_manifest.json",
+          "sha256": "3921c1e1090d5eb898569beadf329c336cc2da81a9c9599e8eb9da5e442b826e"
+        },
+        {
+          "matches_head": true,
+          "path": "manifests/te_v42_real_runtime_recovery_pilot_boundary_regression_manifest.json",
+          "sha256": "c8d9930ae396c3c2124764a13617e2c4eadb92897d21b8b1bbdb5f41348931c9"
+        },
+        {
+          "matches_head": true,
+          "path": "manifests/te_v42_real_runtime_recovery_pilot_contract_manifest.json",
+          "sha256": "78cd8c62b189252e07b41093aa5b2111fbd5f60feec45c2fc28bf4956ac15da1"
+        },
+        {
+          "matches_head": true,
+          "path": "manifests/te_v42_real_runtime_recovery_pilot_dry_run_bundle_manifest.json",
+          "sha256": "d140d4958e0fb7079e9046dac9911d7948264978f84662d8fa4c7e0a47b0563a"
+        },
+        {
+          "matches_head": true,
+          "path": "manifests/te_v42_real_runtime_recovery_pilot_dry_run_runner_manifest.json",
+          "sha256": "111971e0170856f984f72b3dbccc7e0c5a0329ab960e3108ba487978b3c4f657"
+        },
+        {
+          "matches_head": true,
+          "path": "manifests/te_v42_real_runtime_recovery_pilot_freeze_manifest.json",
+          "sha256": "df59b5665389a30051fdea47819c98c9a401b00089a2a6ec8d50d4e92ab1421f"
+        },
+        {
+          "matches_head": true,
+          "path": "manifests/te_v42_real_runtime_recovery_pilot_rollback_manifest.json",
+          "sha256": "b5694ae551a207dbf4512653a4bb5348dee0fbff57ebdefd2ec2373a263a87b5"
+        },
+        {
+          "matches_head": true,
+          "path": "manifests/te_v43_runtime_recovery_hook_boundary_regression_manifest.json",
+          "sha256": "eca0278e5e76f6cf4c21c3468ee64bbe4346211f3d20afc1a89ff9da1934ec63"
+        },
+        {
+          "matches_head": true,
+          "path": "manifests/te_v43_runtime_recovery_hook_contract_manifest.json",
+          "sha256": "b220805b79a43bbd08cf3afb9f69c12517ec9f43c4d332426f7dde70a2d5c35b"
+        },
+        {
+          "matches_head": true,
+          "path": "manifests/te_v43_translation_runtime_recovery_hook_freeze_manifest.json",
+          "sha256": "7af3b697fe6016ab7111cb4046c6a2f82db63bc6763e67d7a9976aeb7b9320c6"
+        },
+        {
+          "matches_head": true,
+          "path": "manifests/te_v44_single_chunk_controlled_recovery_executor_manifest.json",
+          "sha256": "1c0d8557fb3a18c009357fbc7b5e6c1bba3d795a71aee9b07b8d3140ae5a2bc7"
+        },
+        {
+          "matches_head": true,
+          "path": "manifests/te_v700_stage07_ace_canary_resume_manifest.json",
+          "sha256": "5f795a5ecea2b2df1368476e0e5357e12a86eb368cd1d88c990b3dfeded29ee2"
+        },
+        {
+          "matches_head": true,
+          "path": "manifests/te_v720_stage1222_independent_pair_recovery_execution_manifest.json",
+          "sha256": "2d236adfbc71ccb3e7061bccf047cd3668b5e96538c6c6c4a8ff6ae48f157d9a"
+        },
+        {
+          "matches_head": true,
+          "path": "ntpe_lcr_batch1_legacy_capability_recovery_audit_test.py",
+          "sha256": "3623b7aeacf0a0a742ebb4259337f62595f6fc7580dcb68e2b62dfbb1c30f5b1"
+        },
+        {
+          "matches_head": true,
+          "path": "ntpe_long_run_recovery.py",
+          "sha256": "24626ed096a7862913f886b65f9f890f6570e78a68974ac0f776e88365ddadcf"
+        },
+        {
+          "matches_head": true,
+          "path": "ntpe_te_v31_stage314_resume_journal_test.py",
+          "sha256": "71ea789b5d67cbc4d8532a86c859578dae92148d834a3a375a7d9d2f66332814"
+        },
+        {
+          "matches_head": true,
+          "path": "ntpe_te_v32_stage325_runtime_scheduler_resume_contract_test.py",
+          "sha256": "0b5b0a5c378fc31f0f1372755ef6672878bf2babf52d2d8ff7c42c6f27ca6322"
+        },
+        {
+          "matches_head": true,
+          "path": "ntpe_te_v41_stage412_runtime_recovery_hook_adapter_test.py",
+          "sha256": "55bb0e26e7deb0e8fad41165e0c8883ce7f5f5c9c5cc258c46168bd8beb0d532"
+        },
+        {
+          "matches_head": true,
+          "path": "ntpe_te_v41_stage413_recovery_outcome_guard_test.py",
+          "sha256": "26b10405cd4f8b5612befdf096964e43c8952dc436e81c06a86b51da6657d154"
+        },
+        {
+          "matches_head": true,
+          "path": "ntpe_te_v41_stage414_recovery_result_bundle_test.py",
+          "sha256": "f2de57eac25598b8fa415ac24886abe07a0763146a6b5cea51b23feb0644b54e"
+        },
+        {
+          "matches_head": true,
+          "path": "ntpe_te_v41_stage415_recovery_flow_integration_test.py",
+          "sha256": "1e0aa3a8a57fb2373e8e14b6e3423cf348430f3e0015bdd54fc1d0b12405943b"
+        },
+        {
+          "matches_head": true,
+          "path": "ntpe_te_v41_stage416_recovery_flow_boundary_regression_test.py",
+          "sha256": "89e113737896d4bdd7eecfc3893dea3b6fe6cba032b6a9cdc39c6ac4cfe337b9"
+        },
+        {
+          "matches_head": true,
+          "path": "ntpe_te_v42_stage421_real_runtime_recovery_pilot_contract_test.py",
+          "sha256": "da57a9919d02a42f56f71ca59f780eeecefa4f6694ca1512186229ff021a1ed0"
+        },
+        {
+          "matches_head": true,
+          "path": "ntpe_te_v42_stage422_real_runtime_recovery_pilot_admission_gate_test.py",
+          "sha256": "6ecdf583892e5a714c7ee31d5e5fbebca036c34ef1b2c625a0df91d4201e8988"
+        },
+        {
+          "matches_head": true,
+          "path": "ntpe_te_v42_stage423_real_runtime_recovery_pilot_rollback_controller_test.py",
+          "sha256": "6701ef68df72fcb3aa4a5a900788973f38df518452140ae9981950d658f83499"
+        },
+        {
+          "matches_head": true,
+          "path": "ntpe_te_v42_stage424_real_runtime_recovery_pilot_dry_run_runner_test.py",
+          "sha256": "36112c7a4cca39f45fbf55afa8f6fa76510df74b2130eb339f8346412640827a"
+        },
+        {
+          "matches_head": true,
+          "path": "ntpe_te_v42_stage425_real_runtime_recovery_pilot_dry_run_bundle_test.py",
+          "sha256": "ec346d721f439bfe346c3bed1692d6d255fba2ed9dcd01c5036805dbb7c2661c"
+        },
+        {
+          "matches_head": true,
+          "path": "ntpe_te_v42_stage426_real_runtime_recovery_pilot_boundary_regression_test.py",
+          "sha256": "2e7d13f30f0dbf4daff88916ec7bf9526f6d17b2c542671c44e57f392b82a70b"
+        },
+        {
+          "matches_head": true,
+          "path": "ntpe_te_v42_stage427_real_runtime_recovery_pilot_freeze_test.py",
+          "sha256": "e36570a5a264d783b3a5e98c767b5d4ea3ff520ac06c43f6b5c3fe86cc5a6b9b"
+        },
+        {
+          "matches_head": true,
+          "path": "ntpe_te_v43_stage431_runtime_recovery_hook_contract_test.py",
+          "sha256": "45a90c6b4f10e55156ffa098f28baa01ab86648231dc0d153deafc7aca83b5ea"
+        },
+        {
+          "matches_head": true,
+          "path": "ntpe_te_v43_stage435_runtime_recovery_hook_boundary_regression_test.py",
+          "sha256": "4b76f3d7e49732a2fcc2c99de16e09d568405ed12aace1845af6307f9d72175a"
+        },
+        {
+          "matches_head": true,
+          "path": "ntpe_te_v43_stage436_translation_runtime_recovery_hook_freeze_test.py",
+          "sha256": "582ec961d736deed779b98fe5c77a3a1b59aecc18b239a916968c119cb074957"
+        },
+        {
+          "matches_head": true,
+          "path": "ntpe_te_v44_stage443_single_chunk_controlled_recovery_executor_test.py",
+          "sha256": "9435be3cfcc4544508bccce191fbc02655f884146f2cc452cf1eccf0dcf98ee9"
+        },
+        {
+          "matches_head": true,
+          "path": "ntpe_te_v523_provider_backpressure_resume_test.py",
+          "sha256": "1450a323bd84d7873f8f45382003a8c00a1cacee06069dd4b9e9286b323f3598"
+        },
+        {
+          "matches_head": true,
+          "path": "ntpe_te_v5531_completeness_recovery_best_attempt_test.py",
+          "sha256": "7d2312f9998df24526dd5a7f1e133fd812577c835111e1cd8f6c92d9e3fc6bdd"
+        },
+        {
+          "matches_head": true,
+          "path": "ntpe_te_v5533_segment_level_completeness_recovery_test.py",
+          "sha256": "cec36300ceab1eada37f88d144d454fef4165b20e61b40033f856f928753781b"
+        },
+        {
+          "matches_head": true,
+          "path": "ntpe_te_v700_stage07_ace_canary_resume_test.py",
+          "sha256": "a7efd4424fb2e344fac610ada75515406d73d764900eb99f52a28236d0d2dc69"
+        },
+        {
+          "matches_head": true,
+          "path": "ntpe_te_v720_stage1222_independent_pair_recovery_execution_test.py",
+          "sha256": "cf2ab1c93a8cb3dd6b1bea7e1dcdf6bf4a06a54d8cb5c4ca0b9381b637726245"
+        },
+        {
+          "matches_head": true,
+          "path": "tests/integration/lcr_batch1_legacy_capability_recovery_audit_test.py",
+          "sha256": "6e693d55ee65e1f6029dbb2994f098fab8d2fd667a391b1e664de32c57d34fa7"
+        },
+        {
+          "matches_head": true,
+          "path": "tests/integration/translation_completeness_recovery_best_attempt_v5531_test.py",
+          "sha256": "1055bac842aaa85740f7c2e4a62a67324c0388117bc1cdab21f9dcd9f58f6b7f"
+        },
+        {
+          "matches_head": true,
+          "path": "tests/integration/translation_engine_v700_stage07_ace_canary_resume_test.py",
+          "sha256": "16d833d2eb7d4e42aadbb92aa29399f4e9f70ce0563828f0380f3d3038862884"
+        },
+        {
+          "matches_head": true,
+          "path": "tests/integration/translation_engine_v720_stage1222_independent_pair_recovery_execution_test.py",
+          "sha256": "3a62ecbfdcb92818de1544ba0e842357985b41193546d5e3d596475d87fb731d"
+        },
+        {
+          "matches_head": true,
+          "path": "tests/integration/translation_provider_backpressure_resume_test.py",
+          "sha256": "662cf4722823669d7976e064fb771cdaf3ac4ca3820a327fcc97902aa3cd3969"
+        },
+        {
+          "matches_head": true,
+          "path": "tests/integration/translation_reliability_stage412_runtime_recovery_hook_adapter_test.py",
+          "sha256": "421a46db141e873cbf37d05aad450420a9d6a1b3a501425cba39cc769e82daba"
+        },
+        {
+          "matches_head": true,
+          "path": "tests/integration/translation_reliability_stage413_recovery_outcome_guard_test.py",
+          "sha256": "b4e1e917aa9a4f3a54ea5036616e7dd6509433605b2e313ee4f1afbc5361ee72"
+        },
+        {
+          "matches_head": true,
+          "path": "tests/integration/translation_reliability_stage414_recovery_result_bundle_test.py",
+          "sha256": "e63ef34bd8b1e972ed0a7ca2f52a52a72561a38be0c31661d60a100a25348c9a"
+        },
+        {
+          "matches_head": true,
+          "path": "tests/integration/translation_reliability_stage415_recovery_flow_integration_test.py",
+          "sha256": "03f5b2645d3f16972d41054763c329d60f5c7448269712c3d9e2fc0670f7547d"
+        },
+        {
+          "matches_head": true,
+          "path": "tests/integration/translation_reliability_stage416_recovery_flow_boundary_regression_test.py",
+          "sha256": "45f5afefced2b5b8173f00b738347ba9917141daf27e13b036cf2920391cf973"
+        },
+        {
+          "matches_head": true,
+          "path": "tests/integration/translation_reliability_stage421_real_runtime_recovery_pilot_contract_test.py",
+          "sha256": "b8be7f4c290362b997d2bb12da1ea648e094e79a62745015ea0352aaa6cdb1c4"
+        },
+        {
+          "matches_head": true,
+          "path": "tests/integration/translation_reliability_stage422_real_runtime_recovery_pilot_admission_gate_test.py",
+          "sha256": "b0c6fcf61ce15d5f0c573eefaa6f43f639040d4dd50fa6ca992c1896ad8d16eb"
+        },
+        {
+          "matches_head": true,
+          "path": "tests/integration/translation_reliability_stage423_real_runtime_recovery_pilot_rollback_controller_test.py",
+          "sha256": "455e9ed4edf7bbdb152a248d22fcaa028d728a63a1688ac2a6aa1df3cddc2eff"
+        },
+        {
+          "matches_head": true,
+          "path": "tests/integration/translation_reliability_stage424_real_runtime_recovery_pilot_dry_run_runner_test.py",
+          "sha256": "345c6ea28e55364a38c9f5345bec1d566ce894abbfa9570075880a62ad66c51c"
+        },
+        {
+          "matches_head": true,
+          "path": "tests/integration/translation_reliability_stage425_real_runtime_recovery_pilot_dry_run_bundle_test.py",
+          "sha256": "3e3aa953bd030057702d9ab5a90b9990f3e7a52064a60f77fe8354eff88a2b76"
+        },
+        {
+          "matches_head": true,
+          "path": "tests/integration/translation_reliability_stage426_real_runtime_recovery_pilot_boundary_regression_test.py",
+          "sha256": "d75fca443be751ee879f7e9468868a5045adf17fec70fcd31c7481bdad67a3f7"
+        },
+        {
+          "matches_head": true,
+          "path": "tests/integration/translation_reliability_stage427_real_runtime_recovery_pilot_freeze_test.py",
+          "sha256": "b3ad4aae005c55b69dfeb25b9d932b405e2187939fbc6757d2ab3a84b5686bc1"
+        },
+        {
+          "matches_head": true,
+          "path": "tests/integration/translation_reliability_stage431_runtime_recovery_hook_contract_test.py",
+          "sha256": "89614c78b3f3182785fc2d10929299b030e6447e085b52beb742b002c54d8037"
+        },
+        {
+          "matches_head": true,
+          "path": "tests/integration/translation_reliability_stage435_runtime_recovery_hook_boundary_regression_test.py",
+          "sha256": "71ec25d85799661ee19d34956fcde89dd3ad924e9051a4f167fed02d7369f655"
+        },
+        {
+          "matches_head": true,
+          "path": "tests/integration/translation_reliability_stage436_runtime_recovery_hook_freeze_test.py",
+          "sha256": "4da5ee902b2538dcb804b97412f3e7038f3ac9f624c986803c9b450b4f557cb0"
+        },
+        {
+          "matches_head": true,
+          "path": "tests/integration/translation_reliability_stage443_single_chunk_controlled_recovery_executor_test.py",
+          "sha256": "4cf282bff5d6f16af17a3a89cda88adc0196e4d27bd3c6e0cae7b065607a09a4"
+        },
+        {
+          "matches_head": true,
+          "path": "tests/integration/translation_scheduler_stage314_resume_journal_test.py",
+          "sha256": "0736d03e4820052bc05e894e6fc5330d02d2d659d2106dc3538ce3358e87340e"
+        },
+        {
+          "matches_head": true,
+          "path": "tests/integration/translation_scheduler_stage325_runtime_resume_contract_test.py",
+          "sha256": "053f8b87840b31112bba5f04f6a91415fe10d0c294064d79f0326cf44da05a89"
+        },
+        {
+          "matches_head": true,
+          "path": "tests/integration/translation_segment_level_completeness_recovery_v5533_test.py",
+          "sha256": "1b781472a252259a7195a62a13bb177bf020030f46bfbb194057b3734a69d879"
+        },
+        {
+          "matches_head": false,
+          "path": "tests/literary/outputs/PS-02-smoke/Test_Set_0/original_ko_resume_state.json",
+          "sha256": "f02ae8277286381a3f5c4c73238ecb3d75c96467d417c95a925b812b2351a1fc"
+        },
+        {
+          "matches_head": false,
+          "path": "tests/literary/outputs/PS-03-smoke/Test_Set_0/original_ko_resume_state.json",
+          "sha256": "40af463e857c1fc759645e3da5ffd6672acf83c27c1dfacd98ae7e880f66675e"
+        },
+        {
+          "matches_head": false,
+          "path": "tests/literary/outputs/TER-v1.1/Smoke_Set/original_ko_resume_state.json",
+          "sha256": "650e5698072d10d147e61f2293de27f970f9725ed2f90da26b62b4655035e349"
+        },
+        {
+          "matches_head": false,
+          "path": "tests/literary/outputs/TER-v1.2/Smoke_Set/original_ko_resume_state.json",
+          "sha256": "e58beae1bbaf8dba666ca2fe52c24c7309e36831683829fce37202ca20a23854"
+        },
+        {
+          "matches_head": false,
+          "path": "tests/literary/outputs/TER-v1.3/Smoke_Set/original_ko_resume_state.json",
+          "sha256": "e2304ad7a766da62e5a9ceb1f4899213e91f943f6d0c560b3c4302a798f9c8c2"
+        },
+        {
+          "matches_head": false,
+          "path": "tests/literary/outputs/TER-v1.4/Smoke_Set/original_ko_resume_state.json",
+          "sha256": "e46a52cdf2b015240bd183b979fee8b0c2e42076f7b9de29f0ab15c45dc39eef"
+        },
+        {
+          "matches_head": false,
+          "path": "tests/literary/outputs/TER-v1.5/Smoke_Set/original_ko_resume_state.json",
+          "sha256": "9c386cef10f8af390c5b27f0de2ae26864ac5920702ed30084563c576551d927"
+        },
+        {
+          "matches_head": false,
+          "path": "tests/literary/outputs/TER-v1.6/Smoke_Set/original_ko_resume_state.json",
+          "sha256": "92b899d22c53316753943c0b74f2c5f4ebe65f6a98d53ff7b828e48db42b812f"
+        },
+        {
+          "matches_head": false,
+          "path": "tests/literary/outputs/TER-v1.7/Smoke_Set/original_ko_resume_state.json",
+          "sha256": "5b6a3ba9f3dcfdc82e3fd0b4c1b66dca482ee1cf2bf469e0bd7291d6e542ec2c"
+        },
+        {
+          "matches_head": false,
+          "path": "tests/literary/outputs/TER-v1/Smoke_Set/original_ko_resume_state.json",
+          "sha256": "52f106519f255624320e4ead71801f0aea0edb8e08c762f74bd27785f15c6b9a"
+        },
+        {
+          "matches_head": true,
+          "path": "tests/lts_stage_02/launcher_resume_retry_test.py",
+          "sha256": "d00e319a3eb16175d05a417555bb99d698ab56905258b6ea8c3beb261b091cf5"
+        },
+        {
+          "matches_head": true,
+          "path": "tests/lts_stage_02/test_resume_retry_runtime.py",
+          "sha256": "19cebf0127abf74b1775495831a48083f73c4d2ce381ce9438fd80e681bd9342"
+        },
+        {
+          "matches_head": true,
+          "path": "tests/lts_stage_08/launcher_batch_failure_recovery_test.py",
+          "sha256": "f5f19cc55febdc95db9bb7c0450d73242035589b6e77996f353bbb5daeb48c0a"
+        },
+        {
+          "matches_head": true,
+          "path": "tests/lts_stage_08/test_batch_failure_recovery.py",
+          "sha256": "c66c52a19fbe51f691697ef4116a9338897494f46f1ce011f8852e14dd7db6c3"
+        },
+        {
+          "matches_head": true,
+          "path": "tests/lts_stage_10/launcher_long_run_recovery_test.py",
+          "sha256": "da45336191c244da06db329d42c0e668898244994b86e028e3914faf216d9f10"
+        },
+        {
+          "matches_head": true,
+          "path": "tests/lts_stage_10/test_long_run_recovery.py",
+          "sha256": "799f0391faf91de191b261e04e749c972ccbfc3b021234b8749b5b693acac154"
+        },
+        {
+          "matches_head": true,
+          "path": "tests/runtime/translation_runtime_recovery_test.py",
+          "sha256": "b11f2e2290a8177c598af15548d8e7d3473f14d3774eea9cb93b66201fffb847"
+        },
+        {
+          "matches_head": true,
+          "path": "workflow/recovery_manager.py",
+          "sha256": "016696fac63ced565118c058bfee775a0c5e350ddcc412b00c8088c4ed56d9eb"
+        }
+      ],
+      "matches_head": false
+    },
+    "runtime": {
+      "aggregate_sha256": "87de3725f024323059764778c14d96bf1719830c91c8fb5d7d1fdb1498f6e334",
+      "count": 69,
+      "entries": [
+        {
+          "matches_head": false,
+          "path": "core/translation_reliability/__init__.py",
+          "sha256": "6b072ef01f9aaf3d409a02a881fd8be93732fdaa881fb2116158d9b66597ee6d"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_reliability/adaptive_chunk_split_planner.py",
+          "sha256": "4c8a8fc2d3ffb463afc10bea991d59dad340aa3d54e89802aeebc28262a1232b"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_reliability/adaptive_retry_execution_harness.py",
+          "sha256": "c11b063e290c3031ed176994b02d785865c2f19025524842e20413df698203d9"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_reliability/adaptive_retry_policy.py",
+          "sha256": "6b1047c0509c1e989cb0c4760d6ba1a73eddd04c6e7b8b21f3e79057d945ea2b"
+        },
+        {
+          "matches_head": false,
+          "path": "core/translation_reliability/baseline.py",
+          "sha256": "c3e720fada80af7a8b54f7027634a757a281aa95a5f413ab8063ad7b89ea94d6"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_reliability/controlled_execution_admission_gate.py",
+          "sha256": "61df1e4aecf489695e00aa732e6b9dd4b8c6dd47265139f96f9c2e489dad527c"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_reliability/controlled_execution_contract.py",
+          "sha256": "a0663458985481d17e7c7ab9408c30b22abeb0221311e47ad22047b75528bdb3"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_reliability/controlled_result_replacement_guard.py",
+          "sha256": "cd1097890a8bc2b661832c332f2a2a52c7fe8bc1b2d8e964714c82e2ff48d0d0"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_reliability/failure_analyzer.py",
+          "sha256": "8e70ac89d30004d918fe1291542f12ddb140c68100c7ac211044f454aecf7f60"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_reliability/real_runtime_recovery_pilot_admission_gate.py",
+          "sha256": "4cef6649d50e48919fda52e41adf0b2d7d5ab58460875d76ae092e3cf676c12b"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_reliability/real_runtime_recovery_pilot_contract.py",
+          "sha256": "df8178e2868f18403d21f27ece5e0f1d9a6469b758ae40584a9b1cc2c20bee21"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_reliability/real_runtime_recovery_pilot_dry_run_bundle.py",
+          "sha256": "9f0663d8868a349c0e728001330e63a6e348f647f8fc0dd0958342dbd8275c51"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_reliability/real_runtime_recovery_pilot_dry_run_runner.py",
+          "sha256": "e37493be099a08c5386e7404c45ecf4abfe8390053d0d9e7c6b075c0d9048258"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_reliability/real_runtime_recovery_pilot_rollback_controller.py",
+          "sha256": "c2fbdcafd721a67720a0418ba3cc1476c63d4d6ae70f02577279fabbb6d7901c"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_reliability/recovery_flow_integration.py",
+          "sha256": "039bb27d348ad47d0331d4cffdfac7de04ea365fcfcd2084a7b5f197bc457412"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_reliability/recovery_outcome_guard.py",
+          "sha256": "5d88df0e6975b65f3de8b72f804a30e7635b58ec1518e919a856718d5d8415df"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_reliability/recovery_result_bundle.py",
+          "sha256": "d7a2c271adf0a73ffe703443eed7150ddbfd0ebb94671262d8c7b7e73492a171"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_reliability/retry_strategy_benchmark.py",
+          "sha256": "f1dc11b7f758ae07579ec07f083aab4e1c27035f2af6c6d66ba4e83f5c8a70d4"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_reliability/runtime_hook_admission_adapter.py",
+          "sha256": "d037a662b5998668b6418ac777e4d939d4e4ede7a28aab197a71d5082b694a00"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_reliability/runtime_hook_result_mapper.py",
+          "sha256": "ea27e7b5318151b956576cd8cc0c85f74336c4eb7a5fca764338343ee7740ee7"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_reliability/runtime_integration_adapter.py",
+          "sha256": "73d174fbf696b4b7a9a3f6d43f825dd6657bef44bf7119bc0d55f6a9214fb741"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_reliability/runtime_recovery_hook_adapter.py",
+          "sha256": "d4db4469bcf94226f390e12d831224d5769e32ea70c94c1ab38c6c1be5551c9a"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_reliability/runtime_recovery_hook_contract.py",
+          "sha256": "bafe1295a1b8d7df2bdefd7ce85d27e32a48c27b0b6d4de1e7ed7c057f4947aa"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_reliability/runtime_shadow_observation.py",
+          "sha256": "ef6648a8c4ad839ef34f262065449174f8042d3977ba96a9465e76e782f453d1"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_reliability/runtime_single_chunk_shadow_hook.py",
+          "sha256": "1543b2d947591673d9deaf2480e256d2896095756e80b59e6737325f97b337d9"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_reliability/single_chunk_controlled_recovery_executor.py",
+          "sha256": "53ea80b11825377784832d0fb2011b0c816c2bb448c99bba3a21a04eaac2bfa4"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_runtime/__init__.py",
+          "sha256": "f3408f3734daf6dda11d3a202f69b9f39f37499bbde0d5ab2c736f301f01c7a0"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_runtime/runtime.py",
+          "sha256": "8d9134f498233fe9ae4f9f2a1d9ffef8ff191cd4815a0cb2f568a7e1bdfd62b8"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_runtime/runtime_chunk.py",
+          "sha256": "6ad0e7553df0f9127bd068dcd160e35b561cce03d81b56d0ab3b7bb6438d0282"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_runtime/runtime_context.py",
+          "sha256": "ce4348881465f4b9ae15bf0b42696c4114756f07bda8a04aaeeabe4dadb908d3"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_runtime/runtime_contract.py",
+          "sha256": "90900792986462669b8acb6d17f2eb2cd8ca38c4a2ab3d80f8c15b4c054536c8"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_runtime/runtime_encoding.py",
+          "sha256": "06a7210ac14ee41b6007df43a23d49162bbe078f504b87565805690475ba4a40"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_runtime/runtime_formatter.py",
+          "sha256": "7c4c6403544ad494984583534367667a0065c2328b7a4950ee0f9e5e35edb83e"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_runtime/runtime_output.py",
+          "sha256": "53ce3acdd6f752ef6078caf7cd2ff08e00161bc50dfc7b8dfacfe33bd6c5e303"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_runtime/runtime_provider.py",
+          "sha256": "b2b617f5ccdac3e8925893e132d55785371982a4b3094848ff503fc5ae2de2db"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_runtime/runtime_qa.py",
+          "sha256": "04e2f265e43493d58bdc4e3507cb938d643c3dad8b46e833c6f6a1cc0561ab46"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_runtime/runtime_recovery.py",
+          "sha256": "d826df91f4ecc4cb1b5ef73d97d5adafef15ad8f89d2b5082d95797773f0baa2"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_runtime/runtime_speed_policy.py",
+          "sha256": "b45a66e75fac4545a5edd92383549c6a9dd1ca98b382a4feae3745130b33712e"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_scheduler/__init__.py",
+          "sha256": "444a87a77e7a9d83734eb034685ccddc31baa61113f425f9dc3cc14aca374ead"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_scheduler/collector.py",
+          "sha256": "e283620b21b7e90eeca148a0acb0ffc5e78341ce9a7e34c46fd75cc1381da130"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_scheduler/controlled_runtime_trial_admission_gate.py",
+          "sha256": "785d684d8ce92fab230143adffb19583bbca0e9b8366a9ba0ebda2172953b05f"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_scheduler/controlled_runtime_trial_contract.py",
+          "sha256": "b45dada40178437f59e37b93d500bcd0196daa44e4068ff12e54a95c98a7973d"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_scheduler/dashboard.py",
+          "sha256": "d83a80af8181f5c5bbb5225b17bd8217cd1d7d15628e58667037bc1cc9aea82c"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_scheduler/job.py",
+          "sha256": "a3907434d157769c4ad1aec7818ba88e80faa0978f670108e1dd17c6e5606a9a"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_scheduler/journal.py",
+          "sha256": "194a673836cf6490a5d1e9bafa426982db18b6d8864e0283fe1e29ea0de64335"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_scheduler/performance_regression.py",
+          "sha256": "cd72da3a69961098f9c05fb4c08ab93732f866deeb1f9902f823adfbcc5866fb"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_scheduler/queue.py",
+          "sha256": "c76448dc0c79de5bef220fa1ff1182fe9511e2c453741fda8c7e1e43fed5dc35"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_scheduler/runtime_adapter.py",
+          "sha256": "1c0512f591f38f120ed1e6aec735bcfef7e9b6d82b1a5f747396ff4690d6785d"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_scheduler/runtime_adapter_dry_run.py",
+          "sha256": "dc6ce01086a1d2aafa9e6889e43ad7e2aa285d88df8fc9c2f43c912b16b6fa0e"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_scheduler/runtime_disabled_trial_contract.py",
+          "sha256": "c8b89126501258f3d09cc78a058b5682d9993cb37a96a9172da1cf7e3e9c8b74"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_scheduler/runtime_disabled_trial_guard.py",
+          "sha256": "46bf2176be0b0012aecba2a5ac2292308b3f9ff447fa6340d0fedafe255d984b"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_scheduler/runtime_disabled_trial_mock_bridge.py",
+          "sha256": "764492a845d9ae7403f12d47104564ec5c284bc567cdf7713709e3acc4a60c96"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_scheduler/runtime_integration_contract.py",
+          "sha256": "a20b234383cc2fcfd174f55eb906ef926e3988cbdfc401e85c8c113deca55443"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_scheduler/runtime_integration_feature_flag.py",
+          "sha256": "109714e22942f98911cf33ee0434d541207897e5fac5a49104d10c615915c7f0"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_scheduler/runtime_integration_guard.py",
+          "sha256": "d5d817cc64d62da14e44b91085caec147890c7cc6aef6324388d79030408008d"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_scheduler/runtime_integration_mock_orchestrator.py",
+          "sha256": "12dce6a3113618feff9cffde45b995c1ab14ff1b6c11d3ac5c76793f427c4d49"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_scheduler/runtime_optin_hook_contract.py",
+          "sha256": "60f6b264165b4a83079ac86c52b1aa2988a8351ff4c3047d8d1fc42b7db013ec"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_scheduler/runtime_optin_hook_guard.py",
+          "sha256": "217146d404cbaf1023d20f4f0fee3e32ea277384f80c52247a9618c07a1c805d"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_scheduler/runtime_optin_hook_mock_bridge.py",
+          "sha256": "368ebf70b2eed8cf934568bb570715feda4d43aefab7cfabd57fc7c82b23a824"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_scheduler/runtime_readiness_decision.py",
+          "sha256": "439e0338d20d00f4a2974ed00e2cd412324c58508928a1e5df869626a9bd07e0"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_scheduler/runtime_readiness_evidence_collector.py",
+          "sha256": "ea64cea59773f9d3213e9c498e00cc0d10cbcf042c9bfacf6dda6ed53cfe8fd5"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_scheduler/runtime_readiness_gate_contract.py",
+          "sha256": "988891fe700bca85b1df4f5868cba7bb6445802745168d75c56b5f700e3c5873"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_scheduler/runtime_readiness_gate_evaluator.py",
+          "sha256": "97f091d10abd6412c01856b6cddbaef6a12281fe53b331bb2d0538cf6ff51b5f"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_scheduler/runtime_resume_contract.py",
+          "sha256": "b8178d2ba50def6d31f78316f7e34e22aca823a54a1c4e0848ce6ada60d18a54"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_scheduler/runtime_safe_hook_preflight_contract.py",
+          "sha256": "6f2131d7f0cae1f9d2462f18748189bbca49301d1186914ce648ab9683fe3321"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_scheduler/runtime_safe_hook_preflight_guard.py",
+          "sha256": "9c303a74be522a7fc840cfa5a258d4bfe47a4b9b58724020edaee47c93ae2b36"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_scheduler/runtime_safe_hook_preflight_mock_bridge.py",
+          "sha256": "a3e64a1ac9a84b911126f2d3dc40e9f7dd53c4e06a79b8be87b8006ddd9f1daf"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_scheduler/runtime_state_bridge.py",
+          "sha256": "a5b45cb6a94485c84dae4cc6664e7147c0d0093a947c3847a2900fc908869e77"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_scheduler/scheduler.py",
+          "sha256": "a13b3d29a70cccaa36ee4caf10c031eb7a2c078ec20e4bfaf522eac02d85b628"
+        }
+      ],
+      "matches_head": false
+    },
+    "stage_11_8": {
+      "aggregate_sha256": "4e06c621e992bd2cd7a09a75f0f640fb3fe8de7ac51b198b9f92685b49e9c87e",
+      "count": 13,
+      "entries": [
+        {
+          "matches_head": true,
+          "path": "artifacts/te_v71_stage118/TE_V71_STAGE118_TRANSLATION_QUALITY_FRAMEWORK_FREEZE.json",
+          "sha256": "51ef50bbaedfc945b2047fcbb90e4a40e3251fc3dbc033760dace221cfd65f5b"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_framework_integration/__init__.py",
+          "sha256": "7fb49754ff2da0220cb44d4ac015277de41511845a3f5d1711798d343d80dd07"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_framework_integration/integration_builder.py",
+          "sha256": "2c415fb27369b691219b41c39eebbbdf44f08b4bae80d9e813afac917b6f6a21"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_framework_integration/integration_model.py",
+          "sha256": "c88fe67ce61e0d3b32f9bec1f2952b7e29a697a760881c33466060997ce7056f"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_framework_integration/integration_validator.py",
+          "sha256": "0ef643e4a4275b288ffa09555dbc5d1b4f1208c463d3324b9adcab22984e65e8"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_framework_integration/integrity.py",
+          "sha256": "2aecb0738cf7867f7b15d0aa817da43edc6388f20e83a2ac64c6df10f1a1ac08"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_framework_integration/references.py",
+          "sha256": "154e7509bb3b77e05518ec43dc0731dffa4983fc5c25971cb5048da17ac0656c"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_framework_integration/serialization.py",
+          "sha256": "ae901aea16102ecd4395d23e3fe8eb8fb7691ad24da932d9b1d3642a33147dbb"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_quality_framework_integration/stage_chain.py",
+          "sha256": "a84c43f02ece5440f9d85dad1cda1ffb17303fe3d824cace688c1ba9adc90558"
+        },
+        {
+          "matches_head": true,
+          "path": "docs/releases/te_v7_1/TE_V710_STAGE118_TRANSLATION_QUALITY_FRAMEWORK_FREEZE.md",
+          "sha256": "d72a4000bbcf27575738d2371266f9c703790d4c086b04f8d8f777297fc45c09"
+        },
+        {
+          "matches_head": true,
+          "path": "manifests/te_v710_stage118_translation_quality_framework_freeze_manifest.json",
+          "sha256": "b5eed41b1c17ebea77db7b021db9fd021d746a0822ce5071ade4dcfc3acbafcf"
+        },
+        {
+          "matches_head": true,
+          "path": "ntpe_te_v710_stage118_translation_quality_framework_freeze_test.py",
+          "sha256": "1595dc222e42e769d112d065f673fc90db8e4fd27a2d618a5f56974ec44a63d5"
+        },
+        {
+          "matches_head": true,
+          "path": "tests/integration/translation_engine_v710_stage118_translation_quality_framework_freeze_test.py",
+          "sha256": "79bf3bad0e54348dfd1d1a9e65e0cedcb5400d7b151170859f4ada9ca01b2949"
+        }
+      ],
+      "matches_head": true
+    },
+    "stage_12_1": {
+      "aggregate_sha256": "6656bc4cc916a5a0fabfc6cd92bbace1c163d9753576ef18e73a1728255e871d",
+      "count": 17,
+      "entries": [
+        {
+          "matches_head": true,
+          "path": "artifacts/te_v72_stage121/TE_V72_STAGE121_EVIDENCE_BASED_PROMPT_QUALITY_CANDIDATE.json",
+          "sha256": "777202774f71e270dcb112ef4e93afbaed574b3f8fed974a8a33861054f9b6eb"
+        },
+        {
+          "matches_head": true,
+          "path": "artifacts/te_v72_stage121/TE_V72_STAGE121_MANUAL_REVIEW_TEMPLATE.json",
+          "sha256": "f5561f1b33b04475d51437a8ab15dc504f2fa2d2551daecf4d5131e79769f9e7"
+        },
+        {
+          "matches_head": true,
+          "path": "artifacts/te_v72_stage121/TE_V72_STAGE121_PROVIDER_EXECUTION_PACKAGE.json",
+          "sha256": "0285ec3c28bba2f1a353c086b5912e0da44f9935f91d8f76db8f5e6be16a1936"
+        },
+        {
+          "matches_head": true,
+          "path": "docs/archive/release_history/CHANGELOG_Stage_12_1.md",
+          "sha256": "1c3c7c9cbe9aa839fff7a18b55af2365ef2b5e53bf88f0575831371a4b1d5ae0"
+        },
+        {
+          "matches_head": true,
+          "path": "docs/archive/release_history/README_NTPE_1_0_Beta_Stage_12_1.txt",
+          "sha256": "c3280539c8b2c5df16025324c6c8270b437324e21806cf738b86c05bd4370d7c"
+        },
+        {
+          "matches_head": true,
+          "path": "docs/archive/release_history/Translation_Validation_Report_Stage_12_1.md",
+          "sha256": "586805c504d62c72b06f5665883482ae39f4f19de54a11b4ebcf43e7d73d0121"
+        },
+        {
+          "matches_head": true,
+          "path": "docs/releases/te_v7_2/TE_V720_STAGE121_EVIDENCE_BASED_PROMPT_QUALITY_CANDIDATE.md",
+          "sha256": "5fdd862d2ccb9b23c35084fcc73d6dcc9123163d8004b4afa04faf91acc0dd38"
+        },
+        {
+          "matches_head": true,
+          "path": "manifests/te_v600_stage121_translation_naturalness_engine_manifest.json",
+          "sha256": "ab0b0ceb85846754c822a41540167288f5e4d6152ff3e02f950bddb170ddaa1d"
+        },
+        {
+          "matches_head": true,
+          "path": "manifests/te_v720_stage121_evidence_based_prompt_quality_candidate_manifest.json",
+          "sha256": "044516c63cbc935aa6c026d681768dcd7765aa2717b8ff68606fcee1385a5fe5"
+        },
+        {
+          "matches_head": true,
+          "path": "ntpe_te_v600_stage121_translation_naturalness_engine_test.py",
+          "sha256": "a96d0d25cad8fab2219d5760e67dc21eb344d0b6ae55dba6ca9929ad90297731"
+        },
+        {
+          "matches_head": true,
+          "path": "ntpe_te_v720_stage121_evidence_based_prompt_quality_candidate_test.py",
+          "sha256": "cec76a055c45b4f240a32e6fae026a355e8dc36583b41c9f0fb2c151f9dcc57a"
+        },
+        {
+          "matches_head": true,
+          "path": "tests/beta_stage_12_1/launcher_rest_api_core_test.py",
+          "sha256": "ad7c9541492e95f7776196addc65dd7fc05c2dab92c53bd81e08531ad5ab4488"
+        },
+        {
+          "matches_head": true,
+          "path": "tests/beta_stage_12_1/launcher_translation_validation_stage_12_1_test.py",
+          "sha256": "ceab502109b6f49af8cd10f2b0e744e648e852a057b5f722294d44164ec4283d"
+        },
+        {
+          "matches_head": true,
+          "path": "tests/beta_stage_12_1/rest_api_core_test.py",
+          "sha256": "c47ce56b3cb07477ef11d10d17ad212353881226190c8df158647a5ef60add67"
+        },
+        {
+          "matches_head": true,
+          "path": "tests/beta_stage_12_1/translation_validation_stage_12_1_test.py",
+          "sha256": "8cd21d05a5fa7c6dfdd9bdccd255e42fccaf81a97c0fb3f29d4027e5dd1c6b5b"
+        },
+        {
+          "matches_head": true,
+          "path": "tests/integration/translation_engine_v720_stage121_evidence_based_prompt_quality_candidate_test.py",
+          "sha256": "75623e4aec86260bf819c967317a2d62ff0b2ed5bc9b6b9dede1f605064395d0"
+        },
+        {
+          "matches_head": true,
+          "path": "tests/integration/translation_naturalness_engine_v600_stage121_test.py",
+          "sha256": "ecd8bc4c184c5a2ecbc0f01ca5ced03350a3eb831d49eb18b5cebd34f7d4ceb2"
+        }
+      ],
+      "matches_head": true
+    },
+    "te_v6": {
+      "aggregate_sha256": "39ad8cf7fd5a5c0ff225706a612632325371ac189b6ce0e215b23728397f4747",
+      "count": 34,
+      "entries": [
+        {
+          "matches_head": true,
+          "path": "core/translation_discipline/__init__.py",
+          "sha256": "94fe9f143d02d50807dece8e9fcf7eb74378c6b81e2acaddf1dd577b76c620c9"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_discipline/adaptive_retry_policy.py",
+          "sha256": "2b32f81a63d28734cdf9252a199358f64c2251a37d92d1e9b1c17b0f39fbb812"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_discipline/audit_trail.py",
+          "sha256": "19a04aafb5ba525d6af4551a92587e44ea24de44ca5073cce73a199f970110c2"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_discipline/compiler_adapter.py",
+          "sha256": "b83c493ca5a313e4d40c9455f234bf3632333ec73e64e45f3b0ec843b29d2c2f"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_discipline/engine.py",
+          "sha256": "18a930eccf96013d011b8f9daabf096120fd3ba9c898a42105040112eedd1720"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_discipline/evidence_audit.py",
+          "sha256": "33768cdf21e2f81e049afb5603fdd72301931d31fbea86c50d7d8935e8a73f19"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_discipline/evidence_retry_integration.py",
+          "sha256": "1768ab28dbba85a242bff989561c29946ea2064190fcc061358a6038c1403d99"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_discipline/feedback_adapter.py",
+          "sha256": "e3543f91055b32874f10021291c89b17ff1357c283ba73ef651ce6493a4e72ea"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_discipline/freeze.py",
+          "sha256": "148f794b9b285a923040a69f20836377ceff7997ccdf94424d88e890f025972a"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_discipline/freeze_readiness.py",
+          "sha256": "0f8237ca45c37441d39114c1f7a8a7c25f5e6b7c94625d673cef44ca95bc2f29"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_discipline/local_repair.py",
+          "sha256": "c5011060e011dc01dfd40cd4e23ca780f28e97d824c76290dcc55991535e08ee"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_discipline/policy.py",
+          "sha256": "ecd65de51214178cc9e29ba16869f1616d62f70d9592f6bc0004160dc1550bd7"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_discipline/production_comparison.py",
+          "sha256": "7853409c9d4be20c9b40f7933b1eb481ad55865d610534a5fd3293ed8ced0c4d"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_discipline/production_validation.py",
+          "sha256": "4cb1849209ff62a57486ec942ff16e87914343e09c8510253b720b934dfade1b"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_discipline/profile.py",
+          "sha256": "21e153ae44ad0e26bf361e6b1ec78e6177e3e7062b9496b0f60105e48dbf41d5"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_discipline/quality_adapter.py",
+          "sha256": "dd0d8486f7f1b55ca4a1e6dffddec2d4a153f1da83745a39dbd11485f4301973"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_discipline/quality_enforcement.py",
+          "sha256": "dba91b72f8aa9c59246529202fbd3f2ae1081482c37c2b5360c8e73e461b8825"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_discipline/registry.py",
+          "sha256": "9ab196684836041cb348e49156aa2c896fe22d20060aea644d4f97ff275ec5d2"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_discipline/report.py",
+          "sha256": "c583e6b12c3a77f24b165c50edbc0861e7810e83ac83b456d44521025a2e7538"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_discipline/retry_decision_engine.py",
+          "sha256": "8c4788aec01092b8cb7a0c892cae3da349c513e2cc086c1359d223b8f7c4e065"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_discipline/retry_evidence.py",
+          "sha256": "cd86f85fc197030e9667343ebcc7cb1260abf0c6d93d1e7bf1044058ace2e56d"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_discipline/rule.py",
+          "sha256": "5d4fefcba3dae088b93a4725cfed6fb4f7622187af79e0b336af40bd808e5b63"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_discipline/runtime_integration.py",
+          "sha256": "f2f6d33c0464d6d8d39a98e2fadb86d9d75febaed8c8caf8d72f9735024149fa"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_discipline/runtime_orchestrator.py",
+          "sha256": "afb93b6284406f27443108c724ffe9f2d987e2d82fd0bc3df49112aa143edf95"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_discipline/targeted_merge_validation.py",
+          "sha256": "8ec5a4097a790c811ae597d7362a9f24e52fa33035e4f1dc29266483871faf78"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_discipline/targeted_retry_plan.py",
+          "sha256": "82557ee599ce0b0a939454fc038ce41e93b45ff32fa01c261fc2dbbf421aae84"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_naturalness/__init__.py",
+          "sha256": "da227afc57126a35e579ea00b9faf31532ead64df405fe77714868778d96abad"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_naturalness/canonicalizer.py",
+          "sha256": "9e2e4bf0c098540038fcf90a2540f6724c35e2a71782b7a2883e7613970cf037"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_naturalness/collocation_guard.py",
+          "sha256": "8bbd4552b0cb8002fd1745b8b8fd2e95964df32a93e0d7ea42759ca391607aaa"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_naturalness/freeze.py",
+          "sha256": "de27f81b64b15f449866e5d9d3c0c36b508cffde51c5287e60fc793a3366d6d8"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_naturalness/hallucination_guard.py",
+          "sha256": "ba7c896e2c765679685e356dd480c630837d5234f49b1d917e97fb7aeaefd88d"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_naturalness/policy.py",
+          "sha256": "4964a80b95e3063bb40a01931b8c09dafd9a9f9e730294cf5d022f303ce6527d"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_naturalness/voice_register_guard.py",
+          "sha256": "fa84184b6d09602aef43fbfc2d799b021800b51b62515797762c6106d479e297"
+        },
+        {
+          "matches_head": true,
+          "path": "ntpe_te_v600_final_release_freeze_test.py",
+          "sha256": "2911cee421554ac6e556787ca12ff28d9b8b3b5474712cfc03e49c130dac95c7"
+        }
+      ],
+      "matches_head": true
+    },
+    "tic_batch1_7": {
+      "aggregate_sha256": "845eb9e9904d924f8eb1b68ddc397fc3051a1fb451d2be8ec2c84a1a72300393",
+      "count": 123,
+      "entries": [
+        {
+          "matches_head": true,
+          "path": "artifacts/tic_batch1/TRANSLATION_CORPUS_INVENTORY.json",
+          "sha256": "d767b8dd48ef176178638c36fe83333665bdf573b9d91c9b9a62dc8a9a08bcd4"
+        },
+        {
+          "matches_head": true,
+          "path": "artifacts/tic_batch1/TRANSLATION_CORPUS_STATISTICS.json",
+          "sha256": "626604230e439b1042030b96b4c66239472a7eb3d289422ba67c16bc9cc476e2"
+        },
+        {
+          "matches_head": true,
+          "path": "artifacts/tic_batch2/TRANSLATION_CASES.json",
+          "sha256": "3130ca4051f359428cfe6a5d938e5e89ebf50f38fb63a41320bd4977ece02655"
+        },
+        {
+          "matches_head": true,
+          "path": "artifacts/tic_batch2/TRANSLATION_CASE_INDEX.json",
+          "sha256": "5a6b2b6ae1a2b76369ca1afdf451978d1bf98fc689a0fb896481aecc585463ff"
+        },
+        {
+          "matches_head": true,
+          "path": "artifacts/tic_batch2/TRANSLATION_CASE_MANIFEST.json",
+          "sha256": "c717778c65d8db4220a9b8892a7752ab02454407837453072bd389ba1a8507af"
+        },
+        {
+          "matches_head": true,
+          "path": "artifacts/tic_batch2/TRANSLATION_CASE_STATISTICS.json",
+          "sha256": "518a30253dc0a7bb2fa555c4db91fae33200d230db1a08ca1a51939508ddb94f"
+        },
+        {
+          "matches_head": true,
+          "path": "artifacts/tic_batch3/KNOWN_SUBJECT_SHIFT_HUMAN_REVIEW.json",
+          "sha256": "271c80a4b05c28b7218bb76c05f791668b2942a359c1aa8af629a83f5a29d376"
+        },
+        {
+          "matches_head": true,
+          "path": "artifacts/tic_batch3/MANUAL_EVIDENCE_INVENTORY.json",
+          "sha256": "fe1318307514ecf3a633d53a09fb71e1098089a57163c47ce5f65bea3d465551"
+        },
+        {
+          "matches_head": true,
+          "path": "artifacts/tic_batch3/MANUAL_EVIDENCE_LINKS.json",
+          "sha256": "4db53468bc60c3245cadb8cc7e95ed0b0f4b47ddac263c5b117ecbe0756a3f9a"
+        },
+        {
+          "matches_head": true,
+          "path": "artifacts/tic_batch3/TRANSLATION_ALIGNMENT_INDEX.json",
+          "sha256": "02b346685326c9883aa412cdb8cde0331c1bfa622ce421ef50018834dbe47fe0"
+        },
+        {
+          "matches_head": true,
+          "path": "artifacts/tic_batch3/TRANSLATION_ALIGNMENT_MANIFEST.json",
+          "sha256": "3452ed33ad6936ff166bdc483c490d92dd0fdf7a1b1890c46ca5ede9d0f0075e"
+        },
+        {
+          "matches_head": true,
+          "path": "artifacts/tic_batch3/TRANSLATION_ALIGNMENT_STATISTICS.json",
+          "sha256": "53a2f70147a9863d1ba4c142e2312b1845a8ef8738508e49765665456cd358a6"
+        },
+        {
+          "matches_head": true,
+          "path": "artifacts/tic_batch3/TRANSLATION_ALIGNMENT_UNITS.json",
+          "sha256": "ea428e6404883c3d360daeb9455001af5167536347fe83e6e102865202aa509e"
+        },
+        {
+          "matches_head": false,
+          "path": "artifacts/tic_batch3/audit/git_outputs.txt",
+          "sha256": "4403c3295a8459ca3e9a964c6d461919180abcf062b7d5c48aebf0f9115182b0"
+        },
+        {
+          "matches_head": true,
+          "path": "artifacts/tic_batch3/audit/package_report.json",
+          "sha256": "4b418138bdc75e2b126fe489f5986cf1d249daea04c950c28dd346a58537b4f5"
+        },
+        {
+          "matches_head": false,
+          "path": "artifacts/tic_batch3/audit/regression_output.txt",
+          "sha256": "e32163b20245a64626d6c52647a6cc52d5590b23aa6fe6baab49530dab5baa24"
+        },
+        {
+          "matches_head": false,
+          "path": "artifacts/tic_batch3/audit/validator_output.txt",
+          "sha256": "5da8ef788572266ce884d6e1c2e5cf64e4f978e6f2422ff540ef3cae4eb7313c"
+        },
+        {
+          "matches_head": true,
+          "path": "artifacts/tic_batch4/EXCLUDED_FAILURE_CANDIDATES.json",
+          "sha256": "d2396516bd704d365cbc2ec704c2b62a4a614c738613d32ae4f2a7b027e896fd"
+        },
+        {
+          "matches_head": true,
+          "path": "artifacts/tic_batch4/FAILURE_CASE_INDEX.json",
+          "sha256": "233de29f750761d48b134553c27a643ebfa30f6ae955313a699f40a70f89892a"
+        },
+        {
+          "matches_head": true,
+          "path": "artifacts/tic_batch4/FAILURE_CORPUS_MANIFEST.json",
+          "sha256": "257e3a7bd2c9b9ec85e8423de8737c798f1170c722ec419ddb2841f0fc314ef6"
+        },
+        {
+          "matches_head": true,
+          "path": "artifacts/tic_batch4/FAILURE_CORPUS_STATISTICS.json",
+          "sha256": "9c634164a03ebb844fdccea9df7d71393b12768c57b81e962ab8bc835377993e"
+        },
+        {
+          "matches_head": true,
+          "path": "artifacts/tic_batch4/HUMAN_CONFIRMED_FAILURE_CORPUS.json",
+          "sha256": "57c0608273d13000f66c5cd0868bb8bd957b1e4cb0613d394f8cd43d39c5e4e7"
+        },
+        {
+          "matches_head": false,
+          "path": "artifacts/tic_batch4/audit/git_outputs.txt",
+          "sha256": "5c06cfd271f97b3ee3dbfcd71c40947611680353e34de6c95ada2d72addbc3b8"
+        },
+        {
+          "matches_head": true,
+          "path": "artifacts/tic_batch4/audit/package_report.json",
+          "sha256": "d9cbad37c5b5ad732fdeb91cc4e99339c7cb4a347c3dea5b2ae1532e97b73fa0"
+        },
+        {
+          "matches_head": false,
+          "path": "artifacts/tic_batch4/audit/regression_output.txt",
+          "sha256": "b27e87ac5ace6114d17f0bc6aa97a7969ce9c65bf2d67ef37e6be16835ce6b0d"
+        },
+        {
+          "matches_head": false,
+          "path": "artifacts/tic_batch4/audit/validator_output.txt",
+          "sha256": "0e16d215f8d824d712638e82faa279104a72e6bbbf9ae7bae91ae49955c7e99e"
+        },
+        {
+          "matches_head": true,
+          "path": "artifacts/tic_batch5/FAILURE_CASE_INDEX_V2.json",
+          "sha256": "2844621d0f95757e55cf974a57e64243033433423fc1525aff2db74015cced73"
+        },
+        {
+          "matches_head": true,
+          "path": "artifacts/tic_batch5/FAILURE_CORPUS_V2_STATISTICS.json",
+          "sha256": "3238dd8d2781b4ad6c6619257c26b42cbf39904c4374b5b7c1bbb0ad4d400c0d"
+        },
+        {
+          "matches_head": true,
+          "path": "artifacts/tic_batch5/FUTURE_EXCELLENCE_EVIDENCE_CANDIDATES.json",
+          "sha256": "ee40bda8db339612cb860a6108489d91af80ecd49b5f2a1f387ab2921e4b038c"
+        },
+        {
+          "matches_head": true,
+          "path": "artifacts/tic_batch5/HISTORICAL_HUMAN_EVIDENCE_EXPANSION.json",
+          "sha256": "9c25c9f2387e8294db8ad94cac99af3bcb328bbf61816f1ba10b858cebc3a93a"
+        },
+        {
+          "matches_head": true,
+          "path": "artifacts/tic_batch5/HISTORICAL_HUMAN_EVIDENCE_EXPANSION_MANIFEST.json",
+          "sha256": "92278c0b9ae2bf9f934408d9399d62273237c193df34b578c01a4ba62123f156"
+        },
+        {
+          "matches_head": true,
+          "path": "artifacts/tic_batch5/HUMAN_CONFIRMED_FAILURE_CORPUS_V2.json",
+          "sha256": "0bf938cfd8708bf044789c452775e1f419bfe34356c7784d61e5ef055a4751c1"
+        },
+        {
+          "matches_head": true,
+          "path": "artifacts/tic_batch5/HUMAN_EVIDENCE_SEARCH_REPORT.json",
+          "sha256": "068a54df3448379e4d346d02d3fa5d37c982bb66f1a20279c71c02c97d788220"
+        },
+        {
+          "matches_head": true,
+          "path": "artifacts/tic_batch5/UNRESOLVED_HUMAN_EVIDENCE.json",
+          "sha256": "3db6323ebb7e445a8f1aa4bcd1e3e4c5534200ca5f1aa42785c9175fd3786927"
+        },
+        {
+          "matches_head": true,
+          "path": "artifacts/tic_batch5/audit/git_outputs.txt",
+          "sha256": "703a66958bb85ffbc5e4bbc67c72fc8b0d3fcdd8abad5b2419727090cad26e79"
+        },
+        {
+          "matches_head": true,
+          "path": "artifacts/tic_batch5/audit/package_report.json",
+          "sha256": "10cd0c497311a2bb5be80ce17fb21ed055dc71b1530572bae5c9eb146699d164"
+        },
+        {
+          "matches_head": false,
+          "path": "artifacts/tic_batch5/audit/regression_output.txt",
+          "sha256": "4decb75262ee5da01a650c4f7567d1efd392b17d062fe330895f21b4c1a7804c"
+        },
+        {
+          "matches_head": false,
+          "path": "artifacts/tic_batch5/audit/validator_output.txt",
+          "sha256": "4dcb3bf7fbd9dcf2cace901a69fe4cce4f951b26c33955929bb1fee5c428a286"
+        },
+        {
+          "matches_head": true,
+          "path": "artifacts/tic_batch6/HUMAN_CORRECTION_RECORDS.json",
+          "sha256": "bf912f33a4a55fd9d7de892e216b8e4373f25ac3e91100d897c411a0e9316295"
+        },
+        {
+          "matches_head": true,
+          "path": "artifacts/tic_batch6/QUALITY_REGRESSION_INDEX.json",
+          "sha256": "7a4be7a3da855db217ce9dcd26f996b90ba6c98194f1218f1c9eb3ab068a8f7d"
+        },
+        {
+          "matches_head": true,
+          "path": "artifacts/tic_batch6/QUALITY_REGRESSION_VALIDATION.json",
+          "sha256": "e420ecfb2d95d9a03a463ba37d64ad26634ff4743be4622b7d424f360eb2d5f2"
+        },
+        {
+          "matches_head": true,
+          "path": "artifacts/tic_batch6/ROOT_CAUSE_RECORDS.json",
+          "sha256": "8ddcc028b5f2a75a70d922240a2fb7379989789a44239507fc20bf79edfd5a9f"
+        },
+        {
+          "matches_head": true,
+          "path": "artifacts/tic_batch6/TIC_BATCH6_STATISTICS.json",
+          "sha256": "addaeab3b3e32ebc1a5eb28fec6fb51801d8faef489ab704eecdf4040ac2723a"
+        },
+        {
+          "matches_head": true,
+          "path": "artifacts/tic_batch6/TRANSLATION_QUALITY_REGRESSION_CASES.json",
+          "sha256": "156ddad76ce865bfadca0b9ed140bc5f9625a7e552f50ff0e35c693ed03082d8"
+        },
+        {
+          "matches_head": true,
+          "path": "artifacts/tic_batch6/audit/git_outputs.txt",
+          "sha256": "572fd41b74efc9bda3be2bcc3837bdfe93f467572b9df068674246a6b3f53b63"
+        },
+        {
+          "matches_head": true,
+          "path": "artifacts/tic_batch6/audit/package_report.json",
+          "sha256": "1b323deee05afabd42bf03a86a9dc698dbfcdfc60ff77852ddeab6d9ed2c599c"
+        },
+        {
+          "matches_head": true,
+          "path": "artifacts/tic_batch6/audit/regression_output.txt",
+          "sha256": "3c118d437528b7e239f351e138bafc630c4d2c6823027263b6e8d309a29c39fe"
+        },
+        {
+          "matches_head": true,
+          "path": "artifacts/tic_batch6/audit/validator_output.txt",
+          "sha256": "e9aa7bd1efeabf07331100e944c93522f1a2956a01199fdb24011397db8a8700"
+        },
+        {
+          "matches_head": true,
+          "path": "artifacts/tic_batch61/ACTIVE_REGRESSION_INDEX.json",
+          "sha256": "b71c875e53a0bde2c0e3bf36b3a4e1a4e165bedcbfcddc2ef5e81dca62e05845"
+        },
+        {
+          "matches_head": true,
+          "path": "artifacts/tic_batch61/ACTIVE_REGRESSION_VALIDATION.json",
+          "sha256": "cb5aefa9af935cee76e72fe6317b4743b2c98ca7119592e8b71ec1ee0751014b"
+        },
+        {
+          "matches_head": true,
+          "path": "artifacts/tic_batch61/ACTIVE_TRANSLATION_QUALITY_REGRESSIONS.json",
+          "sha256": "275b5586e483001bde2625f91bbae6796a55016f7c460eb27f22b30db37e3b41"
+        },
+        {
+          "matches_head": true,
+          "path": "artifacts/tic_batch61/HUMAN_APPROVAL_RECORDS.json",
+          "sha256": "01e08149f7a3f8362998cd9e817f545cba5317a39217fb17a5a0fce344844191"
+        },
+        {
+          "matches_head": true,
+          "path": "artifacts/tic_batch61/HUMAN_CORRECTION_RECORDS_V2.json",
+          "sha256": "b66e27c58bbc9b5e07ead6893ce0a16a1ea45865557265a14e21b7fe4b604f5b"
+        },
+        {
+          "matches_head": true,
+          "path": "artifacts/tic_batch61/TIC_BATCH61_STATISTICS.json",
+          "sha256": "9341febd24a825b5c0b23aac1286b84cd8479645cdbf5ad12ebae3373884daef"
+        },
+        {
+          "matches_head": true,
+          "path": "artifacts/tic_batch61/audit/git_outputs.txt",
+          "sha256": "ec87720f6691feeb362795fdd6176be4ee45e4732f55369593b4b1cd58e74034"
+        },
+        {
+          "matches_head": true,
+          "path": "artifacts/tic_batch61/audit/package_report.json",
+          "sha256": "95ee49f7565774ec9ffc870575de2988bdd67e8c358988aa1fa86b7e8b3503c8"
+        },
+        {
+          "matches_head": true,
+          "path": "artifacts/tic_batch61/audit/regression_output.txt",
+          "sha256": "dc5b3c981af57621bfd29ea0d542dc16daaa1b849e4aabe29b0d68e52ab291f7"
+        },
+        {
+          "matches_head": true,
+          "path": "artifacts/tic_batch61/audit/validator_output.txt",
+          "sha256": "1f8e61d8fe0e2ed282303e597cba6d3e52e6b9ea3b6e0e43a5f9d4e9b7a99c32"
+        },
+        {
+          "matches_head": true,
+          "path": "artifacts/tic_batch7/OFFLINE_QUALITY_GATE_FIXTURES.json",
+          "sha256": "45b6b36ae09ddf4428cda043e4dd7f1235c3c846170a4ed6ecdbe2c9a30390fa"
+        },
+        {
+          "matches_head": true,
+          "path": "artifacts/tic_batch7/OFFLINE_QUALITY_GATE_INDEX.json",
+          "sha256": "40d2d047d93f57ae3ca997c09f4eb39fadb0f1fd8919644be457572f0c7228a7"
+        },
+        {
+          "matches_head": true,
+          "path": "artifacts/tic_batch7/OFFLINE_QUALITY_GATE_PERFORMANCE.json",
+          "sha256": "e181cac769ee9875619732f45650c0f7c4ddae6beefcde5eb1cbdc4a20e3e5c1"
+        },
+        {
+          "matches_head": true,
+          "path": "artifacts/tic_batch7/OFFLINE_QUALITY_GATE_VALIDATION.json",
+          "sha256": "0253fe2cfb013804e432fda122032283cdc56129156275c49602faa4e57ab484"
+        },
+        {
+          "matches_head": true,
+          "path": "artifacts/tic_batch7/OFFLINE_TRANSLATION_QUALITY_GATE.json",
+          "sha256": "deeb86703cddcff47c6c4eb6a9c3968aadb5821e572b0b4670cf312fd0cac978"
+        },
+        {
+          "matches_head": true,
+          "path": "artifacts/tic_batch7/TIC_BATCH7_STATISTICS.json",
+          "sha256": "06f6292fef99c26d30824b6af1c456d7f9d71fb6cbbb5f9c5ecbbb8b49eaedcf"
+        },
+        {
+          "matches_head": true,
+          "path": "artifacts/tic_batch7/audit/git_outputs.txt",
+          "sha256": "7f3277f87d821e93f98073d0e85f0e4252ffa6491237b81a589179dfd0025140"
+        },
+        {
+          "matches_head": true,
+          "path": "artifacts/tic_batch7/audit/package_report.json",
+          "sha256": "da4cd3dcb22d07bb36f4b93e9441598fb240fdbd26419fff04257cce749e4f01"
+        },
+        {
+          "matches_head": true,
+          "path": "artifacts/tic_batch7/audit/regression_output.txt",
+          "sha256": "aa5498b04f9dae976f74e25444cbb0af24a695a7a8a8dea074b293b3475d24b2"
+        },
+        {
+          "matches_head": true,
+          "path": "artifacts/tic_batch7/audit/validator_output.txt",
+          "sha256": "3b25e44c0a0c62b1b0f4609861f8ebc238e8ca1c533e7f89f2f55a0ccef20f6f"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_intelligence_corpus/__init__.py",
+          "sha256": "99e9decca30f48a9bc7acd05304c4c6fc0668a5ddc2e6ad0bd6c14765a48c8ac"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_intelligence_corpus/__main__.py",
+          "sha256": "89cd5ccb581296b1171ee9bcfd12fb42f33bcc2409da832959ebfa6b34cf31fb"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_intelligence_corpus/alignment.py",
+          "sha256": "22f19610c61e51a25c8119e0b5d6853049c66e0fab52dbda47739cc9555c23c1"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_intelligence_corpus/case_extractor.py",
+          "sha256": "ebbbde5006ca1fdfa16d54e4d60364ec0003b18c60e0f119ef0ef8ec025cf9c5"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_intelligence_corpus/case_index.py",
+          "sha256": "6bf63595255c168a92f52ce0b512c41db3d12124c1d3491ea13c0bbf6667535c"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_intelligence_corpus/correction_records.py",
+          "sha256": "f5143350cf0c0fed7d743a4dcb5ecfff3bfd0dda4a865c20e06f30ce4c6183e2"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_intelligence_corpus/evidence_expansion.py",
+          "sha256": "6c0f7c5efe90283aec362b8e553007efca2ea7aa615859986625739b999a55bb"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_intelligence_corpus/evidence_linker.py",
+          "sha256": "760e6c934bedd9097a6c2991bd56d50caebfa8729d8fc649bfe44333e347f82a"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_intelligence_corpus/failure_corpus.py",
+          "sha256": "014667c02682400d9ab6e56086243d4d8d624e433ab0b00eb6d7634997e0a6bd"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_intelligence_corpus/failure_corpus_v2.py",
+          "sha256": "4c97346930369cd8e6f0c56f197f52e51ca8417a476aaa49f716f2bc7ad0071d"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_intelligence_corpus/failure_index.py",
+          "sha256": "da174823b06438675ee9dfb3ab575532d6c4ffd91c803794c95720ad1a4c7b88"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_intelligence_corpus/failure_statistics.py",
+          "sha256": "9d17aea02678186c5f308302fbf6fb8dfb8595039114a357bde4a456e4f32ceb"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_intelligence_corpus/historical_evidence_search.py",
+          "sha256": "5dfef16e5e308e44586c3d40be93ae4e41f8c5a017c82f51912a3f9ac9f1caa1"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_intelligence_corpus/human_approval.py",
+          "sha256": "102bb05cbf2b8be1c11ff99d99b9eb252061a5f24adbb6968b24f26f7247deec"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_intelligence_corpus/inventory.py",
+          "sha256": "33d945c2bb24ce854f3bb8b866739658514e423ed2395d35ce0469d6e820c18e"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_intelligence_corpus/offline_quality_gate.py",
+          "sha256": "bfb8f4e3dac1418de3329d28c2de1d6c2e131052043e171a7e071808c50415ca"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_intelligence_corpus/quality_gate_models.py",
+          "sha256": "e6c297fd994cb5caf21613fc9c7230deb710ef6a409babf4a084747f1b42e09d"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_intelligence_corpus/quality_gate_report.py",
+          "sha256": "7377c17628897b4616889b656a7a704395d8a60662012b7b3cc610905ed63657"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_intelligence_corpus/quality_regression.py",
+          "sha256": "90eb613eff397d1a7a167d79a5fb80dd0a8f879665117f1352c8ec6e6f65b951"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_intelligence_corpus/regression_activation.py",
+          "sha256": "8d4f368dd26154dca6ab389ed528f2f33b50acae755d353f5bb7c599e0c9c104"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_intelligence_corpus/root_cause_records.py",
+          "sha256": "321d182f5d88cfdcb6c03e9fcb4a0be894cd886598ac35f57c854785cf4550b3"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_intelligence_corpus/segmentation.py",
+          "sha256": "529795506a605e0f08740cf7ffa46b08d95eb8eec35ad061874fba9e50f12c85"
+        },
+        {
+          "matches_head": true,
+          "path": "core/translation_intelligence_corpus/statistics.py",
+          "sha256": "30c9b4d9eebe7af8efdef6a108789e9e838980dcb518a8f417b4147e198a2901"
+        },
+        {
+          "matches_head": true,
+          "path": "docs/translation_intelligence/TIC_BATCH1_HISTORICAL_TRANSLATION_CORPUS.md",
+          "sha256": "6e7bad7bc4d90143a9982481e22c1b0f47e363f6b14a51fe9579141758766e94"
+        },
+        {
+          "matches_head": true,
+          "path": "docs/translation_intelligence/TIC_BATCH2_TRANSLATION_CASE_EXTRACTION.md",
+          "sha256": "5efb0259123f75cc4e1be01e9e47fcfdb010abfdcdb1ac9278f87ddd4c4aa955"
+        },
+        {
+          "matches_head": true,
+          "path": "docs/translation_intelligence/TIC_BATCH3_MANUAL_EVIDENCE_AND_ALIGNMENT.md",
+          "sha256": "5a3eb99e48aec39d655df6c743b93ccfbaa633c37a7121f2d4cd9bfb54802258"
+        },
+        {
+          "matches_head": true,
+          "path": "docs/translation_intelligence/TIC_BATCH4_HUMAN_CONFIRMED_FAILURE_CORPUS.md",
+          "sha256": "cba3af84e949d030853738f8168a144ef6f9ebecf7a5245c15ca9ae3371dbc9f"
+        },
+        {
+          "matches_head": true,
+          "path": "docs/translation_intelligence/TIC_BATCH5_HISTORICAL_HUMAN_EVIDENCE_EXPANSION.md",
+          "sha256": "b5c28b8305b1ffbe193579db8a0ce809fc46fd92b90c630afa62a5dc10f63f7f"
+        },
+        {
+          "matches_head": true,
+          "path": "docs/translation_intelligence/TIC_BATCH61_HUMAN_APPROVAL_AND_REGRESSION_ACTIVATION.md",
+          "sha256": "16f7a85fe06a6cb1a1b08d21e731f8cee03c96d7c20da7e0de148a70f094f248"
+        },
+        {
+          "matches_head": true,
+          "path": "docs/translation_intelligence/TIC_BATCH6_HUMAN_CORRECTION_ROOT_CAUSE_REGRESSION.md",
+          "sha256": "2eefb841dc9c9fd575a4de04fa4328dc979aa19936b8b168c21b58196bb9574a"
+        },
+        {
+          "matches_head": true,
+          "path": "docs/translation_intelligence/TIC_BATCH7_OFFLINE_TRANSLATION_QUALITY_GATE.md",
+          "sha256": "6d6286d84cd80f9855786c05421e47665a3bcf970b42811bc902180c1089583b"
+        },
+        {
+          "matches_head": true,
+          "path": "manifests/tic_batch2_translation_case_extraction_manifest.json",
+          "sha256": "8e3368c2d51c66e11755e89600d5e5b84d4ff86a591534a0e763d9291b8b09be"
+        },
+        {
+          "matches_head": true,
+          "path": "manifests/tic_batch3_manual_evidence_alignment_manifest.json",
+          "sha256": "3fa1240f3ac098e89a7715dd7c3abb295a444e81a8827043e40504541feb5f9b"
+        },
+        {
+          "matches_head": true,
+          "path": "manifests/tic_batch4_human_confirmed_failure_corpus_manifest.json",
+          "sha256": "6632646c098c265f264f8e137fa660dff91be04ec2f2e855b35c2ec134a29086"
+        },
+        {
+          "matches_head": true,
+          "path": "manifests/tic_batch5_historical_human_evidence_expansion_manifest.json",
+          "sha256": "a7b1fd5839146e6c206c03df1cc5db8a3503d9b539a039eb7ee7e26f97a965dd"
+        },
+        {
+          "matches_head": true,
+          "path": "manifests/tic_batch61_human_approval_regression_activation_manifest.json",
+          "sha256": "e01b7e5c9f4291e2e9bc43c9adb092b7f0cebea804ad76555a2053a01e5c38e0"
+        },
+        {
+          "matches_head": true,
+          "path": "manifests/tic_batch6_human_correction_root_cause_regression_manifest.json",
+          "sha256": "3e9a166125cba9715ff48de8053206d64897a8e374ca0358751941e50ed4d7c3"
+        },
+        {
+          "matches_head": true,
+          "path": "manifests/tic_batch7_offline_translation_quality_gate_manifest.json",
+          "sha256": "6e06743135df56603ade432afaf73d99bfee2a6aa0580f7a0c24faa7aa588e4c"
+        },
+        {
+          "matches_head": true,
+          "path": "ntpe_tic_batch1_translation_corpus_inventory_test.py",
+          "sha256": "c70d329e26406b16f0b76384f8d7136098a3f8e118def599d45d808688d06924"
+        },
+        {
+          "matches_head": true,
+          "path": "ntpe_tic_batch2_translation_case_extraction_test.py",
+          "sha256": "c50272ef31d587e916d8543163d95ca048a2c066a334600829b9c9e8d6102f80"
+        },
+        {
+          "matches_head": true,
+          "path": "ntpe_tic_batch3_manual_evidence_alignment_test.py",
+          "sha256": "703c6245127b809796fba49d1e89caf4a5516d582fb72c1676e8f20239cef6d2"
+        },
+        {
+          "matches_head": true,
+          "path": "ntpe_tic_batch4_human_confirmed_failure_corpus_test.py",
+          "sha256": "0e44e6011dd76e96a63dc07140ee4506c3bc4b9e48ed7772a500ee4eca08c4fd"
+        },
+        {
+          "matches_head": true,
+          "path": "ntpe_tic_batch5_historical_human_evidence_expansion_test.py",
+          "sha256": "632ef941ba941c7a4c393c1ce01427734ce85db1a2c937a88a80cdea2ada0eb7"
+        },
+        {
+          "matches_head": true,
+          "path": "ntpe_tic_batch61_human_approval_regression_activation_test.py",
+          "sha256": "cc1214c9477c939b6f1d8971a19990190e33decf76070ddbfd665c98f741f740"
+        },
+        {
+          "matches_head": true,
+          "path": "ntpe_tic_batch6_human_correction_root_cause_regression_test.py",
+          "sha256": "fa276b031c4efb7e85bb624503b63ccc9a0ac0017d34a22b9e00f923ca7ef8f1"
+        },
+        {
+          "matches_head": true,
+          "path": "ntpe_tic_batch7_offline_translation_quality_gate_test.py",
+          "sha256": "2ba637d1e6d8d250e8b434d9e8db5ded0fc1ce9a79003a01df8f1e4fb1bdc8a4"
+        },
+        {
+          "matches_head": true,
+          "path": "tests/integration/tic_batch1_translation_corpus_inventory_test.py",
+          "sha256": "5975d04673c9b90d8a191a31b20b15c684f128ecea5303744784db74347e3768"
+        },
+        {
+          "matches_head": true,
+          "path": "tests/integration/tic_batch2_translation_case_extraction_test.py",
+          "sha256": "79da5ef8d98feac2d8b5913200d07dd61463720f3005dce0ac637cc71cfe1d59"
+        },
+        {
+          "matches_head": true,
+          "path": "tests/integration/tic_batch3_manual_evidence_alignment_test.py",
+          "sha256": "3a8138b6866db3bed03a95eddbe199524f5cdb0291bcb65cc615a12166cf5970"
+        },
+        {
+          "matches_head": true,
+          "path": "tests/integration/tic_batch4_human_confirmed_failure_corpus_test.py",
+          "sha256": "529e848538b3db30d2f0704ff3117ccaaa2226160d7229dc4a06e45b7857a737"
+        },
+        {
+          "matches_head": true,
+          "path": "tests/integration/tic_batch5_historical_human_evidence_expansion_test.py",
+          "sha256": "1a092c0530a9845f1d088c9d71933fb8782de3e219f90b4b51a3ac2a1ae4505c"
+        },
+        {
+          "matches_head": true,
+          "path": "tests/integration/tic_batch61_human_approval_regression_activation_test.py",
+          "sha256": "2e5274f045a8b35e8ff8ebf00f7531731f2098e2b713aad0bac35f15295034c6"
+        },
+        {
+          "matches_head": true,
+          "path": "tests/integration/tic_batch6_human_correction_root_cause_regression_test.py",
+          "sha256": "d0a4c48a8374ad5f5cf3c52c2d4e67d5def0854071c9e1be41c3385537b12153"
+        },
+        {
+          "matches_head": true,
+          "path": "tests/integration/tic_batch7_offline_translation_quality_gate_test.py",
+          "sha256": "5f695ca1f891f8ca019cb1a350d305a298bcb7453b0ab2ff2890ca6637816162"
+        },
+        {
+          "matches_head": true,
+          "path": "tests/performance/tic_batch7_offline_quality_gate_benchmark.py",
+          "sha256": "2b1a9eb724d5e1e734f6bbf5c8939b501a17f07df3cf3b77a8da9f5dd0b3b2bf"
+        }
+      ],
+      "matches_head": false
+    }
+  },
+  "lcr_batch4_started": false,
+  "network_requests": 0,
+  "new_translation_generated": false,
+  "production_code_modified": false,
+  "production_integration": false,
+  "prompt_integration": false,
+  "prompt_modified": false,
+  "provider_executed": false,
+  "provider_modified": false,
+  "qa_engine_modified": false,
+  "runtime_modified": false,
+  "status": "PASS",
+  "tic_modified": false
+}
