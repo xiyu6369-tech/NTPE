@@ -1,0 +1,33 @@
+{
+  "deduplication": "type plus exact scope",
+  "length_only_trigger": false,
+  "maximum_polish_requests_per_chunk": 1,
+  "scope_hashes": [
+    "original_draft_hash",
+    "selected_text_hash",
+    "surrounding_context_hash",
+    "outside hashes"
+  ],
+  "scopes": [
+    "full_chunk",
+    "sentence_span",
+    "paragraph_span",
+    "dialogue_span",
+    "none"
+  ],
+  "status": "PASS",
+  "trigger_is_semantic_approval": false,
+  "types": [
+    "translationese",
+    "awkward_word_order",
+    "dialogue_naturalness",
+    "voice_inconsistency",
+    "register_mismatch",
+    "era_context_mismatch",
+    "punctuation_style",
+    "repetition_nonsemantic",
+    "literal_idiom",
+    "human_requested",
+    "no_trigger"
+  ]
+}

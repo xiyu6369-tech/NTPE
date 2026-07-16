@@ -1,0 +1,28 @@
+{
+  "chunk_cache_v2_core_modified": false,
+  "failed_polish_final_hit": false,
+  "identities": [
+    "DraftCacheIdentity",
+    "PolishCacheIdentity",
+    "FinalOutputIdentity"
+  ],
+  "polish_identity_fields": [
+    "draft_hash",
+    "polish_policy_version",
+    "polish_scope_hash",
+    "semantic_policy_version",
+    "character_memory_selection_fingerprint",
+    "context_scene_selection_fingerprint",
+    "glossary_fingerprint"
+  ],
+  "rollback_final": "verified Draft cache identity",
+  "stale_reasons": [
+    "draft hash",
+    "polish policy",
+    "semantic policy",
+    "scope",
+    "selected memory/context",
+    "glossary"
+  ],
+  "status": "PASS"
+}

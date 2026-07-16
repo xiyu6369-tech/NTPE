@@ -1,0 +1,17 @@
+{
+  "lexical_choice": {
+    "approved": "PASS",
+    "approved_value": "相當理性的人",
+    "historical_bad": "FAIL",
+    "nonsemantic_wording_not_automatically_failed": true
+  },
+  "quality_improvement_global_claim": false,
+  "read_only": true,
+  "status": "PASS",
+  "subject_reference_shift": {
+    "historical_bad": "FAIL and rollback",
+    "human_approved": "PASS",
+    "unrelated": "FAIL"
+  },
+  "tic_data_modified": false
+}

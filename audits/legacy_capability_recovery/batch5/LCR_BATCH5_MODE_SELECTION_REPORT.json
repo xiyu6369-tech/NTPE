@@ -1,0 +1,16 @@
+{
+  "blocked": "Draft ineligible",
+  "default_research_direction": "selective_polish",
+  "deterministic": true,
+  "dual_pass": "verified Draft plus full-chunk direct value and healthy provider",
+  "provider_healths": [
+    "provider_healthy",
+    "provider_degraded",
+    "provider_unavailable",
+    "unknown"
+  ],
+  "selective_polish": "verified Draft plus bounded local direct-value trigger",
+  "single_pass": "verified Draft with no eligible trigger or second-request risk",
+  "status": "PASS",
+  "unconditional_dual_pass": false
+}

@@ -1,0 +1,15 @@
+LCR Batch 5 required regression summary
+PASS LCR Batch 2 Root 25 checks; Unit 26; Integration 12
+PASS LCR Batch 3 Root ALL PASS; Unit 18; Integration 9
+PASS LCR Batch 4 Root ALL PASS; Unit 43; Integration 9
+PASS TIC Batch 7 Offline Translation Quality Gate
+PASS TE v6 Final Freeze
+PASS TE v7.1 Stage 11.8 Freeze
+PASS TE v7.2 Stage 12.1 Candidate
+PASS Runtime focused regression 10 tests
+PASS Provider Security
+PASS Resume Recovery 12 tests
+PASS Output Assembly 9 tests
+provider_executed=false
+network_requests=0
+new_translation_generated=false

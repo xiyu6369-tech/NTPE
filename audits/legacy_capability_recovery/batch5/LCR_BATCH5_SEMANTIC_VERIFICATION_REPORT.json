@@ -1,0 +1,38 @@
+{
+  "blocking_issue_types": [
+    "subject_reference_shift",
+    "pronoun_reference_shift",
+    "named_entity_change",
+    "name_completion",
+    "number_change",
+    "time_change",
+    "negation_change",
+    "causal_change",
+    "relationship_change",
+    "speaker_change",
+    "point_of_view_change",
+    "location_change",
+    "event_change",
+    "omission",
+    "addition",
+    "ambiguity_loss",
+    "glossary_violation",
+    "dialogue_boundary_change",
+    "out_of_scope_change"
+  ],
+  "fail_closed_statuses": [
+    "failed",
+    "insufficient_evidence",
+    "invalid"
+  ],
+  "failed_polish_output": false,
+  "fallback": "verified Draft",
+  "general_semantic_understanding_complete": false,
+  "passing_examples": [
+    "word order only",
+    "Traditional Chinese punctuation only",
+    "approved lexical improvement with unchanged invariants"
+  ],
+  "prototype_kind": "offline structural semantic verification prototype",
+  "status": "PASS"
+}

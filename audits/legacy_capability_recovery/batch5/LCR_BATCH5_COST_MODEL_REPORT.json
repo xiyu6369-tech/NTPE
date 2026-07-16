@@ -1,0 +1,15 @@
+{
+  "degraded_timeout_risk_increased": true,
+  "dual_pass_requests": 2,
+  "maximum_polish_requests_per_chunk": 1,
+  "provider_requests_executed": 0,
+  "provider_timeout_history_seconds": 180,
+  "provider_unavailable_polish": false,
+  "selective_polish_requests": {
+    "with_draft_cache": 1,
+    "without_draft_cache": 2
+  },
+  "single_pass_requests": 1,
+  "status": "PASS",
+  "worst_case_explicit": true
+}

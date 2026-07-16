@@ -1,0 +1,14 @@
+$ git diff --check
+$ git ls-files --deleted
+$ git status --short
+?? NTPE_LCR_BATCH5_AUDIT.zip
+?? audits/legacy_capability_recovery/batch5/
+?? core/dual_pass_translation/
+?? ntpe_lcr_batch5_dual_pass_prototype_test.py
+?? tests/integration/lcr_batch5_dual_pass_translation_integration_test.py
+?? tests/unit/test_dual_pass_translation.py
+$ git diff --stat
+$ git rev-list --left-right --count origin/main...main
+0	0
+$ git log -1 --oneline
+940a10e LCR Batch 4: Add Chunk Cache V2 offline core

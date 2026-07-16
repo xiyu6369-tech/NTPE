@@ -1,0 +1,44 @@
+{
+  "batch2": {
+    "integration": 12,
+    "root": 25,
+    "status": "PASS",
+    "unit": 26
+  },
+  "batch3": {
+    "integration": 9,
+    "root": "ALL PASS",
+    "status": "PASS",
+    "unit": 18
+  },
+  "batch4": {
+    "integration": 9,
+    "root": "ALL PASS",
+    "status": "PASS",
+    "unit": 43
+  },
+  "integration": {
+    "passed": 9,
+    "status": "PASS"
+  },
+  "regressions": {
+    "output_assembly": "PASS (9)",
+    "provider_security": "PASS",
+    "resume_recovery": "PASS (12)",
+    "runtime": "PASS (10)",
+    "stage_11_8": "PASS",
+    "stage_12_1": "PASS",
+    "te_v6": "PASS",
+    "tic_batch7": "PASS"
+  },
+  "root": {
+    "final_line": "ALL PASS",
+    "status": "PASS"
+  },
+  "status": "PASS",
+  "unit": {
+    "passed": 78,
+    "status": "PASS"
+  },
+  "validator": "ALL PASS"
+}

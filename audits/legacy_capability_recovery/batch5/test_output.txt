@@ -1,0 +1,30 @@
+LCR Batch 5 focused validation
+
+PASS 100 Draft creation
+PASS 100 Polish creation
+PASS 100 trigger evaluation
+PASS 100 mode decisions
+PASS 100 semantic verifications
+PASS 100 execution plans
+PASS 100 Draft Polish cache identities
+PASS serialization round trip
+PASS rollback decision application
+PASS offline execution boundary
+PASS schema
+BENCHMARK draft_creation_ms=12.084
+BENCHMARK polish_creation_ms=10.571
+BENCHMARK trigger_evaluation_ms=2.516
+BENCHMARK mode_decision_ms=7.817
+BENCHMARK semantic_verification_ms=14.243
+BENCHMARK execution_plan_ms=0.418
+BENCHMARK cache_identity_ms=1.340
+BENCHMARK serialization_round_trip_ms=2.367
+BENCHMARK rollback_ms=0.032
+ALL PASS
+
+........................................................................ [ 92%]
+......                                                                   [100%]
+78 passed in 0.84s
+
+.........                                                                [100%]
+9 passed in 6.42s
