@@ -1,0 +1,383 @@
+{
+  "identity": {
+    "language_profile_fingerprint": "11845f7b587fe42a648b6654e5878bac4cf1ce2385996f254451ba203651a4f3",
+    "language_profile_id": "literary-ko-zh-hant",
+    "language_profile_version": "1.0",
+    "source_language": "ko",
+    "target_language": "zh-Hant"
+  },
+  "profile": {
+    "created_at": "2026-07-16T00:00:00Z",
+    "dialogue_policy": {
+      "dialogue_continuation": "preserve speaker continuity",
+      "dialogue_to_narration_risk": true,
+      "interrupted_speech": "preserve interruption",
+      "nested_quote_handling": "use 『』",
+      "quote_normalization": "normalize to 「」 without semantic change",
+      "source_boundary_markers": [
+        "\"",
+        "‘’",
+        "“”"
+      ],
+      "speaker_attribution": "explicit evidence or unresolved",
+      "unfinished_utterance": "never complete"
+    },
+    "display_name": "Korean Literary to Traditional Chinese",
+    "fingerprint": "11845f7b587fe42a648b6654e5878bac4cf1ce2385996f254451ba203651a4f3",
+    "honorific_policy": {
+      "forbidden_simplifications": [
+        "always_use_您",
+        "infer_identity_from_ending",
+        "erase_register_difference"
+      ],
+      "honorific_markers": [
+        "-습니다",
+        "-ㅂ니다",
+        "-어요",
+        "-아요",
+        "-시오",
+        "-네",
+        "-오"
+      ],
+      "register_levels": [
+        "존댓말",
+        "반말",
+        "하십시오체",
+        "해요체",
+        "해체",
+        "하게체",
+        "하오체"
+      ],
+      "relationship_implications": [
+        "social_distance",
+        "age_or_rank_context"
+      ],
+      "translation_options": [
+        "title",
+        "relationship term",
+        "register-preserving Chinese voice"
+      ]
+    },
+    "name_policy": {
+      "approved_variant_policy": "human-approved glossary or memory has priority",
+      "full_name_completion_policy": "forbidden_without_evidence",
+      "name_order": "family_given",
+      "nickname_policy": "preserve distinct identity unless approved evidence links it",
+      "title_policy": "relationship-era-scene-sensitive",
+      "transliteration_strategy": "approved_transliteration_only",
+      "unknown_name_policy": "unresolved_or_manual_review"
+    },
+    "narrative_policy": {
+      "archaic_language_policy": "metadata-versioned",
+      "cultural_context": "Korean cultural terms may preserve translate transliterate or annotate",
+      "era_context": "work metadata may select ancient modern fantasy or other",
+      "foreign_setting_policy": "never force Taiwan-local titles",
+      "modernization_policy": "never force modern colloquial Chinese",
+      "narrative_distance": "preserve source distance",
+      "register_preferences": [
+        "character-specific",
+        "scene-sensitive"
+      ]
+    },
+    "profile_id": "literary-ko-zh-hant",
+    "profile_version": "1.0",
+    "pronoun_policy": {
+      "gender_marking_strength": "weak",
+      "human_approved_override": true,
+      "memory_evidence_policy": "selected human-approved evidence only",
+      "object_omission_expected": true,
+      "pronoun_surface_to_identity_rules": [
+        "omission_does_not_resolve_identity",
+        "multiple_candidates_remain_unresolved"
+      ],
+      "subject_omission_expected": true,
+      "unresolved_reference_policy": "preserve_unresolved"
+    },
+    "quality_rules": [
+      {
+        "applicability": "ko->zh-Hant",
+        "blocking": true,
+        "description": "ko profile rule for source residue",
+        "evidence_required": [
+          "explicit_structural_evidence"
+        ],
+        "rule_id": "ko-source-residue",
+        "rule_version": "1.0",
+        "severity": "blocking",
+        "source_language": "ko"
+      },
+      {
+        "applicability": "ko->zh-Hant",
+        "blocking": true,
+        "description": "ko profile rule for name consistency",
+        "evidence_required": [
+          "explicit_structural_evidence"
+        ],
+        "rule_id": "ko-name-consistency",
+        "rule_version": "1.0",
+        "severity": "blocking",
+        "source_language": "ko"
+      },
+      {
+        "applicability": "ko->zh-Hant",
+        "blocking": true,
+        "description": "ko profile rule for subject reference",
+        "evidence_required": [
+          "explicit_structural_evidence"
+        ],
+        "rule_id": "ko-subject-reference",
+        "rule_version": "1.0",
+        "severity": "blocking",
+        "source_language": "ko"
+      },
+      {
+        "applicability": "ko->zh-Hant",
+        "blocking": true,
+        "description": "ko profile rule for pronoun reference",
+        "evidence_required": [
+          "explicit_structural_evidence"
+        ],
+        "rule_id": "ko-pronoun-reference",
+        "rule_version": "1.0",
+        "severity": "blocking",
+        "source_language": "ko"
+      },
+      {
+        "applicability": "ko->zh-Hant",
+        "blocking": true,
+        "description": "ko profile rule for honorific consistency",
+        "evidence_required": [
+          "explicit_structural_evidence"
+        ],
+        "rule_id": "ko-honorific-consistency",
+        "rule_version": "1.0",
+        "severity": "blocking",
+        "source_language": "ko"
+      },
+      {
+        "applicability": "ko->zh-Hant",
+        "blocking": false,
+        "description": "ko profile rule for register consistency",
+        "evidence_required": [
+          "explicit_structural_evidence"
+        ],
+        "rule_id": "ko-register-consistency",
+        "rule_version": "1.0",
+        "severity": "review",
+        "source_language": "ko"
+      },
+      {
+        "applicability": "ko->zh-Hant",
+        "blocking": true,
+        "description": "ko profile rule for dialogue format",
+        "evidence_required": [
+          "explicit_structural_evidence"
+        ],
+        "rule_id": "ko-dialogue-format",
+        "rule_version": "1.0",
+        "severity": "blocking",
+        "source_language": "ko"
+      },
+      {
+        "applicability": "ko->zh-Hant",
+        "blocking": true,
+        "description": "ko profile rule for target script consistency",
+        "evidence_required": [
+          "explicit_structural_evidence"
+        ],
+        "rule_id": "ko-target-script-consistency",
+        "rule_version": "1.0",
+        "severity": "blocking",
+        "source_language": "ko"
+      },
+      {
+        "applicability": "ko->zh-Hant",
+        "blocking": false,
+        "description": "ko profile rule for literal translation risk: long_adnominal_literalism, ending_literalism, mechanical_honorific",
+        "evidence_required": [
+          "explicit_structural_evidence"
+        ],
+        "rule_id": "ko-literal-translation-risk",
+        "rule_version": "1.0",
+        "severity": "review",
+        "source_language": "ko"
+      },
+      {
+        "applicability": "ko->zh-Hant",
+        "blocking": true,
+        "description": "ko profile rule for omission risk",
+        "evidence_required": [
+          "explicit_structural_evidence"
+        ],
+        "rule_id": "ko-omission-risk",
+        "rule_version": "1.0",
+        "severity": "blocking",
+        "source_language": "ko"
+      },
+      {
+        "applicability": "ko->zh-Hant",
+        "blocking": true,
+        "description": "ko profile rule for addition risk",
+        "evidence_required": [
+          "explicit_structural_evidence"
+        ],
+        "rule_id": "ko-addition-risk",
+        "rule_version": "1.0",
+        "severity": "blocking",
+        "source_language": "ko"
+      },
+      {
+        "applicability": "ko->zh-Hant",
+        "blocking": true,
+        "description": "ko profile rule for ambiguity preservation",
+        "evidence_required": [
+          "explicit_structural_evidence"
+        ],
+        "rule_id": "ko-ambiguity-preservation",
+        "rule_version": "1.0",
+        "severity": "blocking",
+        "source_language": "ko"
+      },
+      {
+        "applicability": "ko->zh-Hant",
+        "blocking": false,
+        "description": "ko profile rule for era context consistency",
+        "evidence_required": [
+          "explicit_structural_evidence"
+        ],
+        "rule_id": "ko-era-context-consistency",
+        "rule_version": "1.0",
+        "severity": "review",
+        "source_language": "ko"
+      },
+      {
+        "applicability": "ko->zh-Hant",
+        "blocking": true,
+        "description": "ko profile rule for glossary consistency",
+        "evidence_required": [
+          "explicit_structural_evidence"
+        ],
+        "rule_id": "ko-glossary-consistency",
+        "rule_version": "1.0",
+        "severity": "blocking",
+        "source_language": "ko"
+      }
+    ],
+    "residue_policy": {
+      "allowed_categories": [
+        "approved_name",
+        "brand",
+        "work_title",
+        "foreign_dialogue"
+      ],
+      "blocking_default": true,
+      "patterns": [
+        "[가-힣]+",
+        "(?:은|는|이|가|을|를|에게|에서)$"
+      ],
+      "scripts": [
+        "Hangul"
+      ]
+    },
+    "schema_version": "1.0",
+    "semantic_hints": {
+      "ambiguity_markers": [
+        "누군가",
+        "어느",
+        "몇",
+        "아마"
+      ],
+      "causal_markers": [
+        "때문에",
+        "그래서",
+        "그러나",
+        "만약"
+      ],
+      "dialogue_markers": [
+        "\"",
+        "“",
+        "”"
+      ],
+      "honorific_markers": [
+        "님",
+        "씨",
+        "선배",
+        "후배"
+      ],
+      "modality_markers": [
+        "수 있다",
+        "수 없다",
+        "것 같다",
+        "아마"
+      ],
+      "name_patterns": [
+        "[가-힣]{2,4}(?:씨|님)?"
+      ],
+      "negation_markers": [
+        "안",
+        "못",
+        "없",
+        "아니"
+      ],
+      "number_patterns": [
+        "\\d+",
+        "[일이삼사오육칠팔구십백천]+"
+      ],
+      "subject_omission_expected": true,
+      "time_patterns": [
+        "어제",
+        "오늘",
+        "내일",
+        "후",
+        "전"
+      ]
+    },
+    "source_language": "ko",
+    "source_rules": {
+      "culture_notes": [
+        "honorific ending is not identity evidence"
+      ],
+      "object_omission_expected": true,
+      "structure_risks": [
+        "subject_omission",
+        "object_omission",
+        "long_adnominal_literalism",
+        "ending_literalism",
+        "connector_overretention",
+        "passive_causative_rigidity",
+        "mechanical_honorific",
+        "relationship_title_mistranslation"
+      ],
+      "subject_omission_expected": true,
+      "temporal_aspect_rules": [
+        "explicit_time_relations_must_survive"
+      ]
+    },
+    "status": "experimental",
+    "target_language": "zh-Hant",
+    "target_rules": {
+      "dialogue_quotes": "「」",
+      "force_taiwan_terms": false,
+      "language": "zh-Hant",
+      "preserve_era_context": true,
+      "requirements": [
+        "traditional_chinese",
+        "no_simplified_residue",
+        "no_unapproved_source_residue",
+        "no_omission",
+        "no_addition",
+        "no_summary",
+        "no_arbitrary_rewrite",
+        "preserve_subject_pronoun_number_time_negation_causality_relationship",
+        "preserve_deliberate_ambiguity",
+        "consistent_names_and_terms",
+        "no_full_name_completion",
+        "era_culture_voice_sensitive_wording",
+        "remove_translationese_without_semantic_change"
+      ],
+      "script": "Traditional Han"
+    },
+    "updated_at": "2026-07-16T00:00:00Z"
+  },
+  "status": "PASS"
+}

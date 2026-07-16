@@ -1,0 +1,67 @@
+{
+  "finding_fields": [
+    "text",
+    "scope",
+    "script",
+    "confidence",
+    "allowed_by_policy",
+    "blocking",
+    "reason"
+  ],
+  "legal_names_brands_abbreviations_supported": true,
+  "policies": {
+    "en": {
+      "allowed_categories": [
+        "approved_name",
+        "brand",
+        "abbreviation",
+        "work_title",
+        "code",
+        "foreign_dialogue"
+      ],
+      "blocking_default": true,
+      "patterns": [
+        "[A-Za-z]+(?:\\s+[A-Za-z]+){2,}",
+        "\\{\\{[^}]+\\}\\}"
+      ],
+      "scripts": [
+        "Latin"
+      ]
+    },
+    "ja": {
+      "allowed_categories": [
+        "approved_name",
+        "brand",
+        "work_title",
+        "foreign_dialogue"
+      ],
+      "blocking_default": true,
+      "patterns": [
+        "[ぁ-ん]+",
+        "[ァ-ヶー]+",
+        "(?:は|が|を|に|で|と|へ)$"
+      ],
+      "scripts": [
+        "Hiragana",
+        "Katakana"
+      ]
+    },
+    "ko": {
+      "allowed_categories": [
+        "approved_name",
+        "brand",
+        "work_title",
+        "foreign_dialogue"
+      ],
+      "blocking_default": true,
+      "patterns": [
+        "[가-힣]+",
+        "(?:은|는|이|가|을|를|에게|에서)$"
+      ],
+      "scripts": [
+        "Hangul"
+      ]
+    }
+  },
+  "status": "PASS"
+}

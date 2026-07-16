@@ -1,0 +1,35 @@
+{
+  "automatic_transliteration": false,
+  "full_name_completion_policy": "forbidden_without_evidence",
+  "human_approved_priority": true,
+  "profiles": {
+    "en": {
+      "approved_variant_policy": "human-approved glossary or memory has priority",
+      "full_name_completion_policy": "forbidden_without_evidence",
+      "name_order": "given_family",
+      "nickname_policy": "preserve distinct identity unless approved evidence links it",
+      "title_policy": "era-rank-setting-sensitive",
+      "transliteration_strategy": "approved_transliteration_only",
+      "unknown_name_policy": "unresolved_or_manual_review"
+    },
+    "ja": {
+      "approved_variant_policy": "human-approved glossary or memory has priority",
+      "full_name_completion_policy": "forbidden_without_evidence",
+      "name_order": "family_given",
+      "nickname_policy": "preserve distinct identity unless approved evidence links it",
+      "title_policy": "honorific-relationship-era-sensitive",
+      "transliteration_strategy": "approved_variant_or_manual_review",
+      "unknown_name_policy": "unresolved_or_manual_review"
+    },
+    "ko": {
+      "approved_variant_policy": "human-approved glossary or memory has priority",
+      "full_name_completion_policy": "forbidden_without_evidence",
+      "name_order": "family_given",
+      "nickname_policy": "preserve distinct identity unless approved evidence links it",
+      "title_policy": "relationship-era-scene-sensitive",
+      "transliteration_strategy": "approved_transliteration_only",
+      "unknown_name_policy": "unresolved_or_manual_review"
+    }
+  },
+  "status": "PASS"
+}

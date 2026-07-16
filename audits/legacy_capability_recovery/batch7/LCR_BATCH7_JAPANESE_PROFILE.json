@@ -1,0 +1,388 @@
+{
+  "identity": {
+    "language_profile_fingerprint": "b6a0912b9f8ef5e3576f9f46b0bc0b27ff39cca8ef691c08d262323b29dfa48b",
+    "language_profile_id": "literary-ja-zh-hant",
+    "language_profile_version": "1.0",
+    "source_language": "ja",
+    "target_language": "zh-Hant"
+  },
+  "profile": {
+    "created_at": "2026-07-16T00:00:00Z",
+    "dialogue_policy": {
+      "dialogue_continuation": "preserve continuation",
+      "dialogue_to_narration_risk": true,
+      "interrupted_speech": "preserve interruption",
+      "nested_quote_handling": "preserve 『』 nesting",
+      "quote_normalization": "normalize to 「」",
+      "source_boundary_markers": [
+        "「」",
+        "『』",
+        "\""
+      ],
+      "speaker_attribution": "explicit evidence or unresolved",
+      "unfinished_utterance": "never complete"
+    },
+    "display_name": "Japanese Literary to Traditional Chinese",
+    "fingerprint": "b6a0912b9f8ef5e3576f9f46b0bc0b27ff39cca8ef691c08d262323b29dfa48b",
+    "honorific_policy": {
+      "forbidden_simplifications": [
+        "always_use_您",
+        "always_use_請",
+        "change_agent_for_humble_or_respectful",
+        "erase_register_shift"
+      ],
+      "honorific_markers": [
+        "さん",
+        "様",
+        "君",
+        "ちゃん",
+        "ございます",
+        "いたします",
+        "なさる"
+      ],
+      "register_levels": [
+        "尊敬語",
+        "謙讓語",
+        "丁寧語",
+        "普通體"
+      ],
+      "relationship_implications": [
+        "distance",
+        "power",
+        "in_group_out_group"
+      ],
+      "translation_options": [
+        "Chinese voice",
+        "contextual title",
+        "selective honorific rendering"
+      ]
+    },
+    "name_policy": {
+      "approved_variant_policy": "human-approved glossary or memory has priority",
+      "full_name_completion_policy": "forbidden_without_evidence",
+      "name_order": "family_given",
+      "nickname_policy": "preserve distinct identity unless approved evidence links it",
+      "title_policy": "honorific-relationship-era-sensitive",
+      "transliteration_strategy": "approved_variant_or_manual_review",
+      "unknown_name_policy": "unresolved_or_manual_review"
+    },
+    "narrative_policy": {
+      "archaic_language_policy": "metadata-versioned",
+      "cultural_context": "Japanese cultural terms may preserve translate transliterate or annotate",
+      "era_context": "work metadata controls era",
+      "foreign_setting_policy": "never localize foreign setting to Taiwan",
+      "modernization_policy": "never force modern colloquial Chinese",
+      "narrative_distance": "preserve source distance",
+      "register_preferences": [
+        "character-specific",
+        "sentence-final voice aware"
+      ]
+    },
+    "profile_id": "literary-ja-zh-hant",
+    "profile_version": "1.0",
+    "pronoun_policy": {
+      "gender_marking_strength": "medium",
+      "human_approved_override": true,
+      "memory_evidence_policy": "selected human-approved evidence only",
+      "object_omission_expected": true,
+      "pronoun_surface_to_identity_rules": [
+        "私_僕_俺_あたし_わたくし_are_voice_evidence_not_gender_proof",
+        "君_あなた_お前_貴様_require_relationship_context"
+      ],
+      "subject_omission_expected": true,
+      "unresolved_reference_policy": "preserve_unresolved"
+    },
+    "quality_rules": [
+      {
+        "applicability": "ja->zh-Hant",
+        "blocking": true,
+        "description": "ja profile rule for source residue",
+        "evidence_required": [
+          "explicit_structural_evidence"
+        ],
+        "rule_id": "ja-source-residue",
+        "rule_version": "1.0",
+        "severity": "blocking",
+        "source_language": "ja"
+      },
+      {
+        "applicability": "ja->zh-Hant",
+        "blocking": true,
+        "description": "ja profile rule for name consistency",
+        "evidence_required": [
+          "explicit_structural_evidence"
+        ],
+        "rule_id": "ja-name-consistency",
+        "rule_version": "1.0",
+        "severity": "blocking",
+        "source_language": "ja"
+      },
+      {
+        "applicability": "ja->zh-Hant",
+        "blocking": true,
+        "description": "ja profile rule for subject reference",
+        "evidence_required": [
+          "explicit_structural_evidence"
+        ],
+        "rule_id": "ja-subject-reference",
+        "rule_version": "1.0",
+        "severity": "blocking",
+        "source_language": "ja"
+      },
+      {
+        "applicability": "ja->zh-Hant",
+        "blocking": true,
+        "description": "ja profile rule for pronoun reference",
+        "evidence_required": [
+          "explicit_structural_evidence"
+        ],
+        "rule_id": "ja-pronoun-reference",
+        "rule_version": "1.0",
+        "severity": "blocking",
+        "source_language": "ja"
+      },
+      {
+        "applicability": "ja->zh-Hant",
+        "blocking": true,
+        "description": "ja profile rule for honorific consistency",
+        "evidence_required": [
+          "explicit_structural_evidence"
+        ],
+        "rule_id": "ja-honorific-consistency",
+        "rule_version": "1.0",
+        "severity": "blocking",
+        "source_language": "ja"
+      },
+      {
+        "applicability": "ja->zh-Hant",
+        "blocking": false,
+        "description": "ja profile rule for register consistency",
+        "evidence_required": [
+          "explicit_structural_evidence"
+        ],
+        "rule_id": "ja-register-consistency",
+        "rule_version": "1.0",
+        "severity": "review",
+        "source_language": "ja"
+      },
+      {
+        "applicability": "ja->zh-Hant",
+        "blocking": true,
+        "description": "ja profile rule for dialogue format",
+        "evidence_required": [
+          "explicit_structural_evidence"
+        ],
+        "rule_id": "ja-dialogue-format",
+        "rule_version": "1.0",
+        "severity": "blocking",
+        "source_language": "ja"
+      },
+      {
+        "applicability": "ja->zh-Hant",
+        "blocking": true,
+        "description": "ja profile rule for target script consistency",
+        "evidence_required": [
+          "explicit_structural_evidence"
+        ],
+        "rule_id": "ja-target-script-consistency",
+        "rule_version": "1.0",
+        "severity": "blocking",
+        "source_language": "ja"
+      },
+      {
+        "applicability": "ja->zh-Hant",
+        "blocking": false,
+        "description": "ja profile rule for literal translation risk: topic_subject_confusion, giving_receiving_agent, false_friend_kanji, loanword_literalism",
+        "evidence_required": [
+          "explicit_structural_evidence"
+        ],
+        "rule_id": "ja-literal-translation-risk",
+        "rule_version": "1.0",
+        "severity": "review",
+        "source_language": "ja"
+      },
+      {
+        "applicability": "ja->zh-Hant",
+        "blocking": true,
+        "description": "ja profile rule for omission risk",
+        "evidence_required": [
+          "explicit_structural_evidence"
+        ],
+        "rule_id": "ja-omission-risk",
+        "rule_version": "1.0",
+        "severity": "blocking",
+        "source_language": "ja"
+      },
+      {
+        "applicability": "ja->zh-Hant",
+        "blocking": true,
+        "description": "ja profile rule for addition risk",
+        "evidence_required": [
+          "explicit_structural_evidence"
+        ],
+        "rule_id": "ja-addition-risk",
+        "rule_version": "1.0",
+        "severity": "blocking",
+        "source_language": "ja"
+      },
+      {
+        "applicability": "ja->zh-Hant",
+        "blocking": true,
+        "description": "ja profile rule for ambiguity preservation",
+        "evidence_required": [
+          "explicit_structural_evidence"
+        ],
+        "rule_id": "ja-ambiguity-preservation",
+        "rule_version": "1.0",
+        "severity": "blocking",
+        "source_language": "ja"
+      },
+      {
+        "applicability": "ja->zh-Hant",
+        "blocking": false,
+        "description": "ja profile rule for era context consistency",
+        "evidence_required": [
+          "explicit_structural_evidence"
+        ],
+        "rule_id": "ja-era-context-consistency",
+        "rule_version": "1.0",
+        "severity": "review",
+        "source_language": "ja"
+      },
+      {
+        "applicability": "ja->zh-Hant",
+        "blocking": true,
+        "description": "ja profile rule for glossary consistency",
+        "evidence_required": [
+          "explicit_structural_evidence"
+        ],
+        "rule_id": "ja-glossary-consistency",
+        "rule_version": "1.0",
+        "severity": "blocking",
+        "source_language": "ja"
+      }
+    ],
+    "residue_policy": {
+      "allowed_categories": [
+        "approved_name",
+        "brand",
+        "work_title",
+        "foreign_dialogue"
+      ],
+      "blocking_default": true,
+      "patterns": [
+        "[ぁ-ん]+",
+        "[ァ-ヶー]+",
+        "(?:は|が|を|に|で|と|へ)$"
+      ],
+      "scripts": [
+        "Hiragana",
+        "Katakana"
+      ]
+    },
+    "schema_version": "1.0",
+    "semantic_hints": {
+      "ambiguity_markers": [
+        "誰か",
+        "ある",
+        "いくつか",
+        "かもしれない"
+      ],
+      "causal_markers": [
+        "から",
+        "ので",
+        "だから",
+        "しかし",
+        "もし"
+      ],
+      "dialogue_markers": [
+        "「",
+        "」",
+        "『",
+        "』"
+      ],
+      "honorific_markers": [
+        "さん",
+        "様",
+        "君",
+        "ちゃん"
+      ],
+      "modality_markers": [
+        "かもしれない",
+        "だろう",
+        "べき",
+        "はず"
+      ],
+      "name_patterns": [
+        "[\\u4e00-\\u9fff]{1,4}(?:さん|様|君|ちゃん)?"
+      ],
+      "negation_markers": [
+        "ない",
+        "ぬ",
+        "ず",
+        "ません"
+      ],
+      "number_patterns": [
+        "\\d+",
+        "[一二三四五六七八九十百千]+"
+      ],
+      "subject_omission_expected": true,
+      "time_patterns": [
+        "昨日",
+        "今日",
+        "明日",
+        "前",
+        "後"
+      ]
+    },
+    "source_language": "ja",
+    "source_rules": {
+      "culture_notes": [
+        "first-person form alone does not prove gender"
+      ],
+      "object_omission_expected": true,
+      "structure_risks": [
+        "topic_subject_confusion",
+        "adversative_passive",
+        "causative",
+        "giving_receiving_agent",
+        "omitted_object",
+        "long_modifier",
+        "onomatopoeia",
+        "sentence_final_voice",
+        "false_friend_kanji",
+        "loanword_literalism"
+      ],
+      "subject_omission_expected": true,
+      "temporal_aspect_rules": [
+        "event_order_and_aspect_must_survive"
+      ]
+    },
+    "status": "experimental",
+    "target_language": "zh-Hant",
+    "target_rules": {
+      "dialogue_quotes": "「」",
+      "force_taiwan_terms": false,
+      "language": "zh-Hant",
+      "preserve_era_context": true,
+      "requirements": [
+        "traditional_chinese",
+        "no_simplified_residue",
+        "no_unapproved_source_residue",
+        "no_omission",
+        "no_addition",
+        "no_summary",
+        "no_arbitrary_rewrite",
+        "preserve_subject_pronoun_number_time_negation_causality_relationship",
+        "preserve_deliberate_ambiguity",
+        "consistent_names_and_terms",
+        "no_full_name_completion",
+        "era_culture_voice_sensitive_wording",
+        "remove_translationese_without_semantic_change"
+      ],
+      "script": "Traditional Han"
+    },
+    "updated_at": "2026-07-16T00:00:00Z"
+  },
+  "status": "PASS"
+}

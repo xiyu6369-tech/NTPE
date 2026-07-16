@@ -1,0 +1,25 @@
+{
+  "bottlenecks": [],
+  "iterations": 100,
+  "milliseconds": {
+    "cache_identities": 0.881,
+    "fingerprints": 0.74,
+    "profile_loads": 0.032,
+    "selections": 0.344,
+    "semantic_hint_views": 2.07,
+    "serialization_round_trip": 50.108,
+    "validations": 0.779
+  },
+  "network_requests": 0,
+  "provider_requests": 0,
+  "status": "PASS",
+  "thresholds_ms": {
+    "cache_identities": 25,
+    "fingerprints": 25,
+    "profile_loads": 50,
+    "selections": 20,
+    "semantic_hint_views": 25,
+    "serialization_round_trip": 75,
+    "validations": 50
+  }
+}

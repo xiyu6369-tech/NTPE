@@ -1,0 +1,194 @@
+{
+  "fail_closed_threshold_lowered": false,
+  "profile_can_accept_polish": false,
+  "semantic_verification_batch6_modified": false,
+  "status": "PASS",
+  "verification_authority": "LCR Batch 6",
+  "views": {
+    "en": {
+      "can_decide_pass": false,
+      "hints": {
+        "ambiguity_markers": [
+          "someone",
+          "some",
+          "several",
+          "perhaps",
+          "maybe"
+        ],
+        "causal_markers": [
+          "because",
+          "therefore",
+          "if",
+          "although",
+          "but"
+        ],
+        "dialogue_markers": [
+          "\""
+        ],
+        "honorific_markers": [
+          "Mr.",
+          "Mrs.",
+          "Ms.",
+          "Dr.",
+          "Sir",
+          "Lady"
+        ],
+        "modality_markers": [
+          "may",
+          "might",
+          "could",
+          "should",
+          "must",
+          "would"
+        ],
+        "name_patterns": [
+          "(?:Mr\\.|Mrs\\.|Ms\\.|Dr\\.|Sir|Lady)?\\s*[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)?"
+        ],
+        "negation_markers": [
+          "not",
+          "never",
+          "no",
+          "cannot"
+        ],
+        "number_patterns": [
+          "\\d+(?:\\.\\d+)?"
+        ],
+        "subject_omission_expected": false,
+        "time_patterns": [
+          "yesterday",
+          "today",
+          "tomorrow",
+          "before",
+          "after"
+        ]
+      },
+      "origin": "rule_derived",
+      "profile_fingerprint": "766f93ccb4cc9e722f3cc150793926e8a9239f15c5073b749ae894bc0cb32468",
+      "profile_id": "literary-en-zh-hant",
+      "profile_version": "1.0",
+      "verification_authority": "LCR Batch 6"
+    },
+    "ja": {
+      "can_decide_pass": false,
+      "hints": {
+        "ambiguity_markers": [
+          "誰か",
+          "ある",
+          "いくつか",
+          "かもしれない"
+        ],
+        "causal_markers": [
+          "から",
+          "ので",
+          "だから",
+          "しかし",
+          "もし"
+        ],
+        "dialogue_markers": [
+          "「",
+          "」",
+          "『",
+          "』"
+        ],
+        "honorific_markers": [
+          "さん",
+          "様",
+          "君",
+          "ちゃん"
+        ],
+        "modality_markers": [
+          "かもしれない",
+          "だろう",
+          "べき",
+          "はず"
+        ],
+        "name_patterns": [
+          "[\\u4e00-\\u9fff]{1,4}(?:さん|様|君|ちゃん)?"
+        ],
+        "negation_markers": [
+          "ない",
+          "ぬ",
+          "ず",
+          "ません"
+        ],
+        "number_patterns": [
+          "\\d+",
+          "[一二三四五六七八九十百千]+"
+        ],
+        "subject_omission_expected": true,
+        "time_patterns": [
+          "昨日",
+          "今日",
+          "明日",
+          "前",
+          "後"
+        ]
+      },
+      "origin": "rule_derived",
+      "profile_fingerprint": "b6a0912b9f8ef5e3576f9f46b0bc0b27ff39cca8ef691c08d262323b29dfa48b",
+      "profile_id": "literary-ja-zh-hant",
+      "profile_version": "1.0",
+      "verification_authority": "LCR Batch 6"
+    },
+    "ko": {
+      "can_decide_pass": false,
+      "hints": {
+        "ambiguity_markers": [
+          "누군가",
+          "어느",
+          "몇",
+          "아마"
+        ],
+        "causal_markers": [
+          "때문에",
+          "그래서",
+          "그러나",
+          "만약"
+        ],
+        "dialogue_markers": [
+          "\"",
+          "“",
+          "”"
+        ],
+        "honorific_markers": [
+          "님",
+          "씨",
+          "선배",
+          "후배"
+        ],
+        "modality_markers": [
+          "수 있다",
+          "수 없다",
+          "것 같다",
+          "아마"
+        ],
+        "name_patterns": [
+          "[가-힣]{2,4}(?:씨|님)?"
+        ],
+        "negation_markers": [
+          "안",
+          "못",
+          "없",
+          "아니"
+        ],
+        "number_patterns": [
+          "\\d+",
+          "[일이삼사오육칠팔구십백천]+"
+        ],
+        "subject_omission_expected": true,
+        "time_patterns": [
+          "어제",
+          "오늘",
+          "내일",
+          "후",
+          "전"
+        ]
+      },
+      "origin": "rule_derived",
+      "profile_fingerprint": "11845f7b587fe42a648b6654e5878bac4cf1ce2385996f254451ba203651a4f3",
+      "profile_id": "literary-ko-zh-hant",
+      "profile_version": "1.0",
+      "verification_authority": "LCR Batch 6"
+    }
+  }
+}

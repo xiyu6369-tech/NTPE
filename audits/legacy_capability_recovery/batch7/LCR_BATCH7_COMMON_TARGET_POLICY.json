@@ -1,0 +1,27 @@
+{
+  "policy": {
+    "dialogue_quotes": "「」",
+    "force_taiwan_terms": false,
+    "language": "zh-Hant",
+    "preserve_era_context": true,
+    "requirements": [
+      "traditional_chinese",
+      "no_simplified_residue",
+      "no_unapproved_source_residue",
+      "no_omission",
+      "no_addition",
+      "no_summary",
+      "no_arbitrary_rewrite",
+      "preserve_subject_pronoun_number_time_negation_causality_relationship",
+      "preserve_deliberate_ambiguity",
+      "consistent_names_and_terms",
+      "no_full_name_completion",
+      "era_culture_voice_sensitive_wording",
+      "remove_translationese_without_semantic_change"
+    ],
+    "script": "Traditional Han"
+  },
+  "shared_by_all_profiles": true,
+  "status": "PASS",
+  "target_identity": "zh-Hant"
+}

@@ -1,0 +1,66 @@
+{
+  "dual_pass_batch5_modified": false,
+  "profile_change_stales_plan": true,
+  "provider_state_controlled": false,
+  "status": "PASS",
+  "trigger_is_semantic_approval": false,
+  "views": {
+    "en": {
+      "production_integrated": false,
+      "profile_identity": {
+        "language_profile_fingerprint": "766f93ccb4cc9e722f3cc150793926e8a9239f15c5073b749ae894bc0cb32468",
+        "language_profile_id": "literary-en-zh-hant",
+        "language_profile_version": "1.0",
+        "source_language": "en",
+        "target_language": "zh-Hant"
+      },
+      "provider_state_controlled": false,
+      "trigger_is_semantic_approval": false,
+      "trigger_types": [
+        "en:translationese",
+        "en:register_mismatch",
+        "en:honorific_mismatch",
+        "en:dialogue_naturalness",
+        "en:era_context_mismatch"
+      ]
+    },
+    "ja": {
+      "production_integrated": false,
+      "profile_identity": {
+        "language_profile_fingerprint": "b6a0912b9f8ef5e3576f9f46b0bc0b27ff39cca8ef691c08d262323b29dfa48b",
+        "language_profile_id": "literary-ja-zh-hant",
+        "language_profile_version": "1.0",
+        "source_language": "ja",
+        "target_language": "zh-Hant"
+      },
+      "provider_state_controlled": false,
+      "trigger_is_semantic_approval": false,
+      "trigger_types": [
+        "ja:translationese",
+        "ja:register_mismatch",
+        "ja:honorific_mismatch",
+        "ja:dialogue_naturalness",
+        "ja:era_context_mismatch"
+      ]
+    },
+    "ko": {
+      "production_integrated": false,
+      "profile_identity": {
+        "language_profile_fingerprint": "11845f7b587fe42a648b6654e5878bac4cf1ce2385996f254451ba203651a4f3",
+        "language_profile_id": "literary-ko-zh-hant",
+        "language_profile_version": "1.0",
+        "source_language": "ko",
+        "target_language": "zh-Hant"
+      },
+      "provider_state_controlled": false,
+      "trigger_is_semantic_approval": false,
+      "trigger_types": [
+        "ko:translationese",
+        "ko:register_mismatch",
+        "ko:honorific_mismatch",
+        "ko:dialogue_naturalness",
+        "ko:era_context_mismatch"
+      ]
+    }
+  }
+}

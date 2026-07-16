@@ -1,0 +1,395 @@
+{
+  "identity": {
+    "language_profile_fingerprint": "766f93ccb4cc9e722f3cc150793926e8a9239f15c5073b749ae894bc0cb32468",
+    "language_profile_id": "literary-en-zh-hant",
+    "language_profile_version": "1.0",
+    "source_language": "en",
+    "target_language": "zh-Hant"
+  },
+  "profile": {
+    "created_at": "2026-07-16T00:00:00Z",
+    "dialogue_policy": {
+      "dialogue_continuation": "preserve continuation",
+      "dialogue_to_narration_risk": true,
+      "interrupted_speech": "preserve dash or ellipsis interruption",
+      "nested_quote_handling": "use 『』",
+      "quote_normalization": "normalize to 「」",
+      "source_boundary_markers": [
+        "\"",
+        "'"
+      ],
+      "speaker_attribution": "explicit tag or unresolved",
+      "unfinished_utterance": "never complete"
+    },
+    "display_name": "English Literary to Traditional Chinese",
+    "fingerprint": "766f93ccb4cc9e722f3cc150793926e8a9239f15c5073b749ae894bc0cb32468",
+    "honorific_policy": {
+      "forbidden_simplifications": [
+        "always_use_您",
+        "modernize_historical_title",
+        "merge_alias_with_canonical_identity"
+      ],
+      "honorific_markers": [
+        "Mr.",
+        "Mrs.",
+        "Ms.",
+        "Dr.",
+        "Sir",
+        "Lady"
+      ],
+      "register_levels": [
+        "formal",
+        "neutral",
+        "informal",
+        "intimate",
+        "hostile"
+      ],
+      "relationship_implications": [
+        "rank",
+        "distance",
+        "setting"
+      ],
+      "translation_options": [
+        "contextual Chinese title",
+        "approved transliteration",
+        "selective omission if identity retained"
+      ]
+    },
+    "name_policy": {
+      "approved_variant_policy": "human-approved glossary or memory has priority",
+      "full_name_completion_policy": "forbidden_without_evidence",
+      "name_order": "given_family",
+      "nickname_policy": "preserve distinct identity unless approved evidence links it",
+      "title_policy": "era-rank-setting-sensitive",
+      "transliteration_strategy": "approved_transliteration_only",
+      "unknown_name_policy": "unresolved_or_manual_review"
+    },
+    "narrative_policy": {
+      "archaic_language_policy": "metadata-versioned",
+      "cultural_context": "foreign terms may preserve translate transliterate or annotate",
+      "era_context": "work metadata controls historical fantasy modern context",
+      "foreign_setting_policy": "never force Taiwan-local vocabulary",
+      "modernization_policy": "never force modern colloquial Chinese",
+      "narrative_distance": "preserve focal distance",
+      "register_preferences": [
+        "character-specific",
+        "narrative-present-aware"
+      ]
+    },
+    "profile_id": "literary-en-zh-hant",
+    "profile_version": "1.0",
+    "pronoun_policy": {
+      "gender_marking_strength": "strong_but_identity_bound",
+      "human_approved_override": true,
+      "memory_evidence_policy": "selected human-approved evidence only",
+      "object_omission_expected": false,
+      "pronoun_surface_to_identity_rules": [
+        "he_she_they_it_preserve_identity",
+        "singular_they_no_gender_assignment",
+        "you_number_and_register_may_remain_unresolved"
+      ],
+      "subject_omission_expected": false,
+      "unresolved_reference_policy": "preserve_unresolved"
+    },
+    "quality_rules": [
+      {
+        "applicability": "en->zh-Hant",
+        "blocking": true,
+        "description": "en profile rule for source residue",
+        "evidence_required": [
+          "explicit_structural_evidence"
+        ],
+        "rule_id": "en-source-residue",
+        "rule_version": "1.0",
+        "severity": "blocking",
+        "source_language": "en"
+      },
+      {
+        "applicability": "en->zh-Hant",
+        "blocking": true,
+        "description": "en profile rule for name consistency",
+        "evidence_required": [
+          "explicit_structural_evidence"
+        ],
+        "rule_id": "en-name-consistency",
+        "rule_version": "1.0",
+        "severity": "blocking",
+        "source_language": "en"
+      },
+      {
+        "applicability": "en->zh-Hant",
+        "blocking": true,
+        "description": "en profile rule for subject reference",
+        "evidence_required": [
+          "explicit_structural_evidence"
+        ],
+        "rule_id": "en-subject-reference",
+        "rule_version": "1.0",
+        "severity": "blocking",
+        "source_language": "en"
+      },
+      {
+        "applicability": "en->zh-Hant",
+        "blocking": true,
+        "description": "en profile rule for pronoun reference",
+        "evidence_required": [
+          "explicit_structural_evidence"
+        ],
+        "rule_id": "en-pronoun-reference",
+        "rule_version": "1.0",
+        "severity": "blocking",
+        "source_language": "en"
+      },
+      {
+        "applicability": "en->zh-Hant",
+        "blocking": true,
+        "description": "en profile rule for honorific consistency",
+        "evidence_required": [
+          "explicit_structural_evidence"
+        ],
+        "rule_id": "en-honorific-consistency",
+        "rule_version": "1.0",
+        "severity": "blocking",
+        "source_language": "en"
+      },
+      {
+        "applicability": "en->zh-Hant",
+        "blocking": false,
+        "description": "en profile rule for register consistency",
+        "evidence_required": [
+          "explicit_structural_evidence"
+        ],
+        "rule_id": "en-register-consistency",
+        "rule_version": "1.0",
+        "severity": "review",
+        "source_language": "en"
+      },
+      {
+        "applicability": "en->zh-Hant",
+        "blocking": true,
+        "description": "en profile rule for dialogue format",
+        "evidence_required": [
+          "explicit_structural_evidence"
+        ],
+        "rule_id": "en-dialogue-format",
+        "rule_version": "1.0",
+        "severity": "blocking",
+        "source_language": "en"
+      },
+      {
+        "applicability": "en->zh-Hant",
+        "blocking": true,
+        "description": "en profile rule for target script consistency",
+        "evidence_required": [
+          "explicit_structural_evidence"
+        ],
+        "rule_id": "en-target-script-consistency",
+        "rule_version": "1.0",
+        "severity": "blocking",
+        "source_language": "en"
+      },
+      {
+        "applicability": "en->zh-Hant",
+        "blocking": false,
+        "description": "en profile rule for literal translation risk: passive_literalism, idiom_literalism, phrasal_verb_mistranslation",
+        "evidence_required": [
+          "explicit_structural_evidence"
+        ],
+        "rule_id": "en-literal-translation-risk",
+        "rule_version": "1.0",
+        "severity": "review",
+        "source_language": "en"
+      },
+      {
+        "applicability": "en->zh-Hant",
+        "blocking": true,
+        "description": "en profile rule for omission risk",
+        "evidence_required": [
+          "explicit_structural_evidence"
+        ],
+        "rule_id": "en-omission-risk",
+        "rule_version": "1.0",
+        "severity": "blocking",
+        "source_language": "en"
+      },
+      {
+        "applicability": "en->zh-Hant",
+        "blocking": true,
+        "description": "en profile rule for addition risk",
+        "evidence_required": [
+          "explicit_structural_evidence"
+        ],
+        "rule_id": "en-addition-risk",
+        "rule_version": "1.0",
+        "severity": "blocking",
+        "source_language": "en"
+      },
+      {
+        "applicability": "en->zh-Hant",
+        "blocking": true,
+        "description": "en profile rule for ambiguity preservation",
+        "evidence_required": [
+          "explicit_structural_evidence"
+        ],
+        "rule_id": "en-ambiguity-preservation",
+        "rule_version": "1.0",
+        "severity": "blocking",
+        "source_language": "en"
+      },
+      {
+        "applicability": "en->zh-Hant",
+        "blocking": false,
+        "description": "en profile rule for era context consistency",
+        "evidence_required": [
+          "explicit_structural_evidence"
+        ],
+        "rule_id": "en-era-context-consistency",
+        "rule_version": "1.0",
+        "severity": "review",
+        "source_language": "en"
+      },
+      {
+        "applicability": "en->zh-Hant",
+        "blocking": true,
+        "description": "en profile rule for glossary consistency",
+        "evidence_required": [
+          "explicit_structural_evidence"
+        ],
+        "rule_id": "en-glossary-consistency",
+        "rule_version": "1.0",
+        "severity": "blocking",
+        "source_language": "en"
+      }
+    ],
+    "residue_policy": {
+      "allowed_categories": [
+        "approved_name",
+        "brand",
+        "abbreviation",
+        "work_title",
+        "code",
+        "foreign_dialogue"
+      ],
+      "blocking_default": true,
+      "patterns": [
+        "[A-Za-z]+(?:\\s+[A-Za-z]+){2,}",
+        "\\{\\{[^}]+\\}\\}"
+      ],
+      "scripts": [
+        "Latin"
+      ]
+    },
+    "schema_version": "1.0",
+    "semantic_hints": {
+      "ambiguity_markers": [
+        "someone",
+        "some",
+        "several",
+        "perhaps",
+        "maybe"
+      ],
+      "causal_markers": [
+        "because",
+        "therefore",
+        "if",
+        "although",
+        "but"
+      ],
+      "dialogue_markers": [
+        "\""
+      ],
+      "honorific_markers": [
+        "Mr.",
+        "Mrs.",
+        "Ms.",
+        "Dr.",
+        "Sir",
+        "Lady"
+      ],
+      "modality_markers": [
+        "may",
+        "might",
+        "could",
+        "should",
+        "must",
+        "would"
+      ],
+      "name_patterns": [
+        "(?:Mr\\.|Mrs\\.|Ms\\.|Dr\\.|Sir|Lady)?\\s*[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)?"
+      ],
+      "negation_markers": [
+        "not",
+        "never",
+        "no",
+        "cannot"
+      ],
+      "number_patterns": [
+        "\\d+(?:\\.\\d+)?"
+      ],
+      "subject_omission_expected": false,
+      "time_patterns": [
+        "yesterday",
+        "today",
+        "tomorrow",
+        "before",
+        "after"
+      ]
+    },
+    "source_language": "en",
+    "source_rules": {
+      "culture_notes": [
+        "singular they does not prove gender",
+        "you number and honorific may be unresolved"
+      ],
+      "object_omission_expected": false,
+      "structure_risks": [
+        "pronoun_overrepetition",
+        "passive_literalism",
+        "nominalization_rigidity",
+        "long_sentence_copy",
+        "relative_clause_stacking",
+        "prepositional_literalism",
+        "weak_verb",
+        "overformal_dialogue",
+        "idiom_literalism",
+        "phrasal_verb_mistranslation"
+      ],
+      "subject_omission_expected": false,
+      "temporal_aspect_rules": [
+        "past",
+        "present",
+        "future",
+        "perfect",
+        "progressive",
+        "conditional",
+        "subjunctive"
+      ]
+    },
+    "status": "experimental",
+    "target_language": "zh-Hant",
+    "target_rules": {
+      "dialogue_quotes": "「」",
+      "force_taiwan_terms": false,
+      "language": "zh-Hant",
+      "preserve_era_context": true,
+      "requirements": [
+        "traditional_chinese",
+        "no_simplified_residue",
+        "no_unapproved_source_residue",
+        "no_omission",
+        "no_addition",
+        "no_summary",
+        "no_arbitrary_rewrite",
+        "preserve_subject_pronoun_number_time_negation_causality_relationship",
+        "preserve_deliberate_ambiguity",
+        "consistent_names_and_terms",
+        "no_full_name_completion",
+        "era_culture_voice_sensitive_wording",
+        "remove_translationese_without_semantic_change"
+      ],
+      "script": "Traditional Han"
+    },
+    "updated_at": "2026-07-16T00:00:00Z"
+  },
+  "status": "PASS"
+}

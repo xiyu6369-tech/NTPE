@@ -1,0 +1,10 @@
+{
+  "character_memory_v2_modified": false,
+  "context_scene_memory_modified": false,
+  "creates_approved_memory": false,
+  "human_approved_priority": true,
+  "origin": "rule_derived",
+  "profile_forces_reference_resolution": false,
+  "profile_version_in_identity": true,
+  "status": "PASS"
+}

@@ -1,0 +1,142 @@
+{
+  "DialoguePolicy": [
+    "source_boundary_markers",
+    "quote_normalization",
+    "nested_quote_handling",
+    "dialogue_continuation",
+    "interrupted_speech",
+    "unfinished_utterance",
+    "speaker_attribution",
+    "dialogue_to_narration_risk"
+  ],
+  "HonorificPolicy": [
+    "honorific_markers",
+    "register_levels",
+    "relationship_implications",
+    "translation_options",
+    "forbidden_simplifications"
+  ],
+  "LanguageProfile": [
+    "profile_id",
+    "profile_version",
+    "schema_version",
+    "source_language",
+    "target_language",
+    "display_name",
+    "status",
+    "source_rules",
+    "target_rules",
+    "name_policy",
+    "pronoun_policy",
+    "honorific_policy",
+    "dialogue_policy",
+    "narrative_policy",
+    "residue_policy",
+    "semantic_hints",
+    "quality_rules",
+    "created_at",
+    "updated_at",
+    "fingerprint"
+  ],
+  "LanguageProfileCompatibilityResult": [
+    "compatible",
+    "stale",
+    "reasons",
+    "identity"
+  ],
+  "LanguageProfileIdentity": [
+    "profile_id",
+    "profile_version",
+    "source_language",
+    "target_language",
+    "fingerprint"
+  ],
+  "LanguageProfileSelection": [
+    "status",
+    "profile",
+    "reason"
+  ],
+  "NameHandlingPolicy": [
+    "name_order",
+    "transliteration_strategy",
+    "approved_variant_policy",
+    "unknown_name_policy",
+    "title_policy",
+    "nickname_policy",
+    "full_name_completion_policy"
+  ],
+  "NarrativePolicy": [
+    "era_context",
+    "cultural_context",
+    "narrative_distance",
+    "register_preferences",
+    "archaic_language_policy",
+    "modernization_policy",
+    "foreign_setting_policy"
+  ],
+  "PronounPolicy": [
+    "subject_omission_expected",
+    "object_omission_expected",
+    "gender_marking_strength",
+    "pronoun_surface_to_identity_rules",
+    "unresolved_reference_policy",
+    "human_approved_override",
+    "memory_evidence_policy"
+  ],
+  "QualityRule": [
+    "rule_id",
+    "rule_version",
+    "source_language",
+    "severity",
+    "blocking",
+    "evidence_required",
+    "description",
+    "applicability"
+  ],
+  "ResidueDetectionPolicy": [
+    "scripts",
+    "patterns",
+    "allowed_categories",
+    "blocking_default"
+  ],
+  "SemanticHintPolicy": [
+    "name_patterns",
+    "number_patterns",
+    "time_patterns",
+    "negation_markers",
+    "modality_markers",
+    "causal_markers",
+    "dialogue_markers",
+    "honorific_markers",
+    "ambiguity_markers",
+    "subject_omission_expected"
+  ],
+  "SourceLanguageRules": [
+    "subject_omission_expected",
+    "object_omission_expected",
+    "structure_risks",
+    "temporal_aspect_rules",
+    "culture_notes"
+  ],
+  "TargetLanguageRules": [
+    "language",
+    "script",
+    "dialogue_quotes",
+    "requirements",
+    "force_taiwan_terms",
+    "preserve_era_context"
+  ],
+  "identity_excluded_fields": [
+    "display_name",
+    "status",
+    "created_at",
+    "updated_at",
+    "fingerprint"
+  ],
+  "schema_version": "1.0",
+  "supported_pairs": [
+    "ko->zh-Hant",
+    "ja->zh-Hant",
+    "en->zh-Hant"
+  ]
+}

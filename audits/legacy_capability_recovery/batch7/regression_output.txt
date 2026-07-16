@@ -1,0 +1,21 @@
+LCR Batch 7 required regression evidence
+
+PASS LCR Batch 2 root: 25 checks, ALL PASS (baseline-aware with Batch 7 untracked paths temporarily outside worktree)
+PASS LCR Batch 2-6 unit/integration combined: 251 passed in 16.10s (baseline-aware historical allowlist run)
+PASS LCR Batch 3 root: ALL PASS
+PASS LCR Batch 4 root: ALL PASS
+PASS LCR Batch 5 root: ALL PASS
+PASS LCR Batch 6 root: ALL PASS; unit 43; integration 4
+PASS TIC Batch 7 Offline Translation Quality Gate Integration: ALL PASS
+PASS TE v6.0.0 Final Release Freeze: ALL PASS
+PASS TE v7.1 Stage 11.8 Translation Quality Framework Freeze: ALL PASS
+PASS TE v7.2 Stage 12.1 Evidence-Based Prompt Quality Candidate: ALL PASS
+PASS Runtime focused, Provider Security, Resume/Recovery and Output Assembly focused regressions: 16 passed in 4.96s
+
+Historical allowlist note:
+Batch 7 untracked paths were temporarily staged outside the repository for historical LCR worktree allowlist assertions. No old expectation or frozen core was modified. Batch 7 files were restored unchanged.
+
+provider_executed=false
+network_requests=0
+new_translation_generated=false
+production_integration=false

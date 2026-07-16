@@ -1,0 +1,46 @@
+{
+  "ai_inference_can_resolve": false,
+  "confidence_equals_resolved": false,
+  "human_approved_priority": true,
+  "multiple_candidates": "fail_closed",
+  "profiles": {
+    "en": {
+      "gender_marking_strength": "strong_but_identity_bound",
+      "human_approved_override": true,
+      "memory_evidence_policy": "selected human-approved evidence only",
+      "object_omission_expected": false,
+      "pronoun_surface_to_identity_rules": [
+        "he_she_they_it_preserve_identity",
+        "singular_they_no_gender_assignment",
+        "you_number_and_register_may_remain_unresolved"
+      ],
+      "subject_omission_expected": false,
+      "unresolved_reference_policy": "preserve_unresolved"
+    },
+    "ja": {
+      "gender_marking_strength": "medium",
+      "human_approved_override": true,
+      "memory_evidence_policy": "selected human-approved evidence only",
+      "object_omission_expected": true,
+      "pronoun_surface_to_identity_rules": [
+        "私_僕_俺_あたし_わたくし_are_voice_evidence_not_gender_proof",
+        "君_あなた_お前_貴様_require_relationship_context"
+      ],
+      "subject_omission_expected": true,
+      "unresolved_reference_policy": "preserve_unresolved"
+    },
+    "ko": {
+      "gender_marking_strength": "weak",
+      "human_approved_override": true,
+      "memory_evidence_policy": "selected human-approved evidence only",
+      "object_omission_expected": true,
+      "pronoun_surface_to_identity_rules": [
+        "omission_does_not_resolve_identity",
+        "multiple_candidates_remain_unresolved"
+      ],
+      "subject_omission_expected": true,
+      "unresolved_reference_policy": "preserve_unresolved"
+    }
+  },
+  "status": "PASS"
+}

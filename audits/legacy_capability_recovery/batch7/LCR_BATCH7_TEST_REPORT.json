@@ -1,0 +1,9 @@
+{
+  "integration": "6 passed",
+  "performance": "PASS",
+  "regression_output": "regression_output.txt",
+  "root": "ALL PASS",
+  "status": "PASS",
+  "unit": "37 passed",
+  "validator_output": "validator_output.txt"
+}

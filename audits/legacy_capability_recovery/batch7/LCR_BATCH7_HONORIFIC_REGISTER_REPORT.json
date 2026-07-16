@@ -1,0 +1,107 @@
+{
+  "forced_modernization": false,
+  "mechanical_honorific_translation": false,
+  "profiles": {
+    "en": {
+      "forbidden_simplifications": [
+        "always_use_您",
+        "modernize_historical_title",
+        "merge_alias_with_canonical_identity"
+      ],
+      "honorific_markers": [
+        "Mr.",
+        "Mrs.",
+        "Ms.",
+        "Dr.",
+        "Sir",
+        "Lady"
+      ],
+      "register_levels": [
+        "formal",
+        "neutral",
+        "informal",
+        "intimate",
+        "hostile"
+      ],
+      "relationship_implications": [
+        "rank",
+        "distance",
+        "setting"
+      ],
+      "translation_options": [
+        "contextual Chinese title",
+        "approved transliteration",
+        "selective omission if identity retained"
+      ]
+    },
+    "ja": {
+      "forbidden_simplifications": [
+        "always_use_您",
+        "always_use_請",
+        "change_agent_for_humble_or_respectful",
+        "erase_register_shift"
+      ],
+      "honorific_markers": [
+        "さん",
+        "様",
+        "君",
+        "ちゃん",
+        "ございます",
+        "いたします",
+        "なさる"
+      ],
+      "register_levels": [
+        "尊敬語",
+        "謙讓語",
+        "丁寧語",
+        "普通體"
+      ],
+      "relationship_implications": [
+        "distance",
+        "power",
+        "in_group_out_group"
+      ],
+      "translation_options": [
+        "Chinese voice",
+        "contextual title",
+        "selective honorific rendering"
+      ]
+    },
+    "ko": {
+      "forbidden_simplifications": [
+        "always_use_您",
+        "infer_identity_from_ending",
+        "erase_register_difference"
+      ],
+      "honorific_markers": [
+        "-습니다",
+        "-ㅂ니다",
+        "-어요",
+        "-아요",
+        "-시오",
+        "-네",
+        "-오"
+      ],
+      "register_levels": [
+        "존댓말",
+        "반말",
+        "하십시오체",
+        "해요체",
+        "해체",
+        "하게체",
+        "하오체"
+      ],
+      "relationship_implications": [
+        "social_distance",
+        "age_or_rank_context"
+      ],
+      "translation_options": [
+        "title",
+        "relationship term",
+        "register-preserving Chinese voice"
+      ]
+    }
+  },
+  "single_marker_proves_relationship": false,
+  "status": "PASS"
+}

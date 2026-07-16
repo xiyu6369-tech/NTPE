@@ -1,0 +1,15 @@
+{
+  "chunk_cache_v2_modified": false,
+  "display_registry_metadata_excluded": true,
+  "fingerprint_change_stale": true,
+  "identity_fields": [
+    "language_profile_id",
+    "language_profile_version",
+    "language_profile_fingerprint",
+    "source_language",
+    "target_language"
+  ],
+  "source_or_target_change_miss": true,
+  "status": "PASS",
+  "version_change_stale": true
+}

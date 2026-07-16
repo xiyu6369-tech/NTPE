@@ -1,0 +1,20 @@
+$ git diff --check
+
+$ git ls-files --deleted
+
+$ git status --short
+?? NTPE_LCR_BATCH7_AUDIT.zip
+?? audits/legacy_capability_recovery/batch7/
+?? core/multilingual_profiles/
+?? ntpe_lcr_batch7_multilingual_profiles_test.py
+?? tests/fixtures/lcr_batch7/
+?? tests/integration/lcr_batch7_multilingual_profiles_integration_test.py
+?? tests/unit/test_multilingual_profiles.py
+
+$ git diff --stat
+
+$ git rev-list --left-right --count origin/main...main
+0	0
+
+$ git log -1 --oneline
+972aaf4 LCR Batch 6: Add offline post-polish semantic verification core
