@@ -1,0 +1,29 @@
+TIC Batch 7 required regression summary
+
+TIC root regression chain:
+PASS  TIC Batch 1 Historical Translation Corpus Inventory
+PASS  TIC Batch 2 Translation Case Extraction
+PASS  TIC Batch 3 Manual Evidence Linking and Fine-Grained Alignment
+PASS  TIC Batch 4 Human-Confirmed Failure Corpus
+PASS  TIC Batch 5 Historical Human Evidence Expansion
+PASS  TIC Batch 6 Human Correction, Root Cause, and Quality Regression
+PASS  TIC Batch 6.1 Human Approval and Regression Activation
+PASS  TIC Batch 7 Offline Translation Quality Gate Integration
+
+Focused TIC integration chain:
+PASS  174 passed in 31.62s
+
+TE compatibility regression:
+PASS  TE v6.0.0 Final Release Freeze
+PASS  TE v7.1 Stage 11.8 Translation Quality Framework Freeze
+PASS  TE v7.2 Stage 12.1 Evidence-Based Prompt Quality Candidate
+
+Formal regression:
+PASS  Runtime: 8 tests
+PASS  Provider Security: Stage, Redaction, Scanner, Policy, Config Compatibility
+PASS  Resume and Recovery: 12 tests
+PASS  Output Assembly and Formatter: 7 tests
+
+Provider executed: false
+Provider requests: 0
+Network requests: 0

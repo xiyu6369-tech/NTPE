@@ -1,0 +1,13 @@
+NTPE Project Validation Report
+
+Required directories   PASS  6 directories found
+Legacy entrypoints     PASS  4 entrypoints found
+Core imports           PASS  7 required imports OK
+Optional imports       PASS  4 optional imports OK
+Python compile         PASS  2307 Python files compile
+Python cache           PASS  No Python cache artifacts found
+Test inventory         PASS  591 pytest-style test files found
+Root Python layout     PASS  306 root Python scripts checked
+
+ALL PASS
+Elapsed: 23.01s

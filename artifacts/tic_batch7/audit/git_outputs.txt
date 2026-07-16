@@ -1,0 +1,36 @@
+COMMAND: git diff --check
+EXIT_CODE: 0
+
+COMMAND: git diff --name-status
+NO TRACKED DIFF (Batch 7 files are new and untracked)
+
+COMMAND: git ls-files --deleted
+NO OUTPUT
+
+COMMAND: git status --short --untracked-files=all
+?? artifacts/tic_batch7/OFFLINE_QUALITY_GATE_FIXTURES.json
+?? artifacts/tic_batch7/OFFLINE_QUALITY_GATE_INDEX.json
+?? artifacts/tic_batch7/OFFLINE_QUALITY_GATE_PERFORMANCE.json
+?? artifacts/tic_batch7/OFFLINE_QUALITY_GATE_VALIDATION.json
+?? artifacts/tic_batch7/OFFLINE_TRANSLATION_QUALITY_GATE.json
+?? artifacts/tic_batch7/TIC_BATCH7_STATISTICS.json
+?? artifacts/tic_batch7/audit/git_outputs.txt
+?? artifacts/tic_batch7/audit/package_report.json
+?? artifacts/tic_batch7/audit/regression_output.txt
+?? artifacts/tic_batch7/audit/validator_output.txt
+?? core/translation_intelligence_corpus/offline_quality_gate.py
+?? core/translation_intelligence_corpus/quality_gate_models.py
+?? core/translation_intelligence_corpus/quality_gate_report.py
+?? docs/translation_intelligence/TIC_BATCH7_OFFLINE_TRANSLATION_QUALITY_GATE.md
+?? ntpe_tic_batch7_offline_translation_quality_gate_test.py
+?? tests/integration/tic_batch7_offline_translation_quality_gate_test.py
+?? tests/performance/tic_batch7_offline_quality_gate_benchmark.py
+
+COMMAND: git check-ignore -v manifests/tic_batch7_offline_translation_quality_gate_manifest.json
+.gitignore:135:*_manifest.json manifests/tic_batch7_offline_translation_quality_gate_manifest.json
+
+COMMAND: git rev-list --left-right --count origin/main...main
+0 0
+
+FORBIDDEN_CHANGED_PATH_COUNT: 0
+TEST_SIDE_EFFECT_RESTORED: prompt_packages/txt_runtime/001_chunk_000001.json
