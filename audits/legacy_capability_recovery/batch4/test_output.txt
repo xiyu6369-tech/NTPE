@@ -1,0 +1,33 @@
+LCR Batch 4.1 focused validation
+
+[repository cwd]
+PASS 100 identity generation
+PASS 100 completed add
+BENCHMARK lookup_ms=8.667
+PASS 100 lookup
+PASS 100 resume reconciliation
+PASS 100 chunk retry planning
+PASS serialization round trip
+PASS retention planning
+PASS rollback
+PASS completed eligibility
+PASS production boundary
+PASS schema
+BENCHMARK identity_generation_ms=5.274
+BENCHMARK add_completed_ms=44.820
+BENCHMARK resume_reconciliation_ms=0.432
+BENCHMARK retry_planning_ms=6.966
+BENCHMARK serialization_round_trip_ms=38.848
+BENCHMARK retention_planning_ms=0.321
+BENCHMARK rollback_ms=0.176
+ALL PASS
+
+...........................................                              [100%]
+43 passed in 0.86s
+
+.........                                                                [100%]
+9 passed in 3.77s
+
+[system temporary cwd]
+...........................................                              [100%]
+43 passed in 0.23s

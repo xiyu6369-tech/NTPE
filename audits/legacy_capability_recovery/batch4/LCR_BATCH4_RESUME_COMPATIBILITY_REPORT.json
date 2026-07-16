@@ -1,0 +1,20 @@
+{
+  "adapter": "reconcile_cache_with_resume",
+  "consistent_requires": [
+    "completed cache",
+    "completed resume",
+    "document/chunk match",
+    "translation hash match",
+    "prompt hash match"
+  ],
+  "fail_closed": [
+    "failed/pending resume",
+    "cache missing",
+    "hash mismatch",
+    "document mismatch",
+    "prompt mismatch",
+    "partial cache"
+  ],
+  "resume_core_modified": false,
+  "status": "PASS"
+}

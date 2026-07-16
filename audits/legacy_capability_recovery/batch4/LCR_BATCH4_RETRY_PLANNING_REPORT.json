@@ -1,0 +1,23 @@
+{
+  "api": "plan_chunk_reexecution",
+  "fixture": {
+    "chunks": 10,
+    "completed_consistent": 8,
+    "missing": 1,
+    "retry": 2,
+    "reusable": 8,
+    "timeout": 1
+  },
+  "full_document_rerun": false,
+  "retry_reasons": [
+    "timeout",
+    "failed",
+    "partial",
+    "stale",
+    "identity mismatch",
+    "missing",
+    "corrupt",
+    "conflict"
+  ],
+  "status": "PASS"
+}

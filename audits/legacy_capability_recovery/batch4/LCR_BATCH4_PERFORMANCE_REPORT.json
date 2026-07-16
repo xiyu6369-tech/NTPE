@@ -1,0 +1,25 @@
+{
+  "milliseconds": {
+    "add_completed": 44.82,
+    "identity_generation": 5.274,
+    "lookup": 8.667,
+    "resume_reconciliation": 0.432,
+    "retention_planning": 0.321,
+    "retry_planning": 6.966,
+    "rollback": 0.176,
+    "serialization_round_trip": 38.848
+  },
+  "network_requests": 0,
+  "provider_requests": 0,
+  "status": "PASS",
+  "thresholds_ms": {
+    "add_completed": 100,
+    "identity_generation": 50,
+    "lookup": 25,
+    "resume_reconciliation": 25,
+    "retention_planning": 25,
+    "retry_planning": 25,
+    "rollback": 10,
+    "serialization_round_trip": 75
+  }
+}

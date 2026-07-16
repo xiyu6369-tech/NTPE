@@ -1,0 +1,18 @@
+LCR Batch 4 required regression summary
+PASS LCR Batch 2 Root (clean HEAD clone, 25 checks, ALL PASS)
+PASS LCR Batch 2 Unit 26 tests
+PASS LCR Batch 2 Integration 12 tests (current canonical worktree bytes)
+PASS LCR Batch 3 Root (clean HEAD clone, ALL PASS)
+PASS LCR Batch 3 Unit 18 tests
+PASS LCR Batch 3 Integration 9 tests
+PASS TIC Batch 7 Offline Translation Quality Gate
+PASS TE v6 Final Freeze
+PASS TE v7.1 Stage 11.8 Freeze
+PASS TE v7.2 Stage 12.1 Candidate
+PASS Runtime focused regression 10 tests
+PASS Provider Security
+PASS Resume Recovery 12 tests
+PASS Output Assembly 9 tests
+provider_executed=false
+network_requests=0
+new_translation_generated=false

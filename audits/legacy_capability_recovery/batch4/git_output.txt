@@ -1,0 +1,13 @@
+$ git diff --check
+$ git ls-files --deleted
+$ git status --short
+?? audits/legacy_capability_recovery/batch4/
+?? core/chunk_cache_v2/
+?? ntpe_lcr_batch4_chunk_cache_v2_test.py
+?? tests/integration/lcr_batch4_chunk_cache_v2_integration_test.py
+?? tests/unit/test_chunk_cache_v2.py
+$ git diff --stat
+$ git rev-list --left-right --count origin/main...main
+0	0
+$ git log -1 --oneline
+471687d LCR Batch 3: Add offline context and scene memory

@@ -1,0 +1,23 @@
+{
+  "adapters": [
+    "build_cached_chunk_result",
+    "validate_cached_chunk_for_output"
+  ],
+  "output_assembly_core_modified": false,
+  "preserved": [
+    "chunk index",
+    "document identity",
+    "translation text/hash",
+    "source hash",
+    "prompt hash",
+    "ordering"
+  ],
+  "rejected": [
+    "partial",
+    "duplicate",
+    "missing",
+    "wrong document",
+    "unordered"
+  ],
+  "status": "PASS"
+}

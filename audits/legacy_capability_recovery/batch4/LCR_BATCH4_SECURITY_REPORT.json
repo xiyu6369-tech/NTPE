@@ -1,0 +1,20 @@
+{
+  "absolute_path_escape_rejected": true,
+  "allowed_root_required": true,
+  "atomic_write_contract": true,
+  "compatibility_fix": "LCR Batch 4.1",
+  "credentials_stored": false,
+  "cwd_independent_test": true,
+  "files_scanned": 29,
+  "findings": [],
+  "malformed_json_rejected": true,
+  "path_traversal_rejected": true,
+  "pickle_used": false,
+  "raw_provider_response_stored": false,
+  "request_headers_stored": false,
+  "resolved_target_must_be_below_resolved_allowed_root": true,
+  "status": "PASS",
+  "symlink_escape_rejected": true,
+  "target_equal_to_root_rejected": true,
+  "unknown_schema_rejected": true
+}
