@@ -1,0 +1,136 @@
+{
+  "candidate_rejected": 2,
+  "results": [
+    {
+      "candidate_status": "failed",
+      "decision": "blocked",
+      "deterministic_fingerprint": "aba0edb618644de2e631886e7dbd363a2416ddeb2cdd0baac477e03fe7cd535f",
+      "evidence_used": [
+        "batch5_dual_pass_contract"
+      ],
+      "executable_evidence": true,
+      "explanation": "Expected rejection is a scenario pass.",
+      "forbidden_outcomes_triggered": [],
+      "ground_truth": null,
+      "issues": [],
+      "metric_events": {},
+      "module_results": {
+        "estimated_requests": 0,
+        "mode": "blocked"
+      },
+      "required": true,
+      "scenario_id": "dual-draft-failed",
+      "scenario_status": "passed"
+    },
+    {
+      "candidate_status": "insufficient_evidence",
+      "decision": "manual_review",
+      "deterministic_fingerprint": "cda3b534240b326cebadde83f2cfcfa1a895230690094f51eb23d6d3ac277eaa",
+      "evidence_used": [
+        "batch5_batch6_informational"
+      ],
+      "executable_evidence": false,
+      "explanation": "Executor outcome matched fixed expectation.",
+      "forbidden_outcomes_triggered": [],
+      "ground_truth": null,
+      "issues": [
+        "fixed_executable_evidence_missing"
+      ],
+      "metric_events": {},
+      "module_results": {
+        "dual_pass_status": "not_executed"
+      },
+      "required": false,
+      "scenario_id": "dual-insufficient",
+      "scenario_status": "passed"
+    },
+    {
+      "candidate_status": "passed",
+      "decision": "accept",
+      "deterministic_fingerprint": "9248ce911ad3b48a21730c39ebf6b8eaee81ff37eae6626a5b0a175d5729e3e1",
+      "evidence_used": [
+        "batch5_dual_pass_contract"
+      ],
+      "executable_evidence": true,
+      "explanation": "Executor outcome matched fixed expectation.",
+      "forbidden_outcomes_triggered": [],
+      "ground_truth": null,
+      "issues": [],
+      "metric_events": {},
+      "module_results": {
+        "estimated_requests": 1,
+        "mode": "single_pass"
+      },
+      "required": true,
+      "scenario_id": "dual-no-trigger",
+      "scenario_status": "passed"
+    },
+    {
+      "candidate_status": "passed",
+      "decision": "accept",
+      "deterministic_fingerprint": "096413389e205e723029f33d22dd21af996854eeba0e79168c270df251baa2c3",
+      "evidence_used": [
+        "batch5_dual_pass_contract"
+      ],
+      "executable_evidence": true,
+      "explanation": "Executor outcome matched fixed expectation.",
+      "forbidden_outcomes_triggered": [],
+      "ground_truth": null,
+      "issues": [],
+      "metric_events": {},
+      "module_results": {
+        "estimated_requests": 2,
+        "mode": "selective_polish"
+      },
+      "required": true,
+      "scenario_id": "dual-selective-trigger",
+      "scenario_status": "passed"
+    },
+    {
+      "candidate_status": "failed",
+      "decision": "rollback_to_draft",
+      "deterministic_fingerprint": "79ec971de99d906e1c9e73610365ef80aff200ee1946e6415f71c4035dce9fe8",
+      "evidence_used": [
+        "9a54bcd37fde12ee4b150642752738adb2fd77c9358d47f3fed701183836c7f1",
+        "batch5_batch6_interoperability"
+      ],
+      "executable_evidence": true,
+      "explanation": "Expected rejection is a scenario pass.",
+      "forbidden_outcomes_triggered": [],
+      "ground_truth": "incorrect",
+      "issues": [
+        "subject_identity"
+      ],
+      "metric_events": {
+        "blocking_mutations_detected": 1
+      },
+      "module_results": {
+        "batch5_mode": "selective_polish",
+        "batch6_view": {
+          "candidate_acceptable": false,
+          "decision": "rollback_to_draft",
+          "production_integrated": false,
+          "status": "failed",
+          "verification_authority": "LCR Batch 6 offline core"
+        },
+        "rollback": {
+          "action": "rollback_to_draft",
+          "draft_identity": "draft",
+          "failed_polish_evidence_preserved": true,
+          "final_polish_cache_eligible": false,
+          "polish_identity": "polish",
+          "selected_identity": "draft"
+        }
+      },
+      "required": true,
+      "scenario_id": "dual-semantic-rollback",
+      "scenario_status": "passed"
+    }
+  ],
+  "scenario_count": 5,
+  "scenario_passed": 5,
+  "scenario_types": [
+    "dual_pass_case"
+  ],
+  "status": "PASS"
+}

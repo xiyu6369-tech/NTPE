@@ -1,0 +1,114 @@
+{
+  "candidate_rejected": 1,
+  "results": [
+    {
+      "candidate_status": "passed",
+      "decision": "reject",
+      "deterministic_fingerprint": "d58020e6df1e510b32302aa31af3425669187907c2fcbf8f72739b6dcfe56a4a",
+      "evidence_used": [
+        "batch4_cache_identity_contract",
+        "cache-d1b524919f0620e1e4c4aec6-v1"
+      ],
+      "executable_evidence": true,
+      "explanation": "Executor outcome matched fixed expectation.",
+      "forbidden_outcomes_triggered": [],
+      "ground_truth": null,
+      "issues": [],
+      "metric_events": {},
+      "module_results": {
+        "lookup_decision": "stale",
+        "reason": "prompt_changed"
+      },
+      "required": true,
+      "scenario_id": "cache-identity-stale",
+      "scenario_status": "passed"
+    },
+    {
+      "candidate_status": "passed",
+      "decision": "retry_required",
+      "deterministic_fingerprint": "9a0a554a73f55de1271949457e68686fb1e8101ee3f01c0dddbf49ec651680f1",
+      "evidence_used": [
+        "batch4_chunk_cache_contract"
+      ],
+      "executable_evidence": true,
+      "explanation": "Executor outcome matched fixed expectation.",
+      "forbidden_outcomes_triggered": [],
+      "ground_truth": null,
+      "issues": [],
+      "metric_events": {
+        "cache_reuse_count": 8,
+        "retry_required_count": 2
+      },
+      "module_results": {
+        "conflicts": 0,
+        "invalid": 0,
+        "retry": 2,
+        "reusable": 8
+      },
+      "required": true,
+      "scenario_id": "cache-ten-chunks",
+      "scenario_status": "passed"
+    },
+    {
+      "candidate_status": "failed",
+      "decision": "blocked",
+      "deterministic_fingerprint": "cef99bbe325751936e06b7ce8323f5fed82451b673e8ca7e2a5861c0bf14d35e",
+      "evidence_used": [
+        "batch4_output_contract",
+        "cache-d1b524919f0620e1e4c4aec6-v1"
+      ],
+      "executable_evidence": true,
+      "explanation": "Expected rejection is a scenario pass.",
+      "forbidden_outcomes_triggered": [],
+      "ground_truth": null,
+      "issues": [
+        "duplicate_or_missing_or_partial"
+      ],
+      "metric_events": {},
+      "module_results": {
+        "duplicates": [
+          0
+        ],
+        "missing": [
+          1
+        ],
+        "ordered": true,
+        "valid": false,
+        "wrong_document": []
+      },
+      "required": true,
+      "scenario_id": "output-contract-conflict",
+      "scenario_status": "passed"
+    },
+    {
+      "candidate_status": "conflict",
+      "decision": "blocked",
+      "deterministic_fingerprint": "b656c85e69fd945e22dbead6f5396bec1973efea5a9b976fb318c8a8717c4265",
+      "evidence_used": [
+        "batch4_resume_compatibility",
+        "cache-d1b524919f0620e1e4c4aec6-v1"
+      ],
+      "executable_evidence": true,
+      "explanation": "Executor outcome matched fixed expectation.",
+      "forbidden_outcomes_triggered": [],
+      "ground_truth": null,
+      "issues": [
+        "translation_hash_mismatch"
+      ],
+      "metric_events": {},
+      "module_results": {
+        "reconciliation_status": "conflict"
+      },
+      "required": true,
+      "scenario_id": "resume-cache-conflict",
+      "scenario_status": "passed"
+    }
+  ],
+  "scenario_count": 4,
+  "scenario_passed": 4,
+  "scenario_types": [
+    "cache_reuse_case",
+    "resume_reconciliation_case"
+  ],
+  "status": "PASS"
+}

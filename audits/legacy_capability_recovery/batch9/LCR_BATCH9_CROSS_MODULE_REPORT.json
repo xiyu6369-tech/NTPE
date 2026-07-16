@@ -1,0 +1,72 @@
+{
+  "candidate_rejected": 1,
+  "results": [
+    {
+      "candidate_status": "failed",
+      "decision": "rollback_to_draft",
+      "deterministic_fingerprint": "6b32d4753b5522e8a9d025ffa42724d9c2b67e24f31b126af5e7f439c0c3eec2",
+      "evidence_used": [
+        "9a54bcd37fde12ee4b150642752738adb2fd77c9358d47f3fed701183836c7f1",
+        "batch9_cross_module_synthetic",
+        "cache-d1b524919f0620e1e4c4aec6-v1"
+      ],
+      "executable_evidence": true,
+      "explanation": "Expected rejection is a scenario pass.",
+      "forbidden_outcomes_triggered": [],
+      "ground_truth": "incorrect",
+      "issues": [
+        "subject_identity"
+      ],
+      "metric_events": {
+        "blocking_mutations_detected": 1,
+        "cache_reuse_count": 1,
+        "provider_requests_executed": 0
+      },
+      "module_results": {
+        "cache": "hit",
+        "executed": false,
+        "profile": "literary-ko-zh-hant",
+        "routing": "use_primary",
+        "semantic": "failed"
+      },
+      "required": true,
+      "scenario_id": "cross-korean-subject-rollback",
+      "scenario_status": "passed"
+    },
+    {
+      "candidate_status": "passed",
+      "decision": "accept",
+      "deterministic_fingerprint": "fbaaf69a0372b9ccfec2de336e34ae7c6e3704f14e50ce6570c0413488535300",
+      "evidence_used": [
+        "batch9_cross_module_synthetic",
+        "cache-d1b524919f0620e1e4c4aec6-v1",
+        "ffa7ea712c2c92404b33cac5b208b361095fbf7cf36dce529f21bc637a2d41a8"
+      ],
+      "executable_evidence": true,
+      "explanation": "Executor outcome matched fixed expectation.",
+      "forbidden_outcomes_triggered": [],
+      "ground_truth": null,
+      "issues": [],
+      "metric_events": {
+        "cache_reuse_count": 1,
+        "provider_requests_executed": 0
+      },
+      "module_results": {
+        "cache": "hit",
+        "executed": false,
+        "profile": "literary-ko-zh-hant",
+        "routing": "use_primary",
+        "semantic": "passed"
+      },
+      "required": true,
+      "scenario_id": "cross-legal-word-order-accept",
+      "scenario_status": "passed"
+    }
+  ],
+  "scenario_count": 2,
+  "scenario_passed": 2,
+  "scenario_types": [
+    "cross_module_case"
+  ],
+  "status": "PASS"
+}

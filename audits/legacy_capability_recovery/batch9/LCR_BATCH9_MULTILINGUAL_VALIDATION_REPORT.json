@@ -1,0 +1,95 @@
+{
+  "candidate_rejected": 0,
+  "results": [
+    {
+      "candidate_status": "passed",
+      "decision": "accept",
+      "deterministic_fingerprint": "af9b1e356fc4e05588fbef54201d70ad455c6443c43b9d7ce08efe4289b268e6",
+      "evidence_used": [
+        "batch7_profile_contract"
+      ],
+      "executable_evidence": true,
+      "explanation": "Executor outcome matched fixed expectation.",
+      "forbidden_outcomes_triggered": [],
+      "ground_truth": null,
+      "issues": [],
+      "metric_events": {},
+      "module_results": {
+        "profile_id": "literary-en-zh-hant",
+        "selection_status": "selected"
+      },
+      "required": true,
+      "scenario_id": "profile-english",
+      "scenario_status": "passed"
+    },
+    {
+      "candidate_status": "passed",
+      "decision": "accept",
+      "deterministic_fingerprint": "cd49b101a9edc939d0478198035780b1a6eba5cae942cd1d83b43835a257666a",
+      "evidence_used": [
+        "batch7_profile_contract"
+      ],
+      "executable_evidence": true,
+      "explanation": "Executor outcome matched fixed expectation.",
+      "forbidden_outcomes_triggered": [],
+      "ground_truth": null,
+      "issues": [],
+      "metric_events": {},
+      "module_results": {
+        "profile_id": "literary-ja-zh-hant",
+        "selection_status": "selected"
+      },
+      "required": true,
+      "scenario_id": "profile-japanese",
+      "scenario_status": "passed"
+    },
+    {
+      "candidate_status": "passed",
+      "decision": "accept",
+      "deterministic_fingerprint": "88707f120e48a1387040bb8cd1baa64642557c38dd6f58cfdb5e52c25fc75fbc",
+      "evidence_used": [
+        "batch7_profile_contract"
+      ],
+      "executable_evidence": true,
+      "explanation": "Executor outcome matched fixed expectation.",
+      "forbidden_outcomes_triggered": [],
+      "ground_truth": null,
+      "issues": [],
+      "metric_events": {},
+      "module_results": {
+        "profile_id": "literary-ko-zh-hant",
+        "selection_status": "selected"
+      },
+      "required": true,
+      "scenario_id": "profile-korean",
+      "scenario_status": "passed"
+    },
+    {
+      "candidate_status": "invalid_input",
+      "decision": "blocked",
+      "deterministic_fingerprint": "1da600b0029d881f1de240309f2c27e573c8066e9ae321d6c61703b1bd361ac0",
+      "evidence_used": [
+        "batch7_profile_contract"
+      ],
+      "executable_evidence": true,
+      "explanation": "Executor outcome matched fixed expectation.",
+      "forbidden_outcomes_triggered": [],
+      "ground_truth": null,
+      "issues": [],
+      "metric_events": {},
+      "module_results": {
+        "profile_id": null,
+        "selection_status": "not_found"
+      },
+      "required": true,
+      "scenario_id": "profile-mismatch",
+      "scenario_status": "passed"
+    }
+  ],
+  "scenario_count": 4,
+  "scenario_passed": 4,
+  "scenario_types": [
+    "multilingual_profile_case"
+  ],
+  "status": "PASS"
+}

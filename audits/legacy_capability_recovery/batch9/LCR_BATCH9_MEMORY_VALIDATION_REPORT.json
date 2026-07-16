@@ -1,0 +1,76 @@
+{
+  "candidate_rejected": 0,
+  "results": [
+    {
+      "candidate_status": "passed",
+      "decision": "accept",
+      "deterministic_fingerprint": "0ebbabee533d267fce5e584b6267bd78020013454010fd7b91a2582baa265d91",
+      "evidence_used": [
+        "batch2_character_memory_contract",
+        "cm2_578a22ff7a663787abf5b50c47042c16"
+      ],
+      "executable_evidence": true,
+      "explanation": "Executor outcome matched fixed expectation.",
+      "forbidden_outcomes_triggered": [],
+      "ground_truth": null,
+      "issues": [],
+      "metric_events": {},
+      "module_results": {
+        "selected_count": 1,
+        "selected_value": "鄭泰義"
+      },
+      "required": true,
+      "scenario_id": "memory-approved-priority",
+      "scenario_status": "passed"
+    },
+    {
+      "candidate_status": "conflict",
+      "decision": "blocked",
+      "deterministic_fingerprint": "548aa469737f0ba29a443ce61239ed4274fe640aa21e8dc8a00d51f1b959422f",
+      "evidence_used": [
+        "batch2_character_memory_contract"
+      ],
+      "executable_evidence": true,
+      "explanation": "Executor outcome matched fixed expectation.",
+      "forbidden_outcomes_triggered": [],
+      "ground_truth": null,
+      "issues": [],
+      "metric_events": {},
+      "module_results": {
+        "conflict_id": "conf_e30eeec2dca2de257d3576a2",
+        "disposition": "conflict"
+      },
+      "required": true,
+      "scenario_id": "memory-conflict",
+      "scenario_status": "passed"
+    },
+    {
+      "candidate_status": "passed",
+      "decision": "reject",
+      "deterministic_fingerprint": "8f157d2c0197d22f20e9c61123743236a9d34ba630729edf62f0fd6f52abd7a0",
+      "evidence_used": [
+        "batch2_batch4_cache_identity_contract",
+        "cache-d1b524919f0620e1e4c4aec6-v1"
+      ],
+      "executable_evidence": true,
+      "explanation": "Executor outcome matched fixed expectation.",
+      "forbidden_outcomes_triggered": [],
+      "ground_truth": null,
+      "issues": [],
+      "metric_events": {},
+      "module_results": {
+        "lookup_decision": "stale",
+        "reason": "context_changed"
+      },
+      "required": true,
+      "scenario_id": "memory-selected-stale",
+      "scenario_status": "passed"
+    }
+  ],
+  "scenario_count": 3,
+  "scenario_passed": 3,
+  "scenario_types": [
+    "memory_consistency_case"
+  ],
+  "status": "PASS"
+}

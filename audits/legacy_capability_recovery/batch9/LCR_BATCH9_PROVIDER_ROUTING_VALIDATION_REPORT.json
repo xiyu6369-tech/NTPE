@@ -1,0 +1,140 @@
+{
+  "candidate_rejected": 3,
+  "network_requests": 0,
+  "prepare_only": true,
+  "provider_requests_executed": 0,
+  "results": [
+    {
+      "candidate_status": "failed",
+      "decision": "blocked",
+      "deterministic_fingerprint": "aa6488955da2561a480cf61b5eb1dd70da06f37676d6ca0d913f38a7572f95fe",
+      "evidence_used": [
+        "batch8_routing_contract"
+      ],
+      "executable_evidence": true,
+      "explanation": "Expected rejection is a scenario pass.",
+      "forbidden_outcomes_triggered": [],
+      "ground_truth": null,
+      "issues": [],
+      "metric_events": {},
+      "module_results": {
+        "budget_impact": 1,
+        "cache_evidence_reusable": true,
+        "cooldown_seconds": 0,
+        "failure_type": "authentication_failure",
+        "fallback_eligible": false,
+        "manual_approval_required": false,
+        "network_failure": true,
+        "retryable": false
+      },
+      "required": true,
+      "scenario_id": "route-auth-no-retry",
+      "scenario_status": "passed"
+    },
+    {
+      "candidate_status": "failed",
+      "decision": "blocked",
+      "deterministic_fingerprint": "d1ff9ccdaa6610455009a98c2df003fabbdfd7236e230bd48f556c587440b4e4",
+      "evidence_used": [
+        "batch8_routing_contract",
+        "blocked"
+      ],
+      "executable_evidence": true,
+      "explanation": "Expected rejection is a scenario pass.",
+      "forbidden_outcomes_triggered": [],
+      "ground_truth": null,
+      "issues": [],
+      "metric_events": {},
+      "module_results": {
+        "reasons": [
+          "maximum_requests_per_chunk"
+        ],
+        "routing_decision": "blocked"
+      },
+      "required": true,
+      "scenario_id": "route-budget-block",
+      "scenario_status": "passed"
+    },
+    {
+      "candidate_status": "manual_review_required",
+      "decision": "manual_review",
+      "deterministic_fingerprint": "6d82a304268cb88829c4ac663f3d171aad4c9582ac4ae7e83f4b7d826b2a6029",
+      "evidence_used": [
+        "batch8_routing_contract",
+        "batch9-read_timeout"
+      ],
+      "executable_evidence": true,
+      "explanation": "Executor outcome matched fixed expectation.",
+      "forbidden_outcomes_triggered": [],
+      "ground_truth": null,
+      "issues": [],
+      "metric_events": {},
+      "module_results": {
+        "fallback_allowed": false,
+        "fallback_status": "manual_approval_required"
+      },
+      "required": true,
+      "scenario_id": "route-cross-provider",
+      "scenario_status": "passed"
+    },
+    {
+      "candidate_status": "passed",
+      "decision": "accept",
+      "deterministic_fingerprint": "25ce5ae92daa628dd1b561676521397cdd2f0d92104c0dfc03b532180d571054",
+      "evidence_used": [
+        "batch8_routing_contract",
+        "nvidia-meta-llama-3.3-70b-instruct"
+      ],
+      "executable_evidence": true,
+      "explanation": "Executor outcome matched fixed expectation.",
+      "forbidden_outcomes_triggered": [],
+      "ground_truth": null,
+      "issues": [],
+      "metric_events": {
+        "provider_requests_executed": 0,
+        "provider_requests_planned": 1
+      },
+      "module_results": {
+        "executed": false,
+        "network_requests": 0,
+        "prepare_only": true,
+        "routing_decision": "use_primary"
+      },
+      "required": true,
+      "scenario_id": "route-prepare-only",
+      "scenario_status": "passed"
+    },
+    {
+      "candidate_status": "failed",
+      "decision": "blocked",
+      "deterministic_fingerprint": "21f9bcf7224b6cc07a42bd305281f976a56cec4b4d7a2ecbc632a5d92ad36e89",
+      "evidence_used": [
+        "batch8_historical_timeout_contract",
+        "batch9-read_timeout"
+      ],
+      "executable_evidence": true,
+      "explanation": "Expected rejection is a scenario pass.",
+      "forbidden_outcomes_triggered": [],
+      "ground_truth": null,
+      "issues": [],
+      "metric_events": {},
+      "module_results": {
+        "reasons": [
+          "same_provider_retry_limit",
+          "repeated_identical_timeout",
+          "request_budget_exceeded"
+        ],
+        "retry_allowed": false
+      },
+      "required": true,
+      "scenario_id": "route-repeated-timeout",
+      "scenario_status": "passed"
+    }
+  ],
+  "scenario_count": 5,
+  "scenario_passed": 5,
+  "scenario_types": [
+    "provider_routing_case"
+  ],
+  "status": "PASS"
+}

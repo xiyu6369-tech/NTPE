@@ -1,0 +1,7 @@
+# LCR Batch 9 — Offline Golden / TIC Validation
+
+Status: **PASS**
+
+The Batch 9.1 fixed offline suite contains 48 scenarios across all 11 required scenario types. Every scenario type is dispatched through an explicit executor registry; fixture files contain inputs and expectations but no observed results or metric counters. All 48 executor outcomes matched their fixed expectations. Expected candidate rejection is counted as scenario PASS, while false-positive and false-negative counts are both zero. Two Golden historical references and two other informational cases are explicitly insufficient_evidence and do not satisfy required executable evidence. TIC inputs are limited to the approved fixed subject and lexical fixtures; Golden evidence is reference-only and no full novel text is copied. Structural fixtures exercise memory, scene context, cache/resume, dual-pass, semantic mutation, multilingual profiles, controlled routing, and cross-module behavior.
+
+Metrics are calculated only from executor outputs. Anti-fake tests cover altered expectations, forged observed fields, missing executors, module exceptions, monkeypatched Batch 6, broken cache results, and fixture counter injection. Three runs produced identical ordering, results, metrics, and fingerprints. Provider requests executed: 0; network requests: 0. The readiness result means ready for Batch 10 controlled integration planning only. It is not a Production readiness claim, and Batch 10 has not started.

@@ -1,0 +1,61 @@
+{
+  "candidate_rejected": 0,
+  "results": [
+    {
+      "candidate_status": "insufficient_evidence",
+      "decision": "manual_review",
+      "deterministic_fingerprint": "0f5351ab4d612809f86313b5ccc6dbe2a2fe1272d4cd8d5df007fadf01d35ed8",
+      "evidence_used": [
+        "D:\\Python\\NTPE\\tests\\literary\\Golden_Set\\original_ko.txt",
+        "golden_reference_only"
+      ],
+      "executable_evidence": false,
+      "explanation": "Executor outcome matched fixed expectation.",
+      "forbidden_outcomes_triggered": [],
+      "ground_truth": null,
+      "issues": [
+        "historical_reference_has_no_executable_candidate_evidence"
+      ],
+      "metric_events": {},
+      "module_results": {
+        "artifact_exists": true,
+        "artifact_sha256": "04132a4c761a7592f450d2dd8068092472d30782c69527e3ffcffb9ade3fd98a",
+        "reference_only": true
+      },
+      "required": false,
+      "scenario_id": "golden-historical-failure",
+      "scenario_status": "passed"
+    },
+    {
+      "candidate_status": "insufficient_evidence",
+      "decision": "manual_review",
+      "deterministic_fingerprint": "d74d847fa74a1714df86f0cd0ecee996f62c58e69865ca0487a2b187b64c69fc",
+      "evidence_used": [
+        "D:\\Python\\NTPE\\tests\\literary\\Golden_Set\\original_ko.txt",
+        "golden_reference_only"
+      ],
+      "executable_evidence": false,
+      "explanation": "Executor outcome matched fixed expectation.",
+      "forbidden_outcomes_triggered": [],
+      "ground_truth": null,
+      "issues": [
+        "historical_reference_has_no_executable_candidate_evidence"
+      ],
+      "metric_events": {},
+      "module_results": {
+        "artifact_exists": true,
+        "artifact_sha256": "04132a4c761a7592f450d2dd8068092472d30782c69527e3ffcffb9ade3fd98a",
+        "reference_only": true
+      },
+      "required": false,
+      "scenario_id": "golden-source-reference",
+      "scenario_status": "passed"
+    }
+  ],
+  "scenario_count": 2,
+  "scenario_passed": 2,
+  "scenario_types": [
+    "golden_historical_case"
+  ],
+  "status": "PASS"
+}

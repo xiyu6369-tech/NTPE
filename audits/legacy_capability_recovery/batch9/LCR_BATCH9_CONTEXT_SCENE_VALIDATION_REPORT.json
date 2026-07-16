@@ -1,0 +1,80 @@
+{
+  "candidate_rejected": 1,
+  "results": [
+    {
+      "candidate_status": "failed",
+      "decision": "reject",
+      "deterministic_fingerprint": "054e1beb9f963f3ede658aa07a8c6535b9bf7ec0c0d672f4bdcdb9d17c846b2d",
+      "evidence_used": [
+        "2f44af27c277db7e49f096771773d7799e4eab88e83fe9fd766d9931f6cd26ea",
+        "batch3_batch6_interoperability"
+      ],
+      "executable_evidence": true,
+      "explanation": "Expected rejection is a scenario pass.",
+      "forbidden_outcomes_triggered": [],
+      "ground_truth": "incorrect",
+      "issues": [
+        "speaker"
+      ],
+      "metric_events": {
+        "blocking_mutations_detected": 1
+      },
+      "module_results": {
+        "semantic_status": "failed"
+      },
+      "required": true,
+      "scenario_id": "scene-speaker-shift",
+      "scenario_status": "passed"
+    },
+    {
+      "candidate_status": "passed",
+      "decision": "accept",
+      "deterministic_fingerprint": "64063d47998479d533c7cc073bece8a28b27e58afb29d28d091ec2eef6382f38",
+      "evidence_used": [
+        "batch3_context_scene_contract",
+        "ctx_92775e48616efc6e0f12179e"
+      ],
+      "executable_evidence": true,
+      "explanation": "Executor outcome matched fixed expectation.",
+      "forbidden_outcomes_triggered": [],
+      "ground_truth": null,
+      "issues": [],
+      "metric_events": {},
+      "module_results": {
+        "context_type": "other",
+        "selected": true
+      },
+      "required": true,
+      "scenario_id": "scene-transition-expiry",
+      "scenario_status": "passed"
+    },
+    {
+      "candidate_status": "passed",
+      "decision": "accept",
+      "deterministic_fingerprint": "8f159517e513d2bcfe8e0a8b7d508383249f5bf4ebd6ea18c5041d612ad45321",
+      "evidence_used": [
+        "batch3_context_scene_contract",
+        "ctx_4c10fbcc41be3fa403ce3129"
+      ],
+      "executable_evidence": true,
+      "explanation": "Executor outcome matched fixed expectation.",
+      "forbidden_outcomes_triggered": [],
+      "ground_truth": null,
+      "issues": [],
+      "metric_events": {},
+      "module_results": {
+        "context_type": "unresolved_reference",
+        "selected": true
+      },
+      "required": true,
+      "scenario_id": "scene-unresolved-reference",
+      "scenario_status": "passed"
+    }
+  ],
+  "scenario_count": 3,
+  "scenario_passed": 3,
+  "scenario_types": [
+    "context_scene_case"
+  ],
+  "status": "PASS"
+}

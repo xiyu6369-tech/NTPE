@@ -1,0 +1,453 @@
+{
+  "corpus_fingerprint": "0c05490484681b001e6d2198e1e97006e6238e5cbdafb609d3708fd502b696ec",
+  "entry_count": 48,
+  "fixture_files": [
+    "tic_cases.json",
+    "golden_historical_cases.json",
+    "semantic_mutations.json",
+    "memory_cases.json",
+    "context_scene_cases.json",
+    "cache_resume_cases.json",
+    "dual_pass_cases.json",
+    "multilingual_cases.json",
+    "provider_routing_cases.json",
+    "cross_module_cases.json"
+  ],
+  "full_golden_text_copied": false,
+  "items": [
+    {
+      "case_id": "cache-identity-stale",
+      "current_health": false,
+      "evidence_origin": "batch4_cache_identity_contract",
+      "evidence_reference": "synthetic:cache_stale",
+      "historical": false,
+      "human_approved": false,
+      "synthetic": true
+    },
+    {
+      "case_id": "cache-ten-chunks",
+      "current_health": false,
+      "evidence_origin": "batch4_chunk_cache_contract",
+      "evidence_reference": "synthetic:10_chunks",
+      "historical": false,
+      "human_approved": false,
+      "synthetic": true
+    },
+    {
+      "case_id": "cross-korean-subject-rollback",
+      "current_health": false,
+      "evidence_origin": "batch9_cross_module_synthetic",
+      "evidence_reference": "synthetic:ko_subject_shift_pipeline",
+      "historical": false,
+      "human_approved": false,
+      "synthetic": true
+    },
+    {
+      "case_id": "cross-legal-word-order-accept",
+      "current_health": false,
+      "evidence_origin": "batch9_cross_module_synthetic",
+      "evidence_reference": "synthetic:legal_word_order",
+      "historical": false,
+      "human_approved": false,
+      "synthetic": true
+    },
+    {
+      "case_id": "dual-draft-failed",
+      "current_health": false,
+      "evidence_origin": "batch5_dual_pass_contract",
+      "evidence_reference": "core/dual_pass_translation#blocked-draft",
+      "historical": false,
+      "human_approved": false,
+      "synthetic": true
+    },
+    {
+      "case_id": "dual-insufficient",
+      "current_health": false,
+      "evidence_origin": "batch5_batch6_informational",
+      "evidence_reference": "synthetic:missing_semantic_evidence",
+      "historical": false,
+      "human_approved": false,
+      "synthetic": true
+    },
+    {
+      "case_id": "dual-no-trigger",
+      "current_health": false,
+      "evidence_origin": "batch5_dual_pass_contract",
+      "evidence_reference": "core/dual_pass_translation#mode-selection",
+      "historical": false,
+      "human_approved": false,
+      "synthetic": true
+    },
+    {
+      "case_id": "dual-selective-trigger",
+      "current_health": false,
+      "evidence_origin": "batch5_dual_pass_contract",
+      "evidence_reference": "core/dual_pass_translation#selective-polish",
+      "historical": false,
+      "human_approved": false,
+      "synthetic": true
+    },
+    {
+      "case_id": "dual-semantic-rollback",
+      "current_health": false,
+      "evidence_origin": "batch5_batch6_interoperability",
+      "evidence_reference": "core/post_polish_semantic_verification#batch5-view",
+      "historical": false,
+      "human_approved": false,
+      "synthetic": true
+    },
+    {
+      "case_id": "golden-historical-failure",
+      "current_health": false,
+      "evidence_origin": "golden_reference_only",
+      "evidence_reference": "tests/literary/Golden_Set/original_ko.txt",
+      "historical": true,
+      "human_approved": false,
+      "synthetic": false
+    },
+    {
+      "case_id": "golden-source-reference",
+      "current_health": false,
+      "evidence_origin": "golden_reference_only",
+      "evidence_reference": "tests/literary/Golden_Set/original_ko.txt",
+      "historical": true,
+      "human_approved": false,
+      "synthetic": false
+    },
+    {
+      "case_id": "memory-approved-priority",
+      "current_health": false,
+      "evidence_origin": "batch2_character_memory_contract",
+      "evidence_reference": "core/character_memory_v2",
+      "historical": false,
+      "human_approved": false,
+      "synthetic": true
+    },
+    {
+      "case_id": "memory-conflict",
+      "current_health": false,
+      "evidence_origin": "batch2_character_memory_contract",
+      "evidence_reference": "core/character_memory_v2#conflict",
+      "historical": false,
+      "human_approved": false,
+      "synthetic": true
+    },
+    {
+      "case_id": "memory-selected-stale",
+      "current_health": false,
+      "evidence_origin": "batch2_batch4_cache_identity_contract",
+      "evidence_reference": "core/character_memory_v2#selection-fingerprint",
+      "historical": false,
+      "human_approved": false,
+      "synthetic": true
+    },
+    {
+      "case_id": "mutation-addition",
+      "current_health": false,
+      "evidence_origin": "batch6_semantic_contract",
+      "evidence_reference": "synthetic:addition",
+      "historical": false,
+      "human_approved": false,
+      "synthetic": true
+    },
+    {
+      "case_id": "mutation-ambiguity",
+      "current_health": false,
+      "evidence_origin": "batch6_semantic_contract",
+      "evidence_reference": "synthetic:ambiguity",
+      "historical": false,
+      "human_approved": false,
+      "synthetic": true
+    },
+    {
+      "case_id": "mutation-causality",
+      "current_health": false,
+      "evidence_origin": "batch6_semantic_contract",
+      "evidence_reference": "synthetic:causality",
+      "historical": false,
+      "human_approved": false,
+      "synthetic": true
+    },
+    {
+      "case_id": "mutation-name-completion",
+      "current_health": false,
+      "evidence_origin": "batch6_semantic_contract",
+      "evidence_reference": "synthetic:name_completion",
+      "historical": false,
+      "human_approved": false,
+      "synthetic": true
+    },
+    {
+      "case_id": "mutation-negation",
+      "current_health": false,
+      "evidence_origin": "batch6_semantic_contract",
+      "evidence_reference": "synthetic:negation",
+      "historical": false,
+      "human_approved": false,
+      "synthetic": true
+    },
+    {
+      "case_id": "mutation-number",
+      "current_health": false,
+      "evidence_origin": "batch6_semantic_contract",
+      "evidence_reference": "synthetic:number",
+      "historical": false,
+      "human_approved": false,
+      "synthetic": true
+    },
+    {
+      "case_id": "mutation-omission",
+      "current_health": false,
+      "evidence_origin": "batch6_semantic_contract",
+      "evidence_reference": "synthetic:omission",
+      "historical": false,
+      "human_approved": false,
+      "synthetic": true
+    },
+    {
+      "case_id": "mutation-pronoun",
+      "current_health": false,
+      "evidence_origin": "batch6_semantic_contract",
+      "evidence_reference": "synthetic:pronoun",
+      "historical": false,
+      "human_approved": false,
+      "synthetic": true
+    },
+    {
+      "case_id": "mutation-scope",
+      "current_health": false,
+      "evidence_origin": "batch6_semantic_contract",
+      "evidence_reference": "synthetic:scope",
+      "historical": false,
+      "human_approved": false,
+      "synthetic": true
+    },
+    {
+      "case_id": "mutation-speaker",
+      "current_health": false,
+      "evidence_origin": "batch6_semantic_contract",
+      "evidence_reference": "synthetic:speaker",
+      "historical": false,
+      "human_approved": false,
+      "synthetic": true
+    },
+    {
+      "case_id": "mutation-subject",
+      "current_health": false,
+      "evidence_origin": "batch6_semantic_contract",
+      "evidence_reference": "synthetic:subject",
+      "historical": false,
+      "human_approved": false,
+      "synthetic": true
+    },
+    {
+      "case_id": "mutation-time",
+      "current_health": false,
+      "evidence_origin": "batch6_semantic_contract",
+      "evidence_reference": "synthetic:time",
+      "historical": false,
+      "human_approved": false,
+      "synthetic": true
+    },
+    {
+      "case_id": "output-contract-conflict",
+      "current_health": false,
+      "evidence_origin": "batch4_output_contract",
+      "evidence_reference": "synthetic:duplicate_missing_partial",
+      "historical": false,
+      "human_approved": false,
+      "synthetic": true
+    },
+    {
+      "case_id": "profile-english",
+      "current_health": false,
+      "evidence_origin": "batch7_profile_contract",
+      "evidence_reference": "core/multilingual_profiles#en",
+      "historical": false,
+      "human_approved": false,
+      "synthetic": true
+    },
+    {
+      "case_id": "profile-japanese",
+      "current_health": false,
+      "evidence_origin": "batch7_profile_contract",
+      "evidence_reference": "core/multilingual_profiles#ja",
+      "historical": false,
+      "human_approved": false,
+      "synthetic": true
+    },
+    {
+      "case_id": "profile-korean",
+      "current_health": false,
+      "evidence_origin": "batch7_profile_contract",
+      "evidence_reference": "core/multilingual_profiles#ko",
+      "historical": false,
+      "human_approved": false,
+      "synthetic": true
+    },
+    {
+      "case_id": "profile-mismatch",
+      "current_health": false,
+      "evidence_origin": "batch7_profile_contract",
+      "evidence_reference": "synthetic:language_profile_mismatch",
+      "historical": false,
+      "human_approved": false,
+      "synthetic": true
+    },
+    {
+      "case_id": "resume-cache-conflict",
+      "current_health": false,
+      "evidence_origin": "batch4_resume_compatibility",
+      "evidence_reference": "synthetic:resume_conflict",
+      "historical": false,
+      "human_approved": false,
+      "synthetic": true
+    },
+    {
+      "case_id": "route-auth-no-retry",
+      "current_health": false,
+      "evidence_origin": "batch8_routing_contract",
+      "evidence_reference": "core/controlled_provider_routing#authentication_failure",
+      "historical": false,
+      "human_approved": false,
+      "synthetic": true
+    },
+    {
+      "case_id": "route-budget-block",
+      "current_health": false,
+      "evidence_origin": "batch8_routing_contract",
+      "evidence_reference": "synthetic:budget_exceeded",
+      "historical": false,
+      "human_approved": false,
+      "synthetic": true
+    },
+    {
+      "case_id": "route-cross-provider",
+      "current_health": false,
+      "evidence_origin": "batch8_routing_contract",
+      "evidence_reference": "core/controlled_provider_routing#fallback",
+      "historical": false,
+      "human_approved": false,
+      "synthetic": true
+    },
+    {
+      "case_id": "route-prepare-only",
+      "current_health": false,
+      "evidence_origin": "batch8_routing_contract",
+      "evidence_reference": "core/controlled_provider_routing#execution_plan",
+      "historical": false,
+      "human_approved": false,
+      "synthetic": true
+    },
+    {
+      "case_id": "route-repeated-timeout",
+      "current_health": false,
+      "evidence_origin": "batch8_historical_timeout_contract",
+      "evidence_reference": "tests/fixtures/lcr_batch8/historical_provider_failures.json#hist-nvidia-read-timeout-180",
+      "historical": true,
+      "human_approved": false,
+      "synthetic": false
+    },
+    {
+      "case_id": "scene-speaker-shift",
+      "current_health": false,
+      "evidence_origin": "batch3_batch6_interoperability",
+      "evidence_reference": "synthetic:speaker_shift",
+      "historical": false,
+      "human_approved": false,
+      "synthetic": true
+    },
+    {
+      "case_id": "scene-transition-expiry",
+      "current_health": false,
+      "evidence_origin": "batch3_context_scene_contract",
+      "evidence_reference": "core/context_scene_memory#selection",
+      "historical": false,
+      "human_approved": false,
+      "synthetic": true
+    },
+    {
+      "case_id": "scene-unresolved-reference",
+      "current_health": false,
+      "evidence_origin": "batch3_context_scene_contract",
+      "evidence_reference": "core/context_scene_memory#unresolved",
+      "historical": false,
+      "human_approved": false,
+      "synthetic": true
+    },
+    {
+      "case_id": "semantic-insufficient",
+      "current_health": false,
+      "evidence_origin": "batch6_informational",
+      "evidence_reference": "synthetic:missing_evidence",
+      "historical": false,
+      "human_approved": false,
+      "synthetic": true
+    },
+    {
+      "case_id": "semantic-numeric-equivalent",
+      "current_health": false,
+      "evidence_origin": "batch6_semantic_contract",
+      "evidence_reference": "synthetic:numeric_equivalent",
+      "historical": false,
+      "human_approved": false,
+      "synthetic": true
+    },
+    {
+      "case_id": "semantic-punctuation-pass",
+      "current_health": false,
+      "evidence_origin": "batch6_semantic_contract",
+      "evidence_reference": "synthetic:punctuation",
+      "historical": false,
+      "human_approved": false,
+      "synthetic": true
+    },
+    {
+      "case_id": "tic-lexical-approved",
+      "current_health": true,
+      "evidence_origin": "tic_batch7_human_approved",
+      "evidence_reference": "artifacts/tic_batch7/OFFLINE_QUALITY_GATE_FIXTURES.json#B7-LEXICAL-APPROVED",
+      "historical": false,
+      "human_approved": true,
+      "synthetic": false
+    },
+    {
+      "case_id": "tic-lexical-bad",
+      "current_health": false,
+      "evidence_origin": "tic_batch7_historical_bad",
+      "evidence_reference": "artifacts/tic_batch7/OFFLINE_QUALITY_GATE_FIXTURES.json#B7-LEXICAL-BAD",
+      "historical": true,
+      "human_approved": false,
+      "synthetic": false
+    },
+    {
+      "case_id": "tic-subject-approved",
+      "current_health": true,
+      "evidence_origin": "tic_batch7_human_approved",
+      "evidence_reference": "artifacts/tic_batch7/OFFLINE_QUALITY_GATE_FIXTURES.json#B7-SUBJECT-APPROVED",
+      "historical": false,
+      "human_approved": true,
+      "synthetic": false
+    },
+    {
+      "case_id": "tic-subject-bad",
+      "current_health": false,
+      "evidence_origin": "tic_batch7_historical_bad",
+      "evidence_reference": "artifacts/tic_batch7/OFFLINE_QUALITY_GATE_FIXTURES.json#B7-SUBJECT-BAD",
+      "historical": true,
+      "human_approved": false,
+      "synthetic": false
+    },
+    {
+      "case_id": "tic-subject-unrelated",
+      "current_health": false,
+      "evidence_origin": "tic_batch7_unrelated_candidate",
+      "evidence_reference": "artifacts/tic_batch7/OFFLINE_QUALITY_GATE_FIXTURES.json#B7-SUBJECT-UNRELATED",
+      "historical": false,
+      "human_approved": false,
+      "synthetic": false
+    }
+  ],
+  "new_translation_generated": false,
+  "status": "PASS"
+}

@@ -1,0 +1,20 @@
+{
+  "baseline_commit": "633b07d169ef42259d692563acd3fb230de77b49",
+  "batch10_started": false,
+  "batch9_1_executable_scenario_fix": true,
+  "golden_modified": false,
+  "lcr_batches_2_through_8_modified": false,
+  "network_requests": 0,
+  "new_translation_generated": false,
+  "output_assembly_core_modified": false,
+  "production_code_modified": false,
+  "prompt_modified": false,
+  "provider_modified": false,
+  "provider_requests_executed": 0,
+  "qa_engine_modified": false,
+  "readiness_scope": "ready for Batch 10 controlled integration planning only",
+  "resume_core_modified": false,
+  "runtime_modified": false,
+  "status": "PASS",
+  "tic_modified": false
+}

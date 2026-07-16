@@ -1,0 +1,14 @@
+{
+  "credential_stored": false,
+  "endpoint_present": false,
+  "files_scanned": 49,
+  "findings": [],
+  "http_client_present": false,
+  "network_requests": 0,
+  "pickle_used": false,
+  "provider_requests_executed": 0,
+  "provider_sdk_present": false,
+  "raw_provider_requests": false,
+  "raw_provider_responses": false,
+  "status": "PASS"
+}

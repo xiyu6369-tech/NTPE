@@ -1,0 +1,152 @@
+﻿[LCR_BATCH_2]
+$ python ntpe_lcr_batch2_character_memory_v2_test.py
+PASS  model-required-fields
+PASS  evidence-separation
+PASS  confidence-not-approval
+PASS  stable-memory-id
+PASS  add-accepted
+PASS  exact-dedup
+PASS  ai-default-ineligible
+PASS  human-approved-priority
+PASS  prompt-budget
+PASS  zero-budget
+PASS  temporal-expiry-safe-default
+PASS  evidence-merge
+PASS  rollback-verifiable
+PASS  conflict-visible
+PASS  conflict-fail-closed
+PASS  serialization-deterministic
+PASS  store-valid
+PASS  secret-like-input-rejected
+PASS  offline-dependency-boundary  []
+PASS  git-allowlist  []
+PASS  frozen-boundary  []
+PASS  tracked-deletions-zero
+PASS  performance-add-merge  15.067
+PASS  performance-selection  0.986
+PASS  performance-serialization  15.507
+{"changed_paths": [], "checks": 25, "network_requests": 0, "new_translation_generated": false, "performance": {"add_merge_100_ms": 15.067, "dedup_100_ms": 2.721, "rollback_ms": 0.094, "selection_100_ms": 0.986, "serialization_round_trip_100_ms": 15.507}, "production_integration": false, "prompt_integration": false, "provider_executed": false}
+ALL PASS
+EXIT_CODE=0
+[LCR_BATCH_3]
+$ python ntpe_lcr_batch3_context_scene_memory_test.py
+PASS 100 context add/merge
+PASS 100 participant operations
+PASS 100-record context selection
+PASS deterministic selection
+BENCHMARK serialization_round_trip_ms=5.961
+PASS serialization round trip
+PASS scene transition
+PASS rollback
+PASS Character Memory interoperability view
+PASS schema separation
+PASS production boundary
+BENCHMARK context_add_ms=35.424
+BENCHMARK participant_ops_ms=7.379
+BENCHMARK selection_ms=1.705
+BENCHMARK scene_transition_ms=1.040
+BENCHMARK rollback_ms=0.062
+BENCHMARK character_interop_view_ms=0.080
+ALL PASS
+EXIT_CODE=0
+[LCR_BATCH_4]
+$ python ntpe_lcr_batch4_chunk_cache_v2_test.py
+PASS 100 identity generation
+PASS 100 completed add
+BENCHMARK lookup_ms=6.463
+PASS 100 lookup
+PASS 100 resume reconciliation
+PASS 100 chunk retry planning
+PASS serialization round trip
+PASS retention planning
+PASS rollback
+PASS completed eligibility
+PASS production boundary
+PASS schema
+BENCHMARK identity_generation_ms=4.839
+BENCHMARK add_completed_ms=38.966
+BENCHMARK resume_reconciliation_ms=0.232
+BENCHMARK retry_planning_ms=6.446
+BENCHMARK serialization_round_trip_ms=28.270
+BENCHMARK retention_planning_ms=0.320
+BENCHMARK rollback_ms=0.171
+ALL PASS
+EXIT_CODE=0
+[LCR_BATCH_5]
+$ python ntpe_lcr_batch5_dual_pass_prototype_test.py
+PASS 100 Draft creation
+PASS 100 Polish creation
+PASS 100 trigger evaluation
+PASS 100 mode decisions
+PASS 100 semantic verifications
+PASS 100 execution plans
+PASS 100 Draft Polish cache identities
+PASS serialization round trip
+PASS rollback decision application
+PASS offline execution boundary
+PASS schema
+BENCHMARK draft_creation_ms=8.764
+BENCHMARK polish_creation_ms=9.036
+BENCHMARK trigger_evaluation_ms=2.079
+BENCHMARK mode_decision_ms=7.935
+BENCHMARK semantic_verification_ms=10.959
+BENCHMARK execution_plan_ms=0.337
+BENCHMARK cache_identity_ms=1.332
+BENCHMARK serialization_round_trip_ms=2.632
+BENCHMARK rollback_ms=0.030
+ALL PASS
+EXIT_CODE=0
+[LCR_BATCH_6]
+$ python ntpe_lcr_batch6_post_polish_semantic_verification_test.py
+...........................................                              [100%]
+43 passed in 0.90s
+UNIT: PASS
+....                                                                     [100%]
+4 passed in 0.96s
+INTEGRATION: PASS
+OFFLINE_BOUNDARY: PASS
+ALL PASS
+EXIT_CODE=0
+[LCR_BATCH_7]
+$ python ntpe_lcr_batch7_multilingual_profiles_test.py
+.....................................                                    [100%]
+37 passed in 0.98s
+UNIT: PASS
+......                                                                   [100%]
+6 passed in 1.16s
+INTEGRATION: PASS
+OFFLINE_BOUNDARY: PASS
+ALL PASS
+EXIT_CODE=0
+[LCR_BATCH_8]
+$ python ntpe_lcr_batch8_controlled_provider_routing_test.py
+........................................                                 [100%]
+40 passed in 0.86s
+UNIT: PASS
+......                                                                   [100%]
+6 passed in 1.20s
+INTEGRATION: PASS
+PREPARE_ONLY_BOUNDARY: PASS
+ALL PASS
+EXIT_CODE=0
+[TIC_BATCH_7]
+$ python ntpe_tic_batch7_offline_translation_quality_gate_test.py
+TIC Batch 7 Offline Translation Quality Gate Integration ALL PASS
+EXIT_CODE=0
+[TE_V600_FREEZE]
+$ python ntpe_te_v600_final_release_freeze_test.py
+TE v6.0.0 Final Release Freeze ALL PASS
+EXIT_CODE=0
+[TE_V710_FREEZE]
+$ python ntpe_te_v710_stage118_translation_quality_framework_freeze_test.py
+TE v7.1 Stage 11.8 Translation Quality Framework Freeze ALL PASS
+EXIT_CODE=0
+[TE_V720_CANDIDATE]
+$ python ntpe_te_v720_stage121_evidence_based_prompt_quality_candidate_test.py
+TE v7.2 Stage 12.1 Evidence-Based Prompt Quality Candidate ALL PASS
+EXIT_CODE=0
+[RUNTIME_PROVIDER_RESUME_OUTPUT]
+$ python -m pytest tests/runtime/translation_runtime_test.py tests/runtime/translation_runtime_contract_test.py tests/stage_14_6/test_provider_security.py tests/integration/translation_scheduler_stage314_resume_journal_test.py tests/integration/translation_scheduler_stage313_result_collector_test.py -q
+................                                                         [100%]
+16 passed in 3.51s
+EXIT_CODE=0

@@ -1,0 +1,20 @@
+$ git diff --check
+
+$ git ls-files --deleted
+
+$ git status --short
+?? NTPE_LCR_BATCH9_AUDIT.zip
+?? audits/legacy_capability_recovery/batch9/
+?? core/lcr_offline_validation/
+?? ntpe_lcr_batch9_offline_golden_tic_validation_test.py
+?? tests/fixtures/lcr_batch9/
+?? tests/integration/lcr_batch9_offline_golden_tic_validation_integration_test.py
+?? tests/unit/test_lcr_offline_validation.py
+
+$ git diff --stat
+
+$ git rev-list --left-right --count origin/main...main
+0	0
+
+$ git log -1 --oneline
+633b07d LCR Batch 8: Add offline controlled provider routing core

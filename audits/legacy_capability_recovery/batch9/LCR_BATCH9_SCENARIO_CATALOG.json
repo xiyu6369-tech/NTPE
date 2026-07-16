@@ -1,0 +1,1142 @@
+{
+  "scenario_count": 48,
+  "scenarios": [
+    {
+      "created_at": "2026-07-16T00:00:00Z",
+      "evidence_origin": "batch4_cache_identity_contract",
+      "expected_decision": "reject",
+      "expected_status": "passed",
+      "forbidden_outcomes": [
+        "stale_cache_hit"
+      ],
+      "inputs": {
+        "operation": "identity_stale"
+      },
+      "protected_invariants": [
+        "prompt_identity"
+      ],
+      "required": true,
+      "required_modules": [
+        "chunk_cache_v2"
+      ],
+      "scenario_id": "cache-identity-stale",
+      "scenario_type": "cache_reuse_case",
+      "source_case_id": "cache-identity-stale",
+      "version": "1.0"
+    },
+    {
+      "created_at": "2026-07-16T00:00:00Z",
+      "evidence_origin": "batch4_chunk_cache_contract",
+      "expected_decision": "retry_required",
+      "expected_status": "passed",
+      "forbidden_outcomes": [
+        "partial_hit",
+        "timeout_hit",
+        "missing_hit"
+      ],
+      "inputs": {
+        "operation": "ten_chunk_plan"
+      },
+      "protected_invariants": [
+        "completed_only_cache_hit"
+      ],
+      "required": true,
+      "required_modules": [
+        "chunk_cache_v2"
+      ],
+      "scenario_id": "cache-ten-chunks",
+      "scenario_type": "cache_reuse_case",
+      "source_case_id": "cache-ten-chunks",
+      "version": "1.0"
+    },
+    {
+      "created_at": "2026-07-16T00:00:00Z",
+      "evidence_origin": "batch9_cross_module_synthetic",
+      "expected_decision": "rollback_to_draft",
+      "expected_status": "failed",
+      "forbidden_outcomes": [
+        "accept_polish",
+        "provider_execution",
+        "failed_polish_cache_hit"
+      ],
+      "inputs": {
+        "operation": "rollback"
+      },
+      "protected_invariants": [
+        "language_profile",
+        "verified_draft",
+        "subject_identity",
+        "prepare_only"
+      ],
+      "required": true,
+      "required_modules": [
+        "multilingual_profiles",
+        "chunk_cache_v2",
+        "post_polish_semantic_verification",
+        "controlled_provider_routing"
+      ],
+      "scenario_id": "cross-korean-subject-rollback",
+      "scenario_type": "cross_module_case",
+      "source_case_id": "cross-korean-subject-rollback",
+      "version": "1.0"
+    },
+    {
+      "created_at": "2026-07-16T00:00:00Z",
+      "evidence_origin": "batch9_cross_module_synthetic",
+      "expected_decision": "accept",
+      "expected_status": "passed",
+      "forbidden_outcomes": [
+        "semantic_change",
+        "provider_execution"
+      ],
+      "inputs": {
+        "operation": "success"
+      },
+      "protected_invariants": [
+        "language_profile",
+        "semantic_equivalence",
+        "prepare_only"
+      ],
+      "required": true,
+      "required_modules": [
+        "multilingual_profiles",
+        "chunk_cache_v2",
+        "post_polish_semantic_verification",
+        "controlled_provider_routing"
+      ],
+      "scenario_id": "cross-legal-word-order-accept",
+      "scenario_type": "cross_module_case",
+      "source_case_id": "cross-legal-word-order-accept",
+      "version": "1.0"
+    },
+    {
+      "created_at": "2026-07-16T00:00:00Z",
+      "evidence_origin": "batch5_dual_pass_contract",
+      "expected_decision": "blocked",
+      "expected_status": "failed",
+      "forbidden_outcomes": [
+        "polish_invalid_draft"
+      ],
+      "inputs": {
+        "operation": "draft_failed"
+      },
+      "protected_invariants": [
+        "verified_draft_required"
+      ],
+      "required": true,
+      "required_modules": [
+        "dual_pass_translation"
+      ],
+      "scenario_id": "dual-draft-failed",
+      "scenario_type": "dual_pass_case",
+      "source_case_id": "dual-draft-failed",
+      "version": "1.0"
+    },
+    {
+      "created_at": "2026-07-16T00:00:00Z",
+      "evidence_origin": "batch5_batch6_informational",
+      "expected_decision": "manual_review",
+      "expected_status": "insufficient_evidence",
+      "forbidden_outcomes": [
+        "accept_polish"
+      ],
+      "inputs": {
+        "operation": "insufficient"
+      },
+      "protected_invariants": [
+        "fail_closed_without_evidence"
+      ],
+      "required": false,
+      "required_modules": [
+        "dual_pass_translation",
+        "post_polish_semantic_verification"
+      ],
+      "scenario_id": "dual-insufficient",
+      "scenario_type": "dual_pass_case",
+      "source_case_id": "dual-insufficient",
+      "version": "1.0"
+    },
+    {
+      "created_at": "2026-07-16T00:00:00Z",
+      "evidence_origin": "batch5_dual_pass_contract",
+      "expected_decision": "accept",
+      "expected_status": "passed",
+      "forbidden_outcomes": [
+        "unnecessary_second_pass"
+      ],
+      "inputs": {
+        "operation": "no_trigger"
+      },
+      "protected_invariants": [
+        "no_unnecessary_second_pass"
+      ],
+      "required": true,
+      "required_modules": [
+        "dual_pass_translation"
+      ],
+      "scenario_id": "dual-no-trigger",
+      "scenario_type": "dual_pass_case",
+      "source_case_id": "dual-no-trigger",
+      "version": "1.0"
+    },
+    {
+      "created_at": "2026-07-16T00:00:00Z",
+      "evidence_origin": "batch5_dual_pass_contract",
+      "expected_decision": "accept",
+      "expected_status": "passed",
+      "forbidden_outcomes": [
+        "full_chunk_overreach"
+      ],
+      "inputs": {
+        "operation": "selective_trigger"
+      },
+      "protected_invariants": [
+        "bounded_selective_polish"
+      ],
+      "required": true,
+      "required_modules": [
+        "dual_pass_translation"
+      ],
+      "scenario_id": "dual-selective-trigger",
+      "scenario_type": "dual_pass_case",
+      "source_case_id": "dual-selective-trigger",
+      "version": "1.0"
+    },
+    {
+      "created_at": "2026-07-16T00:00:00Z",
+      "evidence_origin": "batch5_batch6_interoperability",
+      "expected_decision": "rollback_to_draft",
+      "expected_status": "failed",
+      "forbidden_outcomes": [
+        "failed_polish_cache_hit"
+      ],
+      "inputs": {
+        "operation": "semantic_rollback"
+      },
+      "protected_invariants": [
+        "subject_identity",
+        "verified_draft_rollback"
+      ],
+      "required": true,
+      "required_modules": [
+        "dual_pass_translation",
+        "post_polish_semantic_verification"
+      ],
+      "scenario_id": "dual-semantic-rollback",
+      "scenario_type": "dual_pass_case",
+      "source_case_id": "dual-semantic-rollback",
+      "version": "1.0"
+    },
+    {
+      "created_at": "2026-07-16T00:00:00Z",
+      "evidence_origin": "golden_reference_only",
+      "expected_decision": "manual_review",
+      "expected_status": "insufficient_evidence",
+      "forbidden_outcomes": [
+        "declare_pass",
+        "declare_fail"
+      ],
+      "inputs": {
+        "artifact_path": "tests/literary/Golden_Set/original_ko.txt"
+      },
+      "protected_invariants": [
+        "no_executable_translation_evidence"
+      ],
+      "required": false,
+      "required_modules": [
+        "golden_historical_reference"
+      ],
+      "scenario_id": "golden-historical-failure",
+      "scenario_type": "golden_historical_case",
+      "source_case_id": "golden-historical-failure",
+      "version": "1.0"
+    },
+    {
+      "created_at": "2026-07-16T00:00:00Z",
+      "evidence_origin": "golden_reference_only",
+      "expected_decision": "manual_review",
+      "expected_status": "insufficient_evidence",
+      "forbidden_outcomes": [
+        "declare_pass",
+        "declare_fail"
+      ],
+      "inputs": {
+        "artifact_path": "tests/literary/Golden_Set/original_ko.txt"
+      },
+      "protected_invariants": [
+        "reference_only_no_candidate_claim"
+      ],
+      "required": false,
+      "required_modules": [
+        "golden_historical_reference"
+      ],
+      "scenario_id": "golden-source-reference",
+      "scenario_type": "golden_historical_case",
+      "source_case_id": "golden-source-reference",
+      "version": "1.0"
+    },
+    {
+      "created_at": "2026-07-16T00:00:00Z",
+      "evidence_origin": "batch2_character_memory_contract",
+      "expected_decision": "accept",
+      "expected_status": "passed",
+      "forbidden_outcomes": [
+        "silent_overwrite"
+      ],
+      "inputs": {
+        "operation": "approved_priority"
+      },
+      "protected_invariants": [
+        "human_approved_priority"
+      ],
+      "required": true,
+      "required_modules": [
+        "character_memory_v2"
+      ],
+      "scenario_id": "memory-approved-priority",
+      "scenario_type": "memory_consistency_case",
+      "source_case_id": "memory-approved-priority",
+      "version": "1.0"
+    },
+    {
+      "created_at": "2026-07-16T00:00:00Z",
+      "evidence_origin": "batch2_character_memory_contract",
+      "expected_decision": "blocked",
+      "expected_status": "conflict",
+      "forbidden_outcomes": [
+        "silent_overwrite"
+      ],
+      "inputs": {
+        "operation": "conflict"
+      },
+      "protected_invariants": [
+        "conflict_visible"
+      ],
+      "required": true,
+      "required_modules": [
+        "character_memory_v2"
+      ],
+      "scenario_id": "memory-conflict",
+      "scenario_type": "memory_consistency_case",
+      "source_case_id": "memory-conflict",
+      "version": "1.0"
+    },
+    {
+      "created_at": "2026-07-16T00:00:00Z",
+      "evidence_origin": "batch2_batch4_cache_identity_contract",
+      "expected_decision": "reject",
+      "expected_status": "passed",
+      "forbidden_outcomes": [
+        "stale_cache_hit"
+      ],
+      "inputs": {
+        "operation": "selection_stale"
+      },
+      "protected_invariants": [
+        "selected_memory_identity"
+      ],
+      "required": true,
+      "required_modules": [
+        "character_memory_v2",
+        "chunk_cache_v2"
+      ],
+      "scenario_id": "memory-selected-stale",
+      "scenario_type": "memory_consistency_case",
+      "source_case_id": "memory-selected-stale",
+      "version": "1.0"
+    },
+    {
+      "created_at": "2026-07-16T00:00:00Z",
+      "evidence_origin": "batch6_semantic_contract",
+      "expected_decision": "rollback_to_draft",
+      "expected_status": "failed",
+      "forbidden_outcomes": [
+        "accept_polish"
+      ],
+      "inputs": {
+        "operation": "addition"
+      },
+      "protected_invariants": [
+        "no_addition"
+      ],
+      "required": true,
+      "required_modules": [
+        "post_polish_semantic_verification"
+      ],
+      "scenario_id": "mutation-addition",
+      "scenario_type": "semantic_mutation_case",
+      "source_case_id": "mutation-addition",
+      "version": "1.0"
+    },
+    {
+      "created_at": "2026-07-16T00:00:00Z",
+      "evidence_origin": "batch6_semantic_contract",
+      "expected_decision": "rollback_to_draft",
+      "expected_status": "failed",
+      "forbidden_outcomes": [
+        "accept_polish"
+      ],
+      "inputs": {
+        "operation": "ambiguity"
+      },
+      "protected_invariants": [
+        "ambiguity"
+      ],
+      "required": true,
+      "required_modules": [
+        "post_polish_semantic_verification"
+      ],
+      "scenario_id": "mutation-ambiguity",
+      "scenario_type": "semantic_mutation_case",
+      "source_case_id": "mutation-ambiguity",
+      "version": "1.0"
+    },
+    {
+      "created_at": "2026-07-16T00:00:00Z",
+      "evidence_origin": "batch6_semantic_contract",
+      "expected_decision": "rollback_to_draft",
+      "expected_status": "failed",
+      "forbidden_outcomes": [
+        "accept_polish"
+      ],
+      "inputs": {
+        "operation": "causality"
+      },
+      "protected_invariants": [
+        "causal_relation"
+      ],
+      "required": true,
+      "required_modules": [
+        "post_polish_semantic_verification"
+      ],
+      "scenario_id": "mutation-causality",
+      "scenario_type": "semantic_mutation_case",
+      "source_case_id": "mutation-causality",
+      "version": "1.0"
+    },
+    {
+      "created_at": "2026-07-16T00:00:00Z",
+      "evidence_origin": "batch6_semantic_contract",
+      "expected_decision": "rollback_to_draft",
+      "expected_status": "failed",
+      "forbidden_outcomes": [
+        "accept_polish"
+      ],
+      "inputs": {
+        "operation": "name_completion"
+      },
+      "protected_invariants": [
+        "no_name_completion"
+      ],
+      "required": true,
+      "required_modules": [
+        "post_polish_semantic_verification"
+      ],
+      "scenario_id": "mutation-name-completion",
+      "scenario_type": "semantic_mutation_case",
+      "source_case_id": "mutation-name-completion",
+      "version": "1.0"
+    },
+    {
+      "created_at": "2026-07-16T00:00:00Z",
+      "evidence_origin": "batch6_semantic_contract",
+      "expected_decision": "rollback_to_draft",
+      "expected_status": "failed",
+      "forbidden_outcomes": [
+        "accept_polish"
+      ],
+      "inputs": {
+        "operation": "negation"
+      },
+      "protected_invariants": [
+        "negation"
+      ],
+      "required": true,
+      "required_modules": [
+        "post_polish_semantic_verification"
+      ],
+      "scenario_id": "mutation-negation",
+      "scenario_type": "semantic_mutation_case",
+      "source_case_id": "mutation-negation",
+      "version": "1.0"
+    },
+    {
+      "created_at": "2026-07-16T00:00:00Z",
+      "evidence_origin": "batch6_semantic_contract",
+      "expected_decision": "rollback_to_draft",
+      "expected_status": "failed",
+      "forbidden_outcomes": [
+        "accept_polish"
+      ],
+      "inputs": {
+        "operation": "number"
+      },
+      "protected_invariants": [
+        "number"
+      ],
+      "required": true,
+      "required_modules": [
+        "post_polish_semantic_verification"
+      ],
+      "scenario_id": "mutation-number",
+      "scenario_type": "semantic_mutation_case",
+      "source_case_id": "mutation-number",
+      "version": "1.0"
+    },
+    {
+      "created_at": "2026-07-16T00:00:00Z",
+      "evidence_origin": "batch6_semantic_contract",
+      "expected_decision": "rollback_to_draft",
+      "expected_status": "failed",
+      "forbidden_outcomes": [
+        "accept_polish"
+      ],
+      "inputs": {
+        "operation": "omission"
+      },
+      "protected_invariants": [
+        "no_omission"
+      ],
+      "required": true,
+      "required_modules": [
+        "post_polish_semantic_verification"
+      ],
+      "scenario_id": "mutation-omission",
+      "scenario_type": "semantic_mutation_case",
+      "source_case_id": "mutation-omission",
+      "version": "1.0"
+    },
+    {
+      "created_at": "2026-07-16T00:00:00Z",
+      "evidence_origin": "batch6_semantic_contract",
+      "expected_decision": "rollback_to_draft",
+      "expected_status": "failed",
+      "forbidden_outcomes": [
+        "accept_polish"
+      ],
+      "inputs": {
+        "operation": "pronoun"
+      },
+      "protected_invariants": [
+        "pronoun_reference"
+      ],
+      "required": true,
+      "required_modules": [
+        "post_polish_semantic_verification"
+      ],
+      "scenario_id": "mutation-pronoun",
+      "scenario_type": "semantic_mutation_case",
+      "source_case_id": "mutation-pronoun",
+      "version": "1.0"
+    },
+    {
+      "created_at": "2026-07-16T00:00:00Z",
+      "evidence_origin": "batch6_semantic_contract",
+      "expected_decision": "rollback_to_draft",
+      "expected_status": "failed",
+      "forbidden_outcomes": [
+        "accept_polish"
+      ],
+      "inputs": {
+        "operation": "scope"
+      },
+      "protected_invariants": [
+        "action_agent"
+      ],
+      "required": true,
+      "required_modules": [
+        "post_polish_semantic_verification"
+      ],
+      "scenario_id": "mutation-scope",
+      "scenario_type": "semantic_mutation_case",
+      "source_case_id": "mutation-scope",
+      "version": "1.0"
+    },
+    {
+      "created_at": "2026-07-16T00:00:00Z",
+      "evidence_origin": "batch6_semantic_contract",
+      "expected_decision": "rollback_to_draft",
+      "expected_status": "failed",
+      "forbidden_outcomes": [
+        "accept_polish"
+      ],
+      "inputs": {
+        "operation": "speaker"
+      },
+      "protected_invariants": [
+        "speaker"
+      ],
+      "required": true,
+      "required_modules": [
+        "post_polish_semantic_verification"
+      ],
+      "scenario_id": "mutation-speaker",
+      "scenario_type": "semantic_mutation_case",
+      "source_case_id": "mutation-speaker",
+      "version": "1.0"
+    },
+    {
+      "created_at": "2026-07-16T00:00:00Z",
+      "evidence_origin": "batch6_semantic_contract",
+      "expected_decision": "rollback_to_draft",
+      "expected_status": "failed",
+      "forbidden_outcomes": [
+        "accept_polish"
+      ],
+      "inputs": {
+        "operation": "subject"
+      },
+      "protected_invariants": [
+        "subject_identity"
+      ],
+      "required": true,
+      "required_modules": [
+        "post_polish_semantic_verification"
+      ],
+      "scenario_id": "mutation-subject",
+      "scenario_type": "semantic_mutation_case",
+      "source_case_id": "mutation-subject",
+      "version": "1.0"
+    },
+    {
+      "created_at": "2026-07-16T00:00:00Z",
+      "evidence_origin": "batch6_semantic_contract",
+      "expected_decision": "rollback_to_draft",
+      "expected_status": "failed",
+      "forbidden_outcomes": [
+        "accept_polish"
+      ],
+      "inputs": {
+        "operation": "time"
+      },
+      "protected_invariants": [
+        "time_expression"
+      ],
+      "required": true,
+      "required_modules": [
+        "post_polish_semantic_verification"
+      ],
+      "scenario_id": "mutation-time",
+      "scenario_type": "semantic_mutation_case",
+      "source_case_id": "mutation-time",
+      "version": "1.0"
+    },
+    {
+      "created_at": "2026-07-16T00:00:00Z",
+      "evidence_origin": "batch4_output_contract",
+      "expected_decision": "blocked",
+      "expected_status": "failed",
+      "forbidden_outcomes": [
+        "assemble_partial"
+      ],
+      "inputs": {
+        "operation": "output_conflict"
+      },
+      "protected_invariants": [
+        "complete_unique_ordered_output"
+      ],
+      "required": true,
+      "required_modules": [
+        "chunk_cache_v2"
+      ],
+      "scenario_id": "output-contract-conflict",
+      "scenario_type": "resume_reconciliation_case",
+      "source_case_id": "output-contract-conflict",
+      "version": "1.0"
+    },
+    {
+      "created_at": "2026-07-16T00:00:00Z",
+      "evidence_origin": "batch7_profile_contract",
+      "expected_decision": "accept",
+      "expected_status": "passed",
+      "forbidden_outcomes": [
+        "profile_fallback"
+      ],
+      "inputs": {
+        "source_language": "en",
+        "target_language": "zh-Hant"
+      },
+      "protected_invariants": [
+        "exact_language_pair"
+      ],
+      "required": true,
+      "required_modules": [
+        "multilingual_profiles"
+      ],
+      "scenario_id": "profile-english",
+      "scenario_type": "multilingual_profile_case",
+      "source_case_id": "profile-english",
+      "version": "1.0"
+    },
+    {
+      "created_at": "2026-07-16T00:00:00Z",
+      "evidence_origin": "batch7_profile_contract",
+      "expected_decision": "accept",
+      "expected_status": "passed",
+      "forbidden_outcomes": [
+        "profile_fallback"
+      ],
+      "inputs": {
+        "source_language": "ja",
+        "target_language": "zh-Hant"
+      },
+      "protected_invariants": [
+        "exact_language_pair"
+      ],
+      "required": true,
+      "required_modules": [
+        "multilingual_profiles"
+      ],
+      "scenario_id": "profile-japanese",
+      "scenario_type": "multilingual_profile_case",
+      "source_case_id": "profile-japanese",
+      "version": "1.0"
+    },
+    {
+      "created_at": "2026-07-16T00:00:00Z",
+      "evidence_origin": "batch7_profile_contract",
+      "expected_decision": "accept",
+      "expected_status": "passed",
+      "forbidden_outcomes": [
+        "profile_fallback"
+      ],
+      "inputs": {
+        "source_language": "ko",
+        "target_language": "zh-Hant"
+      },
+      "protected_invariants": [
+        "exact_language_pair"
+      ],
+      "required": true,
+      "required_modules": [
+        "multilingual_profiles"
+      ],
+      "scenario_id": "profile-korean",
+      "scenario_type": "multilingual_profile_case",
+      "source_case_id": "profile-korean",
+      "version": "1.0"
+    },
+    {
+      "created_at": "2026-07-16T00:00:00Z",
+      "evidence_origin": "batch7_profile_contract",
+      "expected_decision": "blocked",
+      "expected_status": "invalid_input",
+      "forbidden_outcomes": [
+        "profile_fallback"
+      ],
+      "inputs": {
+        "requested_profile_id": "literary-ja-zh-hant",
+        "source_language": "ko",
+        "target_language": "zh-Hant"
+      },
+      "protected_invariants": [
+        "no_profile_fallback"
+      ],
+      "required": true,
+      "required_modules": [
+        "multilingual_profiles"
+      ],
+      "scenario_id": "profile-mismatch",
+      "scenario_type": "multilingual_profile_case",
+      "source_case_id": "profile-mismatch",
+      "version": "1.0"
+    },
+    {
+      "created_at": "2026-07-16T00:00:00Z",
+      "evidence_origin": "batch4_resume_compatibility",
+      "expected_decision": "blocked",
+      "expected_status": "conflict",
+      "forbidden_outcomes": [
+        "silent_resume"
+      ],
+      "inputs": {
+        "operation": "resume_conflict"
+      },
+      "protected_invariants": [
+        "translation_hash"
+      ],
+      "required": true,
+      "required_modules": [
+        "chunk_cache_v2"
+      ],
+      "scenario_id": "resume-cache-conflict",
+      "scenario_type": "resume_reconciliation_case",
+      "source_case_id": "resume-cache-conflict",
+      "version": "1.0"
+    },
+    {
+      "created_at": "2026-07-16T00:00:00Z",
+      "evidence_origin": "batch8_routing_contract",
+      "expected_decision": "blocked",
+      "expected_status": "failed",
+      "forbidden_outcomes": [
+        "retry",
+        "fallback"
+      ],
+      "inputs": {
+        "operation": "auth_no_retry"
+      },
+      "protected_invariants": [
+        "authentication_not_retryable"
+      ],
+      "required": true,
+      "required_modules": [
+        "controlled_provider_routing"
+      ],
+      "scenario_id": "route-auth-no-retry",
+      "scenario_type": "provider_routing_case",
+      "source_case_id": "route-auth-no-retry",
+      "version": "1.0"
+    },
+    {
+      "created_at": "2026-07-16T00:00:00Z",
+      "evidence_origin": "batch8_routing_contract",
+      "expected_decision": "blocked",
+      "expected_status": "failed",
+      "forbidden_outcomes": [
+        "request_over_budget"
+      ],
+      "inputs": {
+        "operation": "budget_block"
+      },
+      "protected_invariants": [
+        "request_budget"
+      ],
+      "required": true,
+      "required_modules": [
+        "controlled_provider_routing"
+      ],
+      "scenario_id": "route-budget-block",
+      "scenario_type": "provider_routing_case",
+      "source_case_id": "route-budget-block",
+      "version": "1.0"
+    },
+    {
+      "created_at": "2026-07-16T00:00:00Z",
+      "evidence_origin": "batch8_routing_contract",
+      "expected_decision": "manual_review",
+      "expected_status": "manual_review_required",
+      "forbidden_outcomes": [
+        "automatic_fallback"
+      ],
+      "inputs": {
+        "operation": "cross_provider_manual"
+      },
+      "protected_invariants": [
+        "manual_cross_provider_approval"
+      ],
+      "required": true,
+      "required_modules": [
+        "controlled_provider_routing"
+      ],
+      "scenario_id": "route-cross-provider",
+      "scenario_type": "provider_routing_case",
+      "source_case_id": "route-cross-provider",
+      "version": "1.0"
+    },
+    {
+      "created_at": "2026-07-16T00:00:00Z",
+      "evidence_origin": "batch8_routing_contract",
+      "expected_decision": "accept",
+      "expected_status": "passed",
+      "forbidden_outcomes": [
+        "provider_execution"
+      ],
+      "inputs": {
+        "operation": "prepare_only"
+      },
+      "protected_invariants": [
+        "prepare_only",
+        "zero_network"
+      ],
+      "required": true,
+      "required_modules": [
+        "controlled_provider_routing"
+      ],
+      "scenario_id": "route-prepare-only",
+      "scenario_type": "provider_routing_case",
+      "source_case_id": "route-prepare-only",
+      "version": "1.0"
+    },
+    {
+      "created_at": "2026-07-16T00:00:00Z",
+      "evidence_origin": "batch8_historical_timeout_contract",
+      "expected_decision": "blocked",
+      "expected_status": "failed",
+      "forbidden_outcomes": [
+        "unbounded_retry",
+        "current_health_claim"
+      ],
+      "inputs": {
+        "operation": "repeated_timeout"
+      },
+      "protected_invariants": [
+        "bounded_retry"
+      ],
+      "required": true,
+      "required_modules": [
+        "controlled_provider_routing"
+      ],
+      "scenario_id": "route-repeated-timeout",
+      "scenario_type": "provider_routing_case",
+      "source_case_id": "route-repeated-timeout",
+      "version": "1.0"
+    },
+    {
+      "created_at": "2026-07-16T00:00:00Z",
+      "evidence_origin": "batch3_batch6_interoperability",
+      "expected_decision": "reject",
+      "expected_status": "failed",
+      "forbidden_outcomes": [
+        "pass"
+      ],
+      "inputs": {
+        "operation": "speaker_shift"
+      },
+      "protected_invariants": [
+        "speaker"
+      ],
+      "required": true,
+      "required_modules": [
+        "context_scene_memory",
+        "post_polish_semantic_verification"
+      ],
+      "scenario_id": "scene-speaker-shift",
+      "scenario_type": "context_scene_case",
+      "source_case_id": "scene-speaker-shift",
+      "version": "1.0"
+    },
+    {
+      "created_at": "2026-07-16T00:00:00Z",
+      "evidence_origin": "batch3_context_scene_contract",
+      "expected_decision": "accept",
+      "expected_status": "passed",
+      "forbidden_outcomes": [
+        "stale_context_selected"
+      ],
+      "inputs": {
+        "operation": "selection"
+      },
+      "protected_invariants": [
+        "scoped_context_selection"
+      ],
+      "required": true,
+      "required_modules": [
+        "context_scene_memory"
+      ],
+      "scenario_id": "scene-transition-expiry",
+      "scenario_type": "context_scene_case",
+      "source_case_id": "scene-transition-expiry",
+      "version": "1.0"
+    },
+    {
+      "created_at": "2026-07-16T00:00:00Z",
+      "evidence_origin": "batch3_context_scene_contract",
+      "expected_decision": "accept",
+      "expected_status": "passed",
+      "forbidden_outcomes": [
+        "forced_resolution"
+      ],
+      "inputs": {
+        "operation": "unresolved_reference"
+      },
+      "protected_invariants": [
+        "preserve_unresolved_reference"
+      ],
+      "required": true,
+      "required_modules": [
+        "context_scene_memory"
+      ],
+      "scenario_id": "scene-unresolved-reference",
+      "scenario_type": "context_scene_case",
+      "source_case_id": "scene-unresolved-reference",
+      "version": "1.0"
+    },
+    {
+      "created_at": "2026-07-16T00:00:00Z",
+      "evidence_origin": "batch6_informational",
+      "expected_decision": "manual_review",
+      "expected_status": "insufficient_evidence",
+      "forbidden_outcomes": [
+        "accept_polish"
+      ],
+      "inputs": {
+        "operation": "insufficient"
+      },
+      "protected_invariants": [
+        "fail_closed_without_evidence"
+      ],
+      "required": false,
+      "required_modules": [
+        "post_polish_semantic_verification"
+      ],
+      "scenario_id": "semantic-insufficient",
+      "scenario_type": "semantic_mutation_case",
+      "source_case_id": "semantic-insufficient",
+      "version": "1.0"
+    },
+    {
+      "created_at": "2026-07-16T00:00:00Z",
+      "evidence_origin": "batch6_semantic_contract",
+      "expected_decision": "accept",
+      "expected_status": "passed",
+      "forbidden_outcomes": [
+        "number_change"
+      ],
+      "inputs": {
+        "operation": "numeric_equivalent"
+      },
+      "protected_invariants": [
+        "numeric_equivalence"
+      ],
+      "required": true,
+      "required_modules": [
+        "post_polish_semantic_verification"
+      ],
+      "scenario_id": "semantic-numeric-equivalent",
+      "scenario_type": "semantic_mutation_case",
+      "source_case_id": "semantic-numeric-equivalent",
+      "version": "1.0"
+    },
+    {
+      "created_at": "2026-07-16T00:00:00Z",
+      "evidence_origin": "batch6_semantic_contract",
+      "expected_decision": "accept",
+      "expected_status": "passed",
+      "forbidden_outcomes": [
+        "semantic_failure"
+      ],
+      "inputs": {
+        "operation": "punctuation_pass"
+      },
+      "protected_invariants": [
+        "punctuation_only"
+      ],
+      "required": true,
+      "required_modules": [
+        "post_polish_semantic_verification"
+      ],
+      "scenario_id": "semantic-punctuation-pass",
+      "scenario_type": "semantic_mutation_case",
+      "source_case_id": "semantic-punctuation-pass",
+      "version": "1.0"
+    },
+    {
+      "created_at": "2026-07-16T00:00:00Z",
+      "evidence_origin": "tic_batch7_human_approved",
+      "expected_decision": "accept",
+      "expected_status": "passed",
+      "forbidden_outcomes": [
+        "reject_approved_candidate"
+      ],
+      "inputs": {
+        "fixture_id": "B7-LEXICAL-APPROVED"
+      },
+      "protected_invariants": [
+        "approved_lexical_choice"
+      ],
+      "required": true,
+      "required_modules": [
+        "translation_intelligence_corpus.offline_quality_gate"
+      ],
+      "scenario_id": "tic-lexical-approved",
+      "scenario_type": "tic_quality_case",
+      "source_case_id": "tic-lexical-approved",
+      "version": "1.0"
+    },
+    {
+      "created_at": "2026-07-16T00:00:00Z",
+      "evidence_origin": "tic_batch7_historical_bad",
+      "expected_decision": "reject",
+      "expected_status": "failed",
+      "forbidden_outcomes": [
+        "accept_incorrect_candidate"
+      ],
+      "inputs": {
+        "fixture_id": "B7-LEXICAL-BAD"
+      },
+      "protected_invariants": [
+        "lexical_regression"
+      ],
+      "required": true,
+      "required_modules": [
+        "translation_intelligence_corpus.offline_quality_gate"
+      ],
+      "scenario_id": "tic-lexical-bad",
+      "scenario_type": "tic_quality_case",
+      "source_case_id": "tic-lexical-bad",
+      "version": "1.0"
+    },
+    {
+      "created_at": "2026-07-16T00:00:00Z",
+      "evidence_origin": "tic_batch7_human_approved",
+      "expected_decision": "accept",
+      "expected_status": "passed",
+      "forbidden_outcomes": [
+        "reject_approved_candidate"
+      ],
+      "inputs": {
+        "fixture_id": "B7-SUBJECT-APPROVED"
+      },
+      "protected_invariants": [
+        "subject_reference"
+      ],
+      "required": true,
+      "required_modules": [
+        "translation_intelligence_corpus.offline_quality_gate"
+      ],
+      "scenario_id": "tic-subject-approved",
+      "scenario_type": "tic_quality_case",
+      "source_case_id": "tic-subject-approved",
+      "version": "1.0"
+    },
+    {
+      "created_at": "2026-07-16T00:00:00Z",
+      "evidence_origin": "tic_batch7_historical_bad",
+      "expected_decision": "reject",
+      "expected_status": "failed",
+      "forbidden_outcomes": [
+        "accept_incorrect_candidate"
+      ],
+      "inputs": {
+        "fixture_id": "B7-SUBJECT-BAD"
+      },
+      "protected_invariants": [
+        "subject_reference"
+      ],
+      "required": true,
+      "required_modules": [
+        "translation_intelligence_corpus.offline_quality_gate"
+      ],
+      "scenario_id": "tic-subject-bad",
+      "scenario_type": "tic_quality_case",
+      "source_case_id": "tic-subject-bad",
+      "version": "1.0"
+    },
+    {
+      "created_at": "2026-07-16T00:00:00Z",
+      "evidence_origin": "tic_batch7_unrelated_candidate",
+      "expected_decision": "reject",
+      "expected_status": "failed",
+      "forbidden_outcomes": [
+        "accept_incorrect_candidate"
+      ],
+      "inputs": {
+        "fixture_id": "B7-SUBJECT-UNRELATED"
+      },
+      "protected_invariants": [
+        "candidate_relevance"
+      ],
+      "required": true,
+      "required_modules": [
+        "translation_intelligence_corpus.offline_quality_gate"
+      ],
+      "scenario_id": "tic-subject-unrelated",
+      "scenario_type": "tic_quality_case",
+      "source_case_id": "tic-subject-unrelated",
+      "version": "1.0"
+    }
+  ],
+  "status": "PASS",
+  "suite_id": "lcr-batch9-fixed-offline-suite"
+}

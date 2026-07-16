@@ -1,0 +1,26 @@
+{
+  "meaning": "ready for Batch 10 controlled integration planning only",
+  "post_fix": {
+    "required_executable_scenarios_pass": true,
+    "status": "ready"
+  },
+  "pre_fix": {
+    "reason": "executable_scenario_evidence_incomplete",
+    "status": "not_ready"
+  },
+  "production_ready": false,
+  "reasons": [],
+  "requirements": {
+    "all_human_approved_cases_pass": true,
+    "all_regressions_pass": true,
+    "all_required_executable_scenarios_pass": true,
+    "all_required_scenarios_present": true,
+    "determinism_pass": true,
+    "false_negative_count_zero": true,
+    "false_positive_count_zero": true,
+    "production_boundaries_unchanged": true,
+    "provider_requests_executed_zero": true,
+    "required_executable_evidence_complete": true
+  },
+  "status": "ready"
+}

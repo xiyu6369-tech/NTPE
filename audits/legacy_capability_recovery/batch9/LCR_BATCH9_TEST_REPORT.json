@@ -1,0 +1,10 @@
+{
+  "anti_fake_result_tests": "PASS",
+  "integration": "6 passed",
+  "performance": "PASS",
+  "regressions": "PASS",
+  "root": "ALL PASS",
+  "status": "PASS",
+  "unit": "25 passed, 1 skipped",
+  "validator": "ALL PASS"
+}

@@ -1,0 +1,23 @@
+{
+  "bottlenecks": [],
+  "milliseconds": {
+    "100_corpus_loads": 0.055,
+    "100_simple_validations": 65.263,
+    "full_suite": 23.065,
+    "metrics": 0.067,
+    "report": 1.139,
+    "serialization_roundtrip": 1.66,
+    "three_full_runs": 67.502
+  },
+  "provider_requests_executed": 0,
+  "status": "PASS",
+  "thresholds_ms": {
+    "100_corpus_loads": 50,
+    "100_simple_validations": 150,
+    "full_suite": 500,
+    "metrics": 25,
+    "report": 50,
+    "serialization_roundtrip": 75,
+    "three_full_runs": 1500
+  }
+}

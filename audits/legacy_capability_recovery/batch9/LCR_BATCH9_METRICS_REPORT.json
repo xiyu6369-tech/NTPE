@@ -1,0 +1,22 @@
+{
+  "approved_cases_passed": 2,
+  "blocking_mutations_detected": 15,
+  "cache_reuse_count": 10,
+  "definitions": {
+    "false_negative": "human-approved candidate rejected",
+    "false_positive": "incorrect candidate accepted"
+  },
+  "failed_scenarios": 0,
+  "false_negative_count": 0,
+  "false_positive_count": 0,
+  "historical_failures_rejected": 2,
+  "insufficient_evidence": 4,
+  "invalid_inputs": 1,
+  "manual_reviews": 1,
+  "passed_scenarios": 48,
+  "provider_requests_executed": 0,
+  "provider_requests_planned": 1,
+  "retry_required_count": 2,
+  "status": "PASS",
+  "total_scenarios": 48
+}

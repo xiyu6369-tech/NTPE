@@ -1,0 +1,393 @@
+{
+  "candidate_rejected": 12,
+  "results": [
+    {
+      "candidate_status": "failed",
+      "decision": "rollback_to_draft",
+      "deterministic_fingerprint": "a9e1fdb612ffc29b881e22992c2db0a2f4a410d12f2deb06e30623d6fbe8b684",
+      "evidence_used": [
+        "3e55b45def71297107b922288917ceb7cdb44e5fda3922c79eb33549d30181ac",
+        "batch6_semantic_contract"
+      ],
+      "executable_evidence": true,
+      "explanation": "Expected rejection is a scenario pass.",
+      "forbidden_outcomes_triggered": [],
+      "ground_truth": "incorrect",
+      "issues": [
+        "addition"
+      ],
+      "metric_events": {
+        "blocking_mutations_detected": 1
+      },
+      "module_results": {
+        "semantic_decision": "rollback_to_draft",
+        "semantic_status": "failed"
+      },
+      "required": true,
+      "scenario_id": "mutation-addition",
+      "scenario_status": "passed"
+    },
+    {
+      "candidate_status": "failed",
+      "decision": "rollback_to_draft",
+      "deterministic_fingerprint": "c15745d82ba0ba5c5693f49b3550be919f20c881dd377b0dd38b7260e3b6c58f",
+      "evidence_used": [
+        "08ca81ab9aa0edeb7d09418b93bec1e9e6e689e50719bb53c8bb3b70d75c9e49",
+        "batch6_semantic_contract"
+      ],
+      "executable_evidence": true,
+      "explanation": "Expected rejection is a scenario pass.",
+      "forbidden_outcomes_triggered": [],
+      "ground_truth": "incorrect",
+      "issues": [
+        "point_of_view"
+      ],
+      "metric_events": {
+        "blocking_mutations_detected": 1
+      },
+      "module_results": {
+        "semantic_decision": "rollback_to_draft",
+        "semantic_status": "failed"
+      },
+      "required": true,
+      "scenario_id": "mutation-ambiguity",
+      "scenario_status": "passed"
+    },
+    {
+      "candidate_status": "failed",
+      "decision": "rollback_to_draft",
+      "deterministic_fingerprint": "12c4741cc46ec82aa37bf8698b5c700fbb76ea10de56c53b1c58e6ebe08739d0",
+      "evidence_used": [
+        "680e7aa762160e6d10c6240a390e8796757c15d32bd53ab99b8971827620d66f",
+        "batch6_semantic_contract"
+      ],
+      "executable_evidence": true,
+      "explanation": "Expected rejection is a scenario pass.",
+      "forbidden_outcomes_triggered": [],
+      "ground_truth": "incorrect",
+      "issues": [
+        "causal_relation",
+        "paragraph_boundary"
+      ],
+      "metric_events": {
+        "blocking_mutations_detected": 1
+      },
+      "module_results": {
+        "semantic_decision": "rollback_to_draft",
+        "semantic_status": "failed"
+      },
+      "required": true,
+      "scenario_id": "mutation-causality",
+      "scenario_status": "passed"
+    },
+    {
+      "candidate_status": "failed",
+      "decision": "rollback_to_draft",
+      "deterministic_fingerprint": "354a20c411a2c5a7d9ac071a9d9cfd86877bdf73979b118469a91b9221e4e45b",
+      "evidence_used": [
+        "3e55b45def71297107b922288917ceb7cdb44e5fda3922c79eb33549d30181ac",
+        "batch6_semantic_contract"
+      ],
+      "executable_evidence": true,
+      "explanation": "Expected rejection is a scenario pass.",
+      "forbidden_outcomes_triggered": [],
+      "ground_truth": "incorrect",
+      "issues": [
+        "addition"
+      ],
+      "metric_events": {
+        "blocking_mutations_detected": 1
+      },
+      "module_results": {
+        "semantic_decision": "rollback_to_draft",
+        "semantic_status": "failed"
+      },
+      "required": true,
+      "scenario_id": "mutation-name-completion",
+      "scenario_status": "passed"
+    },
+    {
+      "candidate_status": "failed",
+      "decision": "rollback_to_draft",
+      "deterministic_fingerprint": "eb3f51cd86f4952dd3b099498418ff61326c21d2d27ddde15d368557ed2367a2",
+      "evidence_used": [
+        "batch6_semantic_contract",
+        "c2ee41c96cc81678c2021b05fe6b8318c423b9a7af58cef4def2435ca6766097"
+      ],
+      "executable_evidence": true,
+      "explanation": "Expected rejection is a scenario pass.",
+      "forbidden_outcomes_triggered": [],
+      "ground_truth": "incorrect",
+      "issues": [
+        "negation",
+        "paragraph_boundary"
+      ],
+      "metric_events": {
+        "blocking_mutations_detected": 1
+      },
+      "module_results": {
+        "semantic_decision": "rollback_to_draft",
+        "semantic_status": "failed"
+      },
+      "required": true,
+      "scenario_id": "mutation-negation",
+      "scenario_status": "passed"
+    },
+    {
+      "candidate_status": "failed",
+      "decision": "rollback_to_draft",
+      "deterministic_fingerprint": "c72b82e50676faa1acc15eeb49ae7c3f2f2ca97f54bf00332b9e8ad3e22cc1ac",
+      "evidence_used": [
+        "70f45251145fd04e2ca4b1ccde0ddf39fdbffc19fc79a0db65c3ebbce43b5910",
+        "batch6_semantic_contract"
+      ],
+      "executable_evidence": true,
+      "explanation": "Expected rejection is a scenario pass.",
+      "forbidden_outcomes_triggered": [],
+      "ground_truth": "incorrect",
+      "issues": [
+        "number",
+        "paragraph_boundary"
+      ],
+      "metric_events": {
+        "blocking_mutations_detected": 1
+      },
+      "module_results": {
+        "semantic_decision": "rollback_to_draft",
+        "semantic_status": "failed"
+      },
+      "required": true,
+      "scenario_id": "mutation-number",
+      "scenario_status": "passed"
+    },
+    {
+      "candidate_status": "failed",
+      "decision": "rollback_to_draft",
+      "deterministic_fingerprint": "76f6c9d0ccf9b46509f95c1903d4a4619459beb95cf79523c0ea2e25b0d54b84",
+      "evidence_used": [
+        "99b179b56fb6425aed7a4788840cfbb87f000d893bd8174333328d55a8dd7bbf",
+        "batch6_semantic_contract"
+      ],
+      "executable_evidence": true,
+      "explanation": "Expected rejection is a scenario pass.",
+      "forbidden_outcomes_triggered": [],
+      "ground_truth": "incorrect",
+      "issues": [
+        "omission"
+      ],
+      "metric_events": {
+        "blocking_mutations_detected": 1
+      },
+      "module_results": {
+        "semantic_decision": "rollback_to_draft",
+        "semantic_status": "failed"
+      },
+      "required": true,
+      "scenario_id": "mutation-omission",
+      "scenario_status": "passed"
+    },
+    {
+      "candidate_status": "failed",
+      "decision": "rollback_to_draft",
+      "deterministic_fingerprint": "772b783fa514053b71d6b03321d76003afa638efb8b1ca8f84ca28a57df00267",
+      "evidence_used": [
+        "batch6_semantic_contract",
+        "cb3afde363c2f7d8d8b3a0d621efd20632bf63fe5bca71732818a912463579b9"
+      ],
+      "executable_evidence": true,
+      "explanation": "Expected rejection is a scenario pass.",
+      "forbidden_outcomes_triggered": [],
+      "ground_truth": "incorrect",
+      "issues": [
+        "pronoun_reference"
+      ],
+      "metric_events": {
+        "blocking_mutations_detected": 1
+      },
+      "module_results": {
+        "semantic_decision": "rollback_to_draft",
+        "semantic_status": "failed"
+      },
+      "required": true,
+      "scenario_id": "mutation-pronoun",
+      "scenario_status": "passed"
+    },
+    {
+      "candidate_status": "failed",
+      "decision": "rollback_to_draft",
+      "deterministic_fingerprint": "2d0306b37d0b1ff6449ce511876f9814b81878405d891e4c2bc6eecb23ae7988",
+      "evidence_used": [
+        "723c66ea2f0d06a4f7c0e8e1f5aa02e80b819f3ac85db58d18c1df5d5d207bfc",
+        "batch6_semantic_contract"
+      ],
+      "executable_evidence": true,
+      "explanation": "Expected rejection is a scenario pass.",
+      "forbidden_outcomes_triggered": [],
+      "ground_truth": "incorrect",
+      "issues": [
+        "action_agent"
+      ],
+      "metric_events": {
+        "blocking_mutations_detected": 1
+      },
+      "module_results": {
+        "semantic_decision": "rollback_to_draft",
+        "semantic_status": "failed"
+      },
+      "required": true,
+      "scenario_id": "mutation-scope",
+      "scenario_status": "passed"
+    },
+    {
+      "candidate_status": "failed",
+      "decision": "rollback_to_draft",
+      "deterministic_fingerprint": "7ec67730ec019b84982b49ec08f9a8b0db8bf657f23b8ca1a3eaeb784dffeaeb",
+      "evidence_used": [
+        "2f44af27c277db7e49f096771773d7799e4eab88e83fe9fd766d9931f6cd26ea",
+        "batch6_semantic_contract"
+      ],
+      "executable_evidence": true,
+      "explanation": "Expected rejection is a scenario pass.",
+      "forbidden_outcomes_triggered": [],
+      "ground_truth": "incorrect",
+      "issues": [
+        "speaker"
+      ],
+      "metric_events": {
+        "blocking_mutations_detected": 1
+      },
+      "module_results": {
+        "semantic_decision": "rollback_to_draft",
+        "semantic_status": "failed"
+      },
+      "required": true,
+      "scenario_id": "mutation-speaker",
+      "scenario_status": "passed"
+    },
+    {
+      "candidate_status": "failed",
+      "decision": "rollback_to_draft",
+      "deterministic_fingerprint": "caa0e02a9df37e7de72323bd85e1f7f17451aa38199fe7125ccb8affd2c6faac",
+      "evidence_used": [
+        "9a54bcd37fde12ee4b150642752738adb2fd77c9358d47f3fed701183836c7f1",
+        "batch6_semantic_contract"
+      ],
+      "executable_evidence": true,
+      "explanation": "Expected rejection is a scenario pass.",
+      "forbidden_outcomes_triggered": [],
+      "ground_truth": "incorrect",
+      "issues": [
+        "subject_identity"
+      ],
+      "metric_events": {
+        "blocking_mutations_detected": 1
+      },
+      "module_results": {
+        "semantic_decision": "rollback_to_draft",
+        "semantic_status": "failed"
+      },
+      "required": true,
+      "scenario_id": "mutation-subject",
+      "scenario_status": "passed"
+    },
+    {
+      "candidate_status": "failed",
+      "decision": "rollback_to_draft",
+      "deterministic_fingerprint": "624e059d5867801772c425a5fa446813602e7014387d310cd19b56d560c2a3af",
+      "evidence_used": [
+        "7dcfd26c0af506d9d435512ceaefac693726e2ead19484979de7f520bca73b8f",
+        "batch6_semantic_contract"
+      ],
+      "executable_evidence": true,
+      "explanation": "Expected rejection is a scenario pass.",
+      "forbidden_outcomes_triggered": [],
+      "ground_truth": "incorrect",
+      "issues": [
+        "paragraph_boundary",
+        "time_expression"
+      ],
+      "metric_events": {
+        "blocking_mutations_detected": 1
+      },
+      "module_results": {
+        "semantic_decision": "rollback_to_draft",
+        "semantic_status": "failed"
+      },
+      "required": true,
+      "scenario_id": "mutation-time",
+      "scenario_status": "passed"
+    },
+    {
+      "candidate_status": "insufficient_evidence",
+      "decision": "manual_review",
+      "deterministic_fingerprint": "06d5400e5481c6e5b5d09616db9add4a102553f2e5e4afb61208c2ce247c5d47",
+      "evidence_used": [
+        "batch6_informational"
+      ],
+      "executable_evidence": false,
+      "explanation": "Executor outcome matched fixed expectation.",
+      "forbidden_outcomes_triggered": [],
+      "ground_truth": null,
+      "issues": [
+        "fixed_executable_evidence_missing"
+      ],
+      "metric_events": {},
+      "module_results": {
+        "semantic_status": "not_executed"
+      },
+      "required": false,
+      "scenario_id": "semantic-insufficient",
+      "scenario_status": "passed"
+    },
+    {
+      "candidate_status": "passed",
+      "decision": "accept",
+      "deterministic_fingerprint": "f891c599527146074db5c02b426c404e8cd72cad38eac193fed6f6a2a322aa7e",
+      "evidence_used": [
+        "batch6_semantic_contract",
+        "c66b87b01c8883f4f5a8e50448f4279518662cfda4bfd3681abe3aa0b403dc9d"
+      ],
+      "executable_evidence": true,
+      "explanation": "Executor outcome matched fixed expectation.",
+      "forbidden_outcomes_triggered": [],
+      "ground_truth": null,
+      "issues": [],
+      "metric_events": {},
+      "module_results": {
+        "semantic_decision": "accept_polish",
+        "semantic_status": "passed"
+      },
+      "required": true,
+      "scenario_id": "semantic-numeric-equivalent",
+      "scenario_status": "passed"
+    },
+    {
+      "candidate_status": "passed",
+      "decision": "accept",
+      "deterministic_fingerprint": "e4c25bdb086ab75993504a9e34d5bef6ae4a24a80b8b9bd4cd1e27379d78c54e",
+      "evidence_used": [
+        "2098d93bed6b01151ca7507fa0b003db62eba0f6c856298675eb190a72db46db",
+        "batch6_semantic_contract"
+      ],
+      "executable_evidence": true,
+      "explanation": "Executor outcome matched fixed expectation.",
+      "forbidden_outcomes_triggered": [],
+      "ground_truth": null,
+      "issues": [],
+      "metric_events": {},
+      "module_results": {
+        "semantic_decision": "accept_polish",
+        "semantic_status": "passed"
+      },
+      "required": true,
+      "scenario_id": "semantic-punctuation-pass",
+      "scenario_status": "passed"
+    }
+  ],
+  "scenario_count": 15,
+  "scenario_passed": 15,
+  "scenario_types": [
+    "semantic_mutation_case"
+  ],
+  "status": "PASS"
+}

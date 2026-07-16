@@ -1,0 +1,142 @@
+{
+  "candidate_rejected": 3,
+  "results": [
+    {
+      "candidate_status": "passed",
+      "decision": "accept",
+      "deterministic_fingerprint": "986ee78e48da1368a567c50a7218d0b5fe97582eb0074ac67c530f5dea29a462",
+      "evidence_used": [
+        "B7-LEXICAL-APPROVED",
+        "tic_batch7_human_approved"
+      ],
+      "executable_evidence": true,
+      "explanation": "Executor outcome matched fixed expectation.",
+      "forbidden_outcomes_triggered": [],
+      "ground_truth": "approved",
+      "issues": [],
+      "metric_events": {
+        "approved_cases_passed": 1,
+        "historical_failures_rejected": 0
+      },
+      "module_results": {
+        "offline_gate_status": "pass",
+        "regression_safe": true
+      },
+      "required": true,
+      "scenario_id": "tic-lexical-approved",
+      "scenario_status": "passed"
+    },
+    {
+      "candidate_status": "failed",
+      "decision": "reject",
+      "deterministic_fingerprint": "35fa408ed8349c0367d16ba55a53df588455ee39ddb39d10614f16ad2ca2ebdf",
+      "evidence_used": [
+        "B7-LEXICAL-BAD",
+        "tic_batch7_historical_bad"
+      ],
+      "executable_evidence": true,
+      "explanation": "Expected rejection is a scenario pass.",
+      "forbidden_outcomes_triggered": [],
+      "ground_truth": "incorrect",
+      "issues": [
+        "one_or_more_active_regressions_failed"
+      ],
+      "metric_events": {
+        "approved_cases_passed": 0,
+        "historical_failures_rejected": 1
+      },
+      "module_results": {
+        "offline_gate_status": "fail",
+        "regression_safe": false
+      },
+      "required": true,
+      "scenario_id": "tic-lexical-bad",
+      "scenario_status": "passed"
+    },
+    {
+      "candidate_status": "passed",
+      "decision": "accept",
+      "deterministic_fingerprint": "341b887c5e55e568184c5e1305e669889a30f590f4991bd1400b2df00a1184eb",
+      "evidence_used": [
+        "B7-SUBJECT-APPROVED",
+        "tic_batch7_human_approved"
+      ],
+      "executable_evidence": true,
+      "explanation": "Executor outcome matched fixed expectation.",
+      "forbidden_outcomes_triggered": [],
+      "ground_truth": "approved",
+      "issues": [],
+      "metric_events": {
+        "approved_cases_passed": 1,
+        "historical_failures_rejected": 0
+      },
+      "module_results": {
+        "offline_gate_status": "pass",
+        "regression_safe": true
+      },
+      "required": true,
+      "scenario_id": "tic-subject-approved",
+      "scenario_status": "passed"
+    },
+    {
+      "candidate_status": "failed",
+      "decision": "reject",
+      "deterministic_fingerprint": "968633126d293b7a6857934f9ff88d6fb7412184f51fa544ef9aa1b7e5925022",
+      "evidence_used": [
+        "B7-SUBJECT-BAD",
+        "tic_batch7_historical_bad"
+      ],
+      "executable_evidence": true,
+      "explanation": "Expected rejection is a scenario pass.",
+      "forbidden_outcomes_triggered": [],
+      "ground_truth": "incorrect",
+      "issues": [
+        "one_or_more_active_regressions_failed"
+      ],
+      "metric_events": {
+        "approved_cases_passed": 0,
+        "historical_failures_rejected": 1
+      },
+      "module_results": {
+        "offline_gate_status": "fail",
+        "regression_safe": false
+      },
+      "required": true,
+      "scenario_id": "tic-subject-bad",
+      "scenario_status": "passed"
+    },
+    {
+      "candidate_status": "failed",
+      "decision": "reject",
+      "deterministic_fingerprint": "c3dedcb7995ff8ac1703888e194885a979bc29ce00bd7890656492276d69554a",
+      "evidence_used": [
+        "B7-SUBJECT-UNRELATED",
+        "tic_batch7_unrelated_candidate"
+      ],
+      "executable_evidence": true,
+      "explanation": "Expected rejection is a scenario pass.",
+      "forbidden_outcomes_triggered": [],
+      "ground_truth": "incorrect",
+      "issues": [
+        "one_or_more_active_regressions_failed"
+      ],
+      "metric_events": {
+        "approved_cases_passed": 0,
+        "historical_failures_rejected": 0
+      },
+      "module_results": {
+        "offline_gate_status": "fail",
+        "regression_safe": false
+      },
+      "required": true,
+      "scenario_id": "tic-subject-unrelated",
+      "scenario_status": "passed"
+    }
+  ],
+  "scenario_count": 5,
+  "scenario_passed": 5,
+  "scenario_types": [
+    "tic_quality_case"
+  ],
+  "status": "PASS"
+}

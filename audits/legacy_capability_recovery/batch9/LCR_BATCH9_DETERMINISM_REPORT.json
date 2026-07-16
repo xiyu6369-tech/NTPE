@@ -1,0 +1,11 @@
+{
+  "metrics_equal": true,
+  "result_fingerprints": [
+    "73e697d4a5f93f7e23fff4ce7cab0d175ac7d80ada824a9aed486d535b124be3",
+    "73e697d4a5f93f7e23fff4ce7cab0d175ac7d80ada824a9aed486d535b124be3",
+    "73e697d4a5f93f7e23fff4ce7cab0d175ac7d80ada824a9aed486d535b124be3"
+  ],
+  "runs": 3,
+  "scenario_order_equal": true,
+  "status": "PASS"
+}
