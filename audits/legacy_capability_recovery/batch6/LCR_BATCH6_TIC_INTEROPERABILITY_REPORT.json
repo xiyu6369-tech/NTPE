@@ -1,0 +1,13 @@
+{
+  "approved_lexical_choice": "allowed",
+  "fixed_cases_preserved": [
+    "subject_reference_shift",
+    "lexical_choice"
+  ],
+  "read_only": true,
+  "status": "PASS",
+  "subject_shift": "blocked by provided TIC invariant",
+  "synthetic_fixture_is_human_approved": false,
+  "tic_batch1_7_modified": false,
+  "unrelated_candidate": "not accepted by TIC gate"
+}

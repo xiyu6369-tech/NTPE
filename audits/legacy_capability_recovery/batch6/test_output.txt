@@ -1,0 +1,17 @@
+$ D:\Python\python.exe ntpe_lcr_batch6_post_polish_semantic_verification_test.py
+...........................................                              [100%]
+43 passed in 0.94s
+UNIT: PASS
+....                                                                     [100%]
+4 passed in 1.04s
+INTEGRATION: PASS
+OFFLINE_BOUNDARY: PASS
+ALL PASS
+
+$ D:\Python\python.exe -m pytest tests/unit/test_post_polish_semantic_verification.py -q
+...........................................                              [100%]
+43 passed in 0.85s
+
+$ D:\Python\python.exe -m pytest tests/integration/lcr_batch6_post_polish_semantic_verification_integration_test.py -q
+....                                                                     [100%]
+4 passed in 0.98s

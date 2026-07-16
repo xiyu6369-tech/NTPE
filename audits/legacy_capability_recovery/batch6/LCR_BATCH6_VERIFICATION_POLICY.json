@@ -1,0 +1,66 @@
+{
+  "deterministic_serialization": true,
+  "old_results_overwritten": false,
+  "only_passed_accepts_polish": true,
+  "policy": {
+    "allowed_lexical_variation": [
+      "nonsemantic_particle",
+      "word_order_only"
+    ],
+    "allowed_punctuation_changes": true,
+    "ambiguity_policy": "preserve-unless-human-approved",
+    "blocking_issue_types": [
+      "subject_identity",
+      "pronoun_reference",
+      "named_entity",
+      "name_completion",
+      "number",
+      "time_expression",
+      "negation",
+      "modality",
+      "causal_relation",
+      "relationship",
+      "speaker",
+      "point_of_view",
+      "location",
+      "event_presence",
+      "event_order",
+      "action_agent",
+      "action_patient",
+      "dialogue_boundary",
+      "glossary_term",
+      "ambiguity_loss",
+      "omission",
+      "addition",
+      "out_of_scope_change",
+      "source_language_residue",
+      "target_script_consistency"
+    ],
+    "critical_issue_types": [
+      "subject_identity",
+      "negation",
+      "action_agent",
+      "action_patient"
+    ],
+    "glossary_policy": "approved-form-only",
+    "manual_review_policy": "unverifiable-or-new-ambiguity",
+    "memory_policy": "selected-human-approved-evidence-only",
+    "minimum_evidence": 5,
+    "policy_id": "semantic-verification-policy",
+    "required_invariants": [
+      "number",
+      "time_expression",
+      "negation",
+      "modality",
+      "causal_relation",
+      "dialogue_boundary",
+      "paragraph_boundary",
+      "ambiguity_preservation",
+      "scope_integrity"
+    ],
+    "scope_policy": "outside-span-must-be-byte-equivalent",
+    "version": "1.0"
+  },
+  "policy_fingerprint": "9587f1a2c8a462ec4418461b2192f1d19cc5cfdebe697e046973c22c8054f946",
+  "status": "PASS"
+}

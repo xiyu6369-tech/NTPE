@@ -1,0 +1,19 @@
+{
+  "cases": [
+    "number_change",
+    "time_change",
+    "negation_change",
+    "name_completion",
+    "causal_change",
+    "omission",
+    "addition",
+    "ambiguity_loss",
+    "speaker_change",
+    "out_of_scope_change"
+  ],
+  "fixture_kind": "LCR Batch 6 synthetic structural fixture",
+  "fixture_path": "tests/fixtures/lcr_batch6/semantic_regressions.json",
+  "status": "PASS",
+  "tic_corpus_modified": false,
+  "tic_human_approved_evidence": false
+}

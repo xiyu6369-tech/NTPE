@@ -1,0 +1,13 @@
+{
+  "credentials_stored": false,
+  "files_scanned": 32,
+  "findings": [],
+  "network_requests": 0,
+  "path_traversal_rejected": true,
+  "pickle_used": false,
+  "provider_executed": false,
+  "raw_provider_requests": false,
+  "raw_provider_responses": false,
+  "secret_like_payload_rejected": true,
+  "status": "PASS"
+}

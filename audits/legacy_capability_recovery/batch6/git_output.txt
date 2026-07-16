@@ -1,0 +1,19 @@
+$ git diff --check
+
+$ git ls-files --deleted
+
+$ git status --short
+?? audits/legacy_capability_recovery/batch6/
+?? core/post_polish_semantic_verification/
+?? ntpe_lcr_batch6_post_polish_semantic_verification_test.py
+?? tests/fixtures/lcr_batch6/
+?? tests/integration/lcr_batch6_post_polish_semantic_verification_integration_test.py
+?? tests/unit/test_post_polish_semantic_verification.py
+
+$ git diff --stat
+
+$ git rev-list --left-right --count origin/main...main
+0	0
+
+$ git log -1 --oneline
+1bc27f2 LCR Batch 5: Add offline dual-pass translation prototype

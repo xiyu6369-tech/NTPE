@@ -1,0 +1,25 @@
+{
+  "bottlenecks": [],
+  "iterations": 100,
+  "milliseconds": {
+    "comparison": 1.534,
+    "feature_extraction": 4.507,
+    "full_verification": 26.026,
+    "identity": 4.327,
+    "input_creation": 1.565,
+    "rollback_recommendation": 0.092,
+    "serialization_round_trip": 11.84
+  },
+  "network_requests": 0,
+  "provider_requests": 0,
+  "status": "PASS",
+  "thresholds_ms": {
+    "comparison": 50,
+    "feature_extraction": 75,
+    "full_verification": 100,
+    "identity": 25,
+    "input_creation": 50,
+    "rollback_recommendation": 25,
+    "serialization_round_trip": 75
+  }
+}

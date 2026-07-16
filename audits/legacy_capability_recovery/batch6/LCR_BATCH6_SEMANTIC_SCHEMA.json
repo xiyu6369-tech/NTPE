@@ -1,0 +1,123 @@
+{
+  "ExtractedSemanticFeatures": [
+    "text_hash",
+    "names",
+    "numbers",
+    "times",
+    "negations",
+    "modalities",
+    "causal_markers",
+    "order_markers",
+    "dialogue_spans",
+    "paragraphs",
+    "glossary_terms",
+    "ambiguity_markers",
+    "source_language_residue",
+    "target_script_consistent"
+  ],
+  "SemanticDifference": [
+    "difference_id",
+    "difference_type",
+    "source_value",
+    "draft_value",
+    "polish_value",
+    "scope",
+    "evidence",
+    "confidence",
+    "severity",
+    "blocking"
+  ],
+  "SemanticInvariant": [
+    "invariant_id",
+    "invariant_type",
+    "source_evidence",
+    "draft_evidence",
+    "expected_value",
+    "scope",
+    "confidence",
+    "approval_status",
+    "blocking",
+    "origin"
+  ],
+  "SemanticIssue": [
+    "issue_id",
+    "issue_type",
+    "severity",
+    "explanation",
+    "evidence",
+    "blocking"
+  ],
+  "SemanticVerificationEvidence": [
+    "extraction_fingerprint",
+    "comparison_fingerprint",
+    "invariant_fingerprint",
+    "provider_executed",
+    "network_requests",
+    "new_translation_generated"
+  ],
+  "SemanticVerificationInput": [
+    "verification_id",
+    "document_id",
+    "chunk_index",
+    "source_language",
+    "target_language",
+    "source_text",
+    "source_hash",
+    "verified_draft_text",
+    "verified_draft_hash",
+    "polish_text",
+    "polish_hash",
+    "polish_scope",
+    "character_memory_fingerprint",
+    "context_scene_fingerprint",
+    "glossary_fingerprint",
+    "semantic_policy_id",
+    "semantic_policy_version",
+    "created_at"
+  ],
+  "SemanticVerificationPolicy": [
+    "policy_id",
+    "version",
+    "blocking_issue_types",
+    "critical_issue_types",
+    "allowed_lexical_variation",
+    "allowed_punctuation_changes",
+    "required_invariants",
+    "minimum_evidence",
+    "scope_policy",
+    "ambiguity_policy",
+    "glossary_policy",
+    "memory_policy",
+    "manual_review_policy"
+  ],
+  "SemanticVerificationResult": [
+    "status",
+    "decision",
+    "issues",
+    "checked_invariants",
+    "unverifiable_invariants",
+    "policy_version",
+    "source_hash",
+    "draft_hash",
+    "polish_hash",
+    "deterministic_fingerprint",
+    "explanation",
+    "evidence",
+    "schema_version"
+  ],
+  "decisions": [
+    "accept_polish",
+    "rollback_to_draft",
+    "manual_review_required",
+    "block_output"
+  ],
+  "schema_version": "1.0",
+  "statuses": [
+    "passed",
+    "failed",
+    "insufficient_evidence",
+    "invalid_input",
+    "conflict",
+    "manual_review_required"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "adapter_direction": "Batch 6 to Batch 5 view only",
+  "batch5_core_modified": false,
+  "batch6_authority": "stricter offline verification authority",
+  "mapping": {
+    "failed": "rollback_to_draft",
+    "insufficient_evidence": "manual_review_required",
+    "invalid_input": "block_output",
+    "passed": "accept_polish"
+  },
+  "production_integrated": false,
+  "status": "PASS"
+}

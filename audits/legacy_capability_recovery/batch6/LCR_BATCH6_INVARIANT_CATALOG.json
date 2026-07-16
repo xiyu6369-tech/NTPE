@@ -1,0 +1,33 @@
+{
+  "invariant_types": [
+    "subject_identity",
+    "pronoun_reference",
+    "named_entity",
+    "name_form",
+    "number",
+    "time_expression",
+    "negation",
+    "modality",
+    "causal_relation",
+    "relationship",
+    "speaker",
+    "point_of_view",
+    "location",
+    "event_presence",
+    "event_order",
+    "action_agent",
+    "action_patient",
+    "dialogue_boundary",
+    "paragraph_boundary",
+    "glossary_term",
+    "ambiguity_preservation",
+    "scope_integrity",
+    "omission",
+    "addition",
+    "source_language_residue",
+    "target_script_consistency"
+  ],
+  "schema_version": "1.0",
+  "single_score_authority": false,
+  "strategy": "independent invariants plus explicit evidence plus fail-closed policy"
+}

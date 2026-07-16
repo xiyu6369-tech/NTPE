@@ -1,0 +1,9 @@
+{
+  "focused_integration": "4 passed",
+  "performance": "PASS",
+  "regression_output": "regression_output.txt",
+  "root": "ALL PASS",
+  "status": "PASS",
+  "unit": "43 passed",
+  "validator_output": "validator_output.txt"
+}

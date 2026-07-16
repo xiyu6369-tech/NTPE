@@ -1,0 +1,19 @@
+{
+  "chunk_cache_v2_core_modified": false,
+  "failed_final_polish_cache_eligible": false,
+  "identity_fields": [
+    "source_hash",
+    "draft_hash",
+    "polish_hash",
+    "semantic_policy_version",
+    "glossary_fingerprint",
+    "character_memory_fingerprint",
+    "context_scene_fingerprint",
+    "scope_hash",
+    "invariant_fingerprint"
+  ],
+  "passed_final_polish_cache_eligible": true,
+  "rollback_references_draft_identity": true,
+  "status": "PASS",
+  "unselected_memory_excluded": true
+}
