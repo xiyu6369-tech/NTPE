@@ -1,0 +1,52 @@
+{
+  "budget_exceeded_decision": "blocked",
+  "default_budget": {
+    "maximum_fallback_requests": 1,
+    "maximum_polish_requests": 1,
+    "maximum_requests_per_chunk": 2,
+    "maximum_requests_per_document": 100,
+    "maximum_retry_requests": 1,
+    "maximum_total_input_tokens": 10000,
+    "maximum_total_output_tokens": 5000,
+    "maximum_wall_clock_seconds": 360
+  },
+  "maximum_normal_dual_pass_requests": 2,
+  "sample": {
+    "current_usage": {
+      "chunk_requests": 0,
+      "document_requests": 0,
+      "fallback_requests": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "polish_requests": 0,
+      "retry_requests": 0,
+      "wall_clock_seconds": 0
+    },
+    "exceeded": [],
+    "planned_usage": {
+      "input_tokens": 1000,
+      "output_tokens": 500,
+      "requests": 1,
+      "wall_clock_seconds": 180
+    },
+    "remaining_budget": {
+      "chunk_requests": 2,
+      "document_requests": 100,
+      "fallback_requests": 1,
+      "input_tokens": 10000,
+      "output_tokens": 5000,
+      "polish_requests": 1,
+      "retry_requests": 1,
+      "wall_clock_seconds": 360
+    },
+    "valid": true,
+    "worst_case_usage": {
+      "chunk_requests": 1,
+      "document_requests": 1,
+      "input_tokens": 1000,
+      "output_tokens": 500,
+      "wall_clock_seconds": 180
+    }
+  },
+  "status": "PASS"
+}

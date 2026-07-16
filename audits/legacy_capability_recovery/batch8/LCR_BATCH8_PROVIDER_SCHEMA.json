@@ -1,0 +1,162 @@
+{
+  "ProviderAttemptRecord": [
+    "provider_id",
+    "model_id",
+    "attempt_number",
+    "failure_type",
+    "input_tokens",
+    "output_tokens",
+    "elapsed_seconds"
+  ],
+  "ProviderCapability": [
+    "supports_streaming",
+    "supports_json_mode",
+    "supports_dual_pass",
+    "supports_selective_polish"
+  ],
+  "ProviderCompatibilityResult": [
+    "status",
+    "compatible",
+    "reasons",
+    "manual_review_required",
+    "quality_contract_compatible",
+    "prompt_contract_compatible"
+  ],
+  "ProviderExecutionPlan": [
+    "prepare_only",
+    "executed",
+    "network_requests",
+    "selected_provider",
+    "selected_model",
+    "attempts",
+    "fallback_sequence",
+    "maximum_requests",
+    "timeout_per_attempt",
+    "maximum_wall_clock",
+    "required_cache_identity",
+    "required_quality_policy",
+    "required_semantic_policy",
+    "manual_approval_required",
+    "blocked_reasons"
+  ],
+  "ProviderFailureEvidence": [
+    "evidence_id",
+    "provider_id",
+    "model_id",
+    "failure_type",
+    "prompt_identity",
+    "occurrence_count",
+    "timeout_seconds",
+    "historical_evidence",
+    "current_health_unknown",
+    "created_at"
+  ],
+  "ProviderFallbackDecision": [
+    "status",
+    "fallback_allowed",
+    "fallback_provider_id",
+    "reasons",
+    "manual_approval_required"
+  ],
+  "ProviderProfile": [
+    "provider_id",
+    "profile_version",
+    "model_id",
+    "provider_family",
+    "supported_source_languages",
+    "supported_target_languages",
+    "context_limit",
+    "output_limit",
+    "supports_streaming",
+    "supports_json_mode",
+    "expected_timeout_seconds",
+    "quality_contract_id",
+    "quality_contract_version",
+    "prompt_contract_id",
+    "prompt_contract_version",
+    "status",
+    "fingerprint"
+  ],
+  "ProviderRequestBudget": [
+    "maximum_requests_per_chunk",
+    "maximum_requests_per_document",
+    "maximum_retry_requests",
+    "maximum_fallback_requests",
+    "maximum_polish_requests",
+    "maximum_total_input_tokens",
+    "maximum_total_output_tokens",
+    "maximum_wall_clock_seconds"
+  ],
+  "ProviderRetryDecision": [
+    "status",
+    "retry_allowed",
+    "reasons",
+    "planned_requests",
+    "manual_approval_required"
+  ],
+  "ProviderRoutingDecision": [
+    "selected_provider",
+    "selected_model",
+    "decision",
+    "reasons",
+    "eligible_providers",
+    "ineligible_providers",
+    "retry_allowed",
+    "fallback_allowed",
+    "estimated_requests",
+    "maximum_requests",
+    "estimated_timeout_risk",
+    "cache_reuse_recommended",
+    "verified_draft_reuse_recommended",
+    "manual_approval_required"
+  ],
+  "ProviderRoutingEvidence": [
+    "routing_decision_id",
+    "input_fingerprint",
+    "policy_version",
+    "eligible_providers",
+    "selected_provider",
+    "rejected_providers",
+    "failure_evidence_used",
+    "budget_evidence",
+    "compatibility_evidence",
+    "decision",
+    "reasons",
+    "created_at"
+  ],
+  "ProviderRoutingPolicy": [
+    "policy_id",
+    "version",
+    "primary_provider_id",
+    "fallback_provider_ids",
+    "maximum_attempts_per_provider",
+    "maximum_attempts_per_chunk",
+    "maximum_total_requests_per_chunk",
+    "retryable_failure_types",
+    "non_retryable_failure_types",
+    "backoff_policy",
+    "timeout_increment_policy",
+    "same_provider_retry_limit",
+    "cross_provider_requires_manual_approval",
+    "academic_degraded_fallback"
+  ],
+  "decisions": [
+    "use_primary",
+    "use_cached_result",
+    "reuse_verified_draft",
+    "retry_same_provider",
+    "fallback_provider",
+    "blocked",
+    "manual_review_required"
+  ],
+  "health_states": [
+    "healthy",
+    "degraded",
+    "unavailable",
+    "unknown",
+    "rate_limited",
+    "timeout_prone",
+    "quality_unverified"
+  ],
+  "schema_version": "1.0"
+}

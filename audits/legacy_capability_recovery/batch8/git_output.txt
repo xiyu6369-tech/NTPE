@@ -1,0 +1,20 @@
+$ git diff --check
+
+$ git ls-files --deleted
+
+$ git status --short
+?? NTPE_LCR_BATCH8_AUDIT.zip
+?? audits/legacy_capability_recovery/batch8/
+?? core/controlled_provider_routing/
+?? ntpe_lcr_batch8_controlled_provider_routing_test.py
+?? tests/fixtures/lcr_batch8/
+?? tests/integration/lcr_batch8_controlled_provider_routing_integration_test.py
+?? tests/unit/test_controlled_provider_routing.py
+
+$ git diff --stat
+
+$ git rev-list --left-right --count origin/main...main
+0	0
+
+$ git log -1 --oneline
+f05a10b LCR Batch 7: Add offline multilingual language profiles

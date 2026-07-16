@@ -1,0 +1,49 @@
+{
+  "current_health_unknown": true,
+  "fixture": {
+    "contains_no_credential": true,
+    "current_health_unknown": true,
+    "fixture_kind": "offline synthetic or historical evidence",
+    "historical_evidence": true,
+    "items": [
+      {
+        "evidence_id": "hist-nvidia-read-timeout-180",
+        "failure_type": "read_timeout",
+        "provider_id": "nvidia-meta-llama-3.3-70b-instruct",
+        "timeout_seconds": 180
+      },
+      {
+        "evidence_id": "hist-nvidia-resource-503",
+        "failure_type": "resource_exhausted",
+        "http_status": 503,
+        "provider_id": "nvidia-meta-llama-3.3-70b-instruct"
+      },
+      {
+        "evidence_id": "hist-single-real-failed",
+        "failure_type": "provider_timeout",
+        "provider_id": "nvidia-meta-llama-3.3-70b-instruct"
+      },
+      {
+        "evidence_id": "hist-baseline-timeout",
+        "failure_type": "read_timeout",
+        "provider_id": "nvidia-meta-llama-3.3-70b-instruct"
+      },
+      {
+        "evidence_id": "hist-candidate-timeout",
+        "failure_type": "read_timeout",
+        "provider_id": "gemini-2.5-flash"
+      },
+      {
+        "evidence_id": "hist-partial-ab-pair",
+        "failure_type": "partial_response",
+        "provider_id": "offline-comparison"
+      }
+    ],
+    "not_current_provider_health": true,
+    "not_executable_request": true
+  },
+  "historical_artifacts_modified": false,
+  "historical_evidence": true,
+  "network_validation_performed": false,
+  "status": "PASS"
+}

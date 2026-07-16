@@ -1,0 +1,58 @@
+{
+  "live_compatibility_checked": false,
+  "production_active": false,
+  "profiles": [
+    {
+      "context_limit": 131072,
+      "expected_timeout_seconds": 180,
+      "fingerprint": "c2327bb92e75a294280d3d9b9eb44bec56279c43536d1d111bcfdd45985e8ff0",
+      "model_id": "meta/llama-3.3-70b-instruct",
+      "output_limit": 8192,
+      "profile_version": "1.0",
+      "prompt_contract_id": "ntpe-literary-structured",
+      "prompt_contract_version": "1.0",
+      "provider_family": "nvidia",
+      "provider_id": "nvidia-meta-llama-3.3-70b-instruct",
+      "quality_contract_id": "literary-fidelity-zh-hant",
+      "quality_contract_version": "1.0",
+      "status": "experimental",
+      "supported_source_languages": [
+        "ko",
+        "ja",
+        "en"
+      ],
+      "supported_target_languages": [
+        "zh-Hant"
+      ],
+      "supports_json_mode": true,
+      "supports_streaming": true
+    },
+    {
+      "context_limit": 1048576,
+      "expected_timeout_seconds": 120,
+      "fingerprint": "2552c99c1c72cffe01a4d54b0303bbb297212d9c5daa084f7b7369e292eb7bf2",
+      "model_id": "gemini-2.5-flash",
+      "output_limit": 8192,
+      "profile_version": "1.0",
+      "prompt_contract_id": "ntpe-literary-structured",
+      "prompt_contract_version": "1.0",
+      "provider_family": "gemini",
+      "provider_id": "gemini-2.5-flash",
+      "quality_contract_id": "literary-fidelity-zh-hant",
+      "quality_contract_version": "1.0",
+      "status": "experimental",
+      "supported_source_languages": [
+        "ko",
+        "ja",
+        "en"
+      ],
+      "supported_target_languages": [
+        "zh-Hant"
+      ],
+      "supports_json_mode": true,
+      "supports_streaming": true
+    }
+  ],
+  "secrets_present": false,
+  "status": "PASS"
+}

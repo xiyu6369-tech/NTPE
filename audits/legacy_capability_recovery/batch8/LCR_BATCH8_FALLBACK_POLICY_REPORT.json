@@ -1,0 +1,16 @@
+{
+  "academic_degraded_fallback": "forbidden",
+  "automatic_fallback_default": false,
+  "cross_provider_manual_approval": true,
+  "requirements": [
+    "eligible failure",
+    "remaining request and timeout budget",
+    "acceptable health",
+    "language pair",
+    "quality contract",
+    "prompt contract",
+    "distinct cache identity",
+    "semantic verification"
+  ],
+  "status": "PASS"
+}

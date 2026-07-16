@@ -1,0 +1,1 @@
+{"fixture_kind":"offline synthetic or historical evidence","not_current_provider_health":true,"not_executable_request":true,"contains_no_credential":true,"profiles":[{"provider_id":"nvidia-meta-llama-3.3-70b-instruct","status":"experimental"},{"provider_id":"gemini-2.5-flash","status":"experimental"}]}

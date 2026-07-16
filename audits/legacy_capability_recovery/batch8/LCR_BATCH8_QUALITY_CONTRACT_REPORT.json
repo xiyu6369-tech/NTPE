@@ -1,0 +1,23 @@
+{
+  "academic_degraded_fallback": "forbidden",
+  "contract": {
+    "ambiguity_preservation": true,
+    "contract_id": "literary-fidelity-zh-hant",
+    "dialogue_quote_policy": "traditional_chinese_corner_quotes",
+    "era_context_policy": "preserve_versioned_work_context",
+    "glossary_policy": "human_approved_priority",
+    "name_completion_forbidden": true,
+    "no_addition": true,
+    "no_omission": true,
+    "no_summary": true,
+    "pronoun_reference_preservation": true,
+    "semantic_verification_required": true,
+    "source_fidelity_required": true,
+    "subject_reference_preservation": true,
+    "target_script_policy": "zh-Hant",
+    "version": "1.0"
+  },
+  "fallback_requires_compatibility": true,
+  "same_target_implies_equivalence": false,
+  "status": "PASS"
+}

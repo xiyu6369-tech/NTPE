@@ -1,0 +1,176 @@
+{
+  "failure_types": {
+    "authentication_failure": {
+      "budget_impact": 1,
+      "cache_evidence_reusable": true,
+      "cooldown_seconds": 0,
+      "failure_type": "authentication_failure",
+      "fallback_eligible": false,
+      "manual_approval_required": false,
+      "network_failure": true,
+      "retryable": false
+    },
+    "cancelled": {
+      "budget_impact": 1,
+      "cache_evidence_reusable": true,
+      "cooldown_seconds": 0,
+      "failure_type": "cancelled",
+      "fallback_eligible": false,
+      "manual_approval_required": false,
+      "network_failure": false,
+      "retryable": false
+    },
+    "connect_timeout": {
+      "budget_impact": 1,
+      "cache_evidence_reusable": true,
+      "cooldown_seconds": 0,
+      "failure_type": "connect_timeout",
+      "fallback_eligible": true,
+      "manual_approval_required": false,
+      "network_failure": true,
+      "retryable": true
+    },
+    "empty_response": {
+      "budget_impact": 1,
+      "cache_evidence_reusable": true,
+      "cooldown_seconds": 0,
+      "failure_type": "empty_response",
+      "fallback_eligible": true,
+      "manual_approval_required": false,
+      "network_failure": true,
+      "retryable": true
+    },
+    "http_4xx": {
+      "budget_impact": 1,
+      "cache_evidence_reusable": true,
+      "cooldown_seconds": 0,
+      "failure_type": "http_4xx",
+      "fallback_eligible": false,
+      "manual_approval_required": false,
+      "network_failure": true,
+      "retryable": false
+    },
+    "http_5xx": {
+      "budget_impact": 1,
+      "cache_evidence_reusable": true,
+      "cooldown_seconds": 0,
+      "failure_type": "http_5xx",
+      "fallback_eligible": true,
+      "manual_approval_required": false,
+      "network_failure": true,
+      "retryable": true
+    },
+    "invalid_request": {
+      "budget_impact": 1,
+      "cache_evidence_reusable": true,
+      "cooldown_seconds": 0,
+      "failure_type": "invalid_request",
+      "fallback_eligible": false,
+      "manual_approval_required": false,
+      "network_failure": true,
+      "retryable": false
+    },
+    "malformed_response": {
+      "budget_impact": 1,
+      "cache_evidence_reusable": true,
+      "cooldown_seconds": 0,
+      "failure_type": "malformed_response",
+      "fallback_eligible": true,
+      "manual_approval_required": false,
+      "network_failure": false,
+      "retryable": false
+    },
+    "partial_response": {
+      "budget_impact": 1,
+      "cache_evidence_reusable": true,
+      "cooldown_seconds": 0,
+      "failure_type": "partial_response",
+      "fallback_eligible": true,
+      "manual_approval_required": true,
+      "network_failure": false,
+      "retryable": false
+    },
+    "policy_failure": {
+      "budget_impact": 1,
+      "cache_evidence_reusable": false,
+      "cooldown_seconds": 0,
+      "failure_type": "policy_failure",
+      "fallback_eligible": false,
+      "manual_approval_required": true,
+      "network_failure": false,
+      "retryable": false
+    },
+    "provider_timeout": {
+      "budget_impact": 1,
+      "cache_evidence_reusable": true,
+      "cooldown_seconds": 0,
+      "failure_type": "provider_timeout",
+      "fallback_eligible": true,
+      "manual_approval_required": false,
+      "network_failure": true,
+      "retryable": true
+    },
+    "quality_failure": {
+      "budget_impact": 1,
+      "cache_evidence_reusable": true,
+      "cooldown_seconds": 0,
+      "failure_type": "quality_failure",
+      "fallback_eligible": false,
+      "manual_approval_required": true,
+      "network_failure": false,
+      "retryable": false
+    },
+    "rate_limit": {
+      "budget_impact": 1,
+      "cache_evidence_reusable": true,
+      "cooldown_seconds": 60,
+      "failure_type": "rate_limit",
+      "fallback_eligible": true,
+      "manual_approval_required": false,
+      "network_failure": true,
+      "retryable": true
+    },
+    "read_timeout": {
+      "budget_impact": 1,
+      "cache_evidence_reusable": true,
+      "cooldown_seconds": 0,
+      "failure_type": "read_timeout",
+      "fallback_eligible": true,
+      "manual_approval_required": false,
+      "network_failure": true,
+      "retryable": true
+    },
+    "resource_exhausted": {
+      "budget_impact": 1,
+      "cache_evidence_reusable": true,
+      "cooldown_seconds": 60,
+      "failure_type": "resource_exhausted",
+      "fallback_eligible": true,
+      "manual_approval_required": false,
+      "network_failure": true,
+      "retryable": true
+    },
+    "semantic_failure": {
+      "budget_impact": 1,
+      "cache_evidence_reusable": false,
+      "cooldown_seconds": 0,
+      "failure_type": "semantic_failure",
+      "fallback_eligible": false,
+      "manual_approval_required": true,
+      "network_failure": false,
+      "retryable": false
+    },
+    "unknown_failure": {
+      "budget_impact": 1,
+      "cache_evidence_reusable": true,
+      "cooldown_seconds": 0,
+      "failure_type": "unknown_failure",
+      "fallback_eligible": false,
+      "manual_approval_required": true,
+      "network_failure": false,
+      "retryable": false
+    }
+  },
+  "quality_or_semantic_as_network_retry": false,
+  "status": "PASS"
+}

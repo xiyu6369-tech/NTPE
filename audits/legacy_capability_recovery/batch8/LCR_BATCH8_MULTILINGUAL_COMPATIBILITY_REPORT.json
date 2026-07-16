@@ -1,0 +1,12 @@
+{
+  "batch7_profile_required": true,
+  "pairs": [
+    "ko->zh-Hant",
+    "ja->zh-Hant",
+    "en->zh-Hant"
+  ],
+  "profile_fallback": false,
+  "source_inference": false,
+  "status": "PASS",
+  "unknown_compatibility": "manual_review_required"
+}

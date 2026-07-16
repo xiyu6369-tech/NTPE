@@ -1,0 +1,19 @@
+{
+  "default_timeout": {
+    "maximum_chunk_wall_clock_seconds": 360,
+    "maximum_document_timeout_events": 3,
+    "per_attempt_timeout_seconds": 180,
+    "provider_timeout_history": [],
+    "timeout_risk_level": "low"
+  },
+  "historical_180_second_timeout_supported": true,
+  "historical_evidence_is_current_health": false,
+  "preferred_actions": [
+    "reuse cache",
+    "reuse verified draft",
+    "stop",
+    "manual review"
+  ],
+  "status": "PASS",
+  "timeout_prone_full_dual_pass": false
+}

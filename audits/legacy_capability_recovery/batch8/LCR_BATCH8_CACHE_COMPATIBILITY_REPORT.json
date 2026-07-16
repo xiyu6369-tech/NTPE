@@ -1,0 +1,19 @@
+{
+  "chunk_cache_v2_modified": false,
+  "identity_fields": [
+    "provider_id",
+    "model_id",
+    "provider_profile_version",
+    "provider_profile_fingerprint",
+    "prompt_contract_id",
+    "prompt_contract_version",
+    "quality_contract_id",
+    "quality_contract_version",
+    "language_profile_fingerprint",
+    "routing_policy_version"
+  ],
+  "provider_change_cache_miss": true,
+  "quality_contract_change_requires_reverification": true,
+  "routing_policy_only_affects_routing_evidence": true,
+  "status": "PASS"
+}

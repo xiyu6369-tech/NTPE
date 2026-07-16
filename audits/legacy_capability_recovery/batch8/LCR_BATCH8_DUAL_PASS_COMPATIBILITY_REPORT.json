@@ -1,0 +1,14 @@
+{
+  "batch5_modified": false,
+  "cross_provider_polish_manual_approval": true,
+  "degraded_full_dual_pass": false,
+  "dual_pass_max_requests": 2,
+  "modes": [
+    "single_pass",
+    "dual_pass",
+    "selective_polish"
+  ],
+  "polish_failure_retries_draft": false,
+  "selective_polish_extra_requests": 1,
+  "status": "PASS"
+}

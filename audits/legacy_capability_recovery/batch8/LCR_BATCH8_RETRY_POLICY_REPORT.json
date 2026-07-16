@@ -1,0 +1,41 @@
+{
+  "authentication_invalid_policy_semantic_retry": false,
+  "policy": {
+    "academic_degraded_fallback": "forbidden",
+    "backoff_policy": "bounded_exponential_evidence_only",
+    "cross_provider_requires_manual_approval": true,
+    "fallback_provider_ids": [
+      "gemini-2.5-flash"
+    ],
+    "maximum_attempts_per_chunk": 2,
+    "maximum_attempts_per_provider": 1,
+    "maximum_total_requests_per_chunk": 2,
+    "non_retryable_failure_types": [
+      "authentication_failure",
+      "invalid_request",
+      "http_4xx",
+      "quality_failure",
+      "semantic_failure",
+      "policy_failure",
+      "cancelled",
+      "unknown_failure"
+    ],
+    "policy_id": "controlled-provider-routing",
+    "primary_provider_id": "nvidia-meta-llama-3.3-70b-instruct",
+    "retryable_failure_types": [
+      "connect_timeout",
+      "read_timeout",
+      "provider_timeout",
+      "rate_limit",
+      "resource_exhausted",
+      "http_5xx",
+      "empty_response"
+    ],
+    "same_provider_retry_limit": 1,
+    "timeout_increment_policy": "none_by_default",
+    "version": "1.0"
+  },
+  "repeated_timeout_lowers_eligibility": true,
+  "status": "PASS",
+  "unbounded_retry": false
+}
