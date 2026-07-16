@@ -1,0 +1,12 @@
+{
+  "allowed_root_enforced": true,
+  "credential_stored": false,
+  "files_scanned": 49,
+  "findings": [],
+  "path_traversal_rejected": true,
+  "pickle_used": false,
+  "raw_provider_requests": false,
+  "raw_provider_responses": false,
+  "status": "PASS",
+  "symlink_escape_rejected": true
+}

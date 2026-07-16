@@ -1,0 +1,37 @@
+[LCR_BATCHES_2_THROUGH_9]
+$ D:\Python\python.exe -m pytest tests/unit/test_character_memory_v2.py tests/integration/lcr_batch2_character_memory_v2_integration_test.py tests/unit/test_context_scene_memory.py tests/integration/lcr_batch3_context_scene_memory_integration_test.py tests/unit/test_chunk_cache_v2.py tests/integration/lcr_batch4_chunk_cache_v2_integration_test.py tests/unit/test_dual_pass_translation.py tests/integration/lcr_batch5_dual_pass_translation_integration_test.py tests/unit/test_post_polish_semantic_verification.py tests/integration/lcr_batch6_post_polish_semantic_verification_integration_test.py tests/unit/test_multilingual_profiles.py tests/integration/lcr_batch7_multilingual_profiles_integration_test.py tests/unit/test_controlled_provider_routing.py tests/integration/lcr_batch8_controlled_provider_routing_integration_test.py tests/unit/test_lcr_offline_validation.py tests/integration/lcr_batch9_offline_golden_tic_validation_integration_test.py -q -k not allowlist and not frozen_lcr_cores_and_production_paths_not_modified
+........................................................................ [ 19%]
+........................................................................ [ 39%]
+........................................................................ [ 59%]
+........................................................................ [ 78%]
+........................................................................ [ 98%]
+s.....                                                                   [100%]
+365 passed, 1 skipped, 6 deselected in 17.39s
+
+EXIT_CODE=0
+[FROZEN_71]
+$ D:\Python\python.exe ntpe_tic_batch7_offline_translation_quality_gate_test.py
+TIC Batch 7 Offline Translation Quality Gate Integration ALL PASS
+
+EXIT_CODE=0
+[FROZEN_600]
+$ D:\Python\python.exe ntpe_te_v600_final_release_freeze_test.py
+TE v6.0.0 Final Release Freeze ALL PASS
+
+EXIT_CODE=0
+[FROZEN_7118]
+$ D:\Python\python.exe ntpe_te_v710_stage118_translation_quality_framework_freeze_test.py
+TE v7.1 Stage 11.8 Translation Quality Framework Freeze ALL PASS
+
+EXIT_CODE=0
+[FROZEN_721]
+$ D:\Python\python.exe ntpe_te_v720_stage121_evidence_based_prompt_quality_candidate_test.py
+TE v7.2 Stage 12.1 Evidence-Based Prompt Quality Candidate ALL PASS
+
+EXIT_CODE=0
+[RUNTIME_PROVIDER_RESUME_OUTPUT]
+$ D:\Python\python.exe -m pytest tests/runtime/translation_runtime_test.py tests/runtime/translation_runtime_contract_test.py tests/stage_14_6/test_provider_security.py tests/integration/translation_scheduler_stage314_resume_journal_test.py tests/integration/translation_scheduler_stage313_result_collector_test.py -q
+................                                                         [100%]
+16 passed in 4.01s
+
+EXIT_CODE=0

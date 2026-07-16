@@ -1,0 +1,67 @@
+{
+  "baseline_state_changed": false,
+  "provider_required": false,
+  "status": "PASS",
+  "steps": [
+    {
+      "action": "set kill switch true",
+      "data_preserved": [
+        "shadow evidence",
+        "TIC golden evidence"
+      ],
+      "expected_result": "baseline flow remains authoritative",
+      "level": 0,
+      "production_impact": "none",
+      "trigger": "any shadow safety event",
+      "verification": "verify flags and baseline fingerprint"
+    },
+    {
+      "action": "disable individual shadow module",
+      "data_preserved": [
+        "shadow evidence",
+        "TIC golden evidence"
+      ],
+      "expected_result": "baseline flow remains authoritative",
+      "level": 1,
+      "production_impact": "none",
+      "trigger": "single module anomaly",
+      "verification": "verify flags and baseline fingerprint"
+    },
+    {
+      "action": "disable all LCR shadow flags",
+      "data_preserved": [
+        "shadow evidence",
+        "TIC golden evidence"
+      ],
+      "expected_result": "baseline flow remains authoritative",
+      "level": 2,
+      "production_impact": "none",
+      "trigger": "cross-module anomaly",
+      "verification": "verify flags and baseline fingerprint"
+    },
+    {
+      "action": "restore baseline configuration",
+      "data_preserved": [
+        "shadow evidence",
+        "TIC golden evidence"
+      ],
+      "expected_result": "baseline flow remains authoritative",
+      "level": 3,
+      "production_impact": "none",
+      "trigger": "configuration anomaly",
+      "verification": "verify flags and baseline fingerprint"
+    },
+    {
+      "action": "revert future integration commit",
+      "data_preserved": [
+        "shadow evidence",
+        "TIC golden evidence"
+      ],
+      "expected_result": "baseline flow remains authoritative",
+      "level": 4,
+      "production_impact": "none",
+      "trigger": "integration defect",
+      "verification": "verify flags and baseline fingerprint"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "active_behavior_changed": false,
+  "defaults": {
+    "LCR_CHARACTER_MEMORY_SHADOW": false,
+    "LCR_CHUNK_CACHE_SHADOW": false,
+    "LCR_CONTEXT_SCENE_SHADOW": false,
+    "LCR_DUAL_PASS_SHADOW": false,
+    "LCR_KILL_SWITCH": true,
+    "LCR_MULTILINGUAL_PROFILE_SHADOW": false,
+    "LCR_PROVIDER_ROUTING_SHADOW": false,
+    "LCR_SEMANTIC_VERIFICATION_SHADOW": false,
+    "LCR_SHADOW_ENABLED": false
+  },
+  "status": "PASS",
+  "unknown_values_fail_closed": true
+}

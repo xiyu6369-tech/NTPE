@@ -1,0 +1,19 @@
+$ git diff --check
+
+$ git ls-files --deleted
+
+$ git status --short
+?? audits/legacy_capability_recovery/batch10/
+?? core/lcr_production_shadow/
+?? ntpe_lcr_batch10_production_shadow_planning_test.py
+?? tests/fixtures/lcr_batch10/
+?? tests/integration/lcr_batch10_production_shadow_planning_integration_test.py
+?? tests/unit/test_lcr_production_shadow.py
+
+$ git diff --stat
+
+$ git rev-list --left-right --count origin/main...main
+0	0
+
+$ git log -1 --oneline
+a79165b LCR Batch 9: Add executable offline Golden and TIC validation

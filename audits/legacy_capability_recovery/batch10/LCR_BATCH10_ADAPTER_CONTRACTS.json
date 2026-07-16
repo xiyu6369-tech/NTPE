@@ -1,0 +1,14 @@
+{
+  "adapters": [
+    "Runtime Metadata Adapter",
+    "Prompt Identity Adapter",
+    "Resume Read-only Adapter",
+    "Output Contract Adapter",
+    "Quality Evidence Adapter",
+    "Provider Metadata Adapter"
+  ],
+  "defensive_copy": true,
+  "production_mutation": false,
+  "source_hash_unchanged": true,
+  "status": "PASS"
+}

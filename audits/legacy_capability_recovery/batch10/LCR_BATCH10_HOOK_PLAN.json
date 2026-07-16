@@ -1,0 +1,10 @@
+{
+  "output_side_effect": false,
+  "planning_only": true,
+  "production_hook_integrated": false,
+  "provider_side_effect": false,
+  "recommended_first_hook": "after chunk package prepared",
+  "rollback_method": "Level 0 kill switch",
+  "status": "PASS",
+  "timeout_budget_ms": 25
+}

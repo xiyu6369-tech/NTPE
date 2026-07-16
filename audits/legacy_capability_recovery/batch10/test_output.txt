@@ -1,0 +1,28 @@
+[root]
+$ D:\Python\python.exe ntpe_lcr_batch10_production_shadow_planning_test.py
+...............                                                          [100%]
+15 passed in 0.85s
+UNIT: PASS
+....                                                                     [100%]
+4 passed in 1.51s
+INTEGRATION: PASS
+PRODUCTION_METADATA_ADAPTERS: PASS
+KILL_SWITCH_DEFAULT_ON: PASS
+BASELINE_IMMUTABILITY: PASS
+PROVIDER_REQUESTS_EXECUTED_ZERO: PASS
+PRODUCTION_OUTPUT_UNCHANGED: PASS
+ALL PASS
+
+EXIT_CODE=0
+[unit]
+$ D:\Python\python.exe -m pytest tests/unit/test_lcr_production_shadow.py -q
+...............                                                          [100%]
+15 passed in 0.89s
+
+EXIT_CODE=0
+[integration]
+$ D:\Python\python.exe -m pytest tests/integration/lcr_batch10_production_shadow_planning_integration_test.py -q
+....                                                                     [100%]
+4 passed in 1.50s
+
+EXIT_CODE=0

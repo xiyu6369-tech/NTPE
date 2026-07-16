@@ -1,0 +1,10 @@
+{
+  "character_memory": 256,
+  "context_scene": 512,
+  "dual_pass_policy": 0,
+  "profile_policy_max": 160,
+  "prompt_content_injected": false,
+  "semantic_policy_metadata": 0,
+  "status": "PASS",
+  "total_additive_planned_max": 768
+}

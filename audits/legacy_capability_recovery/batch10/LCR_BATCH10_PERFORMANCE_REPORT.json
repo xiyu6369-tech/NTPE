@@ -1,0 +1,22 @@
+{
+  "measurements_ms": {
+    "100_activation_gates_ms": 0.485,
+    "100_comparisons_ms": 0.799,
+    "100_rollback_plans_ms": 0.666,
+    "100_shadow_inputs_ms": 5.109,
+    "100_shadow_runs_ms": 41.565,
+    "serialization_round_trip_ms": 17.435,
+    "three_deterministic_runs_ms": 117.919
+  },
+  "provider_latency_present": false,
+  "status": "PASS",
+  "thresholds_ms": {
+    "100_activation_gates_ms": 25,
+    "100_comparisons_ms": 50,
+    "100_rollback_plans_ms": 25,
+    "100_shadow_inputs_ms": 50,
+    "100_shadow_runs_ms": 250,
+    "serialization_round_trip_ms": 75,
+    "three_deterministic_runs_ms": 1000
+  }
+}

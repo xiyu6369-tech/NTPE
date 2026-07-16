@@ -1,0 +1,13 @@
+{
+  "integration": "4 passed",
+  "lcr_batches_2_through_9": "PASS (functional suites; historical self-batch git allowlist tests deselected)",
+  "root": "ALL PASS",
+  "runtime_provider_resume_output": "PASS",
+  "stage_11_8": "PASS",
+  "stage_12_1": "PASS",
+  "status": "PASS",
+  "te_v6": "PASS",
+  "tic_batch7": "PASS",
+  "unit": "15 passed",
+  "validator": "ALL PASS"
+}

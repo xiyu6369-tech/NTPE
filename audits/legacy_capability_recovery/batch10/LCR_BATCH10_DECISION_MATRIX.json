@@ -1,0 +1,82 @@
+{
+  "items": [
+    {
+      "activation_precondition": "manual approval after ready_for_shadow_hook",
+      "decision": "SHADOW_COMPUTE",
+      "direct_quality_value": 4,
+      "failure_risk": 2,
+      "module": "character_memory_v2",
+      "prompt_token_cost": 256,
+      "provider_request_cost": 0,
+      "rollback_method": "disable individual flag or global kill switch",
+      "runtime_cost": 1
+    },
+    {
+      "activation_precondition": "manual approval after ready_for_shadow_hook",
+      "decision": "SHADOW_COMPUTE",
+      "direct_quality_value": 5,
+      "failure_risk": 2,
+      "module": "context_scene_memory",
+      "prompt_token_cost": 512,
+      "provider_request_cost": 0,
+      "rollback_method": "disable individual flag or global kill switch",
+      "runtime_cost": 1
+    },
+    {
+      "activation_precondition": "manual approval after ready_for_shadow_hook",
+      "decision": "SHADOW_COMPARE",
+      "direct_quality_value": 4,
+      "failure_risk": 2,
+      "module": "chunk_cache_v2",
+      "prompt_token_cost": 0,
+      "provider_request_cost": 0,
+      "rollback_method": "disable individual flag or global kill switch",
+      "runtime_cost": 1
+    },
+    {
+      "activation_precondition": "manual approval after ready_for_shadow_hook",
+      "decision": "SHADOW_COMPUTE",
+      "direct_quality_value": 3,
+      "failure_risk": 4,
+      "module": "dual_pass",
+      "prompt_token_cost": 0,
+      "provider_request_cost": 1,
+      "rollback_method": "disable individual flag or global kill switch",
+      "runtime_cost": 3
+    },
+    {
+      "activation_precondition": "manual approval after ready_for_shadow_hook",
+      "decision": "SHADOW_COMPUTE",
+      "direct_quality_value": 5,
+      "failure_risk": 2,
+      "module": "semantic_verification",
+      "prompt_token_cost": 0,
+      "provider_request_cost": 0,
+      "rollback_method": "disable individual flag or global kill switch",
+      "runtime_cost": 2
+    },
+    {
+      "activation_precondition": "manual approval after ready_for_shadow_hook",
+      "decision": "SHADOW_READ",
+      "direct_quality_value": 4,
+      "failure_risk": 2,
+      "module": "multilingual_profiles",
+      "prompt_token_cost": 160,
+      "provider_request_cost": 0,
+      "rollback_method": "disable individual flag or global kill switch",
+      "runtime_cost": 1
+    },
+    {
+      "activation_precondition": "manual approval after ready_for_shadow_hook",
+      "decision": "SHADOW_COMPARE",
+      "direct_quality_value": 4,
+      "failure_risk": 4,
+      "module": "controlled_provider_routing",
+      "prompt_token_cost": 0,
+      "provider_request_cost": 1,
+      "rollback_method": "disable individual flag or global kill switch",
+      "runtime_cost": 2
+    }
+  ],
+  "status": "PASS"
+}

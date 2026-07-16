@@ -1,0 +1,8 @@
+{
+  "credentials_read": false,
+  "executed": false,
+  "health_check_performed": false,
+  "network_requests": 0,
+  "prepare_only": true,
+  "status": "PASS"
+}

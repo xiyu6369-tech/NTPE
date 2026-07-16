@@ -1,0 +1,12 @@
+{
+  "baseline_requests": 1,
+  "candidate_max_requests": 2,
+  "candidate_min_requests": 1,
+  "fallback_requests": 0,
+  "polish_requests": 1,
+  "provider_requests_executed": 0,
+  "retry_requests": 0,
+  "shadow_execution_requests": 0,
+  "status": "PASS",
+  "worst_case_requests": 2
+}

@@ -1,0 +1,20 @@
+{
+  "active_production_authorized": false,
+  "meaning": "ready for a separately approved shadow hook, not active Production",
+  "reasons": [],
+  "requirements": {
+    "all_lcr_regressions_pass": true,
+    "batch9_ready": true,
+    "kill_switch_verified": true,
+    "manual_approval_present": true,
+    "production_boundary_unchanged": true,
+    "prompt_budget_within_limit": true,
+    "provider_requests_zero": true,
+    "request_cost_within_policy": true,
+    "rollback_verified": true,
+    "security_scan_pass": true,
+    "shadow_deterministic": true,
+    "shadow_exceptions_isolated": true
+  },
+  "status": "ready_for_shadow_hook"
+}
