@@ -1,0 +1,162 @@
+[
+  {
+    "capability": "Runtime",
+    "current_module": "core/translation_runtime; ntpe_production_translate.py",
+    "production_connected": true,
+    "frozen": true,
+    "tested": true,
+    "quality_value": "shared translation execution contract and runtime QA",
+    "performance_cost": "provider and QA dependent",
+    "known_limitations": "must preserve frozen interfaces"
+  },
+  {
+    "capability": "Provider Layer",
+    "current_module": "core/ai_provider; core/translation_runtime/runtime_provider.py",
+    "production_connected": true,
+    "frozen": true,
+    "tested": true,
+    "quality_value": "policy, retry, security, routing and observability",
+    "performance_cost": "request and retry latency",
+    "known_limitations": "real execution requires explicit authorization"
+  },
+  {
+    "capability": "Resume/Recovery",
+    "current_module": "core/translation_runtime/runtime_recovery.py; core/translation_scheduler/journal.py",
+    "production_connected": true,
+    "frozen": true,
+    "tested": true,
+    "quality_value": "prevents completed work loss",
+    "performance_cost": "small checkpoint I/O",
+    "known_limitations": "not a content-addressed chunk cache"
+  },
+  {
+    "capability": "Chunking",
+    "current_module": "core/translation_runtime/runtime_chunk.py; core/translation_scheduler",
+    "production_connected": true,
+    "frozen": true,
+    "tested": true,
+    "quality_value": "bounded long-form execution",
+    "performance_cost": "more chunks can add requests",
+    "known_limitations": "cache identity is outside the splitter"
+  },
+  {
+    "capability": "Output Assembly",
+    "current_module": "core/translation_runtime/runtime_output.py; core/translation_scheduler/collector.py",
+    "production_connected": true,
+    "frozen": true,
+    "tested": true,
+    "quality_value": "ordered, validated output",
+    "performance_cost": "small disk I/O",
+    "known_limitations": "does not validate legacy temp files"
+  },
+  {
+    "capability": "Glossary",
+    "current_module": "core/glossary.py; core/prompt_builder/glossary_selector.py",
+    "production_connected": true,
+    "frozen": true,
+    "tested": true,
+    "quality_value": "stable terminology and names",
+    "performance_cost": "prompt tokens",
+    "known_limitations": "unknown names still require governed evidence"
+  },
+  {
+    "capability": "Character Memory",
+    "current_module": "core/intelligence/character_memory.py; core/translation_resources/character_memory_resource.py",
+    "production_connected": false,
+    "frozen": true,
+    "tested": true,
+    "quality_value": "character continuity primitives",
+    "performance_cost": "context and token cost",
+    "known_limitations": "no evidence-governed V2 record or production injection"
+  },
+  {
+    "capability": "Adaptive Context",
+    "current_module": "core/adaptive_context",
+    "production_connected": true,
+    "frozen": true,
+    "tested": true,
+    "quality_value": "ranked, budgeted prior context",
+    "performance_cost": "bounded token and selection cost",
+    "known_limitations": "legacy fixed tail is not a first-class evidence record"
+  },
+  {
+    "capability": "Narrative State",
+    "current_module": "core/context; core/intelligence/narrative_*",
+    "production_connected": false,
+    "frozen": true,
+    "tested": true,
+    "quality_value": "scene, perspective and relationship analysis",
+    "performance_cost": "analysis and storage",
+    "known_limitations": "not automatically injected into production prompts"
+  },
+  {
+    "capability": "Quality Engine",
+    "current_module": "core/translation_quality_v5; core/quality",
+    "production_connected": true,
+    "frozen": true,
+    "tested": true,
+    "quality_value": "structured completeness, terminology, repetition and repair",
+    "performance_cost": "local analysis plus gated retry",
+    "known_limitations": "some semantic judgments need evidence"
+  },
+  {
+    "capability": "TIC Failure Corpus",
+    "current_module": "core/translation_intelligence_corpus; artifacts/tic_batch7",
+    "production_connected": false,
+    "frozen": true,
+    "tested": true,
+    "quality_value": "human-reviewed failure evidence",
+    "performance_cost": "offline only",
+    "known_limitations": "coverage follows approved corpus"
+  },
+  {
+    "capability": "Active Regression",
+    "current_module": "core/translation_intelligence_corpus/quality_regression.py",
+    "production_connected": false,
+    "frozen": true,
+    "tested": true,
+    "quality_value": "prevents known defect recurrence",
+    "performance_cost": "offline test time",
+    "known_limitations": "not a runtime repair mechanism"
+  },
+  {
+    "capability": "Offline Quality Gate",
+    "current_module": "core/translation_intelligence_corpus/offline_quality_gate.py",
+    "production_connected": false,
+    "frozen": true,
+    "tested": true,
+    "quality_value": "evidence-based candidate evaluation",
+    "performance_cost": "offline only",
+    "known_limitations": "does not itself generate translations"
+  },
+  {
+    "capability": "Prompt Builder",
+    "current_module": "core/prompt_builder; core/prompt_compiler",
+    "production_connected": true,
+    "frozen": true,
+    "tested": true,
+    "quality_value": "structured prompt composition and discipline",
+    "performance_cost": "prompt tokens",
+    "known_limitations": "Batch 1 cannot change prompt behavior"
+  },
+  {
+    "capability": "Stage 11 Quality Framework",
+    "current_module": "core/translation_quality_defects; core/translation_quality_metrics; core/translation_quality_framework_integration",
+    "production_connected": false,
+    "frozen": true,
+    "tested": true,
+    "quality_value": "defect taxonomy, metrics, review and governance",
+    "performance_cost": "offline review",
+    "known_limitations": "framework output is evidence, not automatic approval"
+  },
+  {
+    "capability": "Stage 12 Candidate",
+    "current_module": "core/literary_prompt_quality_candidate_v72",
+    "production_connected": false,
+    "frozen": true,
+    "tested": true,
+    "quality_value": "controlled evidence-based prompt candidate",
+    "performance_cost": "candidate validation only",
+    "known_limitations": "candidate_enabled=false; not production"
+  }
+]

@@ -1,0 +1,32 @@
+{
+  "status": "design_only",
+  "implemented": false,
+  "production_connected": false,
+  "record_schema": [
+    "chunk_id",
+    "source_sha256",
+    "prompt_sha256",
+    "provider",
+    "model",
+    "attempt",
+    "status",
+    "translation_sha256",
+    "quality_status",
+    "created_at",
+    "completed_at",
+    "resume_eligible"
+  ],
+  "cache_hit": "exact source_sha256 + prompt_sha256 + provider + model + accepted quality_status + completed status",
+  "invalidation": [
+    "source hash change",
+    "prompt hash change",
+    "provider/model contract change",
+    "quality policy version change"
+  ],
+  "partial_output_completed": false,
+  "timeout_behavior": "mark failed/timeout and retry only that chunk under existing retry budget",
+  "assembly": "existing collector orders immutable chunk_id sequence and refuses gaps/duplicates",
+  "duplicate_prevention": "atomic compare-and-set on chunk identity and attempt; idempotent collector write",
+  "resume_integration": "store cache reference in existing ResumeJournal/checkpoint; do not create a second runtime",
+  "quality_value": "reduce repeated provider cost while refusing stale or unverified translations"
+}

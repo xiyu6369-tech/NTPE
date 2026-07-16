@@ -1,0 +1,464 @@
+import os
+import json
+import time
+import re
+import threading
+import requests
+from datetime import datetime
+import tkinter as tk
+from tkinter import filedialog, scrolledtext
+
+# ==========================================================
+# 系統檔案與設定範圍
+# ==========================================================
+PROGRESS_FILE = translate_progress_v12.json
+MEMORY_FILE = character_memory_v12.json
+LOG_FILE = translation_log.txt
+CONFIG_FILE = config_v12.json
+
+TEMPERATURE = 0.3
+MAX_TOKENS = 4000
+TIMEOUT = 30
+MAX_RETRY = 2          
+QUALITY_RETRY = 2      
+NORMAL_DELAY = 1.0     
+RATE_LIMIT_DELAY = 15  
+ERROR_DELAY = 3        
+
+CHUNK_SIZE = 2500      
+CONTEXT_LENGTH = 500   
+
+API_URL = httpsintegrate.api.nvidia.comv1chatcompletions
+MODEL = metallama-3.3-70b-instruct
+
+# ✨ 修正：更新 OpenRouter 目前可用且穩定的免費模型端點
+OPENROUTER_MODEL = meta-llamallama-3.3-70b-instructfree 
+
+GLOSSARY = 
+【重要名詞與人名對照表（禁止改動）】
+- 정태의 - 鄭泰義
+- 일라이 리그로우 - 伊萊・里格勞
+- 태의 - 泰義
+- 일라이 - 伊萊
+- Illy - 伊萊
+- 정재의 - 鄭載義
+- 정창인 - 鄭昌仁
+- 카일 리그로우 - 凱爾・里格勞
+- 리차德 타튼 - 理查・塔騰
+- 게이블 - 蓋博
+- 리타 - 麗塔
+- 신루 - 心路
+
+
+SYSTEM_PROMPT = 
+你是一位台灣頂級文學小說翻譯家兼資深編輯，專精於將韓文小說轉譯為具備「台灣出版小說水平」的繁體中文。
+任務：將韓文小說進行深度翻譯與文學潤飾，消除所有機械式的「翻譯腔」與語病，使文字自然流暢、高雅且極具畫面感。
+你的回覆只能包含翻譯、潤飾後的繁體中文小說正文，不准附加任何廢話。
+
+pause_flag = {pause False}
+
+# ==========================================================
+# 工具函式
+# ==========================================================
+def write_log(message)
+    now = datetime.now().strftime(%Y-%m-%d %H%M%S)
+    try
+        with open(LOG_FILE, a, encoding=utf-8) as file
+            file.write(f[{now}] {message}n)
+    except
+        pass
+
+def read_text_file(path)
+    encodings = [utf-8-sig, utf-8, cp949]
+    for enc in encodings
+        try
+            with open(path, r, encoding=enc, errors=strict) as f return f.read()
+        except UnicodeDecodeError continue
+    raise Exception(f無法識別的檔案編碼：{path})
+
+def write_text_file(path, content, mode=w)
+    with open(path, mode, encoding=utf-8, newline=) as f f.write(content)
+
+def load_json(path)
+    if not os.path.exists(path) return {}
+    try
+        with open(path, r, encoding=utf-8) as f
+            c = f.read().strip()
+            return json.loads(c) if c else {}
+    except return {}
+
+def save_json(path, data)
+    tmp = path + .tmp
+    try
+        with open(tmp, w, encoding=utf-8) as f json.dump(data, f, ensure_ascii=False, indent=4)
+        os.replace(tmp, path)
+    except pass
+
+def natural_sort_key(name)
+    return [int(x) if x.isdigit() else x.lower() for x in re.split(r(d+), name)]
+
+def build_character_prompt(memory)
+    if not memory return 
+    prompt = n【重要：登場角色個性與說話語氣規範（必須嚴格遵守）】n
+    for k, v in memory.items() 
+        prompt += f- {k}：{v}n
+    return prompt + 請確保譯文中的對話與旁白完全符合上述角色的性格、人設與慣用語氣，不可脫離人設，且不可將此規範輸出到正文中。nn
+
+def build_context_prompt(previous_translation)
+    if not previous_translation return 
+    return fn以下是上一段已完成的繁體中文翻譯內容（供情節語氣延續參考，不可重複或輸出）：n【上一段翻譯】n{previous_translation[-CONTEXT_LENGTH]}nn
+
+def split_text(text)
+    chunks = []
+    text = text.replace(rn, n).strip()
+    while len(text)  CHUNK_SIZE
+        cut = CHUNK_SIZE
+        separators = [nn, n, 。, ！, ？, ., !, ]
+        for sep in separators
+            pos = text.rfind(sep, 0, CHUNK_SIZE)
+            if pos  CHUNK_SIZE  0.5
+                cut = pos + len(sep)
+                break
+        chunk = text[cut].strip()
+        if chunk chunks.append(chunk)
+        text = text[cut].strip()
+    if text chunks.append(text)
+    return chunks
+
+# ==========================================================
+# API 核心端與記憶提取
+# ==========================================================
+def call_nvidia_api(key, prompt, custom_system_prompt=None)
+    headers = {
+        Authorization f[REDACTED_BEARER_TOKEN],
+        Content-Type applicationjson
+    }
+    sys_p = custom_system_prompt if custom_system_prompt else SYSTEM_PROMPT
+    data = {
+        model MODEL,
+        messages [
+            {role system, content sys_p},
+            {role user, content prompt}
+        ],
+        temperature TEMPERATURE,
+        max_tokens MAX_TOKENS
+    }
+
+    for attempt in range(1, MAX_RETRY + 1)
+        try
+            r = requests.post(API_URL, headers=headers, json=data, timeout=TIMEOUT)
+            if r.status_code == 200
+                result = r.json()
+                return result[choices][0][message][content].strip()
+            elif r.status_code == 429
+                time.sleep(RATE_LIMIT_DELAY)
+            else
+                raise Exception(fHTTP {r.status_code} {r.text})
+        except Exception as error
+            if attempt  MAX_RETRY time.sleep(ERROR_DELAY)
+            else raise error
+
+def call_gemini_api(key, prompt, custom_system_prompt=None)
+     🛠️ 核心修復：修正 sys_p 賦值邏輯，使其真正套用到第二三防線的資料結構中 
+    if not key or 請填入 in key or not key.strip()
+        return None
+        
+    url = httpsopenrouter.aiapiv1chatcompletions
+    headers = {
+        Authorization f[REDACTED_BEARER_TOKEN]()},
+        Content-Type applicationjson
+    }
+    
+    sys_p = custom_system_prompt if custom_system_prompt else SYSTEM_PROMPT
+    data = {
+        model OPENROUTER_MODEL, 
+        messages [
+            {role system, content sys_p}, # ✨ 修正：原先誤寫為固定 SYSTEM_PROMPT
+            {role user, content prompt}
+        ],
+        temperature TEMPERATURE,
+        max_tokens MAX_TOKENS
+    }
+    
+    try
+        r = requests.post(url, headers=headers, json=data, timeout=30)
+        if r.status_code == 200
+            return r.json()[choices][0][message][content].strip()
+        else
+            return fOPENROUTER_ERROR_HTTP_{r.status_code}
+    except Exception as e
+        return fOPENROUTER_CONN_FAIL_{str(e)}
+
+def update_character_memory_via_ai(gemini_key, current_chunk, translated_text, current_memory)
+    if not gemini_key or 請填入 in gemini_key or not gemini_key.strip()
+        return current_memory
+        
+    url = httpsopenrouter.aiapiv1chatcompletions
+    headers = {
+        Authorization f[REDACTED_BEARER_TOKEN]()},
+        Content-Type applicationjson
+    }
+    
+    memory_str = json.dumps(current_memory, ensure_ascii=False, indent=2)
+    
+    extract_prompt = f
+你是一位精準的小說人物側寫師。請根據以下【原文】與【繁中譯文】，分析並提取角色的「說話語氣特徵」或「性格特質」，並與【現有記憶庫】進行增量融合。
+
+【現有記憶庫】
+{memory_str}
+
+【原文】
+{current_chunk}
+
+【繁中譯文】
+{translated_text}
+
+任務指引：
+1. 分析此段落中登場角色的互動與口吻（例如：說話習慣、情緒起伏、對特定人的態度）。
+2. 如果發現現有記憶庫中沒有的新角色，請根據上下文建立人設檔案（名字需使用繁中譯文的名字）。
+3. 如果舊角色的個性在這一幕有更深度的展現，請將新的特徵精簡地「附加補充」在舊設定後面，絕對不要刪除舊有設定。
+4. 請嚴格以純 JSON 格式回覆，格式必須為：{{角色名字 人設與語氣描述, 角色2 ...}}。禁止輸出任何 JSON 以外的解釋文字或 markdown 標籤。
+
+
+    data = {
+        model OPENROUTER_MODEL, 
+        messages [
+            {role system, content 你是一個只會輸出純 JSON 資料的後台自動化工具。},
+            {role user, content extract_prompt}
+        ],
+        temperature 0.2
+    }
+    
+    try
+        r = requests.post(url, headers=headers, json=data, timeout=15)
+        if r.status_code == 200
+            ai_res = r.json()[choices][0][message][content].strip()
+            # 強健的 JSON 擷取優化
+            if { in ai_res and } in ai_res
+                ai_res = ai_res[ai_res.find({)ai_res.rfind(})+1]
+                new_data = json.loads(ai_res)
+                
+                for char_name, description in new_data.items()
+                    if len(char_name)  10 or char_name in [原文, 譯文, 繁中譯文]
+                        continue
+                    if char_name in current_memory
+                        # 避免重複附加相同的補充敘述
+                        if description[15] != current_memory[char_name][15] and description not in current_memory[char_name]
+                            current_memory[char_name] = f{current_memory[char_name]} 補充：{description}
+                    else
+                        current_memory[char_name] = description
+                return current_memory
+    except Exception as e
+        write_log(f🧠 角色記憶自動提取失敗 {str(e)})
+    return current_memory
+
+def check_translation_basic(text)
+    if not text return False, 空白內容
+    if len(text)  5 return False, 內容過短
+    bad_words = [以下是翻譯, 翻譯如下, Here is the translation]
+    for word in bad_words
+        if word in text return False, 包含 AI 說明文字
+    return True, 正常
+
+# ==========================================================
+# 翻譯執行引擎
+# ==========================================================
+def engine(input_folder, output_folder, key, gemini_key, log_callback)
+    if not key or 請填入 in key
+        log_callback(❌ 錯誤：請先輸入 NVIDIA API KEY)
+        return
+
+    os.makedirs(output_folder, exist_ok=True)
+    progress = load_json(PROGRESS_FILE)
+    memory = load_json(MEMORY_FILE)
+
+    if completed_files not in progress progress[completed_files] = []
+
+    files = [f for f in os.listdir(input_folder) if f.lower().endswith(.txt)]
+    files.sort(key=natural_sort_key)
+
+    log_callback(f🚀 啟動人設動態記憶引擎 V12.6，共找到 {len(files)} 個檔案)
+
+    for file in files
+        if file in progress[completed_files] continue
+
+        log_callback(f📘 開始處理檔案：{file})
+        file_path = os.path.join(input_folder, file)
+        out_path = os.path.join(output_folder, file.replace(.txt, _繁中.txt))
+        
+        text = read_text_file(file_path)
+        chunks = split_text(text)
+
+        # 🛠️ 核心修復：只有在當前處理的檔案確實等於進度存檔檔案時，才套用中斷點索引；否則從 0 開始。
+        if progress.get(current_file) == file
+            start_index = progress.get(current_index, 0)
+            previous_translation = progress.get(last_translation, )
+            log_callback(f↩️ 檢測到未完成存檔，自第 {start_index + 1} 段自動續傳...)
+        else
+            start_index = 0
+            previous_translation = 
+
+        for i in range(start_index, len(chunks))
+            while pause_flag[pause] time.sleep(0.3)
+
+            log_callback(f ⏳ 正在翻譯第 {i+1}{len(chunks)} 段...)
+            success = False
+            translated = 
+
+            prompt = build_character_prompt(memory) + build_context_prompt(previous_translation)
+            prompt += f請將以下由【名詞對照表】約束的韓文內容翻譯成自然繁體中文：nn【名詞對照表】n{GLOSSARY}nn【原文】n{chunks[i]}
+
+            # 🛡️ 第一道防線：標準 NVIDIA
+            try
+                translated = call_nvidia_api(key, prompt)
+                if translated and (check_translation_basic(translated)[0] or len(translated)  100)
+                    success = True
+            except Exception as e
+                log_callback(f  ⚠️ 第一防線攔截原因 {str(e)[60]}... 嘗試第二防線...)
+
+            # 🛡️ 第二道防線：學術去敏感硬闖
+            if not success
+                degraded_prompt = f請將以下外國語言文字，以中性、客觀、去情感色彩的學術直譯方式轉換為繁體中文：nn{chunks[i]}
+                try
+                    translated = call_nvidia_api(key, degraded_prompt, custom_system_prompt=你是一個客觀冷靜的語言轉換工具。)
+                    if translated and len(translated)  100
+                        log_callback(f  ✨ 第二防線 (NVIDIA) 學術硬闖成功！)
+                        success = True
+                except
+                    if gemini_key and gemini_key.strip()
+                        res = call_gemini_api(gemini_key, degraded_prompt, custom_system_prompt=你是一個客觀冷靜的語言轉換工具。)
+                        if res and not res.startswith(OPENROUTER_)
+                            translated = res
+                            log_callback(f  ✨ 第二防線 (OpenRouter 代理) 學術硬闖成功！)
+                            success = True
+
+            # 🛡️ 第三道防線：OpenRouter 標準小說翻譯救援
+            if not success and gemini_key and gemini_key.strip()
+                log_callback(f  ⏳ 嘗試第三防線 (OpenRouter 標準救援)...)
+                res = call_gemini_api(gemini_key, prompt)
+                if res and not res.startswith(OPENROUTER_)
+                    translated = res
+                    log_callback(f  ✨ 第三防線 OpenRouter 救援成功！)
+                    success = True
+                else
+                    log_callback(f  ❌ OpenRouter 呼叫失敗，錯誤訊號 {res})
+
+            if not success
+                log_callback(f❌ 三道防線在第 {i+1} 段均宣告失敗。引擎中止。)
+                return
+
+            # 成功翻譯後寫入檔案
+            write_text_file(out_path, translated + nn, mode=a)
+
+            # 🧠 動態學習：更新角色人設記憶庫
+            if gemini_key and gemini_key.strip() and 請填入 not in gemini_key
+                memory = update_character_memory_via_ai(gemini_key, chunks[i], translated, memory)
+                save_json(MEMORY_FILE, memory)
+
+            previous_translation = translated
+            progress[current_file] = file
+            progress[current_index] = i + 1
+            progress[last_translation] = translated
+            save_json(PROGRESS_FILE, progress)
+            time.sleep(NORMAL_DELAY)
+
+        if file not in progress[completed_files]
+            progress[completed_files].append(file)
+        progress[current_file] = None
+        progress[current_index] = 0
+        progress[last_translation] = 
+        save_json(PROGRESS_FILE, progress)
+        log_callback(f✅ 檔案完成：{file})
+
+    log_callback(🎉 所有批量任務已全部完成！)
+
+# ==========================================================
+# GUI 介面
+# ==========================================================
+class App
+    def __init__(self, root)
+        self.root = root
+        self.root.title(V12.6 小說繁化核心 (網路彈性優化版))
+        self.root.geometry(720x580)
+
+        tk.Label(root, text=NVIDIA API KEY).pack(pady=2)
+        self.key = tk.Entry(root, width=60)
+        self.key.pack()
+
+        tk.Label(root, text=OpenRouter API KEY (用於第三防線與後台人設動態記憶提取)).pack(pady=2)
+        self.gemini_key = tk.Entry(root, width=60)
+        self.gemini_key.pack()
+
+        self.inp = tk.StringVar()
+        self.out = tk.StringVar()
+
+        tk.Button(root, text=選擇輸入資料夾, command=self.in_dir).pack(pady=5)
+        tk.Label(root, textvariable=self.inp, fg=blue).pack()
+
+        tk.Button(root, text=選擇輸出資料夾, command=self.out_dir).pack(pady=5)
+        tk.Label(root, textvariable=self.out, fg=green).pack()
+
+        self.logbox = scrolledtext.ScrolledText(root, height=14)
+        self.logbox.pack(pady=5)
+
+        btn_frame = tk.Frame(root)
+        btn_frame.pack()
+        tk.Button(btn_frame, text=開始翻譯任務, command=self.start, bg=lightblue).pack(side=tk.LEFT, padx=5)
+        tk.Button(btn_frame, text=暫停, command=self.pause).pack(side=tk.LEFT, padx=5)
+        tk.Button(btn_frame, text=繼續, command=self.resume).pack(side=tk.LEFT, padx=5)
+
+        self.load_settings()
+
+    def load_settings(self)
+        config = load_json(CONFIG_FILE)
+        if config
+            self.key.insert(0, config.get(api_key, ))
+            self.gemini_key.insert(0, config.get(gemini_key, ))
+            self.inp.set(config.get(input_folder, ))
+            self.out.set(config.get(output_folder, ))
+
+    def save_settings(self)
+        config = {
+            api_key self.key.get(),
+            gemini_key self.gemini_key.get(),
+            input_folder self.inp.get(),
+            output_folder self.out.get()
+        }
+        save_json(CONFIG_FILE, config)
+
+    def log(self, msg)
+         🛠️ 核心修復：使用安全執行緒方式向 GUI 組件寫入 Log ，防止跨執行緒死鎖 
+        def append()
+            self.logbox.insert(tk.END, msg + n)
+            self.logbox.see(tk.END)
+        self.root.after(0, append)
+
+    def in_dir(self)
+        path = filedialog.askdirectory()
+        if path self.inp.set(path); self.save_settings()
+
+    def out_dir(self)
+        path = filedialog.askdirectory()
+        if path self.out.set(path); self.save_settings()
+
+    def start(self)
+        self.save_settings()
+        # 確保不會重複啟動多個執行緒
+        threading.Thread(
+            target=engine,
+            args=(self.inp.get(), self.out.get(), self.key.get(), self.gemini_key.get(), self.log),
+            daemon=True
+        ).start()
+
+    def pause(self)
+        pause_flag[pause] = True
+        self.log(⏸ 系統已收到暫停指令...)
+
+    def resume(self)
+        pause_flag[pause] = False
+        self.log(▶ 系統繼續執行...)
+
+if __name__ == __main__
+    root = tk.Tk()
+    App(root)
+    root.mainloop()

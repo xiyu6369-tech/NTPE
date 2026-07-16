@@ -1,0 +1,50 @@
+{
+  "status": "design_only",
+  "implemented": false,
+  "production_connected": false,
+  "record_schema": [
+    "character_id",
+    "canonical_name",
+    "aliases",
+    "language",
+    "speech_style",
+    "personality_traits",
+    "relationships",
+    "current_emotion",
+    "scene_state",
+    "evidence",
+    "confidence",
+    "source_case_id",
+    "source_offsets",
+    "status",
+    "version",
+    "created_at",
+    "updated_at",
+    "expires_at",
+    "human_approved",
+    "prompt_eligible"
+  ],
+  "evidence_types": {
+    "observed_fact": "direct bounded source evidence",
+    "ai_inference": "separate, never promoted automatically"
+  },
+  "rules": {
+    "low_confidence_prompt_eligible": false,
+    "human_approval_separate": true,
+    "automatic_inference_separate": true,
+    "unbounded_append": false,
+    "compression": true,
+    "deduplication": true,
+    "token_budget_required": true,
+    "rollback_required": true,
+    "expiry_required_for_scene_state": true
+  },
+  "admission": {
+    "minimum_confidence": 0.85,
+    "requires_evidence": true,
+    "requires_human_approval_for_personality": true,
+    "prompt_budget_tokens": 256,
+    "overflow": "rank, compress, then omit"
+  },
+  "quality_value": "evidence-backed voice/persona continuity without treating AI guesses as facts"
+}

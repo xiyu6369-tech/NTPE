@@ -1,0 +1,790 @@
+[
+  {
+    "capability_id": "character_memory",
+    "legacy_file": "v12_dynamic_memory_legacy.txt",
+    "legacy_symbol": "build_character_prompt; character_memory_v12.json",
+    "description": "Injects a mutable name-to-description memory into every prompt.",
+    "inputs": [
+      "memory JSON"
+    ],
+    "outputs": [
+      "character prompt text"
+    ],
+    "side_effects": [
+      "prompt growth"
+    ],
+    "provider_calls": 0,
+    "disk_writes": [],
+    "state_files": [
+      "character_memory_v12.json"
+    ],
+    "quality_intent": "voice and persona continuity",
+    "reliability_intent": "persist across chunks",
+    "performance_intent": "reuse learned descriptions",
+    "security_risk": "medium",
+    "quality_risk": "high: unverified traits can contaminate later output",
+    "runtime_risk": "medium",
+    "data_integrity_risk": "high: unbounded mutation",
+    "current_ntpe_equivalent": "core/intelligence/character_memory.py",
+    "feature_gap": "no evidence/confidence/version/expiry governance"
+  },
+  {
+    "capability_id": "dynamic_character_extraction",
+    "legacy_file": "v12_dynamic_memory_legacy.txt",
+    "legacy_symbol": "update_character_memory_via_ai",
+    "description": "Calls OpenRouter after each successful chunk and merges AI-generated character descriptions.",
+    "inputs": [
+      "source chunk",
+      "translation",
+      "current memory"
+    ],
+    "outputs": [
+      "mutated memory"
+    ],
+    "side_effects": [
+      "network call",
+      "in-place append"
+    ],
+    "provider_calls": "0 or 1 per successful chunk",
+    "disk_writes": [
+      "character_memory_v12.json"
+    ],
+    "state_files": [
+      "character_memory_v12.json"
+    ],
+    "quality_intent": "learn character traits",
+    "reliability_intent": "carry inferred state forward",
+    "performance_intent": "automatic extraction",
+    "security_risk": "high: credential header",
+    "quality_risk": "high: inference treated as fact",
+    "runtime_risk": "high: extra provider request per chunk",
+    "data_integrity_risk": "high: append-only drift",
+    "current_ntpe_equivalent": "character intelligence primitives",
+    "feature_gap": "no evidence-bound approved inference pipeline"
+  },
+  {
+    "capability_id": "character_voice_memory",
+    "legacy_file": "v12_dynamic_memory_legacy.txt",
+    "legacy_symbol": "build_character_prompt",
+    "description": "Uses personality and speaking-style descriptions as hard prompt rules.",
+    "inputs": [
+      "character memory"
+    ],
+    "outputs": [
+      "voice constraints"
+    ],
+    "side_effects": [
+      "prompt token use"
+    ],
+    "provider_calls": 0,
+    "disk_writes": [],
+    "state_files": [
+      "character_memory_v12.json"
+    ],
+    "quality_intent": "consistent dialogue voice",
+    "reliability_intent": "cross-chunk continuity",
+    "performance_intent": "reuse context",
+    "security_risk": "low",
+    "quality_risk": "high if memory is wrong",
+    "runtime_risk": "low",
+    "data_integrity_risk": "medium",
+    "current_ntpe_equivalent": "core/voice; character memory resource",
+    "feature_gap": "needs evidence and prompt eligibility gates"
+  },
+  {
+    "capability_id": "previous_translation_context",
+    "legacy_file": "v12_dynamic_memory_legacy.txt",
+    "legacy_symbol": "build_context_prompt; previous_translation[-CONTEXT_LENGTH:]",
+    "description": "Adds the final 500 characters of the previous translation to the next prompt.",
+    "inputs": [
+      "previous translation"
+    ],
+    "outputs": [
+      "context prompt"
+    ],
+    "side_effects": [
+      "prompt token use"
+    ],
+    "provider_calls": 0,
+    "disk_writes": [],
+    "state_files": [
+      "translate_progress_v12.json"
+    ],
+    "quality_intent": "subject, tone and dialogue continuity",
+    "reliability_intent": "chunk-to-chunk continuity",
+    "performance_intent": "fixed bounded tail",
+    "security_risk": "low",
+    "quality_risk": "medium: arbitrary truncation",
+    "runtime_risk": "low",
+    "data_integrity_risk": "medium: stores translated text",
+    "current_ntpe_equivalent": "core/adaptive_context; RuntimeContext.previous_chunk_tail",
+    "feature_gap": "fixed tail lacks ranking, evidence and semantic boundaries"
+  },
+  {
+    "capability_id": "scene_memory",
+    "legacy_file": "v12_dynamic_memory_legacy.txt",
+    "legacy_symbol": "previous_translation; current_memory",
+    "description": "Carries scene cues indirectly through the prior tail and mutable character descriptions.",
+    "inputs": [
+      "last translation",
+      "memory"
+    ],
+    "outputs": [
+      "implicit scene context"
+    ],
+    "side_effects": [
+      "prompt growth"
+    ],
+    "provider_calls": 0,
+    "disk_writes": [],
+    "state_files": [
+      "translate_progress_v12.json",
+      "character_memory_v12.json"
+    ],
+    "quality_intent": "scene continuity",
+    "reliability_intent": "long-form stability",
+    "performance_intent": "reuse prior state",
+    "security_risk": "low",
+    "quality_risk": "medium",
+    "runtime_risk": "low",
+    "data_integrity_risk": "medium",
+    "current_ntpe_equivalent": "core/context/scene_state.py",
+    "feature_gap": "no explicit scene evidence or expiry"
+  },
+  {
+    "capability_id": "narrative_memory",
+    "legacy_file": "v12_dynamic_memory_legacy.txt",
+    "legacy_symbol": "build_context_prompt",
+    "description": "Uses only a recent translated tail as narrative memory.",
+    "inputs": [
+      "previous translation"
+    ],
+    "outputs": [
+      "prompt tail"
+    ],
+    "side_effects": [
+      "prompt growth"
+    ],
+    "provider_calls": 0,
+    "disk_writes": [],
+    "state_files": [
+      "translate_progress_v12.json"
+    ],
+    "quality_intent": "narrative continuity",
+    "reliability_intent": "reduce context loss",
+    "performance_intent": "constant-size tail",
+    "security_risk": "low",
+    "quality_risk": "medium",
+    "runtime_risk": "low",
+    "data_integrity_risk": "medium",
+    "current_ntpe_equivalent": "core/intelligence/narrative_*; core/adaptive_context",
+    "feature_gap": "not structured or evidence-ranked"
+  },
+  {
+    "capability_id": "chunk_splitting",
+    "legacy_file": "translate_realtime_v2_legacy.txt; v12_dynamic_memory_legacy.txt",
+    "legacy_symbol": "split_text",
+    "description": "Splits by paragraphs or nearby separators with fixed character thresholds.",
+    "inputs": [
+      "source text",
+      "max chars"
+    ],
+    "outputs": [
+      "ordered chunks"
+    ],
+    "side_effects": [],
+    "provider_calls": 0,
+    "disk_writes": [],
+    "state_files": [],
+    "quality_intent": "preserve usable boundaries",
+    "reliability_intent": "bounded requests",
+    "performance_intent": "limit prompt size",
+    "security_risk": "low",
+    "quality_risk": "medium: character count is not token count",
+    "runtime_risk": "medium",
+    "data_integrity_risk": "low",
+    "current_ntpe_equivalent": "core/translation_runtime/runtime_chunk.py",
+    "feature_gap": "legacy split has no stable content identity"
+  },
+  {
+    "capability_id": "chunk_cache",
+    "legacy_file": "translate_realtime_v2_legacy.txt",
+    "legacy_symbol": "{name}_chunk_{index}.tmp",
+    "description": "Persists each completed translation in a temp file and skips any existing file.",
+    "inputs": [
+      "translated chunk",
+      "index"
+    ],
+    "outputs": [
+      "cache file"
+    ],
+    "side_effects": [
+      "disk write",
+      "existence-based cache hit"
+    ],
+    "provider_calls": 0,
+    "disk_writes": [
+      "暫存區/*_chunk_N.tmp"
+    ],
+    "state_files": [
+      "progress.json"
+    ],
+    "quality_intent": "retain completed translations",
+    "reliability_intent": "rerun only missing chunks",
+    "performance_intent": "avoid provider calls",
+    "security_risk": "low",
+    "quality_risk": "high: stale cache accepted",
+    "runtime_risk": "medium",
+    "data_integrity_risk": "high: no source/prompt/provider hash",
+    "current_ntpe_equivalent": "resume journal and collector",
+    "feature_gap": "no content-addressed V2 cache metadata"
+  },
+  {
+    "capability_id": "resume_recovery",
+    "legacy_file": "translate_realtime_v2_legacy.txt; v12_dynamic_memory_legacy.txt",
+    "legacy_symbol": "load_progress; save_progress; translate_progress_v12.json",
+    "description": "Stores current chunk/file and resumes later.",
+    "inputs": [
+      "file",
+      "chunk index",
+      "status"
+    ],
+    "outputs": [
+      "progress JSON"
+    ],
+    "side_effects": [
+      "disk write"
+    ],
+    "provider_calls": 0,
+    "disk_writes": [
+      "progress.json",
+      "translate_progress_v12.json"
+    ],
+    "state_files": [
+      "progress.json",
+      "translate_progress_v12.json"
+    ],
+    "quality_intent": "avoid lost work",
+    "reliability_intent": "resume after failure",
+    "performance_intent": "skip completed work",
+    "security_risk": "low",
+    "quality_risk": "low",
+    "runtime_risk": "medium",
+    "data_integrity_risk": "medium: weak atomicity/schema",
+    "current_ntpe_equivalent": "runtime checkpoint; scheduler ResumeJournal",
+    "feature_gap": "current system is stronger; legacy schema not needed"
+  },
+  {
+    "capability_id": "realtime_output_assembly",
+    "legacy_file": "translate_realtime_v2_legacy.txt",
+    "legacy_symbol": "realtime_compile",
+    "description": "Rebuilds output in numeric chunk order after each success.",
+    "inputs": [
+      "chunk temp files"
+    ],
+    "outputs": [
+      "combined UTF-8 text"
+    ],
+    "side_effects": [
+      "delete and rewrite output"
+    ],
+    "provider_calls": 0,
+    "disk_writes": [
+      "繁體中文/*.txt"
+    ],
+    "state_files": [
+      "chunk temp files"
+    ],
+    "quality_intent": "continuous visible output",
+    "reliability_intent": "recover from partial work",
+    "performance_intent": "incremental assembly",
+    "security_risk": "low",
+    "quality_risk": "medium: missing chunks silently omitted",
+    "runtime_risk": "medium: O(n) rewrite per chunk",
+    "data_integrity_risk": "medium",
+    "current_ntpe_equivalent": "runtime_output; TranslationCollector",
+    "feature_gap": "current ordered collector is safer"
+  },
+  {
+    "capability_id": "glossary_enforcement",
+    "legacy_file": "translate_realtime_v2_legacy.txt; v12_dynamic_memory_legacy.txt",
+    "legacy_symbol": "GLOSSARY; system_prompt",
+    "description": "Embeds a fixed Korean-to-Traditional-Chinese glossary as hard instructions.",
+    "inputs": [
+      "hard-coded glossary"
+    ],
+    "outputs": [
+      "prompt rules"
+    ],
+    "side_effects": [
+      "prompt tokens"
+    ],
+    "provider_calls": 0,
+    "disk_writes": [],
+    "state_files": [],
+    "quality_intent": "name consistency",
+    "reliability_intent": "repeatable terminology",
+    "performance_intent": "no lookup cost",
+    "security_risk": "low",
+    "quality_risk": "medium: domain hard-coded",
+    "runtime_risk": "low",
+    "data_integrity_risk": "medium",
+    "current_ntpe_equivalent": "core/glossary.py; glossary selector",
+    "feature_gap": "legacy data is title-specific and ungovened"
+  },
+  {
+    "capability_id": "unknown_name_handling",
+    "legacy_file": "translate_realtime_v2_legacy.txt",
+    "legacy_symbol": "translate_chunk_with_retry system_prompt rule 2",
+    "description": "Asks the model to auto-transliterate every unlisted Korean proper noun.",
+    "inputs": [
+      "unlisted Korean token"
+    ],
+    "outputs": [
+      "invented Traditional-Chinese name"
+    ],
+    "side_effects": [
+      "implicit glossary mutation in output"
+    ],
+    "provider_calls": 0,
+    "disk_writes": [],
+    "state_files": [],
+    "quality_intent": "avoid untranslated names",
+    "reliability_intent": "avoid Korean residue",
+    "performance_intent": "single-request handling",
+    "security_risk": "low",
+    "quality_risk": "high: common nouns and partial names can be misclassified",
+    "runtime_risk": "low",
+    "data_integrity_risk": "high: inconsistent spellings",
+    "current_ntpe_equivalent": "glossary and character resolver",
+    "feature_gap": "requires language profile and human/evidence governance"
+  },
+  {
+    "capability_id": "provider_fallback",
+    "legacy_file": "v12_dynamic_memory_legacy.txt",
+    "legacy_symbol": "engine three-defense flow",
+    "description": "Falls back from NVIDIA to degraded NVIDIA and then OpenRouter.",
+    "inputs": [
+      "prompt",
+      "two keys"
+    ],
+    "outputs": [
+      "translation or failure"
+    ],
+    "side_effects": [
+      "multiple network requests",
+      "quality-contract changes"
+    ],
+    "provider_calls": "up to 3 paths plus internal retries",
+    "disk_writes": [],
+    "state_files": [],
+    "quality_intent": "obtain some output",
+    "reliability_intent": "provider availability",
+    "performance_intent": "continue after failures",
+    "security_risk": "high",
+    "quality_risk": "high: fallback changes style contract",
+    "runtime_risk": "high",
+    "data_integrity_risk": "medium",
+    "current_ntpe_equivalent": "core/ai_provider",
+    "feature_gap": "must remain controlled and observable"
+  },
+  {
+    "capability_id": "multi_provider_routing",
+    "legacy_file": "v12_dynamic_memory_legacy.txt",
+    "legacy_symbol": "call_nvidia_api; call_gemini_api",
+    "description": "Hard-coded NVIDIA and OpenRouter routing without shared policy evidence.",
+    "inputs": [
+      "keys",
+      "prompt"
+    ],
+    "outputs": [
+      "provider response"
+    ],
+    "side_effects": [
+      "network calls"
+    ],
+    "provider_calls": "variable",
+    "disk_writes": [],
+    "state_files": [],
+    "quality_intent": "provider diversity",
+    "reliability_intent": "availability",
+    "performance_intent": "fallback",
+    "security_risk": "high",
+    "quality_risk": "high: inconsistent provider outputs",
+    "runtime_risk": "high",
+    "data_integrity_risk": "medium",
+    "current_ntpe_equivalent": "core/ai_provider/router.py",
+    "feature_gap": "legacy routing bypasses current policy/security"
+  },
+  {
+    "capability_id": "dual_model_workflow",
+    "legacy_file": "translate_realtime_v2_legacy.txt",
+    "legacy_symbol": "system_prompt steps 1-3",
+    "description": "Describes draft, editorial review and polish inside one provider request; it is not an observable dual-model workflow.",
+    "inputs": [
+      "source chunk"
+    ],
+    "outputs": [
+      "final text only"
+    ],
+    "side_effects": [
+      "opaque internal reasoning instruction"
+    ],
+    "provider_calls": 1,
+    "disk_writes": [],
+    "state_files": [],
+    "quality_intent": "draft plus polish",
+    "reliability_intent": "single request",
+    "performance_intent": "one call",
+    "security_risk": "low",
+    "quality_risk": "high: no stage evidence",
+    "runtime_risk": "low",
+    "data_integrity_risk": "low",
+    "current_ntpe_equivalent": "Stage 11 quality framework",
+    "feature_gap": "no separately observable draft/polish artifacts"
+  },
+  {
+    "capability_id": "draft_translation",
+    "legacy_file": "translate_realtime_v2_legacy.txt",
+    "legacy_symbol": "精準初翻 instruction",
+    "description": "Draft is an internal prompt instruction and is never materialized.",
+    "inputs": [
+      "source"
+    ],
+    "outputs": [
+      "final response only"
+    ],
+    "side_effects": [],
+    "provider_calls": 1,
+    "disk_writes": [],
+    "state_files": [],
+    "quality_intent": "complete first translation",
+    "reliability_intent": "none",
+    "performance_intent": "single request",
+    "security_risk": "low",
+    "quality_risk": "medium",
+    "runtime_risk": "low",
+    "data_integrity_risk": "low",
+    "current_ntpe_equivalent": "translation runtime",
+    "feature_gap": "no draft artifact or draft verification"
+  },
+  {
+    "capability_id": "polish_workflow",
+    "legacy_file": "translate_realtime_v2_legacy.txt",
+    "legacy_symbol": "主編審查; 終極潤飾與修正",
+    "description": "Review and polish are internal prompt instructions with no gate or rollback.",
+    "inputs": [
+      "implicit draft"
+    ],
+    "outputs": [
+      "final response only"
+    ],
+    "side_effects": [],
+    "provider_calls": 1,
+    "disk_writes": [],
+    "state_files": [],
+    "quality_intent": "natural literary prose",
+    "reliability_intent": "none",
+    "performance_intent": "single request",
+    "security_risk": "low",
+    "quality_risk": "high: semantic drift is invisible",
+    "runtime_risk": "low",
+    "data_integrity_risk": "low",
+    "current_ntpe_equivalent": "naturalness and quality framework",
+    "feature_gap": "needs selective gate and post-polish semantic verification"
+  },
+  {
+    "capability_id": "semantic_verification",
+    "legacy_file": "translate_realtime_v2_legacy.txt; v12_dynamic_memory_legacy.txt",
+    "legacy_symbol": "prompt-only completeness rules",
+    "description": "Relies on model instructions rather than a separate semantic comparison.",
+    "inputs": [
+      "source",
+      "prompt"
+    ],
+    "outputs": [
+      "unverified translation"
+    ],
+    "side_effects": [],
+    "provider_calls": 0,
+    "disk_writes": [],
+    "state_files": [],
+    "quality_intent": "avoid omission and invention",
+    "reliability_intent": "none",
+    "performance_intent": "none",
+    "security_risk": "low",
+    "quality_risk": "high",
+    "runtime_risk": "low",
+    "data_integrity_risk": "low",
+    "current_ntpe_equivalent": "translation evidence and Stage 11",
+    "feature_gap": "legacy has no measurable semantic verification"
+  },
+  {
+    "capability_id": "quality_retry",
+    "legacy_file": "v12_dynamic_memory_legacy.txt",
+    "legacy_symbol": "QUALITY_RETRY; engine success checks",
+    "description": "Retries/falls back based mainly on length and provider errors.",
+    "inputs": [
+      "translation",
+      "error"
+    ],
+    "outputs": [
+      "retry or fallback"
+    ],
+    "side_effects": [
+      "extra provider requests"
+    ],
+    "provider_calls": "variable",
+    "disk_writes": [],
+    "state_files": [],
+    "quality_intent": "recover poor output",
+    "reliability_intent": "retry after failure",
+    "performance_intent": "bounded retry constants",
+    "security_risk": "medium",
+    "quality_risk": "high: weak trigger",
+    "runtime_risk": "high",
+    "data_integrity_risk": "low",
+    "current_ntpe_equivalent": "translation_quality_v5 quality retry",
+    "feature_gap": "legacy trigger is not defect evidence"
+  },
+  {
+    "capability_id": "basic_output_validation",
+    "legacy_file": "v12_dynamic_memory_legacy.txt",
+    "legacy_symbol": "check_translation_basic",
+    "description": "Rejects blank/very short output and a few explanation phrases; engine also uses len > 100.",
+    "inputs": [
+      "translation text"
+    ],
+    "outputs": [
+      "boolean and reason"
+    ],
+    "side_effects": [],
+    "provider_calls": 0,
+    "disk_writes": [],
+    "state_files": [],
+    "quality_intent": "basic output sanity",
+    "reliability_intent": "stop obvious failures",
+    "performance_intent": "cheap local check",
+    "security_risk": "low",
+    "quality_risk": "high: misses subject shift, omission, additions, repetition, name and lexical errors",
+    "runtime_risk": "low",
+    "data_integrity_risk": "low",
+    "current_ntpe_equivalent": "runtime QA; TIC offline gate",
+    "feature_gap": "length-only QA has no semantic coverage"
+  },
+  {
+    "capability_id": "encoding_detection",
+    "legacy_file": "translate_realtime_v2_legacy.txt",
+    "legacy_symbol": "read_txt_with_auto_encoding",
+    "description": "Tries UTF-8 BOM, UTF-8, CP949 and EUC-KR in order.",
+    "inputs": [
+      "text path"
+    ],
+    "outputs": [
+      "decoded text"
+    ],
+    "side_effects": [
+      "file read"
+    ],
+    "provider_calls": 0,
+    "disk_writes": [],
+    "state_files": [],
+    "quality_intent": "read Korean sources",
+    "reliability_intent": "avoid decode failure",
+    "performance_intent": "bounded local attempts",
+    "security_risk": "low",
+    "quality_risk": "low",
+    "runtime_risk": "low",
+    "data_integrity_risk": "medium: no confidence/report",
+    "current_ntpe_equivalent": "core/translation_runtime/runtime_encoding.py",
+    "feature_gap": "current implementation should remain authoritative"
+  },
+  {
+    "capability_id": "gui_workflow",
+    "legacy_file": "v12_dynamic_memory_legacy.txt",
+    "legacy_symbol": "App",
+    "description": "Tkinter UI selects folders, accepts keys, starts a worker thread and supports pause.",
+    "inputs": [
+      "folders",
+      "credentials",
+      "button actions"
+    ],
+    "outputs": [
+      "logs",
+      "files"
+    ],
+    "side_effects": [
+      "thread",
+      "disk/network via engine"
+    ],
+    "provider_calls": "delegated",
+    "disk_writes": [
+      "config_v12.json"
+    ],
+    "state_files": [
+      "config_v12.json"
+    ],
+    "quality_intent": "accessible workflow",
+    "reliability_intent": "manual control",
+    "performance_intent": "desktop interaction",
+    "security_risk": "high: key entry/persistence risk",
+    "quality_risk": "low",
+    "runtime_risk": "high: direct engine coupling",
+    "data_integrity_risk": "medium",
+    "current_ntpe_equivalent": "current CLI/GUI layers",
+    "feature_gap": "legacy GUI cannot bypass frozen runtime/security"
+  },
+  {
+    "capability_id": "batch_processing",
+    "legacy_file": "translate_realtime_v2_legacy.txt; v12_dynamic_memory_legacy.txt",
+    "legacy_symbol": "main; engine",
+    "description": "Sorts input text files and processes chunks sequentially.",
+    "inputs": [
+      "input folder"
+    ],
+    "outputs": [
+      "translated files"
+    ],
+    "side_effects": [
+      "file enumeration",
+      "network",
+      "disk"
+    ],
+    "provider_calls": "per chunk",
+    "disk_writes": [
+      "output files",
+      "progress"
+    ],
+    "state_files": [
+      "progress JSON"
+    ],
+    "quality_intent": "translate multiple files",
+    "reliability_intent": "skip completed files",
+    "performance_intent": "sequential bounded work",
+    "security_risk": "medium",
+    "quality_risk": "medium",
+    "runtime_risk": "medium",
+    "data_integrity_risk": "medium",
+    "current_ntpe_equivalent": "lts/batch_translation_runtime.py",
+    "feature_gap": "current batch runtime is authoritative"
+  },
+  {
+    "capability_id": "pause_resume",
+    "legacy_file": "v12_dynamic_memory_legacy.txt",
+    "legacy_symbol": "pause_flag; App.toggle_pause",
+    "description": "In-memory pause flag plus persisted file/chunk cursor.",
+    "inputs": [
+      "UI action",
+      "progress"
+    ],
+    "outputs": [
+      "paused/resumed worker"
+    ],
+    "side_effects": [
+      "shared mutable flag",
+      "sleep loop"
+    ],
+    "provider_calls": 0,
+    "disk_writes": [
+      "translate_progress_v12.json"
+    ],
+    "state_files": [
+      "translate_progress_v12.json"
+    ],
+    "quality_intent": "operator control",
+    "reliability_intent": "resume long runs",
+    "performance_intent": "avoid restart",
+    "security_risk": "low",
+    "quality_risk": "low",
+    "runtime_risk": "medium: process-local flag",
+    "data_integrity_risk": "medium",
+    "current_ntpe_equivalent": "runtime checkpoints and scheduler journal",
+    "feature_gap": "UI pause should merge only through current runtime contracts"
+  },
+  {
+    "capability_id": "configuration_persistence",
+    "legacy_file": "v12_dynamic_memory_legacy.txt",
+    "legacy_symbol": "config_v12.json; load_json; save_json",
+    "description": "Persists folders and user settings in a local JSON file.",
+    "inputs": [
+      "GUI config"
+    ],
+    "outputs": [
+      "config JSON"
+    ],
+    "side_effects": [
+      "disk write"
+    ],
+    "provider_calls": 0,
+    "disk_writes": [
+      "config_v12.json"
+    ],
+    "state_files": [
+      "config_v12.json"
+    ],
+    "quality_intent": "reusable setup",
+    "reliability_intent": "restart continuity",
+    "performance_intent": "avoid re-entry",
+    "security_risk": "high if credentials are persisted",
+    "quality_risk": "low",
+    "runtime_risk": "medium",
+    "data_integrity_risk": "medium",
+    "current_ntpe_equivalent": "current config/resources",
+    "feature_gap": "must explicitly exclude credentials"
+  },
+  {
+    "capability_id": "academic_degraded_fallback",
+    "legacy_file": "v12_dynamic_memory_legacy.txt",
+    "legacy_symbol": "degraded_prompt; second defense",
+    "description": "Switches failed novel translation to neutral academic literal translation.",
+    "inputs": [
+      "source chunk"
+    ],
+    "outputs": [
+      "style-degraded translation"
+    ],
+    "side_effects": [
+      "extra provider request",
+      "quality contract change"
+    ],
+    "provider_calls": "1 or more",
+    "disk_writes": [],
+    "state_files": [],
+    "quality_intent": "obtain output despite refusal/error",
+    "reliability_intent": "fallback",
+    "performance_intent": "continue processing",
+    "security_risk": "medium",
+    "quality_risk": "critical: destroys literary voice",
+    "runtime_risk": "high",
+    "data_integrity_risk": "medium",
+    "current_ntpe_equivalent": "none",
+    "feature_gap": "conflicts with literary quality contract"
+  },
+  {
+    "capability_id": "embedded_provider_credentials",
+    "legacy_file": "translate_realtime_v2_legacy.txt",
+    "legacy_symbol": "NVIDIA_API_KEY; OpenAI(api_key=...)",
+    "description": "Places provider credential configuration directly in a legacy source file.",
+    "inputs": [
+      "plaintext credential"
+    ],
+    "outputs": [
+      "authenticated client"
+    ],
+    "side_effects": [
+      "credential exposure"
+    ],
+    "provider_calls": 0,
+    "disk_writes": [],
+    "state_files": [],
+    "quality_intent": "convenience",
+    "reliability_intent": "direct execution",
+    "performance_intent": "none",
+    "security_risk": "critical",
+    "quality_risk": "low",
+    "runtime_risk": "high",
+    "data_integrity_risk": "critical",
+    "current_ntpe_equivalent": "core/ai_provider/credentials.py",
+    "feature_gap": "legacy credential pattern is forbidden"
+  }
+]

@@ -1,0 +1,203 @@
+import os
+import time
+import json
+from openai import OpenAI
+
+# ==================== 🛠️ NVIDIA 專用設定區 ====================
+NVIDIA_API_KEY = "[REDACTED_API_KEY]"
+PROGRESS_FILE = "progress.json"                  
+CHUNK_SIZE = 2200                                
+
+SOURCE_DIR = "原文"                              
+OUTPUT_DIR = "繁體中文"                          
+CACHE_DIR = "暫存區"                             
+
+TARGET_MODEL = "meta/llama-3.3-70b-instruct"    
+
+GLOSSARY = """
+【重要名詞與人名對照表】
+- 정태의 -> 鄭泰義 (Tae-ui / Jeong Tae-ui，陽光健氣、顏值至上、超強適應力)
+- 일라이 리그로우 -> 伊萊・里格勞 (Ilay Rigrow，狂氣、危險、武力天花板、絕對佔有慾)
+- 정재의 -> 鄭載義 (Jeong Jae-ui)
+- 정창인 -> 鄭昌仁 (Jeong Chang-in)
+- 카일 리그로우 -> 凱爾・里格勞 (Kyle Riegrow)
+- 리차드 타튼 -> 理查・塔騰 (Richard Tarten)
+- 게이블 -> 蓋博 (Gable)
+- 리타 -> 麗塔 (Rita)
+"""
+# ============================================================
+
+client = OpenAI(
+    base_url="https://integrate.api.nvidia.com/v1",
+    api_key=NVIDIA_API_KEY,
+)
+
+for folder in [SOURCE_DIR, OUTPUT_DIR, CACHE_DIR]:
+    if not os.path.exists(folder): os.makedirs(folder)
+
+def read_txt_with_auto_encoding(file_path):
+    encodings = ['utf-8-sig', 'utf-8', 'cp949', 'euc-kr']
+    for enc in encodings:
+        try:
+            with open(file_path, 'r', encoding=enc) as f: return f.read()
+        except (UnicodeDecodeError, LookupError): continue
+    raise UnicodeDecodeError(f"❌ 無法辨識檔案編碼: {os.path.basename(file_path)}")
+
+def split_text(text, max_chars):
+    paragraphs = text.split('\n')
+    chunks = []
+    current_chunk = ""
+    for para in paragraphs:
+        if len(current_chunk) + len(para) < max_chars:
+            current_chunk += para + "\n"
+        else:
+            if current_chunk: chunks.append(current_chunk.strip())
+            current_chunk = para + "\n"
+    if current_chunk: chunks.append(current_chunk.strip())
+    return chunks
+
+def translate_chunk_with_retry(chunk_text, index, total_chunks, max_retries=5):
+    system_prompt = (
+        f"你是一位精通韓文與繁體中文的頂級小說翻譯家，同時也是台灣文學與限制級輕小說出版社的資深總編輯。\n\n"
+        f"【最高名詞指導原則 —— ⚠️ 鐵律】\n"
+        f"1. 當遇到下方【名詞對照表】中已指定的名稱時，必須 100% 嚴格使用指定譯名，絕對禁止自行更換任何同音漢字或相似讀音（例如：指定「鄭泰義」，就絕不准改成「正太義」）。\n"
+        f"2. 【🚨 漏翻防禦機制】: 如果原文中出現了「沒在名詞對照表上」的韓文人名、地名、路人名稱或擬聲詞（例如：박준우 等），你必須「自動根據韓語發音」將其音譯為台灣小說常見、優雅且自然的繁體中文人名漢字（例如自動翻譯為「朴俊宇」）。\n"
+        f"3. 譯文中「絕對不允許殘留任何一個外國韓文字母」。全篇必須是純淨的繁體中文小說。\n\n"
+        f"【名詞對照表】:\n"
+        f"{GLOSSARY}\n\n"
+        f"【工作流程：你必須在後台默默執行以下三個步驟】\n"
+        f"步驟一（精準初翻）：對照名詞表，並將所有未指定的韓文人名自動進行音譯，將原文完整翻譯，嚴禁漏掉任何一句話。\n"
+        f"步驟二（主編審查）：仔細檢查初翻稿，找出逐字直譯的生硬感、歐化中文、日韓式語法、語意不流暢，並特別揪出是否有任何漏翻、殘留的韓文字母。\n"
+        f"步驟三（終極潤飾與修正）：根據步驟二的結果，打破原文語法結構，結合上下文情境，以自然、流暢、不帶機械感與 AI 味的台灣繁體中文小說寫法重新雕琢語句。消除贅字。\n\n"
+        f"【🔥 成人向情節處理原則】\n"
+        f"這是一部限制級小說作品。你必須基於文學寫實立場，忠實、完整地翻譯所有人物互動、激情描寫、親密接觸、感官刺激、情緒與劇情發展。絕對不要因為題材敏感性而省略、簡化、修改或和諧化原文內容。\n\n"
+        f"【✍️ 對話格式與語氣硬性規範】\n"
+        f"1. 所有對話必須完全符合繁體中文小說格式，一律使用「」中文引號，絕對禁止使用任何形式的英文引號。\n"
+        f"2. 必須100%完整保留原文中的所有語氣詞、感嘆詞、喘息、呻吟與停頓符號（如：「……」、「嗯。」、「啊？」、「哈啊……」、「唔……」），絕不可刪除或省略。\n"
+        f"3. 內心敘述要一氣成，兼顧流暢度，去除贅字，堅決去除「他如此想到」、「她這麼說著」等生硬格式。\n"
+        f"4. 資訊忠實：不省略任何一句原文，不憑空捏造劇情，嚴格保留原文換行與段落格式. 不可重複任何段落。\n\n"
+        f"【⚠️ 輸出限制】\n"
+        f"只輸出「步驟三修正潤飾完畢後的最終成品正文」。絕對不要包含任何解釋、工作步驟說明、安全免責聲明、備註、開場白或結尾標籤。"
+    )
+    
+    for attempt in range(max_retries):
+        try:
+            response = client.chat.completions.create(
+                model=TARGET_MODEL,
+                messages=[
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": f"請對以下小說片段執行精準名詞核對、全自動音譯、情節還原與主編級潤飾流程：\n\n{chunk_text}"}
+                ],
+                temperature=0.3, 
+                max_tokens=3000 
+            )
+            return response.choices[0].message.content
+        except Exception as e:
+            print(f"\n⚠️ 區塊 {index}/{total_chunks} 請求異常，將在 {(attempt + 1) * 10} 秒後重試...")
+            if attempt < max_retries - 1:
+                time.sleep((attempt + 1) * 10)
+            else:
+                return "ERROR_SIGNAL"
+
+def load_progress():
+    if os.path.exists(PROGRESS_FILE):
+        try:
+            with open(PROGRESS_FILE, "r", encoding="utf-8") as f: return json.load(f)
+        except: pass
+    return {}
+
+def save_progress(file_name, current_chunk, total_chunks):
+    progress_data = load_progress()
+    progress_data[file_name] = {
+        "current_chunk": current_chunk,
+        "total_chunks": total_chunks,
+        "status": "processing" if current_chunk < total_chunks else "completed"
+    }
+    with open(PROGRESS_FILE, "w", encoding="utf-8") as f:
+        json.dump(progress_data, f, ensure_ascii=False, indent=4)
+
+def realtime_compile(name_without_ext, total_chunks, output_file_path):
+    if os.path.exists(output_file_path): os.remove(output_file_path)
+    
+    with open(output_file_path, "w", encoding="utf-8") as f_out:
+        for i in range(total_chunks):
+            chunk_index = i + 1
+            chunk_cache_path = os.path.join(CACHE_DIR, f"{name_without_ext}_chunk_{chunk_index}.tmp")
+            
+            if os.path.exists(chunk_cache_path):
+                with open(chunk_cache_path, "r", encoding="utf-8") as f_src:
+                    f_out.write(f_src.read())
+
+def main():
+    all_files = [f for f in os.listdir(SOURCE_DIR) if f.endswith('.txt')]
+    all_files.sort()
+
+    if not all_files:
+        print(f"📁 💡 請把小說放進「{SOURCE_DIR}」後重啟！")
+        return
+
+    progress_map = load_progress()
+    print(f"📚 待處理的小說清單（手動除錯純淨版）：")
+    for f in all_files: print(f"  - {f}")
+    print("-" * 65)
+
+    for file_name in all_files:
+        if file_name in progress_map and progress_map[file_name].get("status") == "completed":
+            print(f"⏭️ 檔案 {file_name} 已完成，自動跳過。")
+            continue
+
+        name_without_ext, ext = os.path.splitext(file_name)
+        output_file_name = f"{name_without_ext}繁中{ext}"
+        output_file_path = os.path.join(OUTPUT_DIR, output_file_name)
+        source_file_path = os.path.join(SOURCE_DIR, file_name)
+
+        try: full_text = read_txt_with_auto_encoding(source_file_path)
+        except Exception as e: print(e); continue
+
+        chunks = split_text(full_text, CHUNK_SIZE)
+        total_chunks = len(chunks)
+
+        print(f"\n🎬 開始處理檔案: {file_name} (總共 {total_chunks} 塊)")
+
+        for i in range(total_chunks):
+            chunk_index = i + 1
+            chunk = chunks[i]
+            chunk_cache_path = os.path.join(CACHE_DIR, f"{name_without_ext}_chunk_{chunk_index}.tmp")
+
+            if os.path.exists(chunk_cache_path):
+                realtime_compile(name_without_ext, total_chunks, output_file_path)
+                continue
+
+            # 🛑 終極修復：完全移除韓文列印，改用純數字、百分比與字數區間提示！
+            start_char_est = (chunk_index - 1) * CHUNK_SIZE
+            end_char_est = chunk_index * CHUNK_SIZE
+            print(f"\r🚀 進度: {chunk_index}/{total_chunks} 塊 ({int(chunk_index/total_chunks*100)}%) | 預估原文位置: 約第 {start_char_est} ~ {end_char_est} 字 ", end="", flush=True)
+            
+            translated_text = translate_chunk_with_retry(chunk, chunk_index, total_chunks)
+            
+            if translated_text == "ERROR_SIGNAL":
+                print(f"\n⚠️ 區塊 {chunk_index} 翻譯中斷。重新執行將精準續翻。")
+                return
+
+            with open(chunk_cache_path, "w", encoding="utf-8") as f_cache:
+                f_cache.write(translated_text.strip() + "\n\n")
+
+            realtime_compile(name_without_ext, total_chunks, output_file_path)
+
+            save_progress(file_name, chunk_index, total_chunks)
+            time.sleep(5)
+
+        print(f"\n📦 [{file_name}] 所有區塊翻譯皆已就緒。")
+        
+        save_progress(file_name, total_chunks, total_chunks)
+        progress_map = load_progress()
+        progress_map[file_name]["status"] = "completed"
+        with open(PROGRESS_FILE, "w", encoding="utf-8") as f:
+            json.dump(progress_map, f, ensure_ascii=False, indent=4)
+
+        print(f"✅ 該話已完美即時輸出至: {output_file_path}\n")
+
+    print(f"\n🎉🎉🎉 所有小說皆已翻譯完成！")
+
+if __name__ == "__main__":
+    main()

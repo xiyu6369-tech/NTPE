@@ -1,0 +1,83 @@
+[
+  {
+    "batch": "LCR Batch 2",
+    "scope": "Character Memory V2",
+    "direct_quality_value": "Evidence-governed character/voice continuity",
+    "performance_gate": "token budget and local lookup benchmark",
+    "timeout_gate": "network requests=0 in design and offline tests",
+    "regression_gate": "current regressions plus false-persona cases",
+    "production_boundary": "design/isolated module only; no prompt/runtime hookup"
+  },
+  {
+    "batch": "LCR Batch 3",
+    "scope": "Context/Scene Memory Integration",
+    "direct_quality_value": "merge approved character and scene evidence with Adaptive Context",
+    "performance_gate": "bounded context tokens",
+    "timeout_gate": "no provider request increase",
+    "regression_gate": "ko/ja/en context regressions",
+    "production_boundary": "disabled integration adapter only"
+  },
+  {
+    "batch": "LCR Batch 4",
+    "scope": "Chunk Cache V2",
+    "direct_quality_value": "avoid retranslation of verified identical chunks",
+    "performance_gate": "cache lookup/write benchmark",
+    "timeout_gate": "retry only failed chunk",
+    "regression_gate": "resume/output ordering and stale-cache rejection",
+    "production_boundary": "reuse current ResumeJournal and collector"
+  },
+  {
+    "batch": "LCR Batch 5",
+    "scope": "Dual-pass Draft/Polish Prototype",
+    "direct_quality_value": "observable draft and selective polish",
+    "performance_gate": "single vs selective vs dual benchmark",
+    "timeout_gate": "hard session budget",
+    "regression_gate": "semantic rollback corpus",
+    "production_boundary": "offline/mock prototype only"
+  },
+  {
+    "batch": "LCR Batch 6",
+    "scope": "Post-polish Semantic Verification",
+    "direct_quality_value": "prevent polish omissions/additions",
+    "performance_gate": "local/offline gate cost",
+    "timeout_gate": "no automatic provider retry",
+    "regression_gate": "TIC semantic defects",
+    "production_boundary": "no production activation"
+  },
+  {
+    "batch": "LCR Batch 7",
+    "scope": "Multilingual Profiles",
+    "direct_quality_value": "ko/ja/en-specific continuity and names",
+    "performance_gate": "profile token/latency budgets",
+    "timeout_gate": "no routing changes",
+    "regression_gate": "language-specific golden cases",
+    "production_boundary": "profile data only"
+  },
+  {
+    "batch": "LCR Batch 8",
+    "scope": "Controlled Provider Routing",
+    "direct_quality_value": "evaluate availability without silent quality change",
+    "performance_gate": "routing benchmark",
+    "timeout_gate": "bounded attempts and timeout",
+    "regression_gate": "provider consistency/secret safety",
+    "production_boundary": "explicit authorization; disabled by default"
+  },
+  {
+    "batch": "LCR Batch 9",
+    "scope": "Offline Golden/TIC Validation",
+    "direct_quality_value": "prove direct quality value",
+    "performance_gate": "offline evaluation budget",
+    "timeout_gate": "network requests=0",
+    "regression_gate": "active regression and human-reviewed goldens",
+    "production_boundary": "offline only"
+  },
+  {
+    "batch": "LCR Batch 10",
+    "scope": "Production Integration",
+    "direct_quality_value": "only evidence-proven capabilities",
+    "performance_gate": "production latency gate",
+    "timeout_gate": "bounded provider budget",
+    "regression_gate": "full freeze ladder and rollback drill",
+    "production_boundary": "separate explicit authorization required"
+  }
+]

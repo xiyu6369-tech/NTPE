@@ -1,0 +1,653 @@
+[
+  {
+    "capability": "character_memory",
+    "legacy_value": "voice and persona continuity",
+    "current_ntpe_status": "core/intelligence/character_memory.py",
+    "decision": "REIMPLEMENT_FROM_CONCEPT",
+    "reason": "no evidence/confidence/version/expiry governance",
+    "quality_impact": "direct",
+    "timeout_impact": "must pass bounded timeout gate",
+    "performance_impact": "benchmark required before activation",
+    "prompt_token_impact": "budget required",
+    "provider_request_impact": "0 added in Batch 1",
+    "implementation_priority": "P1",
+    "dependencies": [
+      "LCR Batch 1 freeze",
+      "offline evidence"
+    ],
+    "tests_required": [
+      "schema",
+      "boundary",
+      "quality regression",
+      "performance/timeout gate"
+    ],
+    "rollback_strategy": "disabled-by-default artifact rollback; preserve current NTPE path"
+  },
+  {
+    "capability": "dynamic_character_extraction",
+    "legacy_value": "learn character traits",
+    "current_ntpe_status": "character intelligence primitives",
+    "decision": "REIMPLEMENT_FROM_CONCEPT",
+    "reason": "no evidence-bound approved inference pipeline",
+    "quality_impact": "direct",
+    "timeout_impact": "must pass bounded timeout gate",
+    "performance_impact": "benchmark required before activation",
+    "prompt_token_impact": "none or unchanged",
+    "provider_request_impact": "may add requests; default forbidden",
+    "implementation_priority": "P2",
+    "dependencies": [
+      "LCR Batch 1 freeze",
+      "offline evidence",
+      "Character Memory V2"
+    ],
+    "tests_required": [
+      "schema",
+      "boundary",
+      "quality regression",
+      "performance/timeout gate"
+    ],
+    "rollback_strategy": "disabled-by-default artifact rollback; preserve current NTPE path"
+  },
+  {
+    "capability": "character_voice_memory",
+    "legacy_value": "consistent dialogue voice",
+    "current_ntpe_status": "core/voice; character memory resource",
+    "decision": "MERGE_WITH_CURRENT",
+    "reason": "needs evidence and prompt eligibility gates",
+    "quality_impact": "direct",
+    "timeout_impact": "no new provider work",
+    "performance_impact": "benchmark required before activation",
+    "prompt_token_impact": "budget required",
+    "provider_request_impact": "0 added in Batch 1",
+    "implementation_priority": "P3",
+    "dependencies": [
+      "LCR Batch 1 freeze",
+      "offline evidence",
+      "Character Memory V2"
+    ],
+    "tests_required": [
+      "schema",
+      "boundary",
+      "quality regression",
+      "performance/timeout gate"
+    ],
+    "rollback_strategy": "disabled-by-default artifact rollback; preserve current NTPE path"
+  },
+  {
+    "capability": "previous_translation_context",
+    "legacy_value": "subject, tone and dialogue continuity",
+    "current_ntpe_status": "core/adaptive_context; RuntimeContext.previous_chunk_tail",
+    "decision": "MERGE_WITH_CURRENT",
+    "reason": "fixed tail lacks ranking, evidence and semantic boundaries",
+    "quality_impact": "direct",
+    "timeout_impact": "no new provider work",
+    "performance_impact": "benchmark required before activation",
+    "prompt_token_impact": "budget required",
+    "provider_request_impact": "0 added in Batch 1",
+    "implementation_priority": "P2",
+    "dependencies": [
+      "LCR Batch 1 freeze",
+      "offline evidence"
+    ],
+    "tests_required": [
+      "schema",
+      "boundary",
+      "quality regression",
+      "performance/timeout gate"
+    ],
+    "rollback_strategy": "disabled-by-default artifact rollback; preserve current NTPE path"
+  },
+  {
+    "capability": "scene_memory",
+    "legacy_value": "scene continuity",
+    "current_ntpe_status": "core/context/scene_state.py",
+    "decision": "MERGE_WITH_CURRENT",
+    "reason": "no explicit scene evidence or expiry",
+    "quality_impact": "direct",
+    "timeout_impact": "no new provider work",
+    "performance_impact": "benchmark required before activation",
+    "prompt_token_impact": "budget required",
+    "provider_request_impact": "0 added in Batch 1",
+    "implementation_priority": "P3",
+    "dependencies": [
+      "LCR Batch 1 freeze",
+      "offline evidence",
+      "Character Memory V2"
+    ],
+    "tests_required": [
+      "schema",
+      "boundary",
+      "quality regression",
+      "performance/timeout gate"
+    ],
+    "rollback_strategy": "disabled-by-default artifact rollback; preserve current NTPE path"
+  },
+  {
+    "capability": "narrative_memory",
+    "legacy_value": "narrative continuity",
+    "current_ntpe_status": "core/intelligence/narrative_*; core/adaptive_context",
+    "decision": "MERGE_WITH_CURRENT",
+    "reason": "not structured or evidence-ranked",
+    "quality_impact": "direct",
+    "timeout_impact": "no new provider work",
+    "performance_impact": "benchmark required before activation",
+    "prompt_token_impact": "budget required",
+    "provider_request_impact": "0 added in Batch 1",
+    "implementation_priority": "P3",
+    "dependencies": [
+      "LCR Batch 1 freeze",
+      "offline evidence"
+    ],
+    "tests_required": [
+      "schema",
+      "boundary",
+      "quality regression",
+      "performance/timeout gate"
+    ],
+    "rollback_strategy": "disabled-by-default artifact rollback; preserve current NTPE path"
+  },
+  {
+    "capability": "chunk_splitting",
+    "legacy_value": "preserve usable boundaries",
+    "current_ntpe_status": "core/translation_runtime/runtime_chunk.py",
+    "decision": "KEEP_CURRENT",
+    "reason": "Current NTPE already provides the safer tested equivalent; do not restore legacy implementation.",
+    "quality_impact": "preserve current",
+    "timeout_impact": "no new provider work",
+    "performance_impact": "none",
+    "prompt_token_impact": "none or unchanged",
+    "provider_request_impact": "0 added in Batch 1",
+    "implementation_priority": "P3",
+    "dependencies": [
+      "LCR Batch 1 freeze",
+      "offline evidence"
+    ],
+    "tests_required": [
+      "schema",
+      "boundary",
+      "quality regression",
+      "performance/timeout gate"
+    ],
+    "rollback_strategy": "disabled-by-default artifact rollback; preserve current NTPE path"
+  },
+  {
+    "capability": "chunk_cache",
+    "legacy_value": "retain completed translations",
+    "current_ntpe_status": "resume journal and collector",
+    "decision": "REIMPLEMENT_FROM_CONCEPT",
+    "reason": "no content-addressed V2 cache metadata",
+    "quality_impact": "direct",
+    "timeout_impact": "must pass bounded timeout gate",
+    "performance_impact": "benchmark required before activation",
+    "prompt_token_impact": "none or unchanged",
+    "provider_request_impact": "0 added in Batch 1",
+    "implementation_priority": "P2",
+    "dependencies": [
+      "LCR Batch 1 freeze",
+      "offline evidence"
+    ],
+    "tests_required": [
+      "schema",
+      "boundary",
+      "quality regression",
+      "performance/timeout gate"
+    ],
+    "rollback_strategy": "disabled-by-default artifact rollback; preserve current NTPE path"
+  },
+  {
+    "capability": "resume_recovery",
+    "legacy_value": "avoid lost work",
+    "current_ntpe_status": "runtime checkpoint; scheduler ResumeJournal",
+    "decision": "KEEP_CURRENT",
+    "reason": "Current NTPE already provides the safer tested equivalent; do not restore legacy implementation.",
+    "quality_impact": "preserve current",
+    "timeout_impact": "no new provider work",
+    "performance_impact": "none",
+    "prompt_token_impact": "none or unchanged",
+    "provider_request_impact": "0 added in Batch 1",
+    "implementation_priority": "P3",
+    "dependencies": [
+      "LCR Batch 1 freeze",
+      "offline evidence"
+    ],
+    "tests_required": [
+      "schema",
+      "boundary",
+      "quality regression",
+      "performance/timeout gate"
+    ],
+    "rollback_strategy": "disabled-by-default artifact rollback; preserve current NTPE path"
+  },
+  {
+    "capability": "realtime_output_assembly",
+    "legacy_value": "continuous visible output",
+    "current_ntpe_status": "runtime_output; TranslationCollector",
+    "decision": "KEEP_CURRENT",
+    "reason": "Current NTPE already provides the safer tested equivalent; do not restore legacy implementation.",
+    "quality_impact": "preserve current",
+    "timeout_impact": "no new provider work",
+    "performance_impact": "none",
+    "prompt_token_impact": "none or unchanged",
+    "provider_request_impact": "0 added in Batch 1",
+    "implementation_priority": "P3",
+    "dependencies": [
+      "LCR Batch 1 freeze",
+      "offline evidence"
+    ],
+    "tests_required": [
+      "schema",
+      "boundary",
+      "quality regression",
+      "performance/timeout gate"
+    ],
+    "rollback_strategy": "disabled-by-default artifact rollback; preserve current NTPE path"
+  },
+  {
+    "capability": "glossary_enforcement",
+    "legacy_value": "name consistency",
+    "current_ntpe_status": "core/glossary.py; glossary selector",
+    "decision": "KEEP_CURRENT",
+    "reason": "Current NTPE already provides the safer tested equivalent; do not restore legacy implementation.",
+    "quality_impact": "preserve current",
+    "timeout_impact": "no new provider work",
+    "performance_impact": "none",
+    "prompt_token_impact": "none or unchanged",
+    "provider_request_impact": "0 added in Batch 1",
+    "implementation_priority": "P3",
+    "dependencies": [
+      "LCR Batch 1 freeze",
+      "offline evidence"
+    ],
+    "tests_required": [
+      "schema",
+      "boundary",
+      "quality regression",
+      "performance/timeout gate"
+    ],
+    "rollback_strategy": "disabled-by-default artifact rollback; preserve current NTPE path"
+  },
+  {
+    "capability": "unknown_name_handling",
+    "legacy_value": "avoid untranslated names",
+    "current_ntpe_status": "glossary and character resolver",
+    "decision": "DROP_UNSAFE",
+    "reason": "requires language profile and human/evidence governance",
+    "quality_impact": "risk containment",
+    "timeout_impact": "no new provider work",
+    "performance_impact": "none",
+    "prompt_token_impact": "none or unchanged",
+    "provider_request_impact": "0 added in Batch 1",
+    "implementation_priority": "P3",
+    "dependencies": [
+      "LCR Batch 1 freeze",
+      "offline evidence"
+    ],
+    "tests_required": [
+      "schema",
+      "boundary",
+      "quality regression",
+      "performance/timeout gate"
+    ],
+    "rollback_strategy": "disabled-by-default artifact rollback; preserve current NTPE path"
+  },
+  {
+    "capability": "provider_fallback",
+    "legacy_value": "obtain some output",
+    "current_ntpe_status": "core/ai_provider",
+    "decision": "EXPERIMENT_ONLY",
+    "reason": "must remain controlled and observable",
+    "quality_impact": "risk containment",
+    "timeout_impact": "must pass bounded timeout gate",
+    "performance_impact": "benchmark required before activation",
+    "prompt_token_impact": "none or unchanged",
+    "provider_request_impact": "may add requests; default forbidden",
+    "implementation_priority": "P3",
+    "dependencies": [
+      "LCR Batch 1 freeze",
+      "offline evidence"
+    ],
+    "tests_required": [
+      "schema",
+      "boundary",
+      "quality regression",
+      "performance/timeout gate"
+    ],
+    "rollback_strategy": "disabled-by-default artifact rollback; preserve current NTPE path"
+  },
+  {
+    "capability": "multi_provider_routing",
+    "legacy_value": "provider diversity",
+    "current_ntpe_status": "core/ai_provider/router.py",
+    "decision": "EXPERIMENT_ONLY",
+    "reason": "legacy routing bypasses current policy/security",
+    "quality_impact": "risk containment",
+    "timeout_impact": "must pass bounded timeout gate",
+    "performance_impact": "benchmark required before activation",
+    "prompt_token_impact": "none or unchanged",
+    "provider_request_impact": "may add requests; default forbidden",
+    "implementation_priority": "P3",
+    "dependencies": [
+      "LCR Batch 1 freeze",
+      "offline evidence"
+    ],
+    "tests_required": [
+      "schema",
+      "boundary",
+      "quality regression",
+      "performance/timeout gate"
+    ],
+    "rollback_strategy": "disabled-by-default artifact rollback; preserve current NTPE path"
+  },
+  {
+    "capability": "dual_model_workflow",
+    "legacy_value": "draft plus polish",
+    "current_ntpe_status": "Stage 11 quality framework",
+    "decision": "REIMPLEMENT_FROM_CONCEPT",
+    "reason": "no separately observable draft/polish artifacts",
+    "quality_impact": "direct",
+    "timeout_impact": "must pass bounded timeout gate",
+    "performance_impact": "benchmark required before activation",
+    "prompt_token_impact": "none or unchanged",
+    "provider_request_impact": "may add requests; default forbidden",
+    "implementation_priority": "P3",
+    "dependencies": [
+      "LCR Batch 1 freeze",
+      "offline evidence"
+    ],
+    "tests_required": [
+      "schema",
+      "boundary",
+      "quality regression",
+      "performance/timeout gate"
+    ],
+    "rollback_strategy": "disabled-by-default artifact rollback; preserve current NTPE path"
+  },
+  {
+    "capability": "draft_translation",
+    "legacy_value": "complete first translation",
+    "current_ntpe_status": "translation runtime",
+    "decision": "REIMPLEMENT_FROM_CONCEPT",
+    "reason": "no draft artifact or draft verification",
+    "quality_impact": "direct",
+    "timeout_impact": "must pass bounded timeout gate",
+    "performance_impact": "benchmark required before activation",
+    "prompt_token_impact": "none or unchanged",
+    "provider_request_impact": "0 added in Batch 1",
+    "implementation_priority": "P3",
+    "dependencies": [
+      "LCR Batch 1 freeze",
+      "offline evidence"
+    ],
+    "tests_required": [
+      "schema",
+      "boundary",
+      "quality regression",
+      "performance/timeout gate"
+    ],
+    "rollback_strategy": "disabled-by-default artifact rollback; preserve current NTPE path"
+  },
+  {
+    "capability": "polish_workflow",
+    "legacy_value": "natural literary prose",
+    "current_ntpe_status": "naturalness and quality framework",
+    "decision": "REIMPLEMENT_FROM_CONCEPT",
+    "reason": "needs selective gate and post-polish semantic verification",
+    "quality_impact": "direct",
+    "timeout_impact": "must pass bounded timeout gate",
+    "performance_impact": "benchmark required before activation",
+    "prompt_token_impact": "none or unchanged",
+    "provider_request_impact": "may add requests; default forbidden",
+    "implementation_priority": "P3",
+    "dependencies": [
+      "LCR Batch 1 freeze",
+      "offline evidence"
+    ],
+    "tests_required": [
+      "schema",
+      "boundary",
+      "quality regression",
+      "performance/timeout gate"
+    ],
+    "rollback_strategy": "disabled-by-default artifact rollback; preserve current NTPE path"
+  },
+  {
+    "capability": "semantic_verification",
+    "legacy_value": "avoid omission and invention",
+    "current_ntpe_status": "translation evidence and Stage 11",
+    "decision": "KEEP_CURRENT",
+    "reason": "Current NTPE already provides the safer tested equivalent; do not restore legacy implementation.",
+    "quality_impact": "preserve current",
+    "timeout_impact": "no new provider work",
+    "performance_impact": "none",
+    "prompt_token_impact": "none or unchanged",
+    "provider_request_impact": "0 added in Batch 1",
+    "implementation_priority": "P3",
+    "dependencies": [
+      "LCR Batch 1 freeze",
+      "offline evidence"
+    ],
+    "tests_required": [
+      "schema",
+      "boundary",
+      "quality regression",
+      "performance/timeout gate"
+    ],
+    "rollback_strategy": "disabled-by-default artifact rollback; preserve current NTPE path"
+  },
+  {
+    "capability": "quality_retry",
+    "legacy_value": "recover poor output",
+    "current_ntpe_status": "translation_quality_v5 quality retry",
+    "decision": "KEEP_CURRENT",
+    "reason": "Current NTPE already provides the safer tested equivalent; do not restore legacy implementation.",
+    "quality_impact": "preserve current",
+    "timeout_impact": "no new provider work",
+    "performance_impact": "none",
+    "prompt_token_impact": "none or unchanged",
+    "provider_request_impact": "0 added in Batch 1",
+    "implementation_priority": "P3",
+    "dependencies": [
+      "LCR Batch 1 freeze",
+      "offline evidence"
+    ],
+    "tests_required": [
+      "schema",
+      "boundary",
+      "quality regression",
+      "performance/timeout gate"
+    ],
+    "rollback_strategy": "disabled-by-default artifact rollback; preserve current NTPE path"
+  },
+  {
+    "capability": "basic_output_validation",
+    "legacy_value": "basic output sanity",
+    "current_ntpe_status": "runtime QA; TIC offline gate",
+    "decision": "DROP_UNSAFE",
+    "reason": "length-only QA has no semantic coverage",
+    "quality_impact": "risk containment",
+    "timeout_impact": "no new provider work",
+    "performance_impact": "none",
+    "prompt_token_impact": "none or unchanged",
+    "provider_request_impact": "0 added in Batch 1",
+    "implementation_priority": "P3",
+    "dependencies": [
+      "LCR Batch 1 freeze",
+      "offline evidence"
+    ],
+    "tests_required": [
+      "schema",
+      "boundary",
+      "quality regression",
+      "performance/timeout gate"
+    ],
+    "rollback_strategy": "disabled-by-default artifact rollback; preserve current NTPE path"
+  },
+  {
+    "capability": "encoding_detection",
+    "legacy_value": "read Korean sources",
+    "current_ntpe_status": "core/translation_runtime/runtime_encoding.py",
+    "decision": "KEEP_CURRENT",
+    "reason": "Current NTPE already provides the safer tested equivalent; do not restore legacy implementation.",
+    "quality_impact": "preserve current",
+    "timeout_impact": "no new provider work",
+    "performance_impact": "none",
+    "prompt_token_impact": "none or unchanged",
+    "provider_request_impact": "0 added in Batch 1",
+    "implementation_priority": "P3",
+    "dependencies": [
+      "LCR Batch 1 freeze",
+      "offline evidence"
+    ],
+    "tests_required": [
+      "schema",
+      "boundary",
+      "quality regression",
+      "performance/timeout gate"
+    ],
+    "rollback_strategy": "disabled-by-default artifact rollback; preserve current NTPE path"
+  },
+  {
+    "capability": "gui_workflow",
+    "legacy_value": "accessible workflow",
+    "current_ntpe_status": "current CLI/GUI layers",
+    "decision": "EXPERIMENT_ONLY",
+    "reason": "legacy GUI cannot bypass frozen runtime/security",
+    "quality_impact": "risk containment",
+    "timeout_impact": "must pass bounded timeout gate",
+    "performance_impact": "benchmark required before activation",
+    "prompt_token_impact": "none or unchanged",
+    "provider_request_impact": "0 added in Batch 1",
+    "implementation_priority": "P3",
+    "dependencies": [
+      "LCR Batch 1 freeze",
+      "offline evidence"
+    ],
+    "tests_required": [
+      "schema",
+      "boundary",
+      "quality regression",
+      "performance/timeout gate"
+    ],
+    "rollback_strategy": "disabled-by-default artifact rollback; preserve current NTPE path"
+  },
+  {
+    "capability": "batch_processing",
+    "legacy_value": "translate multiple files",
+    "current_ntpe_status": "lts/batch_translation_runtime.py",
+    "decision": "KEEP_CURRENT",
+    "reason": "Current NTPE already provides the safer tested equivalent; do not restore legacy implementation.",
+    "quality_impact": "preserve current",
+    "timeout_impact": "no new provider work",
+    "performance_impact": "none",
+    "prompt_token_impact": "none or unchanged",
+    "provider_request_impact": "0 added in Batch 1",
+    "implementation_priority": "P3",
+    "dependencies": [
+      "LCR Batch 1 freeze",
+      "offline evidence"
+    ],
+    "tests_required": [
+      "schema",
+      "boundary",
+      "quality regression",
+      "performance/timeout gate"
+    ],
+    "rollback_strategy": "disabled-by-default artifact rollback; preserve current NTPE path"
+  },
+  {
+    "capability": "pause_resume",
+    "legacy_value": "operator control",
+    "current_ntpe_status": "runtime checkpoints and scheduler journal",
+    "decision": "MERGE_WITH_CURRENT",
+    "reason": "UI pause should merge only through current runtime contracts",
+    "quality_impact": "direct",
+    "timeout_impact": "no new provider work",
+    "performance_impact": "benchmark required before activation",
+    "prompt_token_impact": "none or unchanged",
+    "provider_request_impact": "0 added in Batch 1",
+    "implementation_priority": "P3",
+    "dependencies": [
+      "LCR Batch 1 freeze",
+      "offline evidence"
+    ],
+    "tests_required": [
+      "schema",
+      "boundary",
+      "quality regression",
+      "performance/timeout gate"
+    ],
+    "rollback_strategy": "disabled-by-default artifact rollback; preserve current NTPE path"
+  },
+  {
+    "capability": "configuration_persistence",
+    "legacy_value": "reusable setup",
+    "current_ntpe_status": "current config/resources",
+    "decision": "MERGE_WITH_CURRENT",
+    "reason": "must explicitly exclude credentials",
+    "quality_impact": "direct",
+    "timeout_impact": "no new provider work",
+    "performance_impact": "benchmark required before activation",
+    "prompt_token_impact": "none or unchanged",
+    "provider_request_impact": "0 added in Batch 1",
+    "implementation_priority": "P3",
+    "dependencies": [
+      "LCR Batch 1 freeze",
+      "offline evidence"
+    ],
+    "tests_required": [
+      "schema",
+      "boundary",
+      "quality regression",
+      "performance/timeout gate"
+    ],
+    "rollback_strategy": "disabled-by-default artifact rollback; preserve current NTPE path"
+  },
+  {
+    "capability": "academic_degraded_fallback",
+    "legacy_value": "obtain output despite refusal/error",
+    "current_ntpe_status": "none",
+    "decision": "DROP_UNSAFE",
+    "reason": "conflicts with literary quality contract",
+    "quality_impact": "risk containment",
+    "timeout_impact": "no new provider work",
+    "performance_impact": "none",
+    "prompt_token_impact": "none or unchanged",
+    "provider_request_impact": "0 added in Batch 1",
+    "implementation_priority": "P3",
+    "dependencies": [
+      "LCR Batch 1 freeze",
+      "offline evidence"
+    ],
+    "tests_required": [
+      "schema",
+      "boundary",
+      "quality regression",
+      "performance/timeout gate"
+    ],
+    "rollback_strategy": "disabled-by-default artifact rollback; preserve current NTPE path"
+  },
+  {
+    "capability": "embedded_provider_credentials",
+    "legacy_value": "convenience",
+    "current_ntpe_status": "core/ai_provider/credentials.py",
+    "decision": "LICENSE_OR_SECURITY_BLOCKED",
+    "reason": "legacy credential pattern is forbidden",
+    "quality_impact": "risk containment",
+    "timeout_impact": "no new provider work",
+    "performance_impact": "none",
+    "prompt_token_impact": "none or unchanged",
+    "provider_request_impact": "0 added in Batch 1",
+    "implementation_priority": "P3",
+    "dependencies": [
+      "LCR Batch 1 freeze",
+      "offline evidence"
+    ],
+    "tests_required": [
+      "schema",
+      "boundary",
+      "quality regression",
+      "performance/timeout gate"
+    ],
+    "rollback_strategy": "disabled-by-default artifact rollback; preserve current NTPE path"
+  }
+]

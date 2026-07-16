@@ -1,0 +1,29 @@
+{
+  "archive_name": "NTPE_LCR_BATCH1_AUDIT.zip",
+  "archive_type": "allowlist_only",
+  "planned_entry_count": 24,
+  "included_roots": [
+    "audits/legacy_capability_recovery/batch1/",
+    "audits/legacy_capability_recovery/source_material/",
+    "ntpe_lcr_batch1_legacy_capability_recovery_audit_test.py",
+    "tests/integration/lcr_batch1_legacy_capability_recovery_audit_test.py"
+  ],
+  "exclusions": [
+    ".git",
+    "complete worktree",
+    "unredacted legacy originals",
+    "credentials",
+    "provider responses",
+    "other ZIP files"
+  ],
+  "requirements": {
+    "forward_slash_paths": true,
+    "utf8_filenames": true,
+    "sha256_verify_after_move": true,
+    "secret_scan": "PASS before packaging",
+    "path_traversal_entries": 0,
+    "duplicate_entries": 0,
+    "nested_zip_entries": 0
+  },
+  "note": "The final archive SHA-256 is reported externally because an archive cannot contain its own final hash without changing that hash."
+}

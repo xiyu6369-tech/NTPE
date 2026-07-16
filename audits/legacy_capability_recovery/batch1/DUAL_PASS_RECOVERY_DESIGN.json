@@ -1,0 +1,62 @@
+{
+  "status": "design_only",
+  "implemented": false,
+  "production_connected": false,
+  "shared_configuration": [
+    "draft_provider",
+    "draft_model",
+    "polish_provider",
+    "polish_model",
+    "same_model_allowed",
+    "provider_requests",
+    "timeout_budget",
+    "retry_policy",
+    "fallback_policy",
+    "quality_gate",
+    "semantic_rollback"
+  ],
+  "modes": {
+    "single_pass": {
+      "flow": [
+        "Source",
+        "Draft",
+        "Semantic/Quality Verification",
+        "Output"
+      ],
+      "provider_requests": 1,
+      "semantic_rollback": "reject output on blocking verification"
+    },
+    "dual_pass": {
+      "flow": [
+        "Source",
+        "Draft Model",
+        "Draft Verification",
+        "Polish Model",
+        "Post-polish Semantic Verification",
+        "Output"
+      ],
+      "provider_requests": 2,
+      "semantic_rollback": "return verified draft if polish changes meaning"
+    },
+    "selective_polish": {
+      "flow": [
+        "Source",
+        "Draft",
+        "Quality assessment",
+        "Polish only for naturalness/literary deficit",
+        "Semantic Verification",
+        "Output"
+      ],
+      "provider_requests": "1 normally; 2 only when admitted",
+      "semantic_rollback": "return verified draft"
+    }
+  },
+  "defaults": {
+    "same_model_allowed": true,
+    "retry_policy": "no cross-stage retry amplification",
+    "fallback_policy": "no style-degraded fallback",
+    "quality_gate": "offline-first and explicit admission",
+    "timeout_budget": "single bounded session budget"
+  },
+  "legacy_finding": "Legacy prompt described three internal steps but produced one opaque response; it was not a true dual pass."
+}

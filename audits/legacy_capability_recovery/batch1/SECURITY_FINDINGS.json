@@ -1,0 +1,13 @@
+{
+  "credential_exposure_detected": true,
+  "plaintext_api_key_detected": true,
+  "affected_source": "user-provided translate_realtime_v2.txt: NVIDIA_API_KEY assignment",
+  "redacted_copy_created": true,
+  "redacted_copy": "audits/legacy_capability_recovery/source_material/translate_realtime_v2_legacy.txt",
+  "key_value_saved": false,
+  "key_tested": false,
+  "rotation_recommended": true,
+  "authorization_header_saved": false,
+  "provider_response_saved": false,
+  "recommendation": "Rotate/revoke the exposed NVIDIA credential and use the current credential manager; do not reuse the legacy file."
+}

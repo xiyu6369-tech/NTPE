@@ -1,0 +1,36 @@
+LCR Batch 1 Legacy Capability Recovery Validation Report
+
+PASS  Preflight: clean worktree, tracked deletions=0, origin/main...main=0/0
+PASS  Legacy source ingestion: 2 redacted review copies
+PASS  Secret scan: no credential values or populated authorization headers
+PASS  Root Test: LCR Batch 1 Legacy Capability Recovery Audit ALL PASS
+PASS  Focused Integration: 12 passed
+PASS  TIC Batch 7 Offline Translation Quality Gate Integration ALL PASS
+PASS  TE v6.0.0 Final Release Freeze ALL PASS
+PASS  TE v7.1 Stage 11.8 Translation Quality Framework Freeze ALL PASS
+PASS  TE v7.2 Stage 12.1 Evidence-Based Prompt Quality Candidate ALL PASS
+PASS  Runtime regression: tests/runtime/translation_runtime_test.py, 2 passed
+PASS  Provider Security regression: tests/stage_14_6/test_provider_security.py, 5 passed
+PASS  Resume/Recovery regression: tests/runtime/translation_runtime_recovery_test.py, 3 passed
+PASS  Output regression: tests/lts_stage_05/test_output_formatter.py, 5 passed
+PASS  ntpe_validate.py: ALL PASS; 2310 Python files compile; 592 pytest-style test files
+PASS  Frozen hash groups: Production, Runtime, Provider, Prompt, TIC Batch 7
+PASS  Boundary: Production/Runtime/Provider/Prompt/QA/TIC modifications=0
+
+provider_executed=false
+network_requests=0
+new_translation_generated=false
+production_code_modified=false
+runtime_modified=false
+provider_modified=false
+prompt_modified=false
+qa_engine_modified=false
+tic_modified=false
+legacy_source_code_integrated=false
+legacy_concepts_audited=true
+legacy_secrets_redacted=true
+character_memory_v2_implemented=false
+chunk_cache_v2_implemented=false
+dual_pass_implemented=false
+multilingual_profiles_implemented=false
+lcr_batch2_started=false

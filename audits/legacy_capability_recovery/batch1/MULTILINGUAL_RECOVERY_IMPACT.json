@@ -1,0 +1,293 @@
+{
+  "profiles": {
+    "ko": [
+      "omitted subjects and relationship inference",
+      "Hangul name/ordinary-noun ambiguity",
+      "speech level and honorifics"
+    ],
+    "ja": [
+      "omitted subjects",
+      "keigo and register",
+      "katakana proper-name policy"
+    ],
+    "en": [
+      "pronoun chains",
+      "tense/aspect",
+      "idiom and phrasal meaning"
+    ],
+    "target": "zh-Hant",
+    "shared_runtime_boundary": "Runtime/cache/resume/output remain language-agnostic; linguistic inference and name policies require versioned source-language profiles."
+  },
+  "capabilities": [
+    {
+      "capability": "character_memory",
+      "language_agnostic": false,
+      "ko_specific": false,
+      "ja_reusable": true,
+      "en_reusable": true,
+      "requires_language_profile": true,
+      "zh_hant_target": true,
+      "impact": "Use shared runtime mechanics but source-language-specific evidence/name/register rules."
+    },
+    {
+      "capability": "dynamic_character_extraction",
+      "language_agnostic": true,
+      "ko_specific": false,
+      "ja_reusable": false,
+      "en_reusable": false,
+      "requires_language_profile": false,
+      "zh_hant_target": true,
+      "impact": "No language-specific runtime fork required."
+    },
+    {
+      "capability": "character_voice_memory",
+      "language_agnostic": false,
+      "ko_specific": false,
+      "ja_reusable": true,
+      "en_reusable": true,
+      "requires_language_profile": true,
+      "zh_hant_target": true,
+      "impact": "Use shared runtime mechanics but source-language-specific evidence/name/register rules."
+    },
+    {
+      "capability": "previous_translation_context",
+      "language_agnostic": false,
+      "ko_specific": false,
+      "ja_reusable": true,
+      "en_reusable": true,
+      "requires_language_profile": true,
+      "zh_hant_target": true,
+      "impact": "Use shared runtime mechanics but source-language-specific evidence/name/register rules."
+    },
+    {
+      "capability": "scene_memory",
+      "language_agnostic": false,
+      "ko_specific": false,
+      "ja_reusable": true,
+      "en_reusable": true,
+      "requires_language_profile": true,
+      "zh_hant_target": true,
+      "impact": "Use shared runtime mechanics but source-language-specific evidence/name/register rules."
+    },
+    {
+      "capability": "narrative_memory",
+      "language_agnostic": false,
+      "ko_specific": false,
+      "ja_reusable": true,
+      "en_reusable": true,
+      "requires_language_profile": true,
+      "zh_hant_target": true,
+      "impact": "Use shared runtime mechanics but source-language-specific evidence/name/register rules."
+    },
+    {
+      "capability": "chunk_splitting",
+      "language_agnostic": true,
+      "ko_specific": false,
+      "ja_reusable": false,
+      "en_reusable": false,
+      "requires_language_profile": false,
+      "zh_hant_target": true,
+      "impact": "No language-specific runtime fork required."
+    },
+    {
+      "capability": "chunk_cache",
+      "language_agnostic": true,
+      "ko_specific": false,
+      "ja_reusable": false,
+      "en_reusable": false,
+      "requires_language_profile": false,
+      "zh_hant_target": true,
+      "impact": "No language-specific runtime fork required."
+    },
+    {
+      "capability": "resume_recovery",
+      "language_agnostic": true,
+      "ko_specific": false,
+      "ja_reusable": false,
+      "en_reusable": false,
+      "requires_language_profile": false,
+      "zh_hant_target": true,
+      "impact": "No language-specific runtime fork required."
+    },
+    {
+      "capability": "realtime_output_assembly",
+      "language_agnostic": true,
+      "ko_specific": false,
+      "ja_reusable": false,
+      "en_reusable": false,
+      "requires_language_profile": false,
+      "zh_hant_target": true,
+      "impact": "No language-specific runtime fork required."
+    },
+    {
+      "capability": "glossary_enforcement",
+      "language_agnostic": false,
+      "ko_specific": true,
+      "ja_reusable": false,
+      "en_reusable": false,
+      "requires_language_profile": true,
+      "zh_hant_target": true,
+      "impact": "Use shared runtime mechanics but source-language-specific evidence/name/register rules."
+    },
+    {
+      "capability": "unknown_name_handling",
+      "language_agnostic": false,
+      "ko_specific": true,
+      "ja_reusable": false,
+      "en_reusable": false,
+      "requires_language_profile": true,
+      "zh_hant_target": true,
+      "impact": "Use shared runtime mechanics but source-language-specific evidence/name/register rules."
+    },
+    {
+      "capability": "provider_fallback",
+      "language_agnostic": true,
+      "ko_specific": false,
+      "ja_reusable": false,
+      "en_reusable": false,
+      "requires_language_profile": false,
+      "zh_hant_target": true,
+      "impact": "No language-specific runtime fork required."
+    },
+    {
+      "capability": "multi_provider_routing",
+      "language_agnostic": true,
+      "ko_specific": false,
+      "ja_reusable": false,
+      "en_reusable": false,
+      "requires_language_profile": false,
+      "zh_hant_target": true,
+      "impact": "No language-specific runtime fork required."
+    },
+    {
+      "capability": "dual_model_workflow",
+      "language_agnostic": true,
+      "ko_specific": false,
+      "ja_reusable": false,
+      "en_reusable": false,
+      "requires_language_profile": false,
+      "zh_hant_target": true,
+      "impact": "No language-specific runtime fork required."
+    },
+    {
+      "capability": "draft_translation",
+      "language_agnostic": true,
+      "ko_specific": false,
+      "ja_reusable": false,
+      "en_reusable": false,
+      "requires_language_profile": false,
+      "zh_hant_target": true,
+      "impact": "No language-specific runtime fork required."
+    },
+    {
+      "capability": "polish_workflow",
+      "language_agnostic": false,
+      "ko_specific": false,
+      "ja_reusable": true,
+      "en_reusable": true,
+      "requires_language_profile": true,
+      "zh_hant_target": true,
+      "impact": "Use shared runtime mechanics but source-language-specific evidence/name/register rules."
+    },
+    {
+      "capability": "semantic_verification",
+      "language_agnostic": false,
+      "ko_specific": false,
+      "ja_reusable": true,
+      "en_reusable": true,
+      "requires_language_profile": true,
+      "zh_hant_target": true,
+      "impact": "Use shared runtime mechanics but source-language-specific evidence/name/register rules."
+    },
+    {
+      "capability": "quality_retry",
+      "language_agnostic": true,
+      "ko_specific": false,
+      "ja_reusable": false,
+      "en_reusable": false,
+      "requires_language_profile": false,
+      "zh_hant_target": true,
+      "impact": "No language-specific runtime fork required."
+    },
+    {
+      "capability": "basic_output_validation",
+      "language_agnostic": true,
+      "ko_specific": false,
+      "ja_reusable": false,
+      "en_reusable": false,
+      "requires_language_profile": false,
+      "zh_hant_target": true,
+      "impact": "No language-specific runtime fork required."
+    },
+    {
+      "capability": "encoding_detection",
+      "language_agnostic": true,
+      "ko_specific": false,
+      "ja_reusable": false,
+      "en_reusable": false,
+      "requires_language_profile": false,
+      "zh_hant_target": true,
+      "impact": "No language-specific runtime fork required."
+    },
+    {
+      "capability": "gui_workflow",
+      "language_agnostic": true,
+      "ko_specific": false,
+      "ja_reusable": false,
+      "en_reusable": false,
+      "requires_language_profile": false,
+      "zh_hant_target": true,
+      "impact": "No language-specific runtime fork required."
+    },
+    {
+      "capability": "batch_processing",
+      "language_agnostic": true,
+      "ko_specific": false,
+      "ja_reusable": false,
+      "en_reusable": false,
+      "requires_language_profile": false,
+      "zh_hant_target": true,
+      "impact": "No language-specific runtime fork required."
+    },
+    {
+      "capability": "pause_resume",
+      "language_agnostic": true,
+      "ko_specific": false,
+      "ja_reusable": false,
+      "en_reusable": false,
+      "requires_language_profile": false,
+      "zh_hant_target": true,
+      "impact": "No language-specific runtime fork required."
+    },
+    {
+      "capability": "configuration_persistence",
+      "language_agnostic": true,
+      "ko_specific": false,
+      "ja_reusable": false,
+      "en_reusable": false,
+      "requires_language_profile": false,
+      "zh_hant_target": true,
+      "impact": "No language-specific runtime fork required."
+    },
+    {
+      "capability": "academic_degraded_fallback",
+      "language_agnostic": true,
+      "ko_specific": false,
+      "ja_reusable": false,
+      "en_reusable": false,
+      "requires_language_profile": false,
+      "zh_hant_target": true,
+      "impact": "No language-specific runtime fork required."
+    },
+    {
+      "capability": "embedded_provider_credentials",
+      "language_agnostic": true,
+      "ko_specific": false,
+      "ja_reusable": false,
+      "en_reusable": false,
+      "requires_language_profile": false,
+      "zh_hant_target": true,
+      "impact": "No language-specific runtime fork required."
+    }
+  ]
+}

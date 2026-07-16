@@ -1,0 +1,22 @@
+LCR Batch 1 Git Boundary Report
+
+PASS  git diff --check: no output
+PASS  git diff --name-status: no tracked modifications
+PASS  git diff --stat: empty because all Batch 1 files are new and untracked
+PASS  git ls-files --deleted: no output
+PASS  git status --short --untracked-files=all: only Batch 1 allowlist paths
+PASS  tracked deletions: 0
+PASS  production modifications: 0
+PASS  runtime modifications: 0
+PASS  provider modifications: 0
+PASS  prompt modifications: 0
+PASS  QA Engine modifications: 0
+PASS  TIC modifications: 0
+
+Allowed additions:
+- audits/legacy_capability_recovery/batch1/
+- audits/legacy_capability_recovery/source_material/
+- ntpe_lcr_batch1_legacy_capability_recovery_audit_test.py
+- tests/integration/lcr_batch1_legacy_capability_recovery_audit_test.py
+
+No commit, push, or tag was performed.
