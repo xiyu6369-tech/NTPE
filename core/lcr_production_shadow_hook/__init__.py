@@ -19,5 +19,9 @@ from .models import (
     ExtendedShadowGate, HookEvidence, HookOutcome, HOOK_SYMBOL, HOOK_VERSION,
 )
 from .validation import evaluate_character_memory_shadow_gate, evaluate_context_scene_shadow_gate, evaluate_dual_pass_semantic_shadow_gate, evaluate_extended_shadow_gate
+from .single_chunk_execution_authorization import SingleChunkExecutionAuthorization, authorization_fingerprint, seal_authorization, validate_execution_authorization
+from .execution_review_result import ExecutionReviewResult, SingleChunkExecutionTarget
+from .review_candidate_artifact import build_review_artifact, write_review_artifact
+from .single_chunk_dual_pass_executor import EXECUTION_FLAG, PREPARATION_FLAG, execute_single_chunk_dual_pass_review, resolve_execution_flags
 
 __all__ = [name for name in globals() if not name.startswith("_")]
