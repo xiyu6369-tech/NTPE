@@ -1,0 +1,12 @@
+{
+  "character_memory_flag_behavior_unchanged": true,
+  "default": false,
+  "flag": "LCR_CONTEXT_SCENE_SHADOW",
+  "invalid_missing_unknown": false,
+  "priority": [
+    "LCR_KILL_SWITCH",
+    "LCR_SHADOW_ENABLED",
+    "LCR_CONTEXT_SCENE_SHADOW"
+  ],
+  "status": "PASS"
+}

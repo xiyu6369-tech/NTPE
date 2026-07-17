@@ -1,0 +1,27 @@
+{
+  "measurements_ms": {
+    "100_conflict_selections_ms": 40.806,
+    "100_default_off_calls_ms": 0.58,
+    "100_evidence_assemblies_ms": 2.33,
+    "100_no_context_calls_ms": 7.12,
+    "100_previous_translation_checks_ms": 37.969,
+    "100_timeout_busy_isolation_calls_ms": 240.465,
+    "100_valid_selections_ms": 40.543,
+    "single_hook_max_ms": 20.8491,
+    "single_hook_p95_ms": 3.96731,
+    "single_selection_p95_ms": 0.74793,
+    "three_deterministic_runs_ms": 109.474
+  },
+  "recommended_thresholds_ms": {
+    "100_conflict_selections_ms": 125,
+    "100_default_off_calls_ms": 10,
+    "100_evidence_assemblies_ms": 50,
+    "100_no_context_calls_ms": 50,
+    "100_previous_translation_checks_ms": 75,
+    "100_valid_selections_ms": 125,
+    "single_hook_max_ms": 25,
+    "single_hook_p95_ms": 10,
+    "three_deterministic_runs_ms": 1000
+  },
+  "status": "PASS"
+}

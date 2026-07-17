@@ -1,0 +1,12 @@
+{
+  "approved_character_id_reference_allowed": true,
+  "character_memory_extends_temporary_scene_state": false,
+  "combined_context_fingerprint": "e215586a69978dfed98de32175d3af6ce847c3c367756fb89a45a5070f69948b",
+  "context_scene_selection_fingerprint": "2a2a5be7f9ff32c5db5fcee697b2d86caa45ac4726735e3b22d033678351e917",
+  "full_character_store_copied": false,
+  "one_way_read_only": true,
+  "safe_when_character_shadow_disabled": true,
+  "scene_overwrites_character_memory": false,
+  "status": "PASS",
+  "unknown_character_metadata_inferred": false
+}

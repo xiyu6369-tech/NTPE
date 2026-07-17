@@ -1,0 +1,85 @@
+{
+  "active_speaker_status": "present",
+  "available_records": 6,
+  "batch3_public_api_only": true,
+  "budget": 256,
+  "cache_hit_applied": false,
+  "cache_identity_applied": false,
+  "cache_identity_impact_planned": true,
+  "chapter_id": "chapter-1",
+  "combined_context_fingerprint": "e215586a69978dfed98de32175d3af6ce847c3c367756fb89a45a5070f69948b",
+  "conflict_excluded": 2,
+  "context_injected": false,
+  "drop_reasons": {
+    "conflict": 2,
+    "expired": 1,
+    "ineligible_inference": 1
+  },
+  "dropped_records": 4,
+  "duplicate_savings": 0,
+  "duration_ms": 0.295,
+  "eligible_records": 5,
+  "estimated_tokens": 41,
+  "exited_character_ids": [
+    "char-exited"
+  ],
+  "expired_excluded": 1,
+  "inference_excluded": 1,
+  "location_state_present": true,
+  "mentioned_character_ids": [
+    "char-mentioned"
+  ],
+  "module": "context_scene",
+  "participant_counts": {
+    "exited_scene": 1,
+    "mentioned": 1,
+    "present": 1
+  },
+  "point_of_view_status": "present",
+  "present_character_ids": [
+    "char-present"
+  ],
+  "previous_translation_candidate": true,
+  "previous_translation_injected": false,
+  "previous_translation_selected": true,
+  "production_output_changed": false,
+  "prompt_modified": false,
+  "provider_skipped": false,
+  "result_discarded": false,
+  "scene_id": "scene-1",
+  "scene_state_applied": false,
+  "scene_version": 7,
+  "selected_context_ids": [
+    "ctx_eb2922552c7b1cd2c499fd12",
+    "participant:scene-1:char-mentioned",
+    "participant:scene-1:char-present",
+    "ref_26ed720f383292c9e0d6e8dc",
+    "ctx_27bed6ec9d2c39aae82fe7de"
+  ],
+  "selected_context_types": [
+    "other",
+    "scene_participant",
+    "scene_participant",
+    "unresolved_reference",
+    "previous_translation_excerpt"
+  ],
+  "selected_fingerprint": "2a2a5be7f9ff32c5db5fcee697b2d86caa45ac4726735e3b22d033678351e917",
+  "selected_records": 5,
+  "selected_values_persisted": false,
+  "shadow_status": "selected",
+  "snapshot_id": "context-snapshot-1",
+  "stale_excluded": 0,
+  "status": "PASS",
+  "store_fingerprint": "52ca38b18dfda431ce6643e5bd06206832448d650b0bd0f7f1990a35e40efb18",
+  "time_state_present": true,
+  "unresolved_reference_count": 1,
+  "unresolved_reference_evidence": [
+    {
+      "candidate_count": 2,
+      "evidence_type": "source_observation",
+      "reference_id": "ref_26ed720f383292c9e0d6e8dc",
+      "resolution_status": "unresolved",
+      "scope": "scene-1"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "credential_stored": false,
+  "evidence_excerpt_redacted": true,
+  "files_scanned": 33,
+  "findings": [],
+  "full_context_store_in_snapshot": false,
+  "full_previous_translation_stored": false,
+  "metadata_only_production_snapshot": true,
+  "path_traversal_rejected": true,
+  "prompt_stored": false,
+  "provider_payload_stored": false,
+  "source_text_stored": false,
+  "status": "PASS",
+  "symlink_escape_rejected": true,
+  "translation_text_stored": false
+}

@@ -1,0 +1,8 @@
+{
+  "created_at_excluded_from_fingerprint": true,
+  "drop_reasons_equal": true,
+  "fingerprints_equal": true,
+  "runs": 3,
+  "selections_equal": true,
+  "status": "PASS"
+}

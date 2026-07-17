@@ -1,0 +1,17 @@
+{
+  "ai_inference_resolved": false,
+  "auto_resolved": false,
+  "full_sensitive_text_persisted": false,
+  "multiple_candidates_preserved": true,
+  "references": [
+    {
+      "candidate_count": 2,
+      "evidence_type": "source_observation",
+      "reference_id": "ref_26ed720f383292c9e0d6e8dc",
+      "resolution_status": "unresolved",
+      "scope": "scene-1"
+    }
+  ],
+  "status": "PASS",
+  "unresolved_reference_count": 1
+}

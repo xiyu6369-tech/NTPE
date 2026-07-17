@@ -1,0 +1,20 @@
+[NTPE_VALIDATE]
+$ D:\Python\python.exe ntpe_validate.py
+====================================
+NTPE Project Validation Report
+====================================
+Root: D:\Python\NTPE
+Elapsed: 33.46s
+------------------------------------
+Required directories   PASS  6 directories found
+Legacy entrypoints     PASS  4 entrypoints found
+Core imports           PASS  7 required imports OK
+Optional imports       PASS  4 optional imports OK
+Python compile         PASS  2468 Python files compile
+Python cache           PASS  No Python cache artifacts found
+Test inventory         PASS  616 pytest-style test files found
+Root Python layout     PASS  319 root Python scripts checked
+------------------------------------
+ALL PASS
+
+EXIT_CODE=0

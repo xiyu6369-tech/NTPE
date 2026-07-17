@@ -1,0 +1,15 @@
+{
+  "character_store_hash_unchanged": true,
+  "context_store_hash_unchanged": true,
+  "credential_present": false,
+  "defensive_copy_before_submit": true,
+  "evidence_excerpt_redacted": true,
+  "full_previous_translation_present": false,
+  "production_snapshot_metadata_only": true,
+  "prompt_present": false,
+  "provider_payload_present": false,
+  "records_frozen": true,
+  "source_text_present": false,
+  "status": "PASS",
+  "translation_present": false
+}

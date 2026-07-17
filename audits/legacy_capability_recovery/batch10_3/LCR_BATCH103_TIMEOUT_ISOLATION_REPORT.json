@@ -1,0 +1,15 @@
+{
+  "accepted_delta": 1,
+  "busy_calls_degraded": true,
+  "busy_rejected_delta": 99,
+  "caller_deadline_enforced": true,
+  "first_call_timed_out": true,
+  "idle_after_release": true,
+  "late_evidence_writes": 0,
+  "late_results_discarded_delta": 1,
+  "maximum_in_flight": 1,
+  "queue_capacity": 1,
+  "status": "PASS",
+  "waiting_backlog": 0,
+  "worker_count": 1
+}

@@ -7,6 +7,7 @@ from typing import Mapping
 GLOBAL_FLAG = "LCR_SHADOW_ENABLED"
 KILL_SWITCH = "LCR_KILL_SWITCH"
 CHARACTER_MEMORY_FLAG = "LCR_CHARACTER_MEMORY_SHADOW"
+CONTEXT_SCENE_FLAG = "LCR_CONTEXT_SCENE_SHADOW"
 
 
 def _parse(value: object, *, default: bool) -> bool:
@@ -29,15 +30,18 @@ def resolve_hook_flags(values: Mapping[str, object] | None = None) -> dict[str, 
         kill_switch = _parse(source.get(KILL_SWITCH), default=True)
         shadow_enabled = _parse(source.get(GLOBAL_FLAG), default=False)
         character_memory_enabled = _parse(source.get(CHARACTER_MEMORY_FLAG), default=False)
+        context_scene_enabled = _parse(source.get(CONTEXT_SCENE_FLAG), default=False)
     except Exception:
-        return {GLOBAL_FLAG: False, CHARACTER_MEMORY_FLAG: False, KILL_SWITCH: True}
+        return {GLOBAL_FLAG: False, CHARACTER_MEMORY_FLAG: False, CONTEXT_SCENE_FLAG: False, KILL_SWITCH: True}
     if kill_switch:
         shadow_enabled = False
     if not shadow_enabled:
         character_memory_enabled = False
+        context_scene_enabled = False
     return {
         GLOBAL_FLAG: shadow_enabled,
         CHARACTER_MEMORY_FLAG: character_memory_enabled,
+        CONTEXT_SCENE_FLAG: context_scene_enabled,
         KILL_SWITCH: kill_switch,
     }
 

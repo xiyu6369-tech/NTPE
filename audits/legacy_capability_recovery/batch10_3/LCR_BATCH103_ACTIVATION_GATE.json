@@ -1,0 +1,32 @@
+{
+  "active_production_authorized": false,
+  "next_step_requires_manual_approval": true,
+  "reasons": [],
+  "requirements": {
+    "all_regressions_pass": true,
+    "cache_identity_applied_false": true,
+    "character_store_unchanged": true,
+    "context_injected_false": true,
+    "context_scene_flag_default_false": true,
+    "context_store_unchanged": true,
+    "deadline_isolation_pass": true,
+    "immutable_snapshot_verified": true,
+    "kill_switch_default_true": true,
+    "late_result_writes_zero": true,
+    "manual_approval_present": true,
+    "network_requests_zero": true,
+    "output_unchanged": true,
+    "previous_translation_injected_false": true,
+    "production_wrapper_unchanged": true,
+    "prompt_identity_unchanged": true,
+    "provider_identity_unchanged": true,
+    "provider_requests_zero": true,
+    "queue_bounded": true,
+    "resume_unchanged": true,
+    "scene_state_applied_false": true,
+    "security_pass": true,
+    "single_production_hook_unchanged": true,
+    "worker_bounded": true
+  },
+  "status": "ready_for_dual_pass_shadow"
+}

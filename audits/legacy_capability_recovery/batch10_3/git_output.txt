@@ -1,0 +1,37 @@
+$ git diff --check
+
+$ git ls-files --deleted
+
+$ git status --short
+ M core/lcr_production_shadow_hook/__init__.py
+ M core/lcr_production_shadow_hook/feature_flags.py
+ M core/lcr_production_shadow_hook/hook.py
+ M core/lcr_production_shadow_hook/models.py
+ M core/lcr_production_shadow_hook/validation.py
+?? audits/legacy_capability_recovery/batch10_3/
+?? core/lcr_production_shadow_hook/context_scene_shadow.py
+?? ntpe_lcr_batch103_context_scene_shadow_test.py
+?? tests/fixtures/lcr_batch103/
+?? tests/integration/lcr_batch103_context_scene_shadow_integration_test.py
+?? tests/unit/test_lcr_context_scene_shadow.py
+
+$ git diff --stat
+ core/lcr_production_shadow_hook/__init__.py      | 10 ++-
+ core/lcr_production_shadow_hook/feature_flags.py |  6 +-
+ core/lcr_production_shadow_hook/hook.py          | 63 ++++++++++++++++++-
+ core/lcr_production_shadow_hook/models.py        | 79 +++++++++++++++++++++++-
+ core/lcr_production_shadow_hook/validation.py    | 24 +++++++
+ 5 files changed, 174 insertions(+), 8 deletions(-)
+
+$ git diff --name-status
+M	core/lcr_production_shadow_hook/__init__.py
+M	core/lcr_production_shadow_hook/feature_flags.py
+M	core/lcr_production_shadow_hook/hook.py
+M	core/lcr_production_shadow_hook/models.py
+M	core/lcr_production_shadow_hook/validation.py
+
+$ git rev-list --left-right --count origin/main...main
+0	0
+
+$ git log -1 --oneline
+127f1df LCR Batch 10.2: Add read-only Character Memory shadow

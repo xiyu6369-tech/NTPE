@@ -3,11 +3,13 @@ from __future__ import annotations
 import hashlib
 import json
 import time
+from dataclasses import replace
 from datetime import datetime, timezone
 from types import MappingProxyType
 from typing import Callable, Mapping, Sequence
 
 from core.character_memory_v2 import MemoryStore
+from core.context_scene_memory import ContextMemoryStore
 
 from core.lcr_production_shadow import create_shadow_input, deterministic_fingerprint, run_lcr_production_shadow
 
@@ -19,8 +21,12 @@ from .character_memory_shadow import (
     evaluate_character_memory_shadow,
 )
 from .evidence_sink import DisabledEvidenceSink
-from .feature_flags import CHARACTER_MEMORY_FLAG, GLOBAL_FLAG, KILL_SWITCH, minimal_shadow_flags, resolve_hook_flags
-from .models import CharacterMemoryShadowInput, HOOK_SYMBOL, HOOK_VERSION, HookEvidence, HookOutcome
+from .context_scene_shadow import (
+    DEFAULT_CONTEXT_SCENE_SHADOW_BUDGET, build_context_scene_shadow_input,
+    empty_context_scene_result, evaluate_context_scene_shadow,
+)
+from .feature_flags import CHARACTER_MEMORY_FLAG, CONTEXT_SCENE_FLAG, GLOBAL_FLAG, KILL_SWITCH, minimal_shadow_flags, resolve_hook_flags
+from .models import ContextSceneShadowInput, CharacterMemoryShadowInput, HOOK_SYMBOL, HOOK_VERSION, HookEvidence, HookOutcome
 
 
 SOFT_BUDGET_MS = 10.0
@@ -168,6 +174,8 @@ def _compute_shadow_outcome(
     package_hash: str,
     character_snapshot: CharacterMemoryShadowInput | None,
     character_pre_status: str,
+    context_snapshot: ContextSceneShadowInput | None,
+    context_pre_status: str,
     clock_ns: Callable[[], int],
     created_at_factory: Callable[[], str] | None,
 ) -> HookOutcome:
@@ -203,6 +211,20 @@ def _compute_shadow_outcome(
                 character_snapshot, now=character_snapshot.created_at or None,
             )
             modules = (*modules, "character_memory")
+        context_result = None
+        if context_pre_status:
+            context_result = empty_context_scene_result(status=context_pre_status)
+            modules = (*modules, "context_scene")
+        elif context_snapshot is not None:
+            if character_result is not None and character_result.selected_fingerprint:
+                context_snapshot = replace(
+                    context_snapshot,
+                    character_memory_selection_fingerprint=character_result.selected_fingerprint,
+                )
+            context_result = evaluate_context_scene_shadow(
+                context_snapshot, now=context_snapshot.created_at or None,
+            )
+            modules = (*modules, "context_scene")
         after = before
         duration_ms = max(0.0, (clock_ns() - started) / 1_000_000)
         warnings = list(result.warnings)
@@ -228,6 +250,7 @@ def _compute_shadow_outcome(
             duration_ms=round(duration_ms, 6),
             created_at=created_at,
             character_memory=character_result,
+            context_scene=context_result,
         )
         return HookOutcome(
             status, True, evidence, before, after,
@@ -253,6 +276,16 @@ def run_read_only_lcr_shadow_hook(
     character_memory_snapshot_id: str | None = None,
     character_memory_scope: Mapping[str, str] | None = None,
     character_memory_token_budget: int = DEFAULT_SHADOW_SELECTION_BUDGET,
+    context_scene_store: ContextMemoryStore | None = None,
+    context_scene_snapshot_id: str | None = None,
+    chapter_id: str | None = None,
+    scene_id: str | None = None,
+    sequence_index: int | None = None,
+    context_scene_scope: Mapping[str, str] | None = None,
+    context_scene_token_budget: int = DEFAULT_CONTEXT_SCENE_SHADOW_BUDGET,
+    previous_translation_allowed: bool = False,
+    expected_previous_translation_hash: str = "",
+    character_memory_selection_fingerprint: str = "",
 ) -> HookOutcome:
     """Run the single metadata-only hook; every failure preserves baseline behavior."""
     try:
@@ -291,12 +324,36 @@ def run_read_only_lcr_shadow_hook(
                 )
             except Exception:
                 character_pre_status = "invalid"
+    context_snapshot = None
+    context_pre_status = ""
+    if flags[CONTEXT_SCENE_FLAG]:
+        if (context_scene_store is None or context_scene_snapshot_id is None or chapter_id is None
+                or scene_id is None or sequence_index is None):
+            context_pre_status = "metadata_unavailable"
+        else:
+            try:
+                metadata = production_snapshot
+                context_snapshot = build_context_scene_shadow_input(
+                    context_scene_store,
+                    document_id=str(metadata["document_id"]), chunk_index=int(metadata["chunk_index"]),
+                    source_language=str(metadata["source_language"]), target_language=str(metadata["target_language"]),
+                    chapter_id=chapter_id, scene_id=scene_id, sequence_index=sequence_index,
+                    character_ids=character_ids or (), snapshot_id=context_scene_snapshot_id,
+                    scope=context_scene_scope, token_budget=context_scene_token_budget,
+                    previous_translation_allowed=previous_translation_allowed,
+                    expected_previous_translation_hash=expected_previous_translation_hash,
+                    character_memory_selection_fingerprint=character_memory_selection_fingerprint,
+                    created_at=(created_at_factory or (lambda: ""))(),
+                )
+            except Exception:
+                context_pre_status = "invalid"
 
     caller_started = time.perf_counter_ns()
     submission = SHADOW_EXECUTOR.submit(
         lambda: _compute_shadow_outcome(
             production_snapshot, package_hash=package_hash, character_snapshot=character_snapshot,
-            character_pre_status=character_pre_status,
+            character_pre_status=character_pre_status, context_snapshot=context_snapshot,
+            context_pre_status=context_pre_status,
             clock_ns=clock_ns, created_at_factory=created_at_factory,
         ),
         wait_ms=CALLER_WAIT_BUDGET_MS,

@@ -1,0 +1,21 @@
+{
+  "available_records": 6,
+  "budget": 256,
+  "character_memory_shadow_budget": 128,
+  "combined_hypothetical_budget_max": 384,
+  "conflict_excluded": 2,
+  "drop_reasons": {
+    "conflict": 2,
+    "expired": 1,
+    "ineligible_inference": 1
+  },
+  "dropped_records": 4,
+  "duplicate_savings": 0,
+  "eligible_records": 5,
+  "estimated_tokens": 41,
+  "expired_excluded": 1,
+  "inference_excluded": 1,
+  "selected_records": 5,
+  "stale_excluded": 0,
+  "status": "PASS"
+}

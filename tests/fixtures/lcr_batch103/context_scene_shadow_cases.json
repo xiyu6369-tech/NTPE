@@ -1,0 +1,29 @@
+{
+  "batch": "LCR Batch 10.3",
+  "context_scene_shadow_default_enabled": false,
+  "context_budget": 256,
+  "character_budget": 128,
+  "combined_hypothetical_budget_max": 384,
+  "cases": [
+    "default_off",
+    "valid_scene_selection",
+    "scene_transition_scope",
+    "previous_translation_eligibility",
+    "unresolved_reference_preserved",
+    "immutable_stores",
+    "token_budget",
+    "fingerprint",
+    "timeout_isolation",
+    "busy_safe",
+    "security",
+    "activation_gate"
+  ],
+  "invariants": {
+    "context_injected": false,
+    "previous_translation_injected": false,
+    "scene_state_applied": false,
+    "cache_identity_applied": false,
+    "provider_requests": 0,
+    "network_requests": 0
+  }
+}

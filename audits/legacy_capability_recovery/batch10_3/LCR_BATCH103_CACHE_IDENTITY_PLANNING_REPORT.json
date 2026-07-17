@@ -1,0 +1,9 @@
+{
+  "cache_hit_applied": false,
+  "cache_identity_applied": false,
+  "cache_identity_impact_planned": true,
+  "combined_context_fingerprint": "e215586a69978dfed98de32175d3af6ce847c3c367756fb89a45a5070f69948b",
+  "context_scene_selection_fingerprint": "2a2a5be7f9ff32c5db5fcee697b2d86caa45ac4726735e3b22d033678351e917",
+  "provider_skipped": false,
+  "status": "PASS"
+}
