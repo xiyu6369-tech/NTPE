@@ -4,7 +4,7 @@ from dataclasses import dataclass
 from typing import Mapping
 
 
-HOOK_VERSION = "lcr-batch10.3-hook-1.0"
+HOOK_VERSION = "lcr-batch10.4-hook-1.0"
 HOOK_SYMBOL = "after_chunk_package_prepared"
 
 
@@ -24,6 +24,7 @@ class HookEvidence:
     created_at: str
     character_memory: "CharacterMemoryShadowResult | None" = None
     context_scene: "ContextSceneShadowResult | None" = None
+    dual_pass_semantic: "DualPassSemanticShadowResult | None" = None
 
 
 @dataclass(frozen=True)
@@ -167,6 +168,63 @@ class ContextSceneShadowResult:
     cache_hit_applied: bool = False
     provider_skipped: bool = False
     result_discarded: bool = False
+    duration_ms: float = 0.0
+
+
+@dataclass(frozen=True)
+class DualPassSemanticShadowInput:
+    chunk_id: str
+    chunk_index: int
+    source_hash: str
+    source_char_count: int
+    source_language_profile_id: str
+    target_language_profile_id: str
+    translation_hash: str
+    translation_char_count: int
+    quality_signal_summary: Mapping[str, object]
+    context_shadow_summary: Mapping[str, object]
+    character_shadow_summary: Mapping[str, object]
+    scene_shadow_summary: Mapping[str, object]
+    provider_metadata_summary: Mapping[str, object]
+    retry_metadata_summary: Mapping[str, object]
+    cache_metadata_summary: Mapping[str, object]
+    synthetic_semantic_fixture: Mapping[str, object] | None
+    created_at: str
+
+
+@dataclass(frozen=True)
+class DualPassSemanticShadowResult:
+    schema_version: str
+    batch: str
+    status: str
+    shadow_only: bool
+    active_integration: bool
+    eligibility: str
+    mode: str
+    eligible: bool
+    reason_codes: tuple[str, ...]
+    blocking_reasons: tuple[str, ...]
+    polish_scope: str
+    verification_required: bool
+    rollback_required: bool
+    manual_review_required: bool
+    semantic_result: str
+    checked_invariants: tuple[str, ...]
+    production_comparison: Mapping[str, object]
+    provider_executed: bool = False
+    network_requests: int = 0
+    new_translation_generated: bool = False
+    production_draft_generated: bool = False
+    production_polish_generated: bool = False
+    synthetic_planning_artifact_created: bool = True
+    synthetic_planning_artifact_applied: bool = False
+    draft_generated: bool = False
+    polish_generated: bool = False
+    translation_replaced: bool = False
+    prompt_modified: bool = False
+    resume_modified: bool = False
+    output_modified: bool = False
+    cache_modified: bool = False
     duration_ms: float = 0.0
 
 

@@ -63,6 +63,15 @@ CONTEXT_SCENE_REQUIREMENTS = (
     "security_pass", "all_regressions_pass", "manual_approval_present",
 )
 
+DUAL_PASS_SEMANTIC_REQUIREMENTS = (
+    "single_production_hook_unchanged", "production_wrapper_unchanged", "dual_pass_semantic_flag_default_false",
+    "kill_switch_default_true", "immutable_snapshot_verified", "prompt_unchanged", "provider_unchanged",
+    "retry_unchanged", "resume_unchanged", "output_unchanged", "cache_unchanged", "stores_unchanged",
+    "provider_requests_zero", "network_requests_zero", "draft_generated_false", "polish_generated_false",
+    "translation_replaced_false", "deadline_isolation_pass", "late_result_writes_zero", "worker_bounded",
+    "queue_bounded", "security_pass", "all_regressions_pass", "manual_approval_present",
+)
+
 
 def evaluate_extended_shadow_gate(evidence: Mapping[str, object]) -> ExtendedShadowGate:
     if not isinstance(evidence, Mapping):
@@ -101,3 +110,12 @@ def evaluate_context_scene_shadow_gate(evidence: Mapping[str, object]) -> Extend
     else:
         status = "ready_for_dual_pass_shadow" if not reasons else "not_ready"
     return ExtendedShadowGate(status, requirements, reasons, active_production_authorized=False)
+
+
+def evaluate_dual_pass_semantic_shadow_gate(evidence: Mapping[str, object]) -> ExtendedShadowGate:
+    if not isinstance(evidence, Mapping):
+        return ExtendedShadowGate("invalid", {}, ("invalid_evidence",))
+    requirements = {name: evidence.get(name) is True for name in DUAL_PASS_SEMANTIC_REQUIREMENTS}
+    missing = tuple(name for name in DUAL_PASS_SEMANTIC_REQUIREMENTS if name not in evidence)
+    reasons = tuple(name for name, value in requirements.items() if not value)
+    return ExtendedShadowGate("insufficient_evidence" if missing else ("ready_for_bounded_dual_pass_pilot" if not reasons else "not_ready"), requirements, reasons, active_production_authorized=False)

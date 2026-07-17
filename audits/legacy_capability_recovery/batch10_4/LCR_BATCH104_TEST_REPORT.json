@@ -1,0 +1,1 @@
+{"status":"PASS_WITH_HISTORICAL_DESELECTIONS","batch104_root_unit_integration":"8 passed","batch2_3_5_6_102_103":"PASS","tic7":"PASS","te_v6_freeze":"PASS","te_v7_1_stage118":"PASS","te_v7_2_stage121":"PASS","validator":"PASS","historical_sentinels_deselected":["Batch 2/9/10/10.1 worktree allowlists", "two launcher import-time SystemExit tests"],"functional_failures":0}

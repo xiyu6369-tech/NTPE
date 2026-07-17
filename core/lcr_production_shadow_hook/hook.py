@@ -25,8 +25,9 @@ from .context_scene_shadow import (
     DEFAULT_CONTEXT_SCENE_SHADOW_BUDGET, build_context_scene_shadow_input,
     empty_context_scene_result, evaluate_context_scene_shadow,
 )
-from .feature_flags import CHARACTER_MEMORY_FLAG, CONTEXT_SCENE_FLAG, GLOBAL_FLAG, KILL_SWITCH, minimal_shadow_flags, resolve_hook_flags
-from .models import ContextSceneShadowInput, CharacterMemoryShadowInput, HOOK_SYMBOL, HOOK_VERSION, HookEvidence, HookOutcome
+from .dual_pass_semantic_shadow import build_dual_pass_semantic_shadow_input, empty_dual_pass_semantic_result, evaluate_dual_pass_semantic_shadow
+from .feature_flags import CHARACTER_MEMORY_FLAG, CONTEXT_SCENE_FLAG, DUAL_PASS_SEMANTIC_FLAG, GLOBAL_FLAG, KILL_SWITCH, minimal_shadow_flags, resolve_hook_flags
+from .models import ContextSceneShadowInput, CharacterMemoryShadowInput, DualPassSemanticShadowInput, HOOK_SYMBOL, HOOK_VERSION, HookEvidence, HookOutcome
 
 
 SOFT_BUDGET_MS = 10.0
@@ -176,6 +177,8 @@ def _compute_shadow_outcome(
     character_pre_status: str,
     context_snapshot: ContextSceneShadowInput | None,
     context_pre_status: str,
+    dual_pass_snapshot: DualPassSemanticShadowInput | None,
+    dual_pass_pre_status: str,
     clock_ns: Callable[[], int],
     created_at_factory: Callable[[], str] | None,
 ) -> HookOutcome:
@@ -225,6 +228,13 @@ def _compute_shadow_outcome(
                 context_snapshot, now=context_snapshot.created_at or None,
             )
             modules = (*modules, "context_scene")
+        dual_pass_result = None
+        if dual_pass_pre_status:
+            dual_pass_result = empty_dual_pass_semantic_result(dual_pass_pre_status)
+            modules = (*modules, "dual_pass_semantic")
+        elif dual_pass_snapshot is not None:
+            dual_pass_result = evaluate_dual_pass_semantic_shadow(dual_pass_snapshot)
+            modules = (*modules, "dual_pass_semantic")
         after = before
         duration_ms = max(0.0, (clock_ns() - started) / 1_000_000)
         warnings = list(result.warnings)
@@ -251,6 +261,7 @@ def _compute_shadow_outcome(
             created_at=created_at,
             character_memory=character_result,
             context_scene=context_result,
+            dual_pass_semantic=dual_pass_result,
         )
         return HookOutcome(
             status, True, evidence, before, after,
@@ -286,6 +297,7 @@ def run_read_only_lcr_shadow_hook(
     previous_translation_allowed: bool = False,
     expected_previous_translation_hash: str = "",
     character_memory_selection_fingerprint: str = "",
+    dual_pass_semantic_metadata: Mapping[str, object] | None = None,
 ) -> HookOutcome:
     """Run the single metadata-only hook; every failure preserves baseline behavior."""
     try:
@@ -347,6 +359,16 @@ def run_read_only_lcr_shadow_hook(
                 )
             except Exception:
                 context_pre_status = "invalid"
+    dual_pass_snapshot = None
+    dual_pass_pre_status = ""
+    if flags[DUAL_PASS_SEMANTIC_FLAG]:
+        if dual_pass_semantic_metadata is None:
+            dual_pass_pre_status = "metadata_unavailable"
+        else:
+            try:
+                dual_pass_snapshot = build_dual_pass_semantic_shadow_input(dual_pass_semantic_metadata)
+            except Exception:
+                dual_pass_pre_status = "invalid"
 
     caller_started = time.perf_counter_ns()
     submission = SHADOW_EXECUTOR.submit(
@@ -354,6 +376,7 @@ def run_read_only_lcr_shadow_hook(
             production_snapshot, package_hash=package_hash, character_snapshot=character_snapshot,
             character_pre_status=character_pre_status, context_snapshot=context_snapshot,
             context_pre_status=context_pre_status,
+            dual_pass_snapshot=dual_pass_snapshot, dual_pass_pre_status=dual_pass_pre_status,
             clock_ns=clock_ns, created_at_factory=created_at_factory,
         ),
         wait_ms=CALLER_WAIT_BUDGET_MS,
