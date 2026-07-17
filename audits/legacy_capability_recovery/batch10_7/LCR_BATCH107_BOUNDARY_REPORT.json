@@ -1,0 +1,27 @@
+{
+  "status": "PASS_AFTER_PROVIDER_FAILURE",
+  "offline_checks": "PASS",
+  "scope": {
+    "documents": 1,
+    "chunks": 1,
+    "providers": 1,
+    "models": 1,
+    "max_requests": 2,
+    "retry": 0,
+    "fallback": false,
+    "parallelism": 1
+  },
+  "formal_output_changed": false,
+  "resume_changed": false,
+  "production_cache_changed": false,
+  "character_store_changed": false,
+  "context_store_changed": false,
+  "production_wrapper_modified": false,
+  "second_production_hook_added": false,
+  "active_integration_enabled": false,
+  "automatic_rollout_enabled": false,
+  "provider_requests": 1,
+  "network_requests": 1,
+  "authorization_consumed": true,
+  "additional_execution_allowed": false
+}

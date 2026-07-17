@@ -23,5 +23,11 @@ from .single_chunk_execution_authorization import SingleChunkExecutionAuthorizat
 from .execution_review_result import ExecutionReviewResult, SingleChunkExecutionTarget
 from .review_candidate_artifact import build_review_artifact, write_review_artifact
 from .single_chunk_dual_pass_executor import EXECUTION_FLAG, PREPARATION_FLAG, execute_single_chunk_dual_pass_review, resolve_execution_flags
+from .batch107_real_provider_validation import (
+    Batch107ExecutionResult, Batch107Target, NvidiaBatch107Provider,
+    authorization_scope_fingerprint, execute_batch107, load_authorization,
+    load_execution_package, package_integrity_fingerprint, validate_execution_package,
+    validate_package_authorization,
+)
 
 __all__ = [name for name in globals() if not name.startswith("_")]

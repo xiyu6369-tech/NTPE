@@ -1,0 +1,28 @@
+{
+  "status": "provider_failed",
+  "offline_checks": "PASS",
+  "response_received": false,
+  "classification": "timeout",
+  "classification_basis": "inferred from the authorized 25-second read timeout and 25385.302 ms elapsed time; persisted exception type was RuntimeError",
+  "elapsed_milliseconds": 25385.302,
+  "provider_requests": 1,
+  "network_requests": 1,
+  "fail_closed_classes": [
+    "timeout",
+    "429",
+    "503",
+    "authentication_failure",
+    "malformed_response",
+    "empty_response",
+    "policy_refusal",
+    "truncated_response",
+    "hangul_residue_threshold_violation"
+  ],
+  "failure_policy": {
+    "retry": 0,
+    "fallback": false,
+    "formal_translation_retained": true
+  },
+  "retry_executed": false,
+  "fallback_executed": false
+}

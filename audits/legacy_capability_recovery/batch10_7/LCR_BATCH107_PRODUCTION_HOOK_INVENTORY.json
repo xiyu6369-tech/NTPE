@@ -1,0 +1,12 @@
+{
+  "status": "PASS_AFTER_PROVIDER_FAILURE",
+  "offline_checks": "PASS",
+  "production_hook_count": 1,
+  "hook_symbol": "after_chunk_package_prepared",
+  "hook_definition": "core/lcr_production_shadow_hook/models.py:8",
+  "unique_call": "core/adaptive_context_runtime_shadow/hook.py:71",
+  "batch107_added_second_hook": false,
+  "batch107_modified_production_wrapper": false,
+  "execution_entrypoint": "ntpe_lcr_batch107_real_provider_validation.py",
+  "entrypoint_kind": "standalone explicit manual command"
+}

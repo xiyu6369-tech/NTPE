@@ -1,0 +1,18 @@
+{
+  "status": "provider_failed",
+  "offline_checks": "PASS",
+  "public_api": "core.post_polish_semantic_verification.verify_post_polish_semantics",
+  "provider_executed": true,
+  "semantic_verification_executed": false,
+  "current_outcome": "provider_failed",
+  "reason": "draft candidate was not produced, so semantic verification was not reachable",
+  "allowed_outcomes": [
+    "verified_candidate",
+    "semantic_failed",
+    "insufficient_evidence",
+    "provider_failed",
+    "blocked"
+  ],
+  "production_translation_role": "exact identity and rollback baseline; never replaced",
+  "verified_candidate_policy": "isolated review artifact only"
+}

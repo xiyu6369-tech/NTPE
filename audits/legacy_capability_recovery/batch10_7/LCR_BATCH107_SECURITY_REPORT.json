@@ -1,0 +1,23 @@
+{
+  "status": "PASS_AFTER_PROVIDER_FAILURE",
+  "offline_checks": "PASS",
+  "default_execution_enabled": false,
+  "exact_authorization_required": true,
+  "authorization_expiration_enforced": true,
+  "package_integrity_enforced": true,
+  "source_and_production_hashes_recomputed": true,
+  "credential_missing_policy": "credential_unavailable with zero requests",
+  "credential_loader": "existing NVIDIA_API_KEY environment contract",
+  "global_timeout_override_allowed": false,
+  "path_traversal_test": "PASS",
+  "secret_scan_test": "PASS",
+  "artifact_atomicity_test": "PASS",
+  "sentinel_test": "PASS",
+  "real_provider_execution": true,
+  "provider_requests": 1,
+  "network_requests": 1,
+  "retry_count": 0,
+  "fallback_used": false,
+  "secret_scan_after_execution": "PASS",
+  "formal_output_resume_cache_store_unchanged": true
+}

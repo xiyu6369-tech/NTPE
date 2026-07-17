@@ -1,0 +1,22 @@
+{
+  "status": "provider_failed_no_candidate_artifact",
+  "offline_checks": "PASS",
+  "review_artifact_directory": "artifacts/lcr_batch107_review",
+  "artifact_written": false,
+  "write_policy": "verified candidate only; atomic digest-named JSON",
+  "execution_claim_policy": "atomic exclusive claim before first network request; prevents repeated use",
+  "execution_claim_path": "artifacts/lcr_batch107_review/execution-claim-54d4ed5171cee8b660335c03.json",
+  "execution_claim_sha256": "6a6b237c266d1de26aa2c408323c7327cfe810458e1b5a269655916e8250e237",
+  "path_safe": true,
+  "isolated": true,
+  "deterministic_schema": true,
+  "forbidden_content": [
+    "API key",
+    "Authorization header",
+    "full provider payload",
+    "full response headers",
+    "secret environment values"
+  ],
+  "manual_review_status": "provider_failure_review_required",
+  "candidate_review_artifact_path": null
+}

@@ -1,0 +1,30 @@
+{
+  "status": "PASS_POST_EXECUTION",
+  "offline_checks": "PASS",
+  "focused_suite": "22 passed",
+  "compatibility_suite": "135 passed",
+  "compatibility_scope": [
+    "LCR Batch 10.7",
+    "LCR Batch 10.6",
+    "LCR Batch 10.5",
+    "LCR Batch 10.4",
+    "LCR Batch 6 semantic verification"
+  ],
+  "ntpe_validate": "ALL PASS",
+  "python_files_compiled": 2492,
+  "pytest_style_test_files": 627,
+  "authorization_exact_match_test": "PASS",
+  "expired_authorization_test": "PASS",
+  "source_hash_mismatch_test": "PASS",
+  "production_translation_hash_mismatch_test": "PASS",
+  "request_budget_test": "PASS",
+  "third_request_impossible_test": "PASS",
+  "retry_fallback_disabled_test": "PASS",
+  "artifact_path_safety_test": "PASS",
+  "secret_scan_test": "PASS",
+  "formal_output_resume_cache_store_sentinels": "PASS",
+  "real_provider_execution": true,
+  "real_execution_outcome": "provider_failed",
+  "real_provider_requests": 1,
+  "real_network_requests": 1
+}

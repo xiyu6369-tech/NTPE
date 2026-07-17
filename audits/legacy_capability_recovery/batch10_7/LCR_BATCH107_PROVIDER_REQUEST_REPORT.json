@@ -1,0 +1,20 @@
+{
+  "status": "provider_failed",
+  "offline_checks": "PASS",
+  "provider": "nvidia",
+  "model": "meta/llama-3.3-70b-instruct",
+  "draft_request_allowed": true,
+  "optional_polish_request_allowed": true,
+  "planned_request_sequence": ["draft", "polish_if_authorized_and_planned"],
+  "provider_requests": 1,
+  "network_requests": 1,
+  "draft_request_status": "attempted_failed",
+  "polish_request_status": "not_run",
+  "real_provider_execution": true,
+  "third_request_structurally_reachable": false,
+  "retry_count": 0,
+  "fallback_used": false,
+  "credential_source": "NVIDIA_API_KEY environment variable at execution time only",
+  "credential_present_in_artifacts": false,
+  "authorization_consumed": true
+}

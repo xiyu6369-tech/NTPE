@@ -1,0 +1,23 @@
+{
+  "status": "execution_attempt_consumed_provider_failed",
+  "offline_checks": "PASS",
+  "package_path": "artifacts/lcr_batch107/LCR_BATCH107_REAL_PROVIDER_EXECUTION_PACKAGE.json",
+  "execution_id": "lcr-batch107-tic-case-b2-8ae44c56c7ad3de4a6fd-chunk-000001",
+  "document_count": 1,
+  "chunk_count": 1,
+  "provider_count": 1,
+  "model_count": 1,
+  "max_provider_requests": 2,
+  "max_network_requests": 2,
+  "retry_limit": 0,
+  "fallback_allowed": false,
+  "parallelism": 1,
+  "content_embedded": false,
+  "single_case_reference_only": true,
+  "package_integrity_sha256": "2fe4d0b5476f7cbb3cfa95963a51444275d3a537da6b9cd032871f7088d396fe",
+  "package_modified_for_execution": false,
+  "actual_provider_requests": 1,
+  "actual_network_requests": 1,
+  "api_key_stored": false,
+  "authorization_header_stored": false
+}

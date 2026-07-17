@@ -1,0 +1,17 @@
+{
+  "status": "explicit_single_chunk_real_provider_validation_failed",
+  "preparation_status": "PASS",
+  "prior_gate": "ready_for_explicit_single_chunk_real_provider_validation",
+  "real_provider_execution_performed": true,
+  "provider_requests": 1,
+  "network_requests": 1,
+  "active_production_authorized": false,
+  "formal_output_replacement_authorized": false,
+  "resume_write_authorized": false,
+  "cache_write_authorized": false,
+  "store_write_authorized": false,
+  "automatic_rollout_authorized": false,
+  "authorized_execution_consumed": true,
+  "activation_gate_advanced": false,
+  "next_status": "manual_provider_failure_review_required"
+}

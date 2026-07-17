@@ -1,0 +1,25 @@
+{
+  "status": "provider_failed_evidence_complete",
+  "offline_checks": "PASS",
+  "implementation": [
+    "core/lcr_production_shadow_hook/batch107_real_provider_validation.py",
+    "core/lcr_production_shadow_hook/__init__.py",
+    "ntpe_lcr_batch107_real_provider_validation.py"
+  ],
+  "package": "artifacts/lcr_batch107/LCR_BATCH107_REAL_PROVIDER_EXECUTION_PACKAGE.json",
+  "authorization": "artifacts/lcr_batch107/LCR_BATCH107_EXPLICIT_AUTHORIZATION.json",
+  "execution_claim": "artifacts/lcr_batch107_review/execution-claim-54d4ed5171cee8b660335c03.json",
+  "tests": [
+    "ntpe_lcr_batch107_pre_execution_package_test.py",
+    "tests/unit/test_lcr_batch107_real_provider_validation.py",
+    "tests/integration/lcr_batch107_pre_execution_package_integration_test.py"
+  ],
+  "audit_directory": "audits/legacy_capability_recovery/batch10_7",
+  "required_json_report_count": 12,
+  "execution_result_report": "audits/legacy_capability_recovery/batch10_7/LCR_BATCH107_EXECUTION_RESULT.json",
+  "manual_command_document": "audits/legacy_capability_recovery/batch10_7/LCR_BATCH107_MANUAL_EXECUTION_COMMAND.md",
+  "production_wrapper_modified": false,
+  "second_hook_added": false,
+  "commit_push_tag_performed": false,
+  "audit_zip": "NTPE_LCR_BATCH107_AUDIT.zip"
+}
