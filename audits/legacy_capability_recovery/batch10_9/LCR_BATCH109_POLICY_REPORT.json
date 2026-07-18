@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "policy_version": "1.0",
+  "failure_type_count": 19,
+  "retry_globally_forbidden": true,
+  "fallback_globally_forbidden": true,
+  "policies_with_retry_allowed": 0,
+  "policies_with_fallback_allowed": 0,
+  "decision_engine_deterministic": true,
+  "execution_policy_immutable": true,
+  "execution_decision_immutable": true,
+  "execution_summary_immutable": true,
+  "policy_relaxed": false
+}

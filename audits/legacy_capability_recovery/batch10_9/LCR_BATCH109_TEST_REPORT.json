@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "root_test": "ntpe_lcr_batch109_provider_failure_policy_freeze_test.py",
+  "integration_test": "tests/integration/test_lcr_batch109_provider_failure_policy_freeze.py",
+  "freeze_tests": "18 passed",
+  "compatibility_regression": "189 passed; Batch 6 semantic verification and LCR Batch 10.4 through 10.9",
+  "ntpe_validate": "ALL PASS; 2506 Python files compile; 631 pytest-style test files found",
+  "git_diff_check": "PASS",
+  "tracked_deletion_count": 0,
+  "provider_requests_added": 0,
+  "network_requests_added": 0
+}

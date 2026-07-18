@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "provider_requests_added": 0,
+  "network_requests_added": 0,
+  "prompt_modified": false,
+  "runtime_modified": false,
+  "provider_adapter_modified": false,
+  "output_modified": false,
+  "resume_modified": false,
+  "cache_modified": false,
+  "character_store_modified": false,
+  "context_store_modified": false,
+  "production_hook_count": 1,
+  "second_production_hook_added": false,
+  "production_integration": false,
+  "active_production_authorized": false,
+  "automatic_rollout_authorized": false
+}

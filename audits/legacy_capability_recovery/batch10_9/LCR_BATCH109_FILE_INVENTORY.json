@@ -1,0 +1,24 @@
+{
+  "status": "PASS",
+  "freeze_metadata": "core/provider_failure_characterization/freeze.py",
+  "public_export_modified": "core/provider_failure_characterization/__init__.py",
+  "manifest": "manifests/lcr_batch109_provider_failure_policy_freeze_manifest.json",
+  "manifest_ignored_by_default": true,
+  "manifest_requires_force_add_if_committed": true,
+  "release_document": "docs/releases/lcr/LCR_BATCH109_PROVIDER_FAILURE_POLICY_FREEZE.md",
+  "tests": [
+    "ntpe_lcr_batch109_provider_failure_policy_freeze_test.py",
+    "tests/integration/test_lcr_batch109_provider_failure_policy_freeze.py"
+  ],
+  "audit_directory": "audits/legacy_capability_recovery/batch10_9",
+  "audit_report_count": 9,
+  "failure_type_files_modified": false,
+  "classifier_files_modified": false,
+  "execution_policy_files_modified": false,
+  "decision_files_modified": false,
+  "review_files_modified": false,
+  "runtime_files_modified": false,
+  "provider_adapter_files_modified": false,
+  "prompt_files_modified": false,
+  "commit_push_tag_performed": false
+}

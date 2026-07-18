@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "existing_public_api_unchanged": [
+    {"name": "classify_failure", "parameters": ["evidence"]},
+    {"name": "execution_decision", "parameters": ["value"]},
+    {"name": "summarize_execution", "parameters": ["execution"]}
+  ],
+  "freeze_api_added": [
+    "get_provider_failure_policy_freeze_metadata",
+    "validate_provider_failure_policy_freeze"
+  ],
+  "review_api_read_only": true,
+  "ai_judgment_used": false,
+  "runtime_hookup_added": false
+}

@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "algorithm": "sha256",
+  "source_file_count": 7,
+  "batch108_evidence_file_count": 8,
+  "freeze_metadata_sha256": "f1815de1a48d6130b13353ece7afd950a3a40fade262b82f142f76868beb8f4d",
+  "release_document_sha256": "f66a2970bbd35507366b314e841fb1a0a0aa73976ce4e299039bc3b48a345d0d",
+  "batch108_source_hashes_match": true,
+  "batch108_evidence_hashes_match": true,
+  "manifest_canonical": true,
+  "manifest_hashes_valid": true,
+  "manifest_sha256": "06ea421eceb2079d48b0caed7a7edda311035dcf042456be9b2fcfadbeace6a1"
+}

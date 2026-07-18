@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "taxonomy_version": "1.0",
+  "failure_type_count": 19,
+  "failure_types_added": 0,
+  "classification_semantics_modified": false,
+  "frozen_classifications": {
+    "unknown": "unknown",
+    "timeout": "timeout",
+    "http_429": "rate_limited",
+    "http_503": "provider_503",
+    "http_401": "authentication_failure",
+    "semantic_failed": "semantic_failure"
+  },
+  "batch107_timeout_fixture_classification": "timeout",
+  "deterministic": true
+}

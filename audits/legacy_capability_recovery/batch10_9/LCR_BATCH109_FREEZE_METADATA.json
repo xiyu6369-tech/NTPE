@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "component_name": "provider_failure_characterization",
+  "freeze_version": "LCR-Batch-10.9",
+  "schema_version": "1.0",
+  "taxonomy_version": "1.0",
+  "policy_version": "1.0",
+  "frozen_at": "2026-07-18T14:36:34Z",
+  "public_api": ["classify_failure", "execution_decision", "summarize_execution"],
+  "immutable_contracts": ["FailureType", "FailureExecutionPolicy", "ExecutionDecision", "ExecutionSummary"],
+  "failure_type_count": 19,
+  "retry_policy": "forbidden",
+  "fallback_policy": "forbidden",
+  "deterministic": true,
+  "read_only": true,
+  "production_integration_authorized": false,
+  "validation_api": "validate_provider_failure_policy_freeze"
+}
