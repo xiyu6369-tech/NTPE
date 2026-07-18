@@ -128,4 +128,3 @@ def load_governance_baseline(
         authorization_state=MappingProxyType({key: authorization[key] for key in AUTHORIZATION_FIELDS}),
     )
     return reference, payload
-

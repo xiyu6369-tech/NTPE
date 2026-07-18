@@ -215,4 +215,3 @@ def verify_governance_baseline(
         evidence.append("batch110_freeze_regression=PASS")
 
     return tuple(sorted(set(violations))), tuple(sorted(evidence))
-

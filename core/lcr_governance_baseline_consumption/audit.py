@@ -63,4 +63,3 @@ def audit_governance_baseline_consumption(
         return _result(exc.status, (exc.code,), ())
     except (OSError, ValueError, TypeError, KeyError) as exc:
         return _result(INVALID, (f"unexpected_input_error:{type(exc).__name__}",), ())
-

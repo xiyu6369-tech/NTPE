@@ -17,4 +17,3 @@ class GovernanceBaselineInvalidError(GovernanceConsumptionError):
 
 class GovernanceBaselineRejectedError(GovernanceConsumptionError):
     status = "governance_baseline_consumption_rejected"
-

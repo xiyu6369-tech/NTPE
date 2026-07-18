@@ -66,4 +66,3 @@ class GovernanceConsumptionAuditResult:
             "evidence": list(self.evidence),
             "deterministic_fingerprint": self.deterministic_fingerprint,
         }
-
