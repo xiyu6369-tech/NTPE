@@ -1,0 +1,12 @@
+{
+  "schema_version": "te-v7.2-milestone-a-determinism-v1",
+  "status": "PASS",
+  "runs": 100,
+  "unique_prompt_outputs": 1,
+  "unique_selection_fingerprints": 1,
+  "wall_clock_ordering_used": false,
+  "random_ordering_used": false,
+  "filesystem_enumeration_ordering_used": false,
+  "selection_time_contract": "explicit deterministic timestamp; fail-closed far-future default for time-bounded records",
+  "fingerprint_algorithm": "sha256-canonical-json"
+}

@@ -132,6 +132,17 @@ class BatchTranslationOptions:
     stale_after_seconds: int = DEFAULT_STALE_AFTER_SECONDS
     auto_recovery: bool = False
     progress_enabled: bool = True
+    quality_integration_v72: bool = False
+    quality_character_memory_v72: bool = False
+    quality_context_scene_v72: bool = False
+    quality_naturalness_v72: bool = False
+    quality_integration_kill_switch_v72: bool = False
+    quality_character_store_v72: object | None = None
+    quality_context_scene_store_v72: object | None = None
+    quality_active_character_ids_v72: tuple[str, ...] = ()
+    quality_chapter_id_v72: str | None = None
+    quality_scene_id_v72: str | None = None
+    quality_selection_time_v72: str = "9999-01-01T00:00:00Z"
 
 
 def natural_sort_key(path: Path) -> list[object]:
@@ -183,6 +194,17 @@ def build_txt_options(input_file: Path, per_file_output_dir: Path, options: Batc
         speed=options.speed,
         simplified_chinese_policy=options.simplified_chinese_policy,
         progress_enabled=options.progress_enabled,
+        quality_integration_v72=options.quality_integration_v72,
+        quality_character_memory_v72=options.quality_character_memory_v72,
+        quality_context_scene_v72=options.quality_context_scene_v72,
+        quality_naturalness_v72=options.quality_naturalness_v72,
+        quality_integration_kill_switch_v72=options.quality_integration_kill_switch_v72,
+        quality_character_store_v72=options.quality_character_store_v72,
+        quality_context_scene_store_v72=options.quality_context_scene_store_v72,
+        quality_active_character_ids_v72=options.quality_active_character_ids_v72,
+        quality_chapter_id_v72=options.quality_chapter_id_v72,
+        quality_scene_id_v72=options.quality_scene_id_v72,
+        quality_selection_time_v72=options.quality_selection_time_v72,
     )
 
 

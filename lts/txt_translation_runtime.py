@@ -57,6 +57,11 @@ from core.translation_runtime.runtime_speed_policy import (
     get_runtime_speed_policy,
     naturalness_guard_policy_for_speed,
 )
+from core.translation_quality_integration_v72 import (
+    PromptBudget,
+    QualityIntegrationFlags,
+    apply_to_prompt_package as apply_translation_quality_integration_v72,
+)
 
 
 DEFAULT_MODEL = "meta/llama-3.3-70b-instruct"
@@ -122,6 +127,19 @@ class TxtTranslationOptions:
     naturalness_retry_limit: int | None = None
     quality_v5_enabled: bool = True
     quality_v5_report_enabled: bool = True
+    quality_integration_v72: bool = False
+    quality_character_memory_v72: bool = False
+    quality_context_scene_v72: bool = False
+    quality_naturalness_v72: bool = False
+    quality_integration_kill_switch_v72: bool = False
+    quality_character_store_v72: object | None = None
+    quality_context_scene_store_v72: object | None = None
+    quality_active_character_ids_v72: tuple[str, ...] = ()
+    quality_chapter_id_v72: str | None = None
+    quality_scene_id_v72: str | None = None
+    quality_sequence_index_v72: int | None = None
+    quality_selection_time_v72: str = "9999-01-01T00:00:00Z"
+    quality_prompt_budget_v72: PromptBudget | None = None
 
 
 def read_text_auto(path: str | Path) -> str:
@@ -1060,7 +1078,25 @@ def build_prompt_package(
         },
     }
     package = apply_prompt_intelligence(package, chunk_text)
-    return apply_context_intelligence(package, chunk_text, previous_context)
+    package = apply_context_intelligence(package, chunk_text, previous_context)
+    return apply_translation_quality_integration_v72(
+        package,
+        flags=QualityIntegrationFlags(
+            integration=options.quality_integration_v72,
+            character_memory=options.quality_character_memory_v72,
+            context_scene=options.quality_context_scene_v72,
+            naturalness=options.quality_naturalness_v72,
+            kill_switch=options.quality_integration_kill_switch_v72,
+        ),
+        character_store=options.quality_character_store_v72,
+        context_scene_store=options.quality_context_scene_store_v72,
+        active_character_ids=options.quality_active_character_ids_v72,
+        chapter_id=options.quality_chapter_id_v72,
+        scene_id=options.quality_scene_id_v72,
+        sequence_index=options.quality_sequence_index_v72 if options.quality_sequence_index_v72 is not None else chunk_index,
+        selection_time=options.quality_selection_time_v72,
+        budget=options.quality_prompt_budget_v72,
+    )
 
 
 def build_qa_retry_user_prompt(original_user_prompt: str, qa_report: dict, qa_attempt: int) -> str:

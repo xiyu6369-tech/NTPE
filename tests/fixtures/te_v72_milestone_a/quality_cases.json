@@ -1,0 +1,22 @@
+{
+  "schema_version": "te-v7.2-milestone-a-fixtures-v1",
+  "provider_execution_required": false,
+  "cases": [
+    {"id": "ko-omitted-subject", "focus": "selection", "expectation": "preserve ambiguity; do not invent a subject"},
+    {"id": "honorific-address", "focus": "character", "expectation": "retain approved honorific and address form"},
+    {"id": "multiple-address-forms", "focus": "character", "expectation": "select only forms relevant to the active character"},
+    {"id": "scene-transition", "focus": "scene", "expectation": "exclude the prior scene"},
+    {"id": "participant-entry-exit", "focus": "scene", "expectation": "exclude exited participants"},
+    {"id": "speaker-continuity", "focus": "scene", "expectation": "retain the active speaker hint"},
+    {"id": "long-modifier", "focus": "naturalness", "expectation": "allow Chinese reordering without semantic loss"},
+    {"id": "ambiguous-reference", "focus": "naturalness", "expectation": "preserve unresolved ambiguity"},
+    {"id": "canonical-name", "focus": "character", "expectation": "retain the approved fixed translation"},
+    {"id": "no-full-name-completion", "focus": "character", "expectation": "never complete a name absent from source"},
+    {"id": "era-register", "focus": "naturalness", "expectation": "choose era-aware wording without forced regional vocabulary"},
+    {"id": "natural-word-order", "focus": "naturalness", "expectation": "improve literal Korean ordering"},
+    {"id": "no-omission", "focus": "fidelity", "expectation": "translate every source meaning"},
+    {"id": "no-added-causality", "focus": "fidelity", "expectation": "do not add causal relations"},
+    {"id": "negation-preserved", "focus": "fidelity", "expectation": "do not change negation"},
+    {"id": "number-time-preserved", "focus": "fidelity", "expectation": "do not change numbers or time"}
+  ]
+}

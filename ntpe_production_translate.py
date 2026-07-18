@@ -134,6 +134,7 @@ def build_parser() -> argparse.ArgumentParser:
     txt.add_argument("--api-connect-timeout", type=int, default=None, help="provider connect timeout in seconds")
     txt.add_argument("--dry-run", action="store_true", help="build packages only; do not call NVIDIA API")
     txt.add_argument("--no-progress", action="store_true", help="disable live NTPE progress messages")
+    _add_quality_integration_v72_flags(txt)
 
     batch = sub.add_parser("batch", help="translate all TXT files in a folder")
     batch.add_argument("input", nargs="?", default="input", help="input folder; default: input")
@@ -163,6 +164,7 @@ def build_parser() -> argparse.ArgumentParser:
     batch.add_argument("--api-connect-timeout", type=int, default=None, help="provider connect timeout in seconds")
     batch.add_argument("--dry-run", action="store_true", help="build packages only; do not call NVIDIA API")
     batch.add_argument("--no-progress", action="store_true", help="disable live NTPE progress messages")
+    _add_quality_integration_v72_flags(batch)
 
     regression = sub.add_parser("regression", help="run literary regression corpus under tests/literary")
     regression.add_argument(
@@ -249,6 +251,14 @@ def build_parser() -> argparse.ArgumentParser:
     doctor = sub.add_parser("doctor", help="check production translator environment")
     doctor.add_argument("--strict", action="store_true", help="fail when NVIDIA_API_KEY is missing")
     return parser
+
+
+def _add_quality_integration_v72_flags(parser: argparse.ArgumentParser) -> None:
+    parser.add_argument("--quality-integration-v72", action="store_true", help="enable all TE v7.2 Milestone A prompt integrations")
+    parser.add_argument("--quality-character-memory-v72", action="store_true", help="enable eligible Character Memory prompt integration")
+    parser.add_argument("--quality-context-scene-v72", action="store_true", help="enable eligible Context/Scene Memory prompt integration")
+    parser.add_argument("--quality-naturalness-v72", action="store_true", help="enable the fidelity-first naturalness policy")
+    parser.add_argument("--quality-integration-kill-switch-v72", action="store_true", help="disable all TE v7.2 quality integration immediately")
 
 
 def _print_regression_result(report: dict) -> int:
@@ -365,6 +375,11 @@ def run_txt(args: argparse.Namespace) -> int:
         simplified_chinese_policy=args.simplified_chinese_policy,
         progress_enabled=not getattr(args, "no_progress", False),
         speed=args.speed,
+        quality_integration_v72=args.quality_integration_v72,
+        quality_character_memory_v72=args.quality_character_memory_v72,
+        quality_context_scene_v72=args.quality_context_scene_v72,
+        quality_naturalness_v72=args.quality_naturalness_v72,
+        quality_integration_kill_switch_v72=args.quality_integration_kill_switch_v72,
     )
     return _print_result("NTPE Production TXT Translation", runtime.translate_txt(options))
 
@@ -399,6 +414,11 @@ def run_batch(args: argparse.Namespace) -> int:
         auto_recovery=args.auto_recovery,
         heartbeat=args.heartbeat,
         progress_enabled=not getattr(args, "no_progress", False),
+        quality_integration_v72=args.quality_integration_v72,
+        quality_character_memory_v72=args.quality_character_memory_v72,
+        quality_context_scene_v72=args.quality_context_scene_v72,
+        quality_naturalness_v72=args.quality_naturalness_v72,
+        quality_integration_kill_switch_v72=args.quality_integration_kill_switch_v72,
     )
     return _print_result("NTPE Production Batch Translation", runtime.translate_batch(options))
 
