@@ -1,0 +1,42 @@
+{
+  "status": "PASS",
+  "schema_version": "1.0",
+  "classifier": "core.provider_failure_characterization.classify_failure",
+  "deterministic": true,
+  "failure_types": [
+    "timeout",
+    "connection_error",
+    "dns_failure",
+    "tls_failure",
+    "authentication_failure",
+    "authorization_failure",
+    "quota_exceeded",
+    "rate_limited",
+    "provider_503",
+    "provider_5xx",
+    "provider_4xx",
+    "invalid_request",
+    "invalid_response",
+    "truncated_response",
+    "policy_refusal",
+    "semantic_failure",
+    "manual_block",
+    "internal_error",
+    "unknown"
+  ],
+  "rule_priority": [
+    "explicit failure type or classification",
+    "HTTP status",
+    "fixed reason-text rules",
+    "semantic outcome",
+    "manual block",
+    "unknown"
+  ],
+  "batch107_fixture": {
+    "source": "audits/legacy_capability_recovery/batch10_7/LCR_BATCH107_EXECUTION_RESULT.json",
+    "source_sha256": "f36488fdf94c1adcd779962bd4d322c2be06db13dd0ec904431c0460f7e2a6bf",
+    "failure_type": "timeout",
+    "classification": "timeout",
+    "reason": "matched_response_status_classification"
+  }
+}

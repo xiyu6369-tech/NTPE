@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "root_test": "ntpe_lcr_batch108_failure_characterization_test.py",
+  "focused_suite": "36 passed",
+  "coverage": [
+    "timeout",
+    "503",
+    "429",
+    "authentication",
+    "authorization",
+    "policy refusal",
+    "semantic failure",
+    "internal error",
+    "unknown",
+    "retry forbidden",
+    "fallback forbidden",
+    "execution consumed",
+    "manual review",
+    "production safe",
+    "Batch 10.7 fixture read-only integration",
+    "zero Provider and Network requests added",
+    "production hook count"
+  ],
+  "compatibility_suite": "171 passed",
+  "compatibility_scope": "LCR Batch 10.4 through 10.8 plus Batch 6 semantic verification",
+  "ntpe_validate": "ALL PASS; 2503 Python files compile; 630 pytest-style test files found",
+  "functional_failures": 0
+}

@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "engine": "core.provider_failure_characterization.execution_decision",
+  "ai_judgment_used": false,
+  "batch107_decision": "manual_review_required",
+  "actions": [
+    "execution_complete",
+    "manual_review_required",
+    "execution_consumed",
+    "retry_forbidden",
+    "fallback_forbidden",
+    "provider_investigation_required"
+  ],
+  "authorization_consumed": true,
+  "execution_consumed": true,
+  "retry_allowed": false,
+  "fallback_allowed": false,
+  "rollback_required": false,
+  "manual_review_required": true,
+  "provider_investigation_required": true,
+  "production_safe": true
+}

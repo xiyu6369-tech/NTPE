@@ -1,0 +1,14 @@
+{
+  "status": "ready_for_provider_failure_policy_freeze",
+  "failure_taxonomy_complete": true,
+  "execution_policy_complete": true,
+  "decision_engine_complete": true,
+  "execution_summary_complete": true,
+  "review_api_read_only": true,
+  "provider_requests_added": 0,
+  "network_requests_added": 0,
+  "active_production_authorized": false,
+  "automatic_rollout_authorized": false,
+  "production_integration_authorized": false,
+  "next_step_requires_separate_scope": true
+}

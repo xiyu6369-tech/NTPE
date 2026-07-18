@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "provider_requests_added": 0,
+  "network_requests_added": 0,
+  "prompt_modified": false,
+  "translation_modified": false,
+  "resume_modified": false,
+  "output_modified": false,
+  "cache_modified": false,
+  "character_store_modified": false,
+  "context_store_modified": false,
+  "translation_runtime_modified": false,
+  "provider_adapter_modified": false,
+  "production_hook_count": 1,
+  "production_integration": false,
+  "review_api_read_only": true,
+  "batch107_fixture_sha256_before": "f36488fdf94c1adcd779962bd4d322c2be06db13dd0ec904431c0460f7e2a6bf",
+  "batch107_fixture_sha256_after": "f36488fdf94c1adcd779962bd4d322c2be06db13dd0ec904431c0460f7e2a6bf"
+}

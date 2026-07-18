@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "implementation": [
+    "core/provider_failure_characterization/__init__.py",
+    "core/provider_failure_characterization/failure_types.py",
+    "core/provider_failure_characterization/schema.py",
+    "core/provider_failure_characterization/classifier.py",
+    "core/provider_failure_characterization/execution_policy.py",
+    "core/provider_failure_characterization/decision.py",
+    "core/provider_failure_characterization/review.py"
+  ],
+  "tests": [
+    "ntpe_lcr_batch108_failure_characterization_test.py",
+    "tests/unit/test_provider_failure_characterization.py",
+    "tests/unit/test_provider_failure_review_api.py",
+    "tests/integration/lcr_batch108_provider_failure_characterization_integration_test.py"
+  ],
+  "audit_directory": "audits/legacy_capability_recovery/batch10_8",
+  "audit_report_count": 8,
+  "historical_fixture_modified": false,
+  "runtime_files_modified": false,
+  "provider_adapter_files_modified": false,
+  "prompt_files_modified": false,
+  "commit_push_tag_performed": false
+}

@@ -1,0 +1,30 @@
+{
+  "status": "PASS",
+  "policy_version": "lcr-batch108-pfc-v1",
+  "immutable": true,
+  "failure_type_count": 19,
+  "global_invariants": {
+    "retry_allowed": false,
+    "fallback_allowed": false,
+    "manual_review_required": true,
+    "evidence_only": true,
+    "execution_consumed": true,
+    "production_safe": true
+  },
+  "timeout": {
+    "retry_allowed": false,
+    "fallback_allowed": false,
+    "manual_review_required": true,
+    "execution_consumed": true,
+    "provider_investigation_required": true
+  },
+  "rate_limited": {
+    "retry_allowed": false,
+    "fallback_allowed": false
+  },
+  "provider_503": {
+    "retry_allowed": false,
+    "fallback_allowed": false
+  },
+  "rollback_policy": "required only when a candidate exists and the classified failure is invalid_response, truncated_response, or semantic_failure"
+}
