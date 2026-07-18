@@ -1,0 +1,25 @@
+{
+  "capability_strategies": {
+    "character_memory_shadow": "discard immutable shadow snapshot; production character store remains unchanged",
+    "character_memory_v2": "retain production character store; discard or roll back isolated memory records",
+    "chunk_cache_v2": "retain production cache and resume; invalidate isolated cache entry",
+    "context_scene_memory": "retain production context store; discard isolated context and scene records",
+    "context_scene_shadow": "discard immutable shadow snapshot; production context store remains unchanged",
+    "controlled_provider_routing": "fail closed before Provider execution",
+    "dual_pass_semantic_shadow": "discard candidate and retain production translation",
+    "dual_pass_translation": "discard polish candidate and retain production translation",
+    "explicit_pilot_authorization": "deny pilot preparation and retain production baseline",
+    "multilingual_profiles": "fall back to frozen common target policy without production write",
+    "offline_golden_tic_validation": "preserve frozen fixtures and report manual review when evidence is insufficient",
+    "post_polish_semantic_verification": "semantic failure rejects candidate and retains production translation",
+    "production_shadow_planning": "disable all shadow feature flags and retain baseline",
+    "provider_failure_characterization": "fail closed, require manual review, and retain production state",
+    "provider_failure_policy_freeze": "reject policy drift; restore the Batch 10.9 frozen source baseline",
+    "read_only_production_shadow_hook": "kill switch disables the single read-only hook",
+    "real_provider_validation": "consumed one-shot claim forbids re-execution; production baseline remains unchanged",
+    "single_chunk_execution_review": "discard review candidate and retain production translation"
+  },
+  "production_rollback_required": false,
+  "status": "PASS",
+  "strategy": "remove the additive Batch 11.0 governance layer; retain all Batch 2-10.9 frozen baselines"
+}

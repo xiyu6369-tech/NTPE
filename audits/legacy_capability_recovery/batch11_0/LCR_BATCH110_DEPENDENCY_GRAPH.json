@@ -1,0 +1,75 @@
+{
+  "acyclic": true,
+  "all_dependencies_exist": true,
+  "all_frozen_dependencies_resolved": true,
+  "graph": {
+    "character_memory_shadow": [
+      "character_memory_v2",
+      "read_only_production_shadow_hook"
+    ],
+    "character_memory_v2": [],
+    "chunk_cache_v2": [],
+    "context_scene_memory": [
+      "character_memory_v2"
+    ],
+    "context_scene_shadow": [
+      "context_scene_memory",
+      "character_memory_shadow"
+    ],
+    "controlled_provider_routing": [
+      "dual_pass_translation",
+      "post_polish_semantic_verification",
+      "multilingual_profiles"
+    ],
+    "dual_pass_semantic_shadow": [
+      "dual_pass_translation",
+      "post_polish_semantic_verification",
+      "context_scene_shadow"
+    ],
+    "dual_pass_translation": [
+      "chunk_cache_v2"
+    ],
+    "explicit_pilot_authorization": [
+      "controlled_provider_routing",
+      "dual_pass_semantic_shadow"
+    ],
+    "multilingual_profiles": [
+      "character_memory_v2",
+      "context_scene_memory",
+      "post_polish_semantic_verification"
+    ],
+    "offline_golden_tic_validation": [
+      "character_memory_v2",
+      "context_scene_memory",
+      "chunk_cache_v2",
+      "dual_pass_translation",
+      "post_polish_semantic_verification",
+      "multilingual_profiles",
+      "controlled_provider_routing"
+    ],
+    "post_polish_semantic_verification": [
+      "dual_pass_translation"
+    ],
+    "production_shadow_planning": [
+      "offline_golden_tic_validation"
+    ],
+    "provider_failure_characterization": [
+      "real_provider_validation"
+    ],
+    "provider_failure_policy_freeze": [
+      "provider_failure_characterization"
+    ],
+    "read_only_production_shadow_hook": [
+      "production_shadow_planning"
+    ],
+    "real_provider_validation": [
+      "controlled_provider_routing",
+      "single_chunk_execution_review"
+    ],
+    "single_chunk_execution_review": [
+      "post_polish_semantic_verification",
+      "explicit_pilot_authorization"
+    ]
+  },
+  "status": "PASS"
+}

@@ -1,0 +1,70 @@
+{
+  "activation_gate": "lcr_governance_baseline_frozen",
+  "active_production_authorized": false,
+  "automatic_rollout_authorized": false,
+  "capability_count": 18,
+  "component_name": "legacy_capability_recovery_governance",
+  "covered_batches": [
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10",
+    "10.1",
+    "10.2",
+    "10.3",
+    "10.4",
+    "10.5",
+    "10.6",
+    "10.7",
+    "10.8",
+    "10.9"
+  ],
+  "formal_output_replacement_authorized": false,
+  "freeze_version": "LCR-Batch-11.0",
+  "frozen_at": "2026-07-18T16:27:00Z",
+  "frozen_capability_count": 18,
+  "governance_schema_version": "1.0",
+  "manifest_hashes": {
+    "audits/legacy_capability_recovery/batch10/LCR_BATCH10_PACKAGE_REPORT.json": "7be786569339d70a33f4a495aac5665cb22238ea126dd137af8852b0cd7c313f",
+    "audits/legacy_capability_recovery/batch10_1/LCR_BATCH101_PACKAGE_REPORT.json": "05e82380763994765fa58e1b07069f1de09dadb7bf75da09510646d1da1636d7",
+    "audits/legacy_capability_recovery/batch10_2/LCR_BATCH102_PACKAGE_REPORT.json": "baf34b91996827a7c24f984489d5a8c265e3e2e2d65484cdcc76409b85953683",
+    "audits/legacy_capability_recovery/batch10_3/LCR_BATCH103_PACKAGE_REPORT.json": "905fb51ab5a030844a94b627b099dd0cc2cb7dd3c765665661172b8deb18d094",
+    "audits/legacy_capability_recovery/batch10_4/LCR_BATCH104_FILE_INVENTORY.json": "35f4c878e87157ebd31044983bbca0ac5697e8d097ce654cac52badde0332f46",
+    "audits/legacy_capability_recovery/batch10_5/LCR_BATCH105_PRODUCTION_HOOK_INVENTORY.json": "5427dce3d3394aa336a4edf4890672f1dbae3179b4fd89f2327a05006f5b4fdf",
+    "audits/legacy_capability_recovery/batch10_6/LCR_BATCH106_FILE_INVENTORY.json": "570adf6b3123079dfe3d3dd8577509a5bb22dcf8e2e219bb48774d9bf216e888",
+    "audits/legacy_capability_recovery/batch10_7/LCR_BATCH107_FILE_INVENTORY.json": "dd7be1ee7e353d65856ca26372a18af0de8204068f1d87933c5cc5f23652ce64",
+    "audits/legacy_capability_recovery/batch10_8/LCR_BATCH108_FILE_INVENTORY.json": "58b9acae8ce6450c80814b82af7dfbc00f087d86e992226787ed01f243b32f87",
+    "audits/legacy_capability_recovery/batch2/LCR_BATCH2_PACKAGE_REPORT.json": "b8e4c2c8cd4e1eb249f84d73d00674fe4f542ab675cf3b61d48760ebffe1c2bd",
+    "audits/legacy_capability_recovery/batch3/LCR_BATCH3_PACKAGE_REPORT.json": "44f1ecad068424a7c2e46d5f3082c51089382bb51ccf520d4f3c08e538b244fe",
+    "audits/legacy_capability_recovery/batch4/LCR_BATCH4_PACKAGE_REPORT.json": "97f6d42eff8d7a6f9140f37201926ae247add205d138dcb8690ac29213a61205",
+    "audits/legacy_capability_recovery/batch5/LCR_BATCH5_PACKAGE_REPORT.json": "4050ec517dc24203ebbeb2be8635dc4af45c7ef1bdc3a1d664138a36df2bd07c",
+    "audits/legacy_capability_recovery/batch6/LCR_BATCH6_PACKAGE_REPORT.json": "2be3b4d3728e7aa80422c6db4bebc27f453516363066308658c4c2f87e1e44c2",
+    "audits/legacy_capability_recovery/batch7/LCR_BATCH7_PACKAGE_REPORT.json": "d9d2e5e4e68b79d112a335b4c69c0ae39851fe92cfdc34e364d61a641473e936",
+    "audits/legacy_capability_recovery/batch8/LCR_BATCH8_PACKAGE_REPORT.json": "44883d72f3bf1e3ff9564b1caf675bb8a250eb8758ae5ed3f4bad3f0bdb4a84e",
+    "audits/legacy_capability_recovery/batch9/LCR_BATCH9_PACKAGE_REPORT.json": "5d1e8e9da502211bb67c0cb92b8c660c8c2c79ff9aa65cba07d62429306b9cc3",
+    "manifests/lcr_batch109_provider_failure_policy_freeze_manifest.json": "06ea421eceb2079d48b0caed7a7edda311035dcf042456be9b2fcfadbeace6a1"
+  },
+  "production_hook_count": 1,
+  "production_integration_authorized": false,
+  "provider_execution_history": [
+    "Batch 10.7: one authorized request consumed; timeout; no candidate; no production change"
+  ],
+  "source_files": [
+    "core/lcr_governance_freeze/__init__.py",
+    "core/lcr_governance_freeze/registry.py",
+    "core/lcr_governance_freeze/contracts.py",
+    "core/lcr_governance_freeze/validation.py"
+  ],
+  "source_hashes": {
+    "core/lcr_governance_freeze/__init__.py": "52494c8dd0a89cca1cd507affc7cc58462afb25fdfa90ec435d83d6ad44be23d",
+    "core/lcr_governance_freeze/contracts.py": "c4b7e056544f56a14b50cfeb67feb44ee712dc6a701fb90466a5eae73a114a5e",
+    "core/lcr_governance_freeze/registry.py": "9481561bf77e8c548f647f8da0b06153f981ad6bcee08e96d9cf2659310640bc",
+    "core/lcr_governance_freeze/validation.py": "206e8cd13b7f7d82c0e4ccac6dfb075286e2e0df00d053fac32885e53bdd381f"
+  },
+  "status": "PASS"
+}

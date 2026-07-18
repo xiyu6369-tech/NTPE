@@ -1,0 +1,14 @@
+{
+  "batch110_root_integration": "11 passed",
+  "focused_regression": "164 passed, 10 deselected",
+  "focused_regression_deselections": {
+    "historical_self_batch_worktree_or_diff_assertions": 9,
+    "pre_existing_batch2_hash_drift": "prompt_packages/txt_runtime/original_ko_chunk_000001.json"
+  },
+  "git_diff_check": "PASS",
+  "network_requests": 0,
+  "ntpe_validate": "ALL PASS",
+  "provider_requests": 0,
+  "status": "PASS",
+  "tracked_deletions": 0
+}

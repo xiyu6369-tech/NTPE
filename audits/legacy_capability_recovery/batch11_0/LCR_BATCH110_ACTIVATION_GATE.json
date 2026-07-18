@@ -1,0 +1,8 @@
+{
+  "activation_gate": "lcr_governance_baseline_frozen",
+  "active_production_authorized": false,
+  "automatic_rollout_authorized": false,
+  "formal_output_replacement_authorized": false,
+  "production_integration_authorized": false,
+  "status": "PASS"
+}

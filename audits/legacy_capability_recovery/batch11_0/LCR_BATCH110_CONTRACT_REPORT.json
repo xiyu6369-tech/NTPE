@@ -1,0 +1,30 @@
+{
+  "batch107_execution_claim_consumed": true,
+  "batch107_execution_reusable": false,
+  "batch109_taxonomy_count": 19,
+  "contracts": {
+    "active_production_authorized": false,
+    "automatic_rollout_authorized": false,
+    "batch107_execution_claim_consumed": true,
+    "batch107_execution_reusable": false,
+    "batch108_fallback_globally_forbidden": true,
+    "batch108_retry_globally_forbidden": true,
+    "batch109_policy_frozen": true,
+    "character_memory_production_write": false,
+    "context_scene_production_write": false,
+    "dual_pass_candidate_replaces_production": false,
+    "formal_output_changed": false,
+    "formal_output_replacement_authorized": false,
+    "insufficient_evidence_requires_manual_review": true,
+    "production_cache_changed": false,
+    "production_hook_count": 1,
+    "production_integration_authorized": false,
+    "resume_changed": false,
+    "semantic_failure_retains_production": true,
+    "semantic_verification_required": true
+  },
+  "fallback_globally_forbidden": true,
+  "immutable": true,
+  "retry_globally_forbidden": true,
+  "status": "PASS"
+}

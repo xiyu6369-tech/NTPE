@@ -1,0 +1,31 @@
+{
+  "audit_files": [
+    "audits/legacy_capability_recovery/batch11_0/LCR_BATCH110_ACTIVATION_GATE.json",
+    "audits/legacy_capability_recovery/batch11_0/LCR_BATCH110_CAPABILITY_REGISTRY.json",
+    "audits/legacy_capability_recovery/batch11_0/LCR_BATCH110_CONTRACT_REPORT.json",
+    "audits/legacy_capability_recovery/batch11_0/LCR_BATCH110_DEPENDENCY_GRAPH.json",
+    "audits/legacy_capability_recovery/batch11_0/LCR_BATCH110_CHILD_MANIFEST_REPORT.json",
+    "audits/legacy_capability_recovery/batch11_0/LCR_BATCH110_HASH_REPORT.json",
+    "audits/legacy_capability_recovery/batch11_0/LCR_BATCH110_BOUNDARY_REPORT.json",
+    "audits/legacy_capability_recovery/batch11_0/LCR_BATCH110_COMPATIBILITY_REPORT.json",
+    "audits/legacy_capability_recovery/batch11_0/LCR_BATCH110_ROLLBACK_REPORT.json",
+    "audits/legacy_capability_recovery/batch11_0/LCR_BATCH110_TEST_REPORT.json",
+    "audits/legacy_capability_recovery/batch11_0/LCR_BATCH110_FILE_INVENTORY.json",
+    "audits/legacy_capability_recovery/batch11_0/LCR_BATCH110_FREEZE_METADATA.json"
+  ],
+  "generator_file": "audits/legacy_capability_recovery/batch11_0/generate_lcr_batch110_audit.py",
+  "manifest_file": "manifests/lcr_batch110_governance_freeze_manifest.json",
+  "source_files": [
+    "core/lcr_governance_freeze/__init__.py",
+    "core/lcr_governance_freeze/registry.py",
+    "core/lcr_governance_freeze/contracts.py",
+    "core/lcr_governance_freeze/freeze.py",
+    "core/lcr_governance_freeze/validation.py",
+    "docs/releases/lcr/LCR_BATCH110_GOVERNANCE_FREEZE.md"
+  ],
+  "status": "PASS",
+  "test_files": [
+    "ntpe_lcr_batch110_governance_freeze_test.py",
+    "tests/integration/test_lcr_batch110_governance_freeze.py"
+  ]
+}

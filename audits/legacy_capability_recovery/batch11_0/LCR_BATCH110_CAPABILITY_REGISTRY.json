@@ -1,0 +1,408 @@
+{
+  "capabilities": [
+    {
+      "active_integration": false,
+      "audit_path": "audits/legacy_capability_recovery/batch2/LCR_BATCH2_BOUNDARY_REPORT.json",
+      "batch": "2",
+      "capability_id": "character_memory_v2",
+      "component": "core.character_memory_v2",
+      "dependencies": [],
+      "frozen": true,
+      "manifest_path": "audits/legacy_capability_recovery/batch2/LCR_BATCH2_PACKAGE_REPORT.json",
+      "production_write_allowed": false,
+      "provider_execution_allowed": false,
+      "public_api": [
+        "add_or_merge_memory",
+        "select_prompt_eligible_memories",
+        "rollback_memory"
+      ],
+      "rollback_strategy": "retain production character store; discard or roll back isolated memory records",
+      "schema_version": "2.0",
+      "status": "governance_frozen"
+    },
+    {
+      "active_integration": false,
+      "audit_path": "audits/legacy_capability_recovery/batch3/LCR_BATCH3_BOUNDARY_REPORT.json",
+      "batch": "3",
+      "capability_id": "context_scene_memory",
+      "component": "core.context_scene_memory",
+      "dependencies": [
+        "character_memory_v2"
+      ],
+      "frozen": true,
+      "manifest_path": "audits/legacy_capability_recovery/batch3/LCR_BATCH3_PACKAGE_REPORT.json",
+      "production_write_allowed": false,
+      "provider_execution_allowed": false,
+      "public_api": [
+        "select_context_for_translation",
+        "rollback_context",
+        "rollback_scene"
+      ],
+      "rollback_strategy": "retain production context store; discard isolated context and scene records",
+      "schema_version": "1.0",
+      "status": "governance_frozen"
+    },
+    {
+      "active_integration": false,
+      "audit_path": "audits/legacy_capability_recovery/batch4/LCR_BATCH4_BOUNDARY_REPORT.json",
+      "batch": "4",
+      "capability_id": "chunk_cache_v2",
+      "component": "core.chunk_cache_v2",
+      "dependencies": [],
+      "frozen": true,
+      "manifest_path": "audits/legacy_capability_recovery/batch4/LCR_BATCH4_PACKAGE_REPORT.json",
+      "production_write_allowed": false,
+      "provider_execution_allowed": false,
+      "public_api": [
+        "lookup_chunk_cache",
+        "reconcile_cache_with_resume",
+        "rollback_cache_entry"
+      ],
+      "rollback_strategy": "retain production cache and resume; invalidate isolated cache entry",
+      "schema_version": "2.0",
+      "status": "governance_frozen"
+    },
+    {
+      "active_integration": false,
+      "audit_path": "audits/legacy_capability_recovery/batch5/LCR_BATCH5_BOUNDARY_REPORT.json",
+      "batch": "5",
+      "capability_id": "dual_pass_translation",
+      "component": "core.dual_pass_translation",
+      "dependencies": [
+        "chunk_cache_v2"
+      ],
+      "frozen": true,
+      "manifest_path": "audits/legacy_capability_recovery/batch5/LCR_BATCH5_PACKAGE_REPORT.json",
+      "production_write_allowed": false,
+      "provider_execution_allowed": false,
+      "public_api": [
+        "build_dual_pass_execution_plan",
+        "create_polish_candidate",
+        "apply_polish_rollback"
+      ],
+      "rollback_strategy": "discard polish candidate and retain production translation",
+      "schema_version": "1.0",
+      "status": "governance_frozen"
+    },
+    {
+      "active_integration": false,
+      "audit_path": "audits/legacy_capability_recovery/batch6/LCR_BATCH6_BOUNDARY_REPORT.json",
+      "batch": "6",
+      "capability_id": "post_polish_semantic_verification",
+      "component": "core.post_polish_semantic_verification",
+      "dependencies": [
+        "dual_pass_translation"
+      ],
+      "frozen": true,
+      "manifest_path": "audits/legacy_capability_recovery/batch6/LCR_BATCH6_PACKAGE_REPORT.json",
+      "production_write_allowed": false,
+      "provider_execution_allowed": false,
+      "public_api": [
+        "verify_post_polish_semantics",
+        "verify_dual_pass_polish",
+        "build_rollback_recommendation"
+      ],
+      "rollback_strategy": "semantic failure rejects candidate and retains production translation",
+      "schema_version": "1.0",
+      "status": "governance_frozen"
+    },
+    {
+      "active_integration": false,
+      "audit_path": "audits/legacy_capability_recovery/batch7/LCR_BATCH7_BOUNDARY_REPORT.json",
+      "batch": "7",
+      "capability_id": "multilingual_profiles",
+      "component": "core.multilingual_profiles",
+      "dependencies": [
+        "character_memory_v2",
+        "context_scene_memory",
+        "post_polish_semantic_verification"
+      ],
+      "frozen": true,
+      "manifest_path": "audits/legacy_capability_recovery/batch7/LCR_BATCH7_PACKAGE_REPORT.json",
+      "production_write_allowed": false,
+      "provider_execution_allowed": false,
+      "public_api": [
+        "select_language_profile",
+        "get_language_profile",
+        "build_semantic_verification_hints"
+      ],
+      "rollback_strategy": "fall back to frozen common target policy without production write",
+      "schema_version": "1.0",
+      "status": "governance_frozen"
+    },
+    {
+      "active_integration": false,
+      "audit_path": "audits/legacy_capability_recovery/batch8/LCR_BATCH8_BOUNDARY_REPORT.json",
+      "batch": "8",
+      "capability_id": "controlled_provider_routing",
+      "component": "core.controlled_provider_routing",
+      "dependencies": [
+        "dual_pass_translation",
+        "post_polish_semantic_verification",
+        "multilingual_profiles"
+      ],
+      "frozen": true,
+      "manifest_path": "audits/legacy_capability_recovery/batch8/LCR_BATCH8_PACKAGE_REPORT.json",
+      "production_write_allowed": false,
+      "provider_execution_allowed": false,
+      "public_api": [
+        "select_provider_route",
+        "build_provider_execution_plan",
+        "evaluate_retry_eligibility"
+      ],
+      "rollback_strategy": "fail closed before Provider execution",
+      "schema_version": "1.0",
+      "status": "governance_frozen"
+    },
+    {
+      "active_integration": false,
+      "audit_path": "audits/legacy_capability_recovery/batch9/LCR_BATCH9_BOUNDARY_REPORT.json",
+      "batch": "9",
+      "capability_id": "offline_golden_tic_validation",
+      "component": "core.lcr_offline_validation",
+      "dependencies": [
+        "character_memory_v2",
+        "context_scene_memory",
+        "chunk_cache_v2",
+        "dual_pass_translation",
+        "post_polish_semantic_verification",
+        "multilingual_profiles",
+        "controlled_provider_routing"
+      ],
+      "frozen": true,
+      "manifest_path": "audits/legacy_capability_recovery/batch9/LCR_BATCH9_PACKAGE_REPORT.json",
+      "production_write_allowed": false,
+      "provider_execution_allowed": false,
+      "public_api": [
+        "run_validation_suite",
+        "evaluate_lcr_offline_readiness"
+      ],
+      "rollback_strategy": "preserve frozen fixtures and report manual review when evidence is insufficient",
+      "schema_version": "1.0",
+      "status": "governance_frozen"
+    },
+    {
+      "active_integration": false,
+      "audit_path": "audits/legacy_capability_recovery/batch10/LCR_BATCH10_BOUNDARY_REPORT.json",
+      "batch": "10",
+      "capability_id": "production_shadow_planning",
+      "component": "core.lcr_production_shadow",
+      "dependencies": [
+        "offline_golden_tic_validation"
+      ],
+      "frozen": true,
+      "manifest_path": "audits/legacy_capability_recovery/batch10/LCR_BATCH10_PACKAGE_REPORT.json",
+      "production_write_allowed": false,
+      "provider_execution_allowed": false,
+      "public_api": [
+        "run_lcr_production_shadow",
+        "evaluate_activation_gate",
+        "build_rollback_plan"
+      ],
+      "rollback_strategy": "disable all shadow feature flags and retain baseline",
+      "schema_version": "1.0",
+      "status": "governance_frozen"
+    },
+    {
+      "active_integration": false,
+      "audit_path": "audits/legacy_capability_recovery/batch10_1/LCR_BATCH101_BOUNDARY_REPORT.json",
+      "batch": "10.1",
+      "capability_id": "read_only_production_shadow_hook",
+      "component": "core.lcr_production_shadow_hook",
+      "dependencies": [
+        "production_shadow_planning"
+      ],
+      "frozen": true,
+      "manifest_path": "audits/legacy_capability_recovery/batch10_1/LCR_BATCH101_PACKAGE_REPORT.json",
+      "production_write_allowed": false,
+      "provider_execution_allowed": false,
+      "public_api": [
+        "run_read_only_lcr_shadow_hook",
+        "resolve_hook_flags"
+      ],
+      "rollback_strategy": "kill switch disables the single read-only hook",
+      "schema_version": "1.0",
+      "status": "governance_frozen"
+    },
+    {
+      "active_integration": false,
+      "audit_path": "audits/legacy_capability_recovery/batch10_2/LCR_BATCH102_BOUNDARY_REPORT.json",
+      "batch": "10.2",
+      "capability_id": "character_memory_shadow",
+      "component": "core.lcr_production_shadow_hook.character_memory_shadow",
+      "dependencies": [
+        "character_memory_v2",
+        "read_only_production_shadow_hook"
+      ],
+      "frozen": true,
+      "manifest_path": "audits/legacy_capability_recovery/batch10_2/LCR_BATCH102_PACKAGE_REPORT.json",
+      "production_write_allowed": false,
+      "provider_execution_allowed": false,
+      "public_api": [
+        "build_character_memory_shadow_input",
+        "evaluate_character_memory_shadow"
+      ],
+      "rollback_strategy": "discard immutable shadow snapshot; production character store remains unchanged",
+      "schema_version": "1.0",
+      "status": "governance_frozen"
+    },
+    {
+      "active_integration": false,
+      "audit_path": "audits/legacy_capability_recovery/batch10_3/LCR_BATCH103_BOUNDARY_REPORT.json",
+      "batch": "10.3",
+      "capability_id": "context_scene_shadow",
+      "component": "core.lcr_production_shadow_hook.context_scene_shadow",
+      "dependencies": [
+        "context_scene_memory",
+        "character_memory_shadow"
+      ],
+      "frozen": true,
+      "manifest_path": "audits/legacy_capability_recovery/batch10_3/LCR_BATCH103_PACKAGE_REPORT.json",
+      "production_write_allowed": false,
+      "provider_execution_allowed": false,
+      "public_api": [
+        "build_context_scene_shadow_input",
+        "evaluate_context_scene_shadow"
+      ],
+      "rollback_strategy": "discard immutable shadow snapshot; production context store remains unchanged",
+      "schema_version": "1.0",
+      "status": "governance_frozen"
+    },
+    {
+      "active_integration": false,
+      "audit_path": "audits/legacy_capability_recovery/batch10_4/LCR_BATCH104_BOUNDARY_REPORT.json",
+      "batch": "10.4",
+      "capability_id": "dual_pass_semantic_shadow",
+      "component": "core.lcr_production_shadow_hook.dual_pass_semantic_shadow",
+      "dependencies": [
+        "dual_pass_translation",
+        "post_polish_semantic_verification",
+        "context_scene_shadow"
+      ],
+      "frozen": true,
+      "manifest_path": "audits/legacy_capability_recovery/batch10_4/LCR_BATCH104_FILE_INVENTORY.json",
+      "production_write_allowed": false,
+      "provider_execution_allowed": false,
+      "public_api": [
+        "build_dual_pass_semantic_shadow_input",
+        "evaluate_dual_pass_semantic_shadow"
+      ],
+      "rollback_strategy": "discard candidate and retain production translation",
+      "schema_version": "1.0",
+      "status": "governance_frozen"
+    },
+    {
+      "active_integration": false,
+      "audit_path": "audits/legacy_capability_recovery/batch10_5/LCR_BATCH105_BOUNDARY_REPORT.json",
+      "batch": "10.5",
+      "capability_id": "explicit_pilot_authorization",
+      "component": "core.lcr_production_shadow_hook.pilot_authorization",
+      "dependencies": [
+        "controlled_provider_routing",
+        "dual_pass_semantic_shadow"
+      ],
+      "frozen": true,
+      "manifest_path": "audits/legacy_capability_recovery/batch10_5/LCR_BATCH105_PRODUCTION_HOOK_INVENTORY.json",
+      "production_write_allowed": false,
+      "provider_execution_allowed": false,
+      "public_api": [
+        "validate_authorization",
+        "prepare_bounded_dual_pass_pilot"
+      ],
+      "rollback_strategy": "deny pilot preparation and retain production baseline",
+      "schema_version": "1.0",
+      "status": "governance_frozen"
+    },
+    {
+      "active_integration": false,
+      "audit_path": "audits/legacy_capability_recovery/batch10_6/LCR_BATCH106_BOUNDARY_REPORT.json",
+      "batch": "10.6",
+      "capability_id": "single_chunk_execution_review",
+      "component": "core.lcr_production_shadow_hook.single_chunk_dual_pass_executor",
+      "dependencies": [
+        "post_polish_semantic_verification",
+        "explicit_pilot_authorization"
+      ],
+      "frozen": true,
+      "manifest_path": "audits/legacy_capability_recovery/batch10_6/LCR_BATCH106_FILE_INVENTORY.json",
+      "production_write_allowed": false,
+      "provider_execution_allowed": false,
+      "public_api": [
+        "execute_single_chunk_dual_pass_review",
+        "validate_execution_authorization"
+      ],
+      "rollback_strategy": "discard review candidate and retain production translation",
+      "schema_version": "1.0",
+      "status": "governance_frozen"
+    },
+    {
+      "active_integration": false,
+      "audit_path": "audits/legacy_capability_recovery/batch10_7/LCR_BATCH107_EXECUTION_RESULT.json",
+      "batch": "10.7",
+      "capability_id": "real_provider_validation",
+      "component": "core.lcr_production_shadow_hook.batch107_real_provider_validation",
+      "dependencies": [
+        "controlled_provider_routing",
+        "single_chunk_execution_review"
+      ],
+      "frozen": true,
+      "manifest_path": "audits/legacy_capability_recovery/batch10_7/LCR_BATCH107_FILE_INVENTORY.json",
+      "production_write_allowed": false,
+      "provider_execution_allowed": false,
+      "public_api": [
+        "validate_execution_package",
+        "validate_package_authorization",
+        "execute_batch107"
+      ],
+      "rollback_strategy": "consumed one-shot claim forbids re-execution; production baseline remains unchanged",
+      "schema_version": "1.0",
+      "status": "governance_frozen"
+    },
+    {
+      "active_integration": false,
+      "audit_path": "audits/legacy_capability_recovery/batch10_8/LCR_BATCH108_BOUNDARY_REPORT.json",
+      "batch": "10.8",
+      "capability_id": "provider_failure_characterization",
+      "component": "core.provider_failure_characterization",
+      "dependencies": [
+        "real_provider_validation"
+      ],
+      "frozen": true,
+      "manifest_path": "audits/legacy_capability_recovery/batch10_8/LCR_BATCH108_FILE_INVENTORY.json",
+      "production_write_allowed": false,
+      "provider_execution_allowed": false,
+      "public_api": [
+        "classify_failure",
+        "execution_decision",
+        "summarize_execution"
+      ],
+      "rollback_strategy": "fail closed, require manual review, and retain production state",
+      "schema_version": "1.0",
+      "status": "governance_frozen"
+    },
+    {
+      "active_integration": false,
+      "audit_path": "audits/legacy_capability_recovery/batch10_9/LCR_BATCH109_BOUNDARY_REPORT.json",
+      "batch": "10.9",
+      "capability_id": "provider_failure_policy_freeze",
+      "component": "core.provider_failure_characterization.freeze",
+      "dependencies": [
+        "provider_failure_characterization"
+      ],
+      "frozen": true,
+      "manifest_path": "manifests/lcr_batch109_provider_failure_policy_freeze_manifest.json",
+      "production_write_allowed": false,
+      "provider_execution_allowed": false,
+      "public_api": [
+        "get_provider_failure_policy_freeze_metadata",
+        "validate_provider_failure_policy_freeze"
+      ],
+      "rollback_strategy": "reject policy drift; restore the Batch 10.9 frozen source baseline",
+      "schema_version": "1.0",
+      "status": "governance_frozen"
+    }
+  ],
+  "capability_count": 18,
+  "immutable": true,
+  "status": "PASS"
+}

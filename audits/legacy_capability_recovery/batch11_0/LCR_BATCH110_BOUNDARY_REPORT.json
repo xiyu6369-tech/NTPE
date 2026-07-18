@@ -1,0 +1,14 @@
+{
+  "cache_modified": false,
+  "network_requests_added": 0,
+  "output_modified": false,
+  "production_hook_count": 1,
+  "production_integration": false,
+  "prompt_modified": false,
+  "provider_adapter_modified": false,
+  "provider_requests_added": 0,
+  "resume_modified": false,
+  "runtime_modified": false,
+  "status": "PASS",
+  "stores_modified": false
+}
