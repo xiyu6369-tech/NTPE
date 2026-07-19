@@ -1,0 +1,1 @@
+{"baseline_integration_latency":628,"baseline_prompt_tokens":3072,"candidate_budget_usage_tokens":1224,"candidate_integration_latency":2651,"candidate_prompt_tokens":4296,"character_selected":6,"chunk_count":6,"context_selected":6,"integration_latency_delta":2023,"latency_unit":"microseconds","scene_selected":12}

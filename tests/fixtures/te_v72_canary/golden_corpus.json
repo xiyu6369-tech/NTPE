@@ -1,0 +1,39 @@
+{
+  "schema_version": "te-v7.2-stage12.5.1-engineering-corpus-v1",
+  "corpus_id": "te-v72-controlled-canary-engineering-corpus",
+  "language_pair": "ko-zh-TW",
+  "human_reviewed_translation_pairs": false,
+  "purpose": "offline prompt-preparation parity and review-workflow verification",
+  "cases": [
+    {
+      "case_id": "canary-001-character-honorific",
+      "categories": ["character_name", "multiple_characters", "honorific", "dialogue_continuity", "speaker_continuity"],
+      "source_text": "영희가 민수와 선생님을 번갈아 보며 말했다. ‘선생님, 민수 씨도 함께 가실까요?’"
+    },
+    {
+      "case_id": "canary-002-scene-pronoun",
+      "categories": ["scene_transition", "context_continuity", "pronoun_resolution"],
+      "source_text": "마당을 떠나 사랑채로 들어서자 그는 등불을 내려놓았다. 그녀는 그것이 누구의 것인지 묻지 않았다."
+    },
+    {
+      "case_id": "canary-003-long-omitted-subject",
+      "categories": ["long_sentence", "korean_omitted_subject", "naturalness", "completeness"],
+      "source_text": "비가 그친 뒤에도 돌아오지 않아 걱정하면서도, 괜히 먼저 찾아갔다가 마음을 들킨다고 생각해 한참 동안 문밖만 바라보았다."
+    },
+    {
+      "case_id": "canary-004-long-dialogue",
+      "categories": ["long_dialogue", "honorific", "dialogue_continuity", "speaker_continuity"],
+      "source_text": "‘아씨께서 먼저 말씀하셨잖아요.’ ‘내가 언제 그랬니?’ ‘어젯밤 사랑채에서요.’ ‘그건 네가 잘못 들은 게다.’"
+    },
+    {
+      "case_id": "canary-005-narrative-dialogue",
+      "categories": ["narrative_dialogue_mix", "character_consistency", "context_continuity", "hangul_remaining"],
+      "source_text": "영희는 문고리를 잡은 채 잠시 숨을 골랐다. 방 안에서 민수가 ‘들어와’ 하고 말하자, 그녀는 아무렇지 않은 척 문을 열었다."
+    },
+    {
+      "case_id": "canary-006-era-background",
+      "categories": ["era_background", "era_wording", "scene_transition", "naturalness"],
+      "source_text": "개화기의 한성, 전차 종이 저녁 거리에 울리던 무렵이었다. 대감의 행차가 지나가자 사람들은 길 가장자리로 물러섰다."
+    }
+  ]
+}
