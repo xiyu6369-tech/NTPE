@@ -1,0 +1,515 @@
+{
+  "mode": "offline_render_only",
+  "provider_requests": 0,
+  "stage": "TE-v7.2-Stage12.5.3",
+  "trees": [
+    {
+      "baseline_user_tree": [
+        {
+          "characters": 143,
+          "contains_hangul": false,
+          "ends_at": 144,
+          "estimated_tokens": 59,
+          "header": "【Policy】",
+          "order": 1,
+          "starts_at": 0,
+          "text": "【Policy】忠於原文，不漏譯、不增刪。；先判斷主詞、行為者與指代，避免人物錯置。；Glossary 譯名逐字一致。；慣用語按中文小說語感處理，不機械直譯。；短答、反諷、模稜兩可語氣需保留，不擅自解釋。；避免生硬直譯，動作與心理描寫需像中文小說正文。；只輸出繁體中文譯文，對話用「」。"
+        },
+        {
+          "characters": 35,
+          "contains_hangul": false,
+          "ends_at": 180,
+          "estimated_tokens": 14,
+          "header": "【Profile】",
+          "order": 2,
+          "starts_at": 144,
+          "text": "【Profile】\n- 文學模式；主詞清楚、角色一致、中文像小說正文。"
+        },
+        {
+          "characters": 24,
+          "contains_hangul": false,
+          "ends_at": 205,
+          "estimated_tokens": 10,
+          "header": "【Narrative】",
+          "order": 3,
+          "starts_at": 180,
+          "text": "【Narrative】依原文判斷敘事、場景與情緒"
+        },
+        {
+          "characters": 17,
+          "contains_hangul": false,
+          "ends_at": 223,
+          "estimated_tokens": 7,
+          "header": "【Characters】",
+          "order": 4,
+          "starts_at": 205,
+          "text": "【Characters】依原文判斷"
+        },
+        {
+          "characters": 11,
+          "contains_hangul": false,
+          "ends_at": 235,
+          "estimated_tokens": 4,
+          "header": "【Glossary】",
+          "order": 5,
+          "starts_at": 223,
+          "text": "【Glossary】無"
+        },
+        {
+          "characters": 234,
+          "contains_hangul": false,
+          "ends_at": 470,
+          "estimated_tokens": 97,
+          "header": "【翻譯紀律】",
+          "order": 6,
+          "starts_at": 235,
+          "text": "【翻譯紀律】\n- 不得新增原文不存在的事件、設定或劇情。\n- 不得重述前文、上一段或本段已翻譯過的資訊。\n- 不得為了銜接或流暢而自行增加過渡敘述。\n- 不得自行補充原文未表達的人物心理、動機或判斷。\n- 不得摘要、濃縮、概括或省略原文資訊。\n- 保持資訊與事件出現順序，不任意前移、後置或重組。\n- 保留段落功能與敘事推進；可依中文節奏調整，但不得造成內容重述或遺漏。\n- 僅翻譯【Korean】中的當前內容；【Previous】只供承接語境，不得翻譯或改寫進輸出。"
+        },
+        {
+          "characters": 204,
+          "contains_hangul": false,
+          "ends_at": 675,
+          "estimated_tokens": 85,
+          "header": "【小說語感規範】",
+          "order": 7,
+          "starts_at": 470,
+          "text": "【小說語感規範】\n- 依繁體中文小說語序自然重組句子，避免保留韓文或外語的生硬修飾順序與機械句型。\n- 依作品時代、地域與人物身分選詞；不強制使用台灣特有用語，也不得使用不合背景的現代口語。\n- 不得把原文含糊資訊具體化，不得自行新增地名、交通方式、時間長度、動作強度或背景設定。\n- 保持同一角色在相同情境中的稱呼、敬語層級與口吻一致；不得自行放大人物情緒或改變角色性格；保持原文敘事人稱、視角與敘事距離。"
+        },
+        {
+          "characters": 8,
+          "contains_hangul": false,
+          "ends_at": 684,
+          "estimated_tokens": 3,
+          "header": "【Korean】",
+          "order": 8,
+          "starts_at": 675,
+          "text": "【Korean】"
+        },
+        {
+          "characters": 46,
+          "contains_hangul": true,
+          "ends_at": 731,
+          "estimated_tokens": 19,
+          "header": "[Korean Source Payload]",
+          "order": 9,
+          "starts_at": 684,
+          "text": "영희가 민수와 선생님을 번갈아 보며 말했다. ‘선생님, 민수 씨도 함께 가실까요?’"
+        },
+        {
+          "characters": 30,
+          "contains_hangul": false,
+          "ends_at": 761,
+          "estimated_tokens": 12,
+          "header": "【Output】",
+          "order": 10,
+          "starts_at": 731,
+          "text": "【Output】直出譯文，禁止標題、註解、Markdown。"
+        }
+      ],
+      "candidate_user_tree": [
+        {
+          "characters": 143,
+          "contains_hangul": false,
+          "ends_at": 144,
+          "estimated_tokens": 59,
+          "header": "【Policy】",
+          "order": 1,
+          "starts_at": 0,
+          "text": "【Policy】忠於原文，不漏譯、不增刪。；先判斷主詞、行為者與指代，避免人物錯置。；Glossary 譯名逐字一致。；慣用語按中文小說語感處理，不機械直譯。；短答、反諷、模稜兩可語氣需保留，不擅自解釋。；避免生硬直譯，動作與心理描寫需像中文小說正文。；只輸出繁體中文譯文，對話用「」。"
+        },
+        {
+          "characters": 35,
+          "contains_hangul": false,
+          "ends_at": 180,
+          "estimated_tokens": 14,
+          "header": "【Profile】",
+          "order": 2,
+          "starts_at": 144,
+          "text": "【Profile】\n- 文學模式；主詞清楚、角色一致、中文像小說正文。"
+        },
+        {
+          "characters": 24,
+          "contains_hangul": false,
+          "ends_at": 205,
+          "estimated_tokens": 10,
+          "header": "【Narrative】",
+          "order": 3,
+          "starts_at": 180,
+          "text": "【Narrative】依原文判斷敘事、場景與情緒"
+        },
+        {
+          "characters": 17,
+          "contains_hangul": false,
+          "ends_at": 223,
+          "estimated_tokens": 7,
+          "header": "【Characters】",
+          "order": 4,
+          "starts_at": 205,
+          "text": "【Characters】依原文判斷"
+        },
+        {
+          "characters": 11,
+          "contains_hangul": false,
+          "ends_at": 235,
+          "estimated_tokens": 4,
+          "header": "【Glossary】",
+          "order": 5,
+          "starts_at": 223,
+          "text": "【Glossary】無"
+        },
+        {
+          "characters": 234,
+          "contains_hangul": false,
+          "ends_at": 470,
+          "estimated_tokens": 97,
+          "header": "【翻譯紀律】",
+          "order": 6,
+          "starts_at": 235,
+          "text": "【翻譯紀律】\n- 不得新增原文不存在的事件、設定或劇情。\n- 不得重述前文、上一段或本段已翻譯過的資訊。\n- 不得為了銜接或流暢而自行增加過渡敘述。\n- 不得自行補充原文未表達的人物心理、動機或判斷。\n- 不得摘要、濃縮、概括或省略原文資訊。\n- 保持資訊與事件出現順序，不任意前移、後置或重組。\n- 保留段落功能與敘事推進；可依中文節奏調整，但不得造成內容重述或遺漏。\n- 僅翻譯【Korean】中的當前內容；【Previous】只供承接語境，不得翻譯或改寫進輸出。"
+        },
+        {
+          "characters": 204,
+          "contains_hangul": false,
+          "ends_at": 675,
+          "estimated_tokens": 85,
+          "header": "【小說語感規範】",
+          "order": 7,
+          "starts_at": 470,
+          "text": "【小說語感規範】\n- 依繁體中文小說語序自然重組句子，避免保留韓文或外語的生硬修飾順序與機械句型。\n- 依作品時代、地域與人物身分選詞；不強制使用台灣特有用語，也不得使用不合背景的現代口語。\n- 不得把原文含糊資訊具體化，不得自行新增地名、交通方式、時間長度、動作強度或背景設定。\n- 保持同一角色在相同情境中的稱呼、敬語層級與口吻一致；不得自行放大人物情緒或改變角色性格；保持原文敘事人稱、視角與敘事距離。"
+        },
+        {
+          "characters": 8,
+          "contains_hangul": false,
+          "ends_at": 684,
+          "estimated_tokens": 3,
+          "header": "【Korean】",
+          "order": 8,
+          "starts_at": 675,
+          "text": "【Korean】"
+        },
+        {
+          "characters": 100,
+          "contains_hangul": false,
+          "ends_at": 785,
+          "estimated_tokens": 41,
+          "header": "【人物一致性記憶（只作翻譯輔助，來源文字優先）】",
+          "order": 9,
+          "starts_at": 684,
+          "text": "【人物一致性記憶（只作翻譯輔助，來源文字優先）】\n- char-yeonghui｜人物固定譯名：Yeong-hui｜來源可信度：已通過資格檢核\n- 不得利用記憶補寫來源未明示的資訊或補全未出現的全名。"
+        },
+        {
+          "characters": 98,
+          "contains_hangul": false,
+          "ends_at": 884,
+          "estimated_tokens": 40,
+          "header": "【目前場景提示】",
+          "order": 10,
+          "starts_at": 785,
+          "text": "【目前場景提示】\n- speaker_state：Yeong-hui is the active speaker\n- scene_participant：char-yeonghui:present"
+        },
+        {
+          "characters": 101,
+          "contains_hangul": false,
+          "ends_at": 986,
+          "estimated_tokens": 42,
+          "header": "【有限上下文連貫提示（不得摘要或改寫來源）】",
+          "order": 11,
+          "starts_at": 884,
+          "text": "【有限上下文連貫提示（不得摘要或改寫來源）】\n- source_context_excerpt：The conversation continues after the scene transition"
+        },
+        {
+          "characters": 188,
+          "contains_hangul": false,
+          "ends_at": 1175,
+          "estimated_tokens": 78,
+          "header": "【自然度政策（TE v7.2）】",
+          "order": 12,
+          "starts_at": 986,
+          "text": "【自然度政策（TE v7.2）】\n- 忠實、完整、語意保存、術語一致與含混性保存優先於流暢度。\n- 使用自然的繁體中文小說語序；對話使用「」；依時代、地區、敘事風格與人物口吻選詞，不強制台灣特有詞。\n- 可調整韓文直譯語序、重複主詞、不自然連接詞與長定語結構，但不得摘要、刪減、增寫、補足因果或解釋未明示資訊。\n- 不得改變否定、數字或時間；原文未出現全名時不得自動補全全名。"
+        },
+        {
+          "characters": 46,
+          "contains_hangul": true,
+          "ends_at": 1222,
+          "estimated_tokens": 19,
+          "header": "[Korean Source Payload]",
+          "order": 13,
+          "starts_at": 1175,
+          "text": "영희가 민수와 선생님을 번갈아 보며 말했다. ‘선생님, 민수 씨도 함께 가실까요?’"
+        },
+        {
+          "characters": 30,
+          "contains_hangul": false,
+          "ends_at": 1252,
+          "estimated_tokens": 12,
+          "header": "【Output】",
+          "order": 14,
+          "starts_at": 1222,
+          "text": "【Output】直出譯文，禁止標題、註解、Markdown。"
+        }
+      ],
+      "case_id": "canary-001-character-honorific",
+      "ordering_verdict": "FAIL: quality sections are nested between 【Korean】 and the Korean source, rather than placed before the source-labelled translation payload or in a separately delimited instruction region.",
+      "system": {
+        "estimated_tokens": 11,
+        "order": 0,
+        "role": "system",
+        "text": "韓文小說譯者。先判斷主詞與語氣，再直出自然繁體中文正文。"
+      }
+    },
+    {
+      "baseline_user_tree": [
+        {
+          "characters": 143,
+          "contains_hangul": false,
+          "ends_at": 144,
+          "estimated_tokens": 59,
+          "header": "【Policy】",
+          "order": 1,
+          "starts_at": 0,
+          "text": "【Policy】忠於原文，不漏譯、不增刪。；先判斷主詞、行為者與指代，避免人物錯置。；Glossary 譯名逐字一致。；慣用語按中文小說語感處理，不機械直譯。；短答、反諷、模稜兩可語氣需保留，不擅自解釋。；避免生硬直譯，動作與心理描寫需像中文小說正文。；只輸出繁體中文譯文，對話用「」。"
+        },
+        {
+          "characters": 35,
+          "contains_hangul": false,
+          "ends_at": 180,
+          "estimated_tokens": 14,
+          "header": "【Profile】",
+          "order": 2,
+          "starts_at": 144,
+          "text": "【Profile】\n- 文學模式；主詞清楚、角色一致、中文像小說正文。"
+        },
+        {
+          "characters": 24,
+          "contains_hangul": false,
+          "ends_at": 205,
+          "estimated_tokens": 10,
+          "header": "【Narrative】",
+          "order": 3,
+          "starts_at": 180,
+          "text": "【Narrative】依原文判斷敘事、場景與情緒"
+        },
+        {
+          "characters": 17,
+          "contains_hangul": false,
+          "ends_at": 223,
+          "estimated_tokens": 7,
+          "header": "【Characters】",
+          "order": 4,
+          "starts_at": 205,
+          "text": "【Characters】依原文判斷"
+        },
+        {
+          "characters": 11,
+          "contains_hangul": false,
+          "ends_at": 235,
+          "estimated_tokens": 4,
+          "header": "【Glossary】",
+          "order": 5,
+          "starts_at": 223,
+          "text": "【Glossary】無"
+        },
+        {
+          "characters": 234,
+          "contains_hangul": false,
+          "ends_at": 470,
+          "estimated_tokens": 97,
+          "header": "【翻譯紀律】",
+          "order": 6,
+          "starts_at": 235,
+          "text": "【翻譯紀律】\n- 不得新增原文不存在的事件、設定或劇情。\n- 不得重述前文、上一段或本段已翻譯過的資訊。\n- 不得為了銜接或流暢而自行增加過渡敘述。\n- 不得自行補充原文未表達的人物心理、動機或判斷。\n- 不得摘要、濃縮、概括或省略原文資訊。\n- 保持資訊與事件出現順序，不任意前移、後置或重組。\n- 保留段落功能與敘事推進；可依中文節奏調整，但不得造成內容重述或遺漏。\n- 僅翻譯【Korean】中的當前內容；【Previous】只供承接語境，不得翻譯或改寫進輸出。"
+        },
+        {
+          "characters": 204,
+          "contains_hangul": false,
+          "ends_at": 675,
+          "estimated_tokens": 85,
+          "header": "【小說語感規範】",
+          "order": 7,
+          "starts_at": 470,
+          "text": "【小說語感規範】\n- 依繁體中文小說語序自然重組句子，避免保留韓文或外語的生硬修飾順序與機械句型。\n- 依作品時代、地域與人物身分選詞；不強制使用台灣特有用語，也不得使用不合背景的現代口語。\n- 不得把原文含糊資訊具體化，不得自行新增地名、交通方式、時間長度、動作強度或背景設定。\n- 保持同一角色在相同情境中的稱呼、敬語層級與口吻一致；不得自行放大人物情緒或改變角色性格；保持原文敘事人稱、視角與敘事距離。"
+        },
+        {
+          "characters": 8,
+          "contains_hangul": false,
+          "ends_at": 684,
+          "estimated_tokens": 3,
+          "header": "【Korean】",
+          "order": 8,
+          "starts_at": 675,
+          "text": "【Korean】"
+        },
+        {
+          "characters": 54,
+          "contains_hangul": true,
+          "ends_at": 739,
+          "estimated_tokens": 22,
+          "header": "[Korean Source Payload]",
+          "order": 9,
+          "starts_at": 684,
+          "text": "마당을 떠나 사랑채로 들어서자 그는 등불을 내려놓았다. 그녀는 그것이 누구의 것인지 묻지 않았다."
+        },
+        {
+          "characters": 30,
+          "contains_hangul": false,
+          "ends_at": 769,
+          "estimated_tokens": 12,
+          "header": "【Output】",
+          "order": 10,
+          "starts_at": 739,
+          "text": "【Output】直出譯文，禁止標題、註解、Markdown。"
+        }
+      ],
+      "candidate_user_tree": [
+        {
+          "characters": 143,
+          "contains_hangul": false,
+          "ends_at": 144,
+          "estimated_tokens": 59,
+          "header": "【Policy】",
+          "order": 1,
+          "starts_at": 0,
+          "text": "【Policy】忠於原文，不漏譯、不增刪。；先判斷主詞、行為者與指代，避免人物錯置。；Glossary 譯名逐字一致。；慣用語按中文小說語感處理，不機械直譯。；短答、反諷、模稜兩可語氣需保留，不擅自解釋。；避免生硬直譯，動作與心理描寫需像中文小說正文。；只輸出繁體中文譯文，對話用「」。"
+        },
+        {
+          "characters": 35,
+          "contains_hangul": false,
+          "ends_at": 180,
+          "estimated_tokens": 14,
+          "header": "【Profile】",
+          "order": 2,
+          "starts_at": 144,
+          "text": "【Profile】\n- 文學模式；主詞清楚、角色一致、中文像小說正文。"
+        },
+        {
+          "characters": 24,
+          "contains_hangul": false,
+          "ends_at": 205,
+          "estimated_tokens": 10,
+          "header": "【Narrative】",
+          "order": 3,
+          "starts_at": 180,
+          "text": "【Narrative】依原文判斷敘事、場景與情緒"
+        },
+        {
+          "characters": 17,
+          "contains_hangul": false,
+          "ends_at": 223,
+          "estimated_tokens": 7,
+          "header": "【Characters】",
+          "order": 4,
+          "starts_at": 205,
+          "text": "【Characters】依原文判斷"
+        },
+        {
+          "characters": 11,
+          "contains_hangul": false,
+          "ends_at": 235,
+          "estimated_tokens": 4,
+          "header": "【Glossary】",
+          "order": 5,
+          "starts_at": 223,
+          "text": "【Glossary】無"
+        },
+        {
+          "characters": 234,
+          "contains_hangul": false,
+          "ends_at": 470,
+          "estimated_tokens": 97,
+          "header": "【翻譯紀律】",
+          "order": 6,
+          "starts_at": 235,
+          "text": "【翻譯紀律】\n- 不得新增原文不存在的事件、設定或劇情。\n- 不得重述前文、上一段或本段已翻譯過的資訊。\n- 不得為了銜接或流暢而自行增加過渡敘述。\n- 不得自行補充原文未表達的人物心理、動機或判斷。\n- 不得摘要、濃縮、概括或省略原文資訊。\n- 保持資訊與事件出現順序，不任意前移、後置或重組。\n- 保留段落功能與敘事推進；可依中文節奏調整，但不得造成內容重述或遺漏。\n- 僅翻譯【Korean】中的當前內容；【Previous】只供承接語境，不得翻譯或改寫進輸出。"
+        },
+        {
+          "characters": 204,
+          "contains_hangul": false,
+          "ends_at": 675,
+          "estimated_tokens": 85,
+          "header": "【小說語感規範】",
+          "order": 7,
+          "starts_at": 470,
+          "text": "【小說語感規範】\n- 依繁體中文小說語序自然重組句子，避免保留韓文或外語的生硬修飾順序與機械句型。\n- 依作品時代、地域與人物身分選詞；不強制使用台灣特有用語，也不得使用不合背景的現代口語。\n- 不得把原文含糊資訊具體化，不得自行新增地名、交通方式、時間長度、動作強度或背景設定。\n- 保持同一角色在相同情境中的稱呼、敬語層級與口吻一致；不得自行放大人物情緒或改變角色性格；保持原文敘事人稱、視角與敘事距離。"
+        },
+        {
+          "characters": 8,
+          "contains_hangul": false,
+          "ends_at": 684,
+          "estimated_tokens": 3,
+          "header": "【Korean】",
+          "order": 8,
+          "starts_at": 675,
+          "text": "【Korean】"
+        },
+        {
+          "characters": 100,
+          "contains_hangul": false,
+          "ends_at": 785,
+          "estimated_tokens": 41,
+          "header": "【人物一致性記憶（只作翻譯輔助，來源文字優先）】",
+          "order": 9,
+          "starts_at": 684,
+          "text": "【人物一致性記憶（只作翻譯輔助，來源文字優先）】\n- char-yeonghui｜人物固定譯名：Yeong-hui｜來源可信度：已通過資格檢核\n- 不得利用記憶補寫來源未明示的資訊或補全未出現的全名。"
+        },
+        {
+          "characters": 98,
+          "contains_hangul": false,
+          "ends_at": 884,
+          "estimated_tokens": 40,
+          "header": "【目前場景提示】",
+          "order": 10,
+          "starts_at": 785,
+          "text": "【目前場景提示】\n- speaker_state：Yeong-hui is the active speaker\n- scene_participant：char-yeonghui:present"
+        },
+        {
+          "characters": 101,
+          "contains_hangul": false,
+          "ends_at": 986,
+          "estimated_tokens": 42,
+          "header": "【有限上下文連貫提示（不得摘要或改寫來源）】",
+          "order": 11,
+          "starts_at": 884,
+          "text": "【有限上下文連貫提示（不得摘要或改寫來源）】\n- source_context_excerpt：The conversation continues after the scene transition"
+        },
+        {
+          "characters": 188,
+          "contains_hangul": false,
+          "ends_at": 1175,
+          "estimated_tokens": 78,
+          "header": "【自然度政策（TE v7.2）】",
+          "order": 12,
+          "starts_at": 986,
+          "text": "【自然度政策（TE v7.2）】\n- 忠實、完整、語意保存、術語一致與含混性保存優先於流暢度。\n- 使用自然的繁體中文小說語序；對話使用「」；依時代、地區、敘事風格與人物口吻選詞，不強制台灣特有詞。\n- 可調整韓文直譯語序、重複主詞、不自然連接詞與長定語結構，但不得摘要、刪減、增寫、補足因果或解釋未明示資訊。\n- 不得改變否定、數字或時間；原文未出現全名時不得自動補全全名。"
+        },
+        {
+          "characters": 54,
+          "contains_hangul": true,
+          "ends_at": 1230,
+          "estimated_tokens": 22,
+          "header": "[Korean Source Payload]",
+          "order": 13,
+          "starts_at": 1175,
+          "text": "마당을 떠나 사랑채로 들어서자 그는 등불을 내려놓았다. 그녀는 그것이 누구의 것인지 묻지 않았다."
+        },
+        {
+          "characters": 30,
+          "contains_hangul": false,
+          "ends_at": 1260,
+          "estimated_tokens": 12,
+          "header": "【Output】",
+          "order": 14,
+          "starts_at": 1230,
+          "text": "【Output】直出譯文，禁止標題、註解、Markdown。"
+        }
+      ],
+      "case_id": "canary-002-scene-pronoun",
+      "ordering_verdict": "FAIL: quality sections are nested between 【Korean】 and the Korean source, rather than placed before the source-labelled translation payload or in a separately delimited instruction region.",
+      "system": {
+        "estimated_tokens": 11,
+        "order": 0,
+        "role": "system",
+        "text": "韓文小說譯者。先判斷主詞與語氣，再直出自然繁體中文正文。"
+      }
+    }
+  ]
+}

@@ -11,6 +11,7 @@ from .budget import allocate_prompt_budget
 from .errors import TranslationQualityIntegrationError
 from .flags import QualityIntegrationFlags
 from .models import PromptBudget, QualityIntegrationMetadata, QualityIntegrationRequest, QualityIntegrationResult
+from .prompt_contract import serialize_candidate_prompt
 from .renderer import NATURALNESS_POLICY, render_quality_sections
 from .selection import select_quality_context
 
@@ -101,10 +102,15 @@ def integrate_prompt(user_prompt: str, request: QualityIntegrationRequest) -> Qu
     if not section:
         return QualityIntegrationResult(user_prompt, "", _metadata(request, selected, "", allocation.exhausted, status="no_eligible_content"))
     source = request.source_text.strip()
-    insertion = user_prompt.rfind(source)
-    if insertion < 0:
-        raise TranslationQualityIntegrationError("final source prompt boundary unavailable")
-    integrated = user_prompt[:insertion] + section + "\n" + user_prompt[insertion:]
+    if "\u3010Korean\u3011" in user_prompt or "\u3010Output\u3011" in user_prompt:
+        integrated, verification = serialize_candidate_prompt(user_prompt, source, section)
+        if not verification.valid:
+            raise TranslationQualityIntegrationError("candidate_prompt_invalid:" + ",".join(verification.violations))
+    else:
+        insertion = user_prompt.rfind(source)
+        if insertion < 0:
+            raise TranslationQualityIntegrationError("final source prompt boundary unavailable")
+        integrated = user_prompt[:insertion] + section + "\n" + user_prompt[insertion:]
     return QualityIntegrationResult(integrated, section, _metadata(request, selected, section, allocation.exhausted))
 
 

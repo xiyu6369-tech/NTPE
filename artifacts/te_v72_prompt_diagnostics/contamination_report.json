@@ -1,0 +1,25 @@
+{
+  "input_source_echo": {
+    "baseline_source_hangul_count": 31,
+    "candidate_source_hangul_count": 31,
+    "finding": "Character, Scene, Context, and Naturalness injected text contains no Hangul. The only Korean in the candidate prompt is the intended source payload; its echo in output is therefore a source-boundary/format failure, not memory re-injection.",
+    "injected_sections_contain_hangul": {
+      "【人物一致性記憶（只作翻譯輔助，來源文字優先）】": false,
+      "【有限上下文連貫提示（不得摘要或改寫來源）】": false,
+      "【目前場景提示】": false,
+      "【自然度政策（TE v7.2）】": false
+    }
+  },
+  "mode": "offline_render_only",
+  "output_contract": {
+    "candidate_output_contains_hangul": true,
+    "candidate_output_contains_translation_label": true,
+    "candidate_output_hangul_count": 33,
+    "finding": "The saved candidate output begins by echoing the full Korean source and then adds 譯文：. Neither marker is a candidate-prompt literal; both are model output that violates the unchanged direct-output contract, plausibly enabled by the ambiguous source boundary.",
+    "source_translation_template_literal_in_candidate_prompt": false,
+    "translation_label_literal_in_baseline_prompt": false,
+    "translation_label_literal_in_candidate_prompt": false
+  },
+  "provider_requests": 0,
+  "stage": "TE-v7.2-Stage12.5.3"
+}
