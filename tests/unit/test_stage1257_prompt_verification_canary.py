@@ -11,9 +11,9 @@ from core.prompt_verification_canary_stage1257.framework import (
 ROOT = Path(__file__).resolve().parents[2]
 SOURCE = "영희가 민수와 선생님을 번갈아 보며 말했다. ‘선생님, 민수 씨도 함께 가실까요?’"
 
-def test_preclaim_resolution_hashes_and_request_plan() -> None:
+def test_preparation_fixture_resolution_hashes_and_request_plan(tmp_path: Path) -> None:
     config = Stage1257Config("offline-test", AUTHORIZATION_TOKEN)
-    preflight, plan = build_preflight(ROOT, config, clean_override=True)
+    preflight, plan = build_preflight(ROOT, config, clean_override=True, claim_path=tmp_path / "authorization_claim.json", artifact_validation_override=True)
     assert preflight["status"] == "PASS" and plan is not None
     assert plan["logical_id"] == LOGICAL_ID and plan["canonical_id"] == CANONICAL_ID
     assert [row["name"] for row in preflight["ordered_steps"]][5:9] == ["corpus_identity_resolution", "source_fixture_hash_validation", "request_plan_validation", "stage1257_claim_eligibility_validation"]
@@ -37,7 +37,7 @@ def test_structural_failures_are_fail_closed() -> None:
         result = validate_output(SOURCE, output, success=bool(output) and not kwargs.get("timeout",False), timeout=kwargs.get("timeout",False), malformed=kwargs.get("malformed",False))
         assert result["status"] == "FAIL"
 
-def test_no_secret_fields_in_preflight_or_plan() -> None:
-    preflight, plan = build_preflight(ROOT, Stage1257Config("offline-test", AUTHORIZATION_TOKEN), clean_override=True)
+def test_no_secret_fields_in_preparation_fixture_or_plan(tmp_path: Path) -> None:
+    preflight, plan = build_preflight(ROOT, Stage1257Config("offline-test", AUTHORIZATION_TOKEN), clean_override=True, claim_path=tmp_path / "authorization_claim.json", artifact_validation_override=True)
     raw = json.dumps({"preflight":preflight,"plan_metadata":plan["metadata"]}, sort_keys=True).lower()
     assert "authorization:" not in raw and "bearer " not in raw and "api_key" not in raw

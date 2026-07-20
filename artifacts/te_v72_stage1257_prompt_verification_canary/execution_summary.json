@@ -1,1 +1,1 @@
-{"activation_gate":"translation_quality_integration_ready_for_controlled_canary","claim_created":false,"request_count":0,"status":"preflight_failed"}
+{"activation_gate":"translation_quality_integration_ready_for_controlled_canary","baseline_success":false,"candidate_success":false,"request_count":1,"status":"execution_failed_closed"}

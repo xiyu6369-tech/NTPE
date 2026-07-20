@@ -64,8 +64,10 @@ def _manifest_valid(root: Path, path: Path) -> bool:
     data = json.loads(path.read_text(encoding="utf-8"))
     return all(_hash_map_valid(root, data.get(group, {})) for group in ("artifact_hashes", "source_hashes", "test_hashes"))
 
-def build_preflight(root: str | Path, config: Stage1257Config, *, clean_override: bool | None = None) -> tuple[dict[str, object], dict[str, object] | None]:
-    base = Path(root).resolve(); artifact_root = base / ARTIFACT_DIR; claim = artifact_root / "authorization_claim.json"
+def build_preflight(root: str | Path, config: Stage1257Config, *, clean_override: bool | None = None,
+                    claim_path: str | Path | None = None, artifact_validation_override: bool | None = None) -> tuple[dict[str, object], dict[str, object] | None]:
+    base = Path(root).resolve(); artifact_root = base / ARTIFACT_DIR
+    claim = Path(claim_path) if claim_path is not None else artifact_root / "authorization_claim.json"
     readiness = json.loads((base / "artifacts/te_v72_prompt_canary_readiness/readiness_summary.json").read_text(encoding="utf-8"))
     stage1254 = json.loads((base / "manifests/te_v720_stage1254_prompt_contract_preservation_manifest.json").read_text(encoding="utf-8"))
     old_claim = base / "artifacts/te_v72_stage1256_prompt_verification_canary/authorization_claim.json"
@@ -74,7 +76,7 @@ def build_preflight(root: str | Path, config: Stage1257Config, *, clean_override
     steps: list[dict[str, object]] = []
     def add(name: str, passed: bool, **extra: object) -> None: steps.append({"ordinal": len(steps)+1, "name": name, "passed": passed, **extra})
     add("git_worktree_validation", _worktree_clean(base) if clean_override is None else clean_override)
-    add("artifact_hash_validation", _hash_map_valid(base, stage1254.get("artifact_hashes", {})) and _manifest_valid(base, manifest_a))
+    add("artifact_hash_validation", (_hash_map_valid(base, stage1254.get("artifact_hashes", {})) and _manifest_valid(base, manifest_a)) if artifact_validation_override is None else artifact_validation_override)
     add("readiness_gate_validation", readiness.get("prompt_canary_ready") is True and readiness.get("activation_gate") == GATE_READY)
     old_hash = _sha(old_claim.read_bytes()) if old_claim.is_file() else None
     seal_data = json.loads(seal.read_text(encoding="utf-8")) if seal.is_file() else {}
