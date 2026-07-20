@@ -66,6 +66,7 @@
     "ntpe_lcr_batch7_multilingual_profiles_test.py",
     "ntpe_lcr_batch8_controlled_provider_routing_test.py",
     "ntpe_lcr_batch9_offline_golden_tic_validation_test.py",
+    "ntpe_launcher.py",
     "ntpe_literary_evaluation.py",
     "ntpe_literary_regression.py",
     "ntpe_long_run_recovery.py",
@@ -418,6 +419,7 @@
     "translated",
     "translation",
     "translation_cache",
+    "ui",
     "verification",
     "web_ui",
     "workflow"

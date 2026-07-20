@@ -1,0 +1,30 @@
+{
+  "app_imported": true,
+  "network_requests": 0,
+  "preview_enabled": true,
+  "preview_ready": true,
+  "provider_requests": 0,
+  "start_disabled_reason": "Translation execution is not enabled in Stage 1.",
+  "start_enabled": false,
+  "translation_executions": 0,
+  "validate_enabled": true,
+  "validation_ready": true,
+  "window_model": {
+    "api_timeout": 180,
+    "chunk_size": 600,
+    "input_path": "",
+    "model_id": "meta/llama-3.3-70b-instruct",
+    "output_directory": "output",
+    "overwrite": false,
+    "preview_enabled": true,
+    "provider_id": "nvidia",
+    "resume_enabled": true,
+    "source_language": "auto",
+    "start_disabled_reason": "Translation execution is not enabled in Stage 1.",
+    "start_enabled": false,
+    "target_language": "zh-Hant",
+    "title": "NTPE 2.0 Translation Launcher",
+    "translation_profile": "literary",
+    "validate_enabled": true
+  }
+}

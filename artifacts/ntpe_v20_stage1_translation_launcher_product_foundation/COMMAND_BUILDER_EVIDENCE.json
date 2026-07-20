@@ -1,0 +1,28 @@
+{
+  "argument_list": [
+    "python",
+    "launcher_translate.py",
+    "txt",
+    "tests\\fixtures\\launcher_product\\korean_sample.txt",
+    "output",
+    "--chunk-size",
+    "600",
+    "--model",
+    "meta/llama-3.3-70b-instruct",
+    "--provider-attempts",
+    "2",
+    "--profile",
+    "literary",
+    "--api-timeout",
+    "180",
+    "--dry-run"
+  ],
+  "command_preview": "python launcher_translate.py txt tests\\fixtures\\launcher_product\\korean_sample.txt output --chunk-size 600 --model meta/llama-3.3-70b-instruct --provider-attempts 2 --profile literary --api-timeout 180 --dry-run",
+  "deterministic": true,
+  "existing_execution_layer": "launcher_translate.py txt INPUT OUTPUT",
+  "generated_unsupported_flags": [],
+  "provider_requests": 0,
+  "ready": true,
+  "subprocess_started": false,
+  "translation_executions": 0
+}

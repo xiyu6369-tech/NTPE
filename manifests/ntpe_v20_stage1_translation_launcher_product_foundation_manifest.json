@@ -1,0 +1,89 @@
+{
+  "artifact_inventory": [
+    {
+      "bytes": 861,
+      "path": "artifacts/ntpe_v20_stage1_translation_launcher_product_foundation/COMMAND_BUILDER_EVIDENCE.json",
+      "sha256": "ef74e4afc62e976b3a11d93f99961f772c424a971e8a23fd55d34c1e7fe9f316"
+    },
+    {
+      "bytes": 925,
+      "path": "artifacts/ntpe_v20_stage1_translation_launcher_product_foundation/GUI_SMOKE_EVIDENCE.json",
+      "sha256": "87af6f1af6483e8e6701c5d88dfe8dd9b878a042d9d76c28aee4093b00c6ed23"
+    },
+    {
+      "bytes": 2751,
+      "path": "artifacts/ntpe_v20_stage1_translation_launcher_product_foundation/LANGUAGE_DETECTION_EVIDENCE.json",
+      "sha256": "4432ad21df034197d15c2e2006021833d46a1e9a1412aa1de5d116e619d6262d"
+    },
+    {
+      "bytes": 790,
+      "path": "artifacts/ntpe_v20_stage1_translation_launcher_product_foundation/MODEL_CATALOG.json",
+      "sha256": "2ddde50cb57dd64d526029b989e19a76c273001062cc64aaad4bbb2ec0ec61c2"
+    },
+    {
+      "bytes": 789,
+      "path": "artifacts/ntpe_v20_stage1_translation_launcher_product_foundation/PROVIDER_CATALOG.json",
+      "sha256": "3a89a66dbe1753ac1b43f668c2286909deca36397db777bbb5d861936dfeadfb"
+    },
+    {
+      "bytes": 611,
+      "path": "artifacts/ntpe_v20_stage1_translation_launcher_product_foundation/VALIDATION_REPORT.json",
+      "sha256": "69164f28a9224d9059ca8d096e8cfd25668ad1673bf8a87e51ab83903fbc080c"
+    }
+  ],
+  "catalogued_models": [
+    "meta/llama-3.3-70b-instruct",
+    "gemini-2.5-flash"
+  ],
+  "catalogued_providers": [
+    "nvidia",
+    "gemini"
+  ],
+  "execution_counts": {
+    "network_requests": 0,
+    "output_files_created": 0,
+    "provider_requests": 0,
+    "resume_files_created": 0,
+    "translation_executions": 0
+  },
+  "excluded_historical_files": {
+    "consumer_files": 49,
+    "head_match": true,
+    "root_wrappers": 321,
+    "total": 370
+  },
+  "git": {
+    "commit": "HOLD",
+    "initial_head": "a8864b5",
+    "push": false,
+    "tag": false
+  },
+  "modified_existing_files": [
+    ".gitignore",
+    "config/project_layout_policy.json"
+  ],
+  "protected_surfaces": {
+    "existing_launcher_modified": false,
+    "frozen_files_modified": 0,
+    "provider_files_modified": 0,
+    "runtime_files_modified": 0
+  },
+  "schema_version": 1,
+  "stage": "NTPE 2.0 Stage 1 Translation Launcher Product Foundation",
+  "supported_source_languages": [
+    "auto",
+    "ko",
+    "ja (detection only)",
+    "en (detection only)"
+  ],
+  "supported_target_languages": [
+    "zh-Hant"
+  ],
+  "validation": {
+    "acceptance_test": "PASS",
+    "git_diff_check": "PASS",
+    "integration_tests_passed": 3,
+    "ntpe_validate": "PASS",
+    "unit_tests_passed": 27
+  }
+}

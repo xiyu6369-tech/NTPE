@@ -1,0 +1,28 @@
+{
+  "environment_values_exposed": false,
+  "providers": [
+    {
+      "available": true,
+      "configured": false,
+      "display_name": "NVIDIA API",
+      "environment_variable": "NVIDIA_API_KEY",
+      "network_required": true,
+      "provider_id": "nvidia",
+      "requires_api_key": true,
+      "status_reason": "existing_cli_integration",
+      "supports_model_listing": false
+    },
+    {
+      "available": false,
+      "configured": false,
+      "display_name": "Google Gemini",
+      "environment_variable": "GEMINI_API_KEY",
+      "network_required": true,
+      "provider_id": "gemini",
+      "requires_api_key": true,
+      "status_reason": "not_yet_integrated",
+      "supports_model_listing": false
+    }
+  ],
+  "static_offline_catalog": true
+}

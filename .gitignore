@@ -138,5 +138,6 @@ output/
 *_zh.txt
 
 !manifests/te_*.json
+!manifests/ntpe_v20_stage1_translation_launcher_product_foundation_manifest.json
 
 NTPE.zip
