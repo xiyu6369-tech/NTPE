@@ -1,0 +1,20 @@
+{
+  "schema_version": "ntpe.stage0.compatibility-wrappers.v1",
+  "created_count": 0,
+  "created_wrappers": [],
+  "existing_retained_count": 11,
+  "existing_retained_wrappers": [
+    "launcher.py",
+    "ntpe_tic_batch1_translation_corpus_inventory_test.py",
+    "ntpe_tic_batch2_translation_case_extraction_test.py",
+    "ntpe_tic_batch3_manual_evidence_alignment_test.py",
+    "ntpe_tic_batch4_human_confirmed_failure_corpus_test.py",
+    "ntpe_tic_batch5_historical_human_evidence_expansion_test.py",
+    "ntpe_tic_batch61_human_approval_regression_activation_test.py",
+    "ntpe_tic_batch6_human_correction_root_cause_regression_test.py",
+    "ntpe_tic_batch7_offline_translation_quality_gate_test.py",
+    "ntpe_translate_batch.py",
+    "ntpe_translate_txt.py"
+  ],
+  "note": "No additional compatibility wrappers were created."
+}

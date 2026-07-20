@@ -20,6 +20,8 @@ from dataclasses import dataclass, asdict
 from pathlib import Path
 from typing import Iterable, List, Optional
 
+from tools.audit_project_layout import build_inventory
+
 ROOT = Path(__file__).resolve().parent
 
 REQUIRED_DIRS = [
@@ -29,6 +31,7 @@ REQUIRED_DIRS = [
     "prompt_packages",
     "docs",
     "tools",
+    "verification",
 ]
 
 REQUIRED_ENTRYPOINTS = [
@@ -201,21 +204,30 @@ def check_cache_files() -> CheckResult:
 
 def check_test_inventory() -> CheckResult:
     tests_dir = ROOT / "tests"
+    verification_dir = ROOT / "verification"
     if not tests_dir.exists():
         return CheckResult("Test inventory", "FAIL", "tests/ not found")
-    test_files = list(tests_dir.rglob("test_*.py")) + list(tests_dir.rglob("*_test.py"))
+    test_files = set(tests_dir.rglob("test_*.py")) | set(tests_dir.rglob("*_test.py"))
+    verification_files = set(verification_dir.rglob("test_*.py")) | set(verification_dir.rglob("*_test.py"))
     if not test_files:
         return CheckResult("Test inventory", "WARN", "No pytest-style test files found")
-    return CheckResult("Test inventory", "PASS", f"{len(test_files)} pytest-style test files found")
+    return CheckResult(
+        "Test inventory",
+        "PASS",
+        f"{len(test_files)} pytest tests; {len(verification_files)} relocated verification wrappers",
+    )
 
 
 def check_project_structure() -> CheckResult:
-    root_py = sorted(p.name for p in ROOT.glob("*.py"))
-    allowed_prefixes = ("launcher", "ntpe_", "create_")
-    unexpected = [name for name in root_py if not name.startswith(allowed_prefixes) and name != "ntpe_validate.py"]
+    inventory = build_inventory()
+    unexpected = inventory["unexpected_root_files"] + inventory["unexpected_root_directories"]
     if unexpected:
-        return CheckResult("Root Python layout", "WARN", "Unexpected root scripts: " + ", ".join(unexpected[:20]))
-    return CheckResult("Root Python layout", "PASS", f"{len(root_py)} root Python scripts checked")
+        return CheckResult("Root Python layout", "FAIL", "Unexpected root items: " + ", ".join(unexpected[:20]))
+    return CheckResult(
+        "Root Python layout",
+        "PASS",
+        f'{inventory["root_python_files"]} root Python files; layout policy satisfied',
+    )
 
 
 def run_pytest() -> CheckResult:

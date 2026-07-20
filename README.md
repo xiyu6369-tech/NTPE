@@ -10,8 +10,12 @@ NTPE is a professional Korean novel translation engine focused on stable long-fo
 
 ## Quick Start
 
+- 一般翻譯：`launcher_translate.py`
+- 正式驗證：`ntpe_validate.py`
+- 歷史 Root Wrappers：本階段保留於根目錄
+
 ```bat
-python launcher.py
+python launcher_translate.py --help
 python ntpe_validate.py
 ```
 
@@ -27,6 +31,7 @@ All long-form documentation is organized under `docs/`.
 - Roadmap: `docs/roadmap/`
 - Freeze Records: `docs/freeze/`
 - Stage Documents: `docs/stages/`
+- Project Layout: `docs/PROJECT_LAYOUT.md`
 
 ## Validation
 
