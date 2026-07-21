@@ -1,0 +1,47 @@
+# Cline Workspace Rules — NTPE AI Workspace v2.0
+
+## Project
+NTPE (Novel Translation Pipeline Engine) — Python-based literary translation pipeline with multi-provider AI orchestration, quality engine, and enterprise deployment framework.
+
+## Language
+- Primary: Python (3.x)
+- Documentation: Markdown
+- Configuration: JSON
+
+## Platform
+Windows 10 / cross-platform compatible
+
+## Default Behaviour
+- Work exclusively within workspace boundary: `D:\Python\NTPE`
+- Read before write; never modify files without explicit authorization from stage prompt or user
+- Respect all policies under `.ai/policies/`
+- Match active profile from `.ai/profiles/` when applicable
+- Validate all changes against stated acceptance criteria before reporting completion
+- Write all new Markdown files with UTF-8 encoding
+
+## Validation Workflow
+1. `pytest` — run relevant tests (per `.ai/policies/testing_policy.md`)
+2. `compileall` — verify Python syntax integrity
+3. `git diff --check` — verify whitespace / line-ending compliance
+4. `git diff --stat` — summarize changes
+5. `git status --short` — confirm scope of modifications
+
+## Stop Condition
+Stop immediately and report to user if:
+- Any frozen layer is modified (see `.ai/policies/project_boundaries.md`)
+- Provider execution is triggered without explicit user authorization
+- Translation execution is triggered without explicit user authorization
+- A forbidden operation is accidentally performed
+
+## Forbidden Operations
+The following are **explicitly prohibited** unless the user grants explicit, per-operation authorization:
+
+- `git commit`
+- `git push`
+- `git tag`
+- Provider Execution (any AI provider API call)
+- Translation Execution (any translation pipeline run)
+- Production Integration (any production environment modification)
+- Network Requests (any outbound HTTP/API call)
+
+All detailed policies are referenced in `.ai/policies/` and take precedence over this summary.

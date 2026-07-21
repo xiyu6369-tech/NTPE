@@ -1,0 +1,33 @@
+# NTPE EditorConfig — AI Workspace v2.0
+# Universal editor settings for Python and Markdown.
+
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+
+[*.py]
+indent_style = space
+indent_size = 4
+trim_trailing_whitespace = true
+
+[*.md]
+indent_style = space
+indent_size = 4
+trim_trailing_whitespace = false
+
+[*.json]
+indent_style = space
+indent_size = 4
+trim_trailing_whitespace = true
+
+[*.{yaml,yml}]
+indent_style = space
+indent_size = 2
+trim_trailing_whitespace = true
+
+[Makefile]
+indent_style = tab
+indent_size = 4

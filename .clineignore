@@ -1,0 +1,62 @@
+# Cline Ignore — NTPE AI Workspace v2.0
+# Files and directories that Cline should never read or modify.
+
+# Python bytecode
+__pycache__/
+.pytest_cache/
+*.pyc
+*.pyo
+*.py[cod]
+*$py.class
+
+# Build artifacts
+*.zip
+*.spec
+build/
+dist/
+
+# Runtime outputs
+output/
+logs/
+artifacts/
+temp/
+cache/
+backup/
+
+# Virtual environments
+.venv/
+venv/
+env/
+.env/
+
+# IDE settings
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Runtime state
+translate_progress*.json
+resume_state*.json
+runtime_state*.json
+workflow_state*.json
+progress.json
+*.progress.json
+*.resume.json
+
+# Benchmark
+benchmark/results/
+benchmark/reports/
+
+# Logs
+*.log
+
+# Temporary
+*.tmp
+*.bak
+
+# Sandbox
+.ntpe_runtime_checkpoints/
+.ntpe_test_sandbox/
