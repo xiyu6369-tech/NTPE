@@ -2,6 +2,10 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from pathlib import Path
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from .corruption_detector import TextQualityReport
 
 
 @dataclass(frozen=True)
@@ -31,3 +35,30 @@ class DecodedSource:
     character_count: int
     bom_removed: bool
     content_hash: str
+
+
+@dataclass(frozen=True)
+class LanguageDetectionResult:
+    language: str
+    confidence: int
+    script_statistics: tuple[tuple[str, int], ...]
+    recommended_profile: str
+    summary: str
+
+
+@dataclass(frozen=True)
+class BookIntakeResult:
+    """Immutable result produced by the Book Intake orchestration pipeline."""
+
+    source_path: Path
+    file_name: str
+    file_size_bytes: int
+    encoding: str
+    encoding_confidence: str
+    text: str
+    text_length: int
+    quality_report: TextQualityReport
+    language_result: LanguageDetectionResult
+    status: str
+    recommended_action: str
+    summary: str

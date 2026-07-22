@@ -1,6 +1,7 @@
 from .corruption_detector import Finding, TextCorruptionDetector, TextQualityReport
 from .decoder import decode_source
 from .encoding_detector import detect_encoding
+from .intake_package import BookIntakeProcessor
 from .errors import (
     AmbiguousEncodingError,
     BinaryContentDetectedError,
@@ -15,12 +16,15 @@ from .errors import (
     UnsupportedEncodingError,
     UnsupportedExtensionError,
 )
-from .models import DecodedSource, EncodingDetectionResult, SourceReadResult
+from .language_detector import SourceLanguageDetector
+from .models import BookIntakeResult, DecodedSource, EncodingDetectionResult, LanguageDetectionResult, SourceReadResult
 from .source_reader import SourceFileReader
 
 __all__ = [
     "AmbiguousEncodingError",
     "BinaryContentDetectedError",
+    "BookIntakeProcessor",
+    "BookIntakeResult",
     "DecodeFailedError",
     "DecodedSource",
     "EmptyFileError",
@@ -33,6 +37,8 @@ __all__ = [
     "NotAFileError",
     "SourceFileError",
     "SourceFileReader",
+    "LanguageDetectionResult",
+    "SourceLanguageDetector",
     "SourceReadResult",
     "TextCorruptionDetector",
     "TextQualityReport",
