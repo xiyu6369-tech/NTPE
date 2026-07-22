@@ -1,6 +1,9 @@
 {
   "schema_version": "ntpe.project-layout-policy.v1",
   "allowed_root_files": [
+    ".clineignore",
+    ".clinerules",
+    ".editorconfig",
     ".gitattributes",
     ".gitignore",
     "README.md",
@@ -353,6 +356,7 @@
   ],
   "allowed_root_directories": [
     ".agents",
+    ".ai",
     ".codex",
     ".git",
     ".ntpe_runtime_checkpoints",

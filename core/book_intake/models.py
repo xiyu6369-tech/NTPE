@@ -62,3 +62,38 @@ class BookIntakeResult:
     status: str
     recommended_action: str
     summary: str
+@dataclass(frozen=True)
+class PreflightFinding:
+    """Immutable book-scale risk finding produced during preflight."""
+
+    code: str
+    severity: str
+    message: str
+    observed_value: int | float | str | bool | None
+    threshold: int | float | str | bool | None
+
+
+@dataclass(frozen=True)
+class BookPreflightResult:
+    """Immutable statistics and recommendations for one intake result."""
+
+    source_path: Path
+    file_name: str
+    source_language: str
+    encoding: str
+    character_count: int
+    non_whitespace_character_count: int
+    line_count: int
+    non_empty_line_count: int
+    paragraph_count: int
+    estimated_word_count: int
+    estimated_chunk_count: int
+    estimated_source_tokens: int
+    largest_line_length: int
+    average_line_length: float
+    risk_findings: tuple[PreflightFinding, ...]
+    status: str
+    recommended_action: str
+    summary: str
+    source_chunk_size: int = 600
+    estimated_chars_per_token: float = 2.0
