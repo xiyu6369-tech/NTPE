@@ -1,0 +1,113 @@
+{
+  "activation_gate": "translation_execution_governance_frozen",
+  "boundary_counters": {
+    "fallback_executions": 0,
+    "network_requests": 0,
+    "output_writes": 0,
+    "production_hooks_added": 0,
+    "provider_requests": 0,
+    "retry_executions": 0,
+    "runtime_submissions": 0,
+    "translation_executions": 0
+  },
+  "component": "ntpe.translation_execution_governance",
+  "determinism": {
+    "fixtures": [
+      "prepared_package",
+      "prepared_with_warnings_package",
+      "single_unit_approval",
+      "selected_units_approval",
+      "full_package_approval",
+      "warning_acknowledgement",
+      "crlf_source",
+      "unicode_multilingual_source",
+      "multiple_chunks",
+      "scope_rejection",
+      "tampered_package_rejection",
+      "policy_relaxation_rejection"
+    ],
+    "repetitions": 3,
+    "result": "PASS"
+  },
+  "freeze_version": "4.4",
+  "frozen_source_inventory": {
+    "count": 16,
+    "duplicates": 0,
+    "extra": 0,
+    "hash_drift": 0,
+    "invalid_hashes": 0,
+    "missing": 0,
+    "protected_stage41_to_stage43_drift": 0
+  },
+  "git": {
+    "commit": false,
+    "push": false,
+    "tag": false
+  },
+  "invariant_count": 38,
+  "production_integration_authorized": false,
+  "public_api": {
+    "approval": 10,
+    "authorization": 9,
+    "freeze": 5,
+    "package": 10,
+    "total": 34
+  },
+  "schemas": {
+    "approval": [
+      "ntpe.translation_execution_approval_record",
+      "1.0"
+    ],
+    "authorization": [
+      "ntpe.translation_execution_authorization_decision",
+      "1.0"
+    ],
+    "package": [
+      "ntpe.translation_execution_package",
+      "1.0"
+    ]
+  },
+  "validation": {
+    "book_intake_regression": {
+      "passed": 290,
+      "result": "PASS"
+    },
+    "compileall": "PASS",
+    "freeze_integration": {
+      "passed": 5,
+      "result": "PASS"
+    },
+    "freeze_unit": {
+      "passed": 9,
+      "result": "PASS"
+    },
+    "git_diff_check": "PASS",
+    "ntpe_validate": "ALL PASS",
+    "stage3_regression": {
+      "book_chunking_passed": 38,
+      "book_preparation_passed": 48,
+      "book_segmentation_passed": 68,
+      "result": "PASS",
+      "total_passed": 154
+    },
+    "stage41_regression": {
+      "integration_passed": 5,
+      "result": "PASS",
+      "unit_passed": 26
+    },
+    "stage42_regression": {
+      "integration_passed": 5,
+      "result": "PASS",
+      "unit_passed": 44
+    },
+    "stage43_regression": {
+      "freeze_tests_in_current_unit_suite": 9,
+      "integration_passed": 5,
+      "legacy_unit_passed": 49,
+      "result": "PASS",
+      "unit_suite_passed": 58
+    },
+    "standalone_acceptance": "PASS"
+  },
+  "validation_conclusion": "PASS"
+}
