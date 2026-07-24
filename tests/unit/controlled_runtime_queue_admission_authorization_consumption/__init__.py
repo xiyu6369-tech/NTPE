@@ -1,0 +1,9 @@
+from core.controlled_runtime_queue_admission_authorization import ControlledRuntimeQueueAdmissionAuthorizer
+from core.controlled_runtime_queue_admission_authorization_consumption import ControlledRuntimeQueueAdmissionAuthorizationConsumptionRequest
+from tests.unit.controlled_runtime_queue_admission_authorization import build_context as build610
+def build_context(tmp_path,**overrides):
+    c610=build610(tmp_path);r610=ControlledRuntimeQueueAdmissionAuthorizer().authorize(**c610);d=r610.decision;assert d
+    vals=dict(authorization_id=d.authorization_id,decision_fingerprint=d.decision_fingerprint,authorization_request_id=c610["request"].authorization_request_id,authorization_request_fingerprint=c610["request"].request_fingerprint,stage69_consumption_claim_id=d.stage69_consumption_claim_id,stage69_claim_fingerprint=d.stage69_claim_fingerprint,scheduling_envelope_id=d.scheduling_envelope_id,scheduling_envelope_fingerprint=d.scheduling_envelope_fingerprint,stage67_consumption_claim_id=d.stage67_consumption_claim_id,stage67_claim_fingerprint=d.stage67_claim_fingerprint,stage66_scheduling_authorization_id=d.stage66_scheduling_authorization_id,stage66_decision_fingerprint=d.stage66_decision_fingerprint,runtime_boundary_id=d.runtime_boundary_id,runtime_boundary_kind=d.runtime_boundary_kind,selected_adapter_index=d.selected_adapter_index,capability_state_fingerprint=d.capability_state_fingerprint,unit_scope=1,upstream_chain=d.canonical_chain)
+    vals.update(overrides);request=ControlledRuntimeQueueAdmissionAuthorizationConsumptionRequest(**vals)
+    vctx=dict(stage69_claim=c610["stage69_claim"],stage69_request=c610["stage69_request"],stage69_result=c610["stage69_result"],stage69_verification_context=c610["stage69_verification_context"])
+    return dict(request=request,stage610_decision=d,stage610_request=c610["request"],stage610_result=r610,stage610_verification_context=vctx,database_path=tmp_path/"stage611.sqlite3",allowed_root=tmp_path)
