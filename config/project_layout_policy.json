@@ -137,6 +137,7 @@
     "ntpe_stage18_7_enterprise_deployment_validation_test.py",
     "ntpe_stage18_8_enterprise_deployment_freeze_test.py",
     "ntpe_stage18_9_production_translation_integration_test.py",
+    "ntpe_stage69_controlled_runtime_scheduling_envelope_consumption_acceptance_test.py",
     "ntpe_te_v30_stage01_prompt_intelligence_test.py",
     "ntpe_te_v30_stage021_naturalness_guard_test.py",
     "ntpe_te_v30_stage022_runtime_speed_policy_test.py",
@@ -449,6 +450,7 @@
     "ntpe_translate_txt.py"
   ],
   "ignored_root_directories": [
+    ".kilo",
     "__pycache__"
   ],
   "retained_root_wrappers": [
