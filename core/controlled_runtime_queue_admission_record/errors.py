@@ -1,0 +1,6 @@
+"""Stage 6.12 queue-admission record preparation errors."""
+
+class QueueAdmissionRecordPreparationError(Exception): pass
+class QueueAdmissionRecordPreparationSchemaError(QueueAdmissionRecordPreparationError): pass
+class QueueAdmissionRecordPreparationIntegrityError(QueueAdmissionRecordPreparationError): pass
+class QueueAdmissionRecordPreparationVerificationError(QueueAdmissionRecordPreparationError): pass
