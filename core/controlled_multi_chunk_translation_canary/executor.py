@@ -40,8 +40,8 @@ from .errors import (
     ControlledMultiChunkProviderError, ControlledMultiChunkQualityError,
 )
 from .models import (
-    CheckpointRecord, ChunkCompletionEvidence, MultiChunkCanaryRequest,
-    MultiChunkResult,
+    CheckpointRecord, ChunkCompletionEvidence, ChunkQualityAssessment,
+    ChunkQualityVerificationResult, MultiChunkCanaryRequest, MultiChunkResult,
 )
 from .policy import (
     ATTEMPT_CAP, CHUNK_COUNT, COMBINED_BOUNDARY, CONNECT_TIMEOUT_SECONDS,
@@ -50,7 +50,9 @@ from .policy import (
     REQUEST_CAP,
 )
 from .resolver import resolve_multi_chunk_source
-from .verification import verify_multi_chunk_result
+from .verification import (
+    verify_chunk_quality_assessment, verify_multi_chunk_result,
+)
 
 
 class ControlledMultiChunkExecutor:
@@ -240,15 +242,66 @@ class ControlledMultiChunkExecutor:
             if not isinstance(raw_output, str):
                 raise ControlledMultiChunkProviderError("Provider response was not text")
             translated = format_translation_output(raw_output)
-            evidence = self._quality_evidence(
-                request, plan, source_chunk, translated, prior_context
+            assessment, metrics = self._quality_assessment(
+                source_chunk, translated
             )
             if translated in translated_outputs:
-                raise ControlledMultiChunkQualityError("complete cross-chunk duplicate")
+                assessment = replace(
+                    assessment,
+                    no_duplicate_loop=False,
+                    quality_passed=False,
+                )
+            quality_verification = verify_chunk_quality_assessment(assessment)
+            if (
+                type(quality_verification) is not ChunkQualityVerificationResult
+                or quality_verification.valid is not True
+            ):
+                reason_codes = (
+                    quality_verification.reason_codes
+                    if type(quality_verification) is ChunkQualityVerificationResult
+                    else ("invalid-quality-verifier-result",)
+                )
+                write_json_output(
+                    root / f"chunk-{plan.index:03d}.quality-diagnostic.json",
+                    {
+                        "schema": "ntpe.controlled_multi_chunk_quality_diagnostic",
+                        "version": "1.0",
+                        "request_id": request.request_id,
+                        "chunk_id": plan.chunk_id,
+                        "assessment": asdict(assessment),
+                        "reason_codes": list(reason_codes),
+                        "candidate_persisted": False,
+                        "no_secret_confirmation": True,
+                    },
+                )
+                raise ControlledMultiChunkQualityError(
+                    f"chunk {plan.index} quality gate failed"
+                )
             output_path = root / plan.output_artifact_path
             write_text_output(output_path, translated)
+            if output_path.read_text(encoding="utf-8") != translated:
+                raise ControlledMultiChunkOutputError("chunk output read-back mismatch")
             output_fingerprint = hashlib.sha256(output_path.read_bytes()).hexdigest()
-            evidence = replace(evidence, output_fingerprint=output_fingerprint)
+            evidence = ChunkCompletionEvidence(
+                request_id=request.request_id,
+                request_fingerprint=request.request_fingerprint,
+                chunk_id=plan.chunk_id,
+                chunk_fingerprint=plan.chunk_fingerprint,
+                index=plan.index,
+                output_artifact_path=plan.output_artifact_path,
+                output_fingerprint=output_fingerprint,
+                output_character_count=len(translated),
+                context_character_count=len(prior_context),
+                context_fingerprint=canonical_sha256(prior_context),
+                hangul_character_count=metrics["hangul_character_count"],
+                source_echo_detected=metrics["source_echo_detected"],
+                duplicate_output_detected=metrics["duplicate_output_detected"],
+                corruption_detected=metrics["corruption_detected"],
+                traditional_chinese_signal=metrics["traditional_chinese_signal"],
+                dialogue_punctuation_passed=metrics["dialogue_punctuation_passed"],
+                fixed_names_passed=metrics["fixed_names_passed"],
+                quality_passed=True,
+            )
             completed.append(evidence)
             translated_outputs.append(translated)
             checkpoint = CheckpointRecord(
@@ -305,7 +358,7 @@ class ControlledMultiChunkExecutor:
         return result
 
     @staticmethod
-    def _quality_evidence(request, plan, source, translated, context):
+    def _quality_assessment(source, translated):
         guard = inspect_translation_output(translated, source_length=len(source))
         structural = validate_candidate_output(
             source, translated, success=True, timeout=False
@@ -325,47 +378,59 @@ class ControlledMultiChunkExecutor:
             source_name not in source or target_name in translated
             for source_name, target_name in FIXED_NAMES
         )
-        quality = all((
-            guard.accepted_for_human_review,
-            structural["candidate_structural_pass"] is True,
-            baseline["accepted"] is True,
-            corruption.status != "blocked",
-            fixed_names,
-            not translated.lstrip().startswith(
-                ("譯文：", "翻譯：", "以下是翻譯", "Translation:")
+        source_echo = bool(
+            structural["exact_source_echo"]
+            or structural["normalized_source_echo"]
+            or structural["partial_source_sequence"]
+        )
+        duplicate = bool(
+            structural["repeated_output_block"]
+            or baseline["metrics"]["duplicate_paragraph_count"]
+        )
+        prohibited_prefix = translated.lstrip().startswith(
+            ("譯文：", "翻譯：", "以下是翻譯", "Translation:")
+        )
+        mandatory = {
+            "non_empty": guard.empty_output is False,
+            "minimum_output_length_passed": (
+                structural["minimum_output_length_passed"] is True
+                and guard.suspicious_short_output is False
             ),
-        ))
-        if not quality:
-            raise ControlledMultiChunkQualityError(
-                f"chunk {plan.index} quality gate failed"
-            )
-        return ChunkCompletionEvidence(
-            request_id=request.request_id,
-            request_fingerprint=request.request_fingerprint,
-            chunk_id=plan.chunk_id,
-            chunk_fingerprint=plan.chunk_fingerprint,
-            index=plan.index,
-            output_artifact_path=plan.output_artifact_path,
-            output_fingerprint="0" * 64,
-            output_character_count=len(translated),
-            context_character_count=len(context),
-            context_fingerprint=canonical_sha256(context),
-            hangul_character_count=int(structural["hangul_character_count"]),
-            source_echo_detected=bool(
-                structural["exact_source_echo"]
-                or structural["partial_source_sequence"]
+            "hangul_residual_passed": (
+                structural["hangul_character_count"] == 0
             ),
-            duplicate_output_detected=bool(
-                structural["repeated_output_block"]
-                or baseline["metrics"]["duplicate_paragraph_count"]
+            "no_source_echo": source_echo is False,
+            "no_duplicate_loop": duplicate is False,
+            "no_corruption": corruption.status != "blocked",
+            "traditional_chinese_signal": (
+                structural["traditional_chinese_target_signal"] is True
             ),
-            corruption_detected=corruption.status == "blocked",
-            traditional_chinese_signal=bool(
-                structural["traditional_chinese_target_signal"]
-            ),
-            dialogue_punctuation_passed=(
+            "dialogue_punctuation_passed": (
                 baseline["metrics"]["bad_dialogue_quote_count"] == 0
             ),
-            fixed_names_passed=fixed_names,
-            quality_passed=True,
+            "fixed_names_passed": fixed_names is True,
+            "no_prohibited_prefix": prohibited_prefix is False,
+            "structural_passed": (
+                guard.accepted_for_human_review is True
+                and structural["candidate_structural_pass"] is True
+            ),
+            "baseline_passed": baseline["accepted"] is True,
+        }
+        assessment = ChunkQualityAssessment(
+            **mandatory,
+            quality_passed=all(value is True for value in mandatory.values()),
         )
+        metrics = {
+            "hangul_character_count": int(structural["hangul_character_count"]),
+            "source_echo_detected": source_echo,
+            "duplicate_output_detected": duplicate,
+            "corruption_detected": corruption.status == "blocked",
+            "traditional_chinese_signal": bool(
+                structural["traditional_chinese_target_signal"]
+            ),
+            "dialogue_punctuation_passed": (
+                baseline["metrics"]["bad_dialogue_quote_count"] == 0
+            ),
+            "fixed_names_passed": fixed_names,
+        }
+        return assessment, metrics

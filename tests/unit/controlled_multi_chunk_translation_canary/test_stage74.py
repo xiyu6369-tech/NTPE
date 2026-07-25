@@ -9,7 +9,8 @@ from core.controlled_multi_chunk_translation_canary import (
     ControlledMultiChunkExecutor, ControlledMultiChunkOutputError,
     ControlledMultiChunkProviderError, ControlledMultiChunkQualityError,
     ControlledMultiChunkVerificationError, read_checkpoint,
-    resolve_multi_chunk_source, verify_multi_chunk_result,
+    resolve_multi_chunk_source, verify_chunk_quality_assessment,
+    verify_multi_chunk_result,
 )
 from core.controlled_multi_chunk_translation_canary.policy import (
     CHUNK_FINGERPRINTS, SOURCE_FINGERPRINT,
@@ -184,3 +185,127 @@ def test_formal_output_and_overwrite_are_protected(tmp_path):
     second["artifact_root"] = context["artifact_root"]
     with pytest.raises(ControlledMultiChunkOutputError):
         ControlledMultiChunkExecutor().execute(**second)
+
+def test_observed_chunk2_dialogue_failure_stops_before_chunk3(tmp_path):
+    bad_dialogue = FAKE_OUTPUTS[1].replace("「", "“").replace("」", "”")
+    outputs = (FAKE_OUTPUTS[0], bad_dialogue, FAKE_OUTPUTS[2])
+    context = build_context(tmp_path, outputs=outputs)
+    starts = []
+    context["transport_factory"] = lambda index: (
+        starts.append(index)
+        or FakeSingleInvocationTransport(outputs=(outputs[index - 1],))
+    )
+    with pytest.raises(ControlledMultiChunkQualityError):
+        ControlledMultiChunkExecutor().execute(**context)
+    root = context["artifact_root"]
+    assert starts == [1, 2]
+    assert len(list(root.glob("chunk-*.translated.txt"))) == 1
+    assert len(list(root.glob("checkpoint-*.json"))) == 1
+    assert (root / "chunk-002.quality-diagnostic.json").is_file()
+    assert not (root / "chunk-002.translated.txt").exists()
+    assert not (root / "combined.translated.txt").exists()
+
+
+@pytest.mark.parametrize(
+    "gate,candidate",
+    [
+        ("fixed_names_passed", "這是一段完整流暢的繁體中文小說譯文。" * 20),
+        ("traditional_chinese_signal", "Complete English literary output. " * 30),
+        ("hangul_residual_passed", "정태의는 한국어 문장으로 남아 있다. " * 20),
+
+        ("no_source_echo", "__SOURCE_ECHO__"),
+        (
+            "no_duplicate_loop",
+            "鄭泰義望向遠方的海面，心中仍有許多疑問。\n\n" * 8,
+        ),
+    ],
+)
+def test_each_mandatory_gate_failure_stops_without_success_artifacts(
+    tmp_path, gate, candidate,
+):
+    context = build_context(tmp_path)
+    resolved = resolve_multi_chunk_source(
+        context["dispatch_package"], root=context["repository_root"]
+    )
+    if candidate == "__SOURCE_ECHO__":
+        candidate = resolved.chunks[0]
+    assessment, _ = ControlledMultiChunkExecutor._quality_assessment(
+        resolved.chunks[0], candidate
+    )
+    assert getattr(assessment, gate) is False
+    starts = []
+    context["transport_factory"] = lambda index: (
+        starts.append(index)
+        or FakeSingleInvocationTransport(outputs=(candidate,))
+    )
+    with pytest.raises(ControlledMultiChunkQualityError):
+        ControlledMultiChunkExecutor().execute(**context)
+    root = context["artifact_root"]
+    assert starts == [1]
+    assert not list(root.glob("chunk-*.translated.txt"))
+    assert not list(root.glob("checkpoint-*.json"))
+    assert not (root / "combined.translated.txt").exists()
+
+
+def test_truthy_verifier_object_and_missing_fields_are_rejected(tmp_path, monkeypatch):
+    class Truthy:
+        def __bool__(self):
+            return True
+
+    import core.controlled_multi_chunk_translation_canary.executor as executor_module
+
+    monkeypatch.setattr(
+        executor_module, "verify_chunk_quality_assessment", lambda _value: Truthy()
+    )
+    context = build_context(tmp_path)
+    with pytest.raises(ControlledMultiChunkQualityError):
+        ControlledMultiChunkExecutor().execute(**context)
+    assert not list(context["artifact_root"].glob("chunk-*.translated.txt"))
+    with pytest.raises(ControlledMultiChunkVerificationError):
+        verify_chunk_quality_assessment({"quality_passed": True})
+
+
+def test_checkpoint_readback_failure_blocks_next_chunk(tmp_path, monkeypatch):
+    import core.controlled_multi_chunk_translation_canary.executor as executor_module
+
+    starts = []
+    context = build_context(tmp_path)
+    context["transport_factory"] = lambda index: (
+        starts.append(index)
+        or FakeSingleInvocationTransport(outputs=(FAKE_OUTPUTS[index - 1],))
+    )
+    def fail_checkpoint(*_args, **_kwargs):
+        raise ControlledMultiChunkCheckpointError("read-back failed")
+    monkeypatch.setattr(executor_module, "write_checkpoint_atomic", fail_checkpoint)
+    with pytest.raises(ControlledMultiChunkCheckpointError):
+        ControlledMultiChunkExecutor().execute(**context)
+    assert starts == [1]
+    assert (context["artifact_root"] / "chunk-001.translated.txt").is_file()
+    assert not list(context["artifact_root"].glob("checkpoint-*.json"))
+    assert not (context["artifact_root"] / "combined.translated.txt").exists()
+
+def test_corruption_failure_stops_without_output_or_checkpoint(tmp_path, monkeypatch):
+    starts = []
+    context = build_context(tmp_path)
+    original = ControlledMultiChunkExecutor._quality_assessment
+    def blocked_assessment(source, translated):
+        assessment, metrics = original(source, translated)
+        assessment = replace(
+            assessment, no_corruption=False, quality_passed=False
+        )
+        metrics["corruption_detected"] = True
+        return assessment, metrics
+    monkeypatch.setattr(
+        ControlledMultiChunkExecutor,
+        "_quality_assessment",
+        staticmethod(blocked_assessment),
+    )
+    context["transport_factory"] = lambda index: (
+        starts.append(index)
+        or FakeSingleInvocationTransport(outputs=(FAKE_OUTPUTS[index - 1],))
+    )
+    with pytest.raises(ControlledMultiChunkQualityError):
+        ControlledMultiChunkExecutor().execute(**context)
+    assert starts == [1]
+    assert not list(context["artifact_root"].glob("chunk-*.translated.txt"))
+    assert not list(context["artifact_root"].glob("checkpoint-*.json"))

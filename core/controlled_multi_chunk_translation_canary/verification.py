@@ -8,10 +8,45 @@ from pathlib import Path
 from .checkpoint import read_checkpoint
 from .errors import ControlledMultiChunkVerificationError
 from .models import (
+    ChunkQualityAssessment, ChunkQualityVerificationResult,
     MultiChunkCanaryRequest, MultiChunkResult, MultiChunkVerificationResult,
 )
 from .policy import CHUNK_COUNT, COMBINED_BOUNDARY
 
+
+_MANDATORY_QUALITY_FIELDS = (
+    "non_empty",
+    "minimum_output_length_passed",
+    "hangul_residual_passed",
+    "no_source_echo",
+    "no_duplicate_loop",
+    "no_corruption",
+    "traditional_chinese_signal",
+    "dialogue_punctuation_passed",
+    "fixed_names_passed",
+    "no_prohibited_prefix",
+    "structural_passed",
+    "baseline_passed",
+)
+
+
+def verify_chunk_quality_assessment(value) -> ChunkQualityVerificationResult:
+    if type(value) is not ChunkQualityAssessment:
+        raise ControlledMultiChunkVerificationError(
+            "exact immutable chunk quality assessment required"
+        )
+    reasons = tuple(
+        f"{name}-failed"
+        for name in _MANDATORY_QUALITY_FIELDS
+        if getattr(value, name, None) is not True
+    )
+    if value.quality_passed is not True:
+        reasons += ("aggregate-quality-failed",)
+    return ChunkQualityVerificationResult(
+        valid=not reasons,
+        reason_codes=tuple(dict.fromkeys(reasons)),
+        assessment_fingerprint=value.assessment_fingerprint,
+    )
 
 def verify_multi_chunk_result(
     request: MultiChunkCanaryRequest,

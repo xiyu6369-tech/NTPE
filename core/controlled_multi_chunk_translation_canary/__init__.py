@@ -10,18 +10,23 @@ from .errors import (
 from .executor import ControlledMultiChunkExecutor
 from .models import (
     CheckpointRecord, ChunkCompletionEvidence, ChunkExecutionPlan,
+    ChunkQualityAssessment, ChunkQualityVerificationResult,
     MultiChunkCanaryRequest, MultiChunkResult, MultiChunkVerificationResult,
 )
 from .resolver import (
     ResolvedMultiChunkSource, build_multi_chunk_request,
     resolve_multi_chunk_source,
 )
-from .verification import verify_multi_chunk_result
+from .verification import (
+    verify_chunk_quality_assessment, verify_multi_chunk_result,
+)
 
 __all__ = [
     "MultiChunkCanaryRequest",
     "ChunkExecutionPlan",
     "ChunkCompletionEvidence",
+    "ChunkQualityAssessment",
+    "ChunkQualityVerificationResult",
     "CheckpointRecord",
     "MultiChunkResult",
     "MultiChunkVerificationResult",
@@ -32,6 +37,7 @@ __all__ = [
     "write_checkpoint_atomic",
     "read_checkpoint",
     "verify_multi_chunk_result",
+    "verify_chunk_quality_assessment",
     "ControlledMultiChunkError",
     "ControlledMultiChunkAuthorityError",
     "ControlledMultiChunkResolutionError",

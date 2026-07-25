@@ -3,11 +3,13 @@ from dataclasses import fields
 from core.controlled_multi_chunk_translation_canary import __all__ as public_api
 from core.controlled_multi_chunk_translation_canary.models import (
     CheckpointRecord, ChunkCompletionEvidence, ChunkExecutionPlan,
+    ChunkQualityAssessment, ChunkQualityVerificationResult,
     MultiChunkCanaryRequest, MultiChunkResult, MultiChunkVerificationResult,
 )
 from core.controlled_multi_chunk_translation_canary.policy import (
     ATTEMPT_CAP, CHECKPOINT_SCHEMA, CHUNK_COUNT, CHUNK_EVIDENCE_SCHEMA,
-    CHUNK_PLAN_SCHEMA, REQUEST_CAP, REQUEST_SCHEMA, RESULT_SCHEMA,
+    CHUNK_PLAN_SCHEMA, CHUNK_QUALITY_SCHEMA, REQUEST_CAP, REQUEST_SCHEMA,
+    RESULT_SCHEMA,
     VERIFICATION_SCHEMA,
 )
 
@@ -56,3 +58,16 @@ def test_required_model_fields_are_frozen_contract():
 
 def test_three_chunk_sequential_zero_mutation_contract():
     assert CHUNK_COUNT == REQUEST_CAP == ATTEMPT_CAP == 3
+
+def test_exact_quality_assessment_contract():
+    assert CHUNK_QUALITY_SCHEMA == "ntpe.controlled_translation_chunk_quality_assessment"
+    assert {
+        "non_empty", "minimum_output_length_passed", "hangul_residual_passed",
+        "no_source_echo", "no_duplicate_loop", "no_corruption",
+        "traditional_chinese_signal", "dialogue_punctuation_passed",
+        "fixed_names_passed", "no_prohibited_prefix", "structural_passed",
+        "baseline_passed", "quality_passed",
+    } == {item.name for item in fields(ChunkQualityAssessment) if item.init}
+    assert {"valid", "reason_codes", "assessment_fingerprint"} == {
+        item.name for item in fields(ChunkQualityVerificationResult)
+    }

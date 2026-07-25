@@ -1,7 +1,12 @@
+from core.adaptive_context_single_real_invocation import FakeSingleInvocationTransport
 from core.controlled_multi_chunk_translation_canary import (
-    ControlledMultiChunkExecutor, read_checkpoint, verify_multi_chunk_result,
+    ControlledMultiChunkExecutor, ControlledMultiChunkQualityError,
+    read_checkpoint, verify_multi_chunk_result,
 )
-from tests.unit.controlled_multi_chunk_translation_canary import build_context
+import pytest
+from tests.unit.controlled_multi_chunk_translation_canary import (
+    FAKE_OUTPUTS, build_context,
+)
 
 
 def test_authentic_three_chunk_zero_network_integration(tmp_path):
@@ -21,3 +26,20 @@ def test_authentic_three_chunk_zero_network_integration(tmp_path):
         artifact_root=context["artifact_root"],
         raise_on_error=True,
     ).valid
+
+def test_chunk2_dialogue_failure_stops_before_chunk3_integration(tmp_path):
+    bad_dialogue = FAKE_OUTPUTS[1].replace("「", "“").replace("」", "”")
+    outputs = (FAKE_OUTPUTS[0], bad_dialogue, FAKE_OUTPUTS[2])
+    context = build_context(tmp_path, outputs=outputs)
+    starts = []
+    context["transport_factory"] = lambda index: (
+        starts.append(index)
+        or FakeSingleInvocationTransport(outputs=(outputs[index - 1],))
+    )
+    with pytest.raises(ControlledMultiChunkQualityError):
+        ControlledMultiChunkExecutor().execute(**context)
+    root = context["artifact_root"]
+    assert starts == [1, 2]
+    assert len(list(root.glob("chunk-*.translated.txt"))) == 1
+    assert len(list(root.glob("checkpoint-*.json"))) == 1
+    assert not (root / "combined.translated.txt").exists()

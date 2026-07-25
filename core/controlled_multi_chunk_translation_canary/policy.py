@@ -3,6 +3,7 @@
 REQUEST_SCHEMA = "ntpe.controlled_multi_chunk_translation_request"
 CHUNK_PLAN_SCHEMA = "ntpe.controlled_translation_chunk_plan"
 CHUNK_EVIDENCE_SCHEMA = "ntpe.controlled_translation_chunk_evidence"
+CHUNK_QUALITY_SCHEMA = "ntpe.controlled_translation_chunk_quality_assessment"
 CHECKPOINT_SCHEMA = "ntpe.controlled_translation_checkpoint"
 RESULT_SCHEMA = "ntpe.controlled_multi_chunk_translation_result"
 VERIFICATION_SCHEMA = "ntpe.controlled_multi_chunk_translation_verification_result"
@@ -41,7 +42,7 @@ CONNECT_TIMEOUT_SECONDS = 10
 READ_TIMEOUT_SECONDS = 180
 REQUEST_CAP = 3
 ATTEMPT_CAP = 3
-OUTPUT_ROOT = "artifacts/controlled_multi_chunk_translation_stage74"
+OUTPUT_ROOT = "artifacts/controlled_multi_chunk_translation_stage742"
 CONTEXT_LIMIT = 160
 COMBINED_BOUNDARY = "\n\n"
 FIXED_NAMES = (("일레이", "伊萊"), ("정태의", "鄭泰義"))

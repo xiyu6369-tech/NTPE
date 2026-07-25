@@ -10,7 +10,8 @@ from core.controlled_translation_runtime_integration.serialization import (
 
 from .policy import (
     ATTEMPT_CAP, CHECKPOINT_SCHEMA, CHUNK_COUNT, CHUNK_EVIDENCE_SCHEMA,
-    CHUNK_PLAN_SCHEMA, CONNECT_TIMEOUT_SECONDS, INTENT, PROFILE, REQUEST_CAP,
+    CHUNK_PLAN_SCHEMA, CHUNK_QUALITY_SCHEMA, CONNECT_TIMEOUT_SECONDS, INTENT,
+    PROFILE, REQUEST_CAP,
     REQUEST_SCHEMA, RESULT_SCHEMA, READ_TIMEOUT_SECONDS, SCHEMA_VERSION,
     TARGET_LANGUAGE, VERIFICATION_SCHEMA,
 )
@@ -162,6 +163,60 @@ class ChunkCompletionEvidence:
     def evidence_fingerprint(self) -> str:
         return canonical_sha256(asdict(self))
 
+
+@dataclass(frozen=True)
+class ChunkQualityAssessment:
+    non_empty: bool
+    minimum_output_length_passed: bool
+    hangul_residual_passed: bool
+    no_source_echo: bool
+    no_duplicate_loop: bool
+    no_corruption: bool
+    traditional_chinese_signal: bool
+    dialogue_punctuation_passed: bool
+    fixed_names_passed: bool
+    no_prohibited_prefix: bool
+    structural_passed: bool
+    baseline_passed: bool
+    quality_passed: bool
+    schema: str = field(default=CHUNK_QUALITY_SCHEMA, init=False)
+    version: str = field(default=SCHEMA_VERSION, init=False)
+
+    def __post_init__(self) -> None:
+        mandatory = (
+            self.non_empty,
+            self.minimum_output_length_passed,
+            self.hangul_residual_passed,
+            self.no_source_echo,
+            self.no_duplicate_loop,
+            self.no_corruption,
+            self.traditional_chinese_signal,
+            self.dialogue_punctuation_passed,
+            self.fixed_names_passed,
+            self.no_prohibited_prefix,
+            self.structural_passed,
+            self.baseline_passed,
+        )
+        if any(type(value) is not bool for value in (*mandatory, self.quality_passed)):
+            raise TypeError("quality fields must be exact bool")
+        if self.quality_passed is not all(value is True for value in mandatory):
+            raise ValueError("quality aggregate does not match mandatory fields")
+
+    @property
+    def assessment_fingerprint(self) -> str:
+        return canonical_sha256(asdict(self))
+
+
+@dataclass(frozen=True)
+class ChunkQualityVerificationResult:
+    valid: bool
+    reason_codes: tuple[str, ...]
+    assessment_fingerprint: str
+
+    def __post_init__(self) -> None:
+        if type(self.valid) is not bool:
+            raise TypeError("valid must be exact bool")
+        object.__setattr__(self, "reason_codes", tuple(self.reason_codes))
 
 @dataclass(frozen=True)
 class CheckpointRecord:
