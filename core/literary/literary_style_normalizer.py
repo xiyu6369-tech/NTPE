@@ -11,8 +11,6 @@ import re
 # descriptions.
 LITERARY_STYLE_REPLACEMENTS: tuple[tuple[str, str], ...] = (
     # TER-v2.0 quality lock baseline: do not allow semantic drift from style cleanup.
-    ("留下了鄭泰義", "只留下那句簡短而曖昧的回答"),
-    ("留下鄭泰義", "只留下那句簡短而曖昧的回答"),
     ("只留下了一句模稜兩可的話", "只留下那句簡短而曖昧的回答"),
     ("只留下了一句模稜兩可的回答", "只留下那句簡短而曖昧的回答"),
     ("只留下了一句令人費解的話", "只留下那句簡短而曖昧的回答"),
@@ -57,6 +55,11 @@ LITERARY_STYLE_REPLACEMENTS: tuple[tuple[str, str], ...] = (
     ("伊萊笑著回答道：「當然。」說完便轉身離去，留下了鄭泰義一個簡短的回答。", "伊萊笑著只答了一句「當然」，便轉身離去。"),
     ("留下了鄭泰義一個簡短的回答", "只留下那句簡短的回答"),
     ("留下了鄭泰義一個回答", "只留下那句回答"),
+    # Keep broad TER-v2.0 cleanup after the TER-v1.6 full-sentence guards.
+    # Otherwise it consumes the specific regression before the semantic guard.
+    ("留下了鄭泰義", "只留下那句簡短而曖昧的回答"),
+    ("留下鄭泰義", "只留下那句簡短而曖昧的回答"),
+
     ("只留下了一句模糊的話", "只留下那句曖昧不明的回答"),
     ("只留下了一句模糊的回答", "只留下那句曖昧不明的回答"),
     ("留下了一句模糊的話", "留下那句曖昧不明的回答"),
