@@ -1,4 +1,5 @@
 from dataclasses import FrozenInstanceError, replace
+import hashlib
 import json
 
 import pytest
@@ -12,6 +13,10 @@ from core.controlled_multi_chunk_translation_canary import (
     resolve_multi_chunk_source, verify_chunk_quality_assessment,
     verify_multi_chunk_result,
 )
+from core.controlled_multi_chunk_translation_canary.verification import (
+    assess_dialogue_punctuation,
+)
+from core.translation_runtime import format_translation_output
 from core.controlled_multi_chunk_translation_canary.policy import (
     CHUNK_FINGERPRINTS, SOURCE_FINGERPRINT,
 )
@@ -309,3 +314,153 @@ def test_corruption_failure_stops_without_output_or_checkpoint(tmp_path, monkeyp
     assert starts == [1]
     assert not list(context["artifact_root"].glob("chunk-*.translated.txt"))
     assert not list(context["artifact_root"].glob("checkpoint-*.json"))
+
+
+def test_valid_corner_dialogue_and_multiple_spans_pass():
+    source = "“첫째.” 그는 말했다. “둘째.”"
+    single = assess_dialogue_punctuation(source, "「第一句。」他說。")
+    multiple = assess_dialogue_punctuation(
+        source, "「第一句。」他停了一下。「第二句！」"
+    )
+    assert single["passed"] is True
+    assert multiple["passed"] is True
+    assert multiple["completed_dialogue_spans"] == 2
+
+
+def test_narration_only_does_not_false_fail():
+    result = assess_dialogue_punctuation(
+        "그는 조용히 바다를 바라보았다.",
+        "他安靜地望著海面，心裡沒有任何疑問。",
+    )
+    assert result["source_has_dialogue"] is False
+    assert result["passed"] is True
+
+
+@pytest.mark.parametrize(
+    "candidate,reason",
+    [
+        ('"人物正在說話。"', "ascii-spoken-quotes-forbidden"),
+        ("“人物正在說話。”", "curly-spoken-quotes-forbidden"),
+        ("‘人物正在說話。’", "korean-nested-quotes-forbidden"),
+    ],
+)
+def test_incompatible_spoken_quote_styles_fail(candidate, reason):
+    result = assess_dialogue_punctuation("“대화다.”", candidate)
+    assert result["passed"] is False
+    assert reason in result["reason_codes"]
+
+
+@pytest.mark.parametrize(
+    "candidate,reason",
+    [
+        ("「沒有結束。", "unmatched-opening-corner-quote"),
+        ("沒有開始。」", "unmatched-closing-corner-quote"),
+        ("「外層『內層。」』", "malformed-nested-dialogue"),
+        ("「缺少句末標點」", "dialogue-closing-punctuation-missing"),
+    ],
+)
+def test_unmatched_nested_and_missing_closing_punctuation_fail(candidate, reason):
+    result = assess_dialogue_punctuation("“대화다.”", candidate)
+    assert result["passed"] is False
+    assert reason in result["reason_codes"]
+
+
+def test_exact_stage742_chunk2_failure_pattern_is_reproduced(tmp_path):
+    context = build_context(tmp_path)
+    resolved = resolve_multi_chunk_source(
+        context["dispatch_package"], root=context["repository_root"]
+    )
+    observed_pattern = FAKE_OUTPUTS[1].replace("「", "“").replace("」", "”")
+    result = assess_dialogue_punctuation(resolved.chunks[1], observed_pattern)
+    assert result["quote_type_counts"] == {
+        "ascii_double_quote_count": 0,
+        "curly_open_double_quote_count": 2,
+        "curly_close_double_quote_count": 2,
+        "curly_open_single_quote_count": 0,
+        "curly_close_single_quote_count": 0,
+        "corner_open_count": 0,
+        "corner_close_count": 0,
+        "nested_corner_open_count": 0,
+        "nested_corner_close_count": 0,
+        "korean_style_quote_count": 4,
+    }
+    assert result["passed"] is False
+
+
+def test_authentic_formatter_precedes_assessment_and_persistence(tmp_path):
+    raw_outputs = list(FAKE_OUTPUTS)
+    raw_outputs[1] = raw_outputs[1].replace("「", '"').replace("」", '"')
+    context = build_context(tmp_path, outputs=tuple(raw_outputs))
+    result = ControlledMultiChunkExecutor().execute(**context)
+    persisted = (
+        context["artifact_root"] / "chunk-002.translated.txt"
+    ).read_text(encoding="utf-8")
+    assert '"' not in persisted
+    assert persisted.count("「") == persisted.count("」") == 2
+    assert result.chunk_evidence[1].dialogue_punctuation_passed is True
+
+
+def test_assessed_bytes_persisted_bytes_and_fingerprints_are_identical(tmp_path):
+    context = build_context(tmp_path)
+    result = ControlledMultiChunkExecutor().execute(**context)
+    for output, evidence in zip(FAKE_OUTPUTS, result.chunk_evidence):
+        assessed = format_translation_output(output).encode("utf-8")
+        persisted = (
+            context["artifact_root"] / evidence.output_artifact_path
+        ).read_bytes()
+        assert persisted == assessed
+        assert hashlib.sha256(assessed).hexdigest() == evidence.output_fingerprint
+
+
+def test_stage743_prompt_constraint_reaches_authentic_payload(tmp_path):
+    transports = []
+
+    class RecordingTransport(FakeSingleInvocationTransport):
+        def invoke(self, payload, plan, *, provider_url, api_key):
+            self.payload = payload
+            return super().invoke(
+                payload, plan, provider_url=provider_url, api_key=api_key
+            )
+
+    def factory(index):
+        transport = RecordingTransport(outputs=(FAKE_OUTPUTS[index - 1],))
+        transports.append(transport)
+        return transport
+
+    context = build_context(tmp_path)
+    context["transport_factory"] = factory
+    ControlledMultiChunkExecutor().execute(**context)
+    for transport in transports:
+        user_prompt = transport.payload["prompt"]["user_prompt"]
+        assert "人物說出口的對話一律使用成對的「」" in user_prompt
+        assert "禁止用 ASCII 雙引號或彎雙引號" in user_prompt
+
+
+def test_punctuation_failure_diagnostic_is_invalid_only_and_redacted(tmp_path):
+    bad = FAKE_OUTPUTS[1].replace("「", "“").replace("」", "”")
+    context = build_context(tmp_path, outputs=(FAKE_OUTPUTS[0], bad, FAKE_OUTPUTS[2]))
+    with pytest.raises(ControlledMultiChunkQualityError):
+        ControlledMultiChunkExecutor().execute(**context)
+    root = context["artifact_root"]
+    diagnostic = json.loads(
+        (root / "chunk-002.quality-diagnostic.json").read_text(encoding="utf-8")
+    )
+    invalid_candidate = root / "chunk-002.invalid-candidate.txt"
+    assert invalid_candidate.read_text(encoding="utf-8") == bad
+    assert diagnostic["version"] == "1.1"
+    assert diagnostic["quote_type_counts"]["curly_open_double_quote_count"] == 2
+    assert diagnostic["candidate_persisted_as_success"] is False
+    assert diagnostic["checkpoint_authority"] is False
+    assert diagnostic["no_secret_confirmation"] is True
+    assert diagnostic["formatter_after_fingerprint"] == hashlib.sha256(
+        bad.encode("utf-8")
+    ).hexdigest()
+    assert not (root / "chunk-002.translated.txt").exists()
+    assert not (root / "checkpoint-002.json").exists()
+
+
+def test_no_new_blind_global_quote_replacement():
+    curly = "敘述中的彎引號“不是可自動修復的對話”。"
+    measurement = '身高標記為 6"，此處不是成對對話引號。'
+    assert format_translation_output(curly) == curly
+    assert '6"' in format_translation_output(measurement)

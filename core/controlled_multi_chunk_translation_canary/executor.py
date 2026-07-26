@@ -45,13 +45,14 @@ from .models import (
 )
 from .policy import (
     ATTEMPT_CAP, CHUNK_COUNT, COMBINED_BOUNDARY, CONNECT_TIMEOUT_SECONDS,
-    CONTEXT_LIMIT, CREDENTIAL_ENV, FIXED_NAMES, OUTPUT_ROOT, PROFILE, PROVIDER,
-    PROVIDER_MODEL, PROVIDER_URL, READ_TIMEOUT_SECONDS, REAL_CANARY_GATE_ENV,
-    REQUEST_CAP,
+    CONTEXT_LIMIT, CREDENTIAL_ENV, DIALOGUE_PUNCTUATION_PROMPT_CONSTRAINT,
+    FIXED_NAMES, OUTPUT_ROOT, PROFILE, PROVIDER, PROVIDER_MODEL, PROVIDER_URL,
+    READ_TIMEOUT_SECONDS, REAL_CANARY_GATE_ENV, REQUEST_CAP,
 )
 from .resolver import resolve_multi_chunk_source
 from .verification import (
-    verify_chunk_quality_assessment, verify_multi_chunk_result,
+    assess_dialogue_punctuation, verify_chunk_quality_assessment,
+    verify_multi_chunk_result,
 )
 
 
@@ -145,10 +146,15 @@ class ControlledMultiChunkExecutor:
                 previous_context=prior_context,
                 profile=PROFILE,
             )
+            extended_user_prompt = (
+                prompt.user_prompt.rstrip()
+                + "\n\n"
+                + DIALOGUE_PUNCTUATION_PROMPT_CONSTRAINT
+            )
             payload = {
                 "prompt": {
                     "system_prompt": prompt.system_prompt,
-                    "user_prompt": prompt.user_prompt,
+                    "user_prompt": extended_user_prompt,
                 },
                 "source_fingerprint": plan.chunk_fingerprint,
                 "chunk_identity": plan.chunk_id,
@@ -159,7 +165,9 @@ class ControlledMultiChunkExecutor:
                 timeout_seconds=READ_TIMEOUT_SECONDS,
                 fallback_used=False,
                 estimated_input_tokens=max(
-                    1, (len(prompt.system_prompt) + len(prompt.user_prompt)) // 3
+                    1, (
+                        len(prompt.system_prompt) + len(extended_user_prompt)
+                    ) // 3
                 ),
                 estimated_output_tokens=800,
             )
@@ -263,25 +271,33 @@ class ControlledMultiChunkExecutor:
                 )
                 write_json_output(
                     root / f"chunk-{plan.index:03d}.quality-diagnostic.json",
-                    {
-                        "schema": "ntpe.controlled_multi_chunk_quality_diagnostic",
-                        "version": "1.0",
-                        "request_id": request.request_id,
-                        "chunk_id": plan.chunk_id,
-                        "assessment": asdict(assessment),
-                        "reason_codes": list(reason_codes),
-                        "candidate_persisted": False,
-                        "no_secret_confirmation": True,
-                    },
+                    self._quality_diagnostic(
+                        request_id=request.request_id,
+                        chunk_id=plan.chunk_id,
+                        source=source_chunk,
+                        raw_output=raw_output,
+                        formatted_output=translated,
+                        assessment=assessment,
+                        reason_codes=reason_codes,
+                    ),
                 )
+                if assessment.dialogue_punctuation_passed is not True:
+                    write_text_output(
+                        root / f"chunk-{plan.index:03d}.invalid-candidate.txt",
+                        translated,
+                    )
                 raise ControlledMultiChunkQualityError(
                     f"chunk {plan.index} quality gate failed"
                 )
             output_path = root / plan.output_artifact_path
+            assessed_bytes = translated.encode("utf-8")
             write_text_output(output_path, translated)
-            if output_path.read_text(encoding="utf-8") != translated:
-                raise ControlledMultiChunkOutputError("chunk output read-back mismatch")
-            output_fingerprint = hashlib.sha256(output_path.read_bytes()).hexdigest()
+            persisted_bytes = output_path.read_bytes()
+            if persisted_bytes != assessed_bytes:
+                raise ControlledMultiChunkOutputError(
+                    "assessed and persisted chunk bytes differ"
+                )
+            output_fingerprint = hashlib.sha256(persisted_bytes).hexdigest()
             evidence = ChunkCompletionEvidence(
                 request_id=request.request_id,
                 request_fingerprint=request.request_fingerprint,
@@ -390,6 +406,7 @@ class ControlledMultiChunkExecutor:
         prohibited_prefix = translated.lstrip().startswith(
             ("譯文：", "翻譯：", "以下是翻譯", "Translation:")
         )
+        dialogue = assess_dialogue_punctuation(source, translated)
         mandatory = {
             "non_empty": guard.empty_output is False,
             "minimum_output_length_passed": (
@@ -407,6 +424,7 @@ class ControlledMultiChunkExecutor:
             ),
             "dialogue_punctuation_passed": (
                 baseline["metrics"]["bad_dialogue_quote_count"] == 0
+                and dialogue["passed"] is True
             ),
             "fixed_names_passed": fixed_names is True,
             "no_prohibited_prefix": prohibited_prefix is False,
@@ -430,7 +448,68 @@ class ControlledMultiChunkExecutor:
             ),
             "dialogue_punctuation_passed": (
                 baseline["metrics"]["bad_dialogue_quote_count"] == 0
+                and dialogue["passed"] is True
             ),
             "fixed_names_passed": fixed_names,
         }
         return assessment, metrics
+
+    @staticmethod
+    def _quality_diagnostic(
+        *,
+        request_id,
+        chunk_id,
+        source,
+        raw_output,
+        formatted_output,
+        assessment,
+        reason_codes,
+    ):
+        dialogue = assess_dialogue_punctuation(source, formatted_output)
+        before_fingerprint = hashlib.sha256(
+            raw_output.encode("utf-8")
+        ).hexdigest()
+        after_fingerprint = hashlib.sha256(
+            formatted_output.encode("utf-8")
+        ).hexdigest()
+        failed_reasons = tuple(dict.fromkeys(
+            tuple(reason_codes) + tuple(dialogue["reason_codes"])
+        ))
+        return {
+            "schema": "ntpe.controlled_multi_chunk_quality_diagnostic",
+            "version": "1.1",
+            "execution_id": request_id,
+            "request_id": request_id,
+            "chunk_id": chunk_id,
+            "candidate_fingerprint": after_fingerprint,
+            "candidate_character_count": len(formatted_output),
+            "quote_type_counts": dialogue["quote_type_counts"],
+            "opening_corner_quote_count": dialogue["quote_type_counts"][
+                "corner_open_count"
+            ],
+            "closing_corner_quote_count": dialogue["quote_type_counts"][
+                "corner_close_count"
+            ],
+            "unmatched_position_summaries": list(
+                dialogue["unmatched_position_summaries"]
+            ),
+            "formatter_before_fingerprint": before_fingerprint,
+            "formatter_after_fingerprint": after_fingerprint,
+            "quality_assessed_representation_fingerprint": after_fingerprint,
+            "persistence_candidate_fingerprint": after_fingerprint,
+            "assessment": asdict(assessment),
+            "reason_codes": list(failed_reasons),
+            "candidate_artifact_role": (
+                "invalid-diagnostic-only"
+                if assessment.dialogue_punctuation_passed is not True
+                else "not-persisted"
+            ),
+            "candidate_persisted_as_success": False,
+            "checkpoint_authority": False,
+            "prompt_persisted": False,
+            "provider_payload_persisted": False,
+            "credential_persisted": False,
+            "authorization_header_persisted": False,
+            "environment_secrets_persisted": False,
+            "no_secret_confirmation": True,
+        }

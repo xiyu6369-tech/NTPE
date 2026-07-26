@@ -1,3 +1,5 @@
+import hashlib
+
 from core.adaptive_context_single_real_invocation import FakeSingleInvocationTransport
 from core.controlled_multi_chunk_translation_canary import (
     ControlledMultiChunkExecutor, ControlledMultiChunkQualityError,
@@ -43,3 +45,39 @@ def test_chunk2_dialogue_failure_stops_before_chunk3_integration(tmp_path):
     assert len(list(root.glob("chunk-*.translated.txt"))) == 1
     assert len(list(root.glob("checkpoint-*.json"))) == 1
     assert not (root / "combined.translated.txt").exists()
+
+
+def test_narration_only_valid_output_does_not_false_fail_integration(tmp_path):
+    context = build_context(tmp_path)
+    result = ControlledMultiChunkExecutor().execute(**context)
+    assert result.chunk_evidence[0].dialogue_punctuation_passed is True
+    assert result.chunk_evidence[2].dialogue_punctuation_passed is True
+
+
+def test_assessed_output_bytes_equal_persisted_bytes_integration(
+    tmp_path, monkeypatch,
+):
+    assessed = []
+    original = ControlledMultiChunkExecutor._quality_assessment
+
+    def recording_assessment(source, translated):
+        assessed.append(translated.encode("utf-8"))
+        return original(source, translated)
+
+    monkeypatch.setattr(
+        ControlledMultiChunkExecutor,
+        "_quality_assessment",
+        staticmethod(recording_assessment),
+    )
+    context = build_context(tmp_path)
+    result = ControlledMultiChunkExecutor().execute(**context)
+    persisted = [
+        (
+            context["artifact_root"] / evidence.output_artifact_path
+        ).read_bytes()
+        for evidence in result.chunk_evidence
+    ]
+    assert assessed == persisted
+    assert [hashlib.sha256(value).hexdigest() for value in assessed] == [
+        evidence.output_fingerprint for evidence in result.chunk_evidence
+    ]

@@ -42,7 +42,12 @@ CONNECT_TIMEOUT_SECONDS = 10
 READ_TIMEOUT_SECONDS = 180
 REQUEST_CAP = 3
 ATTEMPT_CAP = 3
-OUTPUT_ROOT = "artifacts/controlled_multi_chunk_translation_stage742"
+OUTPUT_ROOT = "artifacts/controlled_multi_chunk_translation_stage743"
 CONTEXT_LIMIT = 160
 COMBINED_BOUNDARY = "\n\n"
 FIXED_NAMES = (("일레이", "伊萊"), ("정태의", "鄭泰義"))
+
+DIALOGUE_PUNCTUATION_PROMPT_CONSTRAINT = """【Stage 7.4 對話標點約束】
+- 人物說出口的對話一律使用成對的「」。
+- 禁止用 ASCII 雙引號或彎雙引號 “ ” 表示人物對話。
+- 保持敘述與句末標點自然；不得改寫撇號、度量符號或非對話引用。"""

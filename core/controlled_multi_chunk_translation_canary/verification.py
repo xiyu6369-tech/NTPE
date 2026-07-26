@@ -30,6 +30,101 @@ _MANDATORY_QUALITY_FIELDS = (
 )
 
 
+def assess_dialogue_punctuation(source: str, candidate: str) -> dict:
+    """Validate literary dialogue delimiters without rewriting candidate text."""
+    source = source or ""
+    candidate = candidate or ""
+    source_has_dialogue = any(
+        opening in source and closing in source
+        for opening, closing in (("“", "”"), ('"', '"'), ("「", "」"))
+    )
+    counts = {
+        "ascii_double_quote_count": candidate.count('"'),
+        "curly_open_double_quote_count": candidate.count("“"),
+        "curly_close_double_quote_count": candidate.count("”"),
+        "curly_open_single_quote_count": candidate.count("‘"),
+        "curly_close_single_quote_count": candidate.count("’"),
+        "corner_open_count": candidate.count("「"),
+        "corner_close_count": candidate.count("」"),
+        "nested_corner_open_count": candidate.count("『"),
+        "nested_corner_close_count": candidate.count("』"),
+        "korean_style_quote_count": sum(
+            candidate.count(mark) for mark in ("“", "”", "‘", "’")
+        ),
+    }
+    reasons: list[str] = []
+    unmatched: list[dict[str, int | str]] = []
+    main_open: int | None = None
+    nested_open: int | None = None
+    completed_dialogue_spans = 0
+    for position, mark in enumerate(candidate):
+        if mark == "「":
+            if main_open is not None:
+                reasons.append("malformed-nested-dialogue")
+                unmatched.append({"mark": mark, "position": position})
+            else:
+                main_open = position
+        elif mark == "『":
+            if main_open is None or nested_open is not None:
+                reasons.append("malformed-nested-dialogue")
+                unmatched.append({"mark": mark, "position": position})
+            else:
+                nested_open = position
+        elif mark == "』":
+            if nested_open is None:
+                reasons.append("unmatched-nested-closing-quote")
+                unmatched.append({"mark": mark, "position": position})
+            else:
+                nested_open = None
+        elif mark == "」":
+            if main_open is None:
+                reasons.append("unmatched-closing-corner-quote")
+                unmatched.append({"mark": mark, "position": position})
+            elif nested_open is not None:
+                reasons.append("malformed-nested-dialogue")
+                unmatched.append({"mark": mark, "position": position})
+                main_open = None
+                nested_open = None
+            else:
+                content = candidate[main_open + 1:position].rstrip()
+                if not content or content[-1] not in "。！？!?…，、；：":
+                    reasons.append("dialogue-closing-punctuation-missing")
+                    unmatched.append({"mark": mark, "position": position})
+                completed_dialogue_spans += 1
+                main_open = None
+    if main_open is not None:
+        reasons.append("unmatched-opening-corner-quote")
+        unmatched.append({"mark": "「", "position": main_open})
+    if nested_open is not None:
+        reasons.append("unmatched-nested-opening-quote")
+        unmatched.append({"mark": "『", "position": nested_open})
+    if source_has_dialogue:
+        if counts["ascii_double_quote_count"]:
+            reasons.append("ascii-spoken-quotes-forbidden")
+        if (
+            counts["curly_open_double_quote_count"]
+            or counts["curly_close_double_quote_count"]
+        ):
+            reasons.append("curly-spoken-quotes-forbidden")
+            reasons.append("korean-spoken-quotes-forbidden")
+        if (
+            counts["curly_open_single_quote_count"]
+            or counts["curly_close_single_quote_count"]
+        ):
+            reasons.append("korean-nested-quotes-forbidden")
+        if completed_dialogue_spans == 0:
+            reasons.append("corner-dialogue-required")
+    reason_codes = tuple(dict.fromkeys(reasons))
+    return {
+        "passed": not reason_codes,
+        "source_has_dialogue": source_has_dialogue,
+        "completed_dialogue_spans": completed_dialogue_spans,
+        "quote_type_counts": counts,
+        "unmatched_position_summaries": tuple(unmatched),
+        "reason_codes": reason_codes,
+    }
+
+
 def verify_chunk_quality_assessment(value) -> ChunkQualityVerificationResult:
     if type(value) is not ChunkQualityAssessment:
         raise ControlledMultiChunkVerificationError(
