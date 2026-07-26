@@ -44,10 +44,11 @@ from .models import (
     ChunkQualityVerificationResult, MultiChunkCanaryRequest, MultiChunkResult,
 )
 from .policy import (
-    ATTEMPT_CAP, CHUNK_COUNT, COMBINED_BOUNDARY, CONNECT_TIMEOUT_SECONDS,
+    ATTEMPT_CAP, ArtifactRootValidationError, CHUNK_COUNT, COMBINED_BOUNDARY,
+    CONNECT_TIMEOUT_SECONDS,
     CONTEXT_LIMIT, CREDENTIAL_ENV, DIALOGUE_PUNCTUATION_PROMPT_CONSTRAINT,
-    FIXED_NAMES, OUTPUT_ROOT, PROFILE, PROVIDER, PROVIDER_MODEL, PROVIDER_URL,
-    READ_TIMEOUT_SECONDS, REAL_CANARY_GATE_ENV, REQUEST_CAP,
+    FIXED_NAMES, PROFILE, PROVIDER, PROVIDER_MODEL, PROVIDER_URL,
+    READ_TIMEOUT_SECONDS, REAL_CANARY_GATE_ENV, REQUEST_CAP, select_artifact_root,
 )
 from .resolver import resolve_multi_chunk_source
 from .verification import (
@@ -71,6 +72,8 @@ class ControlledMultiChunkExecutor:
         execution_mode: str = "fake",
         transport_factory=None,
         environ=None,
+        strict_artifact_root: bool = False,
+        clean_artifact_root: bool = False,
     ) -> MultiChunkResult:
         if self._claimed:
             raise ControlledMultiChunkProviderError("executor is single-use")
@@ -105,11 +108,23 @@ class ControlledMultiChunkExecutor:
             raise ControlledMultiChunkAuthorityError("ordered chunk plan mismatch")
         root = Path(artifact_root).resolve()
         repository = Path(repository_root).resolve()
-        expected_root = (repository / OUTPUT_ROOT).resolve()
-        if root.name.lower() in {"input", "output"}:
+        if execution_mode not in {"fake", "real"}:
+            raise ValueError("execution_mode must be fake or real")
+        if execution_mode == "real" or strict_artifact_root:
+            try:
+                selection = select_artifact_root(
+                    repository,
+                    request.artifact_root,
+                    clean_root_required=clean_artifact_root,
+                )
+            except ArtifactRootValidationError as error:
+                raise ControlledMultiChunkOutputError(str(error)) from None
+            if selection.absolute_path != root:
+                raise ControlledMultiChunkOutputError(
+                    "selected artifact root does not match request identity"
+                )
+        elif root.name.lower() in {"input", "output"}:
             raise ControlledMultiChunkOutputError("formal input/output path forbidden")
-        if root != expected_root and execution_mode == "real":
-            raise ControlledMultiChunkOutputError("real output root is not isolated Stage 7.4")
         root.mkdir(parents=True, exist_ok=True)
         targets = [
             root / plan.output_artifact_path for plan in resolved.plans
@@ -364,6 +379,7 @@ class ControlledMultiChunkExecutor:
                 "version": "1.0",
                 "request_id": request.request_id,
                 "request_fingerprint": request.request_fingerprint,
+                "artifact_root": request.artifact_root,
                 "result": asdict(result),
                 "result_fingerprint": result.result_fingerprint,
                 "verification": asdict(verification),

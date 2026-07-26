@@ -6,15 +6,17 @@ import argparse
 import json
 import os
 from pathlib import Path
+from dataclasses import replace
 from tempfile import TemporaryDirectory
 
 from core.controlled_multi_chunk_translation_canary import (
     ControlledMultiChunkExecutor, resolve_multi_chunk_source,
 )
 from core.controlled_multi_chunk_translation_canary.policy import (
-    ATTEMPT_CAP, CONNECT_TIMEOUT_SECONDS, OUTPUT_ROOT, PROFILE, PROVIDER,
-    PROVIDER_MODEL, READ_TIMEOUT_SECONDS, REAL_CANARY_GATE_ENV, REQUEST_CAP,
-    SOURCE_FINGERPRINT, SOURCE_FIXTURE_ID, TARGET_LANGUAGE,
+    ATTEMPT_CAP, ArtifactRootValidationError, CONNECT_TIMEOUT_SECONDS,
+    OUTPUT_ROOT, PROFILE, PROVIDER, PROVIDER_MODEL, READ_TIMEOUT_SECONDS,
+    REAL_CANARY_GATE_ENV, REQUEST_CAP, SOURCE_FINGERPRINT, SOURCE_FIXTURE_ID,
+    TARGET_LANGUAGE, select_artifact_root,
 )
 from core.controlled_translation_runtime_integration.diagnostics import (
     Stage73NvidiaDiagnosticTransport,
@@ -22,15 +24,43 @@ from core.controlled_translation_runtime_integration.diagnostics import (
 from tests.unit.controlled_multi_chunk_translation_canary import build_context
 
 
-def main(argv=None) -> int:
+def main(
+    argv=None,
+    *,
+    repository_root=None,
+    transport_factory_override=None,
+    environ=None,
+    execution_mode="real",
+) -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--authorize-real-provider", action="store_true")
+    parser.add_argument("--artifact-root")
     args = parser.parse_args(argv)
-    repository_root = Path(__file__).resolve().parents[2]
+    environment = os.environ if environ is None else environ
+    repository = (
+        Path(__file__).resolve().parents[2]
+        if repository_root is None else Path(repository_root)
+    ).resolve()
+    clean_root_required = args.artifact_root is not None
+    try:
+        selection = select_artifact_root(
+            repository,
+            args.artifact_root,
+            clean_root_required=clean_root_required,
+        )
+    except ArtifactRootValidationError as error:
+        print(f"FAIL: ArtifactRootValidationError: {error}")
+        print("network_calls: 0")
+        print("provider_attempts_started: 0")
+        return 1
+
     with TemporaryDirectory() as directory:
         context = build_context(Path(directory))
+        context["request"] = replace(
+            context["request"], artifact_root=selection.repository_relative,
+        )
         resolved = resolve_multi_chunk_source(
-            context["dispatch_package"], root=repository_root
+            context["dispatch_package"], root=repository
         )
         print("NTPE Stage 7.4 Controlled Multi-Chunk Translation Canary")
         print(f"source_fixture_id: {SOURCE_FIXTURE_ID}")
@@ -49,28 +79,43 @@ def main(argv=None) -> int:
         print("retries/fallbacks: 0/0")
         print(
             f"effective_connect/read_timeout: "
-            f"{os.environ.get('NTPE_API_CONNECT_TIMEOUT', 'unset')}/"
-            f"{os.environ.get('NTPE_CURRENT_API_TIMEOUT', 'unset')}"
+            f"{environment.get('NTPE_API_CONNECT_TIMEOUT', 'unset')}/"
+            f"{environment.get('NTPE_CURRENT_API_TIMEOUT', 'unset')}"
         )
-        print(f"artifact_root: {OUTPUT_ROOT}")
+        print(f"default_artifact_root: {OUTPUT_ROOT}")
+        print(f"artifact_root: {selection.repository_relative}")
+        print(f"artifact_root_canonical: {selection.absolute_path}")
+        print("artifact_root_validation: PASS")
+        print(f"clean_root_required: {str(clean_root_required).lower()}")
+        print(f"clean_root_empty: {str(selection.root_empty).lower()}")
+        print(
+            "credential_present: "
+            + str(bool(environment.get("NVIDIA_API_KEY"))).lower()
+        )
         print("no_secret_confirmation: true")
         if (
             not args.authorize_real_provider
-            or os.environ.get(REAL_CANARY_GATE_ENV) != "1"
+            or environment.get(REAL_CANARY_GATE_ENV) != "1"
         ):
             print("SKIPPED: Stage 7.4 real Provider canary not explicitly authorized")
             return 0
         transports = []
-        def transport_factory(_index):
-            transport = Stage73NvidiaDiagnosticTransport()
+        def transport_factory(index):
+            transport = (
+                Stage73NvidiaDiagnosticTransport()
+                if transport_factory_override is None
+                else transport_factory_override(index)
+            )
             transports.append(transport)
             return transport
         context.update(
-            repository_root=repository_root,
-            artifact_root=repository_root / OUTPUT_ROOT,
-            execution_mode="real",
+            repository_root=repository,
+            artifact_root=selection.absolute_path,
+            execution_mode=execution_mode,
             transport_factory=transport_factory,
-            environ=os.environ,
+            environ=environment,
+            strict_artifact_root=True,
+            clean_artifact_root=clean_root_required,
         )
         try:
             result = ControlledMultiChunkExecutor().execute(**context)
@@ -79,7 +124,7 @@ def main(argv=None) -> int:
             print(f"network_calls: {sum(item.network_requests for item in transports)}")
             print(f"provider_attempts_started: {len(transports)}")
             return 1
-    evidence_path = repository_root / OUTPUT_ROOT / "stage74-final-evidence.json"
+    evidence_path = selection.absolute_path / "stage74-final-evidence.json"
     evidence = json.loads(evidence_path.read_text(encoding="utf-8"))
     print(f"network_calls: {sum(item.network_requests for item in transports)}")
     print(f"provider_requests: {result.provider_requests}")
@@ -89,9 +134,14 @@ def main(argv=None) -> int:
     print(f"chunks_started/completed: {result.chunks_started}/{result.chunks_completed}")
     print(f"chunk_outputs: {result.chunk_outputs_written}")
     print(f"checkpoints: {result.checkpoints_written}")
-    print(f"combined_output: {Path(OUTPUT_ROOT) / result.combined_output_path}")
+    print(
+        "combined_output: "
+        f"{Path(selection.repository_relative) / result.combined_output_path}"
+    )
     print(f"combined_fingerprint: {result.combined_output_fingerprint}")
-    print(f"evidence: {Path(OUTPUT_ROOT) / evidence_path.name}")
+    print(
+        f"evidence: {Path(selection.repository_relative) / evidence_path.name}"
+    )
     print(f"evidence_fingerprint: {evidence['verification_fingerprint']}")
     print("retries/fallbacks: 0/0")
     print("PASS: Stage 7.4 controlled real multi-chunk Provider canary")
