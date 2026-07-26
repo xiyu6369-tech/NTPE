@@ -9,6 +9,7 @@ from core.controlled_multi_chunk_translation_canary.policy import (
     REAL_CANARY_GATE_ENV,
     SOURCE_FIXTURE_PATH,
     STAGE744_OUTPUT_ROOT,
+    STAGE746_OUTPUT_ROOT,
 )
 from tests.unit.controlled_multi_chunk_translation_canary import FAKE_OUTPUTS
 from verification.controlled_runtime import (
@@ -35,7 +36,7 @@ def _environment() -> dict[str, str]:
     }
 
 
-def test_cli_stage744_fake_three_chunk_execution_is_isolated_and_zero_network(
+def test_cli_stage746_fake_three_chunk_execution_is_isolated_and_zero_network(
     tmp_path, capsys,
 ):
     repository = _repository(tmp_path)
@@ -57,7 +58,7 @@ def test_cli_stage744_fake_three_chunk_execution_is_isolated_and_zero_network(
         [
             "--authorize-real-provider",
             "--artifact-root",
-            STAGE744_OUTPUT_ROOT,
+            STAGE746_OUTPUT_ROOT,
         ],
         repository_root=repository,
         transport_factory_override=factory,
@@ -65,9 +66,9 @@ def test_cli_stage744_fake_three_chunk_execution_is_isolated_and_zero_network(
         execution_mode="fake",
     )
     output = capsys.readouterr().out
-    selected = repository / STAGE744_OUTPUT_ROOT
+    selected = repository / STAGE746_OUTPUT_ROOT
     assert status == 0
-    assert f"artifact_root: {STAGE744_OUTPUT_ROOT}" in output
+    assert f"artifact_root: {STAGE746_OUTPUT_ROOT}" in output
     assert "artifact_root_validation: PASS" in output
     assert "clean_root_empty: true" in output
     assert "network_calls: 0" in output
@@ -78,19 +79,43 @@ def test_cli_stage744_fake_three_chunk_execution_is_isolated_and_zero_network(
     assert (selected / "combined.translated.txt").is_file()
     evidence_path = selected / "stage74-final-evidence.json"
     evidence = json.loads(evidence_path.read_text(encoding="utf-8"))
-    assert evidence["artifact_root"] == STAGE744_OUTPUT_ROOT
+    assert evidence["artifact_root"] == STAGE746_OUTPUT_ROOT
     assert evidence["result"]["chunks_completed"] == 3
     assert hashlib.sha256(sentinel.read_bytes()).hexdigest() == before
     assert sorted(path.name for path in prior.iterdir()) == [sentinel.name]
 
 
-def test_selected_stage744_root_is_used_for_quality_diagnostics(tmp_path):
+def test_stage744_historical_artifact_root_cli_blocked_in_clean_mode(
+    tmp_path, capsys,
+):
+    repository = _repository(tmp_path)
+    calls = []
+
+    status = canary_cli.main(
+        [
+            "--authorize-real-provider",
+            "--artifact-root",
+            STAGE744_OUTPUT_ROOT,
+        ],
+        repository_root=repository,
+        transport_factory_override=lambda index: calls.append(index),
+        environ=_environment(),
+        execution_mode="fake",
+    )
+    output = capsys.readouterr().out
+    assert status == 1
+    assert calls == []
+    assert "network_calls: 0" in output
+    assert not (repository / STAGE744_OUTPUT_ROOT).exists()
+
+
+def test_selected_stage746_root_is_used_for_quality_diagnostics(tmp_path):
     repository = _repository(tmp_path)
     prior = repository / OUTPUT_ROOT
     prior.mkdir(parents=True)
     sentinel = prior / "retained-prior-root.txt"
     sentinel.write_text("unchanged", encoding="utf-8")
-    bad = FAKE_OUTPUTS[1].replace("「", "“", 1)
+    bad = FAKE_OUTPUTS[1].replace("\u300c", "\u201c", 1)
     outputs = (FAKE_OUTPUTS[0], bad, FAKE_OUTPUTS[2])
     transports = []
 
@@ -103,14 +128,14 @@ def test_selected_stage744_root_is_used_for_quality_diagnostics(tmp_path):
         [
             "--authorize-real-provider",
             "--artifact-root",
-            STAGE744_OUTPUT_ROOT,
+            STAGE746_OUTPUT_ROOT,
         ],
         repository_root=repository,
         transport_factory_override=factory,
         environ=_environment(),
         execution_mode="fake",
     )
-    selected = repository / STAGE744_OUTPUT_ROOT
+    selected = repository / STAGE746_OUTPUT_ROOT
     assert status == 1
     assert len(transports) == 2
     assert sum(item.network_requests for item in transports) == 0
@@ -135,7 +160,7 @@ def test_invalid_cli_override_fails_before_transport_or_default_fallback(
         return FakeSingleInvocationTransport()
 
     status = canary_cli.main(
-        ["--authorize-real-provider", "--artifact-root", "../stage744"],
+        ["--authorize-real-provider", "--artifact-root", "../stage746"],
         repository_root=repository,
         transport_factory_override=factory,
         environ=_environment(),
@@ -146,12 +171,12 @@ def test_invalid_cli_override_fails_before_transport_or_default_fallback(
     assert calls == []
     assert "network_calls: 0" in output
     assert not (repository / OUTPUT_ROOT).exists()
-    assert not (repository / STAGE744_OUTPUT_ROOT).exists()
+    assert not (repository / STAGE746_OUTPUT_ROOT).exists()
 
 
-def test_non_empty_stage744_cli_root_fails_before_provider(tmp_path, capsys):
+def test_non_empty_stage746_cli_root_fails_before_provider(tmp_path, capsys):
     repository = _repository(tmp_path)
-    selected = repository / STAGE744_OUTPUT_ROOT
+    selected = repository / STAGE746_OUTPUT_ROOT
     selected.mkdir(parents=True)
     (selected / "stale.json").write_text("{}", encoding="utf-8")
     calls = []
@@ -159,7 +184,7 @@ def test_non_empty_stage744_cli_root_fails_before_provider(tmp_path, capsys):
         [
             "--authorize-real-provider",
             "--artifact-root",
-            STAGE744_OUTPUT_ROOT,
+            STAGE746_OUTPUT_ROOT,
         ],
         repository_root=repository,
         transport_factory_override=lambda index: calls.append(index),

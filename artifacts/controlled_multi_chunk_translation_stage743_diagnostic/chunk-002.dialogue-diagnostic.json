@@ -1,0 +1,58 @@
+{
+  "schema": "ntpe.controlled_multi_chunk_dialogue_diagnostic",
+  "version": "1.0",
+  "execution_id": "stage743-single-diagnostic-chunk-002",
+  "chunk_id": "stage74-chunk-002-542e4c34fccaac7a",
+  "candidate_fingerprint": "f4055d8a2a223323ef3865831a374284ab9467a44f2ccfcf07d9048be6be093b",
+  "candidate_character_count": 352,
+  "quote_type_counts": {
+    "ascii_double_quote_count": 0,
+    "curly_open_double_quote_count": 2,
+    "curly_close_double_quote_count": 2,
+    "curly_open_single_quote_count": 0,
+    "curly_close_single_quote_count": 0,
+    "corner_open_count": 0,
+    "corner_close_count": 0,
+    "nested_corner_open_count": 0,
+    "nested_corner_close_count": 0,
+    "korean_style_quote_count": 4
+  },
+  "corner_open_positions": [],
+  "corner_close_positions": [],
+  "curly_open_positions": [
+    0,
+    245
+  ],
+  "curly_close_positions": [
+    69,
+    262
+  ],
+  "unmatched_position_summaries": {
+    "corner_count_delta": 0,
+    "curly_count_delta": 0
+  },
+  "raw_provider_text_fingerprint": "f4055d8a2a223323ef3865831a374284ab9467a44f2ccfcf07d9048be6be093b",
+  "authentic_extraction_fingerprint": "f4055d8a2a223323ef3865831a374284ab9467a44f2ccfcf07d9048be6be093b",
+  "formatter_before_fingerprint": "f4055d8a2a223323ef3865831a374284ab9467a44f2ccfcf07d9048be6be093b",
+  "formatter_after_fingerprint": "f4055d8a2a223323ef3865831a374284ab9467a44f2ccfcf07d9048be6be093b",
+  "quality_assessed_representation_fingerprint": "f4055d8a2a223323ef3865831a374284ab9467a44f2ccfcf07d9048be6be093b",
+  "failed_reason_codes": [
+    "curly-double-quotes-present",
+    "dialogue-punctuation-gate-failed"
+  ],
+  "dialogue_punctuation_passed": false,
+  "network_requests": 1,
+  "provider_attempts": 1,
+  "retries": 0,
+  "fallbacks": 0,
+  "parallel_requests": 0,
+  "candidate_artifact_role": "invalid-diagnostic-only",
+  "successful_output": false,
+  "checkpoint_authority": false,
+  "prompt_persisted": false,
+  "provider_payload_persisted": false,
+  "credential_persisted": false,
+  "authorization_header_persisted": false,
+  "environment_secrets_persisted": false,
+  "no_secret_confirmation": true
+}

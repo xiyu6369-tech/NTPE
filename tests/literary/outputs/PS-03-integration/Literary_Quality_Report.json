@@ -1,13 +1,13 @@
 {
-  "version": "1.2-ps-03-translation-corpus-evaluation-engine",
+  "version": "1.2-translation-engine-refactor-v1",
   "status": "warning",
   "stage": "PS-03-integration",
-  "created_at": "2026-07-07T03:16:43",
+  "created_at": "2026-07-26T23:39:10",
   "output_dir": "D:\\Python\\NTPE\\tests\\literary\\outputs\\PS-03-integration",
   "report_json": "D:\\Python\\NTPE\\tests\\literary\\outputs\\PS-03-integration\\Literary_Quality_Report.json",
   "report_md": "D:\\Python\\NTPE\\tests\\literary\\outputs\\PS-03-integration\\Literary_Quality_Report.md",
   "diff_md": "D:\\Python\\NTPE\\tests\\literary\\outputs\\PS-03-integration\\Literary_Diff_Report.md",
-  "previous_stage": "PS-03-test",
+  "previous_stage": "provider-v3-test",
   "summary": {
     "total": 3,
     "existing_outputs": 1,
@@ -15,8 +15,8 @@
   },
   "records": [
     {
-      "name": "Test_Set_0",
-      "source": "D:\\Python\\NTPE\\tests\\literary\\Test_Set_0\\original_ko.txt",
+      "name": "Smoke_Set",
+      "source": "D:\\Python\\NTPE\\tests\\literary\\Smoke_Set\\original_ko.txt",
       "output": "D:\\Python\\NTPE\\tests\\literary\\outputs\\PS-03-integration\\Test_Set_0\\original_ko_zh.txt",
       "exists": true,
       "evaluation": {
@@ -29,7 +29,7 @@
             "score": 8.0,
             "max_score": 30.0,
             "status": "FAIL",
-            "notes": "very short translation ratio=0.13"
+            "notes": "very short translation ratio=0.09"
           },
           {
             "name": "locked_names_terms",
@@ -68,19 +68,19 @@
           }
         ],
         "raw": {
-          "source_chars": 328,
+          "source_chars": 455,
           "translation_chars": 37,
-          "source_korean_chars": 229,
+          "source_korean_chars": 317,
           "translation_cjk_chars": 29,
-          "length_ratio": 0.127,
+          "length_ratio": 0.091,
           "korean_residue_count": 0,
           "simplified_hint_count": 0
         }
       }
     },
     {
-      "name": "Test_Set_A",
-      "source": "D:\\Python\\NTPE\\tests\\literary\\Test_Set_A\\original_ko.txt",
+      "name": "Golden_Set",
+      "source": "D:\\Python\\NTPE\\tests\\literary\\Golden_Set\\original_ko.txt",
       "output": "D:\\Python\\NTPE\\tests\\literary\\outputs\\PS-03-integration\\Test_Set_A\\original_ko_zh.txt",
       "exists": false,
       "evaluation": {
@@ -132,7 +132,7 @@
           }
         ],
         "raw": {
-          "source_chars": 2619,
+          "source_chars": 2476,
           "translation_chars": 0,
           "source_korean_chars": 1726,
           "translation_cjk_chars": 0,
@@ -143,8 +143,8 @@
       }
     },
     {
-      "name": "Test_Set_B",
-      "source": "D:\\Python\\NTPE\\tests\\literary\\Test_Set_B\\original_ko.txt",
+      "name": "Regression_Set",
+      "source": "D:\\Python\\NTPE\\tests\\literary\\Regression_Set\\original_ko.txt",
       "output": "D:\\Python\\NTPE\\tests\\literary\\outputs\\PS-03-integration\\Test_Set_B\\original_ko_zh.txt",
       "exists": false,
       "evaluation": {
@@ -196,7 +196,7 @@
           }
         ],
         "raw": {
-          "source_chars": 3191,
+          "source_chars": 3078,
           "translation_chars": 0,
           "source_korean_chars": 2110,
           "translation_cjk_chars": 0,

@@ -1,0 +1,16 @@
+{
+  "schema": "ntpe.controlled_multi_chunk_provider_diagnostic",
+  "version": "1.0",
+  "request_id": "stage74-multi-chunk-request-6b8e7f45ae76baf312f00cd1e20571a3",
+  "chunk_id": "stage74-chunk-001-5be537c45817ccc7",
+  "exception_type": "RuntimeError",
+  "cause_type": "ReadTimeout",
+  "http_status": null,
+  "provider_error_code": "",
+  "redacted_message": "provider request timed out",
+  "request_count": 1,
+  "attempt_count": 1,
+  "retries": 0,
+  "fallbacks": 0,
+  "no_secret_confirmation": true
+}
