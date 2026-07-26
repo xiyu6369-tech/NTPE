@@ -194,7 +194,7 @@ def test_formal_output_and_overwrite_are_protected(tmp_path):
         ControlledMultiChunkExecutor().execute(**second)
 
 def test_observed_chunk2_dialogue_failure_stops_before_chunk3(tmp_path):
-    bad_dialogue = FAKE_OUTPUTS[1].replace("「", "“").replace("」", "”")
+    bad_dialogue = FAKE_OUTPUTS[1].replace("「", "“", 1)
     outputs = (FAKE_OUTPUTS[0], bad_dialogue, FAKE_OUTPUTS[2])
     context = build_context(tmp_path, outputs=outputs)
     starts = []
@@ -439,7 +439,7 @@ def test_stage743_prompt_constraint_reaches_authentic_payload(tmp_path):
 
 
 def test_punctuation_failure_diagnostic_is_invalid_only_and_redacted(tmp_path):
-    bad = FAKE_OUTPUTS[1].replace("「", "“").replace("」", "”")
+    bad = FAKE_OUTPUTS[1].replace("「", "“", 1)
     context = build_context(tmp_path, outputs=(FAKE_OUTPUTS[0], bad, FAKE_OUTPUTS[2]))
     with pytest.raises(ControlledMultiChunkQualityError):
         ControlledMultiChunkExecutor().execute(**context)
@@ -450,7 +450,7 @@ def test_punctuation_failure_diagnostic_is_invalid_only_and_redacted(tmp_path):
     invalid_candidate = root / "chunk-002.invalid-candidate.txt"
     assert invalid_candidate.read_text(encoding="utf-8") == bad
     assert diagnostic["version"] == "1.1"
-    assert diagnostic["quote_type_counts"]["curly_open_double_quote_count"] == 2
+    assert diagnostic["quote_type_counts"]["curly_open_double_quote_count"] == 1
     assert diagnostic["candidate_persisted_as_success"] is False
     assert diagnostic["checkpoint_authority"] is False
     assert diagnostic["no_secret_confirmation"] is True

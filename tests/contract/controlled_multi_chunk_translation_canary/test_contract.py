@@ -8,6 +8,7 @@ from core.controlled_multi_chunk_translation_canary.models import (
 )
 from core.controlled_multi_chunk_translation_canary.policy import (
     ATTEMPT_CAP, CHECKPOINT_SCHEMA, CHUNK_COUNT, CHUNK_EVIDENCE_SCHEMA,
+    CHUNK_EVIDENCE_SCHEMA_VERSION,
     CHUNK_PLAN_SCHEMA, CHUNK_QUALITY_SCHEMA, REQUEST_CAP, REQUEST_SCHEMA,
     REQUEST_SCHEMA_VERSION, RESULT_SCHEMA, SOURCE_FINGERPRINT_TYPE,
     VERIFICATION_SCHEMA,
@@ -45,7 +46,13 @@ def test_required_model_fields_are_frozen_contract():
     assert {"source_start", "source_end", "previous_chunk_id", "next_chunk_id"}.issubset(
         {item.name for item in fields(ChunkExecutionPlan)}
     )
-    assert {"quality_passed", "context_fingerprint", "output_fingerprint"}.issubset(
+    assert CHUNK_EVIDENCE_SCHEMA_VERSION == "1.1"
+    assert {
+        "quality_passed", "context_fingerprint", "output_fingerprint",
+        "raw_provider_candidate_fingerprint", "authentic_formatter_fingerprint",
+        "dialogue_normalized_fingerprint", "dialogue_normalization_applied",
+        "dialogue_normalization_pair_count",
+    }.issubset(
         {item.name for item in fields(ChunkCompletionEvidence)}
     )
     assert {"completed_chunk_ids", "next_expected_chunk_id"}.issubset(

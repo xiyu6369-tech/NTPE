@@ -8,6 +8,9 @@ from .errors import (
     ControlledMultiChunkResolutionError, ControlledMultiChunkVerificationError,
 )
 from .executor import ControlledMultiChunkExecutor
+from .dialogue_formatter import (
+    Stage74DialogueFormattingResult, normalize_stage74_dialogue_quotes,
+)
 from .models import (
     CheckpointRecord, ChunkCompletionEvidence, ChunkExecutionPlan,
     ChunkQualityAssessment, ChunkQualityVerificationResult,
@@ -32,6 +35,8 @@ __all__ = [
     "MultiChunkVerificationResult",
     "ResolvedMultiChunkSource",
     "ControlledMultiChunkExecutor",
+    "Stage74DialogueFormattingResult",
+    "normalize_stage74_dialogue_quotes",
     "resolve_multi_chunk_source",
     "build_multi_chunk_request",
     "write_checkpoint_atomic",

@@ -90,7 +90,7 @@ def test_selected_stage744_root_is_used_for_quality_diagnostics(tmp_path):
     prior.mkdir(parents=True)
     sentinel = prior / "retained-prior-root.txt"
     sentinel.write_text("unchanged", encoding="utf-8")
-    bad = FAKE_OUTPUTS[1].replace("「", "“").replace("」", "”")
+    bad = FAKE_OUTPUTS[1].replace("「", "“", 1)
     outputs = (FAKE_OUTPUTS[0], bad, FAKE_OUTPUTS[2])
     transports = []
 

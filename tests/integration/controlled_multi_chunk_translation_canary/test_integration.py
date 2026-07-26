@@ -30,7 +30,7 @@ def test_authentic_three_chunk_zero_network_integration(tmp_path):
     ).valid
 
 def test_chunk2_dialogue_failure_stops_before_chunk3_integration(tmp_path):
-    bad_dialogue = FAKE_OUTPUTS[1].replace("「", "“").replace("」", "”")
+    bad_dialogue = FAKE_OUTPUTS[1].replace("「", "“", 1)
     outputs = (FAKE_OUTPUTS[0], bad_dialogue, FAKE_OUTPUTS[2])
     context = build_context(tmp_path, outputs=outputs)
     starts = []
@@ -45,6 +45,28 @@ def test_chunk2_dialogue_failure_stops_before_chunk3_integration(tmp_path):
     assert len(list(root.glob("chunk-*.translated.txt"))) == 1
     assert len(list(root.glob("checkpoint-*.json"))) == 1
     assert not (root / "combined.translated.txt").exists()
+
+def test_balanced_chinese_curly_dialogue_is_normalized_before_quality(tmp_path):
+    raw_chunk2 = FAKE_OUTPUTS[1].replace("「", "“").replace("」", "”")
+    context = build_context(
+        tmp_path,
+        outputs=(FAKE_OUTPUTS[0], raw_chunk2, FAKE_OUTPUTS[2]),
+    )
+    result = ControlledMultiChunkExecutor().execute(**context)
+    evidence = result.chunk_evidence[1]
+    persisted = (
+        context["artifact_root"] / evidence.output_artifact_path
+    ).read_text(encoding="utf-8")
+    assert evidence.dialogue_normalization_applied is True
+    assert evidence.dialogue_normalization_pair_count == 2
+    assert evidence.raw_provider_candidate_fingerprint == hashlib.sha256(
+        raw_chunk2.encode("utf-8")
+    ).hexdigest()
+    assert evidence.dialogue_normalized_fingerprint == evidence.output_fingerprint
+    assert evidence.raw_provider_candidate_fingerprint != evidence.output_fingerprint
+    assert "“" not in persisted and "”" not in persisted
+    assert persisted.count("「") == persisted.count("」") == 2
+    assert evidence.dialogue_punctuation_passed is True
 
 
 def test_narration_only_valid_output_does_not_false_fail_integration(tmp_path):

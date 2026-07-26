@@ -35,6 +35,7 @@ from core.translation_runtime import format_translation_output
 from core.translation_runtime.runtime_output import write_json_output, write_text_output
 
 from .checkpoint import write_checkpoint_atomic
+from .dialogue_formatter import normalize_stage74_dialogue_quotes
 from .errors import (
     ControlledMultiChunkAuthorityError, ControlledMultiChunkOutputError,
     ControlledMultiChunkProviderError, ControlledMultiChunkQualityError,
@@ -264,7 +265,11 @@ class ControlledMultiChunkExecutor:
             raw_output = transport.captured_output
             if not isinstance(raw_output, str):
                 raise ControlledMultiChunkProviderError("Provider response was not text")
-            translated = format_translation_output(raw_output)
+            authentic_formatted = format_translation_output(raw_output)
+            dialogue_formatting = normalize_stage74_dialogue_quotes(
+                source_chunk, authentic_formatted
+            )
+            translated = dialogue_formatting.normalized_text
             assessment, metrics = self._quality_assessment(
                 source_chunk, translated
             )
@@ -322,6 +327,19 @@ class ControlledMultiChunkExecutor:
                 output_artifact_path=plan.output_artifact_path,
                 output_fingerprint=output_fingerprint,
                 output_character_count=len(translated),
+                raw_provider_candidate_fingerprint=hashlib.sha256(
+                    raw_output.encode("utf-8")
+                ).hexdigest(),
+                authentic_formatter_fingerprint=(
+                    dialogue_formatting.raw_candidate_fingerprint
+                ),
+                dialogue_normalized_fingerprint=(
+                    dialogue_formatting.normalized_candidate_fingerprint
+                ),
+                dialogue_normalization_applied=dialogue_formatting.changed,
+                dialogue_normalization_pair_count=(
+                    dialogue_formatting.converted_pair_count
+                ),
                 context_character_count=len(prior_context),
                 context_fingerprint=canonical_sha256(prior_context),
                 hangul_character_count=metrics["hangul_character_count"],

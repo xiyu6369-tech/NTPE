@@ -10,6 +10,7 @@ from core.controlled_translation_runtime_integration.serialization import (
 
 from .policy import (
     ATTEMPT_CAP, CHECKPOINT_SCHEMA, CHUNK_COUNT, CHUNK_EVIDENCE_SCHEMA,
+    CHUNK_EVIDENCE_SCHEMA_VERSION,
     CHUNK_PLAN_SCHEMA, CHUNK_QUALITY_SCHEMA, CONNECT_TIMEOUT_SECONDS, INTENT,
     PROFILE, REQUEST_CAP,
     REQUEST_SCHEMA, REQUEST_SCHEMA_VERSION, RESULT_SCHEMA, READ_TIMEOUT_SECONDS,
@@ -145,6 +146,11 @@ class ChunkCompletionEvidence:
     index: int
     output_artifact_path: str
     output_fingerprint: str
+    raw_provider_candidate_fingerprint: str
+    authentic_formatter_fingerprint: str
+    dialogue_normalized_fingerprint: str
+    dialogue_normalization_applied: bool
+    dialogue_normalization_pair_count: int
     output_character_count: int
     context_character_count: int
     context_fingerprint: str
@@ -162,7 +168,7 @@ class ChunkCompletionEvidence:
     retries: int = 0
     fallbacks: int = 0
     schema: str = field(default=CHUNK_EVIDENCE_SCHEMA, init=False)
-    version: str = field(default=SCHEMA_VERSION, init=False)
+    version: str = field(default=CHUNK_EVIDENCE_SCHEMA_VERSION, init=False)
 
     @property
     def evidence_fingerprint(self) -> str:
