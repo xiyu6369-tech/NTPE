@@ -12,7 +12,7 @@ from lts.txt_translation_runtime import TxtTranslationOptions, progress_enabled
 
 def main() -> int:
     root = Path(__file__).resolve().parents[2]
-    source = root / "tests" / "literary" / "Test_Set_0" / "original_ko.txt"
+    source = root / "tests" / "literary" / "Smoke_Set" / "original_ko.txt"
     options = TxtTranslationOptions(input_path=source, output_dir=root / "work" / "ps04_2_smoke", dry_run=True)
     checks = [
         (source.exists(), "Smoke source exists"),

@@ -22,9 +22,9 @@ result = LiteraryPromptBuilder().build(
 )
 assert result.profile == "literary"
 assert result.prompt_profile.total_tokens < 900
-assert "정태의 => 鄭泰義" in result.user_prompt
-assert "카일 => 凱爾" in result.user_prompt
+assert "정태의=鄭泰義" in result.user_prompt
+assert "카일=凱爾" in result.user_prompt
 assert "일라이" not in result.user_prompt
 assert "凱爾" in result.user_prompt and "主體" in result.user_prompt
-assert result.to_prompt_dict()["prompt_mode"] == "compact_literary_v3"
+assert result.to_prompt_dict()["prompt_mode"] == "compact_literary_v6_ter_v1_5"
 print("PASS")

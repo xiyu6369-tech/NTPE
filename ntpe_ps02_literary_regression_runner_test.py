@@ -8,7 +8,7 @@ root = Path(__file__).resolve().parent
 init = ensure_literary_structure(root)
 assert init["status"] == "success"
 sets = discover_test_sets(root)
-assert {item["name"] for item in sets} == {"Test_Set_0", "Test_Set_A", "Test_Set_B"}
+assert {item["name"] for item in sets} == {"Smoke_Set", "Golden_Set", "Regression_Set"}
 report = run_literary_regression(LiteraryRegressionOptions(root=root, test_sets=("Test_Set_0",), stage_name="PS-02-test", dry_run=True, overwrite=True))
 assert report["status"] == "success"
 assert report["summary"]["total"] == 1
