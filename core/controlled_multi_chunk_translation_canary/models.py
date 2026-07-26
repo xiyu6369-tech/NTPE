@@ -12,8 +12,9 @@ from .policy import (
     ATTEMPT_CAP, CHECKPOINT_SCHEMA, CHUNK_COUNT, CHUNK_EVIDENCE_SCHEMA,
     CHUNK_PLAN_SCHEMA, CHUNK_QUALITY_SCHEMA, CONNECT_TIMEOUT_SECONDS, INTENT,
     PROFILE, REQUEST_CAP,
-    REQUEST_SCHEMA, RESULT_SCHEMA, READ_TIMEOUT_SECONDS, SCHEMA_VERSION,
-    TARGET_LANGUAGE, VERIFICATION_SCHEMA,
+    REQUEST_SCHEMA, REQUEST_SCHEMA_VERSION, RESULT_SCHEMA, READ_TIMEOUT_SECONDS,
+    SCHEMA_VERSION, SOURCE_FINGERPRINT_TYPE, TARGET_LANGUAGE,
+    VERIFICATION_SCHEMA,
 )
 
 
@@ -78,7 +79,9 @@ class MultiChunkCanaryRequest:
     authenticated_lineage: tuple[str, ...]
     source_fixture_id: str
     source_fingerprint: str
+    source_fingerprint_type: str
     complete_source_fingerprint: str
+    complete_source_fingerprint_type: str
     target_language: str
     literary_profile: str
     chunk_count: int
@@ -91,7 +94,7 @@ class MultiChunkCanaryRequest:
     artifact_root: str
     intent: str
     schema: str = field(default=REQUEST_SCHEMA, init=False)
-    version: str = field(default=SCHEMA_VERSION, init=False)
+    version: str = field(default=REQUEST_SCHEMA_VERSION, init=False)
 
     def __post_init__(self) -> None:
         object.__setattr__(self, "authenticated_lineage", tuple(self.authenticated_lineage))
@@ -113,6 +116,8 @@ class MultiChunkCanaryRequest:
             or self.target_language != TARGET_LANGUAGE
             or self.literary_profile != PROFILE
             or self.intent != INTENT
+            or self.source_fingerprint_type != SOURCE_FINGERPRINT_TYPE
+            or self.complete_source_fingerprint_type != SOURCE_FINGERPRINT_TYPE
         ):
             raise ValueError("request policy mismatch")
         for name in (

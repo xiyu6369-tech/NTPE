@@ -32,7 +32,7 @@ def test_immutable_models_schemas_and_deterministic_identities(tmp_path):
         context["dispatch_package"], root=context["repository_root"]
     )
     assert request.schema == "ntpe.controlled_multi_chunk_translation_request"
-    assert request.version == "1.0"
+    assert request.version == "1.1"
     assert request.request_id == replace(request).request_id
     assert request.request_fingerprint == replace(request).request_fingerprint
     assert tuple(plan.schema for plan in resolved.plans) == (
@@ -69,6 +69,8 @@ def test_exact_authentic_three_chunk_plan_and_bindings(tmp_path):
     ("provider_request_cap", 4),
     ("provider_attempt_cap", 4),
     ("read_timeout_seconds", 60),
+    ("source_fingerprint_type", "sha256-raw-bytes-v1"),
+    ("complete_source_fingerprint_type", "sha256-raw-bytes-v1"),
 ])
 def test_request_policy_mismatch_rejected(tmp_path, field, value):
     request = build_context(tmp_path)["request"]

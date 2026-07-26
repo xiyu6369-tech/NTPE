@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import hashlib
 from dataclasses import asdict, dataclass
 from pathlib import Path
 
@@ -23,8 +24,19 @@ from .policy import (
     ATTEMPT_CAP, CHUNK_CHARACTER_COUNTS, CHUNK_COUNT, CHUNK_FINGERPRINTS,
     CHUNK_SIZE, CONNECT_TIMEOUT_SECONDS, INTENT, OUTPUT_ROOT, PROFILE,
     READ_TIMEOUT_SECONDS, REQUEST_CAP, SOURCE_CHARACTER_COUNT,
-    SOURCE_FINGERPRINT, SOURCE_FIXTURE_ID, SOURCE_FIXTURE_PATH, TARGET_LANGUAGE,
+    SOURCE_DECODED_TEXT_FINGERPRINT, SOURCE_FINGERPRINT,
+    SOURCE_FINGERPRINT_TYPE, SOURCE_FIXTURE_ID, SOURCE_FIXTURE_PATH,
+    SOURCE_NEWLINE_NORMALIZED_FINGERPRINT, SOURCE_RAW_BYTE_FINGERPRINT,
+    TARGET_LANGUAGE,
 )
+
+
+@dataclass(frozen=True)
+class SourceFixtureFingerprints:
+    raw_byte_sha256: str
+    decoded_text_sha256: str
+    newline_normalized_sha256: str
+    canonical_source_sha256: str
 
 
 @dataclass(frozen=True)
@@ -32,6 +44,21 @@ class ResolvedMultiChunkSource:
     source_text: str
     chunks: tuple[str, ...]
     plans: tuple[ChunkExecutionPlan, ...]
+
+
+def fingerprint_source_fixture(path: str | Path) -> SourceFixtureFingerprints:
+    """Return every declared Stage 7.4 fixture fingerprint representation."""
+    raw = Path(path).read_bytes()
+    text = raw.decode("utf-8")
+    normalized = text.replace("\r\n", "\n").replace("\r", "\n")
+    return SourceFixtureFingerprints(
+        raw_byte_sha256=hashlib.sha256(raw).hexdigest(),
+        decoded_text_sha256=hashlib.sha256(text.encode("utf-8")).hexdigest(),
+        newline_normalized_sha256=hashlib.sha256(
+            normalized.encode("utf-8")
+        ).hexdigest(),
+        canonical_source_sha256=canonical_sha256(text),
+    )
 
 
 def resolve_multi_chunk_source(
@@ -43,6 +70,16 @@ def resolve_multi_chunk_source(
     path = (base / SOURCE_FIXTURE_PATH).resolve()
     if base not in path.parents or not path.is_file():
         raise ControlledMultiChunkResolutionError("authorized Stage 7.4 source unavailable")
+    fixture_fingerprints = fingerprint_source_fixture(path)
+    if (
+        fixture_fingerprints.raw_byte_sha256 != SOURCE_RAW_BYTE_FINGERPRINT
+        or fixture_fingerprints.decoded_text_sha256
+        != SOURCE_DECODED_TEXT_FINGERPRINT
+        or fixture_fingerprints.newline_normalized_sha256
+        != SOURCE_NEWLINE_NORMALIZED_FINGERPRINT
+        or fixture_fingerprints.canonical_source_sha256 != SOURCE_FINGERPRINT
+    ):
+        raise ControlledMultiChunkResolutionError("Stage 7.4 fixture bytes mismatch")
     intake = BookIntakeProcessor().process(path)
     text = intake.text
     chunks = tuple(split_text(text, CHUNK_SIZE))
@@ -115,7 +152,9 @@ def build_multi_chunk_request(
         authenticated_lineage=tuple(dispatch_package.canonical_chain),
         source_fixture_id=SOURCE_FIXTURE_ID,
         source_fingerprint=SOURCE_FINGERPRINT,
+        source_fingerprint_type=SOURCE_FINGERPRINT_TYPE,
         complete_source_fingerprint=SOURCE_FINGERPRINT,
+        complete_source_fingerprint_type=SOURCE_FINGERPRINT_TYPE,
         target_language=TARGET_LANGUAGE,
         literary_profile=PROFILE,
         chunk_count=CHUNK_COUNT,

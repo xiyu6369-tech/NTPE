@@ -8,6 +8,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 REQUEST_SCHEMA = "ntpe.controlled_multi_chunk_translation_request"
+REQUEST_SCHEMA_VERSION = "1.1"
 CHUNK_PLAN_SCHEMA = "ntpe.controlled_translation_chunk_plan"
 CHUNK_EVIDENCE_SCHEMA = "ntpe.controlled_translation_chunk_evidence"
 CHUNK_QUALITY_SCHEMA = "ntpe.controlled_translation_chunk_quality_assessment"
@@ -26,9 +27,20 @@ SOURCE_FIXTURE_PATH = (
     "tests/integration/controlled_multi_chunk_translation_canary/fixtures/"
     "stage74_original_ko.txt"
 )
-SOURCE_FINGERPRINT = (
+SOURCE_RAW_BYTE_FINGERPRINT_TYPE = "sha256-raw-bytes-v1"
+SOURCE_DECODED_TEXT_FINGERPRINT_TYPE = "sha256-utf8-text-v1"
+SOURCE_NEWLINE_NORMALIZED_FINGERPRINT_TYPE = "sha256-utf8-lf-text-v1"
+SOURCE_FINGERPRINT_TYPE = "sha256-canonical-json-v1"
+SOURCE_RAW_BYTE_FINGERPRINT = (
+    "656daa78d4bc7f8f488ee308deb3490beca3327f4904dbd24e8c250c3906ebec"
+)
+SOURCE_DECODED_TEXT_FINGERPRINT = SOURCE_RAW_BYTE_FINGERPRINT
+SOURCE_NEWLINE_NORMALIZED_FINGERPRINT = SOURCE_RAW_BYTE_FINGERPRINT
+SOURCE_CANONICAL_FINGERPRINT = (
     "53d96e78f7ce47c260185b55436844c1619a83d02c0feea11bef7793f28b9bea"
 )
+# Backward-compatible name used by Stage 7.4 request and checkpoint models.
+SOURCE_FINGERPRINT = SOURCE_CANONICAL_FINGERPRINT
 SOURCE_CHARACTER_COUNT = 1633
 CHUNK_SIZE = 600
 CHUNK_COUNT = 3

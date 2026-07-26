@@ -9,7 +9,7 @@ from core.controlled_multi_chunk_translation_canary.models import (
 from core.controlled_multi_chunk_translation_canary.policy import (
     ATTEMPT_CAP, CHECKPOINT_SCHEMA, CHUNK_COUNT, CHUNK_EVIDENCE_SCHEMA,
     CHUNK_PLAN_SCHEMA, CHUNK_QUALITY_SCHEMA, REQUEST_CAP, REQUEST_SCHEMA,
-    RESULT_SCHEMA,
+    REQUEST_SCHEMA_VERSION, RESULT_SCHEMA, SOURCE_FINGERPRINT_TYPE,
     VERIFICATION_SCHEMA,
 )
 
@@ -36,9 +36,12 @@ def test_exact_public_api_and_schemas():
 
 
 def test_required_model_fields_are_frozen_contract():
-    assert {"chunk_ids", "chunk_fingerprints", "authenticated_lineage"}.issubset(
-        {item.name for item in fields(MultiChunkCanaryRequest)}
-    )
+    assert {
+        "chunk_ids", "chunk_fingerprints", "authenticated_lineage",
+        "source_fingerprint_type", "complete_source_fingerprint_type",
+    }.issubset({item.name for item in fields(MultiChunkCanaryRequest)})
+    assert REQUEST_SCHEMA_VERSION == "1.1"
+    assert SOURCE_FINGERPRINT_TYPE == "sha256-canonical-json-v1"
     assert {"source_start", "source_end", "previous_chunk_id", "next_chunk_id"}.issubset(
         {item.name for item in fields(ChunkExecutionPlan)}
     )
