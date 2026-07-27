@@ -1,0 +1,532 @@
+[
+  {
+    "path": ".ai",
+    "type": "dir",
+    "category": "repository_metadata",
+    "classification": "E_PROTECTED",
+    "reason": "Internal AI assistant context store; not part of production code.",
+    "dependency_references": [],
+    "runtime_importance": "Low",
+    "migration_risk": "Low"
+  },
+  {
+    "path": ".clineignore",
+    "type": "file",
+    "category": "repository_metadata",
+    "classification": "A_KEEP_ROOT",
+    "reason": "Tooling ignore file for cline; repository metadata.",
+    "dependency_references": [],
+    "runtime_importance": "Low",
+    "migration_risk": "Low"
+  },
+  {
+    "path": ".clinerules",
+    "type": "file",
+    "category": "repository_metadata",
+    "classification": "A_KEEP_ROOT",
+    "reason": "Tooling rules for cline; metadata.",
+    "dependency_references": [],
+    "runtime_importance": "Low",
+    "migration_risk": "Low"
+  },
+  {
+    "path": ".codex",
+    "type": "file",
+    "category": "repository_metadata",
+    "classification": "D_REVIEW",
+    "reason": "Unknown local metadata — needs review before moving.",
+    "dependency_references": [],
+    "runtime_importance": "Low",
+    "migration_risk": "Medium"
+  },
+  {
+    "path": ".editorconfig",
+    "type": "file",
+    "category": "repository_metadata",
+    "classification": "A_KEEP_ROOT",
+    "reason": "Repository coding style config.",
+    "dependency_references": [],
+    "runtime_importance": "Low",
+    "migration_risk": "Low"
+  },
+  {
+    "path": ".git",
+    "type": "dir",
+    "category": "vcs_metadata",
+    "classification": "E_PROTECTED",
+    "reason": "Git repository metadata; must remain at repository root and protected.",
+    "dependency_references": [],
+    "runtime_importance": "High",
+    "migration_risk": "High"
+  },
+  {
+    "path": ".gitattributes",
+    "type": "file",
+    "category": "repository_metadata",
+    "classification": "A_KEEP_ROOT",
+    "reason": "Repository attributes; affects checkout behaviour.",
+    "dependency_references": [],
+    "runtime_importance": "Low",
+    "migration_risk": "Low"
+  },
+  {
+    "path": ".gitignore",
+    "type": "file",
+    "category": "repository_metadata",
+    "classification": "A_KEEP_ROOT",
+    "reason": "Ignore rules for VCS; must remain in repo root.",
+    "dependency_references": [],
+    "runtime_importance": "Low",
+    "migration_risk": "Low"
+  },
+  {
+    "path": ".ntpe_runtime_checkpoints",
+    "type": "file",
+    "category": "runtime_artifact",
+    "classification": "D_REVIEW",
+    "reason": "Runtime checkpoint file; investigate consumers before moving.",
+    "dependency_references": [],
+    "runtime_importance": "Medium",
+    "migration_risk": "Medium"
+  },
+  {
+    "path": "NTPE_GOVERNANCE_GAP_ANALYSIS.md",
+    "type": "file",
+    "category": "governance_audit",
+    "classification": "B_MOVE_WITH_WRAPPER",
+    "reason": "Governance analysis document — evidence artifact; relocating under docs/governance/audits/ as part of governance artifacts.",
+    "dependency_references": ["referenced by NTPE_ROOT_DIRECTORY_GOVERNANCE_PLAN.md (updated to new path)"],
+    "runtime_importance": "None",
+    "migration_risk": "Low"
+  },
+  {
+    "path": "NTPE_REPOSITORY_STATUS_REPORT.md",
+    "type": "file",
+    "category": "governance_report",
+    "classification": "B_MOVE_WITH_WRAPPER",
+    "reason": "Repository status report — governance artifact; relocated to docs/governance/repository/.",
+    "dependency_references": ["referenced by NTPE_ROOT_DIRECTORY_GOVERNANCE_PLAN.md (updated to new path)"],
+    "runtime_importance": "None",
+    "migration_risk": "Low"
+  },
+  {
+    "path": "README.md",
+    "type": "file",
+    "category": "repository_metadata",
+    "classification": "A_KEEP_ROOT",
+    "reason": "Primary repository README — must remain at root for discoverability.",
+    "dependency_references": [],
+    "runtime_importance": "None",
+    "migration_risk": "High if moved"
+  },
+  {
+    "path": "VERSION.txt",
+    "type": "file",
+    "category": "repository_metadata",
+    "classification": "A_KEEP_ROOT",
+    "reason": "Repository version file; commonly expected at root.",
+    "dependency_references": [],
+    "runtime_importance": "Low",
+    "migration_risk": "Medium"
+  },
+  {
+    "path": "analysis",
+    "type": "dir",
+    "category": "historical",
+    "classification": "D_REVIEW",
+    "reason": "Contains analysis artifacts; needs review before relocation.",
+    "dependency_references": [],
+    "runtime_importance": "Low",
+    "migration_risk": "Medium"
+  },
+  {
+    "path": "artifacts",
+    "type": "dir",
+    "category": "artifacts",
+    "classification": "E_PROTECTED",
+    "reason": "Build and evidence artifacts; specified not to modify in RM rules.",
+    "dependency_references": [],
+    "runtime_importance": "None",
+    "migration_risk": "High"
+  },
+  {
+    "path": "audits",
+    "type": "dir",
+    "category": "audits",
+    "classification": "E_PROTECTED",
+    "reason": "Audit outputs; treated as protected evidence.",
+    "dependency_references": [],
+    "runtime_importance": "None",
+    "migration_risk": "High"
+  },
+  {
+    "path": "benchmark",
+    "type": "dir",
+    "category": "utility",
+    "classification": "D_REVIEW",
+    "reason": "Benchmarking materials; review before move.",
+    "dependency_references": [],
+    "runtime_importance": "Low",
+    "migration_risk": "Medium"
+  },
+  {
+    "path": "character_database_override.json",
+    "type": "file",
+    "category": "data_override",
+    "classification": "D_REVIEW",
+    "reason": "Override data used in some tools; check consumers before moving.",
+    "dependency_references": [],
+    "runtime_importance": "Medium",
+    "migration_risk": "Medium"
+  },
+  {
+    "path": "character_override.json",
+    "type": "file",
+    "category": "data_override",
+    "classification": "D_REVIEW",
+    "reason": "Override data; needs review.",
+    "dependency_references": [],
+    "runtime_importance": "Medium",
+    "migration_risk": "Medium"
+  },
+  {
+    "path": "cli",
+    "type": "dir",
+    "category": "utility",
+    "classification": "D_REVIEW",
+    "reason": "CLI helpers; likely move to tools/cli if consolidated.",
+    "dependency_references": [],
+    "runtime_importance": "Medium",
+    "migration_risk": "Medium"
+  },
+  {
+    "path": "compatibility",
+    "type": "dir",
+    "category": "metadata",
+    "classification": "D_REVIEW",
+    "reason": "Compatibility artifacts; review and archive if historical.",
+    "dependency_references": [],
+    "runtime_importance": "Low",
+    "migration_risk": "Low"
+  },
+  {
+    "path": "config",
+    "type": "dir",
+    "category": "configuration",
+    "classification": "A_KEEP_ROOT",
+    "reason": "Project configuration; expected at root.",
+    "dependency_references": ["manifests/", "tools/"],
+    "runtime_importance": "High",
+    "migration_risk": "High if moved"
+  },
+  {
+    "path": "core",
+    "type": "dir",
+    "category": "production_code",
+    "classification": "A_KEEP_ROOT",
+    "reason": "Core package for runtime — must remain accessible from root import paths.",
+    "dependency_references": [],
+    "runtime_importance": "High",
+    "migration_risk": "High"
+  },
+  {
+    "path": "create_context_pipeline_integration.py",
+    "type": "file",
+    "category": "one_shot_tool",
+    "classification": "D_REVIEW",
+    "reason": "One-shot integration script; move to tools/integration after review.",
+    "dependency_references": [],
+    "runtime_importance": "Low",
+    "migration_risk": "Low"
+  },
+  {
+    "path": "create_context_prompt_integration.py",
+    "type": "file",
+    "category": "one_shot_tool",
+    "classification": "D_REVIEW",
+    "reason": "One-shot; review before moving.",
+    "dependency_references": [],
+    "runtime_importance": "Low",
+    "migration_risk": "Low"
+  },
+  {
+    "path": "create_voice_batch1.py",
+    "type": "file",
+    "category": "one_shot_tool",
+    "classification": "D_REVIEW",
+    "reason": "Batch creation script — review consumers.",
+    "dependency_references": [],
+    "runtime_importance": "Low",
+    "migration_risk": "Low"
+  },
+  {
+    "path": "data",
+    "type": "dir",
+    "category": "data",
+    "classification": "E_PROTECTED",
+    "reason": "Data directory; avoid moving unless planned.",
+    "dependency_references": [],
+    "runtime_importance": "High for some tools",
+    "migration_risk": "High"
+  },
+  {
+    "path": "docs",
+    "type": "dir",
+    "category": "documentation",
+    "classification": "A_KEEP_ROOT",
+    "reason": "Documentation top-level; docs/governance is created under this.",
+    "dependency_references": [],
+    "runtime_importance": "None",
+    "migration_risk": "High if moved"
+  },
+  {
+    "path": "engine",
+    "type": "dir",
+    "category": "production_code",
+    "classification": "A_KEEP_ROOT",
+    "reason": "Engine runtime code; core production code.",
+    "dependency_references": [],
+    "runtime_importance": "High",
+    "migration_risk": "High"
+  },
+  {
+    "path": "examples",
+    "type": "dir",
+    "category": "examples",
+    "classification": "D_REVIEW",
+    "reason": "Examples may be archived under docs/examples.",
+    "dependency_references": [],
+    "runtime_importance": "Low",
+    "migration_risk": "Low"
+  },
+  {
+    "path": "external_api",
+    "type": "dir",
+    "category": "integration",
+    "classification": "D_REVIEW",
+    "reason": "External API integration code; needs review before move.",
+    "dependency_references": [],
+    "runtime_importance": "Medium",
+    "migration_risk": "Medium"
+  },
+  {
+    "path": "failed_chunks",
+    "type": "dir",
+    "category": "runtime_artifact",
+    "classification": "E_PROTECTED",
+    "reason": "Runtime failure artifacts; protected evidence.",
+    "dependency_references": [],
+    "runtime_importance": "None",
+    "migration_risk": "High"
+  },
+  {
+    "path": "final_output",
+    "type": "dir",
+    "category": "artifacts",
+    "classification": "E_PROTECTED",
+    "reason": "Final outputs; protected.",
+    "dependency_references": [],
+    "runtime_importance": "None",
+    "migration_risk": "High"
+  },
+  {
+    "path": "glossary_override.json",
+    "type": "file",
+    "category": "data_override",
+    "classification": "D_REVIEW",
+    "reason": "Data override used by glossary processes; confirm consumers.",
+    "dependency_references": [],
+    "runtime_importance": "Medium",
+    "migration_risk": "Medium"
+  },
+  {
+    "path": "gui",
+    "type": "dir",
+    "category": "ui",
+    "classification": "D_REVIEW",
+    "reason": "Graphical UI components; review before relocation.",
+    "dependency_references": [],
+    "runtime_importance": "Medium",
+    "migration_risk": "Medium"
+  },
+  {
+    "path": "input",
+    "type": "dir",
+    "category": "runtime_input",
+    "classification": "E_PROTECTED",
+    "reason": "Default input folder used by launchers; do not move without plan.",
+    "dependency_references": [],
+    "runtime_importance": "High",
+    "migration_risk": "High"
+  },
+  {
+    "path": "integration",
+    "type": "dir",
+    "category": "integration",
+    "classification": "D_REVIEW",
+    "reason": "Integration tests and harnesses; move to tests/integration when migrating.",
+    "dependency_references": [],
+    "runtime_importance": "Medium",
+    "migration_risk": "Medium"
+  },
+  {
+    "path": "launcher.py",
+    "type": "file",
+    "category": "launcher",
+    "classification": "D_REVIEW",
+    "reason": "Top-level launcher; verify production usage before moving.",
+    "dependency_references": [],
+    "runtime_importance": "Medium",
+    "migration_risk": "High"
+  },
+  {
+    "path": "launcher_adaptive_recovery.py",
+    "type": "file",
+    "category": "launcher",
+    "classification": "B_MOVE_WITH_WRAPPER",
+    "reason": "Launcher that constructs AdaptiveRecoveryPipeline; no repo references found — candidate to move to tools/launchers/.",
+    "dependency_references": ["engine.pipeline.adaptive_recovery.AdaptiveRecoveryPipeline"],
+    "runtime_importance": "Medium",
+    "migration_risk": "Low"
+  },
+  {
+    "path": "launcher_analyzer.py",
+    "type": "file",
+    "category": "launcher",
+    "classification": "B_MOVE_WITH_WRAPPER",
+    "reason": "Document analyzer launcher; safe-to-move candidate.",
+    "dependency_references": ["core.document_analyzer.main"],
+    "runtime_importance": "Low",
+    "migration_risk": "Low"
+  },
+  {
+    "path": "launcher_character_db.py",
+    "type": "file",
+    "category": "launcher",
+    "classification": "B_MOVE_WITH_WRAPPER",
+    "reason": "Character DB launcher; safe-to-move candidate.",
+    "dependency_references": ["core.character_database.main"],
+    "runtime_importance": "Low",
+    "migration_risk": "Low"
+  },
+  {
+    "path": "launcher_coverage_test.py",
+    "type": "file",
+    "category": "launcher",
+    "classification": "B_MOVE_WITH_WRAPPER",
+    "reason": "Coverage test launcher; uses core.quality.coverage_checker — candidate to move to tools/tests or tools/quality.",
+    "dependency_references": ["core.quality.coverage_checker.CoverageChecker"],
+    "runtime_importance": "Low",
+    "migration_risk": "Low"
+  },
+  {
+    "path": "launcher_expansion_plan.py",
+    "type": "file",
+    "category": "launcher",
+    "classification": "B_MOVE_WITH_WRAPPER",
+    "reason": "Expansion planner launcher; safe-to-move candidate.",
+    "dependency_references": ["core.expansion.expansion_planner.ExpansionPlanner"],
+    "runtime_importance": "Low",
+    "migration_risk": "Low"
+  },
+  {
+    "path": "launcher_glossary.py",
+    "type": "file",
+    "category": "launcher",
+    "classification": "B_MOVE_WITH_WRAPPER",
+    "reason": "Glossary builder launcher; referenced in docs/archive historically but no imports found — move candidate.",
+    "dependency_references": ["core.glossary_builder.main"],
+    "runtime_importance": "Low",
+    "migration_risk": "Low"
+  },
+  {
+    "path": "launcher_kb.py",
+    "type": "file",
+    "category": "launcher",
+    "classification": "B_MOVE_WITH_WRAPPER",
+    "reason": "Knowledge base launcher; safe-to-move candidate.",
+    "dependency_references": ["core.knowledge_base_builder.main"],
+    "runtime_importance": "Low",
+    "migration_risk": "Low"
+  },
+  {
+    "path": "launcher_memory.py",
+    "type": "file",
+    "category": "launcher",
+    "classification": "B_MOVE_WITH_WRAPPER",
+    "reason": "Character memory engine launcher; move candidate.",
+    "dependency_references": ["core.character_memory_engine.main"],
+    "runtime_importance": "Low",
+    "migration_risk": "Low"
+  },
+  {
+    "path": "launcher_novel_prompt_test.py",
+    "type": "file",
+    "category": "launcher",
+    "classification": "B_MOVE_WITH_WRAPPER",
+    "reason": "Novel prompt test launcher — likely experimental; move to tools/tests.",
+    "dependency_references": ["core.prompt_builder.prompt_builder.PromptBuilder"],
+    "runtime_importance": "Low",
+    "migration_risk": "Low"
+  },
+  {
+    "path": "launcher_pipeline.py",
+    "type": "file",
+    "category": "production_entry",
+    "classification": "B_MOVE_WITH_WRAPPER",
+    "reason": "Pipeline launcher referenced in config/manifests/artifacts; requires wrapper if implementation relocates.",
+    "dependency_references": ["engine.pipeline.pipeline.Pipeline","config/project_layout_policy.json","artifacts/"],
+    "runtime_importance": "High",
+    "migration_risk": "High"
+  },
+  {
+    "path": "launcher_pipeline_production.py",
+    "type": "file",
+    "category": "production_entry",
+    "classification": "B_MOVE_WITH_WRAPPER",
+    "reason": "Production pipeline entry referenced by manifests and docs; must retain root shim or stay at root.",
+    "dependency_references": ["engine.pipeline.production_pipeline.ProductionPipeline","config/project_layout_policy.json","artifacts/"],
+    "runtime_importance": "High",
+    "migration_risk": "High"
+  },
+  {
+    "path": "launcher_pipeline_recovery.py",
+    "type": "file",
+    "category": "launcher",
+    "classification": "B_MOVE_WITH_WRAPPER",
+    "reason": "Recovery pipeline launcher; candidate to move.",
+    "dependency_references": ["engine.pipeline.recovery_pipeline.RecoveryPipeline"],
+    "runtime_importance": "Medium",
+    "migration_risk": "Low"
+  },
+  {
+    "path": "launcher_pipeline_v1.py",
+    "type": "file",
+    "category": "launcher",
+    "classification": "B_MOVE_WITH_WRAPPER",
+    "reason": "Legacy pipeline variant; candidate to move to tools/launchers/.",
+    "dependency_references": ["engine.pipeline.pipeline_v1.ProductionPipelineV1"],
+    "runtime_importance": "Low",
+    "migration_risk": "Low"
+  },
+  {
+    "path": "launcher_profile.py",
+    "type": "file",
+    "category": "launcher",
+    "classification": "B_MOVE_WITH_WRAPPER",
+    "reason": "Project profile utility; move to tools/launchers or tools/utilities.",
+    "dependency_references": ["core.project_profile"],
+    "runtime_importance": "Low",
+    "migration_risk": "Low"
+  },
+  {
+    "path": "launcher_prompt_builder.py",
+    "type": "file",
+    "category": "launcher",
+    "classification": "B_MOVE_WITH_WRAPPER",
+    "reason": "Prompt builder launcher; safe-to-move candidate.",
+    "dependency_references": ["core.prompt_builder.prompt_builder.PromptBuilder"],
+    "runtime_importance": "Low",
+    "migration_risk": "Low"
+  }
+]
