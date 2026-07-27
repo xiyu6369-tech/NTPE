@@ -1,0 +1,232 @@
+[
+  {
+    "file": "launcher_adaptive_recovery.py",
+    "category": "launcher",
+    "destination": "tools/launchers/",
+    "imports": ["pathlib.Path", "engine.pipeline.adaptive_recovery.AdaptiveRecoveryPipeline"],
+    "runtime_reference": false,
+    "artifact_reference": false,
+    "safe_to_move": true,
+    "requires_wrapper": false
+  },
+  {
+    "file": "launcher_analyzer.py",
+    "category": "launcher",
+    "destination": "tools/launchers/",
+    "imports": ["core.document_analyzer.main"],
+    "runtime_reference": false,
+    "artifact_reference": false,
+    "safe_to_move": true,
+    "requires_wrapper": false
+  },
+  {
+    "file": "launcher_character_db.py",
+    "category": "launcher",
+    "destination": "tools/launchers/",
+    "imports": ["core.character_database.main"],
+    "runtime_reference": false,
+    "artifact_reference": false,
+    "safe_to_move": true,
+    "requires_wrapper": false
+  },
+  {
+    "file": "launcher_coverage_test.py",
+    "category": "launcher",
+    "destination": "tools/launchers/",
+    "imports": ["pathlib.Path", "json", "core.quality.coverage_checker.CoverageChecker"],
+    "runtime_reference": false,
+    "artifact_reference": false,
+    "safe_to_move": true,
+    "requires_wrapper": false
+  },
+  {
+    "file": "launcher_expansion_plan.py",
+    "category": "launcher",
+    "destination": "tools/launchers/",
+    "imports": ["pathlib.Path", "json", "core.expansion.expansion_planner.ExpansionPlanner"],
+    "runtime_reference": false,
+    "artifact_reference": false,
+    "safe_to_move": true,
+    "requires_wrapper": false
+  },
+  {
+    "file": "launcher_glossary.py",
+    "category": "launcher",
+    "destination": "tools/launchers/",
+    "imports": ["core.glossary_builder.main"],
+    "runtime_reference": false,
+    "artifact_reference": false,
+    "safe_to_move": true,
+    "requires_wrapper": false
+  },
+  {
+    "file": "launcher_kb.py",
+    "category": "launcher",
+    "destination": "tools/launchers/",
+    "imports": ["core.knowledge_base_builder.main"],
+    "runtime_reference": false,
+    "artifact_reference": false,
+    "safe_to_move": true,
+    "requires_wrapper": false
+  },
+  {
+    "file": "launcher_memory.py",
+    "category": "launcher",
+    "destination": "tools/launchers/",
+    "imports": ["core.character_memory_engine.main"],
+    "runtime_reference": false,
+    "artifact_reference": false,
+    "safe_to_move": true,
+    "requires_wrapper": false
+  },
+  {
+    "file": "launcher_novel_prompt_test.py",
+    "category": "launcher",
+    "destination": "tools/launchers/",
+    "imports": ["pathlib.Path", "core.prompt_builder.prompt_builder.PromptBuilder"],
+    "runtime_reference": false,
+    "artifact_reference": false,
+    "safe_to_move": true,
+    "requires_wrapper": false
+  },
+  {
+    "file": "launcher_pipeline.py",
+    "category": "production_entry",
+    "destination": "tools/launchers/",
+    "imports": ["pathlib.Path", "engine.pipeline.pipeline.Pipeline"],
+    "runtime_reference": true,
+    "artifact_reference": true,
+    "safe_to_move": false,
+    "requires_wrapper": true
+  },
+  {
+    "file": "launcher_pipeline_production.py",
+    "category": "production_entry",
+    "destination": "tools/launchers/",
+    "imports": ["pathlib.Path", "engine.pipeline.production_pipeline.ProductionPipeline"],
+    "runtime_reference": true,
+    "artifact_reference": true,
+    "safe_to_move": false,
+    "requires_wrapper": true
+  },
+  {
+    "file": "launcher_pipeline_recovery.py",
+    "category": "launcher",
+    "destination": "tools/launchers/",
+    "imports": ["pathlib.Path", "engine.pipeline.recovery_pipeline.RecoveryPipeline"],
+    "runtime_reference": false,
+    "artifact_reference": false,
+    "safe_to_move": true,
+    "requires_wrapper": false
+  },
+  {
+    "file": "launcher_pipeline_v1.py",
+    "category": "launcher",
+    "destination": "tools/launchers/",
+    "imports": ["pathlib.Path", "engine.pipeline.pipeline_v1.ProductionPipelineV1"],
+    "runtime_reference": false,
+    "artifact_reference": false,
+    "safe_to_move": true,
+    "requires_wrapper": false
+  },
+  {
+    "file": "launcher_profile.py",
+    "category": "launcher",
+    "destination": "tools/launchers/",
+    "imports": ["core.project_profile.load_project_profile", "core.project_profile.get_profile_summary"],
+    "runtime_reference": false,
+    "artifact_reference": false,
+    "safe_to_move": true,
+    "requires_wrapper": false
+  },
+  {
+    "file": "launcher_prompt_builder.py",
+    "category": "launcher",
+    "destination": "tools/launchers/",
+    "imports": ["pathlib.Path", "core.prompt_builder.prompt_builder.PromptBuilder"],
+    "runtime_reference": false,
+    "artifact_reference": false,
+    "safe_to_move": true,
+    "requires_wrapper": false
+  },
+  {
+    "file": "launcher_quality_benchmark.py",
+    "category": "launcher",
+    "destination": "tools/launchers/",
+    "imports": ["pathlib.Path", "sys", "core.quality.quality_benchmark.QualityBenchmark"],
+    "runtime_reference": false,
+    "artifact_reference": false,
+    "safe_to_move": true,
+    "requires_wrapper": false
+  },
+  {
+    "file": "launcher_retranslate_chunk.py",
+    "category": "launcher",
+    "destination": "tools/launchers/",
+    "imports": ["pathlib.Path", "sys", "engine.pipeline.retranslate_chunk.RetranslateChunkTool"],
+    "runtime_reference": false,
+    "artifact_reference": false,
+    "safe_to_move": true,
+    "requires_wrapper": false
+  },
+  {
+    "file": "launcher_semantic_repair.py",
+    "category": "launcher",
+    "destination": "tools/launchers/",
+    "imports": ["pathlib.Path", "json", "core.quality.semantic_repair.SemanticRepair"],
+    "runtime_reference": false,
+    "artifact_reference": false,
+    "safe_to_move": true,
+    "requires_wrapper": false
+  },
+  {
+    "file": "launcher_semantic_test.py",
+    "category": "launcher",
+    "destination": "tools/launchers/",
+    "imports": ["pathlib.Path", "json", "core.prompt_builder.prompt_builder.PromptBuilder"],
+    "runtime_reference": false,
+    "artifact_reference": false,
+    "safe_to_move": true,
+    "requires_wrapper": false
+  },
+  {
+    "file": "launcher_structure_test.py",
+    "category": "launcher",
+    "destination": "tools/launchers/",
+    "imports": ["pathlib.Path", "core.prompt_builder.prompt_builder.PromptBuilder"],
+    "runtime_reference": false,
+    "artifact_reference": false,
+    "safe_to_move": true,
+    "requires_wrapper": false
+  },
+  {
+    "file": "launcher_style_expansion.py",
+    "category": "launcher",
+    "destination": "tools/launchers/",
+    "imports": ["pathlib.Path", "json", "core.expansion.style_expansion_engine.StyleExpansionEngine"],
+    "runtime_reference": false,
+    "artifact_reference": false,
+    "safe_to_move": true,
+    "requires_wrapper": false
+  },
+  {
+    "file": "launcher_style_planner_test.py",
+    "category": "launcher",
+    "destination": "tools/launchers/",
+    "imports": ["pathlib.Path", "core.prompt_builder.prompt_builder.PromptBuilder"],
+    "runtime_reference": false,
+    "artifact_reference": false,
+    "safe_to_move": true,
+    "requires_wrapper": false
+  },
+  {
+    "file": "launcher_translate.py",
+    "category": "production_entry",
+    "destination": "tools/launchers/",
+    "imports": ["ntpe_production_translate.main"],
+    "runtime_reference": true,
+    "artifact_reference": true,
+    "safe_to_move": false,
+    "requires_wrapper": true
+  }
+]
