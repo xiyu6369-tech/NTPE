@@ -1,0 +1,212 @@
+{
+  "batch": "RM-4.2A",
+  "total_moved": 34,
+  "errors": 0,
+  "error_details": [],
+  "move_mapping": [
+    {
+      "source": "examples",
+      "destination": "archive/legacy/examples",
+      "status": "MOVED",
+      "type": "file"
+    },
+    {
+      "source": "rules",
+      "destination": "archive/legacy_config/rules",
+      "status": "MOVED",
+      "type": "file"
+    },
+    {
+      "source": "gui",
+      "destination": "archive/legacy_ui_safe/gui",
+      "status": "MOVED",
+      "type": "file"
+    },
+    {
+      "source": "prompt_packages",
+      "destination": "archive/legacy_config/prompt_packages",
+      "status": "MOVED",
+      "type": "file"
+    },
+    {
+      "source": "lts_rc_compatibility",
+      "destination": "archive/lts_duplicates/lts_rc_compatibility",
+      "status": "MOVED",
+      "type": "file"
+    },
+    {
+      "source": "lts_rc_final_validation",
+      "destination": "archive/lts_duplicates/lts_rc_final_validation",
+      "status": "MOVED",
+      "type": "file"
+    },
+    {
+      "source": "lts_rc_freeze",
+      "destination": "archive/lts_duplicates/lts_rc_freeze",
+      "status": "MOVED",
+      "type": "file"
+    },
+    {
+      "source": "lts_rc_performance",
+      "destination": "archive/lts_duplicates/lts_rc_performance",
+      "status": "MOVED",
+      "type": "file"
+    },
+    {
+      "source": "lts_rc_quality",
+      "destination": "archive/lts_duplicates/lts_rc_quality",
+      "status": "MOVED",
+      "type": "file"
+    },
+    {
+      "source": "lts_rc_regression",
+      "destination": "archive/lts_duplicates/lts_rc_regression",
+      "status": "MOVED",
+      "type": "file"
+    },
+    {
+      "source": "lts_release_candidate",
+      "destination": "archive/lts_duplicates/lts_release_candidate",
+      "status": "MOVED",
+      "type": "file"
+    },
+    {
+      "source": "lts_runtime_freeze",
+      "destination": "archive/lts_duplicates/lts_runtime_freeze",
+      "status": "MOVED",
+      "type": "file"
+    },
+    {
+      "source": "lts_stable_complete",
+      "destination": "archive/lts_duplicates/lts_stable_complete",
+      "status": "MOVED",
+      "type": "file"
+    },
+    {
+      "source": "lts_stable_finalization",
+      "destination": "archive/lts_duplicates/lts_stable_finalization",
+      "status": "MOVED",
+      "type": "file"
+    },
+    {
+      "source": "lts_stable_preparation",
+      "destination": "archive/lts_duplicates/lts_stable_preparation",
+      "status": "MOVED",
+      "type": "file"
+    },
+    {
+      "source": "release",
+      "destination": "archive/release_artifacts/release",
+      "status": "MOVED",
+      "type": "file"
+    },
+    {
+      "source": "translation_cache",
+      "destination": "archive/translation_history/translation_cache",
+      "status": "MOVED",
+      "type": "file"
+    },
+    {
+      "source": "ntpe_lts_rc_compatibility.py",
+      "destination": "archive/lts_duplicates/ntpe_lts_rc_compatibility.py",
+      "status": "MOVED",
+      "type": "file"
+    },
+    {
+      "source": "ntpe_lts_rc_final_validation.py",
+      "destination": "archive/lts_duplicates/ntpe_lts_rc_final_validation.py",
+      "status": "MOVED",
+      "type": "file"
+    },
+    {
+      "source": "ntpe_lts_rc_freeze.py",
+      "destination": "archive/lts_duplicates/ntpe_lts_rc_freeze.py",
+      "status": "MOVED",
+      "type": "file"
+    },
+    {
+      "source": "ntpe_lts_rc_performance.py",
+      "destination": "archive/lts_duplicates/ntpe_lts_rc_performance.py",
+      "status": "MOVED",
+      "type": "file"
+    },
+    {
+      "source": "ntpe_lts_rc_quality.py",
+      "destination": "archive/lts_duplicates/ntpe_lts_rc_quality.py",
+      "status": "MOVED",
+      "type": "file"
+    },
+    {
+      "source": "ntpe_lts_rc_regression.py",
+      "destination": "archive/lts_duplicates/ntpe_lts_rc_regression.py",
+      "status": "MOVED",
+      "type": "file"
+    },
+    {
+      "source": "ntpe_lts_release_candidate.py",
+      "destination": "archive/lts_duplicates/ntpe_lts_release_candidate.py",
+      "status": "MOVED",
+      "type": "file"
+    },
+    {
+      "source": "ntpe_lts_runtime_freeze.py",
+      "destination": "archive/lts_duplicates/ntpe_lts_runtime_freeze.py",
+      "status": "MOVED",
+      "type": "file"
+    },
+    {
+      "source": "ntpe_lts_stable_complete.py",
+      "destination": "archive/lts_duplicates/ntpe_lts_stable_complete.py",
+      "status": "MOVED",
+      "type": "file"
+    },
+    {
+      "source": "ntpe_lts_stable_finalization.py",
+      "destination": "archive/lts_duplicates/ntpe_lts_stable_finalization.py",
+      "status": "MOVED",
+      "type": "file"
+    },
+    {
+      "source": "ntpe_lts_stable_preparation.py",
+      "destination": "archive/lts_duplicates/ntpe_lts_stable_preparation.py",
+      "status": "MOVED",
+      "type": "file"
+    },
+    {
+      "source": "create_context_pipeline_integration.py",
+      "destination": "archive/one_shot_creation/create_context_pipeline_integration.py",
+      "status": "MOVED",
+      "type": "file"
+    },
+    {
+      "source": "create_context_prompt_integration.py",
+      "destination": "archive/one_shot_creation/create_context_prompt_integration.py",
+      "status": "MOVED",
+      "type": "file"
+    },
+    {
+      "source": "create_voice_batch1.py",
+      "destination": "archive/one_shot_creation/create_voice_batch1.py",
+      "status": "MOVED",
+      "type": "file"
+    },
+    {
+      "source": "character_database_override.json",
+      "destination": "archive/data_artifacts/character_database_override.json",
+      "status": "MOVED",
+      "type": "file"
+    },
+    {
+      "source": "character_override.json",
+      "destination": "archive/data_artifacts/character_override.json",
+      "status": "MOVED",
+      "type": "file"
+    },
+    {
+      "source": "glossary_override.json",
+      "destination": "archive/data_artifacts/glossary_override.json",
+      "status": "MOVED",
+      "type": "file"
+    }
+  ]
+}

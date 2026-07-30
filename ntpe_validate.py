@@ -28,10 +28,8 @@ REQUIRED_DIRS = [
     "core",
     "tests",
     "config",
-    "prompt_packages",
     "docs",
     "tools",
-    "verification",
 ]
 
 REQUIRED_ENTRYPOINTS = [
