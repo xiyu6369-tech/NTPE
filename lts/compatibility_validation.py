@@ -35,7 +35,6 @@ REQUIRED_PUBLIC_COMMANDS = [
     "ntpe_translate_txt.py",
     "ntpe_translate_batch.py",
     "ntpe_batch_monitor.py",
-    "ntpe_long_run_recovery.py",
     "ntpe_lts_runtime_freeze.py",
     "ntpe_lts_release_candidate.py",
     "ntpe_lts_rc_regression.py",

@@ -38,7 +38,6 @@ STABLE_FINALIZATION_FILES = [
     "ntpe_translate_txt.py",
     "ntpe_translate_batch.py",
     "ntpe_batch_monitor.py",
-    "ntpe_long_run_recovery.py",
     "tools/clean_project.py",
 ]
 

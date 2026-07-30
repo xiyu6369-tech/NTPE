@@ -36,7 +36,6 @@ PERFORMANCE_FILES = [
     "ntpe_translate_txt.py",
     "ntpe_translate_batch.py",
     "ntpe_batch_monitor.py",
-    "ntpe_long_run_recovery.py",
     "lts/batch_translation_runtime.py",
     "lts/batch_runtime_monitor.py",
     "lts/long_run_recovery.py",
@@ -142,7 +141,7 @@ def build_lts_rc_performance_manifest(options: LTSRCPerformanceOptions) -> dict:
     performance_entries, missing_performance_files = _collect_entries(root, PERFORMANCE_FILES)
 
     batch_files = ["ntpe_translate_batch.py", "lts/batch_translation_runtime.py"]
-    monitor_files = ["ntpe_batch_monitor.py", "lts/batch_runtime_monitor.py", "ntpe_long_run_recovery.py", "lts/long_run_recovery.py"]
+    monitor_files = ["ntpe_batch_monitor.py", "lts/batch_runtime_monitor.py", "lts/long_run_recovery.py"]
     capability_checks = {
         "batch_runtime_supports_resume": _contains(root, batch_files, "resume"),
         "batch_runtime_supports_failure_recovery": _contains(root, batch_files, "failed"),

@@ -19,7 +19,6 @@ FROZEN_RUNTIME_FILES = [
     "ntpe_translate_txt.py",
     "ntpe_translate_batch.py",
     "ntpe_batch_monitor.py",
-    "ntpe_long_run_recovery.py",
     "lts/txt_translation_runtime.py",
     "lts/batch_translation_runtime.py",
     "lts/batch_runtime_monitor.py",
