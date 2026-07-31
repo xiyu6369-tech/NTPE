@@ -12,6 +12,17 @@ from .prompt_intelligence import apply_prompt_intelligence
 from .provider_runtime import build_translation_provider_manager
 from .utils import load_json, save_json, save_text, append_log, clean_translation_text, now_iso
 
+# RM-5.3: Runtime Context Integration — wire TQI V72 adapter into production pipeline.
+# Default-off, fail-safe: any exception logs → skip → translation continues.
+try:
+    from core.translation_quality_integration_v72 import (
+        QualityIntegrationFlags,
+        apply_to_prompt_package as tqi_v72_apply_to_prompt_package,
+    )
+    _TQI_V72_ADAPTER_AVAILABLE = True
+except ImportError:
+    _TQI_V72_ADAPTER_AVAILABLE = False
+
 
 class TranslationEngine:
     def __init__(self, root: str | Path, api_key: str | None = None):
@@ -40,6 +51,32 @@ class TranslationEngine:
             self._validate_package(package)
             package = apply_prompt_intelligence(package, package.get("source", {}).get("chunk_text", ""))
             package = apply_context_intelligence(package, package.get("source", {}).get("chunk_text", ""))
+
+            # RM-5.3: Runtime Context Integration Phase 1 — wire TQI V72 adapter.
+            # Default-off (flags only active when explicitly set in package metadata).
+            # Provider-Free, Network-Free, Output-Free. Fail-safe: any exception
+            # is logged and translation continues with the original prompt.
+            if _TQI_V72_ADAPTER_AVAILABLE:
+                try:
+                    metadata = package.get("metadata") or {}
+                    tqi_flags = QualityIntegrationFlags(
+                        integration=bool(metadata.get("quality_integration_v72")),
+                        character_memory=bool(metadata.get("quality_character_memory_v72")),
+                        context_scene=bool(metadata.get("quality_context_scene_v72")),
+                        naturalness=bool(metadata.get("quality_naturalness_v72")),
+                        kill_switch=bool(metadata.get("quality_integration_kill_switch_v72")),
+                    )
+                    if tqi_flags.enabled:
+                        package = tqi_v72_apply_to_prompt_package(package, flags=tqi_flags)
+                        append_log(
+                            self.logs_dir / "translation_engine_log.txt",
+                            f"TQI V72 applied：{package['package_id']}",
+                        )
+                except Exception as exc:
+                    append_log(
+                        self.logs_dir / "translation_engine_error.txt",
+                        f"TQI V72 degd：{package.get('package_id', '')}｜{type(exc).__name__}｜{exc}",
+                    )
 
             model_profile = package["model_profile"]
             prompt = package["prompt"]
