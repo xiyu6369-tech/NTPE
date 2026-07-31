@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-import ntpe_provider_audit as audit
+import tools.provider_utils.ntpe_provider_audit as audit
 
 ROOT = Path(__file__).resolve().parents[2]
 

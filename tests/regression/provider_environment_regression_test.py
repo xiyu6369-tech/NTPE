@@ -4,8 +4,8 @@ from __future__ import annotations
 
 import os
 
-import ntpe_provider_setup as setup
-import ntpe_provider_verify as verify
+import tools.provider_utils.ntpe_provider_setup as setup
+import tools.provider_utils.ntpe_provider_verify as verify
 
 
 def test_export_template_contains_known_env_vars() -> None:

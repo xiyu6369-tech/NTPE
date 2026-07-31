@@ -50,10 +50,7 @@
     "ntpe_literary_evaluation.py",
     "ntpe_literary_regression.py",
     "ntpe_production_translate.py",
-    "ntpe_provider_audit.py",
     "ntpe_provider_benchmark_session.py",
-    "ntpe_provider_setup.py",
-    "ntpe_provider_verify.py",
     "ntpe_ps01_literary_prompt_engine_test.py",
     "ntpe_ps02_literary_regression_runner_test.py",
     "ntpe_ps03_translation_corpus_evaluation_test.py",
@@ -317,7 +314,10 @@
     "ntpe_translation_engine_refactor_v1_test.py",
     "ntpe_validate.py",
     "original_ko_chunk_000001.json",
-    "requirements.txt"
+    "requirements.txt",
+    "ntpe_provider_setup.py",
+    "ntpe_provider_verify.py",
+    "ntpe_provider_audit.py"
   ],
   "allowed_root_directories": [
     ".agents",
@@ -381,7 +381,10 @@
   "permitted_compatibility_wrappers": [
     "launcher.py",
     "ntpe_translate_batch.py",
-    "ntpe_translate_txt.py"
+    "ntpe_translate_txt.py",
+    "ntpe_provider_setup.py",
+    "ntpe_provider_verify.py",
+    "ntpe_provider_audit.py"
   ],
   "ignored_root_directories": [
     "__pycache__"
@@ -393,9 +396,6 @@
     "ntpe_batch_monitor.py",
     "ntpe_literary_evaluation.py",
     "ntpe_literary_regression.py",
-    "ntpe_provider_audit.py",
-    "ntpe_provider_benchmark_session.py",
-    "ntpe_provider_setup.py",
-    "ntpe_provider_verify.py"
+    "ntpe_provider_benchmark_session.py"
   ]
 }

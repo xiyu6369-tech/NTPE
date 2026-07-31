@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-import ntpe_provider_audit as audit
+import tools.provider_utils.ntpe_provider_audit as audit
 
 
 def main() -> int:
