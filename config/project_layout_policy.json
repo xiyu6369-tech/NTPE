@@ -22,7 +22,6 @@
     "ntpe_architecture_consolidation_batch4_quality_api_consolidation_test.py",
     "ntpe_architecture_consolidation_batch5a1_replacement_parity_test.py",
     "ntpe_architecture_consolidation_batch5a_dynamic_usage_audit_test.py",
-    "ntpe_authorized_provider_invocation.py",
     "ntpe_batch_monitor.py",
     "ntpe_controlled_real_provider_retry.py",
     "ntpe_launcher.py",
@@ -384,7 +383,8 @@
     "ntpe_translate_txt.py",
     "ntpe_provider_setup.py",
     "ntpe_provider_verify.py",
-    "ntpe_provider_audit.py"
+    "ntpe_provider_audit.py",
+    "ntpe_provider_benchmark_session.py"
   ],
   "ignored_root_directories": [
     "__pycache__"
@@ -395,7 +395,6 @@
     "create_voice_batch1.py",
     "ntpe_batch_monitor.py",
     "ntpe_literary_evaluation.py",
-    "ntpe_literary_regression.py",
-    "ntpe_provider_benchmark_session.py"
+    "ntpe_literary_regression.py"
   ]
 }

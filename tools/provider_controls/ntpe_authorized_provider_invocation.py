@@ -5,7 +5,7 @@ from pathlib import Path
 
 from core.adaptive_context_authorized_provider_cli import run_from_argv
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parent.parent.parent
 
 
 def main() -> int:
