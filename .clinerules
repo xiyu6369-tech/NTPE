@@ -45,3 +45,146 @@ The following are **explicitly prohibited** unless the user grants explicit, per
 - Network Requests (any outbound HTTP/API call)
 
 All detailed policies are referenced in `.ai/policies/` and take precedence over this summary.
+
+看過了，**不要覆蓋**。
+
+你目前的 `.clinerules` 已經是 NTPE 的高階 Agent 治理規則，而且比我前面提供的版本更符合目前專案狀態。
+
+應該採用：
+
+> **保留現有 `.clinerules`，只追加 Windows PowerShell Execution Rules 區段。**
+
+原因：
+
+目前已有：
+
+✅ Workspace boundary  
+✅ Read before write  
+✅ `.ai/policies` 優先級  
+✅ Validation workflow  
+✅ Frozen layer protection  
+✅ Provider / Translation 禁止自動執行  
+✅ Commit / Push / Tag 禁止自動執行  
+
+這些不能被取代。
+
+---
+
+建議修改方式：
+
+在檔案最後面加入以下區段即可：
+
+```markdown
+---
+
+## Windows PowerShell Execution Safety
+
+When operating in Windows PowerShell environment:
+
+### Forbidden File Writing Methods
+
+NEVER use:
+
+- `python -c` with embedded multi-line source code
+- `echo ... > file`
+- `echo ... >> file`
+- PowerShell `>` or `>>` redirection for source files
+- Large inline commands containing Python, JSON, Markdown, or Unicode content
+
+Reason:
+
+- Prevent UTF-8 encoding corruption
+- Prevent CRLF/LF conversion issues
+- Prevent command timeout
+- Prevent terminal instability
+
+---
+
+## Preferred File Modification Methods
+
+Use this priority order:
+
+### 1. Editor / Patch Based Modification
+
+Preferred:
+
+- Use workspace editor tools
+- Modify only required sections
+- Preserve existing file structure
+
+### 2. Explicit UTF-8 File Writing
+
+If command-line writing is required:
+
+```powershell
+[System.IO.File]::WriteAllText(
+    $path,
+    $content,
+    [System.Text.UTF8Encoding]::new($false)
+)
+```
+
+Requirements:
+
+- UTF-8 encoding
+- No BOM
+- Preserve existing line endings
+
+### 3. Base64 Transfer
+
+For large content blocks:
+
+- Encode content first
+- Decode locally
+- Write as UTF-8 without BOM
+
+Use only when editor-based modification is unavailable.
+
+---
+
+## NTPE File Migration Safety
+
+When moving files:
+
+Preferred:
+
+```bash
+git mv source destination
+```
+
+Avoid manual copy/delete because it may lose Git rename detection.
+
+---
+
+## Runtime Safety Reminder
+
+During:
+
+- governance audit
+- migration
+- documentation generation
+- static analysis
+
+Expected:
+
+```
+Provider Requests = 0
+Network Requests = 0
+```
+
+Do not execute external APIs unless explicitly authorized.
+
+---
+
+## Additional Validation
+
+For file creation or modification, confirm:
+
+```powershell
+git diff --check
+```
+
+before reporting completion.
+
+
+
