@@ -268,7 +268,7 @@ def finalize_glossary(merged: dict) -> dict:
 
 def build_character_alias_index(glossary: dict) -> dict:
     resolver = CharacterResolver()
-    resolver.load_from_glossary_terms(glossary)
+    resolver.load_from_glossary(glossary)
     return resolver.export_alias_index()
 
 

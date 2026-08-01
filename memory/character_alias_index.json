@@ -1,0 +1,15 @@
+{
+  "version": "1.1.2",
+  "rules": {
+    "longest_match": true,
+    "collision_guard": true,
+    "regex_safe_replace": true,
+    "priority_order": "manual_locked > full_name > alias > given_name > surname"
+  },
+  "aliases": [],
+  "collision_report": {
+    "accepted": [],
+    "rejected": [],
+    "warnings": []
+  }
+}

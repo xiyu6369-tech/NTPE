@@ -28,5 +28,5 @@ class GlossarySelector:
         if not source:
             return False
         if re.fullmatch(r"[A-Za-z0-9_\-]+", source):
-            return re.search(rf"\\b{re.escape(source)}\\b", text) is not None
+            return re.search(rf"\b{re.escape(source)}\b", text) is not None
         return source in text

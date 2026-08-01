@@ -1,0 +1,236 @@
+{
+  "일라이 리그로우": {
+    "source": "일라이 리그로우",
+    "target": "伊萊・里格勞",
+    "character_id": "CHAR000001",
+    "match_type": "fullname_ko",
+    "priority": 120,
+    "locked": true,
+    "regex": "(?<![A-Za-z0-9가-힣一-龥])일라이\\ 리그로우(?![A-Za-z0-9가-힣一-龥])"
+  },
+  "카일 리그로우": {
+    "source": "카일 리그로우",
+    "target": "凱爾・里格勞",
+    "character_id": "CHAR000005",
+    "match_type": "fullname_ko",
+    "priority": 120,
+    "locked": true,
+    "regex": "(?<![A-Za-z0-9가-힣一-龥])카일\\ 리그로우(?![A-Za-z0-9가-힣一-龥])"
+  },
+  "리차드 타튼": {
+    "source": "리차드 타튼",
+    "target": "理查・塔騰",
+    "character_id": "CHAR000006",
+    "match_type": "fullname_ko",
+    "priority": 120,
+    "locked": true,
+    "regex": "(?<![A-Za-z0-9가-힣一-龥])리차드\\ 타튼(?![A-Za-z0-9가-힣一-龥])"
+  },
+  "Richard Tarten": {
+    "source": "Richard Tarten",
+    "target": "理查・塔騰",
+    "character_id": "CHAR000006",
+    "match_type": "fullname_en",
+    "priority": 110,
+    "locked": true,
+    "regex": "\\bRichard\\ Tarten\\b"
+  },
+  "Ilay Riegrow": {
+    "source": "Ilay Riegrow",
+    "target": "伊萊・里格勞",
+    "character_id": "CHAR000001",
+    "match_type": "fullname_en",
+    "priority": 110,
+    "locked": true,
+    "regex": "\\bIlay\\ Riegrow\\b"
+  },
+  "Kyle Riegrow": {
+    "source": "Kyle Riegrow",
+    "target": "凱爾・里格勞",
+    "character_id": "CHAR000005",
+    "match_type": "fullname_en",
+    "priority": 110,
+    "locked": true,
+    "regex": "\\bKyle\\ Riegrow\\b"
+  },
+  "게이블": {
+    "source": "게이블",
+    "target": "蓋博",
+    "character_id": "CHAR000007",
+    "match_type": "single_name_ko",
+    "priority": 90,
+    "locked": true,
+    "regex": "(?<![A-Za-z0-9가-힣一-龥])게이블(?![A-Za-z0-9가-힣一-龥])"
+  },
+  "정재의": {
+    "source": "정재의",
+    "target": "鄭載義",
+    "character_id": "CHAR000003",
+    "match_type": "single_name_ko",
+    "priority": 90,
+    "locked": true,
+    "regex": "(?<![A-Za-z0-9가-힣一-龥])정재의(?![A-Za-z0-9가-힣一-龥])"
+  },
+  "정창인": {
+    "source": "정창인",
+    "target": "鄭昌仁",
+    "character_id": "CHAR000004",
+    "match_type": "single_name_ko",
+    "priority": 90,
+    "locked": true,
+    "regex": "(?<![A-Za-z0-9가-힣一-龥])정창인(?![A-Za-z0-9가-힣一-龥])"
+  },
+  "정태의": {
+    "source": "정태의",
+    "target": "鄭泰義",
+    "character_id": "CHAR000002",
+    "match_type": "single_name_ko",
+    "priority": 90,
+    "locked": true,
+    "regex": "(?<![A-Za-z0-9가-힣一-龥])정태의(?![A-Za-z0-9가-힣一-龥])"
+  },
+  "리타": {
+    "source": "리타",
+    "target": "麗塔",
+    "character_id": "CHAR000008",
+    "match_type": "single_name_ko",
+    "priority": 90,
+    "locked": true,
+    "regex": "(?<![A-Za-z0-9가-힣一-龥])리타(?![A-Za-z0-9가-힣一-龥])"
+  },
+  "Jeong Chang-in": {
+    "source": "Jeong Chang-in",
+    "target": "鄭昌仁",
+    "character_id": "CHAR000004",
+    "match_type": "single_name_en",
+    "priority": 80,
+    "locked": true,
+    "regex": "\\bJeong\\ Chang\\-in\\b"
+  },
+  "Jeong Jae-ui": {
+    "source": "Jeong Jae-ui",
+    "target": "鄭載義",
+    "character_id": "CHAR000003",
+    "match_type": "single_name_en",
+    "priority": 80,
+    "locked": true,
+    "regex": "\\bJeong\\ Jae\\-ui\\b"
+  },
+  "Jeong Tae-ui": {
+    "source": "Jeong Tae-ui",
+    "target": "鄭泰義",
+    "character_id": "CHAR000002",
+    "match_type": "single_name_en",
+    "priority": 80,
+    "locked": true,
+    "regex": "\\bJeong\\ Tae\\-ui\\b"
+  },
+  "Gable": {
+    "source": "Gable",
+    "target": "蓋博",
+    "character_id": "CHAR000007",
+    "match_type": "single_name_en",
+    "priority": 80,
+    "locked": true,
+    "regex": "\\bGable\\b"
+  },
+  "Rita": {
+    "source": "Rita",
+    "target": "麗塔",
+    "character_id": "CHAR000008",
+    "match_type": "single_name_en",
+    "priority": 80,
+    "locked": true,
+    "regex": "\\bRita\\b"
+  },
+  "리차드": {
+    "source": "리차드",
+    "target": "理查",
+    "character_id": "CHAR000006",
+    "match_type": "firstname_ko",
+    "priority": 70,
+    "locked": true,
+    "regex": "(?<![A-Za-z0-9가-힣一-龥])리차드(?![A-Za-z0-9가-힣一-龥])"
+  },
+  "일라이": {
+    "source": "일라이",
+    "target": "伊萊",
+    "character_id": "CHAR000001",
+    "match_type": "firstname_ko",
+    "priority": 70,
+    "locked": true,
+    "regex": "(?<![A-Za-z0-9가-힣一-龥])일라이(?![A-Za-z0-9가-힣一-龥])"
+  },
+  "카일": {
+    "source": "카일",
+    "target": "凱爾",
+    "character_id": "CHAR000005",
+    "match_type": "firstname_ko",
+    "priority": 70,
+    "locked": true,
+    "regex": "(?<![A-Za-z0-9가-힣一-龥])카일(?![A-Za-z0-9가-힣一-龥])"
+  },
+  "Richard": {
+    "source": "Richard",
+    "target": "理查",
+    "character_id": "CHAR000006",
+    "match_type": "firstname_en",
+    "priority": 65,
+    "locked": true,
+    "regex": "\\bRichard\\b"
+  },
+  "Ilay": {
+    "source": "Ilay",
+    "target": "伊萊",
+    "character_id": "CHAR000001",
+    "match_type": "firstname_en",
+    "priority": 65,
+    "locked": true,
+    "regex": "\\bIlay\\b"
+  },
+  "Kyle": {
+    "source": "Kyle",
+    "target": "凱爾",
+    "character_id": "CHAR000005",
+    "match_type": "firstname_en",
+    "priority": 65,
+    "locked": true,
+    "regex": "\\bKyle\\b"
+  },
+  "리그로우": {
+    "source": "리그로우",
+    "target": "里格勞",
+    "character_id": "CHAR000001",
+    "match_type": "lastname_ko",
+    "priority": 60,
+    "locked": true,
+    "regex": "(?<![A-Za-z0-9가-힣一-龥])리그로우(?![A-Za-z0-9가-힣一-龥])"
+  },
+  "타튼": {
+    "source": "타튼",
+    "target": "塔騰",
+    "character_id": "CHAR000006",
+    "match_type": "lastname_ko",
+    "priority": 60,
+    "locked": true,
+    "regex": "(?<![A-Za-z0-9가-힣一-龥])타튼(?![A-Za-z0-9가-힣一-龥])"
+  },
+  "Riegrow": {
+    "source": "Riegrow",
+    "target": "里格勞",
+    "character_id": "CHAR000001",
+    "match_type": "lastname_en",
+    "priority": 55,
+    "locked": true,
+    "regex": "\\bRiegrow\\b"
+  },
+  "Tarten": {
+    "source": "Tarten",
+    "target": "塔騰",
+    "character_id": "CHAR000006",
+    "match_type": "lastname_en",
+    "priority": 55,
+    "locked": true,
+    "regex": "\\bTarten\\b"
+  }
+}
