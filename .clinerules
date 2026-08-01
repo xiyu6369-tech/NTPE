@@ -159,3 +159,28 @@ before reporting completion.
 - **Batch Code Changes**: Combine multiple small edits into a single operation rather than calling tools rapidly in succession.
 - **Pacing**: Take time to thoroughly analyze files before making file edit calls to avoid hitting rate limits (RPM <= 40).
 
+---
+
+## Root Development Hygiene
+
+Do not create temporary Python files in repository root.
+
+Examples:
+
+- `test_*.py`
+- `debug_*.py`
+- `sample_*.py`
+- `write_*.py`
+- `check_*.py`
+- `temp_*.py`
+
+Use:
+
+- `tests/`
+- `tools/one_shots/`
+- `artifacts/`
+- `analysis/`
+- `memory/`
+
+instead.
+
