@@ -46,37 +46,6 @@ The following are **explicitly prohibited** unless the user grants explicit, per
 
 All detailed policies are referenced in `.ai/policies/` and take precedence over this summary.
 
-看過了，**不要覆蓋**。
-
-你目前的 `.clinerules` 已經是 NTPE 的高階 Agent 治理規則，而且比我前面提供的版本更符合目前專案狀態。
-
-應該採用：
-
-> **保留現有 `.clinerules`，只追加 Windows PowerShell Execution Rules 區段。**
-
-原因：
-
-目前已有：
-
-✅ Workspace boundary  
-✅ Read before write  
-✅ `.ai/policies` 優先級  
-✅ Validation workflow  
-✅ Frozen layer protection  
-✅ Provider / Translation 禁止自動執行  
-✅ Commit / Push / Tag 禁止自動執行  
-
-這些不能被取代。
-
----
-
-建議修改方式：
-
-在檔案最後面加入以下區段即可：
-
-```markdown
----
-
 ## Windows PowerShell Execution Safety
 
 When operating in Windows PowerShell environment:
@@ -186,5 +155,7 @@ git diff --check
 
 before reporting completion.
 
-
+## Request Frequency & Tool Optimization
+- **Batch Code Changes**: Combine multiple small edits into a single operation rather than calling tools rapidly in succession.
+- **Pacing**: Take time to thoroughly analyze files before making file edit calls to avoid hitting rate limits (RPM <= 40).
 
