@@ -1,0 +1,13 @@
+[
+  {
+    "confidence": 0.9,
+    "entity_id": "narr-001",
+    "entity_type": "narrative",
+    "metadata": {
+      "review_status": "APPROVED"
+    },
+    "name": "Test narrative narr-001",
+    "schema_version": "1.0",
+    "version": 1
+  }
+]

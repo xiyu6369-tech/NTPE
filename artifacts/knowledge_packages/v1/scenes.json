@@ -1,0 +1,13 @@
+[
+  {
+    "confidence": 0.9,
+    "entity_id": "scene-001",
+    "entity_type": "scene",
+    "metadata": {
+      "review_status": "APPROVED"
+    },
+    "name": "Test scene scene-001",
+    "schema_version": "1.0",
+    "version": 1
+  }
+]

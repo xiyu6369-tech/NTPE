@@ -1,0 +1,13 @@
+[
+  {
+    "confidence": 0.9,
+    "entity_id": "style-001",
+    "entity_type": "style",
+    "metadata": {
+      "review_status": "APPROVED"
+    },
+    "name": "Test style style-001",
+    "schema_version": "1.0",
+    "version": 1
+  }
+]

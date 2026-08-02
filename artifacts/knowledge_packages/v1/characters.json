@@ -1,0 +1,13 @@
+[
+  {
+    "confidence": 0.9,
+    "entity_id": "char-001",
+    "entity_type": "character",
+    "metadata": {
+      "review_status": "APPROVED"
+    },
+    "name": "Test character char-001",
+    "schema_version": "1.0",
+    "version": 1
+  }
+]

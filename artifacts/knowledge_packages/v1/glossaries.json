@@ -1,0 +1,13 @@
+[
+  {
+    "confidence": 0.9,
+    "entity_id": "gloss-001",
+    "entity_type": "glossary",
+    "metadata": {
+      "review_status": "APPROVED"
+    },
+    "name": "Test glossary gloss-001",
+    "schema_version": "1.0",
+    "version": 1
+  }
+]
