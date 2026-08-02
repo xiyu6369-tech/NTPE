@@ -157,7 +157,7 @@ before reporting completion.
 
 ## Request Frequency & Tool Optimization
 - **Batch Code Changes**: Combine multiple small edits into a single operation rather than calling tools rapidly in succession.
-- **Pacing**: Take time to thoroughly analyze files before making file edit calls to avoid hitting rate limits (RPM <= 32).
+- **Pacing**: Take time to thoroughly analyze files before making file edit calls to avoid hitting rate limits (RPM <= 40).
 
 ---
 
