@@ -1,12 +1,12 @@
 # NTPE Literary Diff Report — PS-03-smoke
 
-Previous Stage: `PS-03-test`
+Previous Stage: `provider-v3-test`
 
-## Test_Set_0
+## Smoke_Set
 Diff skipped because one side is missing.
 
-## Test_Set_A
+## Golden_Set
 Diff skipped because one side is missing.
 
-## Test_Set_B
+## Regression_Set
 Diff skipped because one side is missing.

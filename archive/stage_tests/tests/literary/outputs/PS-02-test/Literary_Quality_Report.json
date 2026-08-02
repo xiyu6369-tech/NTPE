@@ -1,35 +1,35 @@
 {
   "version": "1.2-translation-engine-refactor-v1",
-  "status": "warning",
-  "stage": "PS-03-integration",
-  "created_at": "2026-08-02T21:12:31",
-  "output_dir": "D:\\Python\\NTPE\\tests\\literary\\outputs\\PS-03-integration",
-  "report_json": "D:\\Python\\NTPE\\tests\\literary\\outputs\\PS-03-integration\\Literary_Quality_Report.json",
-  "report_md": "D:\\Python\\NTPE\\tests\\literary\\outputs\\PS-03-integration\\Literary_Quality_Report.md",
-  "diff_md": "D:\\Python\\NTPE\\tests\\literary\\outputs\\PS-03-integration\\Literary_Diff_Report.md",
-  "previous_stage": "provider-v3-test",
+  "status": "failed",
+  "stage": "PS-02-test",
+  "created_at": "2026-08-02T21:11:57",
+  "output_dir": "D:\\Python\\NTPE\\archive\\stage_tests\\tests\\literary\\outputs\\PS-02-test",
+  "report_json": "D:\\Python\\NTPE\\archive\\stage_tests\\tests\\literary\\outputs\\PS-02-test\\Literary_Quality_Report.json",
+  "report_md": "D:\\Python\\NTPE\\archive\\stage_tests\\tests\\literary\\outputs\\PS-02-test\\Literary_Quality_Report.md",
+  "diff_md": "D:\\Python\\NTPE\\archive\\stage_tests\\tests\\literary\\outputs\\PS-02-test\\Literary_Diff_Report.md",
+  "previous_stage": null,
   "summary": {
     "total": 3,
-    "existing_outputs": 1,
-    "overall_score": 78.0
+    "existing_outputs": 0,
+    "overall_score": 0.0
   },
   "records": [
     {
       "name": "Smoke_Set",
-      "source": "D:\\Python\\NTPE\\tests\\literary\\Smoke_Set\\original_ko.txt",
-      "output": "D:\\Python\\NTPE\\tests\\literary\\outputs\\PS-03-integration\\Test_Set_0\\original_ko_zh.txt",
-      "exists": true,
+      "source": "D:\\Python\\NTPE\\archive\\stage_tests\\tests\\literary\\Test_Set_0\\original_ko.txt",
+      "output": "D:\\Python\\NTPE\\archive\\stage_tests\\tests\\literary\\outputs\\PS-02-test\\Test_Set_0\\original_ko_zh.txt",
+      "exists": false,
       "evaluation": {
-        "status": "warning",
-        "overall_score": 78.0,
+        "status": "failed",
+        "overall_score": 64.0,
         "max_score": 100,
         "metrics": [
           {
             "name": "plot_fidelity_proxy",
-            "score": 8.0,
+            "score": 0.0,
             "max_score": 30.0,
             "status": "FAIL",
-            "notes": "very short translation ratio=0.09"
+            "notes": "missing output"
           },
           {
             "name": "locked_names_terms",
@@ -40,10 +40,10 @@
           },
           {
             "name": "natural_chinese_proxy",
-            "score": 20.0,
+            "score": 14.0,
             "max_score": 20.0,
-            "status": "PASS",
-            "notes": "korean_hits=0, chinese_density=0.81"
+            "status": "FAIL",
+            "notes": "korean_hits=0, chinese_density=0.00"
           },
           {
             "name": "subject_pronoun_proxy",
@@ -68,11 +68,11 @@
           }
         ],
         "raw": {
-          "source_chars": 455,
-          "translation_chars": 37,
-          "source_korean_chars": 317,
-          "translation_cjk_chars": 29,
-          "length_ratio": 0.091,
+          "source_chars": 0,
+          "translation_chars": 0,
+          "source_korean_chars": 0,
+          "translation_cjk_chars": 0,
+          "length_ratio": 0.0,
           "korean_residue_count": 0,
           "simplified_hint_count": 0
         }
@@ -80,12 +80,12 @@
     },
     {
       "name": "Golden_Set",
-      "source": "D:\\Python\\NTPE\\tests\\literary\\Golden_Set\\original_ko.txt",
-      "output": "D:\\Python\\NTPE\\tests\\literary\\outputs\\PS-03-integration\\Test_Set_A\\original_ko_zh.txt",
+      "source": "D:\\Python\\NTPE\\archive\\stage_tests\\tests\\literary\\Test_Set_A\\original_ko.txt",
+      "output": "D:\\Python\\NTPE\\archive\\stage_tests\\tests\\literary\\outputs\\PS-02-test\\Test_Set_A\\original_ko_zh.txt",
       "exists": false,
       "evaluation": {
         "status": "failed",
-        "overall_score": 46.0,
+        "overall_score": 64.0,
         "max_score": 100,
         "metrics": [
           {
@@ -97,10 +97,10 @@
           },
           {
             "name": "locked_names_terms",
-            "score": 8.0,
+            "score": 20.0,
             "max_score": 20.0,
-            "status": "FAIL",
-            "notes": "missing locked terms: 정태의->鄭泰義, 카일->凱爾"
+            "status": "PASS",
+            "notes": "ok"
           },
           {
             "name": "natural_chinese_proxy",
@@ -118,10 +118,10 @@
           },
           {
             "name": "character_voice_dialogue_proxy",
-            "score": 4.0,
+            "score": 10.0,
             "max_score": 10.0,
-            "status": "FAIL",
-            "notes": "dialogue punctuation may be missing"
+            "status": "PASS",
+            "notes": "no dialogue in source"
           },
           {
             "name": "format_punctuation",
@@ -132,9 +132,9 @@
           }
         ],
         "raw": {
-          "source_chars": 2476,
+          "source_chars": 0,
           "translation_chars": 0,
-          "source_korean_chars": 1726,
+          "source_korean_chars": 0,
           "translation_cjk_chars": 0,
           "length_ratio": 0.0,
           "korean_residue_count": 0,
@@ -144,12 +144,12 @@
     },
     {
       "name": "Regression_Set",
-      "source": "D:\\Python\\NTPE\\tests\\literary\\Regression_Set\\original_ko.txt",
-      "output": "D:\\Python\\NTPE\\tests\\literary\\outputs\\PS-03-integration\\Test_Set_B\\original_ko_zh.txt",
+      "source": "D:\\Python\\NTPE\\archive\\stage_tests\\tests\\literary\\Test_Set_B\\original_ko.txt",
+      "output": "D:\\Python\\NTPE\\archive\\stage_tests\\tests\\literary\\outputs\\PS-02-test\\Test_Set_B\\original_ko_zh.txt",
       "exists": false,
       "evaluation": {
         "status": "failed",
-        "overall_score": 52.0,
+        "overall_score": 64.0,
         "max_score": 100,
         "metrics": [
           {
@@ -161,10 +161,10 @@
           },
           {
             "name": "locked_names_terms",
-            "score": 14.0,
+            "score": 20.0,
             "max_score": 20.0,
-            "status": "FAIL",
-            "notes": "missing locked terms: 정태의->鄭泰義"
+            "status": "PASS",
+            "notes": "ok"
           },
           {
             "name": "natural_chinese_proxy",
@@ -182,10 +182,10 @@
           },
           {
             "name": "character_voice_dialogue_proxy",
-            "score": 4.0,
+            "score": 10.0,
             "max_score": 10.0,
-            "status": "FAIL",
-            "notes": "dialogue punctuation may be missing"
+            "status": "PASS",
+            "notes": "no dialogue in source"
           },
           {
             "name": "format_punctuation",
@@ -196,9 +196,9 @@
           }
         ],
         "raw": {
-          "source_chars": 3078,
+          "source_chars": 0,
           "translation_chars": 0,
-          "source_korean_chars": 2110,
+          "source_korean_chars": 0,
           "translation_cjk_chars": 0,
           "length_ratio": 0.0,
           "korean_residue_count": 0,

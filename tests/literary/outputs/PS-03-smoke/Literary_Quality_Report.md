@@ -2,17 +2,17 @@
 
 - Status: failed
 - Overall Score: 0.0/100
-- Previous Stage: `PS-03-test`
+- Previous Stage: `provider-v3-test`
 
 | Test Set | Exists | Score | Status | Key Notes |
 |---|---|---:|---|---|
-| Test_Set_0 | False | 58.0 | failed | plot_fidelity_proxy: missing output; locked_names_terms: missing locked terms: 정태의->鄭泰義; natural_chinese_proxy: korean_hits=0, chinese_density=0.00; subject_pronoun_proxy: demonstrative_repetition=0; character_voice_dialogue_proxy: no dialogue in source; format_punctuation: simplified_hints=0 |
-| Test_Set_A | False | 46.0 | failed | plot_fidelity_proxy: missing output; locked_names_terms: missing locked terms: 정태의->鄭泰義, 카일->凱爾; natural_chinese_proxy: korean_hits=0, chinese_density=0.00; subject_pronoun_proxy: demonstrative_repetition=0; character_voice_dialogue_proxy: dialogue punctuation may be missing; format_punctuation: sim |
-| Test_Set_B | False | 52.0 | failed | plot_fidelity_proxy: missing output; locked_names_terms: missing locked terms: 정태의->鄭泰義; natural_chinese_proxy: korean_hits=0, chinese_density=0.00; subject_pronoun_proxy: demonstrative_repetition=0; character_voice_dialogue_proxy: dialogue punctuation may be missing; format_punctuation: simplified_ |
+| Smoke_Set | False | 58.0 | failed | plot_fidelity_proxy: missing output; locked_names_terms: missing locked terms: 정태의->鄭泰義; natural_chinese_proxy: korean_hits=0, chinese_density=0.00; subject_pronoun_proxy: demonstrative_repetition=0; character_voice_dialogue_proxy: no dialogue in source; format_punctuation: simplified_hints=0 |
+| Golden_Set | False | 46.0 | failed | plot_fidelity_proxy: missing output; locked_names_terms: missing locked terms: 정태의->鄭泰義, 카일->凱爾; natural_chinese_proxy: korean_hits=0, chinese_density=0.00; subject_pronoun_proxy: demonstrative_repetition=0; character_voice_dialogue_proxy: dialogue punctuation may be missing; format_punctuation: sim |
+| Regression_Set | False | 52.0 | failed | plot_fidelity_proxy: missing output; locked_names_terms: missing locked terms: 정태의->鄭泰義; natural_chinese_proxy: korean_hits=0, chinese_density=0.00; subject_pronoun_proxy: demonstrative_repetition=0; character_voice_dialogue_proxy: dialogue punctuation may be missing; format_punctuation: simplified_ |
 
 ## Metric Detail
 
-### Test_Set_0
+### Smoke_Set
 
 | Metric | Score | Max | Status | Notes |
 |---|---:|---:|---|---|
@@ -23,7 +23,7 @@
 | character_voice_dialogue_proxy | 10.0 | 10.0 | PASS | no dialogue in source |
 | format_punctuation | 5.0 | 5.0 | PASS | simplified_hints=0 |
 
-### Test_Set_A
+### Golden_Set
 
 | Metric | Score | Max | Status | Notes |
 |---|---:|---:|---|---|
@@ -34,7 +34,7 @@
 | character_voice_dialogue_proxy | 4.0 | 10.0 | FAIL | dialogue punctuation may be missing |
 | format_punctuation | 5.0 | 5.0 | PASS | simplified_hints=0 |
 
-### Test_Set_B
+### Regression_Set
 
 | Metric | Score | Max | Status | Notes |
 |---|---:|---:|---|---|
