@@ -1,0 +1,324 @@
+{
+  "title": "Style Knowledge Schema",
+  "description": "Schema for style knowledge entities (author profile, genre profile, register rules, collocations) extracted from source text and approved translations",
+  "version": "1.0",
+  "type": "object",
+  "properties": {
+    "entity_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier for this entity"
+    },
+    "entity_type": {
+      "type": "string",
+      "const": "style",
+      "description": "Entity type discriminator"
+    },
+    "schema_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+$",
+      "description": "Schema version for migration tracking"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Style name/identifier"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "style_type": {
+          "type": "string",
+          "enum": [
+            "author_fingerprint",
+            "genre_profile",
+            "register_rules",
+            "collocation_patterns",
+            "translation_preferences",
+            "forbidden_patterns",
+            "positive_patterns"
+          ],
+          "description": "Type of style knowledge"
+        },
+        "category": {
+          "type": "string",
+          "enum": [
+            "tone",
+            "voice",
+            "register",
+            "diction",
+            "syntax",
+            "figurative",
+            "pacing",
+            "other"
+          ],
+          "description": "Style category"
+        },
+        "description": {
+          "type": "string",
+          "description": "Detailed style description"
+        },
+        "examples": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Example passages illustrating the style"
+        },
+        "rules": {
+          "type": "object",
+          "description": "Specific style rules or guidelines"
+        },
+        "applies_to": {
+          "type": "string",
+          "enum": [
+            "global",
+            "character",
+            "scene",
+            "narrative",
+            "dialogue",
+            "narration"
+          ],
+          "default": "global",
+          "description": "Scope of style application"
+        },
+        "priority": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100,
+          "default": 50,
+          "description": "Priority when multiple styles apply"
+        },
+        "author_profile": {
+          "type": "object",
+          "properties": {
+            "author_id": {
+              "type": "string"
+            },
+            "fingerprint_hash": {
+              "type": "string"
+            },
+            "stylistic_markers": {
+              "type": "object",
+              "description": "Statistical stylistic markers (sentence length, vocabulary richness, etc.)"
+            },
+            "common_patterns": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "genre_profile": {
+          "type": "object",
+          "properties": {
+            "genre": {
+              "type": "string"
+            },
+            "subgenre": {
+              "type": "string"
+            },
+            "conventions": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "expected_register": {
+              "type": "string"
+            },
+            "common_tropes": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "register_rules": {
+          "type": "object",
+          "properties": {
+            "formality_levels": {
+              "type": "object",
+              "description": "Formality mappings for different contexts"
+            },
+            "honorific_usage": {
+              "type": "object",
+              "description": "Honorific rules by relationship/situation"
+            },
+            "viewpoint_consistency": {
+              "type": "boolean",
+              "description": "Enforce consistent narrative viewpoint"
+            }
+          }
+        },
+        "collocation_patterns": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "source_pattern": {
+                "type": "string"
+              },
+              "target_pattern": {
+                "type": "string"
+              },
+              "confidence": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "context": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "source_pattern",
+              "target_pattern"
+            ]
+          }
+        },
+        "translation_preferences": {
+          "type": "object",
+          "description": "Preferred translations for specific terms/phrases in this style context"
+        },
+        "forbidden_patterns": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "pattern": {
+                "type": "string"
+              },
+              "reason": {
+                "type": "string"
+              },
+              "severity": {
+                "type": "string",
+                "enum": [
+                  "warning",
+                  "error"
+                ]
+              }
+            },
+            "required": [
+              "pattern",
+              "reason"
+            ]
+          }
+        },
+        "positive_patterns": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "pattern": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "examples": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "pattern"
+            ]
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "source_text": {
+      "type": "string",
+      "description": "Source text segment from which this style element was extracted"
+    },
+    "source_location": {
+      "type": "string",
+      "description": "Location reference (volume, chapter, position)"
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "description": "Extraction confidence score"
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "extraction_method": {
+          "type": "string"
+        },
+        "extraction_model": {
+          "type": "string"
+        },
+        "extraction_timestamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "validator_version": {
+          "type": "string"
+        },
+        "review_status": {
+          "type": "string",
+          "enum": [
+            "pending",
+            "approved",
+            "rejected",
+            "needs_review"
+          ]
+        },
+        "learned_from_approved": {
+          "type": "boolean",
+          "description": "Whether this was learned from human-approved translations"
+        }
+      },
+      "additionalProperties": true
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Entity creation timestamp (UTC)"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last update timestamp (UTC)"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Entity version for optimistic locking"
+    },
+    "references": {
+      "type": "object",
+      "description": "References to other entities (key=reference_type, value=array of entity_ids)"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Free-form tags for categorization"
+    }
+  },
+  "required": [
+    "entity_id",
+    "entity_type",
+    "schema_version",
+    "name",
+    "confidence",
+    "created_at",
+    "updated_at",
+    "version"
+  ],
+  "additionalProperties": false,
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://ntpe.ai/schemas/knowledge/style_schema.json"
+}

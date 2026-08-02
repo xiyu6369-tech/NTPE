@@ -1,0 +1,144 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://ntpe.ai/schemas/knowledge/glossary_schema.json",
+  "title": "Glossary Knowledge Schema",
+  "description": "Schema for glossary/terminology knowledge entities extracted from source text",
+  "version": "1.0",
+  "type": "object",
+  "properties": {
+    "entity_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier for this entity"
+    },
+    "entity_type": {
+      "type": "string",
+      "const": "glossary",
+      "description": "Entity type discriminator"
+    },
+    "schema_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+$",
+      "description": "Schema version for migration tracking"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Source term (original language)"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "canonical_translation": {
+          "type": "string",
+          "description": "Official/canonical translation"
+        },
+        "source_term": {
+          "type": "string",
+          "description": "Original term in source language"
+        },
+        "domain_tags": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Domain classifications (cultivation, medicine, weapon, location, organization, title, honorific, etc.)"
+        },
+        "part_of_speech": {
+          "type": "string",
+          "enum": ["noun", "verb", "adjective", "adverb", "proper_noun", "phrase", "idiom", "other"],
+          "description": "Grammatical category"
+        },
+        "context_rules": {
+          "type": "object",
+          "description": "Context-dependent translation rules (key=context, value=translation)"
+        },
+        "forbidden_forms": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Translations that should never be used"
+        },
+        "aliases": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Alternative forms of the source term"
+        },
+        "notes": {
+          "type": "string",
+          "description": "Additional notes or usage guidance"
+        },
+        "relationships": {
+          "type": "object",
+          "description": "Semantic relationships (synonyms, antonyms, hypernyms, hyponyms)"
+        }
+      },
+      "additionalProperties": true
+    },
+    "source_text": {
+      "type": "string",
+      "description": "Source text segment from which this term was extracted"
+    },
+    "source_location": {
+      "type": "string",
+      "description": "Location reference (volume, chapter, position)"
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "description": "Extraction confidence score"
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "extraction_method": { "type": "string" },
+        "extraction_model": { "type": "string" },
+        "extraction_timestamp": { "type": "string", "format": "date-time" },
+        "validator_version": { "type": "string" },
+        "review_status": {
+          "type": "string",
+          "enum": ["pending", "approved", "rejected", "needs_review"]
+        },
+        "lock_status": {
+          "type": "string",
+          "enum": ["unlocked", "locked", "auto_approved"]
+        }
+      },
+      "additionalProperties": true
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Entity creation timestamp (UTC)"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last update timestamp (UTC)"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Entity version for optimistic locking"
+    },
+    "references": {
+      "type": "object",
+      "description": "References to other entities (key=reference_type, value=array of entity_ids)"
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Free-form tags for categorization"
+    }
+  },
+  "required": [
+    "entity_id",
+    "entity_type",
+    "schema_version",
+    "name",
+    "confidence",
+    "created_at",
+    "updated_at",
+    "version"
+  ],
+  "additionalProperties": false
+}
