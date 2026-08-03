@@ -1,0 +1,21 @@
+# Write provider.py - part 1 imports
+with open("D:/Python/NTPE/core/knowledge/compatibility/provider.py", "a", encoding="utf-8") as f:
+    f.write("\nfrom __future__ import annotations\n")
+    f.write("from dataclasses import dataclass\n")
+    f.write("from pathlib import Path\n")
+    f.write("from typing import Any, Dict, List, Optional\n")
+    f.write("\n")
+    f.write("from core.knowledge_compilation.package_builder import PackageReader, create_package_reader\n")
+    f.write("from core.knowledge_compilation.models import CompilationPackage, CompilationManifest\n")
+    f.write("from core.knowledge_compilation.checksum import ChecksumCalculator, DEFAULT_CALCULATOR\n")
+    f.write("\n\n")
+    f.write("@dataclass(frozen=True, slots=True)\n")
+    f.write("class EntityQuery:\n")
+    f.write('    """Query parameters for entity retrieval."""\n')
+    f.write("    entity_type: str\n")
+    f.write("    entity_id: Optional[str] = None\n")
+    f.write("    name: Optional[str] = None\n")
+    f.write("    limit: Optional[int] = None\n")
+    f.write("    domain: Optional[str] = None\n")
+
+print("Part 1 done")

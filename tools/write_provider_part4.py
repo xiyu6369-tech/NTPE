@@ -1,0 +1,21 @@
+# Write provider.py - part 4 internal methods
+with open("D:/Python/NTPE/core/knowledge/compatibility/provider.py", "a", encoding="utf-8") as f:
+    f.write("\n")
+    f.write("    # === Internal Methods ===\n")
+    f.write("\n")
+    f.write('    def _get_entities(self, entity_type: str, entity_id: str | None, name: str | None) -> List[Dict[str, Any]]:\n')
+    f.write('        """Internal method to get and filter entities."""\n')
+    f.write("        if entity_type not in self._entity_cache:\n")
+    f.write("            self._entity_cache[entity_type] = self._reader.get_entities(entity_type)\n")
+    f.write("\n")
+    f.write("        entities = self._entity_cache[entity_type]\n")
+    f.write("\n")
+    f.write("        if entity_id is not None:\n")
+    f.write('            entities = [e for e in entities if e.get("entity_id") == entity_id]\n')
+    f.write("\n")
+    f.write("        if name is not None:\n")
+    f.write('            entities = [e for e in entities if e.get("name") == name]\n')
+    f.write("\n")
+    f.write("        return entities\n")
+
+print("Part 4 done")
