@@ -1,0 +1,20 @@
+{
+  "benchmark_id": "ST-EASY-0005",
+  "extractor": "style",
+  "difficulty": "easy",
+  "source_text": "修真術語引入方式：首次出現括號註釋英文——「築基期（Foundation Establishment）」。後文直接使用中文術語。專有名詞體系建立清晰，讀者零門檻進入。",
+  "expected_entities": [
+    {
+      "id": "ST-EASY-0005-style-001",
+      "type": "style",
+      "tone": "親切引導，專業術語零門檻",
+      "literary_devices": ["首現註釋法", "中英對照", "術語體系漸進建立"],
+      "sentence_patterns": ["術語（英文）首現句", "後文直接用術語句"],
+      "vocabulary_level": "中英雙語術語體系",
+      "rhythm": "引入緩，後文順"
+    }
+  ],
+  "expected_confidence": "high",
+  "tags": ["author_sentence_pattern", "glossing_technique", "bilingual_terms", "progressive_terminology", "reader_onboarding"],
+  "notes": "術語引入策略直接展示：首現註釋、中英對照、漸進建立"
+}

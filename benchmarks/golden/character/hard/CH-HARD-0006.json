@@ -1,0 +1,43 @@
+{
+  "benchmark_id": "CH-HARD-0006",
+  "extractor": "character",
+  "difficulty": "hard",
+  "source_text": "秦風酒醒時，發現自己躺在醫館，百里紅藥遺體旁。桌上留著一封信：「三師弟，莫邪心魔未除，林無為一脈單傳，青雲門……靠你們了。」落款無名，字跡卻是三人皆認得的——初代掌門林無為親筆。但林無為早已坐化三百年。秦風大笑：「老頭子，連死都不安生。」",
+  "expected_entities": [
+    {
+      "id": "CH-HARD-0006-char-001",
+      "type": "character",
+      "name": "林無為",
+      "aliases": ["初代掌門", "父親", "信件落款者"],
+      "attributes": {
+        "posthumous_action": "死後三百年仍留信指引",
+        "knowledge_span": "知曉莫邪心魔、林家單傳、青雲門未來",
+        "handwriting": "三人（秦風、百里紅藥、莫邪）皆認得親筆",
+        "temporal_paradox": "已坐化三百年卻有遺書留今"
+      },
+      "relationships": [
+        {
+          "target": "秦風",
+          "type": "跨時空指引對象"
+        },
+        {
+          "target": "百里紅藥",
+          "type": "同門師妹，受託者"
+        },
+        {
+          "target": "莫邪",
+          "type": "同門師兄，被評價心魔未除"
+        }
+      ],
+      "appearances": [
+        {
+          "chapter": 75,
+          "context": "死後三百年遺書現世，跨越時空指引後輩"
+        }
+      ]
+    }
+  ],
+  "expected_confidence": "low",
+  "tags": ["posthumous_communication", "temporal_paradox", "handwriting_verification", "cross_generational_guidance", "unreliable_death"],
+  "notes": "悖論級難度：已死三百年卻有親筆遺書；需判斷是預留、傳遞機制、還是時空異常；三人共識字跡為關鍵錨點"
+}

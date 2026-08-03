@@ -1,0 +1,20 @@
+{
+  "benchmark_id": "ST-EASY-0007",
+  "extractor": "style",
+  "difficulty": "easy",
+  "source_text": "比喻密集且具象化：劍氣如「銀河倒掛」，靈氣「濃郁得化為霧」，銅牌「溫潤如玉」，殺意「實質化為刺骨寒風」。感官轉換比喻，抽象具象化。",
+  "expected_entities": [
+    {
+      "id": "ST-EASY-0007-style-001",
+      "type": "style",
+      "tone": "形象生動，抽象具象化",
+      "literary_devices": ["具象比喻", "感官轉換", "抽象具象化", "密集修辭"],
+      "sentence_patterns": ["A如B比喻句", "抽象名詞+具象化動詞"],
+      "vocabulary_level": "意象豐富，感官詞彙密集",
+      "rhythm": "比喻鋪陳，視覺化節奏"
+    }
+  ],
+  "expected_confidence": "high",
+  "tags": ["rhetorical_device", "concrete_metaphor", "sensory_transfer", "abstraction_concretization", "imagery_dense"],
+  "notes": "比喻風格直接展示：具象化、感官轉換、密集修辭"
+}

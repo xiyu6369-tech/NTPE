@@ -1,0 +1,30 @@
+{
+  "benchmark_id": "CH-EASY-0001",
+  "extractor": "character",
+  "difficulty": "easy",
+  "source_text": "林小滿，二十五歲，是本故事的主角。他身高一米七五，劍眉星目，身穿青色長袍，腰間繫著一塊溫潤的玉佩。",
+  "expected_entities": [
+    {
+      "id": "CH-EASY-0001-char-001",
+      "type": "character",
+      "name": "林小滿",
+      "aliases": ["小滿"],
+      "attributes": {
+        "age": "二十五歲",
+        "height": "一米七五",
+        "appearance": "劍眉星目，身穿青色長袍，腰間繫著一塊溫潤的玉佩",
+        "role": "主角"
+      },
+      "relationships": [],
+      "appearances": [
+        {
+          "chapter": 1,
+          "context": "開篇介紹主角外貌與身份"
+        }
+      ]
+    }
+  ],
+  "expected_confidence": "high",
+  "tags": ["first_appearance", "explicit_description"],
+  "notes": "首次登場，直接描述姓名、年齡、外貌、身份，屬於典型 Easy 案例"
+}

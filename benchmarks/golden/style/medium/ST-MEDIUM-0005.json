@@ -1,0 +1,20 @@
+{
+  "benchmark_id": "ST-MEDIUM-0005",
+  "extractor": "style",
+  "difficulty": "medium",
+  "source_text": "雙關語贯穿全文：銅牌名「天機鎖」——「天機」既指道具名，又指天地機緣；莫邪評價林無為「道心種魔」——「種魔」既指禁術，又指在道心埋下魔種；結局「道在人心，不在銅牌」——「銅牌」既指實物，又指外求執著。",
+  "expected_entities": [
+    {
+      "id": "ST-MEDIUM-0005-style-001",
+      "type": "style",
+      "tone": "雙關貫穿，語言多義性服務主題",
+      "literary_devices": ["全文貫穿雙關", "道具名/概念雙關", "禁術名/過程雙關", "結局語/主題雙關", "語言多義性"],
+      "sentence_patterns": ["雙關詞首現句", "語境激活第二義句", "結局收攏雙關句"],
+      "vocabulary_level": "雙關核心詞彙",
+      "rhythm": "雙關激活節奏"
+    }
+  ],
+  "expected_confidence": "medium",
+  "tags": ["rhetorical_device", "pun_permeation", "artifact_concept_pun", "technique_process_pun", "theme_pun_resolution"],
+  "notes": "需推斷：三處核心雙關(天機/種魔/銅牌)、語境激活第二義、結局收攏"
+}

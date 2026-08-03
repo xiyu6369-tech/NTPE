@@ -1,0 +1,21 @@
+{
+  "benchmark_id": "GL-EASY-0005",
+  "extractor": "glossary",
+  "difficulty": "easy",
+  "source_text": "秘境：遠古大能開闢的獨立小世界，內含傳承、靈藥、法寶等機緣。定期開啟，需特定令牌或修為資格入內。秘境法則獨立，外界神識難以窺探。",
+  "expected_entities": [
+    {
+      "id": "GL-EASY-0005-term-001",
+      "type": "glossary",
+      "term": "秘境",
+      "definition": "遠古大能開闢的獨立小世界，內含傳承、靈藥、法寶等機緣",
+      "translation": "Secret Realm / Mystic Realm",
+      "context": "修真探險/機緣獲取核心場景",
+      "category": "特殊空間",
+      "variants": ["秘境", "小世界", "Secret Realm"]
+    }
+  ],
+  "expected_confidence": "high",
+  "tags": ["explicit_definition", "world_building", "entry_requirements", "law_independence"],
+  "notes": "特殊空間術語定義，含成因、內容、進入條件、法則特性"
+}

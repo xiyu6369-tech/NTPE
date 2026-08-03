@@ -1,0 +1,24 @@
+{
+  "benchmark_id": "SC-HARD-0006",
+  "extractor": "scene",
+  "difficulty": "hard",
+  "source_text": "秦風醉臥劍峰，夢見三百年後：林小滿斬破虛空，銅牌化流光沖入星河，億萬光年外藍色星球少年驚醒。酒醒時，他手中多出一枚銅牌碎片，溫熱如初。夢境饋贈，跨越時空。",
+  "expected_entities": [
+    {
+      "id": "SC-HARD-0006-scene-001",
+      "type": "scene",
+      "location": "劍峰巨石/夢境與現實邊界/跨時空饋贈點",
+      "atmosphere": "醉夢真假難辨，跨越時空饋贈，宿命閉環",
+      "sensory_details": {
+        "visual": "醉臥巨石/夢中斬虛空/流光入星河/億萬光年外驚醒/醒來手中銅牌碎片",
+        "auditory": "風聲/劍斬虛空音/星河流轉聲/少年驚醒喘息/碎片溫熱觸感",
+        "olfactory": "酒香/劍氣/星際真空/清晨咖啡/銅鐵溫香"
+      },
+      "time_of_day": "劍峰午後/夢中未來/現代清晨/同時發生",
+      "significance": "夢境跨時空饋贈物證；酒醒得銅牌碎片證明夢境真實"
+    }
+  ],
+  "expected_confidence": "low",
+  "tags": ["dream_reality_bleed", "trans_temporal_gift", "physical_evidence", "drunken_prophet", "closed_loop_object"],
+  "notes": "夢境與現實滲透：夢中見未來，醒來得物證；醉酒狀態作為跨時空媒介"
+}

@@ -1,0 +1,24 @@
+{
+  "benchmark_id": "SC-MEDIUM-0003",
+  "extractor": "scene",
+  "difficulty": "medium",
+  "source_text": "夜深人靜，林小滿在後山瀑布旁打坐。月光被水霧折射成彩虹，水聲單調而有節奏，恰好掩蓋心跳聲。他感到體內靈氣按九宮八卦路線運轉，周天周而復始。",
+  "expected_entities": [
+    {
+      "id": "SC-MEDIUM-0003-scene-001",
+      "type": "scene",
+      "location": "後山瀑布旁",
+      "atmosphere": "幽靜神秘，修煉入定，天人合一",
+      "sensory_details": {
+        "visual": "月光折射彩虹、水霧朦朧、瀑布白練",
+        "auditory": "水聲單調有節奏、掩蓋心跳、靈氣運轉微音",
+        "olfactory": "水氣清冽、山林夜香"
+      },
+      "time_of_day": "深夜",
+      "significance": "主角夜間修煉，關鍵突破前夕"
+    }
+  ],
+  "expected_confidence": "medium",
+  "tags": ["night_scene", "cultivation_atmosphere", "rhythmic_environment", "internal_external_sync"],
+  "notes": "夜間修煉場景，環境節奏與內在運轉同步；月光彩虹為視覺錨點"
+}

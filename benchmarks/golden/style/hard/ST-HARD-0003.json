@@ -1,0 +1,20 @@
+{
+  "benchmark_id": "ST-HARD-0003",
+  "extractor": "style",
+  "difficulty": "hard",
+  "source_text": "莫邪臨終確認：「你這招叫『無』罷。三百年前林無為也這樣寫過。只是他寫在紙上，你……寫在天地法則裡。」父子隔空對話跨越文本層級：父親「寫在紙上」(作者層)、兒子「寫在法則裡」(角色層/世界層)、反派「見證/確認」(讀者層/評論者層)。三層文本聲音重疊，身份邊界消融。",
+  "expected_entities": [
+    {
+      "id": "ST-HARD-0003-style-001",
+      "type": "style",
+      "tone": "三層文本聲音重疊，身份邊界消融",
+      "literary_devices": ["作者層/角色層/讀者層三聲音", "文本層級對話", "身份邊界消融", "書寫/實踐/見證三重鏡像", "元敘事聲音融合"],
+      "sentence_patterns": ["三層聲音平行句", "書寫動詞層級遞進", "見證者確認句"],
+      "vocabulary_level": "元敘事術語",
+      "rhythm": "三聲音合一"
+    }
+  ],
+  "expected_confidence": "low",
+  "tags": ["dialogue_rhythm", "triple_textual_voices", "author_character_reader_triangle", "writing_practice_witness", "identity_boundary_dissolution"],
+  "notes": "最高難度：三層文本聲音(作者/角色/讀者)、書寫即實踐、見證即確認、身份邊界徹底消融"
+}

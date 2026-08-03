@@ -1,0 +1,20 @@
+{
+  "benchmark_id": "NA-EASY-0003",
+  "extractor": "narrative",
+  "difficulty": "easy",
+  "source_text": "秘境開啟，林小滿與趙烈、蘇清雪等師兄弟共同入內。掌門宣布：秘境歷練一月，築基期弟子各憑本事。這是主角第一次離開宗門保護，獨自面對未知危險。",
+  "expected_entities": [
+    {
+      "id": "NA-EASY-0003-narr-001",
+      "type": "narrative",
+      "plot_point": "秘境開啟，主角與師兄弟組隊進入歷練",
+      "arc": "探險弧光/離開庇護/團隊動態建立",
+      "tension_level": 0.5,
+      "pacing": "轉折推進",
+      "foreshadowing": ["一月期限暗示時間壓力", "師兄弟組隊暗示人際關係測試", "首次離開保護預示獨立成長"]
+    }
+  ],
+  "expected_confidence": "high",
+  "tags": ["plot_point", "secret_realm_entry", "team_formation", "leaving_safety", "time_limit"],
+  "notes": "情節轉折點明確：秘境開啟、組隊、時間限制、首次獨立"
+}

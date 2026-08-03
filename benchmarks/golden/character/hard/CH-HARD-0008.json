@@ -1,0 +1,40 @@
+{
+  "benchmark_id": "CH-HARD-0008",
+  "extractor": "character",
+  "difficulty": "hard",
+  "source_text": "塵埃落定後，林小滿在後山見到一個「自己」——同樣青衫、同樣劍眉、同樣腰間銅牌。對方轉身，臉上卻無疤無痕，眼中無三百年滄桑，只有少年意氣：「師父說，這條路走不通，換條路試試。」林小滿握緊銅牌：這不是穿越，是初代掌門留下的……第N次嘗試。",
+  "expected_entities": [
+    {
+      "id": "CH-HARD-0008-char-001",
+      "type": "character",
+      "name": "林無為",
+      "aliases": ["初代掌門", "少年意氣版自己", "第N次嘗試者"],
+      "attributes": {
+        "appearance": "與主角極似，但無疤痕滄桑",
+        "demeanor": "少年意氣，未歷經磨難",
+        "knowledge": "知曉「這條路走不通」，嘗試新路",
+        "meta_nature": "非穿越，而是多次輪迴/嘗試之一",
+        "copper_pawn": "腰間同款銅牌，關鍵道具傳遞"
+      },
+      "relationships": [
+        {
+          "target": "林小滿",
+          "type": "前世/上一次嘗試者，傳遞經驗"
+        },
+        {
+          "target": "師父",
+          "type": "更高維度指引者（暗示）"
+        }
+      ],
+      "appearances": [
+        {
+          "chapter": 85,
+          "context": "結局揭示輪迴/多次嘗試真相，開放式結局"
+        }
+      ]
+    }
+  ],
+  "expected_confidence": "low",
+  "tags": ["time_loop", "meta_narrative", "self_encounter", "recursive_attempt", "open_ending", "copper_pawn_cycle"],
+  "notes": "元敘事級難度：主角遇見「另一個自己」實為前一次嘗試；「第N次」暗示循環；銅牌作為循環錨點；需重新審視全書所有「預知」場景"
+}

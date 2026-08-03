@@ -1,0 +1,20 @@
+{
+  "benchmark_id": "NA-EASY-0008",
+  "extractor": "narrative",
+  "difficulty": "easy",
+  "source_text": "秘境核心殿堂，林小滿發現柳無雙牌位，柳如煙罕見顫聲：「師祖，弟子帶晚輩來見您。」揭示柳如煙為第九代掌門嫡傳，師承淵源確立。",
+  "expected_entities": [
+    {
+      "id": "NA-EASY-0008-narr-001",
+      "type": "narrative",
+      "plot_point": "發現歷代掌門牌位，揭示峰主真實師承",
+      "arc": "師承揭露弧光/隱藏身份/傳承正統性",
+      "tension_level": 0.4,
+      "pacing": "揭示平緩",
+      "foreshadowing": ["柳如煙真實實力遠超表現", "第九代掌門遺物在秘境核心", "師祖牌位暗示更深層秘密"]
+    }
+  ],
+  "expected_confidence": "high",
+  "tags": ["plot_point", "lineage_reveal", "hidden_identity", "sect_history", "emotional_breakthrough"],
+  "notes": "身份揭露情節點：牌位文字+峰主稱謂+罕見情感流露確認師承關係"
+}

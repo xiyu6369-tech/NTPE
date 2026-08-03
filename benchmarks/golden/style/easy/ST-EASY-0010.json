@@ -1,0 +1,20 @@
+{
+  "benchmark_id": "ST-EASY-0010",
+  "extractor": "style",
+  "difficulty": "easy",
+  "source_text": "結局收束式重複開頭意象：開頭「林家小院晨光炊煙」，結尾「青雲門後山晨光松針」。首尾呼應，圓環閉合。新弟子讀書聲對應當年主角離家時妹妹練劍聲。傳承循環視覺化。",
+  "expected_entities": [
+    {
+      "id": "ST-EASY-0010-style-001",
+      "type": "style",
+      "tone": "圓環閉合，首尾呼應",
+      "literary_devices": ["首尾呼應", "意象鏡像", "圓環結構", "傳承視覺化", "聲音對位"],
+      "sentence_patterns": ["開頭意象句", "結尾鏡像意象句", "聲音對位平行句"],
+      "vocabulary_level": "意象詞彙呼應",
+      "rhythm": "首尾同頻，圓環閉合"
+    }
+  ],
+  "expected_confidence": "high",
+  "tags": ["author_sentence_pattern", "circular_structure", "mirror_imagery", "opening_closing_echo", "legacy_visualization"],
+  "notes": "首尾呼應結構直接展示：意象鏡像、聲音對位、圓環閉合"
+}

@@ -1,0 +1,20 @@
+{
+  "benchmark_id": "ST-HARD-0001",
+  "extractor": "style",
+  "difficulty": "hard",
+  "source_text": "「道」字一頁，三行批註筆跡遞變：楷書端正「道在腳下」——行書飄逸「道在劍中」——草書狂草「道在人心——無為」。書法即敘事：字體演變=心境演變=人生三階段。落款「無為」雙關：署名/道家核心概念/父親筆名。讀者需具書法鑑賞+哲理詮釋+文本考證三重能力。",
+  "expected_entities": [
+    {
+      "id": "ST-HARD-0001-style-001",
+      "type": "style",
+      "tone": "書法即傳記，筆跡即心路，字體即敘事",
+      "literary_devices": ["書法演變即敘事", "字體/心境/人生三重同構", "落款四重雙關(署名/概念/筆名/道號)", "書法鑑賞即閱讀", "視覺/哲理/文本三重解碼"],
+      "sentence_patterns": ["三行批註平行呈現", "字體標記+內容+落款", "讀者三重解碼邀請"],
+      "vocabulary_level": "書法術語/道家哲理/文本考證",
+      "rhythm": "三階段遞進，視覺哲理同頻"
+    }
+  ],
+  "expected_confidence": "low",
+  "tags": ["author_sentence_pattern", "calligraphy_as_narrative", "script_evolution_as_biography", "quadruple_pun_signature", "triple_decoding_requirement"],
+  "notes": "最高難度：書法演變=敘事、三重同構、四重雙關落款、需書法/哲理/考證三重專業能力"
+}

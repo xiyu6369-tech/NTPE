@@ -1,0 +1,21 @@
+{
+  "benchmark_id": "GL-HARD-0007",
+  "extractor": "glossary",
+  "difficulty": "hard",
+  "source_text": "《青雲劍典》殘卷最終頁，只有一行字：「劍，由心生；心，因劍明。心劍合一，謂之『誠』。」林小滿合上殘卷：誠者，天之道；誠之者，人之道。這不是劍訣，是《中庸》藏頭。",
+  "expected_entities": [
+    {
+      "id": "GL-HARD-0007-term-001",
+      "type": "glossary",
+      "term": "誠",
+      "definition": "劍典核心概念：①心劍合一狀態 ②《中庸》核心概念「誠者天之道，誠之者人之道」 ③藏頭詩首字 ④修煉者誠實守真之心性",
+      "translation": "Sincerity / Integrity / Cheng (Confucian concept)",
+      "context": "劍典最終頁藏頭詩，融合儒家哲理與劍道精髓",
+      "category": "跨體系哲理概念/藏頭詩",
+      "variants": ["誠", "心劍合一", "誠者天道", "Sincerity"]
+    }
+  ],
+  "expected_confidence": "low",
+  "tags": ["acrostic_puzzle", "cross_philosophy_fusion", "confucian_daoist_synthesis", "final_page_revelation", "multi_layer_meaning"],
+  "notes": "多層嵌套：劍道術語+儒家核心概念+藏頭詩線索；需識別「誠者天之道」出自《中庸》；劍典實為哲理傳承而非單純武功"
+}

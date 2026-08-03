@@ -1,0 +1,20 @@
+{
+  "benchmark_id": "NA-HARD-0006",
+  "extractor": "narrative",
+  "difficulty": "hard",
+  "source_text": "秦風夢見三百年後：主角斬破虛空、銅牌入星河、億萬光年外少年驚醒。酒醒手中多銅牌碎片，溫熱如初。夢境饋贈跨越時空：醉酒狀態作為跨時空媒介，夢中見未來、醒來得物證。",
+  "expected_entities": [
+    {
+      "id": "NA-HARD-0006-narr-001",
+      "type": "narrative",
+      "plot_point": "醉夢跨時空見未來，醒來得物證銅牌碎片，證明夢境真實",
+      "arc": "夢境真實化弧光/醉酒媒介/物證驗證",
+      "tension_level": 0.6,
+      "pacing": "悖論緩解",
+      "foreshadowing": ["夢中見未來關鍵節點", "醒來手中物證確認真實", "醉酒狀態=跨時空媒介", "碎片溫熱=剛從未來帶回"]
+    }
+  ],
+  "expected_confidence": "low",
+  "tags": ["dream_reality_bleed", "trans_temporal_artifact", "drunken_medium", "physical_proof", "future_echo"],
+  "notes": "需推斷：夢境非虛幻、醉酒作為媒介、物證驗證真實性、時間非線性"
+}

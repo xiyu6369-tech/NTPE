@@ -1,0 +1,40 @@
+{
+  "benchmark_id": "CH-HARD-0001",
+  "extractor": "character",
+  "difficulty": "hard",
+  "source_text": "青雲門藏經閣深處，林小滿翻到一頁泛黃舊卷：「初代掌門林無為，開宗立派……三十歲坐化，死因不明。」他心頭一震——無為，正是父親筆名。更讓他震驚的是，卷軸末尾一行小字：「**莫邪勿信，道在人心**」，筆跡與父親遺書如出一轍。",
+  "expected_entities": [
+    {
+      "id": "CH-HARD-0001-char-001",
+      "type": "character",
+      "name": "林無為",
+      "aliases": ["初代掌門", "林父筆名"],
+      "attributes": {
+        "title": "青雲門初代掌門",
+        "age_at_death": "三十歲",
+        "death": "坐化，死因不明",
+        "identity": "林小滿父親的筆名/真實身份",
+        "legacy": "留下遺卷警示後人"
+      },
+      "relationships": [
+        {
+          "target": "林小滿",
+          "type": "父子，跨越時空的指引"
+        },
+        {
+          "target": "莫邪",
+          "type": "警示對象，不可信"
+        }
+      ],
+      "appearances": [
+        {
+          "chapter": 50,
+          "context": "發現父親真實身份為青雲門初代掌門，跨越三百年佈局"
+        }
+      ]
+    }
+  ],
+  "expected_confidence": "low",
+  "tags": ["identity_disambiguation", "cross_temporal_revelation", "pen_name_true_identity", "foreshadowing_payoff", "handwriting_analysis"],
+  "notes": "極高難度：需將「林無為」與「林父筆名」關聯；三百年時跨越；筆跡鑑定需多重證據鏈；「莫邪勿信」雙關語需深度解讀"
+}

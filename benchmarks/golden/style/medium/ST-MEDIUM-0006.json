@@ -1,0 +1,20 @@
+{
+  "benchmark_id": "ST-MEDIUM-0006",
+  "extractor": "style",
+  "difficulty": "medium",
+  "source_text": "白描手法寫悲傷：百里紅藥逝世後，「百草園無人打理。半年後重訪，靈花枯萎、石臼生銹、藥香不再。唯有還魂草綠意盎然。」無一句形容悲傷，環境代言情感，留白最深。",
+  "expected_entities": [
+    {
+      "id": "ST-MEDIUM-0006-style-001",
+      "type": "style",
+      "tone": "白描代言情感，環境即內心",
+      "literary_devices": ["白描手法", "環境代言情感", "零情感詞彙", "留白美學", "意象即情感"],
+      "sentence_patterns": ["環境變化陳述句", "對比意象句(枯萎vs綠意)", "無形容詞情感句"],
+      "vocabulary_level": "環境描寫詞彙",
+      "rhythm": "平鋪直敘，情感餘韻"
+    }
+  ],
+  "expected_confidence": "medium",
+  "tags": ["rhetorical_device", "plain_description", "environment_as_emotion", "zero_emotion_words", "negative_space_aesthetic"],
+  "notes": "需推斷：零情感詞彙、環境變化代言悲傷、枯萎/綠意對比、留白美學"
+}

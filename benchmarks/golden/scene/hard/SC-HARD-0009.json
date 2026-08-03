@@ -1,0 +1,24 @@
+{
+  "benchmark_id": "SC-HARD-0009",
+  "extractor": "scene",
+  "difficulty": "hard",
+  "source_text": "銅牌第N次循環記錄場景：每一輪都是同一個「青雲門大殿」，但細節微異——第1輪掌門座空懸，第7輪柳如煙位置空缺，第42輪趙烈酒壺碎地，第N輪林小滿坐首席。大殿不變，坐席更迭記錄歷史。",
+  "expected_entities": [
+    {
+      "id": "SC-HARD-0009-scene-001",
+      "type": "scene",
+      "location": "青雲門大殿/多輪循環疊加/銅牌記錄視角",
+      "atmosphere": "固定場景見證變遷，細節差異編碼歷史，銅牌為存儲介質",
+      "sensory_details": {
+        "visual": "同一大殿N輪疊加：掌門座空/柳位空/酒壺碎/首席滿、細節差異高亮",
+        "auditory": "N輪聲音疊加：宣布聲/沉默/碎裂聲/誦經聲/銅牌記錄滋滋聲",
+        "olfactory": "檀香不變/N輪差異氣味編碼：空虛/悲傷/酒香/傲氣/責任"
+      },
+      "time_of_day": "N輪不同時刻大殿午前會議時間",
+      "significance": "固定場景作為循環記錄載體；細節差異=歷史編碼；銅牌=存儲介質"
+    }
+  ],
+  "expected_confidence": "low",
+  "tags": ["fixed_scene_variable_details", "cycle_encoding", "copper_as_storage", "detail_as_history", "recursive_observation"],
+  "notes": "同一場景N輪疊加；唯有細節不同編碼歷史；銅牌作為記錄介質；需從細節差異推斷輪次"
+}

@@ -1,0 +1,36 @@
+{
+  "benchmark_id": "CH-EASY-0006",
+  "extractor": "character",
+  "difficulty": "easy",
+  "source_text": "藥王谷谷主百里紅藥，醫術通神，人稱「活死人、肉白骨」。她年過六旬卻容顏如三十許人，眉眼間透著幾分慈悲與倔強。林小滿求醫時，她正在百草園親自研磨靈藥。",
+  "expected_entities": [
+    {
+      "id": "CH-EASY-0006-char-001",
+      "type": "character",
+      "name": "百里紅藥",
+      "aliases": ["藥王谷谷主", "活死人、肉白骨"],
+      "attributes": {
+        "title": "藥王谷谷主",
+        "reputation": "醫術通神，人稱「活死人、肉白骨」",
+        "age": "年過六旬",
+        "appearance": "容顏如三十許人，眉眼間透著幾分慈悲與倔強",
+        "activity": "在百草園親自研磨靈藥"
+      },
+      "relationships": [
+        {
+          "target": "林小滿",
+          "type": "求醫者"
+        }
+      ],
+      "appearances": [
+        {
+          "chapter": 8,
+          "context": "主角求醫，醫者登場"
+        }
+      ]
+    }
+  ],
+  "expected_confidence": "high",
+  "tags": ["first_appearance", "explicit_description", "title_alias", "reputation"],
+  "notes": "醫者角色登場，頭銜、稱號、外貌、正在從事的活動均明確給出"
+}

@@ -1,0 +1,21 @@
+{
+  "benchmark_id": "GL-HARD-0004",
+  "extractor": "glossary",
+  "difficulty": "hard",
+  "source_text": "柳如煙指著劍峰石碑：「此碑刻『劍道三境』：一、劍在手；二、劍在心；三、劍即道。」她頓了頓，「師祖補充：第四境——無劍勝有劍。但那已非劍道，是……『無』。」林小滿腦中轟鳴：無，非無物，乃萬物之始。",
+  "expected_entities": [
+    {
+      "id": "GL-HARD-0004-term-001",
+      "type": "glossary",
+      "term": "劍道四境",
+      "definition": "劍修境界體系：一境劍在手（器）二境劍在心（意）三境劍即道（法）四境無劍勝有劍（無/道體）；第四境超脫劍道範疇，觸及大道本源",
+      "translation": "Four Realms of Sword Dao",
+      "context": "石碑三境+師祖口傳第四境，構建完整劍道體系",
+      "category": "劍道境界/哲理體系",
+      "variants": ["劍道三境", "劍道四境", "無劍勝有劍", "Four Realms of Sword Dao"]
+    }
+  ],
+  "expected_confidence": "low",
+  "tags": ["implicit_fourth_realm", "philosophical_progression", "oral_transmission", "daoist_paradox", "transcendence"],
+  "notes": "石碑只刻三境，第四境需師祖口傳；「無非無物乃萬物之始」道家哲理；境界定義需哲理推演而非直接給出"
+}

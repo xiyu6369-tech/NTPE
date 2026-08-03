@@ -1,0 +1,36 @@
+{
+  "benchmark_id": "CH-EASY-0010",
+  "extractor": "character",
+  "difficulty": "easy",
+  "source_text": "青衣女子站在瀑布前，長髮挽起，僅用一支木簪固定。她手持長劍，劍尖指地，周身靈氣內斂不洩。林小滿認出她是三峰峰主——柳如煙，號稱「劍痴」。",
+  "expected_entities": [
+    {
+      "id": "CH-EASY-0010-char-001",
+      "type": "character",
+      "name": "柳如煙",
+      "aliases": ["青衣女子", "三峰峰主", "劍痴"],
+      "attributes": {
+        "title": "三峰峰主",
+        "nickname": "劍痴",
+        "appearance": "青衣，長髮挽起，僅用一支木簪固定",
+        "action": "手持長劍，劍尖指地，周身靈氣內斂不洩",
+        "recognition": "被林小滿認出"
+      },
+      "relationships": [
+        {
+          "target": "林小滿",
+          "type": "被認出者"
+        }
+      ],
+      "appearances": [
+        {
+          "chapter": 15,
+          "context": "主角在瀑布前認出三峰峰主"
+        }
+      ]
+    }
+  ],
+  "expected_confidence": "high",
+  "tags": ["first_appearance", "explicit_description", "multi_alias", "title_nickname", "recognition_scene"],
+  "notes": "多重身份（峰主、綽號）明確給出，外貌動作描寫詳細"
+}

@@ -1,0 +1,20 @@
+{
+  "benchmark_id": "NA-HARD-0003",
+  "extractor": "narrative",
+  "difficulty": "hard",
+  "source_text": "莫邪臨終看著林小滿劍：「你這招叫『無』罷。三百年前林無為也這樣寫過。只是他寫在紙上，你……寫在天地法則裡。」父子隔空對話：父親紙上哲理，兒子劍中實踐。反派作為見證者確認傳承完成。",
+  "expected_entities": [
+    {
+      "id": "NA-HARD-0003-narr-001",
+      "type": "narrative",
+      "plot_point": "反派見證父子隔空對話：紙上哲理→劍中法則，傳承完成確認",
+      "arc": "概念實體化弧光/父子隔空傳承/見證者確認",
+      "tension_level": 0.7,
+      "pacing": "見證緩解",
+      "foreshadowing": ["「無」從文字變法則", "父親寫在紙/兒子寫在法則", "反派作為跨時空見證者", "傳承非血緣而是道脈"]
+    }
+  ],
+  "expected_confidence": "low",
+  "tags": ["concept_to_law", "father_son_transcendence", "witness_confirmation", "text_to_practice", "dao_lineage_over_blood"],
+  "notes": "需推斷：反派見證雙重角色（對手+見證者）、文字哲理實體化為法則、道脈超越血緣"
+}

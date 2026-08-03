@@ -1,0 +1,28 @@
+{
+  "benchmark_id": "CH-EASY-0009",
+  "extractor": "character",
+  "difficulty": "easy",
+  "source_text": "內門大比第一名，獎勵築基丹一顆、上品靈劍一柄、入藏經閣三層選功法一次。獲勝者：林小滿。全場譁然，隨後爆發出雷動掌聲。",
+  "expected_entities": [
+    {
+      "id": "CH-EASY-0009-char-001",
+      "type": "character",
+      "name": "林小滿",
+      "aliases": ["獲勝者", "大比第一"],
+      "attributes": {
+        "achievement": "內門大比第一名",
+        "rewards": "築基丹一顆、上品靈劍一柄、入藏經閣三層選功法一次"
+      },
+      "relationships": [],
+      "appearances": [
+        {
+          "chapter": 12,
+          "context": "大比結束，公佈結果"
+        }
+      ]
+    }
+  ],
+  "expected_confidence": "high",
+  "tags": ["explicit_achievement", "competition_result", "reward_list"],
+  "notes": "比賽結果直接公佈，獲勝者身份與獎勵明確列出"
+}

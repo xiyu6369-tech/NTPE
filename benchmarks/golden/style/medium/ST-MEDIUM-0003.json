@@ -1,0 +1,20 @@
+{
+  "benchmark_id": "ST-MEDIUM-0003",
+  "extractor": "style",
+  "difficulty": "medium",
+  "source_text": "修辭層層疊加構建意境：秘境入口「霧氣裂開門戶，內裡別有洞天：參天古木遮天蔽日，靈草遍地，空氣中靈氣濃郁得化為霧。遠處瀑布如銀河倒掛，轟鳴聲震耳欲聾。」視覺→嗅覺→聽覺，比喻鏈延伸，感官遞進。",
+  "expected_entities": [
+    {
+      "id": "ST-MEDIUM-0003-style-001",
+      "type": "style",
+      "tone": "感官遞進，修辭鏈構建沉浸意境",
+      "literary_devices": ["感官遞進鋪陳", "比喻鏈延伸", "多感官融合", "沉浸式描寫"],
+      "sentence_patterns": ["視覺長句→嗅覺短句→聽覺比喻句", "比喻遞進鏈"],
+      "vocabulary_level": "感官詞彙三維度",
+      "rhythm": "層層遞進，沉浸節奏"
+    }
+  ],
+  "expected_confidence": "medium",
+  "tags": ["rhetorical_device", "sensory_progression", "metaphor_chain", "multi_sensory_fusion", "immersive_description"],
+  "notes": "需推斷：視覺/嗅覺/聽覺三感官遞進、比喻鏈延伸(洞天→化霧→銀河)、沉浸構建"
+}

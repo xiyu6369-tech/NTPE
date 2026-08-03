@@ -1,0 +1,21 @@
+{
+  "benchmark_id": "GL-HARD-0008",
+  "extractor": "glossary",
+  "difficulty": "hard",
+  "source_text": "蘇清雪遺留玉簡中記錄：「天機鎖第N次循環記錄：第1次……失敗，莫邪得逞；第7次……失敗，柳如煙道心崩潰；第42次……成功，但代價太大。」林小滿手顫：N=42，這是第43次。銅牌不只是鎖，是……記錄器。",
+  "expected_entities": [
+    {
+      "id": "GL-HARD-0008-term-001",
+      "type": "glossary",
+      "term": "天機鎖",
+      "definition": "重新定義：非單純鎖命道具，實為循環記錄器/存儲介質；記錄每輪嘗試結果、失敗原因、關鍵節點；N代表循環次數，當前為第43輪",
+      "translation": "Heavenly Mechanism Lock / Cycle Recorder",
+      "context": "二師姐玉簡揭露銅牌真實功能：循環記錄而非單純鎖命",
+      "category": "核心道具/真相重構",
+      "variants": ["天機鎖", "循環記錄器", "Cycle Recorder", "時間錨點"]
+    }
+  ],
+  "expected_confidence": "low",
+  "tags": ["redefinition", "hidden_function", "cycle_counter", "recording_device", "truth_revelation"],
+  "notes": "術語重新定義：前文所有「鎖命」理解被顛覆；實為記錄器；N=42需從記錄推算當前輪次；二師姐作為記錄者/見證者"
+}

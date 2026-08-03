@@ -1,0 +1,20 @@
+{
+  "benchmark_id": "ST-EASY-0002",
+  "extractor": "style",
+  "difficulty": "easy",
+  "source_text": "對話標點規範：\n「師父，弟子拜見。」青年躬身。\n「起來吧。」老者頷首，目光落在玉佩上。\n對話標籤清晰，動作插入自然，說話人身份零歧義。",
+  "expected_entities": [
+    {
+      "id": "ST-EASY-0002-style-001",
+      "type": "style",
+      "tone": "規範標準，對話清晰",
+      "literary_devices": ["標準對話標點", "動作標籤", "零歧義歸屬"],
+      "sentence_patterns": ["對話+動作標籤", "雙引號規範使用"],
+      "vocabulary_level": "口語化對話，書面語旁白",
+      "rhythm": "對話快節奏，旁白緩節奏"
+    }
+  ],
+  "expected_confidence": "high",
+  "tags": ["dialogue_rhythm", "standard_punctuation", "action_tags", "clear_attribution", "formal_dialogue"],
+  "notes": "對話寫作規範直接展示：標點、標籤、歸屬、節奏對比"
+}

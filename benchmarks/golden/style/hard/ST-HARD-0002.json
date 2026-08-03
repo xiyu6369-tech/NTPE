@@ -1,0 +1,20 @@
+{
+  "benchmark_id": "ST-HARD-0002",
+  "extractor": "style",
+  "difficulty": "hard",
+  "source_text": "三時空同步疊加敘事：秘境核心看碑文、三百年前大殿看父立碑、現代出租屋敲代碼。同一文本承載三時空——碑文即代碼即法則即心。句法結構強行同步：主語「他/我/林小滿」三時空共指，動詞「立/寫/敲」同構，賓語「碑/碼/法則」同構。讀者需同步處理三線程。",
+  "expected_entities": [
+    {
+      "id": "ST-HARD-0002-style-001",
+      "type": "style",
+      "tone": "三時空同步敘事，句法強行同構",
+      "literary_devices": ["三時空同步疊加", "句法強行同構", "主語/動詞/賓語三重同構", "三線程並行閱讀", "時空崩塌重組文本"],
+      "sentence_patterns": ["三時空平行句", "同構動詞鏈", "同構賓語鏈", "共指主語鏈"],
+      "vocabulary_level": "三時空詞彙融合",
+      "rhythm": "三重節奏強行同步"
+    }
+  ],
+  "expected_confidence": "low",
+  "tags": ["long_sentence", "temporal_superposition", "syntactic_isomorphism", "triple_thread_reading", "spacetime_collapse_text"],
+  "notes": "最高難度：三時空同步非線性、句法強行同構(主/動/賓)、三線程並行閱讀、時空文本崩塌"
+}

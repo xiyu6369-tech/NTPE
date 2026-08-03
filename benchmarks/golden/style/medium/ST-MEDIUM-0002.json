@@ -1,0 +1,20 @@
+{
+  "benchmark_id": "ST-MEDIUM-0002",
+  "extractor": "style",
+  "difficulty": "medium",
+  "source_text": "對話節奏極具音樂性：趙烈說話短促有力——「走。」「喝酒。」「練劍。」蘇清雪說話留白——「……好。」「三日後。」「劍峰見。」秦風說話遊戲——「師弟，這路走不通，換條路試試。」三人三種節奏，對話即聲線譜。",
+  "expected_entities": [
+    {
+      "id": "ST-MEDIUM-0002-style-001",
+      "type": "style",
+      "tone": "對話即聲線譜，三人三種節奏",
+      "literary_devices": ["對話節奏差異化", "角色聲線譜", "極短句vs留白vs遊戲", "對話即性格"],
+      "sentence_patterns": ["單字句/雙字句(趙烈)", "省略句/留白句(蘇清雪)", "完整句+隱喻(秦風)"],
+      "vocabulary_level": "極簡vs留白vs隱喻",
+      "rhythm": "機槍/休止符/遊走"
+    }
+  ],
+  "expected_confidence": "medium",
+  "tags": ["dialogue_rhythm", "character_voice_score", "rhythmic_differentiation", "dialogue_as_character", "musical_dialogue"],
+  "notes": "需推斷：三人對話模式對應性格、節奏差異即聲線譜、極短/留白/遊戲三類"
+}

@@ -1,0 +1,57 @@
+{
+  "benchmark_id": "CH-EASY-0002",
+  "extractor": "character",
+  "difficulty": "easy",
+  "source_text": "「師父，弟子林小滿拜見。」青年躬身行禮，聲音恭敬清亮。白鬚老者微微頷首，目光落在青年腰間玉佩上：「不錯，心性沉穩，比當年強太多了。」",
+  "expected_entities": [
+    {
+      "id": "CH-EASY-0002-char-001",
+      "type": "character",
+      "name": "林小滿",
+      "aliases": ["弟子", "青年"],
+      "attributes": {
+        "role": "弟子",
+        "demeanor": "恭敬清亮",
+        "status": "心性沉穩"
+      },
+      "relationships": [
+        {
+          "target": "白鬚老者",
+          "type": "師徒"
+        }
+      ],
+      "appearances": [
+        {
+          "chapter": 1,
+          "context": "拜見師父，展示師徒關係"
+        }
+      ]
+    },
+    {
+      "id": "CH-EASY-0002-char-002",
+      "type": "character",
+      "name": "白鬚老者",
+      "aliases": ["師父"],
+      "attributes": {
+        "role": "師父",
+        "appearance": "白鬚",
+        "evaluation": "心性沉穩，比當年強太多了"
+      },
+      "relationships": [
+        {
+          "target": "林小滿",
+          "type": "師徒"
+        }
+      ],
+      "appearances": [
+        {
+          "chapter": 1,
+          "context": "接受弟子拜見，評價弟子"
+        }
+      ]
+    }
+  ],
+  "expected_confidence": "high",
+  "tags": ["first_appearance", "explicit_relationship", "dialogue_based"],
+  "notes": "通過對話明確建立師徒關係，雙方身份明確"
+}

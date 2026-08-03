@@ -1,0 +1,20 @@
+{
+  "benchmark_id": "NA-MEDIUM-0008",
+  "extractor": "narrative",
+  "difficulty": "medium",
+  "source_text": "最終決戰，莫邪劍尖抵喉談判銅牌。林小滿揭曉：銅牌另一半早融入守山大陣。柳如煙劍至咽喉：「師叔祖，這局你輸了。」莫邪長嘆承認敗給三百年前林無為佈局。",
+  "expected_entities": [
+    {
+      "id": "NA-MEDIUM-0008-narr-001",
+      "type": "narrative",
+      "plot_point": "最終決戰銅牌分離佈局揭曉，反派承認敗給三百年前佈局",
+      "arc": "決戰反轉/長期佈局兌現/反派體面落幕",
+      "tension_level": 1.0,
+      "pacing": "高潮落幕",
+      "foreshadowing": ["銅牌分離早有安排", "守山大陣作為另一半容器", "柳如煙關鍵時刻反制", "莫邪承認敗給林無為非主角"]
+    }
+  ],
+  "expected_confidence": "medium",
+  "tags": ["final_battle_twist", "long_term_plan_payoff", "villain_acknowledges_defeat", "copper_split_reveal", "ancestor_victory"],
+  "notes": "需推斷：銅牌分離早佈局、守山大陣功能、柳如煙臨陣反制、莫邪歸因於林無為"
+}

@@ -1,0 +1,39 @@
+{
+  "benchmark_id": "CH-MEDIUM-0006",
+  "extractor": "character",
+  "difficulty": "medium",
+  "source_text": "魔教大殿，莫邪把玩著手中玉簡，嘴角勾起玩味弧度：「青雲門那小子，倒是長了不少膽子。」身後黑影跪伏：「教主，屬下已安排人在秘境入口埋伏。」莫邪隨手擲出玉簡：「不用了，讓他進來……有些東西，該歸位了。」",
+  "expected_entities": [
+    {
+      "id": "CH-MEDIUM-0006-char-001",
+      "type": "character",
+      "name": "莫邪",
+      "aliases": ["教主", "魔教教主"],
+      "attributes": {
+        "action": "把玩玉簡，隨手擲出",
+        "attitude": "玩味、自信、掌控全局",
+        "knowledge": "知曉林小滿動向，對秘境內情況瞭若指掌",
+        "plan": "故意放林小滿進秘境，意圖奪取某物"
+      },
+      "relationships": [
+        {
+          "target": "林小滿",
+          "type": "敵對，獵手與獵物關係"
+        },
+        {
+          "target": "黑影",
+          "type": "部下"
+        }
+      ],
+      "appearances": [
+        {
+          "chapter": 25,
+          "context": "反派佈局，揭示對主角的算計"
+        }
+      ]
+    }
+  ],
+  "expected_confidence": "medium",
+  "tags": ["antagonist_planning", "strategic_thinking", "knowledge_asymmetry", "cat_mouse_dynamic"],
+  "notes": "反派視角展示對主角的了解與佈局；「該歸位了」暗示有特定目標物品"
+}

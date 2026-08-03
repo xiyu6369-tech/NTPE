@@ -1,0 +1,20 @@
+{
+  "benchmark_id": "NA-MEDIUM-0005",
+  "extractor": "narrative",
+  "difficulty": "medium",
+  "source_text": "秘境崩塌，百里紅藥渡厄、柳如煙斬裂縫、趙烈酒化河、秦風符文織網、蘇清雪拜師叔祖——五位師長同時出手，為主角織出生路。每人代價不同，同一目的：護道統、護傳承、護後輩。",
+  "expected_entities": [
+    {
+      "id": "NA-MEDIUM-0005-narr-001",
+      "type": "narrative",
+      "plot_point": "秘境崩塌五師長聯手護主角，各付代價同一目的",
+      "arc": "群像犧牲弧光/師門傳承守護/代價與目的對應",
+      "tension_level": 1.0,
+      "pacing": "群像高潮",
+      "foreshadowing": ["五人手段各異對應各自道", "代價大小不一但目的統一", "護道統/傳承/後輩三層含義"]
+    }
+  ],
+  "expected_confidence": "medium",
+  "tags": ["ensemble_climax", "multiple_sacrifices", "unified_purpose", "dao_correspondence", "sect_legacy_protection"],
+  "notes": "需推斷：五人行動同步但手段各異、代價對應各自修行之道、共同目的三層遞進"
+}

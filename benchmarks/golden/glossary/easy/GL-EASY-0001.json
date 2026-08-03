@@ -1,0 +1,21 @@
+{
+  "benchmark_id": "GL-EASY-0001",
+  "extractor": "glossary",
+  "difficulty": "easy",
+  "source_text": "修煉者（Cultivator）：指修習靈氣、追求長生之人。分為煉氣、築基、金丹、元嬰、化神、合體、大乘、渡劫九大境界。",
+  "expected_entities": [
+    {
+      "id": "GL-EASY-0001-term-001",
+      "type": "glossary",
+      "term": "修煉者",
+      "definition": "指修習靈氣、追求長生之人",
+      "translation": "Cultivator",
+      "context": "修真界基礎定義",
+      "category": "修真體系",
+      "variants": ["修士", "修真者"]
+    }
+  ],
+  "expected_confidence": "high",
+  "tags": ["explicit_definition", "basic_term", "cultivation_system", "translation_provided"],
+  "notes": "標準術語定義格式，包含中英對照、境界劃分，屬典型 Easy 案例"
+}

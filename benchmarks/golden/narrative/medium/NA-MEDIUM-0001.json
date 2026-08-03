@@ -1,0 +1,20 @@
+{
+  "benchmark_id": "NA-MEDIUM-0001",
+  "extractor": "narrative",
+  "difficulty": "medium",
+  "source_text": "林小滿在藏經閣翻書時，無意發現《青雲劍典》殘卷夾層藏著一張符箓。符箓啟動，投影出三百年前林無為立碑畫面。原來功法傳承中藏著歷史真相。",
+  "expected_entities": [
+    {
+      "id": "NA-MEDIUM-0001-narr-001",
+      "type": "narrative",
+      "plot_point": "殘卷夾層發現符箓，投影三百年前歷史真相",
+      "arc": "隱藏線索發現/歷史真相揭露/功法即歷史載體",
+      "tension_level": 0.5,
+      "pacing": "發現驅動",
+      "foreshadowing": ["符箓為主動觸發非被動閱讀", "三百年前畫面與當下呼應", "功法傳承雙重功能：武學+史料"]
+    }
+  ],
+  "expected_confidence": "medium",
+  "tags": ["hidden_clue", "historical_projection", "dual_function_artifact", "discovery_driven", "time_bridge"],
+  "notes": "需推斷：符箓藏於夾層非正文、主動投影非文字閱讀、功法作為歷史載體雙重功能"
+}

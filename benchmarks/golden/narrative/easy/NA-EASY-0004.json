@@ -1,0 +1,20 @@
+{
+  "benchmark_id": "NA-EASY-0004",
+  "extractor": "narrative",
+  "difficulty": "easy",
+  "source_text": "林小滿在秘境中獲得《青雲劍典》殘卷，秦風指點：「劍在人前，心在劍中。」主角領悟劍意雛形，實力大增。這是他修煉路上的關鍵轉折。",
+  "expected_entities": [
+    {
+      "id": "NA-EASY-0004-narr-001",
+      "type": "narrative",
+      "plot_point": "獲得核心功法殘卷，師兄指點領悟劍意",
+      "arc": "傳承弧光/關鍵指點/實力質變",
+      "tension_level": 0.4,
+      "pacing": "靜默積累",
+      "foreshadowing": ["劍意雛形為後續劍道奠基", "秦風指點暗示師門傳承脈絡", "殘卷非完整版留有補全伏筆"]
+    }
+  ],
+  "expected_confidence": "high",
+  "tags": ["plot_point", "technique_acquisition", "mentor_guidance", "breakthrough_moment", "incomplete_legacy"],
+  "notes": "關鍵轉折點直接敘述：獲得殘卷、師兄指點、領悟劍意、實力大增"
+}

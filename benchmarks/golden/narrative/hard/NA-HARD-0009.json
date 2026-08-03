@@ -1,0 +1,20 @@
+{
+  "benchmark_id": "NA-HARD-0009",
+  "extractor": "narrative",
+  "difficulty": "hard",
+  "source_text": "銅牌第N輪記錄：同一青雲門大殿會議，N輪疊加。第1輪掌門座空懸，第7輪柳如煙位空，第42輪趙烈酒壺碎，第N輪林小滿坐首席。固定場景變動細節編碼歷史：空位=缺失，碎壺=犧牲，首席=傳承。銅牌以場景差分存儲歷史。",
+  "expected_entities": [
+    {
+      "id": "NA-HARD-0009-narr-001",
+      "type": "narrative",
+      "plot_point": "固定場景N輪疊加，細節差異編碼歷史：銅牌以場景差分存儲循環記憶",
+      "arc": "差分存儲弧光/場景即記憶介質/細節即歷史",
+      "tension_level": 0.5,
+      "pacing": "靜默觀察",
+      "foreshadowing": ["同場景N輪疊加", "細節差異=歷史編碼：空/碎/滿", "銅牌=差分存儲介質", "觀察者需從差異重構歷史"]
+    }
+  ],
+  "expected_confidence": "low",
+  "tags": ["differential_storage", "scene_as_memory_medium", "detail_as_history_code", "fixed_scene_variable_state", "copper_as_git"],
+  "notes": "需推斷：Git式差分存儲隱喻、固定場景作為基準、細節變化編碼歷史、銅牌=版本控制系統"
+}

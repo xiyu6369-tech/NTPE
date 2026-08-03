@@ -1,0 +1,30 @@
+{
+  "benchmark_id": "CH-EASY-0008",
+  "extractor": "character",
+  "difficulty": "easy",
+  "source_text": "長老殿中，掌門清虛真人端坐首位，白髮白鬚，仙風道骨。左右兩側分列十二峰峰主，個個氣度不凡。清虛真人聲音渾厚：「此次秘境開啟，各峰派遣三名築基期弟子入內。」",
+  "expected_entities": [
+    {
+      "id": "CH-EASY-0008-char-001",
+      "type": "character",
+      "name": "清虛真人",
+      "aliases": ["掌門"],
+      "attributes": {
+        "title": "掌門",
+        "appearance": "白髮白鬚，仙風道骨",
+        "voice": "渾厚",
+        "action": "宣布秘境規則"
+      },
+      "relationships": [],
+      "appearances": [
+        {
+          "chapter": 10,
+          "context": "掌門宣布秘境開啟規則"
+        }
+      ]
+    }
+  ],
+  "expected_confidence": "high",
+  "tags": ["first_appearance", "explicit_description", "authority_figure", "formal_announcement"],
+  "notes": "掌門級角色正式場合登場，身份外貌語氣均明確"
+}

@@ -1,0 +1,24 @@
+{
+  "benchmark_id": "SC-MEDIUM-0007",
+  "extractor": "scene",
+  "difficulty": "medium",
+  "source_text": "秘境崩塌，空間裂縫吞噬一切。林小滿被綠光裹挾拋出時，回頭看見：柳如煙劍斬裂縫、趙烈酒化河守護、秦風符文織網、蘇清雪拜別師叔祖……眾生相在崩塌中定格。",
+  "expected_entities": [
+    {
+      "id": "SC-MEDIUM-0007-scene-001",
+      "type": "scene",
+      "location": "秘境崩塌邊緣/多重視角疊加",
+      "atmosphere": "末世悲壯，眾生相現，犧牲與守護並存",
+      "sensory_details": {
+        "visual": "空間裂縫吞噬、綠光裹挾、四大師兄姐各顯神通定格身影",
+        "auditory": "空間撕裂巨響、劍鳴、酒香炸裂、符文嗡鳴、拜禮無聲",
+        "olfactory": "毀滅焦糊味、酒香、劍氣臭氧味、綠木生香"
+      },
+      "time_of_day": "瞬間永恆",
+      "significance": "群像場景：全員高光時刻，犧牲換主角生機"
+    }
+  ],
+  "expected_confidence": "medium",
+  "tags": ["ensemble_scene", "multi_perspective", "climactic_moment", "sacrifice_tableau", "slow_motion_effect"],
+  "notes": "群像場景：同一時空多角色高光動作並列；主角視角串聯；環境即戲劇高潮"
+}

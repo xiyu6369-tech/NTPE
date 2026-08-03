@@ -1,0 +1,20 @@
+{
+  "benchmark_id": "NA-EASY-0002",
+  "extractor": "narrative",
+  "difficulty": "easy",
+  "source_text": "內門大比，林小滿力壓群雄奪得第一。掌門清虛真人親自頒獎：築基丹一顆、上品靈劍一柄、藏經閣三層選功法一次。全場歡呼，主角名動青雲門。",
+  "expected_entities": [
+    {
+      "id": "NA-EASY-0002-narr-001",
+      "type": "narrative",
+      "plot_point": "內門大比奪冠，獲得豐厚獎勵",
+      "arc": "成長弧光/實力證明/名聲建立",
+      "tension_level": 0.6,
+      "pacing": "高潮爆發",
+      "foreshadowing": ["築基丹助後續突破", "藏經閣三層獲核心功法", "名動門派引來關注與嫉妒"]
+    }
+  ],
+  "expected_confidence": "high",
+  "tags": ["plot_point", "competition_victory", "reward_acquisition", "rising_action", "explicit_rewards"],
+  "notes": "比賽結果直接公佈，獎勵明確列出，情節點清晰，張力中高、節奏快"
+}

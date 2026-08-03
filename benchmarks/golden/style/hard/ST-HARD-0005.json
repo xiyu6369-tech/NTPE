@@ -1,0 +1,20 @@
+{
+  "benchmark_id": "ST-HARD-0005",
+  "extractor": "style",
+  "difficulty": "hard",
+  "source_text": "蘇清雪玉簡記錄循環：第1/7/42/N輪，每輪一行。文本形式即數據結構：行號=輪次，內容=失敗原因/代價。銅牌功能重定義：鎖→記錄器→數據結構。二師姐身份三重：記錄者/見證者/干預者。文本不再是敘事，是數據日誌，需讀者執行查詢/推算(N=42→第43輪)。",
+  "expected_entities": [
+    {
+      "id": "ST-HARD-0005-style-001",
+      "type": "style",
+      "tone": "文本即數據結構，讀者即查詢器",
+      "literary_devices": ["文本即數據日誌", "行號/輪次映射", "內容/失敗代價映射", "道具功能遞進重定義", "角色三重身份", "讀者執行查詢推算"],
+      "sentence_patterns": ["日誌格式行", "映射關係列舉", "查詢邀請句"],
+      "vocabulary_level": "數據結構/道具演進/角色身份",
+      "rhythm": "日誌節奏/查詢節奏"
+    }
+  ],
+  "expected_confidence": "low",
+  "tags": ["narrative_distance", "text_as_data_structure", "reader_as_query_engine", "artifact_progressive_redefinition", "triple_role", "log_format"],
+  "notes": "最高難度：文本=數據日誌、行號=輪次映射、道具三階段重定義、角色三重身份、讀者主動查詢推算"
+}

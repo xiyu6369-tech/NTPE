@@ -1,0 +1,43 @@
+{
+  "benchmark_id": "CH-MEDIUM-0008",
+  "extractor": "character",
+  "difficulty": "medium",
+  "source_text": "秦風醉臥劍峰巨石上，酒壺空了。他對著月亮喃喃自語：「大師兄守著規矩，二師姐守著傲氣，三師兄……守著爛攤子。」風吹過，帶來隱約酒香與一句輕嘆：「小師弟，別走老路啊。」",
+  "expected_entities": [
+    {
+      "id": "CH-MEDIUM-0008-char-001",
+      "type": "character",
+      "name": "秦風",
+      "aliases": ["三師兄", "三師兄"],
+      "attributes": {
+        "state": "醉臥巨石，酒壺空了",
+        "self_positioning": "守著爛攤子，區別於大師兄守規矩、二師姐守傲氣",
+        "concern": "擔心小師弟重蹈覆轍",
+        "knowledge": "知曉前輩師兄弟的選擇與後果"
+      },
+      "relationships": [
+        {
+          "target": "趙烈",
+          "type": "大師兄，守規矩者"
+        },
+        {
+          "target": "蘇清雪",
+          "type": "二師姐，守傲氣者"
+        },
+        {
+          "target": "林小滿",
+          "type": "小師弟，被擔憂對象"
+        }
+      ],
+      "appearances": [
+        {
+          "chapter": 35,
+          "context": "醉酒獨白，揭示師門三代傳承與隱憂"
+        }
+      ]
+    }
+  ],
+  "expected_confidence": "medium",
+  "tags": ["drunken_confession", "comparative_characterization", "generational_parallel", "protective_warning"],
+  "notes": "通過醉酒自語揭示三位師兄的性格定位與命運暗示；需推斷「老路」指代何種失敗模式"
+}

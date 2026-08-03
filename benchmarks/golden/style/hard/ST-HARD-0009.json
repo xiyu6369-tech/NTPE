@@ -1,0 +1,20 @@
+{
+  "benchmark_id": "ST-HARD-0009",
+  "extractor": "style",
+  "difficulty": "hard",
+  "source_text": "銅牌第N輪場景差分存儲：同一青雲門大殿N輪疊加，Git式差分——第1輪掌門座空、第7輪柳位空、第42輪酒壺碎、第N輪首席滿。固定場景作為基準commit，細節變更作為diff。銅牌=版本控制系統。文本不敘事歷史，存儲歷史diff。讀者需從diff重構歷史。",
+  "expected_entities": [
+    {
+      "id": "ST-HARD-0009-style-001",
+      "type": "style",
+      "tone": "Git式差分存儲歷史，文本即版本庫",
+      "literary_devices": ["Git差分隱喻", "固定場景=基準commit", "細節變更=diff", "銅牌=版控系統", "文本存儲diff而非敘事", "讀者從diff重構歷史"],
+      "sentence_patterns": ["基準場景句", "差分列舉句", "版控隱喻句"],
+      "vocabulary_level": "Git術語/版控概念/場景細節",
+      "rhythm": "commit/diff節奏"
+    }
+  ],
+  "expected_confidence": "low",
+  "tags": ["author_sentence_pattern", "git_diff_metaphor", "scene_as_base_commit", "detail_as_diff", "copper_as_vcs", "reader_reconstructs_from_diff"],
+  "notes": "最高難度：Git差分隱喻系統化、固定場景=base commit、細節=diff、銅牌=VCS、讀者從diff重構"
+}

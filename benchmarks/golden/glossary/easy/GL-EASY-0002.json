@@ -1,0 +1,21 @@
+{
+  "benchmark_id": "GL-EASY-0002",
+  "extractor": "glossary",
+  "difficulty": "easy",
+  "source_text": "築基期：修煉者以靈氣凝聚道基，奠定長生根基之關鍵境界。築基成功可延壽二百歲，失敗則丹田碎裂、修為盡廢。",
+  "expected_entities": [
+    {
+      "id": "GL-EASY-0002-term-001",
+      "type": "glossary",
+      "term": "築基期",
+      "definition": "修煉者以靈氣凝聚道基，奠定長生根基之關鍵境界",
+      "translation": "Foundation Establishment",
+      "context": "修真境界劃分，煉氣期之後、金丹期之前",
+      "category": "修真境界",
+      "variants": ["築基", "Foundation Establishment"]
+    }
+  ],
+  "expected_confidence": "high",
+  "tags": ["explicit_definition", "cultivation_realm", "consequence_described", "translation_provided"],
+  "notes": "境界術語標準定義，包含成敗後果說明"
+}

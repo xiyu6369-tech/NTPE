@@ -1,0 +1,20 @@
+{
+  "benchmark_id": "ST-EASY-0006",
+  "extractor": "style",
+  "difficulty": "easy",
+  "source_text": "章節結尾慣用懸念：「……林小滿握緊銅牌，心中湧起不祥預感。」下章必接轉折。鉤子懸念，轉頁率極高。商業小說標準鉤子。",
+  "expected_entities": [
+    {
+      "id": "ST-EASY-0006-style-001",
+      "type": "style",
+      "tone": "商業化鉤子，轉頁驅動",
+      "literary_devices": ["章末懸念", "預感暗示", "鉤子結構", "商業節奏"],
+      "sentence_patterns": ["省略號留白", "心理狀態暗示", "下章轉折承接"],
+      "vocabulary_level": "懸念詞彙：預感、不祥、銅牌",
+      "rhythm": "章末急停，下章急起"
+    }
+  ],
+  "expected_confidence": "high",
+  "tags": ["author_sentence_pattern", "cliffhanger", "commercial_pacing", "hook_structure", "page_turner"],
+  "notes": "商業小說鉤子結構直接展示：章末懸念、預感、下章承接"
+}

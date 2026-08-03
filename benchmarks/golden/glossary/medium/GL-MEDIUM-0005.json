@@ -1,0 +1,21 @@
+{
+  "benchmark_id": "GL-MEDIUM-0005",
+  "extractor": "glossary",
+  "difficulty": "medium",
+  "source_text": "林小滿翻開《百草心經》，見首頁寫著：「草木有性，藥分寒熱。補氣用人參，清熱用黃連，活血用丹參……配伍講究君臣佐使，不可亂投。」這正是百里紅藥臨終傳授的藥理精髓。",
+  "expected_entities": [
+    {
+      "id": "GL-MEDIUM-0005-term-001",
+      "type": "glossary",
+      "term": "君臣佐使",
+      "definition": "中醫/丹藥配方組織原則：君藥治主病，臣藥輔助，佐藥制毒/增效，使藥引經/調和",
+      "translation": "Monarch-Minister-Assistant-Guide Principle",
+      "context": "百草心經藥理精髓，配伍核心原則",
+      "category": "丹藥/醫藥理論",
+      "variants": ["君臣佐使", "配伍原則", "Monarch-Minister Principle"]
+    }
+  ],
+  "expected_confidence": "medium",
+  "tags": ["contextual_definition", "traditional_theory", "formula_principle", "legacy_knowledge"],
+  "notes": "傳統醫藥理論術語，從「配伍講究」「不可亂投」推斷為配方組織核心原則"
+}

@@ -1,0 +1,20 @@
+{
+  "benchmark_id": "NA-HARD-0010",
+  "extractor": "narrative",
+  "difficulty": "hard",
+  "source_text": "終極敘事：故事不存在。只有觀測者觀測被觀測。林小滿最後一劍斬的不是敵人，是「故事」概念本身——留下純粹觀測者。無開頭、無中間、無結局、無情節、無張力、無節奏。只有觀測。讀者合書那刻，新故事在指尖開始。",
+  "expected_entities": [
+    {
+      "id": "NA-HARD-0010-narr-001",
+      "type": "narrative",
+      "plot_point": "斬除故事概念本身，只剩觀測三元組；讀者合書即新故事起點",
+      "arc": "概念自殺弧光/觀測者本體論/參敘事性",
+      "tension_level": 0.0,
+      "pacing": "無/永恆當下",
+      "foreshadowing": ["故事概念被斬除", "觀測者-觀測行為-被觀測三元組", "無敘事要素殘留", "讀者動作=新故事生成器"]
+    }
+  ],
+  "expected_confidence": "low",
+  "tags": ["concept_suicide", "observation_triple", "phenomenological_zero", "participatory_narrative", "reader_as_generator"],
+  "notes": "最高難度：敘事自我消解；現象學三元組；零張力/零節奏；讀者物理動作即敘事生成"
+}

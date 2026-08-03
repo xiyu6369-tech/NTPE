@@ -1,0 +1,20 @@
+{
+  "benchmark_id": "NA-HARD-0005",
+  "extractor": "narrative",
+  "difficulty": "hard",
+  "source_text": "蘇清雪玉簡記錄：天機鎖第N次循環——第1次失敗莫邪得逞，第7次柳如煙道心崩潰，第42次成功但代價太大。林小滿推算N=42，當前第43次。銅牌非鎖，乃循環記錄器。二師姐為記錄者/見證者/干預者。",
+  "expected_entities": [
+    {
+      "id": "NA-HARD-0005-narr-001",
+      "type": "narrative",
+      "plot_point": "玉簡揭露循環記錄：42次嘗試失敗/成功代價大，當前第43輪，銅牌實為記錄器",
+      "arc": "循環真相弧光/記錄器重定義/見證者身份",
+      "tension_level": 0.9,
+      "pacing": "真相爆發",
+      "foreshadowing": ["具體輪次失敗原因記錄", "N=42推算當前輪次", "銅牌功能重定義：鎖→記錄器", "二師姐三重身份：記錄/見證/干預"]
+    }
+  ],
+  "expected_confidence": "low",
+  "tags": ["cycle_log_revelation", "artifact_redefinition", "witness_recorder_intervener", "cycle_counter", "cost_vs_success"],
+  "notes": "需推斷：具體失敗輪次原因、N值推算、道具功能顛覆性重定義、角色身份三重性"
+}

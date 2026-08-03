@@ -1,0 +1,21 @@
+{
+  "benchmark_id": "GL-MEDIUM-0009",
+  "extractor": "glossary",
+  "difficulty": "medium",
+  "source_text": "秘境崩塌時，百里紅藥催動殘餘靈力：「逆轉乾坤，以我殘命，換他一線生機！」一道綠光將林小滿裹挾拋出秘境，谷主身形在光中化作點點綠芒，融入青雲山脈靈脈。秦風淚目：「師姐，這招『渡厄』……真捨得。」",
+  "expected_entities": [
+    {
+      "id": "GL-MEDIUM-0009-term-001",
+      "type": "glossary",
+      "term": "渡厄",
+      "definition": "犧牲自我修為/壽元/性命，為他人化解劫難、轉移災禍之禁忌秘術，屬因果逆轉類大法",
+      "translation": "Tribulation Transfer / Karma Reversal",
+      "context": "百里紅藥以殘命換主角生機，融入靈脈成全",
+      "category": "禁忌秘術/因果類",
+      "variants": ["渡厄", "渡劫替身", "Tribulation Transfer"]
+    }
+  ],
+  "expected_confidence": "medium",
+  "tags": ["contextual_definition", "forbidden_technique", "sacrifice_mechanism", "karmic_reversal"],
+  "notes": "從「以我殘命換他一線生機」「融入靈脈」「因果逆轉」推斷定義；秘術名稱由同門確認"
+}

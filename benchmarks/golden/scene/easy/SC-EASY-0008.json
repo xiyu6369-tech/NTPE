@@ -1,0 +1,24 @@
+{
+  "benchmark_id": "SC-EASY-0008",
+  "extractor": "scene",
+  "difficulty": "easy",
+  "source_text": "林家小院，清晨炊煙袅袅。林母在廚房忙碌，鍋鏟碰撞聲清脆；林小柔在院子裡練劍，木劍劈風聲此起彼伏。林小滿站在門檻，看著這片將要離開的天地。",
+  "expected_entities": [
+    {
+      "id": "SC-EASY-0008-scene-001",
+      "type": "scene",
+      "location": "林家小院",
+      "atmosphere": "溫馨平凡，離別在即，生活氣息濃厚",
+      "sensory_details": {
+        "visual": "炊煙袅袅、廚房忙碌、院中練劍、門檻佇立",
+        "auditory": "鍋鏟碰撞聲、木劍劈風聲、家常腳步聲",
+        "olfactory": "飯菜香、清晨草露味"
+      },
+      "time_of_day": "清晨",
+      "significance": "主角離家前最後一瞥，平凡生活與修真路分水嶺"
+    }
+  ],
+  "expected_confidence": "high",
+  "tags": ["new_scene", "home_scene", "departure_moment", "contrast_ordinary_magical"],
+  "notes": "平凡生活場景，作為修真故事的對照組，離別情緒鋪墊"
+}

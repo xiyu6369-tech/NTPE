@@ -1,0 +1,43 @@
+{
+  "benchmark_id": "CH-HARD-0007",
+  "extractor": "character",
+  "difficulty": "hard",
+  "source_text": "最終決戰，莫邪劍尖抵住林小滿喉嚨：「交出銅牌，留你全屍。」林小滿笑了：「銅牌早不在我這。」莫邪瞳孔微縮：「秦風？」林小滿搖頭：「百里前輩臨終前，已將另一半融入青雲山守山大陣。」柳如煙劍至莫邪咽喉：「師叔祖，這局……你輸了。」莫邪長嘆：「好個青雲門，好個……林無為。」",
+  "expected_entities": [
+    {
+      "id": "CH-HARD-0007-char-001",
+      "type": "character",
+      "name": "莫邪",
+      "aliases": ["魔教教主", "師叔祖", "莫玄機"],
+      "attributes": {
+        "final_state": "劍尖抵喉仍嘗試談判，瞳孔微縮顯露震驚",
+        "deduction": "推測銅牌在秦風或陣中",
+        "acceptance": "長嘆承認輸給林無為佈局",
+        "address": "被柳如煙稱師叔祖，確認輩分最高"
+      },
+      "relationships": [
+        {
+          "target": "林小滿",
+          "type": "最終對決，獵手反成獵物"
+        },
+        {
+          "target": "柳如煙",
+          "type": "師侄女，關鍵時刻反制"
+        },
+        {
+          "target": "林無為",
+          "type": "師弟/情敵，跨越三百年佈局獲勝"
+        }
+      ],
+      "appearances": [
+        {
+          "chapter": 80,
+          "context": "最終決戰落幕，反派承認敗給三百年前佈局"
+        }
+      ]
+    }
+  ],
+  "expected_confidence": "low",
+  "tags": ["final_confrontation", "strategic_defeat", "generation_hierarchy_confirmed", "long_game_resolution", "copper_pawn_reveal"],
+  "notes": "需整合全書線索：銅牌分離、陣法佈局、輩分關係、三百年佈局；多角色協同反制；反派視角承認敗北"
+}

@@ -1,0 +1,24 @@
+{
+  "benchmark_id": "SC-EASY-0005",
+  "extractor": "scene",
+  "difficulty": "easy",
+  "source_text": "內門大比演武場，萬眾矚目，彩旗獵獵。演武場中央佈下防護大陣，金光閃爍。林小滿與對手對峙，四周弟子喧譁聲如潮水，賭注單在傳遞手中飛轉。",
+  "expected_entities": [
+    {
+      "id": "SC-EASY-0005-scene-001",
+      "type": "scene",
+      "location": "內門大比演武場",
+      "atmosphere": "緊張熱烈，競爭激烈，觀賞性強",
+      "sensory_details": {
+        "visual": "彩旗獵獵、防護陣金光、對峙雙方、人山人海",
+        "auditory": "喧譁如潮、賭注單飛轉聲、加油聲",
+        "olfactory": "汗味、靈力激發氣息"
+      },
+      "time_of_day": "正午",
+      "significance": "主角大比奪冠關鍵場景"
+    }
+  ],
+  "expected_confidence": "high",
+  "tags": ["new_scene", "competition_venue", "crowd_atmosphere", "high_stakes"],
+  "notes": "大型比賽場景，觀眾視角與參賽者視角並存，氛圍營造充分"
+}

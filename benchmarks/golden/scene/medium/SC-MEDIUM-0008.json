@@ -1,0 +1,24 @@
+{
+  "benchmark_id": "SC-MEDIUM-0008",
+  "extractor": "scene",
+  "difficulty": "medium",
+  "source_text": "最終決戰後，青雲門大殿重新佈置。原本掌門位空懸，改設「初代掌門林無為」神位，香火不斷。林小滿坐在首席弟子位，聽著下方新弟子背誦《青雲心法》，窗外劍峰劍鳴依舊。",
+  "expected_entities": [
+    {
+      "id": "SC-MEDIUM-0008-scene-001",
+      "type": "scene",
+      "location": "青雲門大殿（重新佈置後）",
+      "atmosphere": "傳承歸位，新舊交替，秩序重建",
+      "sensory_details": {
+        "visual": "神位供奉、香火不斷、首席弟子位、新弟子跪拜、窗外劍峰",
+        "auditory": "新弟子背誦聲、香火噼啪、遠處劍鳴、腳步聲整齊",
+        "olfactory": "濃郁檀香、舊紙墨香、青草味"
+      },
+      "time_of_day": "午前",
+      "significance": "大局落定，秩序重建，傳承延續新起點"
+    }
+  ],
+  "expected_confidence": "medium",
+  "tags": ["post_climax", "order_restored", "legacy_fulfilled", "generational_transition", "ritual_atmosphere"],
+  "notes": "決戰後場景：物理環境變化（神位、座次）反映秩序重建；聲音環境體現傳承延續"
+}

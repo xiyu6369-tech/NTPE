@@ -1,0 +1,21 @@
+{
+  "benchmark_id": "GL-EASY-0003",
+  "extractor": "glossary",
+  "difficulty": "easy",
+  "source_text": "靈石：修真界通用貨幣，蘊含純淨靈氣。按品質分下、中、上、極品四階。一塊下品靈石約值凡間百兩白銀，可供煉氣期修士修行一月。",
+  "expected_entities": [
+    {
+      "id": "GL-EASY-0003-term-001",
+      "type": "glossary",
+      "term": "靈石",
+      "definition": "修真界通用貨幣，蘊含純淨靈氣",
+      "translation": "Spirit Stone",
+      "context": "修真經濟體系，修行資源",
+      "category": "修真貨幣/資源",
+      "variants": ["靈幣", "Spirit Stone"]
+    }
+  ],
+  "expected_confidence": "high",
+  "tags": ["explicit_definition", "currency_system", "quality_grades", "value_reference"],
+  "notes": "貨幣術語定義，含品階劃分、兌換參考價值"
+}

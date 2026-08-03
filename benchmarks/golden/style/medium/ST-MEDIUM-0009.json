@@ -1,0 +1,20 @@
+{
+  "benchmark_id": "ST-MEDIUM-0009",
+  "extractor": "style",
+  "difficulty": "medium",
+  "source_text": "代碼與文學同構：結局顯示Python類`CopperLock`，`cycles`屬性對應循環次數，`reset()`方法對應重啟，輸出字串對應核心哲理。全書修真術語與軟體工程一一映射：築基=init、渡劫=exception handling、飛升=successful exit。代碼即文本，文本即代碼。",
+  "expected_entities": [
+    {
+      "id": "ST-MEDIUM-0009-style-001",
+      "type": "style",
+      "tone": "代碼文學同構，雙語言系統並行",
+      "literary_devices": ["代碼/文學雙軌並行", "術語/代碼一一映射", "類/屬性/方法對應", "雙語言系統", "元語言同構"],
+      "sentence_patterns": ["代碼片段嵌入文本", "映射表列舉句", "雙語言切換句"],
+      "vocabulary_level": "修真術語/程式術語雙體系",
+      "rhythm": "雙軌節奏同步"
+    }
+  ],
+  "expected_confidence": "medium",
+  "tags": ["rhetorical_device", "code_literature_isomorphism", "terminology_code_mapping", "dual_language_system", "meta_linguistic"],
+  "notes": "需推斷：代碼嵌入文本、九境界對應九階段、雙體系並行、元語言同構"
+}

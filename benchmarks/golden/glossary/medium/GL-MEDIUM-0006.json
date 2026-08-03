@@ -1,0 +1,21 @@
+{
+  "benchmark_id": "GL-MEDIUM-0006",
+  "extractor": "glossary",
+  "difficulty": "medium",
+  "source_text": "莫邪負手立於殿上，聲音飄忽：「道心種魔，以情入道，以魔證道……林無為那傢伙，倒是想通了這層。」林小滿握劍手緊了緊——道心種魔，禁忌中的禁忌。",
+  "expected_entities": [
+    {
+      "id": "GL-MEDIUM-0006-term-001",
+      "type": "glossary",
+      "term": "道心種魔",
+      "definition": "極高風險修煉法門：主動在道心埋下魔種，以情欲/執念為燃料催化修為，失控則魔化，屬禁忌絕學",
+      "translation": "Dao Heart Planting Demon",
+      "context": "莫邪評價林無為修煉路數，主角認知為禁忌",
+      "category": "修煉法門/禁忌",
+      "variants": ["道心種魔", "種魔", "Dao Heart Planting Demon"]
+    }
+  ],
+  "expected_confidence": "medium",
+  "tags": ["contextual_definition", "forbidden_art", "risk_inference", "antagonist_perspective"],
+  "notes": "從「禁忌中的禁忌」「以情入道以魔證道」「失控則魔化」推斷定義與風險；反派視角解析主角父親路數"
+}

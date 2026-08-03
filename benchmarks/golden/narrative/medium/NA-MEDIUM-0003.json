@@ -1,0 +1,20 @@
+{
+  "benchmark_id": "NA-MEDIUM-0003",
+  "extractor": "narrative",
+  "difficulty": "medium",
+  "source_text": "柳如煙三日後劍峰再戰，林小滿劍意終於純粹——放下求勝、釋去畏懼、化解執著。一劍「無」斬出，柳如煙收劍微笑：「過了。」這場考核，考的不是劍，是心。",
+  "expected_entities": [
+    {
+      "id": "NA-MEDIUM-0003-narr-001",
+      "type": "narrative",
+      "plot_point": "三日後再戰，劍意純粹通過心魔考核",
+      "arc": "心魔破除弧光/劍心合一/考核本質揭示",
+      "tension_level": 0.7,
+      "pacing": "決戰緩解",
+      "foreshadowing": ["三大雜念逐一化解", "一劍「無」為劍意具象", "考核本質是心非劍"]
+    }
+  ],
+  "expected_confidence": "medium",
+  "tags": ["deadline_resolution", "mental_breakthrough", "sword_heart_unity", "test_nature_reveal", "three_obstacles_cleared"],
+  "notes": "需推斷：三日內化解三大雜念、「無」劍為純粹劍意具象、考核本質心非劍"
+}

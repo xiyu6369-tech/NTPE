@@ -1,0 +1,24 @@
+{
+  "benchmark_id": "SC-HARD-0001",
+  "extractor": "scene",
+  "difficulty": "hard",
+  "source_text": "秘境核心殿堂，林小滿看見石壁刻文在流動：同一行字，隨觀看角度顯現《青雲心法》、《魔典煉魂》、《醫道渡厄》三種截然不同內容。他換個位置，刻文又變——這不是刻文，是觀看者心投射的法則顯化。",
+  "expected_entities": [
+    {
+      "id": "SC-HARD-0001-scene-001",
+      "type": "scene",
+      "location": "秘境核心殿堂/法則顯化牆",
+      "atmosphere": "主觀即客觀，心境定環境，真偽不分",
+      "sensory_details": {
+        "visual": "刻文隨角度流動變化、三種典籍內容疊加、觀看者心投射顯化",
+        "auditory": "無聲變化、心跳同頻共鳴、法則運轉靜音",
+        "olfactory": "隨心境變化：或檀香、或血腥、或藥香"
+      },
+      "time_of_day": "心念轉換即時空",
+      "significance": "環境非客觀存在，而是觀測者心境投射；核心哲理具象化"
+    }
+  ],
+  "expected_confidence": "low",
+  "tags": ["subjective_reality", "observer_effect", "law_manifestation", "multi_text_superposition", "philosophical_environment"],
+  "notes": "最高難度：環境非固定，隨觀測者心境/角度變化；三種對立典籍同源；需理解「心即法則」核心設定"
+}

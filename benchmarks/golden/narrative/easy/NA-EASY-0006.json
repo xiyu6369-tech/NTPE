@@ -1,0 +1,20 @@
+{
+  "benchmark_id": "NA-EASY-0006",
+  "extractor": "narrative",
+  "difficulty": "easy",
+  "source_text": "百里紅藥認出林小滿銅牌：「這是當年你爹留下的信物。」並贈予補靈丹、傳授醫道。主角得知父親與藥王谷谷主有救命之交，身世謎團初露端倪。",
+  "expected_entities": [
+    {
+      "id": "NA-EASY-0006-narr-001",
+      "type": "narrative",
+      "plot_point": "銅牌身世揭露，父親過往關聯浮現",
+      "arc": "身世謎團弧光/父親軌跡追尋/醫道傳承",
+      "tension_level": 0.3,
+      "pacing": "揭示緩行",
+      "foreshadowing": ["父親非凡來歷", "銅牌非尋常物件", "百里紅藥欠父親人情"]
+    }
+  ],
+  "expected_confidence": "high",
+  "tags": ["plot_point", "identity_reveal", "father_backstory", "artifact_significance", "debt_relationship"],
+  "notes": "身世謎團情節點：銅牌=父親信物、父親與谷主有交情、谷主欠人情"
+}

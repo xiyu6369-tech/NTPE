@@ -1,0 +1,39 @@
+{
+  "benchmark_id": "CH-MEDIUM-0005",
+  "extractor": "character",
+  "difficulty": "medium",
+  "source_text": "百里紅藥望著林小滿手中的銅牌，眼神一凝：「這是當年你爹留下的信物。」她轉身走向藥架，背影佝偻了幾分：「拿去吧，藥王谷不欠林家人情，但我欠你爹一條命。」",
+  "expected_entities": [
+    {
+      "id": "CH-MEDIUM-0005-char-001",
+      "type": "character",
+      "name": "百里紅藥",
+      "aliases": ["藥王谷谷主", "我"],
+      "attributes": {
+        "knowledge": "認出銅牌來歷，知曉林小滿父親",
+        "past_debt": "欠林父一條命",
+        "stance": "藥王谷不欠林家人情，但個人欠債",
+        "physical_state": "背影佝偻了幾分，顯露歲月滄桑"
+      },
+      "relationships": [
+        {
+          "target": "林小滿",
+          "type": "認識其父親，因債務相助"
+        },
+        {
+          "target": "林父",
+          "type": "救命之恩，欠債關係"
+        }
+      ],
+      "appearances": [
+        {
+          "chapter": 22,
+          "context": "揭示與主角父親的過往恩怨"
+        }
+      ]
+    }
+  ],
+  "expected_confidence": "medium",
+  "tags": ["backstory_revelation", "debt_relationship", "past_connection", "implicit_history"],
+  "notes": "需推斷百里紅藥與主角父親的過往關係；銅牌作為信物串聯雙方；人情債務關係隱性呈現"
+}

@@ -1,0 +1,24 @@
+{
+  "benchmark_id": "SC-EASY-0007",
+  "extractor": "scene",
+  "difficulty": "easy",
+  "source_text": "魔教總壇大殿，血紅燭火搖曳，骷髏座椅森然。莫邪端坐高位，下首跪滿黑袍長老。殿外慘叫聲隱約傳來，血腥味濃烈刺鼻。",
+  "expected_entities": [
+    {
+      "id": "SC-EASY-0007-scene-001",
+      "type": "scene",
+      "location": "魔教總壇大殿",
+      "atmosphere": "陰森恐怖，血腥殘暴，絕對權威",
+      "sensory_details": {
+        "visual": "血紅燭火、骷髏座椅、黑袍長老跪伏",
+        "auditory": "殿外慘叫聲、燭火爆裂聲",
+        "olfactory": "濃烈血腥味、腐臭味"
+      },
+      "time_of_day": "夜晚",
+      "significance": "反派大本營，佈局秘境埋伏"
+    }
+  ],
+  "expected_confidence": "high",
+  "tags": ["new_scene", "antagonist_lair", "dark_atmosphere", "power_display"],
+  "notes": "反派根據地場景，環境描寫強化邪惡形象"
+}

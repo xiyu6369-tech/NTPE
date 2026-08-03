@@ -1,0 +1,21 @@
+{
+  "benchmark_id": "GL-HARD-0002",
+  "extractor": "glossary",
+  "difficulty": "hard",
+  "source_text": "莫邪輕笑：「天機不可洩露，但這『天機』二字……林無為當年最愛玩文字遊戲。『天機』者，非機關算盡，乃天地機緣——機者，動也；緣者，合也。動合之際，便是破局時。」林小滿握緊銅牌：天機鎖，鎖的是命運動合之機。",
+  "expected_entities": [
+    {
+      "id": "GL-HARD-0002-term-001",
+      "type": "glossary",
+      "term": "天機",
+      "definition": "雙關多義：①天機鎖/道具名 ②天地機緣/機會 ③命運轉折關鍵節點 ④不可洩露的天道秘密",
+      "translation": "Heavenly Mechanism / Heavenly Opportunity / Fate's Turning Point",
+      "context": "反派解構術語雙關，主角融會貫通領悟銅牌真意",
+      "category": "核心道具/概念雙關",
+      "variants": ["天機", "天機鎖", "天地機緣", "Heavenly Mechanism"]
+    }
+  ],
+  "expected_confidence": "low",
+  "tags": ["pun_wordplay", "semantic_deconstruction", "artifact_concept_fusion", "antagonist_teaching", "epiphany_moment"],
+  "notes": "極高難度：反派主動拆解雙關；「機者動也緣者合也」字義拆解；道具名與哲理概念融合；需整合全書銅牌線索"
+}

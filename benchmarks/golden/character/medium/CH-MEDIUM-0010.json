@@ -1,0 +1,39 @@
+{
+  "benchmark_id": "CH-MEDIUM-0010",
+  "extractor": "character",
+  "difficulty": "medium",
+  "source_text": "莫邪站在秘境崩塌的邊緣，望著逃離的身影，嘴角揚起：「跑得倒快。」他低頭看著掌心半枚銅牌，另一半早已熔入林小滿體內：「林家小子，這場遊戲……才剛開始。」空中殘留一道血紅殘影，隨風消散。",
+  "expected_entities": [
+    {
+      "id": "CH-MEDIUM-0010-char-001",
+      "type": "character",
+      "name": "莫邪",
+      "aliases": ["魔教教主", "他"],
+      "attributes": {
+        "attitude": "從容、愉悅、掌控感",
+        "knowledge": "知曉銅牌分離狀態，一半在主角體內",
+        "metaphor": "將對抗視為「遊戲」，才剛開始",
+        "power_display": "秘境崩塌中安然無恙，殘影隨風消散"
+      },
+      "relationships": [
+        {
+          "target": "林小滿",
+          "type": "長期對手，遊戲發起者"
+        },
+        {
+          "target": "林父",
+          "type": "銅牌原持有者關聯"
+        }
+      ],
+      "appearances": [
+        {
+          "chapter": 45,
+          "context": "秘境崩塌後反派總結，揭示銅牌秘密與長期佈局"
+        }
+      ]
+    }
+  ],
+  "expected_confidence": "medium",
+  "tags": ["villain_monologue", "artifact_knowledge", "long_term_plot", "power_demonstration"],
+  "notes": "反派獨白揭示關鍵道具（銅牌）分離狀態；「遊戲」隱喻長期博弈；需推斷銅牌與林家關係"
+}

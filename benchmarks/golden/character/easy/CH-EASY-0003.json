@@ -1,0 +1,33 @@
+{
+  "benchmark_id": "CH-EASY-0003",
+  "extractor": "character",
+  "difficulty": "easy",
+  "source_text": "蘇清雪，青雲門內門首席大弟子，年方十八，已達築基後期。她長相清冷絕艷，素稱「冰雪仙子」，性情高傲，鮮少與人說話。",
+  "expected_entities": [
+    {
+      "id": "CH-EASY-0003-char-001",
+      "type": "character",
+      "name": "蘇清雪",
+      "aliases": ["冰雪仙子", "首席大弟子"],
+      "attributes": {
+        "age": "十八",
+        "cultivation": "築基後期",
+        "sect": "青雲門",
+        "position": "內門首席大弟子",
+        "appearance": "清冷絕艷",
+        "personality": "高傲，鮮少與人說話",
+        "title": "冰雪仙子"
+      },
+      "relationships": [],
+      "appearances": [
+        {
+          "chapter": 2,
+          "context": "介紹女主角身份與特徵"
+        }
+      ]
+    }
+  ],
+  "expected_confidence": "high",
+  "tags": ["first_appearance", "explicit_description", "title_alias"],
+  "notes": "直接給出姓名、稱號、修為、門派、性格等完整檔案"
+}

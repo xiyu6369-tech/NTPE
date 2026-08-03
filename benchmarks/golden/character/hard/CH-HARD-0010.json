@@ -1,0 +1,44 @@
+{
+  "benchmark_id": "CH-HARD-0010",
+  "extractor": "character",
+  "difficulty": "hard",
+  "source_text": "尾聲·銅牌響：林小滿揮劍斬開虛空，銅牌化作流光沖入星河。億萬光年外，一顆藍色星球上，少年林小滿從夢中驚醒，手心灼熱——銅牌印記鮮紅。窗外清晨陽光灑在《青雲劍典》殘卷上，首頁題字：「**道在人心，不在銅牌**」。他笑了，提筆續寫：「……這是第N+1次，我會走不一樣的路。」",
+  "expected_entities": [
+    {
+      "id": "CH-HARD-0010-char-001",
+      "type": "character",
+      "name": "林小滿",
+      "aliases": ["主角", "少年", "第N+1次嘗試者", "續寫者"],
+      "attributes": {
+        "final_action": "斬開虛空釋放銅牌，打破循環",
+        "cross_dimensional": "億萬光年外藍色星球（地球/現實世界）同步醒來",
+        "awareness": "保留前N次記憶，銅牌印記為證",
+        "agency": "主動選擇「走不一樣的路」，打破宿命",
+        "meta_role": "從被佈局者變為佈局者/書寫者"
+      },
+      "relationships": [
+        {
+          "target": "林無為",
+          "type": "前世/初代掌門，循環源頭"
+        },
+        {
+          "target": "莫邪",
+          "type": "對手/試煉者，被超越"
+        },
+        {
+          "target": "讀者",
+          "type": "第四面牆打破，共同見證"
+        }
+      ],
+      "appearances": [
+        {
+          "chapter": 95,
+          "context": "大結局，打破四面牆，元敘事閉環，開放式新生"
+        }
+      ]
+    }
+  ],
+  "expected_confidence": "low",
+  "tags": ["meta_fiction", "fourth_wall_break", "cycle_breaking", "dimensional_bleed", "authorial_agency", "open_continuation"],
+  "notes": "最高難度：元小說層面；主角覺醒為「書寫者」；銅牌從道具變為隱喻；「第N+1次」確認循環打破；需整合全書所有伏筆與隱喻體系"
+}

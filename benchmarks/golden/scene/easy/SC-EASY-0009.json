@@ -1,0 +1,24 @@
+{
+  "benchmark_id": "SC-EASY-0009",
+  "extractor": "scene",
+  "difficulty": "easy",
+  "source_text": "秘境核心殿堂，獨立空間法則凝練成實質。中央石台放著一枚令牌，四周懸浮著九十九道劍氣，劍氣嗡嗡作響，構成殺陣。石壁刻著《青雲心法》殘篇。",
+  "expected_entities": [
+    {
+      "id": "SC-EASY-0009-scene-001",
+      "type": "scene",
+      "location": "秘境核心殿堂",
+      "atmosphere": "神聖危險並存，法則具象化，傳承核心",
+      "sensory_details": {
+        "visual": "獨立法則空間、石台令牌、九十九道懸浮劍氣殺陣、石壁刻文",
+        "auditory": "劍氣嗡嗡作響、空間法則運轉低吟",
+        "olfactory": "遠古塵埃味、金鐵氣息"
+      },
+      "time_of_day": "無晝夜之分",
+      "significance": "秘境核心獎勵/傳承獲取點"
+    }
+  ],
+  "expected_confidence": "high",
+  "tags": ["new_scene", "core_location", "law_manifestation", "trial_reward"],
+  "notes": "秘境核心場景，法則具象化表現，關鍵獎勵與傳承位置"
+}

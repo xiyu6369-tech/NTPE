@@ -1,0 +1,20 @@
+{
+  "benchmark_id": "ST-HARD-0004",
+  "extractor": "style",
+  "difficulty": "hard",
+  "source_text": "劍典最終頁藏頭詩四句首字「劍心心誠」，實引《中庸》「誠者天之道，誠之者人之道」。儒家經典嵌入道家劍典，跨體系藏頭。更深層：「誠」字雙關——劍心誠/儒家誠/程式碼sincerity(真誠/正確性)。三重體系(儒/道/程式)單字融合。需跨學科解碼。",
+  "expected_entities": [
+    {
+      "id": "ST-HARD-0004-style-001",
+      "type": "style",
+      "tone": "跨體系藏頭融合，單字三重同構",
+      "literary_devices": ["跨體系藏頭(儒入道)", "單字三重同構(劍心/儒誠/代碼誠)", "經典互文", "藏頭即主題", "三重解碼需求"],
+      "sentence_patterns": ["藏頭詩四句", "經典引用嵌入", "三重含義激活"],
+      "vocabulary_level": "儒家經典/道家劍典/程式術語",
+      "rhythm": "藏頭激活節奏"
+    }
+  ],
+  "expected_confidence": "low",
+  "tags": ["rhetorical_device", "cross_system_acrostic", "triple_isomorphism_single_char", "intertextuality", "triple_decoding"],
+  "notes": "最高難度：儒入道藏頭、單字三重同構(劍心誠/儒家誠/代碼sincerity)、需儒學/道學/程式三重素養"
+}

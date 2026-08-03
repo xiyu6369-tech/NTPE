@@ -1,0 +1,20 @@
+{
+  "benchmark_id": "NA-EASY-0005",
+  "extractor": "narrative",
+  "difficulty": "easy",
+  "source_text": "魔教埋伏發動，趙烈獨自擋住三名築基期魔修，大喝：「師弟，走！」林小滿含淚衝出重圍，身後大師兄浴血奮戰，生死未卜。",
+  "expected_entities": [
+    {
+      "id": "NA-EASY-0005-narr-001",
+      "type": "narrative",
+      "plot_point": "魔教埋伏，大師兄犧牲換主角生路",
+      "arc": "犧牲弧光/情義考驗/倖存者愧疚",
+      "tension_level": 0.9,
+      "pacing": "極速衝鋒",
+      "foreshadowing": ["趙烈生死不明懸念", "主角倖存者愧疚心魔", "魔教針對性埋伏暗示情報洩露"]
+    }
+  ],
+  "expected_confidence": "high",
+  "tags": ["plot_point", "ambush", "sacrifice", "survivor_guilt", "cliffhanger"],
+  "notes": "高張力情節點：埋伏、犧牲、衝出、生死不明懸念"
+}

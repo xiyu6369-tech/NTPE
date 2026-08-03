@@ -1,0 +1,24 @@
+{
+  "benchmark_id": "SC-HARD-0007",
+  "extractor": "scene",
+  "difficulty": "hard",
+  "source_text": "最終一劍「開天」斬出，秘境、魔教、青雲門、劍峰、百草園、林家小院、藍色星球出租屋……所有場景在劍光中重疊、折疊、重組。劍光掃過，不是毀滅，是「重寫」——每個場景都保留原貌，卻多了一道屬於林小滿的痕跡。",
+  "expected_entities": [
+    {
+      "id": "SC-HARD-0007-scene-001",
+      "type": "scene",
+      "location": "全書所有場景疊加重寫空間/開天劍光掃過範圍",
+      "atmosphere": "創世重寫，保留與新生並存，作者權柄具象化",
+      "sensory_details": {
+        "visual": "七大場景疊加折疊重組、劍光掃過非毀滅重寫、每場景新增林小滿痕跡",
+        "auditory": "重寫聲：非爆炸、而是筆觸落紙聲/鍵盤敲擊聲/劍鳴/心跳/呼吸",
+        "olfactory": "場景原味保留+新增一絲「筆墨/代碼/劍氣」混合新香"
+      },
+      "time_of_day": "所有時間點同時被重寫",
+      "significance": "究極場景：開天劍意重寫所有場景，作者權柄具象化"
+    }
+  ],
+  "expected_confidence": "low",
+  "tags": ["world_rewriting", "scene_preservation_plus", "authorial_power", "non_destructive_creation", "all_locations_unified"],
+  "notes": "非毀滅性重寫：保留原場景+新增痕跡；七大核心場景統一；筆觸/鍵盤/劍鳴三重聲音統一"
+}

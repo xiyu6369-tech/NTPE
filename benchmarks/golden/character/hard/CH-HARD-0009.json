@@ -1,0 +1,44 @@
+{
+  "benchmark_id": "CH-HARD-0009",
+  "extractor": "character",
+  "difficulty": "hard",
+  "source_text": "趙烈守在青雲門山門，手中酒壺未離身。新入門弟子問：「大師兄，您真不去歷練嗎？」趙烈瞥一眼遠處劍峰，那裡柳如煙正指導林小滿劍法：「我歷練完了。這山、這門、這群小輩……就是我的道。」酒香隨風飄散，他笑容溫和，卻比當年更有重量。",
+  "expected_entities": [
+    {
+      "id": "CH-HARD-0009-char-001",
+      "type": "character",
+      "name": "趙烈",
+      "aliases": ["大師兄", "守門人"],
+      "attributes": {
+        "current_role": "守山門，不再外出歷練",
+        "philosophy": "這山、這門、這群小輩就是我的道",
+        "character_arc": "從愛喝酒練劍的直爽漢子，昇華為守護者",
+        "symbolism": "酒香飄散 = 過往釋懷；笑容更有重量 = 責任沉澱",
+        "relationship_to_juniors": "守護新生代成長"
+      },
+      "relationships": [
+        {
+          "target": "林小滿",
+          "type": "師弟，被守護對象"
+        },
+        {
+          "target": "柳如煙",
+          "type": "同門，共同守護者"
+        },
+        {
+          "target": "新入門弟子",
+          "type": "守護對象，傳承對象"
+        }
+      ],
+      "appearances": [
+        {
+          "chapter": 90,
+          "context": "結局尾聲，大師兄角色弧光完結，昇華為守護者"
+        }
+      ]
+    }
+  ],
+  "expected_confidence": "low",
+  "tags": ["character_arc_completion", "philosophical_elevation", "symbolic_action", "guardian_role", "generational_transition"],
+  "notes": "需從全書追蹤趙烈從「喝酒練劍」到「守門護道」的完整轉變；酒香、笑容等細節承載隱喻；隱性角色弧光完成"
+}

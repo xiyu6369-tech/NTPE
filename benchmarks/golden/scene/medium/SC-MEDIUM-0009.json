@@ -1,0 +1,24 @@
+{
+  "benchmark_id": "SC-MEDIUM-0009",
+  "extractor": "scene",
+  "difficulty": "medium",
+  "source_text": "夢境中，林小滿站在無盡白光裡。腳下無地，四周無牆，只有無數透明螺旋階梯向上延伸。每一階都刻著字：第一階「煉氣」，第九階「渡劫」，頂端無字。他邁步，階梯隨腳下生成。",
+  "expected_entities": [
+    {
+      "id": "SC-MEDIUM-0009-scene-001",
+      "type": "scene",
+      "location": "夢境/意識空間/修真境界隱喻階梯",
+      "atmosphere": "超現實，哲理具象化，孤獨攀登",
+      "sensory_details": {
+        "visual": "無盡白光、透明螺旋階梯、每階刻字、頂端無字、階梯隨腳生成",
+        "auditory": "腳步聲在白光中迴盪、境界名稱低吟、心跳聲",
+        "olfactory": "無味/純淨虛無感"
+      },
+      "time_of_day": "無時間概念",
+      "significance": "夢境場景隱喻修真路，頂端無字暗示超越境界"
+    }
+  ],
+  "expected_confidence": "medium",
+  "tags": ["dreamscape", "metaphorical_environment", "conceptual_spatialization", "procedural_generation"],
+  "notes": "夢境/意識場景：抽象概念（境界）具象化為空間結構；程序化生成隱喻道生一"
+}

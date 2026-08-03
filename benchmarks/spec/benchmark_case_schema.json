@@ -1,0 +1,109 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Benchmark Case",
+  "description": "Schema for a single benchmark case in the Knowledge Benchmark Corpus",
+  "type": "object",
+  "properties": {
+    "benchmark_id": {
+      "type": "string",
+      "pattern": "^(CH|GL|SC|NA|ST)-(EASY|MEDIUM|HARD)-\\d{4}$",
+      "description": "Unique benchmark identifier: {extractor_prefix}-{difficulty}-{4-digit-number}"
+    },
+    "extractor": {
+      "type": "string",
+      "enum": ["character", "glossary", "scene", "narrative", "style"],
+      "description": "Which extractor this benchmark case targets"
+    },
+    "difficulty": {
+      "type": "string",
+      "enum": ["easy", "medium", "hard"],
+      "description": "Difficulty tier of the test case"
+    },
+    "source_text": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Input text for the extractor to process"
+    },
+    "expected_entities": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Array of expected entity objects that should be extracted",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {"type": "string"},
+          "type": {"type": "string"},
+          "name": {"type": "string"},
+          "aliases": {"type": "array", "items": {"type": "string"}},
+          "attributes": {"type": "object"},
+          "relationships": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "target": {"type": "string"},
+                "type": {"type": "string"}
+              },
+              "required": ["target", "type"]
+            }
+          },
+          "appearances": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "chapter": {"type": "integer"},
+                "context": {"type": "string"}
+              },
+              "required": ["chapter", "context"]
+            }
+          },
+          "term": {"type": "string"},
+          "definition": {"type": "string"},
+          "translation": {"type": "string"},
+          "context": {"type": "string"},
+          "category": {"type": "string"},
+          "variants": {"type": "array", "items": {"type": "string"}},
+          "location": {"type": "string"},
+          "atmosphere": {"type": "string"},
+          "sensory_details": {
+            "type": "object",
+            "properties": {
+              "visual": {"type": "string"},
+              "auditory": {"type": "string"},
+              "olfactory": {"type": "string"}
+            }
+          },
+          "time_of_day": {"type": "string"},
+          "significance": {"type": "string"},
+          "plot_point": {"type": "string"},
+          "arc": {"type": "string"},
+          "tension_level": {"type": "number"},
+          "pacing": {"type": "string"},
+          "foreshadowing": {"type": "array", "items": {"type": "string"}},
+          "tone": {"type": "string"},
+          "literary_devices": {"type": "array", "items": {"type": "string"}},
+          "sentence_patterns": {"type": "array", "items": {"type": "string"}},
+          "vocabulary_level": {"type": "string"},
+          "rhythm": {"type": "string"}
+        }
+      }
+    },
+    "expected_confidence": {
+      "type": "string",
+      "enum": ["high", "medium", "low"],
+      "description": "Expected confidence level for the extraction"
+    },
+    "tags": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "Tags describing the test scenario (e.g., first_appearance, multi_alias, etc.)"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Human-readable notes about the test case"
+    }
+  },
+  "required": ["benchmark_id", "extractor", "difficulty", "source_text", "expected_entities", "expected_confidence", "tags", "notes"],
+  "additionalProperties": false
+}

@@ -1,0 +1,20 @@
+{
+  "benchmark_id": "ST-EASY-0004",
+  "extractor": "style",
+  "difficulty": "easy",
+  "source_text": "戰鬥場面採用短句疊加：劍光閃。血噴出。身體倒下。無冗長修飾，動詞連續，速度感極強。讀者呼吸跟著動作頻率走。",
+  "expected_entities": [
+    {
+      "id": "ST-EASY-0004-style-001",
+      "type": "style",
+      "tone": "乾淨利落，速度感極強",
+      "literary_devices": ["短句疊加", "動詞連用", "極簡修飾", "節奏控制"],
+      "sentence_patterns": ["單一動詞短句", "主語省略", "連續動作鏈"],
+      "vocabulary_level": "動詞密集，形容詞極少",
+      "rhythm": "急促，機槍般節奏"
+    }
+  ],
+  "expected_confidence": "high",
+  "tags": ["author_sentence_pattern", "short_sentences", "verb_chain", "minimal_modification", "pacing_control"],
+  "notes": "戰鬥寫法直接展示：短句、動詞鏈、極簡、節奏控制"
+}

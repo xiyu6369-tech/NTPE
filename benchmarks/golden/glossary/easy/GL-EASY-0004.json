@@ -1,0 +1,21 @@
+{
+  "benchmark_id": "GL-EASY-0004",
+  "extractor": "glossary",
+  "difficulty": "easy",
+  "source_text": "丹藥：以靈草靈藥煉製而成，助修煉者增進修為、療傷解毒之藥物。按品階對應修真境界：煉氣丹、築基丹、金丹……服用需遵循「藥三分毒」原則，不可貪多。",
+  "expected_entities": [
+    {
+      "id": "GL-EASY-0004-term-001",
+      "type": "glossary",
+      "term": "丹藥",
+      "definition": "以靈草靈藥煉製而成，助修煉者增進修為、療傷解毒之藥物",
+      "translation": "Elixir / Pill",
+      "context": "修真醫藥體系，修行輔助資源",
+      "category": "丹藥類",
+      "variants": ["丹藥", "靈丹", "Elixir", "Pill"]
+    }
+  ],
+  "expected_confidence": "high",
+  "tags": ["explicit_definition", "alchemy_system", "grade_correspondence", "usage_warning"],
+  "notes": "丹藥術語定義，含品階對應境界、使用原則"
+}

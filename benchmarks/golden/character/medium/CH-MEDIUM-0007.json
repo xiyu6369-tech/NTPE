@@ -1,0 +1,39 @@
+{
+  "benchmark_id": "CH-MEDIUM-0007",
+  "extractor": "character",
+  "difficulty": "medium",
+  "source_text": "柳如煙劍指林小滿眉心，聲音平淡無波：「你的劍意雜了。」林小滿愣住。柳如煙收劍轉身，青衣掠過風聲：「雜在求勝、雜在畏懼、雜在……對她的執著。」她腳步未停：「三日後，劍峰見。」",
+  "expected_entities": [
+    {
+      "id": "CH-MEDIUM-0007-char-001",
+      "type": "character",
+      "name": "柳如煙",
+      "aliases": ["三峰峰主", "劍痴"],
+      "attributes": {
+        "action": "劍指眉心，收劍轉身，腳步未停",
+        "diagnosis": "精準指出劍意雜念來源：求勝、畏懼、執著",
+        "teaching_style": "直接、犀利、不給解釋機會",
+        "expectation": "三日後劍峰再戰/考核"
+      },
+      "relationships": [
+        {
+          "target": "林小滿",
+          "type": "師長/考核者，看穿內心"
+        },
+        {
+          "target": "蘇清雪",
+          "type": "被指出執著對象"
+        }
+      ],
+      "appearances": [
+        {
+          "chapter": 30,
+          "context": "峰主考核/指點，直指主角心魔"
+        }
+      ]
+    }
+  ],
+  "expected_confidence": "medium",
+  "tags": ["psychological_insight", "mentor_evaluation", "indirect_character_reference", "subtext_analysis"],
+  "notes": "需推斷「她」指代蘇清雪；峰主通過劍意診斷心理狀態，屬高階推理"
+}

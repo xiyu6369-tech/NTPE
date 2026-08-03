@@ -1,0 +1,39 @@
+{
+  "benchmark_id": "CH-HARD-0005",
+  "extractor": "character",
+  "difficulty": "hard",
+  "source_text": "秘境崩塌時刻，林小滿看見兩個「蘇清雪」：一個揮劍斬斷空間裂縫護他離去，嘴角溢血；一個站在崩塌盡頭，對著莫邪深深一拜：「師叔祖，晚輩請您回山。」銅牌光芒大盛，兩個身影重疊融合——原來她早已知曉莫邪真實身份，雙面佈局三十年。",
+  "expected_entities": [
+    {
+      "id": "CH-HARD-0005-char-001",
+      "type": "character",
+      "name": "蘇清雪",
+      "aliases": ["二師姐", "冰雪仙子", "雙面佈局者", "莫邪晚輩"],
+      "attributes": {
+        "dual_action": "斬裂縫護師弟 vs 向莫邪行拜禮稱師叔祖",
+        "hidden_knowledge": "三十年前知曉莫邪真實身份",
+        "long_term_plan": "雙面佈局，既護師弟又牽制莫邪",
+        "cultivation": "實力遠超築基後期，能斬空間裂縫"
+      },
+      "relationships": [
+        {
+          "target": "林小滿",
+          "type": "師姐弟，深度守護者"
+        },
+        {
+          "target": "莫邪",
+          "type": "師叔祖關係，雙面博弈"
+        }
+      ],
+      "appearances": [
+        {
+          "chapter": 70,
+          "context": "秘境崩塌關鍵時刻，揭示二師姐真實實力與三十年佈局"
+        }
+      ]
+    }
+  ],
+  "expected_confidence": "low",
+  "tags": ["split_persona_scene", "hidden_allegiance", "generation_gap_reveal", "long_con", "space_manipulation", "identity_fusion"],
+  "notes": "極高難度：同一時空出現同一人兩種行為；「師叔祖」稱謂揭示輩分倒置；三十年雙面佈局需重構所有前文蘇清雪出場場景"
+}

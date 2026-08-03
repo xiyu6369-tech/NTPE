@@ -1,0 +1,20 @@
+{
+  "benchmark_id": "NA-HARD-0004",
+  "extractor": "narrative",
+  "difficulty": "hard",
+  "source_text": "《青雲劍典》最終頁藏頭詩：「劍由心生；心因劍明。心劍合一，謂之誠。」首字連讀「劍心心誠」——實為《中庸》「誠者天之道，誠之者人之道」藏頭。劍典實為儒道融合哲理書，非單純武功秘籍。",
+  "expected_entities": [
+    {
+      "id": "NA-HARD-0004-narr-001",
+      "type": "narrative",
+      "plot_point": "劍典最終頁藏頭詩揭示儒道融合本質，武功秘籍實為哲理傳承",
+      "arc": "藏頭解碼弧光/跨體系融合/秘籍真相",
+      "tension_level": 0.5,
+      "pacing": "解碼緩解",
+      "foreshadowing": ["四句首字藏頭", "引用《中庸》核心語錄", "劍典=儒道融合哲理書", "武功與哲理同構"]
+    }
+  ],
+  "expected_confidence": "low",
+  "tags": ["acrostic_decoding", "confucian_daoist_synthesis", "manual_true_nature", "philosophy_as_martial_art", "intertextual_reference"],
+  "notes": "需識別藏頭詩、知悉《中庸》出處、理解儒道融合、重新定義劍典本質"
+}

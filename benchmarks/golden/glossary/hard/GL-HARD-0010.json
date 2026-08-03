@@ -1,0 +1,21 @@
+{
+  "benchmark_id": "GL-HARD-0010",
+  "extractor": "glossary",
+  "difficulty": "hard",
+  "source_text": "終章註腳：【全書所有術語、境界、法寶、陣法、丹藥……皆為「銅牌」類別屬性與方法之投影。築基=init()，金丹=compile()，元嬰=deploy()，渡劫=exception handling，飛升=successful exit。讀者執卷，即參與一次debug。】",
+  "expected_entities": [
+    {
+      "id": "GL-HARD-0010-term-001",
+      "type": "glossary",
+      "term": "修真體系完整映射表",
+      "definition": "全書修真術語體系與軟體工程生命週期完美同構映射：煉氣→init、築基→compile、金丹→build、元嬰→deploy、化神→scale、合體→integrate、大乘→optimize、渡劫→exception handling、飛升→successful exit；讀者=debugger",
+      "translation": "Complete Cultivation-to-Software Mapping Table",
+      "context": "終章註腳揭示全書術語體系本質：軟體工程隱喻系統",
+      "category": "元術語/系統級映射/究極註腳",
+      "variants": ["修真體系映射", "軟體工程隱喻", "Cultivation-Software Isomorphism"]
+    }
+  ],
+  "expected_confidence": "low",
+  "tags": ["system_level_mapping", "complete_isomorphism", "software_engineering_metaphor", "reader_as_debugger", "footnote_revelation", "ultimate_key"],
+  "notes": "系統級映射：九大境界對應軟體生命週期九階段；所有前文術語在此統一解碼；讀者角色重定義為debugger；需具備完整軟體工程知識體系"
+}

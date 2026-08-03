@@ -1,0 +1,20 @@
+{
+  "benchmark_id": "NA-MEDIUM-0002",
+  "extractor": "narrative",
+  "difficulty": "medium",
+  "source_text": "秘境試煉中，林小滿救下一名受傷弟子，對方卻在出秘境時背刺搶走其令牌。林小滿未追，只說：「道不同不相為謀。」趙烈後來告知：那弟子是魔教臥底。因果報應，不假外求。",
+  "expected_entities": [
+    {
+      "id": "NA-MEDIUM-0002-narr-001",
+      "type": "narrative",
+      "plot_point": "救人反被背刺，對方為魔教臥底，主角釋然因果自循環",
+      "arc": "善惡因果弧光/道心堅定/釋然不執著",
+      "tension_level": 0.6,
+      "pacing": "反轉緩解",
+      "foreshadowing": ["主角不追非軟弱乃道心通透", "趙烈事後告知而非當場攔截", "因果自有循環非人力強求"]
+    }
+  ],
+  "expected_confidence": "medium",
+  "tags": ["betrayal_twist", "spy_reveal", "karma_theme", "dao_heart_test", "non_attachment"],
+  "notes": "需推斷：主角不追真因、臥底身份事後揭露、因果觀作為主角道心體現"
+}

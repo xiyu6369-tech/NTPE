@@ -1,0 +1,21 @@
+{
+  "benchmark_id": "GL-MEDIUM-0010",
+  "extractor": "glossary",
+  "difficulty": "medium",
+  "source_text": "最終決戰，林小滿劍尖凝聚萬年孤寂：「天地不仁，以萬物為芻狗。我以劍意，重寫這條法則。」劍光掃過，秘境殘骸、魔教殘部、乃至天道壓制盡數湮滅。秦風嘆道：「這招『開天』……小師弟終究走到了盡頭。」",
+  "expected_entities": [
+    {
+      "id": "GL-MEDIUM-0010-term-001",
+      "type": "glossary",
+      "term": "開天",
+      "definition": "最高階劍招/法則級神通：以劍意重寫局部天地法則，開闢新天地、湮滅舊法則，代價極大",
+      "translation": "World Opening / Creation Slash",
+      "context": "主角最終一劍重寫法則，三師兄命名為開天",
+      "category": "神通/劍招/法則級",
+      "variants": ["開天", "開天闢地", "World Opening"]
+    }
+  ],
+  "expected_confidence": "medium",
+  "tags": ["contextual_definition", "ultimate_technique", "law_rewriting", "named_by_witness"],
+  "notes": "從「重寫法則」「天地不仁引用莊子」「湮滅一切」推斷定義；由見證者命名確認術語"
+}

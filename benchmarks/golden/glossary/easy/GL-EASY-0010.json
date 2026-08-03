@@ -1,0 +1,21 @@
+{
+  "benchmark_id": "GL-EASY-0010",
+  "extractor": "glossary",
+  "difficulty": "easy",
+  "source_text": "陣法：以陣旗、陣盤、靈石為基，布置天地玄黃、乾坤八卦之勢，聚靈、攻伐、防禦、迷幻、傳送五大類。布陣需懂陣理、識陣眼、會運陣，陣法師地位極高。",
+  "expected_entities": [
+    {
+      "id": "GL-EASY-0010-term-001",
+      "type": "glossary",
+      "term": "陣法",
+      "definition": "以陣旗、陣盤、靈石為基，布置天地玄黃、乾坤八卦之勢，聚靈、攻伐、防禦、迷幻、傳送五大類",
+      "translation": "Array / Formation",
+      "context": "修真輔助體系，空間與能量操控技術",
+      "category": "陣法類",
+      "variants": ["陣法", "大陣", "Array", "Formation"]
+    }
+  ],
+  "expected_confidence": "high",
+  "tags": ["explicit_definition", "formation_system", "five_categories", "materials_required", "specialist_role"],
+  "notes": "陣法術語定義，含材料、原理、五大分類、專職角色"
+}

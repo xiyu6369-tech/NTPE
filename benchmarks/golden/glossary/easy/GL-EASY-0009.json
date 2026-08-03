@@ -1,0 +1,21 @@
+{
+  "benchmark_id": "GL-EASY-0009",
+  "extractor": "glossary",
+  "difficulty": "easy",
+  "source_text": "渡劫：大乘期修煉者面對天道雷罰、心魔考驗，成功則飛升仙界、失敗則形神俱滅之生死關卡。分九九八十一道天雷，每九道為一波，威力遞增。渡劫前需備足渡劫丹、避雷針等保命之物。",
+  "expected_entities": [
+    {
+      "id": "GL-EASY-0009-term-001",
+      "type": "glossary",
+      "term": "渡劫",
+      "definition": "大乘期修煉者面對天道雷罰、心魔考驗，成功則飛升仙界、失敗則形神俱滅之生死關卡",
+      "translation": "Heavenly Tribulation / Tribulation Crossing",
+      "context": "修真最高境界突破關卡",
+      "category": "境界突破",
+      "variants": ["渡劫", "天劫", "Heavenly Tribulation"]
+    }
+  ],
+  "expected_confidence": "high",
+  "tags": ["explicit_definition", "final_hurdle", "thunder_details", "preparation_items"],
+  "notes": "最終突破關卡定義，含天雷波數、成敗後果、準備物品"
+}

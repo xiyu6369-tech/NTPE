@@ -1,0 +1,20 @@
+{
+  "benchmark_id": "NA-EASY-0007",
+  "extractor": "narrative",
+  "difficulty": "easy",
+  "source_text": "柳如煙考核林小滿：「你的劍意雜了——雜在求勝、雜在畏懼、雜在對她的執著。」三日後劍峰再戰。主角被直指心魔，劍道瓶頸顯現。",
+  "expected_entities": [
+    {
+      "id": "NA-EASY-0007-narr-001",
+      "type": "narrative",
+      "plot_point": "峰主考核直指心魔，劍道瓶頸顯現",
+      "arc": "內心掙扎弧光/劍道瓶頸/情感阻礙",
+      "tension_level": 0.7,
+      "pacing": "心理對決",
+      "foreshadowing": ["三日期限倒計時", "劍意雜念根源明確", "蘇清雪作為執著對象"]
+    }
+  ],
+  "expected_confidence": "high",
+  "tags": ["plot_point", "mental_trial", "bottleneck", "emotional_obstacle", "deadline_pressure"],
+  "notes": "心理層面情節點：峰主診斷、三大雜念來源、三日後再戰期限"
+}

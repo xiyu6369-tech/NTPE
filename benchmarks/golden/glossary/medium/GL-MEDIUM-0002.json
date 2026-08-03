@@ -1,0 +1,31 @@
+{
+  "benchmark_id": "GL-MEDIUM-0002",
+  "extractor": "glossary",
+  "difficulty": "medium",
+  "source_text": "「師弟，這玉簡裡是《青雲劍典》殘卷，乃本門鎮派功法。」秦風指尖輕彈，一道資訊流入林小滿識海，「只記住一點：劍在人前，心在劍中。」",
+  "expected_entities": [
+    {
+      "id": "GL-MEDIUM-0002-term-001",
+      "type": "glossary",
+      "term": "玉簡",
+      "definition": "以特殊玉石製成、可儲存資訊/功法、以神識讀取之修真界存儲介質",
+      "translation": "Jade Slip",
+      "context": "三師兄傳授功法，神識讀取資訊流",
+      "category": "法寶/工具類",
+      "variants": ["玉簡", "Jade Slip"]
+    },
+    {
+      "id": "GL-MEDIUM-0002-term-002",
+      "type": "glossary",
+      "term": "識海",
+      "definition": "修煉者神識居住、記憶儲存之精神空間，位於腦海深處",
+      "translation": "Sea of Consciousness",
+      "context": "資訊流入主角識海",
+      "category": "修真生理",
+      "variants": ["識海", "神識海", "Sea of Consciousness"]
+    }
+  ],
+  "expected_confidence": "medium",
+  "tags": ["contextual_usage", "function_inference", "pair_terms", "cultivation_anatomy"],
+  "notes": "兩個術語同時出現：玉簡作為載體，識海作為接收端；需從「神識讀取」「資訊流入」推斷功能"
+}

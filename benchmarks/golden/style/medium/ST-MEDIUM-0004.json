@@ -1,0 +1,20 @@
+{
+  "benchmark_id": "ST-MEDIUM-0004",
+  "extractor": "style",
+  "difficulty": "medium",
+  "source_text": "敘事距離靈活切換：平時贴身第三人稱跟隨林小滿；關鍵時刻拉遠至全知視角——「莫邪大殿上把玩玉簡，嘴角勾起玩味弧度」；情感高潮再拉近至流意識——「銅牌發燙，三百年記憶洪流衝垮理智堤壩」。遠近自如。",
+  "expected_entities": [
+    {
+      "id": "ST-MEDIUM-0004-style-001",
+      "type": "style",
+      "tone": "敘事距離彈性自如，服務劇情需求",
+      "literary_devices": ["敘事距離切換", "貼身第三人稱↔全知↔流意識", "視角服務劇情", "彈性視角"],
+      "sentence_patterns": ["主角視角限制句", "全知視角自由句", "流意識碎片句"],
+      "vocabulary_level": "視角對應詞彙層級",
+      "rhythm": "視角切換節奏感"
+    }
+  ],
+  "expected_confidence": "medium",
+  "tags": ["narrative_distance", "flexible_pov", "third_limited_to_omniscient_to_stream", "pov_serves_plot", "elastic_narrative_distance"],
+  "notes": "需推斷：三種視角模式、切換觸發點(關鍵時刻/情感高潮)、服務劇情需求"
+}

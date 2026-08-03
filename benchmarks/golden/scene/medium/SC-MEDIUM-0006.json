@@ -1,0 +1,24 @@
+{
+  "benchmark_id": "SC-MEDIUM-0006",
+  "extractor": "scene",
+  "difficulty": "medium",
+  "source_text": "百里紅藥逝世後，百草園無人打理。半年後林小滿重訪，見靈花枯萎、石臼生銹、藥香不再。唯有谷主生前種下的那株「還魂草」在風中獨自搖曳，綠意盎然。",
+  "expected_entities": [
+    {
+      "id": "SC-MEDIUM-0006-scene-001",
+      "type": "scene",
+      "location": "藥王谷百草園（半年後）",
+      "atmosphere": "淒涼衰敗中孤獨生機，傳承與斷絕對比",
+      "sensory_details": {
+        "visual": "靈花枯萎、石臼生銹、雜草叢生、唯一還魂草綠意",
+        "auditory": "風聲穿過枯枝、無石臼研磨聲、鳥叫稀疏",
+        "olfactory": "枯草腐敗味、銹鐵味、淡淡草木生香"
+      },
+      "time_of_day": "午後",
+      "significance": "師長離世後場景變化，象徵醫道傳承斷絕與延續"
+    }
+  ],
+  "expected_confidence": "medium",
+  "tags": ["time_jump", "environmental_decay", "symbolic_survival", "legacy_visualization"],
+  "notes": "時間跳躍半年；環境變化外化內心狀態；唯一綠草象徵傳承延續"
+}

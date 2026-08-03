@@ -1,0 +1,20 @@
+{
+  "benchmark_id": "ST-EASY-0001",
+  "extractor": "style",
+  "difficulty": "easy",
+  "source_text": "作者使用第一人稱敘事，語氣溫和細膩。林小滿作為主角兼敘述者，內心獨白佔據大量篇幅，讀者能直接進入角色心理世界。",
+  "expected_entities": [
+    {
+      "id": "ST-EASY-0001-style-001",
+      "type": "style",
+      "tone": "溫和細膩，第一人稱親密感",
+      "literary_devices": ["第一人稱敘事", "內心獨白", "心理描寫"],
+      "sentence_patterns": ["主觀視角陳述", "情感流露句式"],
+      "vocabulary_level": "平實生活化，夾雜修真術語",
+      "rhythm": "舒緩，隨心理起伏微調"
+    }
+  ],
+  "expected_confidence": "high",
+  "tags": ["author_sentence_pattern", "first_person", "intimate_tone", "psychological_narration", "explicit_statement"],
+  "notes": "直接敘述作者敘事風格選擇，人稱、語氣、手法、節奏全明確給出"
+}

@@ -1,0 +1,20 @@
+{
+  "benchmark_id": "ST-EASY-0003",
+  "extractor": "style",
+  "difficulty": "easy",
+  "source_text": "環境描寫採用「總—分—總」結構：先寫「藏經閣三層，滿架玉簡古籍，舊紙墨香撲面」；再分視覺（陽光塵埃）、嗅覺（墨香）、聽覺（翻書聲）；最後總結「格外靜謐」。結構教科書般標準。",
+  "expected_entities": [
+    {
+      "id": "ST-EASY-0003-style-001",
+      "type": "style",
+      "tone": "結構嚴謹，教科書式描寫",
+      "literary_devices": ["總分總結構", "多感官描寫", "結構標記明確"],
+      "sentence_patterns": ["總寫開頭句", "分感官並列句", "總結收束句"],
+      "vocabulary_level": "描寫性詞彙豐富",
+      "rhythm": "層層遞進，節奏明確"
+    }
+  ],
+  "expected_confidence": "high",
+  "tags": ["author_sentence_pattern", "general_specific_general", "multi_sensory", "structural_markers", "textbook_structure"],
+  "notes": "結構手法直接標註：總分總、多感官、結構標記明確"
+}

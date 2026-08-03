@@ -1,0 +1,24 @@
+{
+  "benchmark_id": "SC-EASY-0006",
+  "extractor": "scene",
+  "difficulty": "easy",
+  "source_text": "劍峰山頂，終年積雪不化。柳如煙立於懸崖邊，白衣勝雪，長劍指天。寒風呼嘯，捲起雪花繞劍尖旋舞，天地間只剩劍鳴與風聲。",
+  "expected_entities": [
+    {
+      "id": "SC-EASY-0006-scene-001",
+      "type": "scene",
+      "location": "劍峰山頂/懸崖邊",
+      "atmosphere": "極致寒冷，劍意凜然，孤高絕世",
+      "sensory_details": {
+        "visual": "終年積雪、白衣勝雪、劍指天、雪花繞劍旋舞",
+        "auditory": "寒風呼嘯、劍鳴、風聲",
+        "olfactory": "冰冷雪氣、鐵鏽味"
+      },
+      "time_of_day": "午後",
+      "significance": "峰主測試/指點主角劍道境界"
+    }
+  ],
+  "expected_confidence": "high",
+  "tags": ["new_scene", "iconic_location", "character_defining_moment", "elemental_atmosphere"],
+  "notes": "標誌性場景：劍峰環境與峰主氣質完美融合，劍道意境具象化"
+}

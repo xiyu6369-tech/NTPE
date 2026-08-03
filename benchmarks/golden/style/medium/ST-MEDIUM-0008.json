@@ -1,0 +1,20 @@
+{
+  "benchmark_id": "ST-MEDIUM-0008",
+  "extractor": "style",
+  "difficulty": "medium",
+  "source_text": "敬語錯亂即劇情爆發點：蘇清雪平稱莫邪「前輩」，崩塌時突然拜「師叔祖」；秦風醉酒稱林無為「老頭子」，醒來卻認字跡稱「師祖」。稱謂越界，身份揭露，情感衝擊。",
+  "expected_entities": [
+    {
+      "id": "ST-MEDIUM-0008-style-001",
+      "type": "style",
+      "tone": "敬語越界即真相時刻",
+      "literary_devices": ["敬語體系建立", "刻意越界標記", "越界即身份揭露", "稱謂即情感震撼點"],
+      "sentence_patterns": ["常規稱謂句", "越界稱謂突變句", "越界後反應句"],
+      "vocabulary_level": "稱謂詞彙精準對應",
+      "rhythm": "平穩→突變→震撼"
+    }
+  ],
+  "expected_confidence": "medium",
+  "tags": ["honorifics", "honorific_violation_as_reveal", "address_shift_as_plot", "generation_inversion", "emotional_impact_via_address"],
+  "notes": "需推斷：常規敬語建立期待、關鍵時刻越界、越界即身份/情感揭露"
+}

@@ -1,0 +1,24 @@
+{
+  "benchmark_id": "SC-EASY-0003",
+  "extractor": "scene",
+  "difficulty": "easy",
+  "source_text": "秘境開啟，霧氣裂開一道門戶，內裡別有洞天：參天古木遮天蔽日，靈草遍地，空氣中靈氣濃郁得化為霧。遠處瀑布如銀河倒掛，轟鳴聲震耳欲聾。",
+  "expected_entities": [
+    {
+      "id": "SC-EASY-0003-scene-001",
+      "type": "scene",
+      "location": "秘境內部/核心區",
+      "atmosphere": "原始野性，靈氣濃郁，生機勃勃",
+      "sensory_details": {
+        "visual": "參天古木、遍地靈草、靈氣化霧、銀河瀑布",
+        "auditory": "瀑布轟鳴震耳欲聾",
+        "olfactory": "濃郁草木清香混合靈氣味"
+      },
+      "time_of_day": "白晝（秘境自有光源）",
+      "significance": "秘境探險起始點，機緣與危險並存"
+    }
+  ],
+  "expected_confidence": "high",
+  "tags": ["new_scene", "explicit_transition", "fantasy_landscape", "resource_rich"],
+  "notes": "秘境進入場景，通過霧氣裂開門戶明確轉換，環境描寫豐富"
+}

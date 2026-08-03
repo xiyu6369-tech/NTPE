@@ -1,0 +1,55 @@
+{
+  "benchmark_id": "CH-EASY-0007",
+  "extractor": "character",
+  "difficulty": "easy",
+  "source_text": "「妹妹，這枚護身符你收著。」林小滿將一枚銅錢大小的銅牌塞進妹妹林小柔手中，「哥哥外出歷練，你在家聽娘親話，別惹事。」林小柔攥緊銅牌，眼眶泛紅：「哥哥早日歸來。」",
+  "expected_entities": [
+    {
+      "id": "CH-EASY-0007-char-001",
+      "type": "character",
+      "name": "林小滿",
+      "aliases": ["哥哥"],
+      "attributes": {
+        "role": "主角",
+        "action": "給妹妹護身符，外出歷練"
+      },
+      "relationships": [
+        {
+          "target": "林小柔",
+          "type": "兄妹"
+        }
+      ],
+      "appearances": [
+        {
+          "chapter": 1,
+          "context": "離家前與妹妹道別"
+        }
+      ]
+    },
+    {
+      "id": "CH-EASY-0007-char-002",
+      "type": "character",
+      "name": "林小柔",
+      "aliases": ["妹妹"],
+      "attributes": {
+        "role": "主角妹妹",
+        "emotion": "眼眶泛紅，不捨"
+      },
+      "relationships": [
+        {
+          "target": "林小滿",
+          "type": "兄妹"
+        }
+      ],
+      "appearances": [
+        {
+          "chapter": 1,
+          "context": "送別哥哥"
+        }
+      ]
+    }
+  ],
+  "expected_confidence": "high",
+  "tags": ["first_appearance", "explicit_relationship", "family_relationship", "dialogue_based"],
+  "notes": "對話中明確建立兄妹關係，雙方稱謂明確"
+}

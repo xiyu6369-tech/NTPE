@@ -1,0 +1,21 @@
+{
+  "benchmark_id": "GL-HARD-0003",
+  "extractor": "glossary",
+  "difficulty": "hard",
+  "source_text": "百里紅藥遺書中寫道：「禁丹『九轉還魂』，非九轉，實為『九死一生』。」林小滿細讀配方：主藥需九轉金丹期修士金丹一顆、輔藥以九九八十一味靈草、引藥為煉製者精血心頭血……「這根本不是救人，是換命。」秦風面色鐵青。",
+  "expected_entities": [
+    {
+      "id": "GL-HARD-0003-term-001",
+      "type": "glossary",
+      "term": "九轉還魂丹",
+      "definition": "禁制丹藥：名為九轉還魂，實為九死一生換命術；需金丹期修士金丹、八十一味靈草、精血心頭血煉製，以煉製者命換目標命",
+      "translation": "Nine-Revolution Resurrection Pill (Forbidden)",
+      "context": "醫書揭露禁丹真相，實為以命換命邪術",
+      "category": "禁丹/邪術",
+      "variants": ["九轉還魂丹", "九死一生丹", "換命丹", "Forbidden Resurrection Pill"]
+    }
+  ],
+  "expected_confidence": "low",
+  "tags": ["forbidden_form", "name_vs_reality", "ingredient_analysis", "true_cost_reveal", "ethical_horror"],
+  "notes": "禁忌形式：名稱與實際效果完全背離；需從配方成分（金丹、心頭血）推斷真實代價；「九轉」雙關「九死」"
+}

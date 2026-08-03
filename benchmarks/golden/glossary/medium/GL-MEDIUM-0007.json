@@ -1,0 +1,21 @@
+{
+  "benchmark_id": "GL-MEDIUM-0007",
+  "extractor": "glossary",
+  "difficulty": "medium",
+  "source_text": "柳如煙劍尖凝聚一點寒光：「劍意，非招式可比。你如今只有劍招，無劍意。」她輕輕一劍，空間泛起漣漪，「劍意，是將『劍』這個概念，刻入天地法則。」",
+  "expected_entities": [
+    {
+      "id": "GL-MEDIUM-0007-term-001",
+      "type": "glossary",
+      "term": "劍意",
+      "definition": "劍修核心境界：將劍道概念刻入天地法則，超越招式層面，能直接干涉空間/法則之意境",
+      "translation": "Sword Intent",
+      "context": "三峰峰主指點主角劍道境界區別",
+      "category": "修真境界/劍道",
+      "variants": ["劍意", "Sword Intent"]
+    }
+  ],
+  "expected_confidence": "medium",
+  "tags": ["contextual_definition", "conceptual_distinction", "law_interaction", "mentor_explanation"],
+  "notes": "從「非招式可比」「刻入天地法則」「空間泛起漣漪」推斷定義；與劍招對比明確區分層次"
+}

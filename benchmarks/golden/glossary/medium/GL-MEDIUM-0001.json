@@ -1,0 +1,21 @@
+{
+  "benchmark_id": "GL-MEDIUM-0001",
+  "extractor": "glossary",
+  "difficulty": "medium",
+  "source_text": "林小滿感覺丹田一熱，那枚築基丹化作暖流衝開關竅。旁邊趙烈啧啧稱奇：「好傢伙，這可是上品築基丹，市面上千靈石難求一顆。」",
+  "expected_entities": [
+    {
+      "id": "GL-MEDIUM-0001-term-001",
+      "type": "glossary",
+      "term": "築基丹",
+      "definition": "助煉氣期修士衝關築基之丹藥，上品者極為稀缺珍貴",
+      "translation": "Foundation Establishment Pill",
+      "context": "主角服用突破，大師兄評價稀缺價值",
+      "category": "丹藥類",
+      "variants": ["築基丹", "Foundation Establishment Pill"]
+    }
+  ],
+  "expected_confidence": "medium",
+  "tags": ["contextual_usage", "value_inference", "quality_grade_inference", "dialogue_based"],
+  "notes": "需從「衝開關竅」、「千靈石難求」推斷功效與稀缺度；上品暗示有品階之分"
+}

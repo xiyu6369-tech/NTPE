@@ -1,0 +1,20 @@
+{
+  "benchmark_id": "NA-HARD-0007",
+  "extractor": "narrative",
+  "difficulty": "hard",
+  "source_text": "最終一劍「開天」非毀滅乃重寫：秘境、魔教、青雲門、劍峰、百草園、林家小院、藍色星球——七大場景疊加折疊重組。劍光掃過，每場景保留原貌卻新增林小滿痕跡。筆觸聲/鍵盤聲/劍鳴三重聲音合一。作者權柄具象化。",
+  "expected_entities": [
+    {
+      "id": "NA-HARD-0007-narr-001",
+      "type": "narrative",
+      "plot_point": "開天劍意重寫七大核心場景：保留原貌+新增痕跡，作者權柄具象化",
+      "arc": "世界重寫弧光/非毀滅性創造/作者權柄獲得",
+      "tension_level": 1.0,
+      "pacing": "重寫緩解",
+      "foreshadowing": ["七場景同步疊加", "重寫非毀滅=保留+增量", "三重聲音同構：筆/鍵/劍", "主角從被寫者變書寫者"]
+    }
+  ],
+  "expected_confidence": "low",
+  "tags": ["world_rewriting", "preservation_plus_augmentation", "triple_sound_isomorphism", "reader_to_writer", "authorial_power_manifest"],
+  "notes": "需推斷：非毀滅性重寫機制、七場景統一性、三重聲音同構意義、角色身份根本轉變"
+}

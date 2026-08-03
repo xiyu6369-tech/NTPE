@@ -1,0 +1,24 @@
+{
+  "benchmark_id": "SC-HARD-0004",
+  "extractor": "scene",
+  "difficulty": "hard",
+  "source_text": "柳如煙劍斬虛空，劍氣化作一條河，河水流過三百年：上游是林無為立碑，中游是百里紅藥煉銅牌，下游是莫邪屠殺長老，河口匯入林小滿劍尖。她站在河中，同時是見證者、參與者、引路人。",
+  "expected_entities": [
+    {
+      "id": "SC-HARD-0004-scene-001",
+      "type": "scene",
+      "location": "劍氣化河/三百年時空長河/柳如煙視角",
+      "atmosphere": "時空流動具象化，見證者超越時空，因果可視",
+      "sensory_details": {
+        "visual": "劍氣化河、三百年場景作為河水流過、上中下游因果鏈、河口匯入劍尖",
+        "auditory": "河水聲即歲月聲、立碑鑿聲/煉器槌聲/屠殺慘叫/劍鳴疊加",
+        "olfactory": "河水帶著不同時代氣味：石粉/藥香/血腥/劍氣"
+      },
+      "time_of_day": "三百年瞬間流過",
+      "significance": "劍意具象化時空長河，柳如煙作為跨時空見證者"
+    }
+  ],
+  "expected_confidence": "low",
+  "tags": ["time_river_metaphor", "causal_visualization", "trans_temporal_witness", "sword_intent_manifestation", "three_hundred_years_compressed"],
+  "notes": "劍意化河隱喻：時間可視、因果可觸；柳如煙超越時空見證全程；三百年壓縮瞬間"
+}

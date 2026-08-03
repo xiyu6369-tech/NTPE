@@ -1,0 +1,24 @@
+{
+  "benchmark_id": "SC-EASY-0004",
+  "extractor": "scene",
+  "difficulty": "easy",
+  "source_text": "藥王谷百草園，萬藥競秀，紅白黃紫各色靈花隨風搖曳。百里紅藥坐在石榻上研磨藥粉，石臼發出細碎聲響，藥香隨風飄散至十裡之外。",
+  "expected_entities": [
+    {
+      "id": "SC-EASY-0004-scene-001",
+      "type": "scene",
+      "location": "藥王谷百草園",
+      "atmosphere": "生機盎然，藥香四溢，醫者仁心",
+      "sensory_details": {
+        "visual": "萬藥競秀，各色靈花搖曳，石榻研磨",
+        "auditory": "石臼細碎研磨聲",
+        "olfactory": "藥香十裡外可聞"
+      },
+      "time_of_day": "午前",
+      "significance": "主角求醫，谷主親自煉藥"
+    }
+  ],
+  "expected_confidence": "high",
+  "tags": ["new_scene", "explicit_location", "specialized_environment", "character_activity"],
+  "notes": "專業場所場景：百草園環境特徵明確，人物活動具體"
+}

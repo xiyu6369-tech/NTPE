@@ -1,0 +1,20 @@
+{
+  "benchmark_id": "ST-MEDIUM-0010",
+  "extractor": "style",
+  "difficulty": "medium",
+  "source_text": "讀者參與式書寫：尾聲註腳「讀者執卷即參與一次debug」。合書/關屏那刻，指尖殘留墨香/鍵盤溫度/劍氣餘溫。空白頁/游標閃爍等待輸入。文本不完結，完結在讀者手中。第四面牆徹底打破。",
+  "expected_entities": [
+    {
+      "id": "ST-MEDIUM-0010-style-001",
+      "type": "style",
+      "tone": "參與式敘事，讀者共同作者",
+      "literary_devices": ["讀者參與書寫", "第四面牆打破", "感官殘留驗證虛實", "空白頁即邀請", "讀者即debugger/作者"],
+      "sentence_patterns": ["註腳直接對話讀者", "感官殘留列舉", "空白/游標作為提示"],
+      "vocabulary_level": "元敘事詞彙",
+      "rhythm": "文本結束/書寫開始"
+    }
+  ],
+  "expected_confidence": "medium",
+  "tags": ["narrative_distance", "participatory_narrative", "fourth_wall_break", "reader_as_coauthor", "blank_page_invitation"],
+  "notes": "需推斷：讀者角色重定義、感官殘留證明滲透、空白頁=書寫邀請、第四面牆徹底打破"
+}

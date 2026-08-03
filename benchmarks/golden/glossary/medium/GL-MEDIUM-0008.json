@@ -1,0 +1,21 @@
+{
+  "benchmark_id": "GL-MEDIUM-0008",
+  "extractor": "glossary",
+  "difficulty": "medium",
+  "source_text": "秦風指著林小滿腰間銅牌：「這叫『天機鎖』，非金非玉，鎖的不是身，是命數。」他笑了笑，「你爹當年煉這玩意兒，把自個兒壽元折損三百年。」",
+  "expected_entities": [
+    {
+      "id": "GL-MEDIUM-0008-term-001",
+      "type": "glossary",
+      "term": "天機鎖",
+      "definition": "特殊法寶/道具：材質非金非玉，功能為鎖定/操控宿命命數，煉製代價極大（折損壽元）",
+      "translation": "Heavenly Mechanism Lock",
+      "context": "三師兄揭示銅牌真實名稱與煉製代價",
+      "category": "特殊法寶/道具",
+      "variants": ["天機鎖", "銅牌", "Heavenly Mechanism Lock"]
+    }
+  ],
+  "expected_confidence": "medium",
+  "tags": ["true_name_reveal", "function_inference", "cost_inference", "lore_revelation"],
+  "notes": "銅牌真實名稱揭露；從「鎖的不是身，是命數」「折損三百年壽元」推斷功能與代價"
+}

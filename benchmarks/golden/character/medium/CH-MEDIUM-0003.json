@@ -1,0 +1,36 @@
+{
+  "benchmark_id": "CH-MEDIUM-0003",
+  "extractor": "character",
+  "difficulty": "medium",
+  "source_text": "藏經閣三層，林小滿翻閱《青雲劍典》殘卷。旁邊翻書的人突然輕咳一聲：「這招『雲斬』勢大力沉，不適合你。」林小滿抬頭，對上一雙似笑非笑的桃花眼——三師兄秦風。",
+  "expected_entities": [
+    {
+      "id": "CH-MEDIUM-0003-char-001",
+      "type": "character",
+      "name": "秦風",
+      "aliases": ["三師兄", "旁邊翻書的人"],
+      "attributes": {
+        "title": "三師兄",
+        "appearance": "桃花眼，似笑非笑",
+        "action": "輕咳提醒，指點劍法",
+        "knowledge": "熟悉《青雲劍典》內容",
+        "personality": "觀察細微，願意指點師弟"
+      },
+      "relationships": [
+        {
+          "target": "林小滿",
+          "type": "同門師兄弟，指導者"
+        }
+      ],
+      "appearances": [
+        {
+          "chapter": 13,
+          "context": "藏經閣中指點師弟劍法選擇"
+        }
+      ]
+    }
+  ],
+  "expected_confidence": "medium",
+  "tags": ["implicit_identity", "action_inference", "expertise_demonstration", "relationship_inference"],
+  "notes": "「旁邊翻書的人」身份需從主角視角認出確認；專業知識體現於指點具體招式名稱"
+}

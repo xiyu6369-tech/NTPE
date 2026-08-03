@@ -1,0 +1,24 @@
+{
+  "benchmark_id": "SC-MEDIUM-0010",
+  "extractor": "scene",
+  "difficulty": "medium",
+  "source_text": "尾聲，藍色星球清晨。少年林小滿推開窗，陽光灑在鍵盤上，代碼編輯器閃爍著游標。窗外車水馬龍、早高峰喧囂，室內卻只有鍵盤敲擊聲：`print(\"道在人心，不在銅牌\")`。編譯通過，運行中……",
+  "expected_entities": [
+    {
+      "id": "SC-MEDIUM-0010-scene-001",
+      "type": "scene",
+      "location": "現實世界/程序員出租屋/清晨",
+      "atmosphere": "真實與虛構邊界消融，代碼即法則，新循環啟動",
+      "sensory_details": {
+        "visual": "陽光灑鍵盤、代碼編輯器游標閃爍、窗外車流、運行結果輸出",
+        "auditory": "早高峰喧囂、鍵盤敲擊聲、風扇轉動聲、編譯通過提示音",
+        "olfactory": "咖啡味、塵埃味、清晨城市空氣"
+      },
+      "time_of_day": "清晨",
+      "significance": "元小說結局：修真世界揭示為程式模擬，現實與虛構場景疊加"
+    }
+  ],
+  "expected_confidence": "medium",
+  "tags": ["meta_scene", "reality_fiction_blur", "code_as_law", "modern_setting", "cycle_restart"],
+  "notes": "現實世界場景：與修真世界形成極致對照；代碼輸出對應核心哲理；場景即元敘事揭示"
+}

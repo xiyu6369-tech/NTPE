@@ -1,0 +1,56 @@
+{
+  "benchmark_id": "CH-MEDIUM-0001",
+  "extractor": "character",
+  "difficulty": "medium",
+  "source_text": "「師兄今日劍意如何？」趙烈手中酒壺一頓，嘴角勾起一抹笑：「還行，比那小子強些。」旁邊幾名弟子面面相覷，不知所云。",
+  "expected_entities": [
+    {
+      "id": "CH-MEDIUM-0001-char-001",
+      "type": "character",
+      "name": "趙烈",
+      "aliases": ["師兄"],
+      "attributes": {
+        "action": "手中酒壺一頓，嘴角勾起一抹笑",
+        "evaluation": "還行，比那小子強些",
+        "implied_skill": "劍意不俗"
+      },
+      "relationships": [
+        {
+          "target": "林小滿",
+          "type": "同門師兄弟，被比較對象"
+        }
+      ],
+      "appearances": [
+        {
+          "chapter": 5,
+          "context": "被問及劍意，暗示與主角比較"
+        }
+      ]
+    },
+    {
+      "id": "CH-MEDIUM-0001-char-002",
+      "type": "character",
+      "name": "林小滿",
+      "aliases": ["那小子", "師弟"],
+      "attributes": {
+        "implied_comparison": "被趙烈作為比較基準",
+        "relationship": "趙烈的師弟"
+      },
+      "relationships": [
+        {
+          "target": "趙烈",
+          "type": "同門師兄弟"
+        }
+      ],
+      "appearances": [
+        {
+          "chapter": 5,
+          "context": "被趙烈以「那小子」指代比較"
+        }
+      ]
+    }
+  ],
+  "expected_confidence": "medium",
+  "tags": ["pronoun_reference", "implicit_comparison", "nickname_reference", "inference_required"],
+  "notes": "需推斷「那小子」指代林小滿，且「師兄」呼稱需結合上下文確認趙烈身份"
+}

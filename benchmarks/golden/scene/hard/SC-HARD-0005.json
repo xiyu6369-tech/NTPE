@@ -1,0 +1,24 @@
+{
+  "benchmark_id": "SC-HARD-0005",
+  "extractor": "scene",
+  "difficulty": "hard",
+  "source_text": "百里紅藥「渡厄」發動，百草園與秘境核心、魔教總壇、青雲門大殿、劍峰、林家小院……六個場景同時顯現在她身後，如六面鏡。她以一己之力，將六地因果線拉攏，為林小滿織出生路。",
+  "expected_entities": [
+    {
+      "id": "SC-HARD-0005-scene-001",
+      "type": "scene",
+      "location": "百草園/六地因果鏡像疊加空間",
+      "atmosphere": "多地同現，因果編織，犧牲成全",
+      "sensory_details": {
+        "visual": "六場景如鏡像疊加：百草園/秘境核心/魔教總壇/青雲門/劍峰/林家小院、因果線織網",
+        "auditory": "六地聲音同步：研磨聲/劍鳴/慘叫/誦經/風聲/炊煙聲",
+        "olfactory": "六味氣味融合織網：藥香/法則/血腥/檀香/寒氣/飯菜香"
+      },
+      "time_of_day": "六地不同時刻強行同步",
+      "significance": "渡厄術具象化：跨空間因果編織，以一命換一生"
+    }
+  ],
+  "expected_confidence": "low",
+  "tags": ["multi_location_superposition", "causal_weaving", "sacrificial_technique", "mirror_imagery", "six_realms_connection"],
+  "notes": "六場景同時顯現強行同步；因果線具象化為織網；百里紅藥作為編織者犧牲自我"
+}

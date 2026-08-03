@@ -1,0 +1,21 @@
+{
+  "benchmark_id": "GL-HARD-0006",
+  "extractor": "glossary",
+  "difficulty": "hard",
+  "source_text": "莫邪最後時刻，看著林小滿手中劍：「你這招……叫『無』罷。」他笑了，聲音極輕，「三百年前，林無為也這樣寫過。只是他寫在紙上，你……寫在天地法則裡。」風起，塵歸塵，土歸土，「無」字無形，卻劃破長空。",
+  "expected_entities": [
+    {
+      "id": "GL-HARD-0006-term-001",
+      "type": "glossary",
+      "term": "無",
+      "definition": "究極劍招/法則名：非虛無，乃萬物生成前之本源狀態；林無為筆下哲理概念，林小滿劍中實踐具現；跨越三百年時空，從文字化為法則",
+      "translation": "Non-Being / Void / The Unnamed",
+      "context": "反派臨終確認主角成就，對比父親筆下概念與兒子劍中實踐",
+      "category": "究極概念/法則/劍招名",
+      "variants": ["無", "無名", "無劍", "Non-Being", "The Void"]
+    }
+  ],
+  "expected_confidence": "low",
+  "tags": ["concept_to_law", "generational_fulfillment", "text_to_practice", "final_confirmation", "daoist_ontology"],
+  "notes": "概念實體化：從父親紙上哲理概念「無」到兒子劍中法則具現「無」；反派作為見證者確認；需懂道家「無名萬物始」本體論"
+}

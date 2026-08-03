@@ -1,0 +1,20 @@
+{
+  "benchmark_id": "ST-EASY-0009",
+  "extractor": "style",
+  "difficulty": "easy",
+  "source_text": "敬語體系嚴格對應輩分：弟子稱師父「師父」，師兄妹互稱「師兄/師妹」，長輩稱晚輩「師弟/師侄」，平輩稱道號。錯亂即大不敬。對話即身份證。",
+  "expected_entities": [
+    {
+      "id": "ST-EASY-0009-style-001",
+      "type": "style",
+      "tone": "禮制森嚴，敬語即身份",
+      "literary_devices": ["嚴格敬語體系", "輩分對應稱謂", "稱謂即身份證", "錯亂即劇情點"],
+      "sentence_patterns": ["稱謂+對話內容", "敬語錯亂即衝突點"],
+      "vocabulary_level": "稱謂詞彙體系龐大精確",
+      "rhythm": "敬語節奏感"
+    }
+  ],
+  "expected_confidence": "high",
+  "tags": ["honorifics", "strict_honorific_system", "generation_based_address", "address_as_identity", "honorific_violation_as_plot"],
+  "notes": "敬語體系直接展示：輩分對應、稱謂即身份、錯亂即劇情"
+}

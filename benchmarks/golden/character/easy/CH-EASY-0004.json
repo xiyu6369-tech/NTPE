@@ -1,0 +1,55 @@
+{
+  "benchmark_id": "CH-EASY-0004",
+  "extractor": "character",
+  "difficulty": "easy",
+  "source_text": "「這位是我大師兄，趙烈。」林小滿指著一旁身材魁梧、臉上有一道疤痕的漢子介紹道，「師兄性子直爽，最愛喝酒練劍。」趙烈大笑一聲：「小師弟客氣了，來，師兄帶你去藏經閣挑功法。」",
+  "expected_entities": [
+    {
+      "id": "CH-EASY-0004-char-001",
+      "type": "character",
+      "name": "趙烈",
+      "aliases": ["大師兄", "師兄"],
+      "attributes": {
+        "appearance": "身材魁梧，臉上有一道疤痕",
+        "personality": "性子直爽，最愛喝酒練劍",
+        "relationship_to_protagonist": "大師兄"
+      },
+      "relationships": [
+        {
+          "target": "林小滿",
+          "type": "同門師兄弟"
+        }
+      ],
+      "appearances": [
+        {
+          "chapter": 3,
+          "context": "主角介紹大師兄，建立同門關係"
+        }
+      ]
+    },
+    {
+      "id": "CH-EASY-0004-char-002",
+      "type": "character",
+      "name": "林小滿",
+      "aliases": ["小師弟"],
+      "attributes": {
+        "role": "主角"
+      },
+      "relationships": [
+        {
+          "target": "趙烈",
+          "type": "同門師兄弟"
+        }
+      ],
+      "appearances": [
+        {
+          "chapter": 3,
+          "context": "介紹大師兄"
+        }
+      ]
+    }
+  ],
+  "expected_confidence": "high",
+  "tags": ["first_appearance", "explicit_relationship", "dialogue_introduction", "physical_description"],
+  "notes": "透過主角介紹明確建立同門師兄弟關係，外貌性格直接描述"
+}

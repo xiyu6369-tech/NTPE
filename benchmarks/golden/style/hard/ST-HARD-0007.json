@@ -1,0 +1,20 @@
+{
+  "benchmark_id": "ST-HARD-0007",
+  "extractor": "style",
+  "difficulty": "hard",
+  "source_text": "最終一劍「開天」重寫七大場景：秘境/魔教/青雲門/劍峰/百草園/林家/藍星——疊加折疊重組。劍光非毀滅乃重寫：保留原貌+新增痕跡。三重聲音同構：筆觸落紙聲(作者)/鍵盤敲擊聲(程式員)/劍鳴(角色)。作者/程式員/角色三身份合一。文本被重寫，重寫者即被重寫者。",
+  "expected_entities": [
+    {
+      "id": "ST-HARD-0007-style-001",
+      "type": "style",
+      "tone": "世界重寫即文本重寫，三身份合一",
+      "literary_devices": ["場景疊加重寫", "非毀滅性重寫(保留+增量)", "三重聲音同構(筆/鍵/劍)", "作者/程式員/角色三身份合一", "重寫者=被重寫者自指涉"],
+      "sentence_patterns": ["七場景疊加句", "重寫非毀滅句", "三聲音同構句", "身份合一句"],
+      "vocabulary_level": "元敘事/程式/修真三體系",
+      "rhythm": "重寫節奏三重同步"
+    }
+  ],
+  "expected_confidence": "low",
+  "tags": ["long_sentence", "world_rewriting_as_text_rewriting", "triple_sound_isomorphism", "triple_identity_fusion", "self_referential_rewriter"],
+  "notes": "最高難度：非毀滅重寫機制、七場景統一、三聲音同構(筆/鍵/劍)、三身份合一、自指涉悖論"
+}

@@ -1,0 +1,24 @@
+{
+  "benchmark_id": "SC-HARD-0003",
+  "extractor": "scene",
+  "difficulty": "hard",
+  "source_text": "莫邪佈下「九宮幻夢陣」，林小滿在陣中經歷百世人生：或為屠夫、或為商賈、或為乞丐、或為帝王。每一世都在尋找同一把劍，臨死前才發現——劍在心中。破陣時，發現只過了一炷香。",
+  "expected_entities": [
+    {
+      "id": "SC-HARD-0003-scene-001",
+      "type": "scene",
+      "location": "九宮幻夢陣內/百世人生疊加空間",
+      "atmosphere": "時空極度壓縮，輪迴體驗，覺醒瞬間",
+      "sensory_details": {
+        "visual": "百世人生快速剪輯、同一把劍不同形態、破陣瞬間碎裂重組",
+        "auditory": "百世聲音疊加：呐喊/嘆息/鍵盤聲/劍鳴/心跳/鐘聲",
+        "olfactory": "百世氣味融合：血腥/錢幣/糞便/龍涎香/鐵鏽/虛無"
+      },
+      "time_of_day": "百世輪迴/一炷香外部時間",
+      "significance": "幻陣壓縮時空，百世輪迴換單一覺醒；時間感知扭曲"
+    }
+  ],
+  "expected_confidence": "low",
+  "tags": ["time_dilation", "reincarnation_montage", "illusion_vs_reality", "compressed_time", "epiphany_through_multiplicity"],
+  "notes": "時間極度扭曲：內部百世/外部一炷香；百世場景快速剪輯；覺醒點統一（劍在心）"
+}

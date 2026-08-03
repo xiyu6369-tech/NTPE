@@ -1,0 +1,20 @@
+{
+  "benchmark_id": "NA-EASY-0010",
+  "extractor": "narrative",
+  "difficulty": "easy",
+  "source_text": "最終決戰，林小滿劍斬莫邪，銅牌歸位，青雲門重建秩序。大殿供奉初代掌門林無為神位，林小滿坐首席弟子位，新弟子背誦《青雲心法》。故事在傳承延續中落幕。",
+  "expected_entities": [
+    {
+      "id": "NA-EASY-0010-narr-001",
+      "type": "narrative",
+      "plot_point": "最終決戰勝利，秩序重建，傳承延續",
+      "arc": "大團圓結局/秩序重建/傳承循環",
+      "tension_level": 0.1,
+      "pacing": "平緩收束",
+      "foreshadowing": ["銅牌歸位暗示循環閉合", "神位供奉父親身份確認", "新弟子背誦預示無盡傳承"]
+    }
+  ],
+  "expected_confidence": "high",
+  "tags": ["plot_point", "final_victory", "order_restored", "legacy_continuation", "circular_ending"],
+  "notes": "大結局情節點：決戰勝、秩序重建、父親神位、傳承延續、開放式循環"
+}

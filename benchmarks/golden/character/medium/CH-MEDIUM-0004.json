@@ -1,0 +1,35 @@
+{
+  "benchmark_id": "CH-MEDIUM-0004",
+  "extractor": "character",
+  "difficulty": "medium",
+  "source_text": "秘境深處，林小滿遭遇魔教埋伏。千鈞一髮間，一道青光劈開重圍，「師弟，走！」熟悉的酒香撲面而來，趙烈背對著他，橫劍當道，獨自擋下三名築基期魔修。",
+  "expected_entities": [
+    {
+      "id": "CH-MEDIUM-0004-char-001",
+      "type": "character",
+      "name": "趙烈",
+      "aliases": ["大師兄", "師兄"],
+      "attributes": {
+        "action": "青光劈開重圍，橫劍當道，獨自擋下三名築基期魔修",
+        "dialogue": "師弟，走！",
+        "state": "酒香撲面，背對師弟護衛",
+        "combat_ability": "能單獨對抗三名築基期魔修"
+      },
+      "relationships": [
+        {
+          "target": "林小滿",
+          "type": "同門師兄弟，守護者"
+        }
+      ],
+      "appearances": [
+        {
+          "chapter": 18,
+          "context": "秘境中救援師弟，展現實力與情義"
+        }
+      ]
+    }
+  ],
+  "expected_confidence": "medium",
+  "tags": ["action_based_identity", "combat_demonstration", "protective_relationship", "sensory_details"],
+  "notes": "身份通過「師弟」稱呼、酒香特徵、救援動作綜合確認；實力通過戰鬥表現隱性體現"
+}

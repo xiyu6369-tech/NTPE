@@ -1,0 +1,21 @@
+{
+  "benchmark_id": "GL-MEDIUM-0004",
+  "extractor": "glossary",
+  "difficulty": "medium",
+  "source_text": "魔修慘叫一聲，被柳如煙一劍斬斷神識連結。林小滿心驚：「神識受創，等於廢了半條命。」秦風補充：「修真界稱『斬神』，不殺肉身，專斬道基，最毒。」",
+  "expected_entities": [
+    {
+      "id": "GL-MEDIUM-0004-term-001",
+      "type": "glossary",
+      "term": "斬神",
+      "definition": "專門斬斷修煉者神識連結之手段/招式，不傷肉身卻重創道基，被視為極毒手段",
+      "translation": "Soul Severing / Divine Sense Severing",
+      "context": "柳如煙一劍斬斷魔修神識，秦風解釋術語含義",
+      "category": "戰鬥/手段類",
+      "variants": ["斬神", "斬神識", "Soul Severing"]
+    }
+  ],
+  "expected_confidence": "medium",
+  "tags": ["contextual_definition", "combat_terminology", "severity_inference", "expert_explanation"],
+  "notes": "從「不殺肉身，專斬道基」「最毒」推斷定義與嚴重性；專業術語由內行角色解釋"
+}

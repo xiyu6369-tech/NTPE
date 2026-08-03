@@ -1,0 +1,62 @@
+{
+  "benchmark_id": "CH-MEDIUM-0009",
+  "extractor": "character",
+  "difficulty": "medium",
+  "source_text": "秘境核心殿堂，林小滿看清了那具坐化骸骨身前的牌位——「青雲門第九代掌門，柳無雙」。柳如煙站在身後，聲音罕見地顫抖：「師祖……弟子帶晚輩來見您了。」",
+  "expected_entities": [
+    {
+      "id": "CH-MEDIUM-0009-char-001",
+      "type": "character",
+      "name": "柳無雙",
+      "aliases": ["第九代掌門", "師祖"],
+      "attributes": {
+        "title": "青雲門第九代掌門",
+        "status": "坐化，留下牌位與骸骨",
+        "generation": "第九代",
+        "significance": "柳如煙的師祖，秘境核心關鍵人物"
+      },
+      "relationships": [
+        {
+          "target": "柳如煙",
+          "type": "師祖孫關係"
+        }
+      ],
+      "appearances": [
+        {
+          "chapter": 40,
+          "context": "秘境核心發現歷代掌門牌位，揭示柳如煙來歷"
+        }
+      ]
+    },
+    {
+      "id": "CH-MEDIUM-0009-char-002",
+      "type": "character",
+      "name": "柳如煙",
+      "aliases": ["三峰峰主", "劍痴", "弟子"],
+      "attributes": {
+        "emotion": "聲音罕見顫抖，平時冷靜形象破裂",
+        "action": "帶晚輩見師祖，展現敬畏",
+        "identity": "柳無雙嫡傳弟子"
+      },
+      "relationships": [
+        {
+          "target": "柳無雙",
+          "type": "師祖，極度敬重"
+        },
+        {
+          "target": "林小滿",
+          "type": "晚輩，帶入見師祖"
+        }
+      ],
+      "appearances": [
+        {
+          "chapter": 40,
+          "context": "罕見展現情感脆弱面，揭示師承淵源"
+        }
+      ]
+    }
+  ],
+  "expected_confidence": "medium",
+  "tags": ["ancestral_revelation", "emotional_breakthrough", "lineage_confirmation", "historical_connection"],
+  "notes": "需從牌位文字與柳如煙稱謂推斷祖孫關係；柳如煙罕見情感流露為關鍵推理線索"
+}

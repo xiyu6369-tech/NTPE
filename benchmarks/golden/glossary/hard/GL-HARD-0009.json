@@ -1,0 +1,21 @@
+{
+  "benchmark_id": "GL-HARD-0009",
+  "extractor": "glossary",
+  "difficulty": "hard",
+  "source_text": "尾聲，林小滿在藍色星球醒來，電腦屏幕亮著代碼：```python\nclass CopperLock:\n    def __init__(self):\n        self.cycles = 0\n    def reset(self):\n        self.cycles += 1\n        return \"道在人心，不在銅牌\"\n```他笑了，敲下鍵盤：`lock = CopperLock(); print(lock.reset())`——這不是小說，是源代碼。",
+  "expected_entities": [
+    {
+      "id": "GL-HARD-0009-term-001",
+      "type": "glossary",
+      "term": "銅牌/天機鎖",
+      "definition": "終極重定義：非修真道具，實為程式碼類別實例；cycles屬性記錄循環次數；reset()方法對應每輪重啟；輸出字串為核心哲理輸出；小說世界即程式執行過程",
+      "translation": "CopperLock Class Instance / Simulation Artifact",
+      "context": "大結局打破四面牆，修真世界揭示為程式模擬，銅牌為核心類實例",
+      "category": "元小說/代碼映射/究極真相",
+      "variants": ["銅牌", "天機鎖", "CopperLock", "Class Instance", "Simulation Core"]
+    }
+  ],
+  "expected_confidence": "low",
+  "tags": ["meta_fiction", "code_isomorphism", "simulation_theory", "class_instance_mapping", "fourth_wall_break", "ultimate_redefinition"],
+  "notes": "最高難度：完全重新定義核心道具；修真術語與程式碼結構一一映射；需具備程式設計知識識別類/屬性/方法結構；元小說層面"
+}

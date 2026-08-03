@@ -1,0 +1,24 @@
+{
+  "benchmark_id": "SC-HARD-0008",
+  "extractor": "scene",
+  "difficulty": "hard",
+  "source_text": "尾聲註腳場景：讀者合上書/關上屏幕，房間安靜。但指尖殘留墨香/鍵盤溫度/劍氣餘溫。窗外風吹過，翻開書頁/捲動代碼——下一頁/下一行，是空白。等待書寫。",
+  "expected_entities": [
+    {
+      "id": "SC-HARD-0008-scene-001",
+      "type": "scene",
+      "location": "讀者現實環境/閱讀終點/書寫起點",
+      "atmosphere": "虛實邊界消融，讀者即作者，空白即可能性",
+      "sensory_details": {
+        "visual": "合上書/關屏、窗外風動、空白頁/空代碼行、游標閃爍等待輸入",
+        "auditory": "翻頁聲/捲動聲/風聲/心跳/呼吸/鍵盤待擊聲",
+        "olfactory": "紙墨香/電子設備溫香/劍氣餘溫/風帶來的草木/可能性無味"
+      },
+      "time_of_day": "讀者當下/永恆的當下",
+      "significance": "元場景：讀者環境成為新場景；空白頁邀請共同書寫"
+    }
+  ],
+  "expected_confidence": "low",
+  "tags": ["reader_as_writer", "blank_page_invitation", "fourth_wall_dissolved", "sensory_bleed", "participatory_ending"],
+  "notes": "讀者真實環境作為場景；指尖殘留三重溫度/香氣證明虛實滲透；空白頁=下一輪循環起點"
+}

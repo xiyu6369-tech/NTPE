@@ -1,0 +1,20 @@
+{
+  "benchmark_id": "ST-EASY-0008",
+  "extractor": "style",
+  "difficulty": "easy",
+  "source_text": "時間流逝標記明確：「三日後」、「半年後」、「一炷香工夫」、「眨眼間」。作者習慣用具體時間詞標示場景切換，時間線清晰，無閃回干擾。",
+  "expected_entities": [
+    {
+      "id": "ST-EASY-0008-style-001",
+      "type": "style",
+      "tone": "時間線清晰，標記明確",
+      "literary_devices": ["具體時間標記", "線性時間", "場景切換標記", "無非線性干擾"],
+      "sentence_patterns": ["時間詞+場景轉換", "章節開頭時間定位"],
+      "vocabulary_level": "時間詞彙具體化",
+      "rhythm": "時間推進感強"
+    }
+  ],
+  "expected_confidence": "high",
+  "tags": ["author_sentence_pattern", "explicit_time_markers", "linear_timeline", "scene_transition_markers", "no_flashback"],
+  "notes": "時間處理風格直接展示：具體時間詞、線性、標記明確"
+}

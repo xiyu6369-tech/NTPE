@@ -1,0 +1,20 @@
+{
+  "benchmark_id": "ST-HARD-0006",
+  "extractor": "style",
+  "difficulty": "hard",
+  "source_text": "秦風醉夢跨時空：夢見三百年後主角斬破虛空/銅牌入星河/億萬光年外少年驚醒。醒來手中銅牌碎片溫熱。夢境敘事非虛構，乃跨時空物證傳遞。醉酒狀態作為跨時空介質，夢中見未來/醒得物證。敘事模態從「虛構」轉為「物證傳遞記錄」。",
+  "expected_entities": [
+    {
+      "id": "ST-HARD-0006-style-001",
+      "type": "style",
+      "tone": "夢境即跨時空物證傳遞，敘事模態轉換",
+      "literary_devices": ["夢境模態轉換(虛構→物證)", "醉酒即跨時空介質", "夢見未來/醒得物證", "敘事本體論重定義", "物理證據驗證敘事真實性"],
+      "sentence_patterns": ["夢境敘事句", "醒來物證句", "模態轉換標記句"],
+      "vocabulary_level": "敘事學/物理學/時間術語",
+      "rhythm": "夢境流暢/醒來驗證"
+    }
+  ],
+  "expected_confidence": "low",
+  "tags": ["author_sentence_pattern", "dream_modality_shift", "drunken_medium", "physical_evidence_verification", "narrative_ontology_redefinition"],
+  "notes": "最高難度：敘事模態根本轉換(虛構→物理記錄)、醉酒=跨時空介質、物證驗證夢境真實性"
+}

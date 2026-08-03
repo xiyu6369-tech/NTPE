@@ -1,0 +1,43 @@
+{
+  "benchmark_id": "CH-HARD-0003",
+  "extractor": "character",
+  "difficulty": "hard",
+  "source_text": "柳如煙劍勢頓住，目光掠過林小滿腰間銅牌：「你父親……也曾這樣站在我面前。」三十年前，青衫少年持劍闖入劍峰，求見柳無雙。柳如煙攔截：「師祖閉關。」少年不退：「我有話給師祖，也給妳。」那一戰，柳如煙敗在少年劍下——不是輸招式，輸在「道心不如他純粹」。",
+  "expected_entities": [
+    {
+      "id": "CH-HARD-0003-char-001",
+      "type": "character",
+      "name": "林父",
+      "aliases": ["青衫少年", "林無為", "父親"],
+      "attributes": {
+        "past_appearance": "青衫少年，持劍闖劍峰",
+        "goal": "求見柳無雙，有話要說",
+        "combat_result": "擊敗柳如煙，贏在道心純粹",
+        "identity_link": "三十年前即為林無為/父親，與初代掌門同一人"
+      },
+      "relationships": [
+        {
+          "target": "柳如煙",
+          "type": "三十年前交手，被其認出銅牌來歷"
+        },
+        {
+          "target": "柳無雙",
+          "type": "求見師祖，嫡傳關係"
+        },
+        {
+          "target": "林小滿",
+          "type": "父子，劍道傳承相似"
+        }
+      ],
+      "appearances": [
+        {
+          "chapter": 60,
+          "context": "柳如煙回憶三十年前交手，揭示父親年輕時風采與身份"
+        }
+      ]
+    }
+  ],
+  "expected_confidence": "low",
+  "tags": ["flashback_cross_reference", "identity_convergence", "past_present_parallel", "sword_heart_philosophy", "generational_mirror"],
+  "notes": "需將三十年前「青衫少年」與「林無為/父親」身份融合；柳如煙當年敗於道心非招式，與當下主角形成鏡像；跨章節多跳推理"
+}

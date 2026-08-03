@@ -1,0 +1,21 @@
+{
+  "benchmark_id": "GL-HARD-0001",
+  "extractor": "glossary",
+  "difficulty": "hard",
+  "source_text": "林小滿翻閱古籍，見「道」字一頁寫滿註釋：「……大道無名，萬物始；大道無欲，萬物定。……修吾道者，非求長生，求心安。……魔亦道，佛亦道，關在一念。」旁邊批註三行小字，筆跡遞變：初行楷書端正「道在腳下」；次行行書飄逸「道在劍中」；末行草書狂草「道在人心——無為」。",
+  "expected_entities": [
+    {
+      "id": "GL-HARD-0001-term-001",
+      "type": "glossary",
+      "term": "道",
+      "definition": "多義核心概念：①大道/天地本源法則 ②修煉路徑/方法 ③心性/意識狀態 ④特定人物（林無為）的道號/稱謂",
+      "translation": "Dao / Way / Path (context-dependent)",
+      "context": "古籍註釋與三代筆跡批註，展示同一字在不同時空/心境下的義變",
+      "category": "核心哲學概念/多義詞",
+      "variants": ["道", "大道", "修道", "Dao", "Way"]
+    }
+  ],
+  "expected_confidence": "low",
+  "tags": ["polysemy", "temporal_semantic_shift", "author_evolution", "philosophical_core", "handwriting_analysis"],
+  "notes": "最高難度多義詞：同一字在不同時期/心境/語境下義項完全不同；需結合筆跡遞變、人生階段、哲理演進多維推理"
+}

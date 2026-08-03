@@ -1,0 +1,20 @@
+{
+  "benchmark_id": "NA-HARD-0002",
+  "extractor": "narrative",
+  "difficulty": "hard",
+  "source_text": "夢境疊加：林小滿同時經歷三時空——秘境核心看碑文、三百年前大殿看父親立碑、現代出租屋敲代碼。碑文即代碼，代碼即法則，法則即心。銅牌三地同步發熱。因果鏈在夢中閉環：父親立碑為兒子留路，兒子敲代碼實現父親路，代碼運行產生碑文。",
+  "expected_entities": [
+    {
+      "id": "NA-HARD-0002-narr-001",
+      "type": "narrative",
+      "plot_point": "三時空夢境疊加，碑文=代碼=法則=心，因果閉環自洽",
+      "arc": "因果閉環弧光/自我指涉完備/時空崩塌重組",
+      "tension_level": 0.8,
+      "pacing": "同步疊加",
+      "foreshadowing": ["三場景同步非先後", "碑文/代碼/法則/心四重同構", "銅牌跨時空同步發熱=錨點", "父立碑→子敲碼→碼生碑=完美閉環"]
+    }
+  ],
+  "expected_confidence": "low",
+  "tags": ["temporal_superposition", "quadruple_isomorphism", "causal_loop_closure", "anchor_synchronization", "self_referential_perfection"],
+  "notes": "最高難度：三時空同步非線性；四重同構（碑文/代碼/法則/心）；銅牌跨時空同步；因果完美閉環自洽"
+}

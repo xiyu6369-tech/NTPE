@@ -1,0 +1,20 @@
+{
+  "benchmark_id": "NA-MEDIUM-0006",
+  "extractor": "narrative",
+  "difficulty": "medium",
+  "source_text": "秦風酒醒讀百里紅藥遺書：「莫邪心魔未除，林無為一脈單傳，青雲門靠你們了。」落款林無為親筆，但林無為已死三百年。秦風大笑：「老頭子連死都不安生。」跨時空佈局，死後仍掌控。",
+  "expected_entities": [
+    {
+      "id": "NA-MEDIUM-0006-narr-001",
+      "type": "narrative",
+      "plot_point": "死者遺書跨三百年指引生者，父親佈局超越生死",
+      "arc": "跨時空佈局弧光/死後掌控/父愛如山",
+      "tension_level": 0.6,
+      "pacing": "悖論緩解",
+      "foreshadowing": ["遺書預判莫邪心魔/林家單傳/門派命運", "三百年時跨預判精準", "秦風認字跡確認真實性"]
+    }
+  ],
+  "expected_confidence": "medium",
+  "tags": ["posthumous_guidance", "temporal_paradox", "father_layout", "precise_prediction", "handwriting_verification"],
+  "notes": "需推斷：死者遺書指引生者、三百年精準預判、字跡驗證真實性、父愛跨越生死"
+}

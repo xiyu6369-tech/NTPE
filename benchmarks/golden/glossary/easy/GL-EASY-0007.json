@@ -1,0 +1,21 @@
+{
+  "benchmark_id": "GL-EASY-0007",
+  "extractor": "glossary",
+  "difficulty": "easy",
+  "source_text": "法寶：經過祭煉、具備靈性、可隨心意操控之寶物。分法器、靈器、法寶、靈寶、仙器五階。法寶以上可孕育器靈，具備自主意識。祭煉法寶需血祭、神識烙印、靈氣養育三步。",
+  "expected_entities": [
+    {
+      "id": "GL-EASY-0007-term-001",
+      "type": "glossary",
+      "term": "法寶",
+      "definition": "經過祭煉、具備靈性、可隨心意操控之寶物",
+      "translation": "Magic Treasure / Artifact",
+      "context": "修真裝備體系核心術語",
+      "category": "法寶類",
+      "variants": ["法寶", "寶物", "Magic Treasure", "Artifact"]
+    }
+  ],
+  "expected_confidence": "high",
+  "tags": ["explicit_definition", "equipment_system", "grade_hierarchy", "refining_process"],
+  "notes": "裝備術語定義，含五階劃分、器靈條件、祭煉步驟"
+}

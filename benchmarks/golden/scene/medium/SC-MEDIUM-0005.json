@@ -1,0 +1,24 @@
+{
+  "benchmark_id": "SC-MEDIUM-0005",
+  "extractor": "scene",
+  "difficulty": "medium",
+  "source_text": "魔教埋伏發動，林小滿與趙烈背靠背。四周霧氣突然變紅，血腥味爆增，地面滲出暗紅液體。趙烈酒壺碎裂，酒液灑地發出滋滋腐蝕聲——這不是尋常霧，是「血霧陣」。",
+  "expected_entities": [
+    {
+      "id": "SC-MEDIUM-0005-scene-001",
+      "type": "scene",
+      "location": "秘境迷霧區/血霧陣內",
+      "atmosphere": "極度危險，感官被劫持，生死關頭",
+      "sensory_details": {
+        "visual": "霧氣變紅、能見度歸零、暗紅液體滲地",
+        "auditory": "酒液腐蝕滋滋聲、陣法運轉低吟、殺意鎖定聲",
+        "olfactory": "濃烈血腥味、腐蝕性酸味、酒香變苦"
+      },
+      "time_of_day": "不明（陣法遮蔽天光）",
+      "significance": "魔教埋伏核心陣法，環境即殺招"
+    }
+  ],
+  "expected_confidence": "medium",
+  "tags": ["trap_environment", "sensory_hijack", "formation_manifestation", "combat_scene"],
+  "notes": "陣法具象化為環境：霧氣、液體、氣味皆為殺招；趙烈酒壺碎裂作為環境惡化指標"
+}

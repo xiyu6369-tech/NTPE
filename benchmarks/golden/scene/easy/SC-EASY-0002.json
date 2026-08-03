@@ -1,0 +1,24 @@
+{
+  "benchmark_id": "SC-EASY-0002",
+  "extractor": "scene",
+  "difficulty": "easy",
+  "source_text": "林小滿踏入藏經閣三層，滿架皆是玉簡與古籍，舊紙墨香撲面而來。陽光從高窗灑下，照亮漂浮的塵埃，顯得格外靜謐。他輕手輕腳走到最深處，翻開《青雲劍典》殘卷。",
+  "expected_entities": [
+    {
+      "id": "SC-EASY-0002-scene-001",
+      "type": "scene",
+      "location": "藏經閣三層",
+      "atmosphere": "靜謐古老，書籍林立",
+      "sensory_details": {
+        "visual": "滿架玉簡古籍，陽光照亮漂浮塵埃",
+        "auditory": "極度安靜，僅有翻書聲",
+        "olfactory": "濃郁舊紙墨香"
+      },
+      "time_of_day": "白晝",
+      "significance": "主角尋找功法，獲得《青雲劍典》殘卷"
+    }
+  ],
+  "expected_confidence": "high",
+  "tags": ["new_scene", "explicit_location", "library_atmosphere", "key_discovery"],
+  "notes": "場景要素完整：地點明確、感官三維度、關鍵劇情發生地"
+}

@@ -1,0 +1,20 @@
+{
+  "benchmark_id": "ST-MEDIUM-0007",
+  "extractor": "style",
+  "difficulty": "medium",
+  "source_text": "倒敘碎片拼湊真相：父親身世不直接講，通過《青雲劍典》殘卷頁邊批註、百里紅藥遺書、莫邪大殿獨白、柳如煙劍河意象、秦風醉夢銅牌碎片——五個碎片五個視角，讀者自行拼湊完整傳記。",
+  "expected_entities": [
+    {
+      "id": "ST-MEDIUM-0007-style-001",
+      "type": "style",
+      "tone": "碎片化倒敘，讀者參與拼湊",
+      "literary_devices": ["碎片化倒敘", "多視角拼貼", "讀者主動拼湊", "非線性真相", "五碎片五視角"],
+      "sentence_patterns": ["碎片呈現句", "視角標記句", "拼湊邀請句"],
+      "vocabulary_level": "碎片化信息密度",
+      "rhythm": "碎片節奏，拼湊過程"
+    }
+  ],
+  "expected_confidence": "medium",
+  "tags": ["narrative_distance", "fragmented_flashback", "reader_assembly", "multi_perspective_collage", "non_linear_truth"],
+  "notes": "需推斷：五碎片五視角、非線性呈現、讀者主動拼湊、真相分散在文本中"
+}

@@ -1,0 +1,24 @@
+{
+  "benchmark_id": "SC-HARD-0002",
+  "extractor": "scene",
+  "difficulty": "hard",
+  "source_text": "夢境疊加：林小滿在秘境核心殿堂，同時在三百年前青雲門大殿看林無為立碑，同時在藍色星球出租屋敲代碼。三個時空同一場景：碑文即代碼，代碼即法則，法則即心。銅牌在三個時空同步發熱。",
+  "expected_entities": [
+    {
+      "id": "SC-HARD-0002-scene-001",
+      "type": "scene",
+      "location": "三重時空疊加場景：秘境核心/三百年前大殿/現代出租屋",
+      "atmosphere": "時空崩塌重組，因果循環閉環，自我指涉完備",
+      "sensory_details": {
+        "visual": "三場景同步疊加、碑文/代碼/法則同步顯示、銅牌三重發光",
+        "auditory": "三重聲音疊加：劍鳴/鑿石聲/鍵盤聲/編譯聲/心跳聲",
+        "olfactory": "三重氣味融合：檀香/石粉/咖啡/臭氧/虛無"
+      },
+      "time_of_day": "所有时刻同時存在",
+      "significance": "終極場景：所有时空因果鏈閉合，銅牌為錨點"
+    }
+  ],
+  "expected_confidence": "low",
+  "tags": ["temporal_superposition", "causal_loop_closure", "self_reference", "anchor_object", "ultimate_convergence"],
+  "notes": "元場景：三時空同一場景疊加；碑文=代碼=法則=心；銅牌跨時空同步；需整合全書所有伏筆"
+}

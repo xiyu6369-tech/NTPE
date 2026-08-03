@@ -1,0 +1,21 @@
+{
+  "benchmark_id": "GL-HARD-0005",
+  "extractor": "glossary",
+  "difficulty": "hard",
+  "source_text": "秦風醉酒塗鴉牆壁：「靈石是錢，丹藥是命，法寶是命根子，雙修是……算了不寫了。唯有『道心』兩字，寫一遍少一遍。」旁邊趙烈補上一句：「道心不穩，萬寶空空。」林小滿看懂了：這不是術語表，是活下來的規矩。",
+  "expected_entities": [
+    {
+      "id": "GL-HARD-0005-term-001",
+      "type": "glossary",
+      "term": "道心",
+      "definition": "修煉者核心心性/意志/信念統稱：非具體術語，而是貫穿所有修真資源（靈石/丹藥/法寶/雙修）獲取與運用的根本前提；道心不穩，外物皆空",
+      "translation": "Dao Heart / Cultivation Will",
+      "context": "醉酒塗鴉隱喻總結，揭示所有外在資源依賴內在核心",
+      "category": "核心心法/隱喻總結",
+      "variants": ["道心", "心魔對立面", "Cultivation Will"]
+    }
+  ],
+  "expected_confidence": "low",
+  "tags": ["metaphorical_definition", "drunken_wisdom", "resource_dependency", "core_vs_peripheral", "implicit_rule"],
+  "notes": "非標準術語定義，而是醉酒隱喻總結；需從「靈石是錢……道心不穩萬寶空空」推斷核心地位；屬隱性規矩而非顯性定義"
+}

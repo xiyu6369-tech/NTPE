@@ -1,0 +1,24 @@
+{
+  "benchmark_id": "SC-HARD-0010",
+  "extractor": "scene",
+  "difficulty": "hard",
+  "source_text": "終極場景定義：場景不存在。只有觀測者、觀測行為、被觀測內容三元組。林小滿最後一劍斬的不是敵人，是「場景」這個概念本身——留下純粹觀測者。無場所、無時間、無感官、只有觀測。",
+  "expected_entities": [
+    {
+      "id": "SC-HARD-0010-scene-001",
+      "type": "scene",
+      "location": "無/觀測者狀態/概念斬除後",
+      "atmosphere": "純粹觀測，概念消解，本體論歸零",
+      "sensory_details": {
+        "visual": "無視覺/觀測本身即視覺",
+        "auditory": "無聽覺/觀測本身即聽覺",
+        "olfactory": "無嗅覺/觀測本身即嗅覺"
+      },
+      "time_of_day": "無時間/永恆當下",
+      "significance": "場景概念被斬除，只剩觀測者本體；終極哲理具象化"
+    }
+  ],
+  "expected_confidence": "low",
+  "tags": ["concept_elimination", "pure_observation", "ontological_zero", "scene_as_concept_destroyed", "ultimate_philosophy"],
+  "notes": "最高難度：場景本身被定義為概念並被斬除；三元組本體論；無屬性場景；需懂現象學/量子觀測論"
+}

@@ -1,0 +1,24 @@
+{
+  "benchmark_id": "SC-MEDIUM-0004",
+  "extractor": "scene",
+  "difficulty": "medium",
+  "source_text": "柳如煙帶著林小滿穿過劍峰禁制，腳下雲海翻滾，腳踏虛無卻穩如磐石。四周劍氣縱橫，卻不傷分毫。前方石門無鑰自開，裡面另有一重天地：劍冢。",
+  "expected_entities": [
+    {
+      "id": "SC-MEDIUM-0004-scene-001",
+      "type": "scene",
+      "location": "劍峰禁制通道/劍冢入口",
+      "atmosphere": "神秘莊嚴，劍意充盈，禁制與引路並存",
+      "sensory_details": {
+        "visual": "雲海翻滾、虛空踏步、劍氣縱橫不傷、石門自開",
+        "auditory": "劍氣破空聲、雲海濤聲、石門轟鳴",
+        "olfactory": "劍鋒寒氣、遠古劍冢腐朽氣"
+      },
+      "time_of_day": "不固定（禁制內時空異常）",
+      "significance": "進入劍冢傳承核心區，峰主引路"
+    }
+  ],
+  "expected_confidence": "medium",
+  "tags": ["location_switch", "barrier_passage", "spatial_anomaly", "guided_transition"],
+  "notes": "場景切換：劍峰外→禁制通道→劍冢；時空異常環境；峰主作為引路人"
+}

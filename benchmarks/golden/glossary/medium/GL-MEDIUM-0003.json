@@ -1,0 +1,21 @@
+{
+  "benchmark_id": "GL-MEDIUM-0003",
+  "extractor": "glossary",
+  "difficulty": "medium",
+  "source_text": "秘境入口處，陣盤光芒閃爍，百里紅藥拋出一面三角幡：「乾坤挪移陣，啟！」霧氣裂開一道門戶，內裡別有洞天。趙烈低聲：「這傳送陣直通核心區，省去外圍廝殺。」",
+  "expected_entities": [
+    {
+      "id": "GL-MEDIUM-0003-term-001",
+      "type": "glossary",
+      "term": "乾坤挪移陣",
+      "definition": "空間類高階傳送陣法，可跨越長距離瞬間轉移，需陣盤、陣旗催動",
+      "translation": "Qiankun Transposition Array",
+      "context": "藥王谷谷主催動，直通秘境核心區",
+      "category": "陣法類",
+      "variants": ["乾坤挪移陣", "挪移陣", "傳送陣"]
+    }
+  ],
+  "expected_confidence": "medium",
+  "tags": ["contextual_usage", "function_inference", "high_grade_inference", "activation_method"],
+  "notes": "從「霧氣裂開門戶」「直通核心區」推斷為空間傳送陣；「陣盤」「三角幡」為催動材料"
+}

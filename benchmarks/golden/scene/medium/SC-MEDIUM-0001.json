@@ -1,0 +1,24 @@
+{
+  "benchmark_id": "SC-MEDIUM-0001",
+  "extractor": "scene",
+  "difficulty": "medium",
+  "source_text": "林小滿在藏經閣翻書時，窗外光線逐漸暗淡，墨香濃淡隨之變化。等他抬頭，發現燭火已被侍童換了三茬，窗棂投射的樹影從東牆移至西牆。",
+  "expected_entities": [
+    {
+      "id": "SC-MEDIUM-0001-scene-001",
+      "type": "scene",
+      "location": "藏經閣三層",
+      "atmosphere": "時光流逝中專注沉浸，靜默陪伴",
+      "sensory_details": {
+        "visual": "光線暗淡、樹影移動東至西、燭火換三茬",
+        "auditory": "翻書聲、侍童換燭輕響、窗外風聲遠近",
+        "olfactory": "墨香濃淡變化、燭燼味"
+      },
+      "time_of_day": "午前至午後（隱性推斷）",
+      "significance": "場景延續展現時間流逝，主角專注狀態"
+    }
+  ],
+  "expected_confidence": "medium",
+  "tags": ["scene_continuation", "time_progression", "implicit_time", "environmental_clock"],
+  "notes": "需從光線變化、樹影移動、燭火換三茬推斷時間流逝；同一場景延續"
+}

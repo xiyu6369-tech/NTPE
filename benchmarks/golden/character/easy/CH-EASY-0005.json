@@ -1,0 +1,31 @@
+{
+  "benchmark_id": "CH-EASY-0005",
+  "extractor": "character",
+  "difficulty": "easy",
+  "source_text": "魔教教主莫邪，本名莫玄機，三百年前橫空出世，以一己之力屠盡正道七大宗門長老，震驚修真界。他面容俊美如少年，雙瞳深邃如淵，一襲血紅長袍無風自動。",
+  "expected_entities": [
+    {
+      "id": "CH-EASY-0005-char-001",
+      "type": "character",
+      "name": "莫邪",
+      "aliases": ["魔教教主", "莫玄機"],
+      "attributes": {
+        "original_name": "莫玄機",
+        "title": "魔教教主",
+        "age": "三百歲以上",
+        "achievement": "以一己之力屠盡正道七大宗門長老",
+        "appearance": "面容俊美如少年，雙瞳深邃如淵，一襲血紅長袍無風自動"
+      },
+      "relationships": [],
+      "appearances": [
+        {
+          "chapter": 5,
+          "context": "反派首次登場，交代背景與外貌"
+        }
+      ]
+    }
+  ],
+  "expected_confidence": "high",
+  "tags": ["first_appearance", "explicit_description", "multi_alias", "backstory"],
+  "notes": "反派角色首次登場，給出本名、稱號、事蹟、外貌，多重別名明確"
+}

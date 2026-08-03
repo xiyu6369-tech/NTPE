@@ -1,0 +1,20 @@
+{
+  "benchmark_id": "NA-MEDIUM-0009",
+  "extractor": "narrative",
+  "difficulty": "medium",
+  "source_text": "塵埃落定，林小滿後山見「另一個自己」：無疤無滄桑，少年意氣。「師父說這條路走不通，換條路試試。」銅牌印記發燙——這不是穿越，是第N次嘗試。主角握緊銅牌：我是第N+1次。",
+  "expected_entities": [
+    {
+      "id": "NA-MEDIUM-0009-narr-001",
+      "type": "narrative",
+      "plot_point": "遇見前世嘗試者，揭示輪迴/多次嘗試真相，主角為第N+1次",
+      "arc": "輪迴真相弧光/多次嘗試/自我超越",
+      "tension_level": 0.5,
+      "pacing": "真相平緩",
+      "foreshadowing": ["另一個自己無疤痕=未經歷過往", "師父指引換路=更高維度存在", "銅牌印記發燙=循環錨點", "第N+1次=打破循環可能"]
+    }
+  ],
+  "expected_confidence": "medium",
+  "tags": ["time_loop_reveal", "previous_attempt_encounter", "cycle_counter", "anchor_artifact", "cycle_breaking_potential"],
+  "notes": "需推斷：另一個自己=前世/上輪嘗試、師父=更高維度、銅牌=循環錨點、N+1=新嘗試"
+}

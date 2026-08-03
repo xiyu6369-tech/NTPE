@@ -1,0 +1,20 @@
+{
+  "benchmark_id": "NA-MEDIUM-0004",
+  "extractor": "narrative",
+  "difficulty": "medium",
+  "source_text": "莫邪大殿獨白：「林無為那傢伙，道心種魔三百年，終究還是想通了。」原來父親修煉「道心種魔」禁術，以情入道、以魔證道。主角銅牌發熱共鳴，父子道脈相通。",
+  "expected_entities": [
+    {
+      "id": "NA-MEDIUM-0004-narr-001",
+      "type": "narrative",
+      "plot_point": "反派揭露父親修煉禁術「道心種魔」，銅牌共鳴確認父子道脈",
+      "arc": "父親真相弧光/禁術代價/道脈傳承",
+      "tension_level": 0.8,
+      "pacing": "真相衝擊",
+      "foreshadowing": ["道心種魔高風險高回報", "父親以情入道非走火入魔", "銅牌作為道脈共鳴媒介"]
+    }
+  ],
+  "expected_confidence": "medium",
+  "tags": ["forbidden_art_reveal", "father_truth", "dao_heart_planting_demon", "artifact_resonance", "antagonist_exposition"],
+  "notes": "需推斷：反派作為知情者揭露、道心種魔定義需組合語境、銅牌共鳴確認傳承"
+}

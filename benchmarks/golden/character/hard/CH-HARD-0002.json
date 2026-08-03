@@ -1,0 +1,36 @@
+{
+  "benchmark_id": "CH-HARD-0002",
+  "extractor": "character",
+  "difficulty": "hard",
+  "source_text": "夢境中，林小滿看到兩個「莫邪」：一個血紅長袍，冷笑著屠殺正道長老；一個青衫儒生，在戰場上為救百姓擋下致命一擊。聲音在耳邊迴盪：「善惡非我定，道心在爾心。」夢醒時，他手中銅牌發燙，映照出兩個重疊又分離的影子。",
+  "expected_entities": [
+    {
+      "id": "CH-HARD-0002-char-001",
+      "type": "character",
+      "name": "莫邪",
+      "aliases": ["魔教教主", "青衫儒生", "雙重身份"],
+      "attributes": {
+        "dual_manifestation": "血紅長袍魔教教主 vs 青衫儒生救世者",
+        "action_1": "屠殺正道七大宗門長老",
+        "action_2": "戰場救百姓擋致命一擊",
+        "philosophy": "善惡非我定，道心在爾心",
+        "ambiguity": "同一人兩面，或為兩人同名，真偽難辨"
+      },
+      "relationships": [
+        {
+          "target": "林小滿",
+          "type": "夢境引導者，銅牌共鳴對象"
+        }
+      ],
+      "appearances": [
+        {
+          "chapter": 55,
+          "context": "夢境揭示反派雙重面向，善惡模糊邊界"
+        }
+      ]
+    }
+  ],
+  "expected_confidence": "low",
+  "tags": ["dual_persona", "dream_sequence", "moral_ambiguity", "same_name_disambiguation", "unreliable_narrative", "symbolic_imagery"],
+  "notes": "最高難度：同一名字對應兩種截然不同形象；夢境敘事不可靠；銅牌映照隱喻雙重性；需判斷是一人兩面還是兩人同名"
+}

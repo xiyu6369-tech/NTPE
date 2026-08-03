@@ -1,0 +1,66 @@
+{
+  "benchmark_id": "CH-HARD-0004",
+  "extractor": "character",
+  "difficulty": "hard",
+  "source_text": "百里紅藥臨終前，將一本《百草心經》塞給林小滿：「這不是醫書，是命書。」翻開第一頁，赫然寫著：「莫邪，本名莫玄機，青雲門棄徒，因愛成魔。」林小滿手顫抖——百里紅藥、莫邪、林無為，三人竟是當年同門師兄弟。",
+  "expected_entities": [
+    {
+      "id": "CH-HARD-0004-char-001",
+      "type": "character",
+      "name": "莫邪",
+      "aliases": ["魔教教主", "莫玄機", "青雲門棄徒", "師兄"],
+      "attributes": {
+        "original_name": "莫玄機",
+        "origin": "青雲門棄徒",
+        "fall_reason": "因愛成魔",
+        "sect_relationship": "百里紅藥、林無為同門師兄弟"
+      },
+      "relationships": [
+        {
+          "target": "百里紅藥",
+          "type": "同門師姐妹，情感糾葛核心"
+        },
+        {
+          "target": "林無為",
+          "type": "同門師兄弟，情敵/理念對立"
+        }
+      ],
+      "appearances": [
+        {
+          "chapter": 65,
+          "context": "百里紅藥臨終揭露三人少年時同門關係與恩怨起因"
+        }
+      ]
+    },
+    {
+      "id": "CH-HARD-0004-char-002",
+      "type": "character",
+      "name": "百里紅藥",
+      "aliases": ["藥王谷谷主", "師姐"],
+      "attributes": {
+        "role": "三人中幸存見證者",
+        "final_act": "以命書形式揭露真相",
+        "knowledge": "完整知曉三人過往"
+      },
+      "relationships": [
+        {
+          "target": "莫邪",
+          "type": "同門師妹，情感糾葛一方"
+        },
+        {
+          "target": "林無為",
+          "type": "同門師弟，被守護者"
+        }
+      ],
+      "appearances": [
+        {
+          "chapter": 65,
+          "context": "臨終前揭露核心祕密"
+        }
+      ]
+    }
+  ],
+  "expected_confidence": "low",
+  "tags": ["deathbed_revelation", "triangular_relationship", "sect_origin_reveal", "love_tragedy", "retroactive_continuity"],
+  "notes": "最高難度：單一場景重構三人完整關係圖；「因愛成魔」重新定義反派動機；需整合前文所有線索（銅牌、命書、掌門身份）"
+}

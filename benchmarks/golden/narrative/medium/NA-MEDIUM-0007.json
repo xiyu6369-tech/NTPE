@@ -1,0 +1,20 @@
+{
+  "benchmark_id": "NA-MEDIUM-0007",
+  "extractor": "narrative",
+  "difficulty": "medium",
+  "source_text": "蘇清雪秘境崩塌時雙重身影：一邊斬裂縫護師弟，一邊拜莫邪為師叔祖。原來她三十年雙面佈局，既護師弟又牽制莫邪。銅牌光芒融合雙影，二師姐真實實力遠超築基後期。",
+  "expected_entities": [
+    {
+      "id": "NA-MEDIUM-0007-narr-001",
+      "type": "narrative",
+      "plot_point": "二師姐雙面佈局三十年真相大白，實力深不可測",
+      "arc": "隱藏實力弧光/雙面諜報/深情守護",
+      "tension_level": 0.9,
+      "pacing": "真相爆發",
+      "foreshadowing": ["三十年佈局時間跨度", "雙重行動同時發生", "師叔祖稱謂揭示輩分倒置", "實力遠超表面境界"]
+    }
+  ],
+  "expected_confidence": "medium",
+  "tags": ["double_agent_reveal", "thirty_year_layout", "hidden_power", "dual_action_simultaneous", "generation_inversion"],
+  "notes": "需推斷：同一時空雙重行動、三十年長期佈局、輩分倒置、實力隱藏"
+}

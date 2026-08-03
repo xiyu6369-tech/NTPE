@@ -1,0 +1,21 @@
+{
+  "benchmark_id": "GL-EASY-0006",
+  "extractor": "glossary",
+  "difficulty": "easy",
+  "source_text": "神識：修煉者精神力外放感知外物之能力。築基期始可內視丹田、外放百丈；元嬰期神識化神，可千里傳音、劍氣縱橫。神識強弱直接影響陣法、煉丹、煉器成敗。",
+  "expected_entities": [
+    {
+      "id": "GL-EASY-0006-term-001",
+      "type": "glossary",
+      "term": "神識",
+      "definition": "修煉者精神力外放感知外物之能力",
+      "translation": "Divine Sense / Spiritual Sense",
+      "context": "修真核心能力，感知與操控媒介",
+      "category": "修真能力",
+      "variants": ["神識", "精神力", "Divine Sense"]
+    }
+  ],
+  "expected_confidence": "high",
+  "tags": ["explicit_definition", "core_ability", "realm_progression", "application_scope"],
+  "notes": "核心能力術語定義，含境界進階表現、應用領域"
+}

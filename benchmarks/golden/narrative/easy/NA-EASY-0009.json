@@ -1,0 +1,20 @@
+{
+  "benchmark_id": "NA-EASY-0009",
+  "extractor": "narrative",
+  "difficulty": "easy",
+  "source_text": "百里紅藥臨終前將《百草心經》交給林小滿：「這不是醫書，是命書。」並施展「渡厄」以殘命換主角生機，融入青雲山脈靈脈。醫道傳承與犧牲並完成。",
+  "expected_entities": [
+    {
+      "id": "NA-EASY-0009-narr-001",
+      "type": "narrative",
+      "plot_point": "谷主臨終傳承《百草心經》並施展渡厄犧牲自我",
+      "arc": "傳承完成弧光/犧牲成全/醫道傳人確立",
+      "tension_level": 0.8,
+      "pacing": "悲壯高潮",
+      "foreshadowing": ["心經實為命書暗示因果", "渡厄代價極大", "融入靈脈成全門派"]
+    }
+  ],
+  "expected_confidence": "high",
+  "tags": ["plot_point", "deathbed_legacy", "self_sacrifice", "transmission_complete", "sect_foundation"],
+  "notes": "雙重情節點：傳承心經+施展渡厄犧牲；悲壯高潮，張力極高"
+}

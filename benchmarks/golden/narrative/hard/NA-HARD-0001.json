@@ -1,0 +1,20 @@
+{
+  "benchmark_id": "NA-HARD-0001",
+  "extractor": "narrative",
+  "difficulty": "hard",
+  "source_text": "林小滿翻閱古籍，見「道」字頁邊批註三行筆跡遞變：楷書「道在腳下」——行書「道在劍中」——草書「道在人心——無為」。三百年一筆寫來，筆跡隨心境變，註釋即自傳。讀者需按筆跡演變重構主角父親三百年心路歷程。",
+  "expected_entities": [
+    {
+      "id": "NA-HARD-0001-narr-001",
+      "type": "narrative",
+      "plot_point": "古籍邊批三階段筆跡記錄父親三百年心路歷程，需按書法演變重構傳記",
+      "arc": "筆跡即傳記弧光/三百年心境演變/書法即敘事",
+      "tension_level": 0.4,
+      "pacing": "考古重構",
+      "foreshadowing": ["楷書端正=初心/立碑時", "行書飄逸=得劍道/中年", "草書狂放=悟道/晚年", "落款「無為」=初代掌門身份"]
+    }
+  ],
+  "expected_confidence": "low",
+  "tags": ["handwriting_as_narrative", "calligraphy_evolution", "biographical_reconstruction", "three_hundred_years_compressed", "calligrapher_as_narrator"],
+  "notes": "最高難度：筆跡演變=心境演變=傳記敘事；三種書法對應三人生階段；需書法鑑賞+文本考證雙重能力"
+}

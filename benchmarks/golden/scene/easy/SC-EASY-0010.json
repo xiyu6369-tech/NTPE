@@ -1,0 +1,24 @@
+{
+  "benchmark_id": "SC-EASY-0010",
+  "extractor": "scene",
+  "difficulty": "easy",
+  "source_text": "結局·青雲門後山，晨光初照。林小滿提劍站在松樹下，劍尖指地，周身劍意內斂。遠處演武場傳來新弟子吆喝聲，藏經閣飄出讀書朗朗書聲。一切如初，又一切不同。",
+  "expected_entities": [
+    {
+      "id": "SC-EASY-0010-scene-001",
+      "type": "scene",
+      "location": "青雲門後山/松樹下",
+      "atmosphere": "圓滿新生，傳承延續，靜默有力",
+      "sensory_details": {
+        "visual": "晨光初照、松樹下提劍立、劍尖指地、遠處演武場/藏經閣",
+        "auditory": "新弟子吆喝聲、讀書朗朗書聲、劍意內斂無聲",
+        "olfactory": "松針香、晨露草木味、墨香隱約"
+      },
+      "time_of_day": "清晨",
+      "significance": "大結局，主角完成傳承，新循環開始"
+    }
+  ],
+  "expected_confidence": "high",
+  "tags": ["new_scene", "ending_scene", "full_circle", "legacy_continuation", "quiet_power"],
+  "notes": "結局場景，與開頭林家小院形成對照；環境聲音暗示門派生生不息"
+}

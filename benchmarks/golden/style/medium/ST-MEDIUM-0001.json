@@ -1,0 +1,20 @@
+{
+  "benchmark_id": "ST-MEDIUM-0001",
+  "extractor": "style",
+  "difficulty": "medium",
+  "source_text": "作者習慣用長句鋪陳心理：林小滿站在瀑布前，聽著水聲單調而有節奏地敲擊著心跳，想起三日前柳如煙劍指眉心說的三個「雜」——雜在求勝、雜在畏懼、雜在對她的執著，每一個字都像石頭沉入深潭，激起層層漣漪，久久不散。",
+  "expected_entities": [
+    {
+      "id": "ST-MEDIUM-0001-style-001",
+      "type": "style",
+      "tone": "心理深度鋪陳，長句承載複雜情感",
+      "literary_devices": ["長句心理鋪陳", "多層次嵌套", "聲音與心理同步", "比喻延展"],
+      "sentence_patterns": ["長句主干+多層修飾", "並列結構遞進", "比喻鏈延伸"],
+      "vocabulary_level": "心理詞彙豐富，比喻層層",
+      "rhythm": "緩慢深沉，隨心理波動"
+    }
+  ],
+  "expected_confidence": "medium",
+  "tags": ["long_sentence", "psychological_layering", "sound_psychology_sync", "metaphor_chain", "nested_structure"],
+  "notes": "需推斷：長句服務心理深度、水聲與心跳同步、三個「雜」並列遞進、石頭比喻延展"
+}

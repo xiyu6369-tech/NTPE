@@ -1,0 +1,24 @@
+{
+  "benchmark_id": "SC-MEDIUM-0002",
+  "extractor": "scene",
+  "difficulty": "medium",
+  "source_text": "秘境試煉結束，傳送陣光芒將眾人裹挾。眨眼間，腳下青石板熟悉觸感回來——青雲門廣場。但空氣中殘留的血腥味、衣衫上的靈草汁液、識海裡劍典殘卷記憶，證明一切並非夢。",
+  "expected_entities": [
+    {
+      "id": "SC-MEDIUM-0002-scene-001",
+      "type": "scene",
+      "location": "青雲門廣場/傳送陣出口",
+      "atmosphere": "真實與虛幻交疊，歸來仍覺恍惚",
+      "sensory_details": {
+        "visual": "熟悉青石板、廣場建築、同門關切眼神",
+        "auditory": "歡呼聲、詢問聲、傳送陣餘韻嗡鳴",
+        "olfactory": "殘留血腥味、靈草汁液味、熟悉門派檀香"
+      },
+      "time_of_day": "黃昏（推斷：秘境經歷一日）",
+      "significance": "秘境歸來，場景切換與心理落差並存"
+    }
+  ],
+  "expected_confidence": "medium",
+  "tags": ["location_switch", "transition_aftermath", "sensory_memory", "reality_verification"],
+  "notes": "場景切換：秘境→門派廣場；需從殘留感官細節驗證經歷真實性"
+}

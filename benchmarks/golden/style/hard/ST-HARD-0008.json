@@ -1,0 +1,20 @@
+{
+  "benchmark_id": "ST-HARD-0008",
+  "extractor": "style",
+  "difficulty": "hard",
+  "source_text": "終章註腳系統級映射：九境界對應軟體九階段(煉氣=init→渡劫=exception handling→飛升=successful exit)。全書術語體系=軟體生命週期註釋。讀者=debugger。小說=程式執行。註腳不再是補充，是源碼級文檔。需具備完整軟體工程知識體系才能解碼。",
+  "expected_entities": [
+    {
+      "id": "ST-HARD-0008-style-001",
+      "type": "style",
+      "tone": "系統級同構映射，註腳即源碼文檔",
+      "literary_devices": ["系統級術語映射", "九境界/九階段精準同構", "讀者角色重定義=debugger", "小說本質=程式執行", "註腳=源碼級文檔", "跨學科解碼門檻"],
+      "sentence_patterns": ["映射表列舉句", "角色重定義句", "本質宣告句"],
+      "vocabulary_level": "修真術語/軟體工程全棧術語",
+      "rhythm": "映射節奏/解碼節奏"
+    }
+  ],
+  "expected_confidence": "low",
+  "tags": ["rhetorical_device", "system_level_isomorphism", "footnote_as_source_documentation", "reader_as_debugger", "novel_as_execution", "full_stack_decoding"],
+  "notes": "最高難度：系統級映射(非零散)、九對九精準、讀者=debugger、小說=執行、需全棧軟體工程知識"
+}

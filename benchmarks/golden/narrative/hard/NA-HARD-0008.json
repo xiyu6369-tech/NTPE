@@ -1,0 +1,20 @@
+{
+  "benchmark_id": "NA-HARD-0008",
+  "extractor": "narrative",
+  "difficulty": "hard",
+  "source_text": "尾聲註腳：全書修真體系與軟體工程生命週期完美同構——煉氣=init、築基=compile、金丹=build、元嬰=deploy、化神=scale、合體=integrate、大乘=optimize、渡劫=exception handling、飛升=successful exit。讀者執卷即參與debug。術語表即源碼註釋。",
+  "expected_entities": [
+    {
+      "id": "NA-HARD-0008-narr-001",
+      "type": "narrative",
+      "plot_point": "終章註腳揭示全書修真體系=軟體工程生命週期同構，讀者=debugger",
+      "arc": "系統級映射弧光/讀者角色重定義/術語即代碼",
+      "tension_level": 0.4,
+      "pacing": "註腳揭示",
+      "foreshadowing": ["九境界對應九階段", "每階段術語精準映射", "讀者角色：debugger", "小說=程式執行過程"]
+    }
+  ],
+  "expected_confidence": "low",
+  "tags": ["system_level_isomorphism", "software_lifecycle_mapping", "reader_as_debugger", "terminology_as_comments", "novel_as_execution"],
+  "notes": "需具備完整軟體工程知識識別九階段映射；讀者角色根本重定義；元敘事鑰匙"
+}

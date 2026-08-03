@@ -1,0 +1,20 @@
+{
+  "benchmark_id": "NA-MEDIUM-0010",
+  "extractor": "narrative",
+  "difficulty": "medium",
+  "source_text": "尾聲：藍色星球清晨，少年林小滿從夢醒，手心銅牌印記鮮紅。電腦屏幕代碼運行通過：`print(\"道在人心，不在銅牌\")`。他笑了，敲下：`lock = CopperLock(); lock.cycles += 1`——第N+1次循環，我會走不一樣的路。",
+  "expected_entities": [
+    {
+      "id": "NA-MEDIUM-0010-narr-001",
+      "type": "narrative",
+      "plot_point": "現實世界醒來，代碼確認循環，主角覺醒為書寫者開啟新輪",
+      "arc": "元敘事覺醒/循環打破/作者權柄獲得",
+      "tension_level": 0.3,
+      "pacing": "靜默新生",
+      "foreshadowing": ["夢醒即覺醒", "代碼即法則", "cycles+1=新輪啟動", "主動選擇不一樣的路=自由意志"]
+    }
+  ],
+  "expected_confidence": "medium",
+  "tags": ["meta_fiction_awakening", "code_as_law", "cycle_increment", "authorial_agency", "new_beginning"],
+  "notes": "需推斷：夢醒=覺醒、代碼運行=法則驗證、cycles遞增=新輪、主動選擇=自由意志獲得"
+}

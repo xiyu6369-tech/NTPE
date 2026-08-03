@@ -1,0 +1,21 @@
+{
+  "benchmark_id": "GL-EASY-0008",
+  "extractor": "glossary",
+  "difficulty": "easy",
+  "source_text": "雙修：陰陽二氣相濟、雙方修為同步增長之特殊修煉方式。須雙方道心相通、功法相容，否則易走火入魔。正統雙修講究「情深義重，道侶雙修」，邪修則採補掠奪。",
+  "expected_entities": [
+    {
+      "id": "GL-EASY-0008-term-001",
+      "type": "glossary",
+      "term": "雙修",
+      "definition": "陰陽二氣相濟、雙方修為同步增長之特殊修煉方式",
+      "translation": "Dual Cultivation",
+      "context": "修真特殊修煉方式，涉及情感與道義",
+      "category": "修煉方式",
+      "variants": ["雙修", "道侶雙修", "Dual Cultivation"]
+    }
+  ],
+  "expected_confidence": "high",
+  "tags": ["explicit_definition", "special_practice", "orthodox_vs_evil", "requirements"],
+  "notes": "特殊修煉方式定義，區分正邪兩派做法"
+}

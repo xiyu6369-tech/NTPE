@@ -1,0 +1,20 @@
+{
+  "benchmark_id": "NA-EASY-0001",
+  "extractor": "narrative",
+  "difficulty": "easy",
+  "source_text": "這是故事的開端：林小滿離開林家小院，踏上前往青雲門的修仙之路。母親在門前目送，妹妹攥著銅牌淚眼婆娑。",
+  "expected_entities": [
+    {
+      "id": "NA-EASY-0001-narr-001",
+      "type": "narrative",
+      "plot_point": "主角離家啟程，踏上修仙之路",
+      "arc": "啟程弧光/英雄之旅起點",
+      "tension_level": 0.2,
+      "pacing": "平緩鋪陳",
+      "foreshadowing": ["銅牌將成關鍵道具", "妹妹淚水預示離別漫長", "母親目送暗示歸期未卜"]
+    }
+  ],
+  "expected_confidence": "high",
+  "tags": ["plot_point", "story_beginning", "departure", "hero_journey_start", "explicit_foreshadowing"],
+  "notes": "明確標註「故事的開端」，情節點直接給出，張力低、節奏平緩"
+}

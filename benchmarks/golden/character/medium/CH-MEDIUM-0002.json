@@ -1,0 +1,63 @@
+{
+  "benchmark_id": "CH-MEDIUM-0002",
+  "extractor": "character",
+  "difficulty": "medium",
+  "source_text": "秘境開啟前夜，林小滿在後山發呆。一道白影無聲落下，不等他反應，一枚丹藥已塞入掌心：「補靈丹，明早用。」來人轉身離去，只留下一句：「別輸給趙烈那小子。」林小滿握緊丹藥，心中湧起暖流——是二師姐蘇清雪。",
+  "expected_entities": [
+    {
+      "id": "CH-MEDIUM-0002-char-001",
+      "type": "character",
+      "name": "蘇清雪",
+      "aliases": ["二師姐", "白影"],
+      "attributes": {
+        "title": "二師姐",
+        "action": "無聲落下，塞丹藥，轉身離去",
+        "dialogue": "補靈丹，明早用。別輸給趙烈那小子。",
+        "personality": "冷淡外表下關心師弟",
+        "movement": "白影，動作迅捷無聲"
+      },
+      "relationships": [
+        {
+          "target": "林小滿",
+          "type": "同門師姐弟，關懷"
+        },
+        {
+          "target": "趙烈",
+          "type": "同門，被作為競爭對手提及"
+        }
+      ],
+      "appearances": [
+        {
+          "chapter": 11,
+          "context": "秘境前夜暗中相助師弟"
+        }
+      ]
+    },
+    {
+      "id": "CH-MEDIUM-0002-char-002",
+      "type": "character",
+      "name": "林小滿",
+      "aliases": ["師弟"],
+      "attributes": {
+        "state": "在後山發呆",
+        "reaction": "握緊丹藥，心中湧起暖流",
+        "recognition": "心中確認是二師姐"
+      },
+      "relationships": [
+        {
+          "target": "蘇清雪",
+          "type": "同門師姐弟，被關懷"
+        }
+      ],
+      "appearances": [
+        {
+          "chapter": 11,
+          "context": "接受師姐暗中相助"
+        }
+      ]
+    }
+  ],
+  "expected_confidence": "medium",
+  "tags": ["implicit_identity", "action_based_inference", "relationship_inference", "pronoun_reference"],
+  "notes": "「白影」身份需從行為、對話、主角內心獨白綜合推斷為蘇清雪；「那小子」指代趙烈"
+}
