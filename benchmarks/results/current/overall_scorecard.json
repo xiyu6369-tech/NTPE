@@ -1,0 +1,934 @@
+{
+  "metadata": {
+    "benchmark_id": "run_20260804_200638",
+    "benchmark_version": "RM-5.8.3",
+    "golden_dataset_version": "v1.0.0",
+    "config_hash": "",
+    "runtime_version": "",
+    "timestamp": "2026-08-04T20:06:38.986710+00:00",
+    "environment": "offline",
+    "deterministic_seed": 42
+  },
+  "overall": {
+    "extractor_scores": {
+      "character": {
+        "extractor_type": "character",
+        "metric_scores": {
+          "precision": {
+            "metric_name": "precision",
+            "value": 1.0,
+            "target": 0.85,
+            "passed": true,
+            "details": {
+              "true_positives": 0,
+              "false_positives": 0,
+              "total_predicted": 0,
+              "matches": [
+                {
+                  "golden_entity_id": "CH-HARD-0010-char-001",
+                  "predicted_entity_id": null,
+                  "matched": false,
+                  "match_type": "none",
+                  "similarity_score": 0.0,
+                  "field_matches": {},
+                  "confidence_golden": 0.0,
+                  "confidence_predicted": 0.0
+                }
+              ]
+            },
+            "difficulty_tier": "hard"
+          },
+          "recall": {
+            "metric_name": "recall",
+            "value": 0.0,
+            "target": 0.65,
+            "passed": false,
+            "details": {
+              "true_positives": 0,
+              "false_negatives": 1,
+              "total_golden": 1,
+              "matches": [
+                {
+                  "golden_entity_id": "CH-HARD-0010-char-001",
+                  "predicted_entity_id": null,
+                  "matched": false,
+                  "match_type": "none",
+                  "similarity_score": 0.0,
+                  "field_matches": {},
+                  "confidence_golden": 0.0,
+                  "confidence_predicted": 0.0
+                }
+              ]
+            },
+            "difficulty_tier": "hard"
+          },
+          "f1_score": {
+            "metric_name": "f1_score",
+            "value": 0.0,
+            "target": 0.65,
+            "passed": false,
+            "details": {
+              "true_positives": 0,
+              "false_positives": 0,
+              "false_negatives": 1,
+              "precision": 1.0,
+              "recall": 0.0,
+              "matches": [
+                {
+                  "golden_entity_id": "CH-HARD-0010-char-001",
+                  "predicted_entity_id": null,
+                  "matched": false,
+                  "match_type": "none",
+                  "similarity_score": 0.0,
+                  "field_matches": {},
+                  "confidence_golden": 0.0,
+                  "confidence_predicted": 0.0
+                }
+              ]
+            },
+            "difficulty_tier": "hard"
+          }
+        },
+        "extractor_score": 0.0
+      },
+      "glossary": {
+        "extractor_type": "glossary",
+        "metric_scores": {
+          "precision": {
+            "metric_name": "precision",
+            "value": 1.0,
+            "target": 0.85,
+            "passed": true,
+            "details": {
+              "true_positives": 0,
+              "false_positives": 0,
+              "total_predicted": 0,
+              "matches": [
+                {
+                  "golden_entity_id": "GL-HARD-0010-term-001",
+                  "predicted_entity_id": null,
+                  "matched": false,
+                  "match_type": "none",
+                  "similarity_score": 0.0,
+                  "field_matches": {},
+                  "confidence_golden": 0.0,
+                  "confidence_predicted": 0.0
+                }
+              ]
+            },
+            "difficulty_tier": "hard"
+          },
+          "recall": {
+            "metric_name": "recall",
+            "value": 0.0,
+            "target": 0.65,
+            "passed": false,
+            "details": {
+              "true_positives": 0,
+              "false_negatives": 1,
+              "total_golden": 1,
+              "matches": [
+                {
+                  "golden_entity_id": "GL-HARD-0010-term-001",
+                  "predicted_entity_id": null,
+                  "matched": false,
+                  "match_type": "none",
+                  "similarity_score": 0.0,
+                  "field_matches": {},
+                  "confidence_golden": 0.0,
+                  "confidence_predicted": 0.0
+                }
+              ]
+            },
+            "difficulty_tier": "hard"
+          },
+          "f1_score": {
+            "metric_name": "f1_score",
+            "value": 0.0,
+            "target": 0.65,
+            "passed": false,
+            "details": {
+              "true_positives": 0,
+              "false_positives": 0,
+              "false_negatives": 1,
+              "precision": 1.0,
+              "recall": 0.0,
+              "matches": [
+                {
+                  "golden_entity_id": "GL-HARD-0010-term-001",
+                  "predicted_entity_id": null,
+                  "matched": false,
+                  "match_type": "none",
+                  "similarity_score": 0.0,
+                  "field_matches": {},
+                  "confidence_golden": 0.0,
+                  "confidence_predicted": 0.0
+                }
+              ]
+            },
+            "difficulty_tier": "hard"
+          }
+        },
+        "extractor_score": 0.0
+      },
+      "scene": {
+        "extractor_type": "scene",
+        "metric_scores": {
+          "precision": {
+            "metric_name": "precision",
+            "value": 1.0,
+            "target": 0.85,
+            "passed": true,
+            "details": {
+              "true_positives": 0,
+              "false_positives": 0,
+              "total_predicted": 0,
+              "matches": [
+                {
+                  "golden_entity_id": "SC-HARD-0010-scene-001",
+                  "predicted_entity_id": null,
+                  "matched": false,
+                  "match_type": "none",
+                  "similarity_score": 0.0,
+                  "field_matches": {},
+                  "confidence_golden": 0.0,
+                  "confidence_predicted": 0.0
+                }
+              ]
+            },
+            "difficulty_tier": "hard"
+          },
+          "recall": {
+            "metric_name": "recall",
+            "value": 0.0,
+            "target": 0.65,
+            "passed": false,
+            "details": {
+              "true_positives": 0,
+              "false_negatives": 1,
+              "total_golden": 1,
+              "matches": [
+                {
+                  "golden_entity_id": "SC-HARD-0010-scene-001",
+                  "predicted_entity_id": null,
+                  "matched": false,
+                  "match_type": "none",
+                  "similarity_score": 0.0,
+                  "field_matches": {},
+                  "confidence_golden": 0.0,
+                  "confidence_predicted": 0.0
+                }
+              ]
+            },
+            "difficulty_tier": "hard"
+          },
+          "f1_score": {
+            "metric_name": "f1_score",
+            "value": 0.0,
+            "target": 0.65,
+            "passed": false,
+            "details": {
+              "true_positives": 0,
+              "false_positives": 0,
+              "false_negatives": 1,
+              "precision": 1.0,
+              "recall": 0.0,
+              "matches": [
+                {
+                  "golden_entity_id": "SC-HARD-0010-scene-001",
+                  "predicted_entity_id": null,
+                  "matched": false,
+                  "match_type": "none",
+                  "similarity_score": 0.0,
+                  "field_matches": {},
+                  "confidence_golden": 0.0,
+                  "confidence_predicted": 0.0
+                }
+              ]
+            },
+            "difficulty_tier": "hard"
+          }
+        },
+        "extractor_score": 0.0
+      },
+      "narrative": {
+        "extractor_type": "narrative",
+        "metric_scores": {
+          "precision": {
+            "metric_name": "precision",
+            "value": 1.0,
+            "target": 0.85,
+            "passed": true,
+            "details": {
+              "true_positives": 0,
+              "false_positives": 0,
+              "total_predicted": 0,
+              "matches": [
+                {
+                  "golden_entity_id": "NA-HARD-0010-narr-001",
+                  "predicted_entity_id": null,
+                  "matched": false,
+                  "match_type": "none",
+                  "similarity_score": 0.0,
+                  "field_matches": {},
+                  "confidence_golden": 0.0,
+                  "confidence_predicted": 0.0
+                }
+              ]
+            },
+            "difficulty_tier": "hard"
+          },
+          "recall": {
+            "metric_name": "recall",
+            "value": 0.0,
+            "target": 0.65,
+            "passed": false,
+            "details": {
+              "true_positives": 0,
+              "false_negatives": 1,
+              "total_golden": 1,
+              "matches": [
+                {
+                  "golden_entity_id": "NA-HARD-0010-narr-001",
+                  "predicted_entity_id": null,
+                  "matched": false,
+                  "match_type": "none",
+                  "similarity_score": 0.0,
+                  "field_matches": {},
+                  "confidence_golden": 0.0,
+                  "confidence_predicted": 0.0
+                }
+              ]
+            },
+            "difficulty_tier": "hard"
+          },
+          "f1_score": {
+            "metric_name": "f1_score",
+            "value": 0.0,
+            "target": 0.65,
+            "passed": false,
+            "details": {
+              "true_positives": 0,
+              "false_positives": 0,
+              "false_negatives": 1,
+              "precision": 1.0,
+              "recall": 0.0,
+              "matches": [
+                {
+                  "golden_entity_id": "NA-HARD-0010-narr-001",
+                  "predicted_entity_id": null,
+                  "matched": false,
+                  "match_type": "none",
+                  "similarity_score": 0.0,
+                  "field_matches": {},
+                  "confidence_golden": 0.0,
+                  "confidence_predicted": 0.0
+                }
+              ]
+            },
+            "difficulty_tier": "hard"
+          }
+        },
+        "extractor_score": 0.0
+      },
+      "style": {
+        "extractor_type": "style",
+        "metric_scores": {
+          "precision": {
+            "metric_name": "precision",
+            "value": 1.0,
+            "target": 0.85,
+            "passed": true,
+            "details": {
+              "true_positives": 0,
+              "false_positives": 0,
+              "total_predicted": 0,
+              "matches": [
+                {
+                  "golden_entity_id": "ST-HARD-0010-style-001",
+                  "predicted_entity_id": null,
+                  "matched": false,
+                  "match_type": "none",
+                  "similarity_score": 0.0,
+                  "field_matches": {},
+                  "confidence_golden": 0.0,
+                  "confidence_predicted": 0.0
+                }
+              ]
+            },
+            "difficulty_tier": "hard"
+          },
+          "recall": {
+            "metric_name": "recall",
+            "value": 0.0,
+            "target": 0.65,
+            "passed": false,
+            "details": {
+              "true_positives": 0,
+              "false_negatives": 1,
+              "total_golden": 1,
+              "matches": [
+                {
+                  "golden_entity_id": "ST-HARD-0010-style-001",
+                  "predicted_entity_id": null,
+                  "matched": false,
+                  "match_type": "none",
+                  "similarity_score": 0.0,
+                  "field_matches": {},
+                  "confidence_golden": 0.0,
+                  "confidence_predicted": 0.0
+                }
+              ]
+            },
+            "difficulty_tier": "hard"
+          },
+          "f1_score": {
+            "metric_name": "f1_score",
+            "value": 0.0,
+            "target": 0.65,
+            "passed": false,
+            "details": {
+              "true_positives": 0,
+              "false_positives": 0,
+              "false_negatives": 1,
+              "precision": 1.0,
+              "recall": 0.0,
+              "matches": [
+                {
+                  "golden_entity_id": "ST-HARD-0010-style-001",
+                  "predicted_entity_id": null,
+                  "matched": false,
+                  "match_type": "none",
+                  "similarity_score": 0.0,
+                  "field_matches": {},
+                  "confidence_golden": 0.0,
+                  "confidence_predicted": 0.0
+                }
+              ]
+            },
+            "difficulty_tier": "hard"
+          }
+        },
+        "extractor_score": 0.0
+      }
+    },
+    "overall_score": 0.0,
+    "grade": "F"
+  },
+  "regression_check": {
+    "result": "Regression PASS",
+    "regressions_detected": 0,
+    "details": []
+  },
+  "summary": {
+    "total_extractors": 5,
+    "successful_extractors": 5,
+    "total_cases_ran": 150,
+    "total_cases_passed": 150,
+    "total_errors": 0,
+    "regression_result": "Regression PASS",
+    "regression_count": 0
+  },
+  "extractors": {
+    "character": {
+      "metadata": {
+        "benchmark_id": "run_20260804_200638",
+        "benchmark_version": "RM-5.8.3",
+        "golden_dataset_version": "v1.0.0",
+        "config_hash": "",
+        "runtime_version": "",
+        "timestamp": "2026-08-04T20:06:38.986710+00:00",
+        "environment": "offline",
+        "deterministic_seed": 42
+      },
+      "overall": {
+        "extractor_scores": {
+          "character": {
+            "extractor_type": "character",
+            "metric_scores": {
+              "precision": {
+                "metric_name": "precision",
+                "value": 1.0,
+                "target": 0.85,
+                "passed": true,
+                "details": {
+                  "true_positives": 0,
+                  "false_positives": 0,
+                  "total_predicted": 0,
+                  "matches": [
+                    {
+                      "golden_entity_id": "CH-HARD-0010-char-001",
+                      "predicted_entity_id": null,
+                      "matched": false,
+                      "match_type": "none",
+                      "similarity_score": 0.0,
+                      "field_matches": {},
+                      "confidence_golden": 0.0,
+                      "confidence_predicted": 0.0
+                    }
+                  ]
+                },
+                "difficulty_tier": "hard"
+              },
+              "recall": {
+                "metric_name": "recall",
+                "value": 0.0,
+                "target": 0.65,
+                "passed": false,
+                "details": {
+                  "true_positives": 0,
+                  "false_negatives": 1,
+                  "total_golden": 1,
+                  "matches": [
+                    {
+                      "golden_entity_id": "CH-HARD-0010-char-001",
+                      "predicted_entity_id": null,
+                      "matched": false,
+                      "match_type": "none",
+                      "similarity_score": 0.0,
+                      "field_matches": {},
+                      "confidence_golden": 0.0,
+                      "confidence_predicted": 0.0
+                    }
+                  ]
+                },
+                "difficulty_tier": "hard"
+              },
+              "f1_score": {
+                "metric_name": "f1_score",
+                "value": 0.0,
+                "target": 0.65,
+                "passed": false,
+                "details": {
+                  "true_positives": 0,
+                  "false_positives": 0,
+                  "false_negatives": 1,
+                  "precision": 1.0,
+                  "recall": 0.0,
+                  "matches": [
+                    {
+                      "golden_entity_id": "CH-HARD-0010-char-001",
+                      "predicted_entity_id": null,
+                      "matched": false,
+                      "match_type": "none",
+                      "similarity_score": 0.0,
+                      "field_matches": {},
+                      "confidence_golden": 0.0,
+                      "confidence_predicted": 0.0
+                    }
+                  ]
+                },
+                "difficulty_tier": "hard"
+              }
+            },
+            "extractor_score": 0.0
+          }
+        },
+        "overall_score": 0.0,
+        "grade": "F"
+      },
+      "regression_check": null,
+      "summary": {}
+    },
+    "glossary": {
+      "metadata": {
+        "benchmark_id": "run_20260804_200638",
+        "benchmark_version": "RM-5.8.3",
+        "golden_dataset_version": "v1.0.0",
+        "config_hash": "",
+        "runtime_version": "",
+        "timestamp": "2026-08-04T20:06:38.986710+00:00",
+        "environment": "offline",
+        "deterministic_seed": 42
+      },
+      "overall": {
+        "extractor_scores": {
+          "glossary": {
+            "extractor_type": "glossary",
+            "metric_scores": {
+              "precision": {
+                "metric_name": "precision",
+                "value": 1.0,
+                "target": 0.85,
+                "passed": true,
+                "details": {
+                  "true_positives": 0,
+                  "false_positives": 0,
+                  "total_predicted": 0,
+                  "matches": [
+                    {
+                      "golden_entity_id": "GL-HARD-0010-term-001",
+                      "predicted_entity_id": null,
+                      "matched": false,
+                      "match_type": "none",
+                      "similarity_score": 0.0,
+                      "field_matches": {},
+                      "confidence_golden": 0.0,
+                      "confidence_predicted": 0.0
+                    }
+                  ]
+                },
+                "difficulty_tier": "hard"
+              },
+              "recall": {
+                "metric_name": "recall",
+                "value": 0.0,
+                "target": 0.65,
+                "passed": false,
+                "details": {
+                  "true_positives": 0,
+                  "false_negatives": 1,
+                  "total_golden": 1,
+                  "matches": [
+                    {
+                      "golden_entity_id": "GL-HARD-0010-term-001",
+                      "predicted_entity_id": null,
+                      "matched": false,
+                      "match_type": "none",
+                      "similarity_score": 0.0,
+                      "field_matches": {},
+                      "confidence_golden": 0.0,
+                      "confidence_predicted": 0.0
+                    }
+                  ]
+                },
+                "difficulty_tier": "hard"
+              },
+              "f1_score": {
+                "metric_name": "f1_score",
+                "value": 0.0,
+                "target": 0.65,
+                "passed": false,
+                "details": {
+                  "true_positives": 0,
+                  "false_positives": 0,
+                  "false_negatives": 1,
+                  "precision": 1.0,
+                  "recall": 0.0,
+                  "matches": [
+                    {
+                      "golden_entity_id": "GL-HARD-0010-term-001",
+                      "predicted_entity_id": null,
+                      "matched": false,
+                      "match_type": "none",
+                      "similarity_score": 0.0,
+                      "field_matches": {},
+                      "confidence_golden": 0.0,
+                      "confidence_predicted": 0.0
+                    }
+                  ]
+                },
+                "difficulty_tier": "hard"
+              }
+            },
+            "extractor_score": 0.0
+          }
+        },
+        "overall_score": 0.0,
+        "grade": "F"
+      },
+      "regression_check": null,
+      "summary": {}
+    },
+    "scene": {
+      "metadata": {
+        "benchmark_id": "run_20260804_200638",
+        "benchmark_version": "RM-5.8.3",
+        "golden_dataset_version": "v1.0.0",
+        "config_hash": "",
+        "runtime_version": "",
+        "timestamp": "2026-08-04T20:06:38.986710+00:00",
+        "environment": "offline",
+        "deterministic_seed": 42
+      },
+      "overall": {
+        "extractor_scores": {
+          "scene": {
+            "extractor_type": "scene",
+            "metric_scores": {
+              "precision": {
+                "metric_name": "precision",
+                "value": 1.0,
+                "target": 0.85,
+                "passed": true,
+                "details": {
+                  "true_positives": 0,
+                  "false_positives": 0,
+                  "total_predicted": 0,
+                  "matches": [
+                    {
+                      "golden_entity_id": "SC-HARD-0010-scene-001",
+                      "predicted_entity_id": null,
+                      "matched": false,
+                      "match_type": "none",
+                      "similarity_score": 0.0,
+                      "field_matches": {},
+                      "confidence_golden": 0.0,
+                      "confidence_predicted": 0.0
+                    }
+                  ]
+                },
+                "difficulty_tier": "hard"
+              },
+              "recall": {
+                "metric_name": "recall",
+                "value": 0.0,
+                "target": 0.65,
+                "passed": false,
+                "details": {
+                  "true_positives": 0,
+                  "false_negatives": 1,
+                  "total_golden": 1,
+                  "matches": [
+                    {
+                      "golden_entity_id": "SC-HARD-0010-scene-001",
+                      "predicted_entity_id": null,
+                      "matched": false,
+                      "match_type": "none",
+                      "similarity_score": 0.0,
+                      "field_matches": {},
+                      "confidence_golden": 0.0,
+                      "confidence_predicted": 0.0
+                    }
+                  ]
+                },
+                "difficulty_tier": "hard"
+              },
+              "f1_score": {
+                "metric_name": "f1_score",
+                "value": 0.0,
+                "target": 0.65,
+                "passed": false,
+                "details": {
+                  "true_positives": 0,
+                  "false_positives": 0,
+                  "false_negatives": 1,
+                  "precision": 1.0,
+                  "recall": 0.0,
+                  "matches": [
+                    {
+                      "golden_entity_id": "SC-HARD-0010-scene-001",
+                      "predicted_entity_id": null,
+                      "matched": false,
+                      "match_type": "none",
+                      "similarity_score": 0.0,
+                      "field_matches": {},
+                      "confidence_golden": 0.0,
+                      "confidence_predicted": 0.0
+                    }
+                  ]
+                },
+                "difficulty_tier": "hard"
+              }
+            },
+            "extractor_score": 0.0
+          }
+        },
+        "overall_score": 0.0,
+        "grade": "F"
+      },
+      "regression_check": null,
+      "summary": {}
+    },
+    "narrative": {
+      "metadata": {
+        "benchmark_id": "run_20260804_200638",
+        "benchmark_version": "RM-5.8.3",
+        "golden_dataset_version": "v1.0.0",
+        "config_hash": "",
+        "runtime_version": "",
+        "timestamp": "2026-08-04T20:06:38.986710+00:00",
+        "environment": "offline",
+        "deterministic_seed": 42
+      },
+      "overall": {
+        "extractor_scores": {
+          "narrative": {
+            "extractor_type": "narrative",
+            "metric_scores": {
+              "precision": {
+                "metric_name": "precision",
+                "value": 1.0,
+                "target": 0.85,
+                "passed": true,
+                "details": {
+                  "true_positives": 0,
+                  "false_positives": 0,
+                  "total_predicted": 0,
+                  "matches": [
+                    {
+                      "golden_entity_id": "NA-HARD-0010-narr-001",
+                      "predicted_entity_id": null,
+                      "matched": false,
+                      "match_type": "none",
+                      "similarity_score": 0.0,
+                      "field_matches": {},
+                      "confidence_golden": 0.0,
+                      "confidence_predicted": 0.0
+                    }
+                  ]
+                },
+                "difficulty_tier": "hard"
+              },
+              "recall": {
+                "metric_name": "recall",
+                "value": 0.0,
+                "target": 0.65,
+                "passed": false,
+                "details": {
+                  "true_positives": 0,
+                  "false_negatives": 1,
+                  "total_golden": 1,
+                  "matches": [
+                    {
+                      "golden_entity_id": "NA-HARD-0010-narr-001",
+                      "predicted_entity_id": null,
+                      "matched": false,
+                      "match_type": "none",
+                      "similarity_score": 0.0,
+                      "field_matches": {},
+                      "confidence_golden": 0.0,
+                      "confidence_predicted": 0.0
+                    }
+                  ]
+                },
+                "difficulty_tier": "hard"
+              },
+              "f1_score": {
+                "metric_name": "f1_score",
+                "value": 0.0,
+                "target": 0.65,
+                "passed": false,
+                "details": {
+                  "true_positives": 0,
+                  "false_positives": 0,
+                  "false_negatives": 1,
+                  "precision": 1.0,
+                  "recall": 0.0,
+                  "matches": [
+                    {
+                      "golden_entity_id": "NA-HARD-0010-narr-001",
+                      "predicted_entity_id": null,
+                      "matched": false,
+                      "match_type": "none",
+                      "similarity_score": 0.0,
+                      "field_matches": {},
+                      "confidence_golden": 0.0,
+                      "confidence_predicted": 0.0
+                    }
+                  ]
+                },
+                "difficulty_tier": "hard"
+              }
+            },
+            "extractor_score": 0.0
+          }
+        },
+        "overall_score": 0.0,
+        "grade": "F"
+      },
+      "regression_check": null,
+      "summary": {}
+    },
+    "style": {
+      "metadata": {
+        "benchmark_id": "run_20260804_200638",
+        "benchmark_version": "RM-5.8.3",
+        "golden_dataset_version": "v1.0.0",
+        "config_hash": "",
+        "runtime_version": "",
+        "timestamp": "2026-08-04T20:06:38.986710+00:00",
+        "environment": "offline",
+        "deterministic_seed": 42
+      },
+      "overall": {
+        "extractor_scores": {
+          "style": {
+            "extractor_type": "style",
+            "metric_scores": {
+              "precision": {
+                "metric_name": "precision",
+                "value": 1.0,
+                "target": 0.85,
+                "passed": true,
+                "details": {
+                  "true_positives": 0,
+                  "false_positives": 0,
+                  "total_predicted": 0,
+                  "matches": [
+                    {
+                      "golden_entity_id": "ST-HARD-0010-style-001",
+                      "predicted_entity_id": null,
+                      "matched": false,
+                      "match_type": "none",
+                      "similarity_score": 0.0,
+                      "field_matches": {},
+                      "confidence_golden": 0.0,
+                      "confidence_predicted": 0.0
+                    }
+                  ]
+                },
+                "difficulty_tier": "hard"
+              },
+              "recall": {
+                "metric_name": "recall",
+                "value": 0.0,
+                "target": 0.65,
+                "passed": false,
+                "details": {
+                  "true_positives": 0,
+                  "false_negatives": 1,
+                  "total_golden": 1,
+                  "matches": [
+                    {
+                      "golden_entity_id": "ST-HARD-0010-style-001",
+                      "predicted_entity_id": null,
+                      "matched": false,
+                      "match_type": "none",
+                      "similarity_score": 0.0,
+                      "field_matches": {},
+                      "confidence_golden": 0.0,
+                      "confidence_predicted": 0.0
+                    }
+                  ]
+                },
+                "difficulty_tier": "hard"
+              },
+              "f1_score": {
+                "metric_name": "f1_score",
+                "value": 0.0,
+                "target": 0.65,
+                "passed": false,
+                "details": {
+                  "true_positives": 0,
+                  "false_positives": 0,
+                  "false_negatives": 1,
+                  "precision": 1.0,
+                  "recall": 0.0,
+                  "matches": [
+                    {
+                      "golden_entity_id": "ST-HARD-0010-style-001",
+                      "predicted_entity_id": null,
+                      "matched": false,
+                      "match_type": "none",
+                      "similarity_score": 0.0,
+                      "field_matches": {},
+                      "confidence_golden": 0.0,
+                      "confidence_predicted": 0.0
+                    }
+                  ]
+                },
+                "difficulty_tier": "hard"
+              }
+            },
+            "extractor_score": 0.0
+          }
+        },
+        "overall_score": 0.0,
+        "grade": "F"
+      },
+      "regression_check": null,
+      "summary": {}
+    }
+  }
+}

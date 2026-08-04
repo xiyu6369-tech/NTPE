@@ -122,6 +122,51 @@ class BenchmarkScorer:
         self.business_rule_metric = BusinessRuleComplianceMetric()
         self.review_metric = ReviewComplianceMetric()
 
+    def generate_scorecard(
+        self,
+        comparisons: List[ExtractionComparison],
+        metadata: BenchmarkMetadata,
+    ) -> Scorecard:
+        overall = OverallScore()
+        extractor_groups: Dict[EntityType, List[ExtractionComparison]] = {}
+        for c in comparisons:
+            et = c.extractor_type
+            extractor_groups.setdefault(et, []).append(c)
+
+        for entity_type, comps in extractor_groups.items():
+            extractor_score = ExtractorScore(extractor_type=entity_type)
+            metrics_to_compute = [
+                (self.precision_metric, MetricName.PRECISION),
+                (self.recall_metric, MetricName.RECALL),
+                (self.f1_metric, MetricName.F1_SCORE),
+            ]
+            for comp in comps:
+                for metric_obj, metric_name in metrics_to_compute:
+                    ms = metric_obj.compute(comp)
+                    target = self._get_target(metric_name, comp.difficulty_tier)
+                    scored = MetricScore(
+                        metric_name=metric_name,
+                        value=ms.value,
+                        target=target,
+                        passed=ms.value >= target,
+                        difficulty_tier=comp.difficulty_tier,
+                        details=ms.details,
+                    )
+                    extractor_score = extractor_score.add_metric(scored)
+
+            extractor_score = replace(
+                extractor_score,
+                extractor_score=extractor_score.compute_weighted_score(),
+            )
+            overall = overall.add_extractor_score(extractor_score)
+
+        overall = overall.compute_overall()
+        return Scorecard(metadata=metadata, overall=overall)
+
+    def _get_target(self, metric_name: MetricName, tier: DifficultyTier) -> float:
+        tier_targets = self.config.difficulty_targets.get(tier, {})
+        return tier_targets.get(metric_name, 0.85)
+
 
 def create_scorer(config: Optional[ScorerConfig] = None) -> BenchmarkScorer:
     """Factory function to create a benchmark scorer."""
