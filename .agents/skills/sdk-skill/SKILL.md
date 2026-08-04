@@ -1,6 +1,6 @@
 ---
 name: sdk-skill
-description: Brief description of what this skill does
+description: Provide a concise overview of the skill's functionality and its primary use cases.
 ---
 
 # sdk-skill
@@ -9,7 +9,7 @@ Instructions for the AI agent...
 
 ## Usage
 
-Describe when and how to use this skill.
+Describe when and how to use this skill. Include specific examples of scenarios where this skill is beneficial.
 
 ## Steps
 
