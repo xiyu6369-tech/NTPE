@@ -301,6 +301,8 @@ class Runner:
         report_md = self._build_report_md(results, overall_data, compare_baseline)
         self.writer.write_report(report_md)
 
+        self.writer.archive_to_history(self.metadata.benchmark_id)
+
     def _build_report_md(
         self,
         results: Dict[str, RunResult],

@@ -1,7 +1,9 @@
 """
-Knowledge Benchmark Metrics Engine (RM-5.8.2)
+Knowledge Benchmark Metrics Engine (RM-5.8.5)
 
-Offline scoring engine for evaluating Knowledge Extraction Layer quality.
+Offline scoring, analysis, dashboard, baseline management, regression gate,
+and release gate for the Knowledge Extraction Layer.
+
 Completely separated from Translation Runtime and Knowledge Runtime.
 
 Zero dependencies on core/, lts/, or any runtime module.
@@ -30,9 +32,12 @@ from .errors import (
 )
 from .scorer import BenchmarkScorer
 from .comparison import ComparisonEngine
+from .regression_gate import RegressionGate, RegressionGateReport, GateStatus, create_regression_gate
+from .release_gate import ReleaseGate, ReleaseGateResult, ReleaseDecision, create_release_gate
+from .dashboard import DashboardGenerator, DashboardModel, DashboardSlot, create_dashboard_generator
+from .baseline import BaselineManager, BaselineEntry, BaselineIndex, create_baseline_manager
 
 __all__ = [
-    # Models
     "BenchmarkResult",
     "BenchmarkMetadata",
     "EntityMatchResult",
@@ -42,15 +47,29 @@ __all__ = [
     "ExtractorScore",
     "OverallScore",
     "Grade",
-    # Errors
     "BenchmarkError",
     "GoldenDatasetError",
     "ComparisonError",
     "MetricComputationError",
     "InvalidInputError",
-    # Engine
     "BenchmarkScorer",
     "ComparisonEngine",
+    "RegressionGate",
+    "RegressionGateReport",
+    "GateStatus",
+    "create_regression_gate",
+    "ReleaseGate",
+    "ReleaseGateResult",
+    "ReleaseDecision",
+    "create_release_gate",
+    "DashboardGenerator",
+    "DashboardModel",
+    "DashboardSlot",
+    "create_dashboard_generator",
+    "BaselineManager",
+    "BaselineEntry",
+    "BaselineIndex",
+    "create_baseline_manager",
 ]
 
-__version__ = "5.8.2"
+__version__ = "5.8.5"
