@@ -85,7 +85,7 @@ Error Object Format:
 - [ ] All required fields present
 - [ ] entity_type = scene (const)
 - [ ] schema_version = 1.0
-- [ ] scene_id pattern ^SC-\d+$
+- [ ] scene_id pattern ^SC-\\d+$
 - [ ] time_of_day in enum
 - [ ] tone in enum
 - [ ] boundary_type in enum

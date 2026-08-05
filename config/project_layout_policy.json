@@ -48,6 +48,7 @@
     "artifacts",
     "backup",
     "benchmark",
+    "benchmarks",
     "cache",
     "cli",
     "compatibility",

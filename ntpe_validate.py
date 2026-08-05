@@ -33,11 +33,16 @@ REQUIRED_DIRS = [
 ]
 
 REQUIRED_ENTRYPOINTS = [
-    "launcher.py",
     "launcher_translate.py",
+]
+
+LEGACY_ENTRYPOINTS = [
+    "launcher.py",
     "ntpe_translate_txt.py",
     "ntpe_translate_batch.py",
 ]
+
+LEGACY_ARCHIVE_DIR = "archive/legacy_entrypoints"
 
 REQUIRED_IMPORTS = [
     "core.translation_engine.translation_engine",
@@ -63,6 +68,8 @@ EXCLUDE_DIR_NAMES = {
     ".mypy_cache",
     ".ruff_cache",
     "node_modules",
+    "archive",
+    "backup",
     "cache",
     "tmp",
     "temp",
@@ -135,10 +142,26 @@ def check_required_dirs() -> CheckResult:
 
 
 def check_entrypoints() -> CheckResult:
-    missing = [f for f in REQUIRED_ENTRYPOINTS if not (ROOT / f).is_file()]
-    if missing:
-        return CheckResult("Legacy entrypoints", "FAIL", "Missing: " + ", ".join(missing))
-    return CheckResult("Legacy entrypoints", "PASS", f"{len(REQUIRED_ENTRYPOINTS)} entrypoints found")
+    missing_root = [f for f in REQUIRED_ENTRYPOINTS if not (ROOT / f).is_file()]
+    legacy_archive_ok = (ROOT / LEGACY_ARCHIVE_DIR).is_dir()
+    legacy_found = [f for f in LEGACY_ENTRYPOINTS if (ROOT / LEGACY_ARCHIVE_DIR / f).is_file()]
+
+    detail_parts = []
+    if missing_root:
+        detail_parts.append("Root missing: " + ", ".join(missing_root))
+    if legacy_archive_ok:
+        detail_parts.append(f"archive OK ({len(legacy_found)}/{len(LEGACY_ENTRYPOINTS)} legacy preserved)")
+    elif LEGACY_ENTRYPOINTS:
+        missing_legacy = [f for f in LEGACY_ENTRYPOINTS if f not in legacy_found]
+        if missing_legacy:
+            detail_parts.append("Legacy missing in archive: " + ", ".join(missing_legacy))
+
+    has_root_fail = len(missing_root) > 0
+    detail = "; ".join(detail_parts) if detail_parts else f"{len(REQUIRED_ENTRYPOINTS)} active + {len(legacy_found)} legacy entrypoints"
+
+    if has_root_fail:
+        return CheckResult("Legacy entrypoints", "FAIL", detail)
+    return CheckResult("Legacy entrypoints", "PASS", detail)
 
 
 def check_required_imports() -> CheckResult:
