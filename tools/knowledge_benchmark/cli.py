@@ -164,6 +164,78 @@ def _cmd_regression_gate(args, runner: Runner, root: Path) -> None:
     print(f"\nRegression gate report: {gate_path}")
 
 
+def _cmd_runtime_check(args, runner: Runner, root: Path) -> None:
+    print("Runtime Quality Gate Check (RM-5.9.1)")
+    print("=" * 50)
+    print()
+
+    from core.knowledge_benchmark.runtime.adapter import create_runtime_adapter
+    from core.knowledge_benchmark.runtime.models import (
+        TranslationInput,
+        KnowledgeExtractionOutput,
+    )
+
+    adapter = create_runtime_adapter()
+
+    sample_source = "The customer service representative greeted the client warmly and processed the purchase."
+    sample_translation = "客服人员热情地迎接了客户并处理了购买事宜。"
+
+    sample_entities = [
+        {"id": "ent_1", "type": "character", "name": "customer_service", "attributes": ["polite", "professional"]},
+        {"id": "ent_2", "type": "character", "name": "client", "attributes": []},
+    ]
+
+    predicted_entities = [
+        {"id": "ent_1", "type": "character", "name": "customer_service", "attributes": ["polite"]},
+        {"id": "ent_100", "type": "character", "name": "purchase", "attributes": []},
+    ]
+
+    translation = TranslationInput(
+        source_text=sample_source,
+        translated_text=sample_translation,
+        metadata={"mode": "test"},
+    )
+    extraction = KnowledgeExtractionOutput(
+        source_text=sample_translation,
+        extracted_entities=predicted_entities,
+        extractor_type="character",
+    )
+
+    decision = adapter.evaluate(
+        translation=translation,
+        extraction=extraction,
+        golden_entities=sample_entities,
+        extractor_type="character",
+    )
+
+    print(f"Status       : {decision.status.value}")
+    print(f"Release      : {decision.release_decision}")
+    print(f"Regression   : {decision.regression_status}")
+    print(f"Pass Gate    : {decision.pass_gate}")
+    print(f"Require Retry: {decision.requires_retry}")
+    print()
+    print("Scorecard:")
+    print(f"  Precision  : {decision.scorecard.precision:.4f}")
+    print(f"  Recall     : {decision.scorecard.recall:.4f}")
+    print(f"  F1         : {decision.scorecard.f1:.4f}")
+    print(f"  ECE        : {decision.scorecard.ece:.4f}")
+    print(f"  Overall    : {decision.scorecard.overall_score:.4f} ({decision.scorecard.grade})")
+    if decision.reason:
+        print(f"\nReasons:")
+        for r in decision.reason:
+            print(f"  - {r}")
+    if decision.recommendations:
+        print(f"\nRecommendations:")
+        for r in decision.recommendations:
+            print(f"  - {r}")
+
+    output_dir = root / args.output
+    output_dir.mkdir(parents=True, exist_ok=True)
+    decision_path = output_dir / "runtime_quality_decision.json"
+    decision_path.write_text(decision.to_json(), encoding="utf-8")
+    print(f"\nDecision saved to: {decision_path}")
+
+
 def _cmd_release_gate(args, runner: Runner, root: Path) -> None:
     print("Evaluating Release Gate...")
 
@@ -218,7 +290,8 @@ def main() -> None:
   python -m tools.knowledge_benchmark.cli --promote-baseline
   python -m tools.knowledge_benchmark.cli --history
   python -m tools.knowledge_benchmark.cli --regression-gate
-  python -m tools.knowledge_benchmark.cli --release-gate""",
+  python -m tools.knowledge_benchmark.cli --release-gate
+  python -m tools.knowledge_benchmark.cli --runtime-check""",
     )
 
     run_group = parser.add_mutually_exclusive_group()
@@ -229,6 +302,7 @@ def main() -> None:
     run_group.add_argument("--history", action="store_true", help="Show benchmark history")
     run_group.add_argument("--regression-gate", action="store_true", help="Run Regression Gate check")
     run_group.add_argument("--release-gate", action="store_true", help="Run Release Gate check")
+    run_group.add_argument("--runtime-check", action="store_true", help="Run Runtime Quality Gate check (RM-5.9.1)")
 
     parser.add_argument("--analysis", action="store_true", help="Enable Analysis Engine (RM-5.8.4)")
     parser.add_argument("--compare-baseline", action="store_true", help="Compare against baseline results")
@@ -267,6 +341,12 @@ def main() -> None:
         runner = Runner(root_path=root)
         runner.writer.output_dir = root / args.output
         _cmd_release_gate(args, runner, root)
+        return
+
+    if args.runtime_check:
+        runner = Runner(root_path=root)
+        runner.writer.output_dir = root / args.output
+        _cmd_runtime_check(args, runner, root)
         return
 
     runner = Runner(root_path=root)
