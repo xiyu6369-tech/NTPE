@@ -591,6 +591,275 @@ def translate_package_with_retry(engine: TranslationEngine, package: dict, packa
     return last_result
 
 
+def _pipeline_mode() -> str:
+    """Return the active translation pipeline mode (runtime or legacy)."""
+    return os.environ.get("NTPE_RUNTIME_PIPELINE", "runtime").strip().lower()
+
+
+def _translate_txt_with_runtime_pipeline(
+    options: TxtTranslationOptions,
+    root_path: Path,
+    engine: TranslationEngine,
+    chunks: list[str],
+    input_path: Path,
+    output_dir: Path,
+    stage_dir: Path,
+    chunk_out_dir: Path,
+    locked_dictionary: dict,
+    resume_state_path: Path,
+    resume_state: dict,
+    live_progress_path: Path,
+    character_memory_path: Path | None,
+    matched_terms_for_memory: list[str],
+) -> dict:
+    """RM-6.4.2: Translate a TXT file using the Runtime Pipeline.
+
+    Uses RuntimeOrchestrator to coordinate all RM-6 layers:
+        KnowledgeRuntime → PromptBuilder → TranslationRuntimeAdapter
+        → RuntimeSession → Checkpoint → Trace → TranslationEngine
+
+    Preserves post-translation quality processing (QA, naturalness,
+    formatting, discipline, V5 integration) identical to legacy mode.
+    """
+    from core.runtime_orchestrator import RuntimeOrchestrator
+
+    orchestrator = RuntimeOrchestrator()
+    orchestrator.set_engine(engine)
+
+    translated_chunks: list[str] = []
+    records: list[dict] = []
+    t0 = time.time()
+
+    emit_progress(
+        f"runtime pipeline enabled: orchestrator={orchestrator.version} chunks={len(chunks)}",
+        options=options,
+    )
+
+    # Start a single Runtime Session for the entire file
+    session = orchestrator.start_session(metadata={
+        "input": str(input_path),
+        "chunk_total": len(chunks),
+        "profile": options.quality_profile,
+        "model": options.model,
+        "pipeline": "runtime",
+    })
+    session_id = session.session_id
+    emit_progress(f"runtime session created: {session_id}", options=options)
+
+    for idx, chunk in enumerate(chunks, start=1):
+        emit_progress(f"runtime chunk {idx}/{len(chunks)} prepare chars={len(chunk)}", options=options)
+        save_live_progress(live_progress_path, {
+            "status": "running", "input": str(input_path), "output_dir": str(output_dir),
+            "chunk_total": len(chunks), "chunk_completed": max(0, idx - 1),
+            "current_chunk": idx, "current_step": "runtime_prepare",
+            "updated_at": now_iso(),
+        })
+
+        chunk_file = chunk_out_dir / f"{input_path.stem}_chunk_{idx:06d}_zh.txt"
+        chunk_key = f"{idx:06d}"
+
+        source_hash = hashlib.sha256(chunk.encode("utf-8")).hexdigest()[:16]
+        state_entry = resume_state["chunks"].get(chunk_key, {})
+        reusable_state = (
+            options.resume
+            and state_entry.get("status") in {"success", "pass_with_warning"}
+            and state_entry.get("source_hash") == source_hash
+            and chunk_file.exists()
+            and chunk_file.read_text(encoding="utf-8").strip()
+        )
+
+        package = build_prompt_package(
+            options=options, chunk_text=chunk, chunk_index=idx, chunk_total=len(chunks),
+            locked_dictionary=locked_dictionary,
+            previous_context="\n\n".join(translated_chunks[-2:])[-options.previous_context_chars:] if translated_chunks else "",
+        )
+        package_path = stage_dir / f"{input_path.stem}_chunk_{idx:06d}.json"
+        save_json(package_path, package)
+
+        if reusable_state:
+            emit_progress(f"runtime chunk {idx}/{len(chunks)} resume hit: using cached output", options=options)
+            translation = chunk_file.read_text(encoding="utf-8")
+            if options.strict_lock_terms:
+                translation = apply_locked_dictionary(translation, locked_dictionary)
+            translated_chunks.append(translation)
+            records.append({"status": "skipped", "output_path": str(chunk_file), "package_id": package["package_id"], "attempt": 0})
+            continue
+
+        if options.dry_run:
+            emit_progress(f"runtime chunk {idx}/{len(chunks)} dry-run: skip provider", options=options)
+            translated_chunks.append("")
+            resume_state["chunks"][chunk_key] = {"status": "dry_run", "source_hash": source_hash, "output_path": str(chunk_file), "updated_at": now_iso()}
+            save_resume_state(resume_state_path, resume_state)
+            records.append({"status": "dry_run", "output_path": str(chunk_file), "package_id": package["package_id"], "attempt": 0})
+            continue
+
+        # -- Runtime Pipeline execution --
+        save_live_progress(live_progress_path, {
+            "status": "running", "input": str(input_path), "output_dir": str(output_dir),
+            "chunk_total": len(chunks), "chunk_completed": max(0, idx - 1),
+            "current_chunk": idx, "current_step": "runtime_execute",
+            "updated_at": now_iso(),
+        })
+
+        execution_result = orchestrator.execute(
+            chunk_text=chunk,
+            session_id=session_id,
+            snapshot_id="",
+            current_chunk=idx,
+            total_chunks=len(chunks),
+            metadata={"source": str(input_path), "profile": options.quality_profile, "model": options.model},
+        )
+
+        response = execution_result.response
+        provider_result = response if isinstance(response, dict) else {"status": "failed", "error": str(response)}
+
+        if provider_result.get("status") == "success":
+            translation = provider_result.get("translation", "")
+            if not translation:
+                out_path = provider_result.get("output_path", "")
+                if out_path and Path(out_path).exists():
+                    translation = Path(out_path).read_text(encoding="utf-8")
+        else:
+            translation = ""
+            emit_progress(
+                f"runtime chunk {idx}/{len(chunks)} engine error: {str(provider_result.get('error', 'unknown'))[:200]}",
+                options=options,
+            )
+
+        if translation:
+            generated_path = Path(provider_result.get("output_path", str(chunk_file)))
+            save_text(generated_path, translation)
+
+            # Post-translation quality processing (preserved from legacy)
+            if options.strict_lock_terms:
+                translation = apply_locked_dictionary(translation, locked_dictionary)
+            translation = format_translation_output(translation, options)
+            naturalness = canonicalize_novel_chinese(translation)
+            translation = naturalness.text
+            literary = apply_literary_collocation_guard(translation)
+            translation = literary.text
+            analyze_voice_register(chunk, translation, profile=options.quality_profile)
+
+            # Quality V5
+            qa_report: dict = {"passed": True, "issues": [], "metrics": {}}
+            if options.quality_v5_enabled and options.qa_enabled:
+                quality_v5 = run_quality_v5_phase1(
+                    chunk, translation,
+                    locked_terms=locked_dictionary,
+                    config={"min_length_ratio": max(0.18, options.min_length_ratio)},
+                )
+                qa_report = merge_quality_v5_into_runtime_qa(
+                    runtime_qa_report=qa_report, quality_v5_report=quality_v5,
+                )
+
+            # Legacy QA
+            if options.qa_enabled and options.speed != "fast":
+                legacy_qa = analyze_translation_quality(
+                    chunk, translation,
+                    min_char_ratio=options.min_length_ratio,
+                    max_korean_chars_allowed=options.max_korean_chars,
+                    max_repeated_lines=options.max_repeated_lines,
+                )
+                qa_report.setdefault("issues", []).extend(legacy_qa.get("issues", []))
+                qa_report.setdefault("metrics", {}).update(legacy_qa.get("metrics", {}))
+                qa_report["passed"] = qa_report.get("passed", True) and legacy_qa.get("passed", True)
+
+            # Discipline runtime
+            if options.qa_enabled:
+                discipline_runtime = DisciplineRuntimeContext(
+                    chunk_text=chunk, translated_text=translation,
+                    qa_report=qa_report, chunk_index=idx,
+                )
+                discipline_result = integrate_translation_discipline_runtime(discipline_runtime=discipline_runtime)
+                if discipline_result.repairs:
+                    from core.translation_discipline.runtime_orchestrator import orchestrate_runtime_discipline
+                    _r = orchestrate_runtime_discipline(
+                        text=chunk,
+                        runtime_qa={"issues": qa_report.get("issues", []), "metrics": qa_report.get("metrics", {})},
+                    )
+                    qa_report["passed"] = (_r.outcome == "passed")
+
+            package["qa"] = qa_report
+            attach_unified_report(package, package_path, qa_report, options.quality_profile)
+            save_text(chunk_file, translation)
+            translated_chunks.append(translation)
+            result = {
+                "status": "success",
+                "output_path": str(chunk_file),
+                "package_id": package["package_id"],
+                "attempt": 1,
+                "qa": qa_report,
+                "runtime_pipeline": True,
+                "orchestrator_version": orchestrator.version,
+                "session_id": session_id,
+            }
+        else:
+            translated_chunks.append("")
+            result = provider_result
+
+        resume_state["chunks"][chunk_key] = {
+            "status": result.get("status", "failed"),
+            "source_hash": source_hash,
+            "output_path": str(chunk_file),
+            "updated_at": now_iso(),
+        }
+        save_resume_state(resume_state_path, resume_state)
+        save_json(package_path, package)
+        records.append(result)
+
+        save_live_progress(live_progress_path, {
+            "status": "running", "input": str(input_path), "output_dir": str(output_dir),
+            "chunk_total": len(chunks), "chunk_completed": idx,
+            "current_chunk": idx, "current_step": "runtime_processing",
+            "updated_at": now_iso(),
+        })
+
+    # Ensure session transitions to RUNNING before completing.
+    # Dry-run or all-resume paths may skip execute() calls entirely.
+    from core.runtime_session import RunStatus as _RS
+    _state = orchestrator.session_manager.get_state(session_id)
+    if _state is not None and _state.status.value == "CREATED":
+        try:
+            orchestrator.session_manager.update_runtime(session_id, status=_RS.RUNNING)
+        except Exception:
+            pass
+    orchestrator.complete(session_id, success=True)
+
+    # Finalize output
+    save_live_progress(live_progress_path, {
+        "status": "finalizing", "input": str(input_path), "output_dir": str(output_dir),
+        "chunk_total": len(chunks), "chunk_completed": len(chunks),
+        "current_step": "finalizing", "updated_at": now_iso(),
+    })
+
+    final_output = output_dir / f"{input_path.stem}{DEFAULT_OUTPUT_SUFFIX}.txt"
+    if not options.dry_run and any(translated_chunks):
+        final_text = "\n\n".join(translated_chunks).strip() + "\n"
+        if options.strict_lock_terms and locked_dictionary:
+            final_text = apply_locked_dictionary(final_text, locked_dictionary)
+        save_text(final_output, final_text)
+        update_character_memory(final_text, character_memory_path, matched_terms_for_memory)
+
+    elapsed = time.time() - t0
+
+    return {
+        "status": "success",
+        "input": str(input_path),
+        "output": str(final_output),
+        "output_dir": str(output_dir),
+        "chunk_total": len(chunks),
+        "resume_state": str(resume_state_path),
+        "records": records,
+        "summary": {
+            "total_chunks": len(chunks),
+            "error": 0,
+            "elapsed_seconds": round(elapsed, 2),
+        },
+        "pipeline_mode": "runtime",
+        "orchestrator_version": orchestrator.version,
+        "session_id": session_id,
+    }
+
 
 TAIWAN_TRADITIONAL_REPLACEMENTS = {
     "台湾": "台灣",
@@ -1400,6 +1669,35 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
     character_memory_path = resolve_character_memory_path(root_path, options)
     matched_terms_for_memory = collect_matched_locked_terms(chunks, locked_dictionary)
     engine = TranslationEngine(root=root_path)
+
+    # RM-6.4.2: If runtime pipeline is active, delegate to Runtime Orchestrator
+    if _pipeline_mode() == "runtime":
+        _resume_path = get_resume_state_path(output_dir, input_path)
+        _live_path = output_dir / f"{input_path.stem}_live_progress.json"
+        save_live_progress(_live_path, {
+            "status": "running",
+            "input": str(input_path), "output_dir": str(output_dir),
+            "chunk_total": len(chunks), "chunk_completed": 0,
+            "current_step": "initialized", "updated_at": now_iso(),
+        })
+        _resume_state = load_resume_state(_resume_path)
+        _resume_state["input"] = str(input_path)
+        _resume_state["output_dir"] = str(output_dir)
+        _resume_state["chunk_total"] = len(chunks)
+        _resume_state["updated_at"] = now_iso()
+        save_resume_state(_resume_path, _resume_state)
+        return _translate_txt_with_runtime_pipeline(
+            options=options, root_path=root_path, engine=engine,
+            chunks=chunks, input_path=input_path, output_dir=output_dir,
+            stage_dir=stage_dir, chunk_out_dir=chunk_out_dir,
+            locked_dictionary=locked_dictionary,
+            resume_state_path=_resume_path,
+            resume_state=_resume_state,
+            live_progress_path=_live_path,
+            character_memory_path=character_memory_path,
+            matched_terms_for_memory=matched_terms_for_memory,
+        )
+
     translated_chunks: list[str] = []
     records: list[dict] = []
     resume_state_path = get_resume_state_path(output_dir, input_path)

@@ -134,6 +134,7 @@ def build_parser() -> argparse.ArgumentParser:
     txt.add_argument("--api-connect-timeout", type=int, default=None, help="provider connect timeout in seconds")
     txt.add_argument("--dry-run", action="store_true", help="build packages only; do not call NVIDIA API")
     txt.add_argument("--no-progress", action="store_true", help="disable live NTPE progress messages")
+    txt.add_argument("--pipeline", choices=("runtime", "legacy"), default=os.environ.get("NTPE_RUNTIME_PIPELINE", "runtime"), help="translation pipeline mode; default: runtime (env: NTPE_RUNTIME_PIPELINE)")
     _add_quality_integration_v72_flags(txt)
 
     batch = sub.add_parser("batch", help="translate all TXT files in a folder")
@@ -164,6 +165,7 @@ def build_parser() -> argparse.ArgumentParser:
     batch.add_argument("--api-connect-timeout", type=int, default=None, help="provider connect timeout in seconds")
     batch.add_argument("--dry-run", action="store_true", help="build packages only; do not call NVIDIA API")
     batch.add_argument("--no-progress", action="store_true", help="disable live NTPE progress messages")
+    batch.add_argument("--pipeline", choices=("runtime", "legacy"), default=os.environ.get("NTPE_RUNTIME_PIPELINE", "runtime"), help="translation pipeline mode; default: runtime (env: NTPE_RUNTIME_PIPELINE)")
     _add_quality_integration_v72_flags(batch)
 
     regression = sub.add_parser("regression", help="run literary regression corpus under tests/literary")
@@ -352,6 +354,8 @@ def run_doctor(strict: bool = False) -> int:
 def run_txt(args: argparse.Namespace) -> int:
     _apply_runtime_timeout_env(args)
     _apply_provider_env(args)
+    pipeline_mode = getattr(args, "pipeline", None) or os.environ.get("NTPE_RUNTIME_PIPELINE", "runtime")
+    os.environ["NTPE_RUNTIME_PIPELINE"] = pipeline_mode
     runtime = TranslationRuntime(root=ROOT)
     options = TxtTranslationOptions(
         input_path=_resolve(args.input),
@@ -387,6 +391,8 @@ def run_txt(args: argparse.Namespace) -> int:
 def run_batch(args: argparse.Namespace) -> int:
     _apply_runtime_timeout_env(args)
     _apply_provider_env(args)
+    pipeline_mode = getattr(args, "pipeline", None) or os.environ.get("NTPE_RUNTIME_PIPELINE", "runtime")
+    os.environ["NTPE_RUNTIME_PIPELINE"] = pipeline_mode
     runtime = TranslationRuntime(root=ROOT)
     options = BatchTranslationOptions(
         input_dir=_resolve(args.input),
