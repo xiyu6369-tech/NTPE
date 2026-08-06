@@ -1,4 +1,4 @@
-"""RM-6.1.0 Knowledge Runtime Manager — orchestration skeleton.
+"""RM-6.1.1 Knowledge Runtime Manager — domain-aware orchestration.
 
 No provider imports. No benchmark hooks. No feedback integration.
 Coordinates Loader → Resolver → Bundle → Snapshot pipeline.
@@ -8,7 +8,7 @@ from __future__ import annotations
 
 from typing import Any, Dict, List, Optional
 
-from .errors import KnowledgeManagerError, KnowledgeSnapshotError
+from .errors import KnowledgeManagerError
 from .loader import KnowledgeLoader
 from .models import KnowledgeBundle, KnowledgeEntry, KnowledgeSnapshot
 from .resolver import KnowledgeResolver
@@ -22,7 +22,7 @@ class KnowledgeRuntimeManager:
     purely offline, provider-free architecture skeleton.
     """
 
-    version = "rm-6.1.0"
+    version = "rm-6.1.1"
 
     def __init__(self, source: Optional[Dict[str, Any]] = None):
         self.loader = KnowledgeLoader(source)
@@ -34,7 +34,12 @@ class KnowledgeRuntimeManager:
         self.resolver.prototypes = prototypes
         return self.resolver.resolve_all()
 
-    def build_bundle(self, bundle_id: str, domain: str, metadata: Optional[Dict[str, Any]] = None) -> KnowledgeBundle:
+    def build_bundle(
+        self,
+        bundle_id: str,
+        domain: str,
+        metadata: Optional[Dict[str, Any]] = None,
+    ) -> KnowledgeBundle:
         entries = self.load_and_resolve(domain)
         return KnowledgeBundle(
             id=bundle_id,
@@ -43,15 +48,52 @@ class KnowledgeRuntimeManager:
             metadata=dict(metadata or {}),
         )
 
-    def capture(self, snapshot_id: str, bundle_ids: Optional[List[str]] = None, metadata: Optional[Dict[str, Any]] = None) -> KnowledgeSnapshot:
+    def load_character(
+        self, metadata: Optional[Dict[str, Any]] = None
+    ) -> KnowledgeBundle:
+        return self.loader.load_character_bundle(metadata)
+
+    def load_glossary(
+        self, metadata: Optional[Dict[str, Any]] = None
+    ) -> KnowledgeBundle:
+        return self.loader.load_glossary_bundle(metadata)
+
+    def load_scene(
+        self, metadata: Optional[Dict[str, Any]] = None
+    ) -> KnowledgeBundle:
+        return self.loader.load_scene_bundle(metadata)
+
+    def load_narrative(
+        self, metadata: Optional[Dict[str, Any]] = None
+    ) -> KnowledgeBundle:
+        return self.loader.load_narrative_bundle(metadata)
+
+    def load_style(
+        self, metadata: Optional[Dict[str, Any]] = None
+    ) -> KnowledgeBundle:
+        return self.loader.load_style_bundle(metadata)
+
+    def load_all(
+        self, metadata: Optional[Dict[str, Any]] = None
+    ) -> Dict[str, KnowledgeBundle]:
+        return self.loader.load_all_bundles(metadata)
+
+    def capture(
+        self,
+        snapshot_id: str,
+        bundle_ids: Optional[List[str]] = None,
+        metadata: Optional[Dict[str, Any]] = None,
+    ) -> KnowledgeSnapshot:
         bundles = []
-        for bid in (bundle_ids or []):
+        for bid in bundle_ids or []:
             try:
                 stored = self.snapshots.retrieve(bid)
                 bundles.extend(stored.bundles)
-            except (KnowledgeManagerError, KnowledgeSnapshotError):
+            except KnowledgeManagerError:
                 pass
-        snapshot = self.snapshots.build(snapshot_id, bundles=bundles, metadata=metadata)
+        snapshot = self.snapshots.build(
+            snapshot_id, bundles=bundles, metadata=metadata
+        )
         return snapshot
 
     def restore(self, snapshot_id: str) -> List[KnowledgeEntry]:

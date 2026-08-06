@@ -1,4 +1,4 @@
-"""RM-6.1.0 Knowledge Runtime Foundation public API."""
+"""RM-6.1.1 Knowledge Runtime Foundation public API."""
 
 from .errors import (
     KnowledgeLoadError,
@@ -17,7 +17,7 @@ from .models import (
     KnowledgeSnapshot,
 )
 from .resolver import KnowledgeResolver
-from .snapshot import KnowledgeSnapshotStore
+from .snapshot import KnowledgeSnapshotStore, SnapshotHierarchy
 
 __all__ = [
     "KnowledgeRuntimeError",
@@ -31,6 +31,7 @@ __all__ = [
     "KnowledgeDomain",
     "KnowledgeSnapshot",
     "KnowledgeSnapshotStore",
+    "SnapshotHierarchy",
     "KnowledgeLoader",
     "KnowledgeResolver",
     "KnowledgeRuntimeManager",

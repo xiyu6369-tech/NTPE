@@ -1,4 +1,4 @@
-"""RM-6.1.0 Knowledge Resolver — resolves prototypes into entries.
+"""RM-6.1.1 Knowledge Resolver — domain-aware prototype → entry resolution.
 
 No provider imports. Pure offline resolution from loaded prototypes.
 """
@@ -8,7 +8,7 @@ from __future__ import annotations
 from typing import Any, Dict, List, Optional
 
 from .errors import KnowledgeResolveError
-from .models import KnowledgeEntry, KnowledgePrototype
+from .models import KnowledgeBundle, KnowledgeEntry, KnowledgePrototype
 
 
 class KnowledgeResolver:
@@ -18,7 +18,7 @@ class KnowledgeResolver:
     service is invoked. This is the offline contract of RM-6.1.
     """
 
-    version = "rm-6.1.0"
+    version = "rm-6.1.1"
 
     def __init__(self, prototypes: Optional[List[KnowledgePrototype]] = None):
         self.prototypes: List[KnowledgePrototype] = prototypes or []
@@ -42,7 +42,9 @@ class KnowledgeResolver:
             version=self.version,
         )
 
-    def find_prototype(self, key: str, domain: str = "general") -> Optional[KnowledgePrototype]:
+    def find_prototype(
+        self, key: str, domain: str = "general"
+    ) -> Optional[KnowledgePrototype]:
         domain_index = self._index.get(domain, {})
         return domain_index.get(key)
 
@@ -73,6 +75,27 @@ class KnowledgeResolver:
             )
             for proto in domain_index.values()
         ]
+
+    def resolve_character(self, name: str) -> KnowledgeEntry:
+        return self.resolve(name, "character")
+
+    def resolve_term(self, term: str) -> KnowledgeEntry:
+        return self.resolve(term, "glossary")
+
+    def resolve_scene(self, scene_id: str) -> KnowledgeEntry:
+        return self.resolve(scene_id, "scene")
+
+    def resolve_narrative(self) -> KnowledgeEntry:
+        narratives = self.resolve_domain("narrative")
+        if not narratives:
+            raise KnowledgeResolveError("No narrative entries found")
+        return narratives[0]
+
+    def resolve_style(self) -> KnowledgeEntry:
+        styles = self.resolve_domain("style")
+        if not styles:
+            raise KnowledgeResolveError("No style entries found")
+        return styles[0]
 
     @property
     def domain_keys(self) -> List[str]:

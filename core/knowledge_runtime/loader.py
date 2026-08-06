@@ -1,4 +1,4 @@
-"""RM-6.1.0 Knowledge Loader — loads prototypes from offline source.
+"""RM-6.1.1 Knowledge Loader — dedicated offline domain bundle loaders.
 
 No provider imports. Pure datamodel pipeline.
 Source format is intentionally untyped dicts — no coupling to
@@ -10,18 +10,18 @@ from __future__ import annotations
 from typing import Any, Dict, Iterable, List, Optional
 
 from .errors import KnowledgeLoadError
-from .models import KnowledgePrototype
+from .models import KnowledgeBundle, KnowledgeEntry, KnowledgePrototype
 
 
 class KnowledgeLoader:
-    """Load knowledge prototypes from a raw source dictionary.
+    """Load knowledge prototypes and bundles from raw source dictionaries.
 
     The loader accepts plain Python dicts only. There is no import
     from core.knowledge, no provider reference, and no benchmark
     integration. This is an intentionally offline skeleton.
     """
 
-    version = "rm-6.1.0"
+    version = "rm-6.1.1"
 
     def __init__(self, source: Optional[Dict[str, Any]] = None):
         self.source = dict(source or {})
@@ -67,6 +67,68 @@ class KnowledgeLoader:
                 if isinstance(item, dict)
             ]
         return []
+
+    def _build_bundle(
+        self,
+        domain: str,
+        bundle_id: str,
+        metadata: Optional[Dict[str, Any]] = None,
+    ) -> KnowledgeBundle:
+        prototypes = self.load_domain(domain)
+        entries = [
+            KnowledgeEntry(
+                key=p.key,
+                value=p.metadata.get("value", p.key),
+                domain=p.domain,
+                metadata=dict(p.metadata),
+                version=self.version,
+            )
+            for p in prototypes
+        ]
+        return KnowledgeBundle(
+            id=bundle_id,
+            entries=entries,
+            domain=domain,
+            metadata=dict(metadata or {}),
+            version=self.version,
+        )
+
+    def load_character_bundle(
+        self, metadata: Optional[Dict[str, Any]] = None
+    ) -> KnowledgeBundle:
+        return self._build_bundle("character", "bundle-character", metadata)
+
+    def load_glossary_bundle(
+        self, metadata: Optional[Dict[str, Any]] = None
+    ) -> KnowledgeBundle:
+        return self._build_bundle("glossary", "bundle-glossary", metadata)
+
+    def load_scene_bundle(
+        self, metadata: Optional[Dict[str, Any]] = None
+    ) -> KnowledgeBundle:
+        return self._build_bundle("scene", "bundle-scene", metadata)
+
+    def load_narrative_bundle(
+        self, metadata: Optional[Dict[str, Any]] = None
+    ) -> KnowledgeBundle:
+        return self._build_bundle("narrative", "bundle-narrative", metadata)
+
+    def load_style_bundle(
+        self, metadata: Optional[Dict[str, Any]] = None
+    ) -> KnowledgeBundle:
+        return self._build_bundle("style", "bundle-style", metadata)
+
+    def load_all_bundles(
+        self, metadata: Optional[Dict[str, Any]] = None
+    ) -> Dict[str, KnowledgeBundle]:
+        """Load all domain bundles from source, skipping empty domains."""
+        result: Dict[str, KnowledgeBundle] = {}
+        for domain in ("character", "glossary", "scene", "narrative", "style"):
+            try:
+                result[domain] = self._build_bundle(domain, f"bundle-{domain}", metadata)
+            except KnowledgeLoadError:
+                pass
+        return result
 
     def manifest(self) -> Dict[str, Any]:
         return {
