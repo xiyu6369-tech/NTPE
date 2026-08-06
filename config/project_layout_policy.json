@@ -6,6 +6,7 @@
     ".editorconfig",
     ".gitattributes",
     ".gitignore",
+    "AGENTS.md",
     "README.md",
     "VERSION.txt",
     "character_database_override.json",
@@ -14,6 +15,7 @@
     "create_context_prompt_integration.py",
     "create_voice_batch1.py",
     "glossary_override.json",
+    "kilo.json",
     "launcher.py",
     "launcher_translate.py",
     "ntpe_batch_monitor.py",
@@ -31,6 +33,7 @@
     "ntpe_translate_txt.py",
     "ntpe_validate.py",
     "original_ko_chunk_000001.json",
+    "pyproject.toml",
     "requirements.txt"
   ],
   "allowed_root_directories": [
