@@ -4,7 +4,7 @@
   "stage": "PS-02-test",
   "profile": "literary",
   "speed": "balanced",
-  "created_at": "2026-08-02T21:11:57",
+  "created_at": "2026-08-06T17:36:09",
   "literary_root": "D:\\Python\\NTPE\\archive\\stage_tests\\tests\\literary",
   "output_dir": "D:\\Python\\NTPE\\archive\\stage_tests\\tests\\literary\\outputs\\PS-02-test",
   "summary": {
@@ -23,10 +23,10 @@
       "exists": false,
       "has_content": false,
       "output_dir": "D:\\Python\\NTPE\\archive\\stage_tests\\tests\\literary\\outputs\\PS-02-test\\Smoke_Set",
-      "started_at": "2026-08-02T21:11:57",
+      "started_at": "2026-08-06T17:36:09",
       "status": "skipped",
       "reason": "missing original_ko.txt",
-      "completed_at": "2026-08-02T21:11:57"
+      "completed_at": "2026-08-06T17:36:09"
     }
   ]
 }
