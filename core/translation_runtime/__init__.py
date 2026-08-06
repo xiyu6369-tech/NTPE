@@ -22,6 +22,10 @@ from .runtime_recovery import (
     update_checkpoint,
 )
 
+# RM-6.2.2: Translation Runtime Adapter
+from .models import TranslationRequest, TranslationResponse  # noqa: E402
+from .adapter import TranslationRuntimeAdapter  # noqa: E402
+
 __all__ = [
     "TranslationRuntime",
     "main_batch",
