@@ -1,0 +1,10 @@
+{
+  "status": "failed",
+  "input": "D:\\Python\\NTPE\\tests\\fixtures\\rm6_canary\\novel_sample.txt",
+  "chunk_total": 3,
+  "chunk_completed": 1,
+  "failed_chunk": 2,
+  "current_step": "provider_failed",
+  "error": "NVIDIA API timeout after connect=10s/read=120s. The configured timeout was applied correctly; the provider did not respond in time. Retry later, increase --provider-attempts, configure NTPE_TIMEOUT_RETRY_DELAYS, or use --fallback-models with an available model.",
+  "updated_at": "2026-08-07T00:27:56"
+}

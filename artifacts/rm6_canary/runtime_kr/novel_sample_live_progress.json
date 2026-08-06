@@ -1,0 +1,9 @@
+{
+  "status": "finalizing",
+  "input": "D:\\Python\\NTPE\\tests\\fixtures\\rm6_canary\\novel_sample.txt",
+  "output_dir": "D:\\Python\\NTPE\\artifacts\\rm6_canary\\runtime_kr",
+  "chunk_total": 3,
+  "chunk_completed": 3,
+  "current_step": "finalizing",
+  "updated_at": "2026-08-07T00:42:12"
+}

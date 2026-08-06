@@ -1,0 +1,10 @@
+{
+  "status": "running",
+  "input": "tests\\fixtures\\rm6_canary\\novel_sample.txt",
+  "output_dir": "artifacts\\rm6_canary\\runtime_kr_diag",
+  "chunk_total": 3,
+  "chunk_completed": 2,
+  "current_chunk": 3,
+  "current_step": "runtime_execute",
+  "updated_at": "2026-08-07T00:14:13"
+}

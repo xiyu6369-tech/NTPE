@@ -707,7 +707,20 @@ def _translate_txt_with_runtime_pipeline(
             snapshot_id="",
             current_chunk=idx,
             total_chunks=len(chunks),
-            metadata={"source": str(input_path), "profile": options.quality_profile, "model": options.model},
+            metadata={
+                "source": {
+                    "chunk_text": chunk,
+                    "char_count": len(chunk),
+                },
+                "model_profile": {
+                    "model": options.model,
+                    "temperature": 0.15,
+                    "max_output_tokens": 4000,
+                    "top_p": 0.85,
+                },
+                "profile": options.quality_profile,
+                "system_prompt": package.get("prompt", {}).get("system_prompt", ""),
+            },
         )
 
         response = execution_result.response
@@ -749,16 +762,23 @@ def _translate_txt_with_runtime_pipeline(
                     config={"min_length_ratio": max(0.18, options.min_length_ratio)},
                 )
                 qa_report = merge_quality_v5_into_runtime_qa(
-                    runtime_qa_report=qa_report, quality_v5_report=quality_v5,
+                    runtime_qa=qa_report, report=quality_v5,
                 )
 
             # Legacy QA
             if options.qa_enabled and options.speed != "fast":
-                legacy_qa = analyze_translation_quality(
-                    chunk, translation,
-                    min_char_ratio=options.min_length_ratio,
-                    max_korean_chars_allowed=options.max_korean_chars,
+                # Build QA options for analyze_translation_quality
+                qa_opts = TxtTranslationOptions(
+                    input_path=input_path, output_dir=output_dir,
+                    min_length_ratio=options.min_length_ratio,
+                    max_korean_chars=options.max_korean_chars,
                     max_repeated_lines=options.max_repeated_lines,
+                    simplified_chinese_policy=options.simplified_chinese_policy,
+                    quality_profile=options.quality_profile,
+                    speed=options.speed,
+                )
+                legacy_qa = analyze_translation_quality(
+                    chunk, translation, options=qa_opts,
                 )
                 qa_report.setdefault("issues", []).extend(legacy_qa.get("issues", []))
                 qa_report.setdefault("metrics", {}).update(legacy_qa.get("metrics", {}))
@@ -766,21 +786,19 @@ def _translate_txt_with_runtime_pipeline(
 
             # Discipline runtime
             if options.qa_enabled:
-                discipline_runtime = DisciplineRuntimeContext(
-                    chunk_text=chunk, translated_text=translation,
-                    qa_report=qa_report, chunk_index=idx,
+                from core.translation_discipline.runtime_orchestrator import orchestrate_runtime_discipline
+                _r = orchestrate_runtime_discipline(
+                    text=chunk,
+                    runtime_qa={"issues": qa_report.get("issues", []), "metrics": qa_report.get("metrics", {}), "unified_quality_report": qa_report},
                 )
-                discipline_result = integrate_translation_discipline_runtime(discipline_runtime=discipline_runtime)
-                if discipline_result.repairs:
-                    from core.translation_discipline.runtime_orchestrator import orchestrate_runtime_discipline
-                    _r = orchestrate_runtime_discipline(
-                        text=chunk,
-                        runtime_qa={"issues": qa_report.get("issues", []), "metrics": qa_report.get("metrics", {})},
-                    )
-                    qa_report["passed"] = (_r.outcome == "passed")
+                qa_report["discipline"] = {
+                    "initial_action": _r.initial_action,
+                    "final_action": _r.final_action,
+                    "revalidated": _r.revalidated,
+                }
 
             package["qa"] = qa_report
-            attach_unified_report(package, package_path, qa_report, options.quality_profile)
+            attach_unified_report(qa_report, qa_report)
             save_text(chunk_file, translation)
             translated_chunks.append(translation)
             result = {
@@ -838,7 +856,8 @@ def _translate_txt_with_runtime_pipeline(
         if options.strict_lock_terms and locked_dictionary:
             final_text = apply_locked_dictionary(final_text, locked_dictionary)
         save_text(final_output, final_text)
-        update_character_memory(final_text, character_memory_path, matched_terms_for_memory)
+        if character_memory_path:
+            update_character_memory(character_memory_path, matched_terms_for_memory)
 
     elapsed = time.time() - t0
 
