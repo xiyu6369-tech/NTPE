@@ -1,6 +1,7 @@
-"""RM-6.1.1 Knowledge Resolver — domain-aware prototype → entry resolution.
+"""RM-6.1.2 Knowledge Resolver — domain-aware resolution from merged runtime.
 
-No provider imports. Pure offline resolution from loaded prototypes.
+No provider imports. Pure offline resolution from merged runtime.
+Resolver MUST only query the merged runtime, never raw snapshots.
 """
 
 from __future__ import annotations
@@ -8,6 +9,7 @@ from __future__ import annotations
 from typing import Any, Dict, List, Optional
 
 from .errors import KnowledgeResolveError
+from .merger import MergedRuntime
 from .models import KnowledgeBundle, KnowledgeEntry, KnowledgePrototype
 
 
@@ -16,9 +18,11 @@ class KnowledgeResolver:
 
     Resolution logic is entirely local. No provider or external
     service is invoked. This is the offline contract of RM-6.1.
+
+    RM-6.1.2: Resolver MUST only query the merged runtime.
     """
 
-    version = "rm-6.1.1"
+    version = "rm-6.1.2"
 
     def __init__(self, prototypes: Optional[List[KnowledgePrototype]] = None):
         self.prototypes: List[KnowledgePrototype] = prototypes or []
@@ -29,6 +33,24 @@ class KnowledgeResolver:
         for proto in self.prototypes:
             self._index.setdefault(proto.domain, {})[proto.key] = proto
         return self
+
+    def load_from_merged_runtime(self, merged_runtime: MergedRuntime) -> "KnowledgeResolver":
+        """Load prototypes exclusively from a merged runtime.
+
+        This is the RM-6.1.2 contract: Resolver queries merged runtime only.
+        Never inspects raw snapshots.
+        """
+        self.prototypes = []
+        for domain, merged_knowledge in merged_runtime.domains.items():
+            for key, value in merged_knowledge.entries.items():
+                self.prototypes.append(
+                    KnowledgePrototype(
+                        key=key,
+                        domain=domain,
+                        metadata={"value": value},
+                    )
+                )
+        return self.index_prototypes()
 
     def resolve(self, key: str, domain: str = "general") -> KnowledgeEntry:
         proto = self.find_prototype(key, domain)

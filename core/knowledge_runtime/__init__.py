@@ -1,4 +1,4 @@
-"""RM-6.1.1 Knowledge Runtime Foundation public API."""
+"""RM-6.1.2 Knowledge Runtime Foundation public API."""
 
 from .errors import (
     KnowledgeLoadError,
@@ -9,6 +9,13 @@ from .errors import (
 )
 from .loader import KnowledgeLoader
 from .manager import KnowledgeRuntimeManager
+from .merger import (
+    DOMAIN_STRATEGIES,
+    KnowledgeMerger,
+    MergeStrategy,
+    MergedKnowledge,
+    MergedRuntime,
+)
 from .models import (
     KnowledgeBundle,
     KnowledgeDomain,
@@ -35,4 +42,9 @@ __all__ = [
     "KnowledgeLoader",
     "KnowledgeResolver",
     "KnowledgeRuntimeManager",
+    "MergeStrategy",
+    "DOMAIN_STRATEGIES",
+    "MergedKnowledge",
+    "MergedRuntime",
+    "KnowledgeMerger",
 ]

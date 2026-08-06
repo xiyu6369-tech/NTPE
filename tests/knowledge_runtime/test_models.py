@@ -371,10 +371,11 @@ def test_manager() -> None:
     check("Manager restore", len(restored) == 2 and restored[0].key == "정태의")
 
     manifest = manager.manifest()
-    check("Manager manifest version", manifest["version"] == "rm-6.1.1")
+    check("Manager manifest version", manifest["version"] == "rm-6.1.2")
     check("Manager manifest loader", manifest["loader"]["name"] == "knowledge_loader")
     check("Manager manifest resolver", manifest["resolver"]["name"] == "knowledge_resolver")
     check("Manager manifest snapshots", manifest["snapshots"]["name"] == "knowledge_snapshot_store")
+    check("Manager manifest merger", manifest["merger"]["name"] == "knowledge_merger")
 
     print("manager PASS")
 
