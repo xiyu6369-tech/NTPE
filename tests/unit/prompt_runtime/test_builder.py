@@ -1,0 +1,140 @@
+"""Tests for Prompt Runtime builder."""
+
+import pytest
+
+from core.knowledge_runtime.merger import MergedKnowledge, MergedRuntime
+from core.prompt_runtime.builder import PromptAssembly, PromptBuilder, build_prompt
+from core.prompt_runtime.models import SECTION_ORDER
+
+
+def make_runtime(domains: dict) -> MergedRuntime:
+    """Helper to create MergedRuntime with specified domains."""
+    merged_domains = {}
+    for name, entries in domains.items():
+        merged_domains[name] = MergedKnowledge(
+            domain=name,
+            entries=entries,
+            strategy="key_override",
+        )
+    return MergedRuntime(domains=merged_domains)
+
+
+def test_build_prompt_full_assembly():
+    """build_prompt assembles all sections in correct order."""
+    runtime = make_runtime({
+        "character": {"Hero": "knight"},
+        "glossary": {"術語": "term"},
+        "scene": {"location": "castle"},
+        "narrative": {"tone": "dark"},
+        "style": {"register": "formal"},
+    })
+    assembly = build_prompt(runtime, "Source text to translate")
+
+    assert assembly.section_count == 7
+    section_names = [s.name for s in assembly.sections]
+    assert section_names == list(SECTION_ORDER)
+
+
+def test_build_prompt_section_order():
+    """Sections must be in fixed order: System→Character→Glossary→Scene→Narrative→Style→Chunk."""
+    runtime = make_runtime({})
+    assembly = build_prompt(runtime, "chunk")
+    names = [s.name for s in assembly.sections]
+    assert names == [
+        "System",
+        "Character",
+        "Glossary",
+        "Scene",
+        "Narrative",
+        "Style",
+        "Chunk",
+    ]
+
+
+def test_build_prompt_empty_runtime():
+    """build_prompt works with empty runtime (no domains)."""
+    runtime = make_runtime({})
+    assembly = build_prompt(runtime, "text")
+    assert assembly.section_count == 7
+    # All domain sections should be empty
+    for section in assembly.sections[1:-1]:  # Skip System and Chunk
+        assert section.content == ""
+        assert section.metadata["entry_count"] == 0
+
+
+def test_build_prompt_missing_domains():
+    """build_prompt handles missing domains gracefully."""
+    runtime = make_runtime({"character": {"Hero": "knight"}})
+    assembly = build_prompt(runtime, "text")
+    char_section = next(s for s in assembly.sections if s.name == "Character")
+    gloss_section = next(s for s in assembly.sections if s.name == "Glossary")
+    assert char_section.content == "Hero: knight"
+    assert gloss_section.content == ""
+
+
+def test_build_prompt_chunk_text():
+    """Chunk section contains provided source text."""
+    runtime = make_runtime({})
+    assembly = build_prompt(runtime, "Hello world")
+    chunk_section = assembly.sections[-1]
+    assert chunk_section.name == "Chunk"
+    assert chunk_section.content == "Hello world"
+    assert chunk_section.metadata["has_text"] is True
+
+
+def test_build_prompt_metadata():
+    """Assembly metadata includes runtime info."""
+    runtime = make_runtime({"character": {"a": "b"}})
+    assembly = build_prompt(runtime, "text")
+    assert assembly.metadata["runtime_version"] == runtime.version
+    assert "character" in assembly.metadata["runtime_domains"]
+    assert assembly.metadata["chunk_text_length"] == 4
+
+
+def test_prompt_builder_class():
+    """PromptBuilder class produces same result as build_prompt."""
+    runtime = make_runtime({"character": {"Hero": "knight"}})
+    builder = PromptBuilder(chunk_text="text")
+    assembly1 = builder.build(runtime)
+    assembly2 = build_prompt(runtime, "text")
+    assert assembly1.section_count == assembly2.section_count
+    assert [s.name for s in assembly1.sections] == [s.name for s in assembly2.sections]
+
+
+def test_prompt_builder_partial():
+    """PromptBuilder.build_partial includes only specified sections."""
+    runtime = make_runtime({"character": {"Hero": "knight"}, "glossary": {"術語": "term"}})
+    builder = PromptBuilder(chunk_text="text")
+    assembly = builder.build_partial(runtime, include=["System", "Character", "Chunk"])
+    names = [s.name for s in assembly.sections]
+    assert names == ["System", "Character", "Chunk"]
+    assert assembly.metadata["included_sections"] == ["System", "Character", "Chunk"]
+
+
+def test_prompt_assembly_serialization_roundtrip():
+    """PromptAssembly serializes and deserializes correctly."""
+    runtime = make_runtime({"character": {"Hero": "knight"}})
+    assembly = build_prompt(runtime, "text")
+    data = assembly.to_dict()
+    restored = PromptAssembly.from_dict(data)
+    assert restored.section_count == assembly.section_count
+    assert [s.name for s in restored.sections] == [s.name for s in assembly.sections]
+    assert restored.metadata == assembly.metadata
+
+
+def test_deterministic_output():
+    """Same inputs must produce identical assemblies."""
+    runtime = make_runtime({"character": {"Hero": "knight"}})
+    a1 = build_prompt(runtime, "text")
+    a2 = build_prompt(runtime, "text")
+    assert a1.to_dict() == a2.to_dict()
+
+
+def test_system_metadata_propagated():
+    """System metadata passed to builder appears in System section."""
+    runtime = make_runtime({})
+    builder = PromptBuilder(chunk_text="text", system_metadata={"novel": "Test Novel"})
+    assembly = builder.build(runtime)
+    sys_section = assembly.sections[0]
+    assert "Test Novel" in sys_section.content
+    assert sys_section.metadata["novel"] == "Test Novel"
