@@ -70,6 +70,50 @@ def _run_all(args: object) -> List[Any]:
     return [*_run_runtime(args), *_run_provider(args), *_run_stress(args)]
 
 
+def _generate_feedback_report(data: Dict[str, Any], output_dir: Path, args: object) -> None:
+    if not getattr(args, "feedback", False):
+        return
+    from core.knowledge_benchmark.feedback import (
+        FeedbackReportGenerator,
+        save_report,
+    )
+    from core.knowledge_benchmark.runtime.models import (
+        QualityDecision,
+        QualityStatus,
+        QualityScorecard,
+    )
+
+    summary = data.get("summary", {})
+    overall_score = float(summary.get("overall_score", 0.0))
+    grade = str(summary.get("grade", "F"))
+    precision = float(summary.get("precision", 0.0))
+    recall = float(summary.get("recall", 0.0))
+    f1 = float(summary.get("f1", 0.0))
+    ece = float(summary.get("ece", 0.0))
+    failed_count = int(summary.get("failed", 0) or 0)
+
+    status = QualityStatus.RETRY_REQUIRED if failed_count > 0 else QualityStatus.PASS
+    decision = QualityDecision(
+        status=status,
+        scorecard=QualityScorecard(
+            precision=precision,
+            recall=recall,
+            f1=f1,
+            ece=ece,
+            overall_score=overall_score,
+            grade=grade,
+        ),
+        reason=["CLI benchmark feedback report generated from benchmark results"],
+        recommendations=[],
+    )
+
+    generator = FeedbackReportGenerator()
+    report = generator.generate(decision)
+    exported = save_report(report, output_dir, basename="quality_feedback")
+    data["feedback"] = {"report": report.to_dict(), "exported": exported}
+    data["feedback_report"] = report.to_dict()
+
+
 def _success_payload(context: CLIContext, args: object, results: List[Any], *, message: str, basename: str) -> CLIResult:
     output_dir = _ensure_report_dir(context, getattr(args, "output", None))
     report = _build_report(results, title=message)
@@ -81,6 +125,7 @@ def _success_payload(context: CLIContext, args: object, results: List[Any], *, m
         "exported": exported,
     }
     attach_benchmark_manifest(data)
+    _generate_feedback_report(data, output_dir, args)
     failed = int(report.get("summary", {}).get("failed", 0) or 0)
     if failed:
         return CLIResult.failure(message + " failed", exit_code=2, errors=[f"{failed} benchmark(s) failed"], **data)
@@ -119,6 +164,7 @@ def command_benchmark_report(context: CLIContext, args: object) -> CLIResult:
     exported = _export_report(report, output_dir, basename=getattr(args, "basename", "benchmark_report") or "benchmark_report")
     data = {"report": report, "summary": report.get("summary", {}), "exported": exported}
     attach_benchmark_manifest(data)
+    _generate_feedback_report(data, output_dir, args)
     return CLIResult.success("Benchmark report generated", **data)
 
 
@@ -134,6 +180,7 @@ def command_benchmark_compare(context: CLIContext, args: object) -> CLIResult:
     output_file.write_text(json.dumps(regression, ensure_ascii=False, indent=2, sort_keys=True), encoding="utf-8")
     data = {"regression": regression, "exported": {"json": str(output_file)}}
     attach_benchmark_manifest(data)
+    _generate_feedback_report(data, output_dir, args)
     status = regression.get("status", "PASS")
     if status == "REGRESSION":
         return CLIResult.failure("Benchmark regression detected", exit_code=2, errors=["performance regression detected"], **data)

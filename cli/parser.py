@@ -76,28 +76,33 @@ def _add_benchmark(subparsers, common):
     benchmark_run.add_argument("--segments", type=int, default=25, help="number of synthetic segments")
     benchmark_run.add_argument("--prompts", type=int, default=3, help="number of synthetic provider prompts")
     benchmark_run.add_argument("--iterations", type=int, default=2, help="soak test iterations")
+    benchmark_run.add_argument("--feedback", action="store_true", help="generate quality feedback report")
     benchmark_run.set_defaults(command="benchmark", benchmark_action="run")
 
     benchmark_runtime = benchmark_sub.add_parser("runtime", help="run runtime benchmark", parents=[common])
     benchmark_runtime.add_argument("--output", "-o", default=None, help="report output directory")
     benchmark_runtime.add_argument("--segments", type=int, default=10, help="number of synthetic segments")
+    benchmark_runtime.add_argument("--feedback", action="store_true", help="generate quality feedback report")
     benchmark_runtime.set_defaults(command="benchmark", benchmark_action="runtime")
 
     benchmark_provider = benchmark_sub.add_parser("provider", help="run provider benchmark", parents=[common])
     benchmark_provider.add_argument("--output", "-o", default=None, help="report output directory")
     benchmark_provider.add_argument("--prompts", type=int, default=3, help="number of synthetic provider prompts")
+    benchmark_provider.add_argument("--feedback", action="store_true", help="generate quality feedback report")
     benchmark_provider.set_defaults(command="benchmark", benchmark_action="provider")
 
     benchmark_stress = benchmark_sub.add_parser("stress", help="run stress and soak benchmark", parents=[common])
     benchmark_stress.add_argument("--output", "-o", default=None, help="report output directory")
     benchmark_stress.add_argument("--segments", type=int, default=25, help="number of synthetic segments")
     benchmark_stress.add_argument("--iterations", type=int, default=2, help="soak test iterations")
+    benchmark_stress.add_argument("--feedback", action="store_true", help="generate quality feedback report")
     benchmark_stress.set_defaults(command="benchmark", benchmark_action="stress")
 
     benchmark_report = benchmark_sub.add_parser("report", help="generate performance report", parents=[common])
     benchmark_report.add_argument("--source", default=None, help="existing benchmark JSON report")
     benchmark_report.add_argument("--output", "-o", default=None, help="report output directory")
     benchmark_report.add_argument("--basename", default="benchmark_report", help="report basename")
+    benchmark_report.add_argument("--feedback", action="store_true", help="generate quality feedback report")
     benchmark_report.set_defaults(command="benchmark", benchmark_action="report")
 
     benchmark_compare = benchmark_sub.add_parser("compare", help="compare benchmark reports", parents=[common])
@@ -105,6 +110,7 @@ def _add_benchmark(subparsers, common):
     benchmark_compare.add_argument("--current", default=None, help="current benchmark JSON, or run a fresh benchmark")
     benchmark_compare.add_argument("--threshold", type=float, default=0.10, help="regression threshold")
     benchmark_compare.add_argument("--output", "-o", default=None, help="report output directory")
+    benchmark_compare.add_argument("--feedback", action="store_true", help="generate quality feedback report")
     benchmark_compare.set_defaults(command="benchmark", benchmark_action="compare")
 
     benchmark.set_defaults(command="benchmark", benchmark_action="run")
