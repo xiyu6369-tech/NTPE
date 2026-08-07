@@ -12,6 +12,7 @@ from core.knowledge_runtime.merger import MergedRuntime
 from core.prompt_runtime.models import (
     CharacterSection,
     ChunkSection,
+    EntityMappingSection,
     GlossarySection,
     NarrativeSection,
     SceneSection,
@@ -48,6 +49,63 @@ def build_character(runtime: MergedRuntime) -> CharacterSection:
         content=content,
         metadata={"domain": "character", "entry_count": domain.entry_count, "strategy": domain.strategy},
     )
+
+
+def build_entity_mapping(
+    runtime: MergedRuntime,
+    injection_set: Optional[Any] = None,
+) -> EntityMappingSection:
+    """Build Entity Mapping section from entity injection set (RM-7.2).
+
+    Args:
+        runtime: MergedRuntime (for metadata)
+        injection_set: EntityInjectionSet from entity_resolver (optional)
+
+    Returns:
+        EntityMappingSection with resolved entity mappings
+    """
+    if injection_set is None:
+        return EntityMappingSection(
+            content="No entity mappings available for this chunk.",
+            metadata={"entity_count": 0, "source": "none"},
+        )
+
+    # Handle both EntityInjectionSet and PromptSection (already formatted)
+    if hasattr(injection_set, "entities"):
+        # It's an EntityInjectionSet
+        known_entities = [e for e in injection_set.entities if e.is_known]
+        unknown_entities = [e for e in injection_set.entities if not e.is_known]
+
+        if not known_entities and not unknown_entities:
+            content = "No entities found in current chunk."
+        else:
+            lines = []
+            if known_entities:
+                lines.append("Known Entities:")
+                for entity in known_entities:
+                    marker = " [USER OVERRIDE]" if entity.is_user_override else ""
+                    lines.append(f"  {entity.source} → {entity.target}{marker}")
+            if unknown_entities:
+                lines.append("\nUnknown Entities (no predefined translation):")
+                for entity in unknown_entities:
+                    lines.append(f"  {entity.source} → (No predefined translation)")
+            content = "\n".join(lines)
+
+        metadata = {
+            "entity_count": injection_set.count,
+            "known_count": len(known_entities),
+            "unknown_count": len(unknown_entities),
+            "source_breakdown": injection_set.metadata,
+        }
+    elif hasattr(injection_set, "content"):
+        # It's already a PromptSection
+        content = injection_set.content
+        metadata = dict(injection_set.metadata)
+    else:
+        content = str(injection_set)
+        metadata = {"entity_count": 0, "source": "unknown"}
+
+    return EntityMappingSection(content=content, metadata=metadata)
 
 
 def build_glossary(runtime: MergedRuntime) -> GlossarySection:
@@ -117,6 +175,7 @@ SECTION_BUILDERS = {
 __all__ = [
     "build_system",
     "build_character",
+    "build_entity_mapping",
     "build_glossary",
     "build_scene",
     "build_narrative",

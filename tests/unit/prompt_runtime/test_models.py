@@ -7,6 +7,7 @@ import pytest
 from core.prompt_runtime.models import (
     CharacterSection,
     ChunkSection,
+    EntityMappingSection,
     GlossarySection,
     NarrativeSection,
     PromptSection,
@@ -23,6 +24,7 @@ def test_section_order_constant():
     assert SECTION_ORDER == (
         "System",
         "Character",
+        "Entity Mapping",
         "Glossary",
         "Scene",
         "Narrative",
@@ -33,7 +35,7 @@ def test_section_order_constant():
 
 def test_section_map_complete():
     """SECTION_MAP must contain all required sections."""
-    expected = {"System", "Character", "Glossary", "Scene", "Narrative", "Style", "Chunk"}
+    expected = {"System", "Character", "Entity Mapping", "Glossary", "Scene", "Narrative", "Style", "Chunk"}
     assert set(SECTION_MAP.keys()) == expected
 
 
@@ -42,6 +44,7 @@ def test_all_sections_are_frozen():
     sections = [
         SystemSection(content="sys"),
         CharacterSection(content="char"),
+        EntityMappingSection(content="entity"),
         GlossarySection(content="gloss"),
         SceneSection(content="scene"),
         NarrativeSection(content="narr"),
@@ -78,6 +81,7 @@ def test_section_default_name_assignment():
     """Each section type must have correct default name."""
     assert SystemSection().name == "System"
     assert CharacterSection().name == "Character"
+    assert EntityMappingSection().name == "Entity Mapping"
     assert GlossarySection().name == "Glossary"
     assert SceneSection().name == "Scene"
     assert NarrativeSection().name == "Narrative"

@@ -48,6 +48,13 @@ class CharacterSection(PromptSection):
 
 
 @dataclass(frozen=True, order=True)
+class EntityMappingSection(PromptSection):
+    """Entity Mapping section for prompt assembly (RM-7.2)."""
+
+    name: str = "Entity Mapping"
+
+
+@dataclass(frozen=True, order=True)
 class GlossarySection(PromptSection):
     """Glossary section for prompt assembly."""
 
@@ -92,6 +99,7 @@ class ChunkSection(PromptSection):
 SECTION_ORDER = (
     "System",
     "Character",
+    "Entity Mapping",
     "Glossary",
     "Scene",
     "Narrative",
@@ -102,6 +110,7 @@ SECTION_ORDER = (
 SECTION_MAP = {
     "System": SystemSection,
     "Character": CharacterSection,
+    "Entity Mapping": EntityMappingSection,
     "Glossary": GlossarySection,
     "Scene": SceneSection,
     "Narrative": NarrativeSection,
@@ -112,6 +121,7 @@ SECTION_MAP = {
 __all__ = [
     "PromptSection",
     "CharacterSection",
+    "EntityMappingSection",
     "GlossarySection",
     "SceneSection",
     "NarrativeSection",

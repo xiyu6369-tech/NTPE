@@ -20,6 +20,7 @@ from core.prompt_runtime.models import (
 from core.prompt_runtime.sections import (
     SECTION_BUILDERS,
     build_chunk,
+    build_entity_mapping,
     build_system,
 )
 
@@ -58,12 +59,18 @@ class PromptBuilder:
     """Builds PromptAssembly from MergedRuntime.
 
     Section order (fixed):
-        System → Character → Glossary → Scene → Narrative → Style → Chunk
+        System → Character → Entity Mapping → Glossary → Scene → Narrative → Style → Chunk
     """
 
-    def __init__(self, chunk_text: str = "", system_metadata: Optional[Dict[str, Any]] = None):
+    def __init__(
+        self,
+        chunk_text: str = "",
+        system_metadata: Optional[Dict[str, Any]] = None,
+        entity_injection_set: Optional[Any] = None,
+    ):
         self._chunk_text = chunk_text
         self._system_metadata = system_metadata or {}
+        self._entity_injection_set = entity_injection_set
 
     def build(self, runtime: MergedRuntime) -> PromptAssembly:
         """Assemble all sections in fixed order from runtime."""
@@ -72,8 +79,14 @@ class PromptBuilder:
         # System (always first)
         sections.append(build_system(runtime, self._system_metadata))
 
-        # Domain sections (fixed order)
-        for section_name in SECTION_ORDER[1:-1]:  # Skip System and Chunk
+        # Character
+        sections.append(SECTION_BUILDERS["Character"](runtime))
+
+        # Entity Mapping (RM-7.2) - requires injection_set
+        sections.append(build_entity_mapping(runtime, self._entity_injection_set))
+
+        # Domain sections (fixed order, skip System, Character, Entity Mapping, Chunk)
+        for section_name in SECTION_ORDER[3:-1]:  # Skip System, Character, Entity Mapping, Chunk
             builder = SECTION_BUILDERS[section_name]
             sections.append(builder(runtime))
 
@@ -86,6 +99,7 @@ class PromptBuilder:
                 "runtime_version": runtime.version,
                 "runtime_domains": list(runtime.domains.keys()),
                 "chunk_text_length": len(self._chunk_text),
+                "has_entity_mapping": self._entity_injection_set is not None,
             },
             version="rm-6.2.0",
         )
@@ -107,6 +121,8 @@ class PromptBuilder:
                 sections.append(build_system(runtime, self._system_metadata))
             elif section_name == "Chunk":
                 sections.append(build_chunk(runtime, self._chunk_text))
+            elif section_name == "Entity Mapping":
+                sections.append(build_entity_mapping(runtime, self._entity_injection_set))
             else:
                 builder = SECTION_BUILDERS[section_name]
                 sections.append(builder(runtime))
@@ -121,17 +137,22 @@ class PromptBuilder:
         )
 
 
-def build_prompt(runtime: MergedRuntime, chunk_text: str = "") -> PromptAssembly:
+def build_prompt(
+    runtime: MergedRuntime,
+    chunk_text: str = "",
+    entity_injection_set: Optional[Any] = None,
+) -> PromptAssembly:
     """Convenience function to build full prompt assembly.
 
     Args:
         runtime: MergedRuntime from knowledge_runtime
         chunk_text: Source text chunk to translate
+        entity_injection_set: Optional EntityInjectionSet from entity_resolver (RM-7.2)
 
     Returns:
         PromptAssembly with all sections in fixed order
     """
-    builder = PromptBuilder(chunk_text=chunk_text)
+    builder = PromptBuilder(chunk_text=chunk_text, entity_injection_set=entity_injection_set)
     return builder.build(runtime)
 
 

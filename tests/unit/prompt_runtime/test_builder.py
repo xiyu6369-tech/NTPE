@@ -30,19 +30,20 @@ def test_build_prompt_full_assembly():
     })
     assembly = build_prompt(runtime, "Source text to translate")
 
-    assert assembly.section_count == 7
+    assert assembly.section_count == 8
     section_names = [s.name for s in assembly.sections]
     assert section_names == list(SECTION_ORDER)
 
 
 def test_build_prompt_section_order():
-    """Sections must be in fixed order: System→Character→Glossary→Scene→Narrative→Style→Chunk."""
+    """Sections must be in fixed order: System→Character→Entity Mapping→Glossary→Scene→Narrative→Style→Chunk."""
     runtime = make_runtime({})
     assembly = build_prompt(runtime, "chunk")
     names = [s.name for s in assembly.sections]
     assert names == [
         "System",
         "Character",
+        "Entity Mapping",
         "Glossary",
         "Scene",
         "Narrative",
@@ -55,11 +56,14 @@ def test_build_prompt_empty_runtime():
     """build_prompt works with empty runtime (no domains)."""
     runtime = make_runtime({})
     assembly = build_prompt(runtime, "text")
-    assert assembly.section_count == 7
-    # All domain sections should be empty
-    for section in assembly.sections[1:-1]:  # Skip System and Chunk
-        assert section.content == ""
-        assert section.metadata["entry_count"] == 0
+    assert assembly.section_count == 8
+    # All domain sections should be empty (skip System, Entity Mapping, Chunk)
+    for section in assembly.sections[1:-1]:
+        if section.name == "Entity Mapping":
+            assert "No entity mappings" in section.content
+        else:
+            assert section.content == ""
+            assert section.metadata["entry_count"] == 0
 
 
 def test_build_prompt_missing_domains():
