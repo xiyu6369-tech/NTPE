@@ -40,45 +40,39 @@ class EntityExtractor:
             chunk: Korean source text
 
         Returns:
-            List of ExtractedEntity found in chunk (in order of first appearance)
+            List of ExtractedEntity found in chunk (in order of appearance)
         """
         if not chunk:
             return []
 
         extracted = []
-        seen_sources: Set[str] = set()
-        # Track which positions are already covered by longer matches
-        covered_positions: Set[int] = set()
+        # Track extracted (source, position) pairs to avoid duplicates
+        extracted_pairs: Set[tuple[str, int]] = set()
 
         # First pass: exact matches from known entities (longest first)
+        # Process longest first so that longer matches are found before shorter substrings
         for source in sorted(self.known_entities.keys(), key=len, reverse=True):
-            if source in seen_sources:
-                continue
             entity_type = self.known_entities.get(source, EntityType.UNKNOWN.value)
-            # Find first position only (for ordering)
-            pos = chunk.find(source)
-            if pos == -1:
-                continue
-            # Check if this position is already covered by a longer match
-            overlap = False
-            for covered_start, covered_len in covered_positions:
-                if pos >= covered_start and pos < covered_start + covered_len:
-                    overlap = True
+            # Find ALL positions
+            start = 0
+            while True:
+                found = chunk.find(source, start)
+                if found == -1:
                     break
-            if not overlap:
-                # Get context (surrounding 20 chars)
-                ctx_start = max(0, pos - 20)
-                ctx_end = min(len(chunk), pos + len(source) + 20)
-                context = chunk[ctx_start:ctx_end]
-                extracted.append(ExtractedEntity(
-                    source=source,
-                    entity_type=entity_type,
-                    context=context,
-                    position=pos,
-                ))
-                # Mark this position range as covered
-                covered_positions.add((pos, len(source)))
-                seen_sources.add(source)
+                # Avoid duplicate extractions at same position
+                if (source, found) not in extracted_pairs:
+                    # Get context (surrounding 20 chars)
+                    ctx_start = max(0, found - 20)
+                    ctx_end = min(len(chunk), found + len(source) + 20)
+                    context = chunk[ctx_start:ctx_end]
+                    extracted.append(ExtractedEntity(
+                        source=source,
+                        entity_type=entity_type,
+                        context=context,
+                        position=found,
+                    ))
+                    extracted_pairs.add((source, found))
+                start = found + 1
 
         # Sort by position to maintain text order
         extracted.sort(key=lambda e: e.position)
@@ -86,10 +80,9 @@ class EntityExtractor:
         # Also extract with custom patterns for entities not in known_entities
         if self.custom_patterns:
             pattern_extracted = self.extract_with_patterns(chunk)
-            # Merge, avoiding duplicates by source
-            existing_sources = {e.source for e in extracted}
+            # Merge, avoiding duplicates by source AND position
             for pe in pattern_extracted:
-                if pe.source not in existing_sources:
+                if (pe.source, pe.position) not in extracted_pairs:
                     extracted.append(pe)
             extracted.sort(key=lambda e: e.position)
 
