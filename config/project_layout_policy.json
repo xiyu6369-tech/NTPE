@@ -110,7 +110,9 @@
     "ntpe_provider_benchmark_session.py"
   ],
   "ignored_root_directories": [
-    "__pycache__"
+    "__pycache__",
+    "knowledge",
+    "translation_cache"
   ],
   "retained_root_wrappers": [
     "create_context_pipeline_integration.py",

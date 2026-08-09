@@ -79,6 +79,7 @@ EXCLUDE_DIR_NAMES = {
     "translated",
     "translation_cache",
     "failed_chunks",
+    "knowledge",
 }
 
 @dataclass
