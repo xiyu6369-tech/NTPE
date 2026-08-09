@@ -221,6 +221,7 @@ class ConsistencyChecker:
             # Find what was actually found for reporting
             spec = self._form_policy.get_spec(form_type)
             found_text = ""
+            match_rule = f"{form_type.value}_MISMATCH"
             if spec and spec.forbidden_patterns:
                 norm_text = self._normalize_for_policy(translated_text)
                 for forbidden in spec.forbidden_patterns:
@@ -228,7 +229,26 @@ class ConsistencyChecker:
                     if norm_forbidden in norm_text:
                         idx = norm_text.find(norm_forbidden)
                         found_text = translated_text[idx:idx + len(forbidden)]
+                        # Determine specific rule based on form type
+                        if form_type == NameFormType.GIVEN_NAME:
+                            match_rule = "GIVEN_NAME_FORBIDS_FULL_NAME"
+                        elif form_type == NameFormType.FAMILY_NAME:
+                            match_rule = "FAMILY_NAME_FORBIDS_FULL_NAME"
+                        elif form_type == NameFormType.INTIMATE:
+                            match_rule = "INTIMATE_ONLY_GIVEN_PLUS_SUFFIX"
+                        else:
+                            match_rule = f"{form_type.value}_FORBIDDEN_PATTERN"
                         break
+            else:
+                # Allowed pattern not found
+                if form_type == NameFormType.GIVEN_NAME:
+                    match_rule = "GIVEN_NAME_FORBIDS_FULL_NAME"
+                elif form_type == NameFormType.FAMILY_NAME:
+                    match_rule = "FAMILY_NAME_FORBIDS_FULL_NAME"
+                elif form_type == NameFormType.INTIMATE:
+                    match_rule = "INTIMATE_ONLY_GIVEN_PLUS_SUFFIX"
+                else:
+                    match_rule = f"{form_type.value}_REQUIRES_EXACT_MATCH"
 
             mismatch = EntityMismatch(
                 source=source,
@@ -238,6 +258,7 @@ class ConsistencyChecker:
                 severity=Severity.HIGH,
                 position=-1,
                 knowledge_id=knowledge_id,
+                metadata={"match_rule": match_rule},
             )
             self._mismatches.append(mismatch)
             return mismatch
