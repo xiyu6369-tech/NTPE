@@ -12,6 +12,14 @@ KOREAN_RE = re.compile(r"[\u1100-\u11ff\u3130-\u318f\uac00-\ud7a3]")
 _SENTENCE_RE = re.compile(r"[^。！？!?]+[。！？!?]?")
 _DIALOGUE_QUOTE_RE = re.compile(r"[“”]|(?<![A-Za-z0-9])\"[^\"\n]{1,200}\"")
 
+_LITERARY_QUALITY_CODES = {
+    "NATURALNESS_PERSON_HUMAN_WORLD",
+    "NATURALNESS_BREATH_ACTION",
+    "NATURALNESS_REDUNDANT_COUNTING",
+    "NATURALNESS_TOURIST_PERSON",
+    "NATURALNESS_OVERLITERAL_ENTANGLED",
+}
+
 
 @dataclass(frozen=True)
 class RuntimeQAPolicy:
@@ -133,6 +141,7 @@ def analyze_runtime_quality(
     simplified_hits = detect_simplified_chinese(translated_text, simplified_terms)
     dialogue_quote_hits = detect_dialogue_quote_violations(translated_text)
     naturalness_hits = detect_unnatural_phrases(translated_text)
+    lit_classification = classify_literary_quality_hits(naturalness_hits)
     term_violations = detect_locked_term_violations(source_text, translated_text, locked_dictionary, alias_map)
     quality_lock_violations = [dict(item) for item in (extra_violations or [])]
     issues: list[dict[str, Any]] = []
@@ -154,6 +163,11 @@ def analyze_runtime_quality(
                 "naturalness_violations": len(naturalness_hits),
                 "locked_term_violations": len(term_violations),
                 "quality_lock_violations": len(quality_lock_violations),
+                "literary_quality_hits": lit_classification["literary_quality_hit_count"],
+                "literary_quality_errors": 0,
+                "literary_quality_warnings": 0,
+                "literary_quality_passed": True,
+                "literary_quality_issue_codes": [h.get("code") for h in lit_classification["literary_quality_hits"]],
             },
         }
 
@@ -197,6 +211,16 @@ def analyze_runtime_quality(
     if quality_lock_violations:
         issues.append({"code": "QUALITY_LOCK_VIOLATION", "message": f"QUALITY_LOCK_VIOLATION count={len(quality_lock_violations)}", "samples": quality_lock_violations[:10]})
 
+    # Calculate literary quality metrics based on severity applied to naturalness hits
+    if naturalness_hits and (policy.naturalness_guard_policy or "warn").lower() != "off":
+        retryable_hits = _retryable_naturalness_hits(policy, naturalness_hits)
+        lit_severity = "error" if retryable_hits else "warning"
+        lit_errors = lit_classification["literary_quality_hit_count"] if lit_severity == "error" else 0
+        lit_warnings = lit_classification["literary_quality_hit_count"] if lit_severity == "warning" else 0
+    else:
+        lit_errors = 0
+        lit_warnings = 0
+
     return {
         "passed": not any(issue.get("severity", "error") == "error" for issue in issues),
         "enabled": True,
@@ -213,6 +237,11 @@ def analyze_runtime_quality(
             "naturalness_violations": len(naturalness_hits),
             "locked_term_violations": len(term_violations),
             "quality_lock_violations": len(quality_lock_violations),
+            "literary_quality_hits": lit_classification["literary_quality_hit_count"],
+            "literary_quality_errors": lit_errors,
+            "literary_quality_warnings": lit_warnings,
+            "literary_quality_passed": lit_errors == 0,
+            "literary_quality_issue_codes": [h.get("code") for h in lit_classification["literary_quality_hits"]],
         },
     }
 
@@ -239,6 +268,20 @@ def _retryable_naturalness_hits(policy: RuntimeQAPolicy, hits: list[dict[str, An
     if guard_policy == "high_confidence_only":
         return [hit for hit in hits if hit.get("confidence") == "high"]
     return []
+
+
+def classify_literary_quality_hits(naturalness_hits: list[dict[str, Any]]) -> dict[str, Any]:
+    """
+    Split naturalness_hits into literary-quality vs other.
+    Pure function, no side effects, deterministic.
+    """
+    lit = [h for h in naturalness_hits if h.get("code") in _LITERARY_QUALITY_CODES]
+    other = [h for h in naturalness_hits if h.get("code") not in _LITERARY_QUALITY_CODES]
+    return {
+        "literary_quality_hits": lit,
+        "other_naturalness_hits": other,
+        "literary_quality_hit_count": len(lit),
+    }
 
 
 def should_soft_fail_naturalness(qa_report: Mapping[str, Any], speed: str | None) -> bool:

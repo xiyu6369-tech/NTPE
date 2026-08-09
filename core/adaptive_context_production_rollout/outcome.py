@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 
 OUTCOME_VERSION = "7.0.0-stage08.4.1"
@@ -30,11 +30,16 @@ class ProductionOutcome:
     provider_incomplete_chunks: int = 0
     baseline_covered_chunks: int = 0
     evidence_reasons: tuple[str, ...] = ()
+    literary_quality_hits: int = 0
+    literary_quality_errors: int = 0
+    literary_quality_warnings: int = 0
+    literary_quality_passed: bool = True
+    literary_quality_issue_codes: tuple[str, ...] = field(default_factory=tuple)
 
     def __post_init__(self) -> None:
         for name in (
             "quality_scores", "baseline_quality_scores", "new_issue_codes", "omission_issues",
-            "unsupported_detail_issues", "evidence_reasons",
+            "unsupported_detail_issues", "evidence_reasons", "literary_quality_issue_codes",
         ):
             object.__setattr__(self, name, tuple(getattr(self, name)))
 
@@ -66,5 +71,10 @@ class ProductionOutcome:
             "provider_503": self.provider_503,
             "evidence_complete": self.evidence_complete,
             "evidence_reasons": list(self.evidence_reasons),
+            "literary_quality_hits": self.literary_quality_hits,
+            "literary_quality_errors": self.literary_quality_errors,
+            "literary_quality_warnings": self.literary_quality_warnings,
+            "literary_quality_passed": self.literary_quality_passed,
+            "literary_quality_issue_codes": list(self.literary_quality_issue_codes),
             "content_redacted": True,
         }

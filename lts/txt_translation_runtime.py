@@ -2279,6 +2279,23 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
         save_text(final_output, final_text)
         update_character_memory(character_memory_path, matched_terms_for_memory)
 
+    # Aggregate literary quality metrics from all chunks
+    lit_hits = 0
+    lit_errors = 0
+    lit_warnings = 0
+    lit_passed = True
+    lit_issue_codes: list[str] = []
+    for rec in records:
+        qa = rec.get("qa") if isinstance(rec.get("qa"), dict) else {}
+        metrics = qa.get("metrics") if isinstance(qa.get("metrics"), dict) else {}
+        if metrics:
+            lit_hits += int(metrics.get("literary_quality_hits", 0))
+            lit_errors += int(metrics.get("literary_quality_errors", 0))
+            lit_warnings += int(metrics.get("literary_quality_warnings", 0))
+            if not metrics.get("literary_quality_passed", True):
+                lit_passed = False
+            lit_issue_codes.extend(metrics.get("literary_quality_issue_codes", []))
+
     manifest = {
         "status": "success",
         "input": str(input_path),
@@ -2302,6 +2319,13 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
         "character_memory": str(character_memory_path),
         "dry_run": options.dry_run,
         "completed_at": now_iso(),
+        "literary_quality": {
+            "hits": lit_hits,
+            "errors": lit_errors,
+            "warnings": lit_warnings,
+            "passed": lit_passed,
+            "issue_codes": list(dict.fromkeys(lit_issue_codes)),
+        },
         "records": records,
     }
     save_json(output_dir / f"{input_path.stem}_translation_manifest.json", manifest)

@@ -94,10 +94,10 @@ def _issue_codes(value: object) -> tuple[str, ...]:
     return tuple(dict.fromkeys(code for code in codes if code))
 
 
-def _qa_values(row: Mapping[str, object]) -> tuple[str, int | None, tuple[str, ...]]:
+def _qa_values(row: Mapping[str, object]) -> tuple[str, int | None, tuple[str, ...], dict[str, object]]:
     qa = row.get("qa")
     if not isinstance(qa, Mapping):
-        return "incomplete", None, ()
+        return "incomplete", None, (), {}
     unified = qa.get("unified_quality_report")
     quality = qa.get("quality_v5")
     status = str(qa.get("status") or qa.get("decision") or row.get("status") or "").strip().lower()
@@ -110,7 +110,20 @@ def _qa_values(row: Mapping[str, object]) -> tuple[str, int | None, tuple[str, .
         score = int(raw_score) if raw_score is not None else None
     except (TypeError, ValueError):
         score = None
-    return status, score, _issue_codes(qa)
+
+    # Extract literary quality metrics from QA report metrics
+    metrics = qa.get("metrics") if isinstance(qa.get("metrics"), Mapping) else unified.get("metrics") if isinstance(unified, Mapping) else {}
+    lit_metrics = {}
+    if isinstance(metrics, Mapping):
+        lit_metrics = {
+            "literary_quality_hits": metrics.get("literary_quality_hits", 0),
+            "literary_quality_errors": metrics.get("literary_quality_errors", 0),
+            "literary_quality_warnings": metrics.get("literary_quality_warnings", 0),
+            "literary_quality_passed": metrics.get("literary_quality_passed", True),
+            "literary_quality_issue_codes": metrics.get("literary_quality_issue_codes", []),
+        }
+
+    return status, score, _issue_codes(qa), lit_metrics
 
 
 def _resume_for(output_dir: Path) -> dict[str, object] | None:
@@ -145,6 +158,11 @@ def collect_production_outcome(
     new_issues: list[str] = []
     accepted = retry = failed = resume = incomplete = covered = 0
     reasons: list[str] = []
+    lit_hits_total = 0
+    lit_errors_total = 0
+    lit_warnings_total = 0
+    lit_passed_all = True
+    lit_issue_codes: list[str] = []
     root_path = Path(root)
 
     for record in regression_result.get("records", ()) or ():
@@ -174,7 +192,7 @@ def collect_production_outcome(
             if identity in resume_snapshot:
                 resume += 1
                 continue
-            status, score, issues = _qa_values(row)
+            status, score, issues, lit_metrics = _qa_values(row)
             if str(row.get("status", "")).lower() not in _SUCCESS | {"qa_failed"} or status == "incomplete" or score is None:
                 incomplete += 1
                 continue
@@ -187,11 +205,20 @@ def collect_production_outcome(
             else:
                 failed += 1
             current_scores.append(score)
+
+            # Accumulate literary quality metrics
+            lit_hits_total += int(lit_metrics.get("literary_quality_hits", 0))
+            lit_errors_total += int(lit_metrics.get("literary_quality_errors", 0))
+            lit_warnings_total += int(lit_metrics.get("literary_quality_warnings", 0))
+            if not lit_metrics.get("literary_quality_passed", True):
+                lit_passed_all = False
+            lit_issue_codes.extend(lit_metrics.get("literary_quality_issue_codes", []))
+
             baseline_row = baseline_chunks.get(key)
             if not isinstance(baseline_row, Mapping) or baseline_row.get("source_hash") != row.get("source_hash"):
                 reasons.append("baseline-evidence-missing")
                 continue
-            baseline_status, baseline_score, baseline_issues = _qa_values(baseline_row)
+            baseline_status, baseline_score, baseline_issues, baseline_lit_metrics = _qa_values(baseline_row)
             if baseline_score is None or baseline_status == "incomplete":
                 reasons.append("baseline-evidence-incomplete")
                 continue
@@ -223,6 +250,11 @@ def collect_production_outcome(
         evidence_complete=evidence_complete, sampled_not_activated_chunks=sampled_not_activated,
         resume_chunks=resume, provider_incomplete_chunks=incomplete, baseline_covered_chunks=covered,
         evidence_reasons=tuple(dict.fromkeys(reasons)),
+        literary_quality_hits=lit_hits_total,
+        literary_quality_errors=lit_errors_total,
+        literary_quality_warnings=lit_warnings_total,
+        literary_quality_passed=lit_passed_all,
+        literary_quality_issue_codes=tuple(dict.fromkeys(lit_issue_codes)),
     )
 
 
