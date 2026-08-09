@@ -14,6 +14,20 @@ from .models import (
 )
 from .report import ConsistencyReporter
 from .scanner import EntityScanner
+from .variants import (
+    normalize_for_comparison,
+    are_variants_equal,
+    find_normalized,
+    find_all_normalized,
+)
+from .matching_policy import (
+    FormAwareMatchingPolicy,
+    MatchResult,
+    FormMatchSpec,
+    NameFormType,
+    create_matching_policy,
+    create_matching_policy_from_entity,
+)
 
 __all__ = [
     "EntityCategory",
@@ -24,4 +38,14 @@ __all__ = [
     "EntityScanner",
     "ConsistencyChecker",
     "ConsistencyReporter",
+    "normalize_for_comparison",
+    "are_variants_equal",
+    "find_normalized",
+    "find_all_normalized",
+    "FormAwareMatchingPolicy",
+    "MatchResult",
+    "FormMatchSpec",
+    "NameFormType",
+    "create_matching_policy",
+    "create_matching_policy_from_entity",
 ]

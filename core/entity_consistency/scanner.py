@@ -5,7 +5,7 @@ translated text, this scanner locates every canonical target form that
 appears and returns EntityMatch records.
 
 - Only reads; never mutates knowledge, glossaries, or translations.
-- Matches via substring search in the translation text.
+- Matches via variant-aware substring search in the translation text.
 - Records position (character offset) for auditability.
 """
 
@@ -19,6 +19,7 @@ from core.entity_consistency.models import (
     EntityMatch,
     EntityCategory,
 )
+from core.entity_consistency.variants import find_normalized
 from core.knowledge_evolution.models import EntityType
 
 
@@ -61,9 +62,13 @@ class EntityScanner:
 
             source = str(entry.get("source", ""))
 
-            pos = translated_text.find(canonical)
+            # Variant-aware exact match
+            pos = find_normalized(translated_text, canonical)
             if pos == -1:
                 continue
+
+            # Extract actual text found (preserves original variant)
+            found_text = translated_text[pos:pos + len(canonical)]
 
             dedup_key = f"{etype.value}:{canonical}"
             if dedup_key in seen:
@@ -73,7 +78,7 @@ class EntityScanner:
             matches.append(EntityMatch(
                 source=source,
                 expected=canonical,
-                found=canonical,
+                found=found_text,
                 entity_type=etype,
                 position=pos,
             ))
