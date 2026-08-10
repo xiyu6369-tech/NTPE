@@ -62,6 +62,7 @@ from core.translation_quality_integration_v72 import (
     QualityIntegrationFlags,
     apply_to_prompt_package as apply_translation_quality_integration_v72,
 )
+# RM-8.3 Delivery import is lazy (inside function) to avoid circular import
 
 
 DEFAULT_MODEL = "meta/llama-3.3-70b-instruct"
@@ -140,6 +141,10 @@ class TxtTranslationOptions:
     quality_sequence_index_v72: int | None = None
     quality_selection_time_v72: str = "9999-01-01T00:00:00Z"
     quality_prompt_budget_v72: PromptBudget | None = None
+
+    # RM-8.3 Delivery (Phase 6)
+    quality_delivery_v83: bool = False
+    quality_delivery_formats_v83: tuple[str, ...] = ("txt",)
 
 
 def read_text_auto(path: str | Path) -> str:
@@ -2386,6 +2391,30 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
         save_text(final_output, final_text)
         update_character_memory(character_memory_path, matched_terms_for_memory)
 
+        # RM-8.3 Delivery Pipeline (Phase 6) — feature-gated
+        if options.quality_delivery_v83:
+            emit_progress("starting RM-8.3 delivery pipeline", options=options)
+            try:
+                from core.translation_release.delivery_pipeline import run_delivery_pipeline
+                delivery_result = run_delivery_pipeline(
+                    assembled_text=final_text,
+                    translated_chunks=translated_chunks,
+                    chunk_records=records,
+                    locked_dictionary=locked_dictionary,
+                    options=options,
+                    input_path=input_path,
+                    output_dir=output_dir,
+                )
+                if delivery_result.status == "failed":
+                    emit_progress(f"RM-8.3 delivery pipeline FAILED: {delivery_result.error}", options=options)
+                    # Don't fail the whole translation — delivery is optional extension
+                    # Log and continue
+                else:
+                    emit_progress(f"RM-8.3 delivery pipeline SUCCESS: {delivery_result.output_path}", options=options)
+            except Exception as e:
+                emit_progress(f"RM-8.3 delivery pipeline ERROR: {e}", options=options)
+                # Delivery pipeline failure is non-blocking for core translation
+
     # Aggregate literary quality metrics from all chunks
     lit_hits = 0
     lit_errors = 0
@@ -2474,6 +2503,8 @@ def parse_args(argv: Iterable[str] | None = None) -> TxtTranslationOptions:
     parser.add_argument("--quality-profile", choices=("fast", "balanced", "novel", "literary", "quality", "premium"), default="literary", help="translation quality profile")
     parser.add_argument("--no-quality-v5", action="store_true", help="disable TE-v5.3 conservative quality runtime integration")
     parser.add_argument("--no-quality-v5-report", action="store_true", help="disable per-attempt TE-v5 quality JSON reports")
+    parser.add_argument("--quality-delivery-v83", action="store_true", help="enable RM-8.3 delivery pipeline (TXT + Manifest + QC Certificate + optional EPUB/PDF)")
+    parser.add_argument("--quality-delivery-formats-v83", nargs="+", default=["txt"], choices=["txt", "epub", "pdf"], help="output formats for RM-8.3 delivery")
     parser.add_argument("--dry-run", action="store_true", help="build prompt packages without calling provider")
     ns = parser.parse_args(list(argv) if argv is not None else None)
     return TxtTranslationOptions(
@@ -2502,6 +2533,8 @@ def parse_args(argv: Iterable[str] | None = None) -> TxtTranslationOptions:
         speed=ns.speed,
         quality_v5_enabled=not ns.no_quality_v5,
         quality_v5_report_enabled=not ns.no_quality_v5_report,
+        quality_delivery_v83=ns.quality_delivery_v83,
+        quality_delivery_formats_v83=tuple(ns.quality_delivery_formats_v83),
     )
 
 
