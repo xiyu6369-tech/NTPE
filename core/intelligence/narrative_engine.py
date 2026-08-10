@@ -36,16 +36,28 @@ class NarrativeIntelligenceEngine:
         materialized = list(segments)
         self.event_bus.emit(NARRATIVE_STARTED, segment_count=len(materialized))
         result = self.pipeline.run(materialized)
+        focus = self._derive_focus(result)
         self.state.update(
             perspective=result.perspective,
             voice=result.voice,
             tense=result.tense,
             emotional_tone=result.emotional_tone,
             transitions=result.scene_transitions,
+            focus=focus,
         )
         self.event_bus.emit(NARRATIVE_ANALYZED, perspective=result.perspective, voice=result.voice, tense=result.tense)
         self.event_bus.emit(NARRATIVE_COMPLETED, segment_count=result.segment_count, finding_count=len(result.findings))
         return result
+
+    def _derive_focus(self, result: NarrativeIntelligenceResult) -> str:
+        parts = []
+        if result.scene_transitions:
+            parts.append(f"scene_transitions={len(result.scene_transitions)}")
+        if result.style_profile.get("dominant_mode"):
+            parts.append(f"mode={result.style_profile['dominant_mode']}")
+        if result.style_profile.get("dialogue_density", 0) > 0.5:
+            parts.append("dialogue_heavy")
+        return "; ".join(parts) if parts else ""
 
     def analyze_text(self, text: str, *, context_id: str = "runtime") -> NarrativeIntelligenceResult:
         if not text or not text.strip():
@@ -61,3 +73,27 @@ class NarrativeIntelligenceEngine:
             if text and text.strip()
         ]
         return self.analyze(segments)
+
+    def analyze_chunk(self, source: str, translation: str = "") -> NarrativeIntelligenceResult:
+        """Analyze a single chunk and update cross-chunk narrative state.
+
+        Args:
+            source: Source text chunk to analyze
+            translation: Optional previous translation for context (currently unused but reserved)
+
+        Returns:
+            NarrativeIntelligenceResult with analysis of the chunk
+        """
+        return self.analyze_text(source, context_id=f"chunk_{self.state.counters.get('updates', 0) + 1}")
+
+    def get_context_for_prompt(self) -> dict:
+        """Return current narrative state formatted for PromptAssembly Narrative section."""
+        return self.state.to_prompt_context()
+
+    def get_state_for_checkpoint(self) -> dict:
+        """Return current narrative state for checkpoint serialization."""
+        return self.state.to_dict()
+
+    def restore_state_from_checkpoint(self, state_dict: dict) -> None:
+        """Restore narrative state from checkpoint data."""
+        self.state = NarrativeState.from_dict(state_dict)

@@ -151,13 +151,27 @@ class RuntimeOrchestrator:
         metadata = dict(metadata or {})
         engine_kwargs = dict(engine_kwargs or {})
 
+        # Extract RM-8.2 extensions (feature-gated)
+        enable_cross_chunk_context = metadata.pop("enable_cross_chunk_context", False)
+        context_selection = metadata.pop("context_selection", None) if enable_cross_chunk_context else None
+        scene_state = metadata.pop("scene_state", None) if enable_cross_chunk_context else None
+        narrative_state = metadata.pop("narrative_state", None) if enable_cross_chunk_context else None
+        entity_injection_set = metadata.pop("entity_injection_set", None)
+
         # 1. Knowledge Runtime → MergedRuntime
         bundled_entries = self.knowledge.load_all()
         bundle_list = list(bundled_entries.values())
         merged = self.knowledge.build_merged_runtime(bundles=bundle_list)
 
-        # 2. Prompt Builder → PromptAssembly
-        builder = PromptBuilder(chunk_text=chunk_text)
+        # 2. Prompt Builder → PromptAssembly (EXTENDED when enabled)
+        builder = PromptBuilder(
+            chunk_text=chunk_text,
+            entity_injection_set=entity_injection_set,
+            context_selection=context_selection,
+            scene_state=scene_state,
+            narrative_state=narrative_state,
+            enable_cross_chunk_context=enable_cross_chunk_context,
+        )
         assembly = builder.build(merged)
 
         # 3. Translation Runtime Adapter → TranslationRequest

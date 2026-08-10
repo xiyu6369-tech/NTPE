@@ -620,18 +620,51 @@ def _translate_txt_with_runtime_pipeline(
 
     Preserves post-translation quality processing (QA, naturalness,
     formatting, discipline, V5 integration) identical to legacy mode.
+
+    RM-8.2: Cross-Chunk Context Continuity (feature-gated via quality_context_scene_v72)
     """
     from core.runtime_orchestrator import RuntimeOrchestrator
+    from core.translation_runtime.boundary_detector import detect_boundary, BoundaryResult
+    from core.context_scene_memory.scene_state import transition_scene, transition_chapter
+    from core.context_scene_memory.context_selection import select_context_for_translation
+    from core.context_scene_memory.store import ContextMemoryStore
+    from core.context_scene_memory.models import BoundaryType, ContextEvidence, EvidenceType
+    from core.intelligence.narrative_engine import NarrativeIntelligenceEngine
+
+    def create_evidence_from_chunk(chunk_text: str) -> ContextEvidence:
+        """Create a ContextEvidence from a chunk for scene transition tracking."""
+        import hashlib
+        return ContextEvidence(
+            evidence_id=f"ev_{hashlib.md5(chunk_text.encode()).hexdigest()[:12]}",
+            evidence_type=EvidenceType.SOURCE_OBSERVATION,
+            source_case_id="translation_session",
+            source_segment_id=f"chunk_{len(chunk_text)}",
+            source_text_hash=hashlib.sha256(chunk_text.encode()).hexdigest()[:16],
+            translation_text_hash=None,
+            excerpt=chunk_text[:200] if chunk_text else "",
+            language="ko",
+            rule_id=None,
+            observed_at=now_iso(),
+        )
 
     orchestrator = RuntimeOrchestrator()
     orchestrator.set_engine(engine)
+
+    # RM-8.2: Initialize cross-chunk context components (feature-gated)
+    enable_cross_chunk_context = getattr(options, "quality_context_scene_v72", False)
+    context_store = ContextMemoryStore() if enable_cross_chunk_context else None
+    narrative_engine = NarrativeIntelligenceEngine() if enable_cross_chunk_context else None
+    current_scene_id = "scene_1"
+    current_chapter_id = "chapter_1"
+    prev_chunk_text = ""
+    active_character_ids = options.quality_active_character_ids_v72 if enable_cross_chunk_context else ()
 
     translated_chunks: list[str] = []
     records: list[dict] = []
     t0 = time.time()
 
     emit_progress(
-        f"runtime pipeline enabled: orchestrator={orchestrator.version} chunks={len(chunks)}",
+        f"runtime pipeline enabled: orchestrator={orchestrator.version} chunks={len(chunks)} cross_chunk_context={enable_cross_chunk_context}",
         options=options,
     )
 
@@ -642,6 +675,7 @@ def _translate_txt_with_runtime_pipeline(
         "profile": options.quality_profile,
         "model": options.model,
         "pipeline": "runtime",
+        "enable_cross_chunk_context": enable_cross_chunk_context,
     })
     session_id = session.session_id
     emit_progress(f"runtime session created: {session_id}", options=options)
@@ -693,6 +727,70 @@ def _translate_txt_with_runtime_pipeline(
             records.append({"status": "dry_run", "output_path": str(chunk_file), "package_id": package["package_id"], "attempt": 0})
             continue
 
+        # -- RM-8.2: Cross-Chunk Context Integration --
+        # 1. BOUNDARY DETECTION
+        if enable_cross_chunk_context:
+            boundary: BoundaryResult = detect_boundary(prev_chunk_text, chunk)
+
+            # 2. SCENE/CHAPTER TRANSITION
+            if boundary.type != BoundaryType.SAME_SCENE:
+                if boundary.type == BoundaryType.CHAPTER_TRANSITION:
+                    transition_chapter(
+                        store=context_store,
+                        from_scene_id=current_scene_id,
+                        to_scene_id=boundary.scene_id or f"scene_{idx}",
+                        to_chapter_id=boundary.chapter_id,
+                        evidence=create_evidence_from_chunk(chunk),
+                    )
+                    current_chapter_id = boundary.chapter_id
+                elif boundary.type == BoundaryType.SCENE_TRANSITION:
+                    transition_scene(
+                        store=context_store,
+                        from_scene_id=current_scene_id,
+                        boundary=boundary.type,
+                        to_scene_id=boundary.scene_id,
+                        evidence=create_evidence_from_chunk(chunk),
+                    )
+                # UNKNOWN_TRANSITION: no transition, no expiry (conservative)
+                current_scene_id = boundary.scene_id or current_scene_id
+
+            # 3. CONTEXT SELECTION
+            selection = select_context_for_translation(
+                context_store=context_store,
+                chapter_id=current_chapter_id,
+                scene_id=current_scene_id,
+                sequence_index=idx,
+                character_ids=active_character_ids,
+                token_budget=512,
+                character_token_budget=256,
+            )
+
+            # 4. NARRATIVE STATE
+            prev_translation = translated_chunks[-1] if translated_chunks else ""
+            narrative_engine.analyze_chunk(source=chunk, translation=prev_translation)
+            narrative_context = narrative_engine.get_context_for_prompt()
+
+            # 5. ENTITY INJECTION (RM-7.2) - optional, None if not available
+            entity_injection_set = None
+            # if entity_resolver_available:
+            #     entity_injection_set = entity_resolver.resolve(chunk)
+
+            # Compose context_state metadata (feature-gated)
+            context_state_metadata = {
+                "context_selection_fingerprint": selection.fingerprint,
+                "scene_id": current_scene_id,
+                "scene_version": context_store.get_scene(current_scene_id).scene_version,
+                "narrative": narrative_context,
+                "boundary": boundary.to_dict(),
+                "selected_context_ids": tuple(r.item_id for r in selection.selected_records),
+            }
+        else:
+            boundary = BoundaryResult(type=BoundaryType.SAME_SCENE)
+            selection = None
+            narrative_context = {}
+            entity_injection_set = None
+            context_state_metadata = None
+
         # -- Runtime Pipeline execution --
         save_live_progress(live_progress_path, {
             "status": "running", "input": str(input_path), "output_dir": str(output_dir),
@@ -720,6 +818,12 @@ def _translate_txt_with_runtime_pipeline(
                 },
                 "profile": options.quality_profile,
                 "system_prompt": package.get("prompt", {}).get("system_prompt", ""),
+                "enable_cross_chunk_context": enable_cross_chunk_context,
+                "context_state": context_state_metadata,
+                "context_selection": selection if enable_cross_chunk_context else None,
+                "scene_state": context_store.get_scene(current_scene_id) if enable_cross_chunk_context and context_store else None,
+                "narrative_state": narrative_context if enable_cross_chunk_context else None,
+                "entity_injection_set": entity_injection_set,
             },
         )
 
@@ -831,6 +935,9 @@ def _translate_txt_with_runtime_pipeline(
             "current_chunk": idx, "current_step": "runtime_processing",
             "updated_at": now_iso(),
         })
+
+        # RM-8.2: Update prev_chunk_text for next iteration's boundary detection
+        prev_chunk_text = chunk
 
     # Ensure session transitions to RUNNING before completing.
     # Dry-run or all-resume paths may skip execute() calls entirely.

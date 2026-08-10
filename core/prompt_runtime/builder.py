@@ -10,6 +10,7 @@ from dataclasses import dataclass, field
 from typing import Any, Dict, List, Optional
 
 from core.knowledge_runtime.merger import MergedRuntime
+from core.context_scene_memory.models import ContextSelectionResult, SceneMemoryRecord
 from core.prompt_runtime.models import (
     SECTION_ORDER,
     SECTION_MAP,
@@ -22,6 +23,10 @@ from core.prompt_runtime.sections import (
     build_chunk,
     build_entity_mapping,
     build_system,
+    build_character,
+    build_scene,
+    build_narrative,
+    build_context_selection,
 )
 
 
@@ -59,7 +64,13 @@ class PromptBuilder:
     """Builds PromptAssembly from MergedRuntime.
 
     Section order (fixed):
-        System → Character → Entity Mapping → Glossary → Scene → Narrative → Style → Chunk
+        System → Character → Entity Mapping → Glossary → Scene → Narrative → Style → Context → Chunk
+
+    RM-8.2 Extensions (feature-gated via enable_cross_chunk_context):
+        - context_selection: ContextSelectionResult for cross-chunk context
+        - scene_state: SceneMemoryRecord for live scene state
+        - narrative_state: dict from NarrativeIntelligenceEngine
+        - enable_cross_chunk_context: Feature flag (default OFF for backward compatibility)
     """
 
     def __init__(
@@ -67,10 +78,19 @@ class PromptBuilder:
         chunk_text: str = "",
         system_metadata: Optional[Dict[str, Any]] = None,
         entity_injection_set: Optional[Any] = None,
+        # RM-8.2 EXTENSIONS (feature-gated):
+        context_selection: Optional[ContextSelectionResult] = None,
+        scene_state: Optional[SceneMemoryRecord] = None,
+        narrative_state: Optional[dict] = None,
+        enable_cross_chunk_context: bool = False,  # FEATURE FLAG — default OFF
     ):
         self._chunk_text = chunk_text
         self._system_metadata = system_metadata or {}
         self._entity_injection_set = entity_injection_set
+        self._context_selection = context_selection
+        self._scene_state = scene_state
+        self._narrative_state = narrative_state
+        self._enable_cross_chunk_context = enable_cross_chunk_context
 
     def build(self, runtime: MergedRuntime) -> PromptAssembly:
         """Assemble all sections in fixed order from runtime."""
@@ -79,16 +99,33 @@ class PromptBuilder:
         # System (always first)
         sections.append(build_system(runtime, self._system_metadata))
 
-        # Character
-        sections.append(SECTION_BUILDERS["Character"](runtime))
+        # Character (parameterized with selected memories when enabled)
+        sections.append(build_character(
+            runtime,
+            character_memories=self._context_selection.selected_character_memories if self._enable_cross_chunk_context and self._context_selection else None
+        ))
 
-        # Entity Mapping (RM-7.2) - requires injection_set
+        # Entity Mapping (RM-7.2)
         sections.append(build_entity_mapping(runtime, self._entity_injection_set))
 
-        # Domain sections (fixed order, skip System, Character, Entity Mapping, Chunk)
+        # Domain sections (fixed order)
         for section_name in SECTION_ORDER[3:-1]:  # Skip System, Character, Entity Mapping, Chunk
-            builder = SECTION_BUILDERS[section_name]
-            sections.append(builder(runtime))
+            if section_name == "Scene":
+                sections.append(build_scene(
+                    runtime,
+                    scene_state=self._scene_state if self._enable_cross_chunk_context else None
+                ))
+            elif section_name == "Narrative":
+                sections.append(build_narrative(
+                    runtime,
+                    narrative_state=self._narrative_state if self._enable_cross_chunk_context else None
+                ))
+            elif section_name == "Context":  # NEW SECTION — only when enabled
+                if self._enable_cross_chunk_context:
+                    sections.append(build_context_selection(self._context_selection))
+            else:
+                builder = SECTION_BUILDERS[section_name]
+                sections.append(builder(runtime))
 
         # Chunk (always last)
         sections.append(build_chunk(runtime, self._chunk_text))
@@ -100,6 +137,7 @@ class PromptBuilder:
                 "runtime_domains": list(runtime.domains.keys()),
                 "chunk_text_length": len(self._chunk_text),
                 "has_entity_mapping": self._entity_injection_set is not None,
+                "enable_cross_chunk_context": self._enable_cross_chunk_context,
             },
             version="rm-6.2.0",
         )

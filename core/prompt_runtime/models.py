@@ -96,6 +96,13 @@ class ChunkSection(PromptSection):
     name: str = "Chunk"
 
 
+@dataclass(frozen=True, order=True)
+class ContextSection(PromptSection):
+    """Cross-Chunk Context section for prompt assembly (RM-8.2)."""
+
+    name: str = "Context"
+
+
 SECTION_ORDER = (
     "System",
     "Character",
@@ -104,6 +111,7 @@ SECTION_ORDER = (
     "Scene",
     "Narrative",
     "Style",
+    "Context",      # NEW: between Style and Chunk (only rendered when enable_cross_chunk_context=True)
     "Chunk",
 )
 
@@ -115,6 +123,7 @@ SECTION_MAP = {
     "Scene": SceneSection,
     "Narrative": NarrativeSection,
     "Style": StyleSection,
+    "Context": ContextSection,
     "Chunk": ChunkSection,
 }
 
@@ -128,6 +137,7 @@ __all__ = [
     "StyleSection",
     "SystemSection",
     "ChunkSection",
+    "ContextSection",
     "SECTION_ORDER",
     "SECTION_MAP",
 ]
