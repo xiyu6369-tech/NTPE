@@ -14,6 +14,8 @@ from core.translation_release.metadata import (
     generate_quality_certificate,
 )
 from core.translation_release.package import write_txt_delivery, write_json_delivery
+from core.translation_release.reader_structure.chapter_mapper import build_reader_chapter_map
+from core.translation_release.reader_structure.epub_packager import pack_epub
 from lts.txt_translation_runtime import TxtTranslationOptions
 
 
@@ -193,13 +195,35 @@ def run_delivery_pipeline(
     # Optional exporters (non-blocking, graceful fallback)
     if "epub" in formats:
         try:
-            from core.translation_release.exporters.epub_exporter import EpubExporter
-            exporter = EpubExporter()
+            # Build ReaderChapterMap for EPUB packaging (uses polished_text as txt_body source of truth)
+            # Skip assembly validation because polished_text has been canonicalized/polished
+            reader_chapter_map = build_reader_chapter_map(
+                txt_body=polished_text,
+                translated_chunks=translated_chunks,
+                chunk_records=chunk_records,
+                skip_assembly_validation=True,
+            )
+
             epub_candidate = output_dir / f"{novel_id}.epub"
-            if exporter.export(polished_text=final_text, manifest=delivery_manifest, toc=toc, output_path=epub_candidate):
+            meta = {
+                "title": novel_id,
+                "author": delivery_manifest.artifacts.get("author", "未知作者") if isinstance(delivery_manifest.artifacts, dict) else "未知作者",
+                "translator": "NTPE Translation Engine",
+                "date": getattr(options, "completed_at", "") or "",
+                "pipeline_version": "NTPE_RM84_v1",
+            }
+            if pack_epub(
+                txt_body=polished_text,
+                reader_chapter_map=reader_chapter_map,
+                novel_id=novel_id,
+                output_path=epub_candidate,
+                metadata=meta,
+            ):
                 epub_path = str(epub_candidate)
-        except (ImportError, AttributeError):
-            pass  # graceful: format unavailable
+        except (ImportError, AttributeError, ValueError, OSError):
+            # OSError covers: OSError, IOError, PermissionError, FileNotFoundError
+            # EPUB packaging failure MUST NOT break Core Delivery
+            pass  # graceful: format unavailable, validation failed, or I/O error
 
     if "pdf" in formats:
         try:
