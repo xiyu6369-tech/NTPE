@@ -113,6 +113,12 @@ def validate_final_novel(
     # Check 9: empty_content (info)
     checks.append(_check_empty_content(text))
 
+    # NEW RM-8.5: Cross-Chunk Semantic Checks (minor, FAIL-OPEN)
+    # Only execute when quality_delivery_v83 is enabled (feature-gated)
+    if getattr(options, "quality_delivery_v83", False):
+        checks.append(_check_narrative_pov_continuity(text, chunk_records))
+        checks.append(_check_tense_voice_consistency(text, chunk_records))
+
     # Weighted scoring
     severity_weights = {
         "critical": 3.0,
@@ -406,3 +412,182 @@ def _check_empty_content(text: str) -> ValidationCheck:
         details={"empty": not passed, "length": len(text)},
         severity="info",
     )
+
+
+def _check_narrative_pov_continuity(text: str, chunk_records: list[dict]) -> ValidationCheck:
+    """
+    FAIL-OPEN: Any exception, missing data, or unknown state -> return passed=True, score=100.0
+
+    1. For each chunk_record:
+       - Extract narrative.perspective from context_state
+       - Normalize: "first_person" | "third_person_limited" | "third_person_omniscient" | "unknown"
+       - UNKNOWN handling: "unknown" = "indeterminate, no false positive" -> NEVER flag as violation
+
+    2. For consecutive chunks within same scene (boundary.type == "same_scene"):
+       - Flag if perspective changes without chapter/scene transition
+       - Only flag when BOTH current AND next are KNOWN (not "unknown") AND different
+
+    3. Allow perspective change ONLY at:
+       - boundary.type == "chapter_transition"
+       - boundary.type == "scene_transition" (with new scene_id)
+
+    4. Score: 100 - (unauthorized_changes * 25), min 0
+    """
+    try:
+        if not chunk_records:
+            return ValidationCheck(
+                name="narrative_pov_continuity",
+                passed=True,
+                score=100.0,
+                details={"unauthorized_changes": 0, "chunks_checked": 0, "unknown_skipped": True},
+                severity="minor",
+            )
+
+        perspectives = []
+        boundaries = []
+
+        for rec in chunk_records:
+            ctx = rec.get("metadata", {}).get("context_state", {})
+            narrative = ctx.get("narrative", {})
+            boundary = ctx.get("boundary", {})
+
+            perspective = narrative.get("perspective", "unknown")
+            boundary_type = boundary.get("type", "same_scene")
+
+            perspectives.append(perspective)
+            boundaries.append(boundary_type)
+
+        unauthorized_changes = 0
+        unknown_skipped = False
+
+        for i in range(1, len(perspectives)):
+            if boundaries[i - 1] != "same_scene":
+                continue
+
+            prev_pov = perspectives[i - 1]
+            curr_pov = perspectives[i]
+
+            if prev_pov == "unknown" or curr_pov == "unknown":
+                unknown_skipped = True
+                continue
+
+            if prev_pov != curr_pov:
+                unauthorized_changes += 1
+
+        score = max(0.0, 100.0 - unauthorized_changes * 25)
+        passed = unauthorized_changes == 0
+
+        return ValidationCheck(
+            name="narrative_pov_continuity",
+            passed=passed,
+            score=score,
+            details={
+                "unauthorized_changes": unauthorized_changes,
+                "chunks_checked": len(perspectives),
+                "unknown_skipped": unknown_skipped,
+            },
+            severity="minor",
+        )
+
+    except Exception:
+        return ValidationCheck(
+            name="narrative_pov_continuity",
+            passed=True,
+            score=100.0,
+            details={"unauthorized_changes": 0, "chunks_checked": 0, "fail_open": True, "error": "exception_during_check"},
+            severity="minor",
+        )
+
+
+def _check_tense_voice_consistency(text: str, chunk_records: list[dict]) -> ValidationCheck:
+    """
+    FAIL-OPEN: Any exception, missing data, or unknown state -> return passed=True, score=100.0
+
+    1. For each chunk_record:
+       - Extract narrative.tense, narrative.voice from context_state
+       - Tense: "past" | "present" | "future" | "undetermined" | "mixed" | "unknown"
+       - Voice: "formal" | "casual" | "literary" | "neutral" | "mixed" | "unknown"
+       - UNKNOWN handling: "unknown" = "indeterminate, no false positive" -> NEVER flag as violation
+
+    2. For consecutive chunks within same scene:
+       - Flag tense change without transition (only when BOTH known and different)
+       - Flag voice change without transition (only when BOTH known and different)
+
+    3. Allow changes at chapter/scene transitions
+
+    4. Score: 100 - (tense_violations * 15 + voice_violations * 10), min 0
+    """
+    try:
+        if not chunk_records:
+            return ValidationCheck(
+                name="tense_voice_consistency",
+                passed=True,
+                score=100.0,
+                details={"tense_violations": 0, "voice_violations": 0, "chunks_checked": 0, "unknown_skipped": True},
+                severity="minor",
+            )
+
+        tenses = []
+        voices = []
+        boundaries = []
+
+        for rec in chunk_records:
+            ctx = rec.get("metadata", {}).get("context_state", {})
+            narrative = ctx.get("narrative", {})
+            boundary = ctx.get("boundary", {})
+
+            tense = narrative.get("tense", "unknown")
+            voice = narrative.get("voice", "unknown")
+            boundary_type = boundary.get("type", "same_scene")
+
+            tenses.append(tense)
+            voices.append(voice)
+            boundaries.append(boundary_type)
+
+        tense_violations = 0
+        voice_violations = 0
+        unknown_skipped = False
+
+        for i in range(1, len(tenses)):
+            if boundaries[i - 1] != "same_scene":
+                continue
+
+            prev_tense = tenses[i - 1]
+            curr_tense = tenses[i]
+            prev_voice = voices[i - 1]
+            curr_voice = voices[i]
+
+            if prev_tense == "unknown" or curr_tense == "unknown":
+                unknown_skipped = True
+            elif prev_tense != curr_tense:
+                tense_violations += 1
+
+            if prev_voice == "unknown" or curr_voice == "unknown":
+                unknown_skipped = True
+            elif prev_voice != curr_voice:
+                voice_violations += 1
+
+        score = max(0.0, 100.0 - tense_violations * 15 - voice_violations * 10)
+        passed = (tense_violations == 0) and (voice_violations == 0)
+
+        return ValidationCheck(
+            name="tense_voice_consistency",
+            passed=passed,
+            score=score,
+            details={
+                "tense_violations": tense_violations,
+                "voice_violations": voice_violations,
+                "chunks_checked": len(tenses),
+                "unknown_skipped": unknown_skipped,
+            },
+            severity="minor",
+        )
+
+    except Exception:
+        return ValidationCheck(
+            name="tense_voice_consistency",
+            passed=True,
+            score=100.0,
+            details={"tense_violations": 0, "voice_violations": 0, "chunks_checked": 0, "fail_open": True, "error": "exception_during_check"},
+            severity="minor",
+        )

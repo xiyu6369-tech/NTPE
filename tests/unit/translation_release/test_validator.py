@@ -4,7 +4,13 @@ import pytest
 from pathlib import Path
 
 from lts.txt_translation_runtime import TxtTranslationOptions
-from core.translation_release.validator import validate_final_novel, ValidationResult, ValidationCheck
+from core.translation_release.validator import (
+    validate_final_novel,
+    ValidationResult,
+    ValidationCheck,
+    _check_narrative_pov_continuity,
+    _check_tense_voice_consistency,
+)
 
 
 @pytest.fixture
@@ -334,6 +340,484 @@ class TestValidateFinalNovel:
             assert hasattr(check, "score")
             assert hasattr(check, "details")
             assert hasattr(check, "severity")
+
+
+class TestRM85SemanticChecks:
+    """Tests for RM-8.5 cross-chunk semantic validation checks."""
+
+    @pytest.fixture
+    def same_scene_chunks(self):
+        """Two chunks in same scene with consistent narrative state."""
+        return [
+            {
+                "metadata": {
+                    "context_state": {
+                        "scene_id": "scene_1",
+                        "chapter_id": "chapter_1",
+                        "boundary": {"type": "same_scene"},
+                        "narrative": {
+                            "perspective": "third_person_limited",
+                            "voice": "formal",
+                            "tense": "past",
+                            "emotional_tone": "neutral",
+                        },
+                    }
+                }
+            },
+            {
+                "metadata": {
+                    "context_state": {
+                        "scene_id": "scene_1",
+                        "chapter_id": "chapter_1",
+                        "boundary": {"type": "same_scene"},
+                        "narrative": {
+                            "perspective": "third_person_limited",
+                            "voice": "formal",
+                            "tense": "past",
+                            "emotional_tone": "neutral",
+                        },
+                    }
+                }
+            },
+        ]
+
+    @pytest.fixture
+    def scene_transition_chunks(self):
+        """Chunks with scene transition - perspective/tense/voice change allowed."""
+        return [
+            {
+                "metadata": {
+                    "context_state": {
+                        "scene_id": "scene_1",
+                        "chapter_id": "chapter_1",
+                        "boundary": {"type": "scene_transition"},
+                        "narrative": {
+                            "perspective": "third_person_limited",
+                            "voice": "formal",
+                            "tense": "past",
+                            "emotional_tone": "neutral",
+                        },
+                    }
+                }
+            },
+            {
+                "metadata": {
+                    "context_state": {
+                        "scene_id": "scene_2",
+                        "chapter_id": "chapter_1",
+                        "boundary": {"type": "same_scene"},
+                        "narrative": {
+                            "perspective": "first_person",
+                            "voice": "casual",
+                            "tense": "present",
+                            "emotional_tone": "tense",
+                        },
+                    }
+                }
+            },
+        ]
+
+    @pytest.fixture
+    def chapter_transition_chunks(self):
+        """Chunks with chapter transition - perspective/tense/voice change allowed."""
+        return [
+            {
+                "metadata": {
+                    "context_state": {
+                        "scene_id": "scene_1",
+                        "chapter_id": "chapter_1",
+                        "boundary": {"type": "chapter_transition"},
+                        "narrative": {
+                            "perspective": "third_person_limited",
+                            "voice": "formal",
+                            "tense": "past",
+                        },
+                    }
+                }
+            },
+            {
+                "metadata": {
+                    "context_state": {
+                        "scene_id": "scene_1",
+                        "chapter_id": "chapter_2",
+                        "boundary": {"type": "same_scene"},
+                        "narrative": {
+                            "perspective": "first_person",
+                            "voice": "casual",
+                            "tense": "present",
+                        },
+                    }
+                }
+            },
+        ]
+
+    @pytest.fixture
+    def unknown_perspective_chunks(self):
+        """One chunk has unknown perspective - must NOT flag as violation (fail-open)."""
+        return [
+            {
+                "metadata": {
+                    "context_state": {
+                        "scene_id": "scene_1",
+                        "chapter_id": "chapter_1",
+                        "boundary": {"type": "same_scene"},
+                        "narrative": {
+                            "perspective": "third_person_limited",
+                            "voice": "formal",
+                            "tense": "past",
+                        },
+                    }
+                }
+            },
+            {
+                "metadata": {
+                    "context_state": {
+                        "scene_id": "scene_1",
+                        "chapter_id": "chapter_1",
+                        "boundary": {"type": "same_scene"},
+                        "narrative": {
+                            "perspective": "unknown",
+                            "voice": "formal",
+                            "tense": "past",
+                        },
+                    }
+                }
+            },
+        ]
+
+    @pytest.fixture
+    def unknown_tense_voice_chunks(self):
+        """One chunk has unknown tense/voice - must NOT flag as violation (fail-open)."""
+        return [
+            {
+                "metadata": {
+                    "context_state": {
+                        "scene_id": "scene_1",
+                        "chapter_id": "chapter_1",
+                        "boundary": {"type": "same_scene"},
+                        "narrative": {
+                            "perspective": "third_person_limited",
+                            "voice": "formal",
+                            "tense": "past",
+                        },
+                    }
+                }
+            },
+            {
+                "metadata": {
+                    "context_state": {
+                        "scene_id": "scene_1",
+                        "chapter_id": "chapter_1",
+                        "boundary": {"type": "same_scene"},
+                        "narrative": {
+                            "perspective": "third_person_limited",
+                            "voice": "unknown",
+                            "tense": "unknown",
+                        },
+                    }
+                }
+            },
+        ]
+
+    @pytest.fixture
+    def missing_context_chunks(self):
+        """Missing context_state entirely - must pass (fail-open)."""
+        return [
+            {
+                "metadata": {
+                    "context_state": {
+                        "scene_id": "scene_1",
+                        "chapter_id": "chapter_1",
+                        "boundary": {"type": "same_scene"},
+                        "narrative": {
+                            "perspective": "third_person_limited",
+                            "voice": "formal",
+                            "tense": "past",
+                        },
+                    }
+                }
+            },
+            {"metadata": {}},  # No context_state
+        ]
+
+    @pytest.fixture
+    def pov_violation_chunks(self):
+        """Perspective changes within same scene without transition - VIOLATION."""
+        return [
+            {
+                "metadata": {
+                    "context_state": {
+                        "scene_id": "scene_1",
+                        "chapter_id": "chapter_1",
+                        "boundary": {"type": "same_scene"},
+                        "narrative": {"perspective": "third_person_limited"},
+                    }
+                }
+            },
+            {
+                "metadata": {
+                    "context_state": {
+                        "scene_id": "scene_1",
+                        "chapter_id": "chapter_1",
+                        "boundary": {"type": "same_scene"},
+                        "narrative": {"perspective": "first_person"},
+                    }
+                }
+            },
+        ]
+
+    @pytest.fixture
+    def tense_violation_chunks(self):
+        """Tense changes within same scene without transition - VIOLATION."""
+        return [
+            {
+                "metadata": {
+                    "context_state": {
+                        "scene_id": "scene_1",
+                        "chapter_id": "chapter_1",
+                        "boundary": {"type": "same_scene"},
+                        "narrative": {"tense": "past", "voice": "formal"},
+                    }
+                }
+            },
+            {
+                "metadata": {
+                    "context_state": {
+                        "scene_id": "scene_1",
+                        "chapter_id": "chapter_1",
+                        "boundary": {"type": "same_scene"},
+                        "narrative": {"tense": "present", "voice": "formal"},
+                    }
+                }
+            },
+        ]
+
+    @pytest.fixture
+    def voice_violation_chunks(self):
+        """Voice changes within same scene without transition - VIOLATION."""
+        return [
+            {
+                "metadata": {
+                    "context_state": {
+                        "scene_id": "scene_1",
+                        "chapter_id": "chapter_1",
+                        "boundary": {"type": "same_scene"},
+                        "narrative": {"tense": "past", "voice": "formal"},
+                    }
+                }
+            },
+            {
+                "metadata": {
+                    "context_state": {
+                        "scene_id": "scene_1",
+                        "chapter_id": "chapter_1",
+                        "boundary": {"type": "same_scene"},
+                        "narrative": {"tense": "past", "voice": "casual"},
+                    }
+                }
+            },
+        ]
+
+    # ===== narrative_pov_continuity tests =====
+
+    def test_narrative_pov_continuity_passes_same_scene(self, same_scene_chunks):
+        text = "他走了進來。\n\n他看到了她。"
+        result = _check_narrative_pov_continuity(text, same_scene_chunks)
+        assert result.passed is True
+        assert result.score == 100.0
+        assert result.severity == "minor"
+        assert result.details["unauthorized_changes"] == 0
+
+    def test_narrative_pov_continuity_fails_unauthorized_change(self, pov_violation_chunks):
+        result = _check_narrative_pov_continuity("text", pov_violation_chunks)
+        assert result.passed is False
+        assert result.score == 75.0  # 100 - 1 * 25
+        assert result.severity == "minor"
+        assert result.details["unauthorized_changes"] == 1
+
+    def test_narrative_pov_continuity_allows_at_scene_transition(self, scene_transition_chunks):
+        result = _check_narrative_pov_continuity("text", scene_transition_chunks)
+        assert result.passed is True
+        assert result.score == 100.0
+        assert result.details["unauthorized_changes"] == 0
+
+    def test_narrative_pov_continuity_allows_at_chapter_transition(self, chapter_transition_chunks):
+        result = _check_narrative_pov_continuity("text", chapter_transition_chunks)
+        assert result.passed is True
+        assert result.score == 100.0
+
+    def test_narrative_pov_continuity_unknown_is_no_false_positive(self, unknown_perspective_chunks):
+        """unknown perspective MUST NOT produce violation (fail-open, no false positive)."""
+        result = _check_narrative_pov_continuity("text", unknown_perspective_chunks)
+        assert result.passed is True
+        assert result.score == 100.0
+        assert result.details.get("unknown_skipped") is True
+
+    def test_narrative_pov_continuity_missing_context_is_fail_open(self, missing_context_chunks):
+        """Missing context_state MUST pass (fail-open)."""
+        result = _check_narrative_pov_continuity("text", missing_context_chunks)
+        assert result.passed is True
+        assert result.score == 100.0
+
+    def test_narrative_pov_continuity_empty_records(self):
+        """Empty chunk_records should pass (fail-open)."""
+        result = _check_narrative_pov_continuity("text", [])
+        assert result.passed is True
+        assert result.score == 100.0
+
+    # ===== tense_voice_consistency tests =====
+
+    def test_tense_voice_consistency_passes_same_scene(self, same_scene_chunks):
+        text = "他走了進來。\n\n他看到了她。"
+        result = _check_tense_voice_consistency(text, same_scene_chunks)
+        assert result.passed is True
+        assert result.score == 100.0
+        assert result.severity == "minor"
+        assert result.details["tense_violations"] == 0
+        assert result.details["voice_violations"] == 0
+
+    def test_tense_voice_consistency_fails_unauthorized_tense_change(self, tense_violation_chunks):
+        result = _check_tense_voice_consistency("text", tense_violation_chunks)
+        assert result.passed is False
+        assert result.score == 85.0  # 100 - 1 * 15
+        assert result.severity == "minor"
+        assert result.details["tense_violations"] == 1
+        assert result.details["voice_violations"] == 0
+
+    def test_tense_voice_consistency_fails_unauthorized_voice_change(self, voice_violation_chunks):
+        result = _check_tense_voice_consistency("text", voice_violation_chunks)
+        assert result.passed is False
+        assert result.score == 90.0  # 100 - 1 * 10
+        assert result.severity == "minor"
+        assert result.details["tense_violations"] == 0
+        assert result.details["voice_violations"] == 1
+
+    def test_tense_voice_consistency_fails_both_tense_and_voice(self):
+        """Both tense and voice change - score should reflect both."""
+        chunks = [
+            {
+                "metadata": {
+                    "context_state": {
+                        "scene_id": "scene_1",
+                        "boundary": {"type": "same_scene"},
+                        "narrative": {"tense": "past", "voice": "formal"},
+                    }
+                }
+            },
+            {
+                "metadata": {
+                    "context_state": {
+                        "scene_id": "scene_1",
+                        "boundary": {"type": "same_scene"},
+                        "narrative": {"tense": "present", "voice": "casual"},
+                    }
+                }
+            },
+        ]
+        result = _check_tense_voice_consistency("text", chunks)
+        assert result.passed is False
+        assert result.score == 75.0  # 100 - 15 - 10
+        assert result.details["tense_violations"] == 1
+        assert result.details["voice_violations"] == 1
+
+    def test_tense_voice_consistency_allows_at_scene_transition(self, scene_transition_chunks):
+        result = _check_tense_voice_consistency("text", scene_transition_chunks)
+        assert result.passed is True
+        assert result.score == 100.0
+
+    def test_tense_voice_consistency_allows_at_chapter_transition(self, chapter_transition_chunks):
+        result = _check_tense_voice_consistency("text", chapter_transition_chunks)
+        assert result.passed is True
+        assert result.score == 100.0
+
+    def test_tense_voice_consistency_unknown_is_no_false_positive(self, unknown_tense_voice_chunks):
+        """unknown tense/voice MUST NOT produce violation (fail-open, no false positive)."""
+        result = _check_tense_voice_consistency("text", unknown_tense_voice_chunks)
+        assert result.passed is True
+        assert result.score == 100.0
+        assert result.details.get("unknown_skipped") is True
+
+    def test_tense_voice_consistency_missing_context_is_fail_open(self, missing_context_chunks):
+        """Missing context_state MUST pass (fail-open)."""
+        result = _check_tense_voice_consistency("text", missing_context_chunks)
+        assert result.passed is True
+        assert result.score == 100.0
+
+    def test_tense_voice_consistency_empty_records(self):
+        """Empty chunk_records should pass (fail-open)."""
+        result = _check_tense_voice_consistency("text", [])
+        assert result.passed is True
+        assert result.score == 100.0
+
+
+class TestRM85FeatureFlag:
+    """Tests for quality_delivery_v83 feature flag behavior."""
+
+    @pytest.fixture
+    def options_v83_false(self):
+        return TxtTranslationOptions(
+            input_path=Path("test.txt"),
+            output_dir=Path("out"),
+            max_korean_chars=2,
+            min_length_ratio=0.1,
+            strict_lock_terms=True,
+            quality_delivery_v83=False,
+        )
+
+    @pytest.fixture
+    def options_v83_true(self):
+        return TxtTranslationOptions(
+            input_path=Path("test.txt"),
+            output_dir=Path("out"),
+            max_korean_chars=2,
+            min_length_ratio=0.1,
+            strict_lock_terms=True,
+            quality_delivery_v83=True,
+        )
+
+    def test_quality_delivery_v83_false_zero_execution(self, options_v83_false, sample_chunks, sample_records):
+        """When quality_delivery_v83=False (default), new checks should NOT execute."""
+        text = "\n\n".join(sample_chunks)
+        result = validate_final_novel(text, {}, sample_records, {"passed": True, "errors": 0}, options_v83_false, matched_terms={})
+
+        # Check that the new checks are NOT in the results
+        check_names = [c.name for c in result.checks]
+        assert "narrative_pov_continuity" not in check_names
+        assert "tense_voice_consistency" not in check_names
+
+        # Should still have the original 9 checks
+        assert len(result.checks) == 9
+
+    def test_quality_delivery_v83_true_executes_checks(self, options_v83_true, sample_chunks, sample_records):
+        """When quality_delivery_v83=True, new checks should execute."""
+        # Add narrative context to sample_records for the new checks
+        for rec in sample_records:
+            if "metadata" not in rec:
+                rec["metadata"] = {}
+            if "context_state" not in rec["metadata"]:
+                rec["metadata"]["context_state"] = {}
+            rec["metadata"]["context_state"]["narrative"] = {
+                "perspective": "third_person_limited",
+                "voice": "formal",
+                "tense": "past",
+            }
+            rec["metadata"]["context_state"]["boundary"] = {"type": "same_scene"}
+
+        text = "\n\n".join(sample_chunks)
+        result = validate_final_novel(text, {}, sample_records, {"passed": True, "errors": 0}, options_v83_true, matched_terms={})
+
+        check_names = [c.name for c in result.checks]
+        assert "narrative_pov_continuity" in check_names
+        assert "tense_voice_consistency" in check_names
+
+        # Should have 9 original + 2 new = 11 checks
+        assert len(result.checks) == 11
+
+        # Both should pass with consistent data
+        pov_check = next(c for c in result.checks if c.name == "narrative_pov_continuity")
+        tense_check = next(c for c in result.checks if c.name == "tense_voice_consistency")
+        assert pov_check.passed is True
+        assert tense_check.passed is True
 
 
 if __name__ == "__main__":
