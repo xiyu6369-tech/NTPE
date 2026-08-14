@@ -2383,7 +2383,13 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
         })
         if translation:
             translated_chunks.append(translation.strip())
-        records.append(result | {"chunk_index": idx, "chunk_total": len(chunks), "metadata": {}})
+        enable_cross_chunk_context = getattr(options, "quality_context_scene_v72", False)
+        context_state_metadata = None
+        if enable_cross_chunk_context:
+            # Note: In legacy path, context_state_metadata is not built per-chunk like in runtime path
+            # This maintains backward compatibility while ensuring the metadata key exists
+            pass
+        records.append(result | {"chunk_index": idx, "chunk_total": len(chunks), "metadata": {"context_state": context_state_metadata} if enable_cross_chunk_context else {}})
 
     final_output = output_dir / f"{input_path.stem}{DEFAULT_OUTPUT_SUFFIX}.txt"
     if not options.dry_run:
