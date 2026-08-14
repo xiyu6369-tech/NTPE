@@ -80,6 +80,9 @@ def validate_final_novel(
     - info: weight 0.5
 
     PASS threshold: overall_score >= 70.0 AND no failed critical checks
+
+    NEW RM-8.5: Cross-Chunk Semantic Checks (minor, FAIL-OPEN)
+    Only execute when quality_delivery_v83 is enabled (feature-gated)
     """
     checks: list[ValidationCheck] = []
 
@@ -158,13 +161,11 @@ def validate_final_novel(
 def _check_paragraph_structure(text: str) -> ValidationCheck:
     paragraphs = [p for p in text.split("\n\n") if p.strip()]
     empty_count = 0
-    # Count empty paragraphs (consecutive \n\n\n)
     parts = text.split("\n\n")
     for part in parts:
         if not part.strip():
             empty_count += 1
 
-    # Also check for 3+ consecutive newlines
     excessive_newlines = len(re.findall(r"\n{3,}", text))
 
     passed = len(paragraphs) > 0 and empty_count == 0 and excessive_newlines == 0
@@ -193,14 +194,12 @@ def _check_punctuation_consistency(text: str) -> ValidationCheck:
             severity="major",
         )
 
-    # Count CJK punctuation vs ASCII punctuation
     cjk_punct = len(re.findall(r"[，。！？；：「」『』（）《》〈〉【】]", text))
     ascii_punct = len(re.findall(r"[,.!?;:\"\"''()<>\[\]{}]", text))
     total_punct = cjk_punct + ascii_punct
 
     cjk_ratio = cjk_punct / total_punct if total_punct > 0 else 1.0
 
-    # Check quote style unification (should use corner brackets)
     corner_brackets = len(re.findall(r"[「」『』]", text))
     straight_quotes = len(re.findall(r'["\']', text))
     quote_unified = straight_quotes == 0 or (corner_brackets > 0 and straight_quotes < corner_brackets)
@@ -245,13 +244,10 @@ def _check_locked_term_compliance(
     Only validate locked terms that were actually matched in source chunks.
     matched_terms = {src: target for src, target in locked_dictionary.items() if src in source_text}
     """
-    # Build alias map from locked dictionary
     aliases = build_translation_alias_map(locked_dictionary)
 
-    # Check missing matched terms
     missing = [t for t in matched_terms.values() if t and t not in text]
 
-    # Check alias violations
     alias_hits = [a for a in aliases if a in text]
 
     passed = len(missing) == 0 and len(alias_hits) == 0
@@ -266,7 +262,7 @@ def _check_locked_term_compliance(
             "alias_violations": alias_hits,
             "validated_terms": list(matched_terms.values()),
         },
-        severity="major",  # downgraded from critical
+        severity="major",
     )
 
 
@@ -294,16 +290,15 @@ def _check_length_ratio_global(
     if verifiable_chunks == 0:
         return ValidationCheck(
             name="length_ratio_global",
-            passed=True,  # unverifiable -> neutral
+            passed=True,
             score=100.0,
             details={
                 "verifiable": False,
                 "reason": "no source char_count in chunk_records",
             },
-            severity="info",  # info when unverifiable
+            severity="info",
         )
 
-    # Count translated chars (excluding whitespace)
     translated_total = len(text.replace("\n", "").replace(" ", ""))
     ratio = translated_total / source_total if source_total > 0 else 0
     passed = min_ratio <= ratio <= 2.0
@@ -334,7 +329,6 @@ def _check_chinese_char_ratio(text: str) -> ValidationCheck:
             severity="minor",
         )
 
-    # Count Chinese characters
     chinese_count = len(re.findall(r"[\u4e00-\u9fff]", text))
     total_chars = len(text.replace("\n", "").replace(" ", ""))
 
@@ -375,7 +369,6 @@ def _check_repeated_lines_global(text: str) -> ValidationCheck:
 
 
 def _check_quote_balance(text: str) -> ValidationCheck:
-    # Check corner bracket balance
     open_double = text.count("「")
     close_double = text.count("」")
     open_single = text.count("『")
@@ -419,17 +412,17 @@ def _check_narrative_pov_continuity(text: str, chunk_records: list[dict]) -> Val
     FAIL-OPEN: Any exception, missing data, or unknown state -> return passed=True, score=100.0
 
     1. For each chunk_record:
-       - Extract narrative.perspective from context_state
-       - Normalize: "first_person" | "third_person_limited" | "third_person_omniscient" | "unknown"
-       - UNKNOWN handling: "unknown" = "indeterminate, no false positive" -> NEVER flag as violation
+        - Extract narrative.perspective from context_state
+        - Valid values: "first_person" | "second_person" | "third_person" | "unknown"
+        - UNKNOWN handling: "unknown" = "indeterminate, no false positive" -> NEVER flag as violation
 
     2. For consecutive chunks within same scene (boundary.type == "same_scene"):
-       - Flag if perspective changes without chapter/scene transition
-       - Only flag when BOTH current AND next are KNOWN (not "unknown") AND different
+        - Flag if perspective changes without chapter/scene transition
+        - Only flag when BOTH current AND next are KNOWN (not "unknown") AND different
 
     3. Allow perspective change ONLY at:
-       - boundary.type == "chapter_transition"
-       - boundary.type == "scene_transition" (with new scene_id)
+        - boundary.type == "chapter_transition"
+        - boundary.type == "scene_transition" (with new scene_id)
 
     4. Score: 100 - (unauthorized_changes * 25), min 0
     """
@@ -445,23 +438,38 @@ def _check_narrative_pov_continuity(text: str, chunk_records: list[dict]) -> Val
 
         perspectives = []
         boundaries = []
+        has_narrative = []
 
         for rec in chunk_records:
-            ctx = rec.get("metadata", {}).get("context_state", {})
-            narrative = ctx.get("narrative", {})
+            ctx = rec.get("metadata", {}).get("context_state")
+            if ctx is None:
+                has_narrative.append(False)
+                perspectives.append("unknown")
+                boundaries.append("same_scene")
+                continue
+
+            narrative = ctx.get("narrative")
             boundary = ctx.get("boundary", {})
 
-            perspective = narrative.get("perspective", "unknown")
-            boundary_type = boundary.get("type", "same_scene")
+            if narrative is None:
+                has_narrative.append(False)
+                perspectives.append("unknown")
+            else:
+                has_narrative.append(True)
+                perspectives.append(narrative.get("perspective", "unknown"))
 
-            perspectives.append(perspective)
-            boundaries.append(boundary_type)
+            boundaries.append(boundary.get("type", "same_scene"))
 
         unauthorized_changes = 0
         unknown_skipped = False
 
         for i in range(1, len(perspectives)):
             if boundaries[i - 1] != "same_scene":
+                continue
+
+            # Skip if either chunk is missing narrative data (fail-open)
+            if not has_narrative[i - 1] or not has_narrative[i]:
+                unknown_skipped = True
                 continue
 
             prev_pov = perspectives[i - 1]
@@ -504,14 +512,14 @@ def _check_tense_voice_consistency(text: str, chunk_records: list[dict]) -> Vali
     FAIL-OPEN: Any exception, missing data, or unknown state -> return passed=True, score=100.0
 
     1. For each chunk_record:
-       - Extract narrative.tense, narrative.voice from context_state
-       - Tense: "past" | "present" | "future" | "undetermined" | "mixed" | "unknown"
-       - Voice: "formal" | "casual" | "literary" | "neutral" | "mixed" | "unknown"
-       - UNKNOWN handling: "unknown" = "indeterminate, no false positive" -> NEVER flag as violation
+        - Extract narrative.tense, narrative.voice from context_state
+        - Tense: "past" | "present" | "undetermined" (default from NarrativeState)
+        - Voice: "neutral" | "dialogue_driven" | "descriptive" | "balanced"
+        - UNKNOWN handling: "unknown" = "indeterminate, no false positive" -> NEVER flag as violation
 
     2. For consecutive chunks within same scene:
-       - Flag tense change without transition (only when BOTH known and different)
-       - Flag voice change without transition (only when BOTH known and different)
+        - Flag tense change without transition (only when BOTH known and different)
+        - Flag voice change without transition (only when BOTH known and different)
 
     3. Allow changes at chapter/scene transitions
 
@@ -530,19 +538,30 @@ def _check_tense_voice_consistency(text: str, chunk_records: list[dict]) -> Vali
         tenses = []
         voices = []
         boundaries = []
+        has_narrative = []
 
         for rec in chunk_records:
-            ctx = rec.get("metadata", {}).get("context_state", {})
-            narrative = ctx.get("narrative", {})
+            ctx = rec.get("metadata", {}).get("context_state")
+            if ctx is None:
+                has_narrative.append(False)
+                tenses.append("undetermined")
+                voices.append("neutral")
+                boundaries.append("same_scene")
+                continue
+
+            narrative = ctx.get("narrative")
             boundary = ctx.get("boundary", {})
 
-            tense = narrative.get("tense", "unknown")
-            voice = narrative.get("voice", "unknown")
-            boundary_type = boundary.get("type", "same_scene")
+            if narrative is None:
+                has_narrative.append(False)
+                tenses.append("undetermined")
+                voices.append("neutral")
+            else:
+                has_narrative.append(True)
+                tenses.append(narrative.get("tense", "undetermined"))
+                voices.append(narrative.get("voice", "neutral"))
 
-            tenses.append(tense)
-            voices.append(voice)
-            boundaries.append(boundary_type)
+            boundaries.append(boundary.get("type", "same_scene"))
 
         tense_violations = 0
         voice_violations = 0
@@ -550,6 +569,11 @@ def _check_tense_voice_consistency(text: str, chunk_records: list[dict]) -> Vali
 
         for i in range(1, len(tenses)):
             if boundaries[i - 1] != "same_scene":
+                continue
+
+            # Skip if either chunk is missing narrative data (fail-open)
+            if not has_narrative[i - 1] or not has_narrative[i]:
+                unknown_skipped = True
                 continue
 
             prev_tense = tenses[i - 1]
