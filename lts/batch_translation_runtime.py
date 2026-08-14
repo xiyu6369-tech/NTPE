@@ -143,6 +143,8 @@ class BatchTranslationOptions:
     quality_chapter_id_v72: str | None = None
     quality_scene_id_v72: str | None = None
     quality_selection_time_v72: str = "9999-01-01T00:00:00Z"
+    quality_delivery_v83: bool = False
+    quality_delivery_formats_v83: tuple[str, ...] = ("txt",)
 
 
 def natural_sort_key(path: Path) -> list[object]:
@@ -205,6 +207,8 @@ def build_txt_options(input_file: Path, per_file_output_dir: Path, options: Batc
         quality_chapter_id_v72=options.quality_chapter_id_v72,
         quality_scene_id_v72=options.quality_scene_id_v72,
         quality_selection_time_v72=options.quality_selection_time_v72,
+        quality_delivery_v83=options.quality_delivery_v83,
+        quality_delivery_formats_v83=options.quality_delivery_formats_v83,
     )
 
 

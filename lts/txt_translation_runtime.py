@@ -721,7 +721,7 @@ def _translate_txt_with_runtime_pipeline(
             if options.strict_lock_terms:
                 translation = apply_locked_dictionary(translation, locked_dictionary)
             translated_chunks.append(translation)
-            records.append({"status": "skipped", "output_path": str(chunk_file), "package_id": package["package_id"], "attempt": 0})
+            records.append({"status": "skipped", "output_path": str(chunk_file), "package_id": package["package_id"], "attempt": 0, "metadata": {}})
             continue
 
         if options.dry_run:
@@ -729,7 +729,7 @@ def _translate_txt_with_runtime_pipeline(
             translated_chunks.append("")
             resume_state["chunks"][chunk_key] = {"status": "dry_run", "source_hash": source_hash, "output_path": str(chunk_file), "updated_at": now_iso()}
             save_resume_state(resume_state_path, resume_state)
-            records.append({"status": "dry_run", "output_path": str(chunk_file), "package_id": package["package_id"], "attempt": 0})
+            records.append({"status": "dry_run", "output_path": str(chunk_file), "package_id": package["package_id"], "attempt": 0, "metadata": {}})
             continue
 
         # -- RM-8.2: Cross-Chunk Context Integration --
@@ -919,10 +919,13 @@ def _translate_txt_with_runtime_pipeline(
                 "runtime_pipeline": True,
                 "orchestrator_version": orchestrator.version,
                 "session_id": session_id,
+                "metadata": {"context_state": context_state_metadata} if enable_cross_chunk_context else {},
             }
         else:
             translated_chunks.append("")
             result = provider_result
+            if isinstance(result, dict) and "metadata" not in result:
+                result["metadata"] = {}
 
         resume_state["chunks"][chunk_key] = {
             "status": result.get("status", "failed"),
@@ -1906,11 +1909,11 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
             translation = chunk_file.read_text(encoding="utf-8")
             if options.strict_lock_terms:
                 translation = apply_locked_dictionary(translation, locked_dictionary)
-            result = {"status": "skipped", "output_path": str(chunk_file), "package_id": package["package_id"], "attempt": 0}
+            result = {"status": "skipped", "output_path": str(chunk_file), "package_id": package["package_id"], "attempt": 0, "metadata": {}}
         elif options.dry_run:
             emit_progress(f"chunk {idx}/{len(chunks)} dry-run: skip provider", options=options)
             translation = ""
-            result = {"status": "dry_run", "output_path": str(chunk_file), "package_id": package["package_id"], "attempt": 0}
+            result = {"status": "dry_run", "output_path": str(chunk_file), "package_id": package["package_id"], "attempt": 0, "metadata": {}}
             resume_state["chunks"][chunk_key] = {
                 "status": "dry_run",
                 "source_hash": source_hash,
@@ -2380,7 +2383,7 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
         })
         if translation:
             translated_chunks.append(translation.strip())
-        records.append(result | {"chunk_index": idx, "chunk_total": len(chunks)})
+        records.append(result | {"chunk_index": idx, "chunk_total": len(chunks), "metadata": {}})
 
     final_output = output_dir / f"{input_path.stem}{DEFAULT_OUTPUT_SUFFIX}.txt"
     if not options.dry_run:

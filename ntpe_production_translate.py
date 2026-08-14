@@ -135,6 +135,8 @@ def build_parser() -> argparse.ArgumentParser:
     txt.add_argument("--dry-run", action="store_true", help="build packages only; do not call NVIDIA API")
     txt.add_argument("--no-progress", action="store_true", help="disable live NTPE progress messages")
     txt.add_argument("--pipeline", choices=("runtime", "legacy"), default=os.environ.get("NTPE_RUNTIME_PIPELINE", "runtime"), help="translation pipeline mode; default: runtime (env: NTPE_RUNTIME_PIPELINE)")
+    txt.add_argument("--quality-delivery-v83", action="store_true", help="enable RM-8.3 delivery pipeline")
+    txt.add_argument("--quality-delivery-formats-v83", nargs="+", default=["txt"], choices=["txt", "epub", "pdf"], help="output formats for RM-8.3 delivery (default: txt)")
     _add_quality_integration_v72_flags(txt)
 
     batch = sub.add_parser("batch", help="translate all TXT files in a folder")
@@ -166,6 +168,8 @@ def build_parser() -> argparse.ArgumentParser:
     batch.add_argument("--dry-run", action="store_true", help="build packages only; do not call NVIDIA API")
     batch.add_argument("--no-progress", action="store_true", help="disable live NTPE progress messages")
     batch.add_argument("--pipeline", choices=("runtime", "legacy"), default=os.environ.get("NTPE_RUNTIME_PIPELINE", "runtime"), help="translation pipeline mode; default: runtime (env: NTPE_RUNTIME_PIPELINE)")
+    batch.add_argument("--quality-delivery-v83", action="store_true", help="enable RM-8.3 delivery pipeline")
+    batch.add_argument("--quality-delivery-formats-v83", nargs="+", default=["txt"], choices=["txt", "epub", "pdf"], help="output formats for RM-8.3 delivery (default: txt)")
     _add_quality_integration_v72_flags(batch)
 
     regression = sub.add_parser("regression", help="run literary regression corpus under tests/literary")
@@ -384,6 +388,8 @@ def run_txt(args: argparse.Namespace) -> int:
         quality_context_scene_v72=args.quality_context_scene_v72,
         quality_naturalness_v72=args.quality_naturalness_v72,
         quality_integration_kill_switch_v72=args.quality_integration_kill_switch_v72,
+        quality_delivery_v83=args.quality_delivery_v83,
+        quality_delivery_formats_v83=tuple(args.quality_delivery_formats_v83) if args.quality_delivery_formats_v83 else ("txt",),
     )
     return _print_result("NTPE Production TXT Translation", runtime.translate_txt(options))
 
@@ -425,6 +431,8 @@ def run_batch(args: argparse.Namespace) -> int:
         quality_context_scene_v72=args.quality_context_scene_v72,
         quality_naturalness_v72=args.quality_naturalness_v72,
         quality_integration_kill_switch_v72=args.quality_integration_kill_switch_v72,
+        quality_delivery_v83=args.quality_delivery_v83,
+        quality_delivery_formats_v83=tuple(args.quality_delivery_formats_v83) if args.quality_delivery_formats_v83 else ("txt",),
     )
     return _print_result("NTPE Production Batch Translation", runtime.translate_batch(options))
 
