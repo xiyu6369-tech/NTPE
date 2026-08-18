@@ -62,6 +62,13 @@ from core.translation_quality_integration_v72 import (
     QualityIntegrationFlags,
     apply_to_prompt_package as apply_translation_quality_integration_v72,
 )
+from core.character_memory_v2 import MemoryStore
+from core.context_scene_memory import (
+    ContextMemoryStore,
+    load_context_memory,
+    save_context_memory,
+    load_or_create_context_memory,
+)
 # RM-8.3 Delivery import is lazy (inside function) to avoid circular import
 
 
@@ -657,12 +664,53 @@ def _translate_txt_with_runtime_pipeline(
 
     # RM-8.2: Initialize cross-chunk context components (feature-gated)
     enable_cross_chunk_context = getattr(options, "quality_context_scene_v72", False)
-    context_store = ContextMemoryStore() if enable_cross_chunk_context else None
+
+    # Context/Scene Memory Persistence (Batch 3D-2)
+    # Load or create context memory store for this book
+    context_memory_store = None
+    if enable_cross_chunk_context:
+        context_memory_store, csm_load_report = load_or_create_context_memory(
+            output_dir=output_dir,
+            input_path=input_path,
+            project_name=options.project_name,
+        )
+    else:
+        context_memory_store = ContextMemoryStore()
     narrative_engine = NarrativeIntelligenceEngine() if enable_cross_chunk_context else None
     current_scene_id = "scene_1"
     current_chapter_id = "chapter_1"
     prev_chunk_text = ""
     active_character_ids = options.quality_active_character_ids_v72 if enable_cross_chunk_context else ()
+
+    # Character Memory v2 Persistence (Batch 3D-1)
+    # Load or create character memory store for this book
+    character_memory_store = None
+    lts_memory_path = options.character_memory_path
+    if lts_memory_path and not lts_memory_path.exists():
+        lts_memory_path = None
+    character_memory_store, cm_load_report = load_or_create_character_memory(
+        output_dir=output_dir,
+        input_path=input_path,
+        project_name=options.project_name,
+        lts_path=lts_memory_path,
+    )
+    # Character memory scope for selection (chapter/scene/session)
+    character_memory_scope = {
+        "chapter_id": current_chapter_id,
+        "scene_id": current_scene_id,
+        "session_id": session_id,
+    }
+
+    # Context/Scene Memory Persistence (Batch 3D-2)
+    # Context/Scene memory scope for selection (chapter/scene/session)
+    context_memory_scope = {
+        "chapter_id": current_chapter_id,
+        "scene_id": current_scene_id,
+        "session_id": session_id,
+        "active_character_ids": active_character_ids,
+        "source_language": "ko",
+        "token_budget": 512,
+    }
 
     translated_chunks: list[str] = []
     records: list[dict] = []
@@ -741,7 +789,7 @@ def _translate_txt_with_runtime_pipeline(
             if boundary.type != BoundaryType.SAME_SCENE:
                 if boundary.type == BoundaryType.CHAPTER_TRANSITION:
                     transition_chapter(
-                        store=context_store,
+                        store=context_memory_store,
                         from_scene_id=current_scene_id,
                         to_scene_id=boundary.scene_id or f"scene_{idx}",
                         to_chapter_id=boundary.chapter_id,
@@ -750,7 +798,7 @@ def _translate_txt_with_runtime_pipeline(
                     current_chapter_id = boundary.chapter_id
                 elif boundary.type == BoundaryType.SCENE_TRANSITION:
                     transition_scene(
-                        store=context_store,
+                        store=context_memory_store,
                         from_scene_id=current_scene_id,
                         boundary=boundary.type,
                         to_scene_id=boundary.scene_id,
@@ -761,7 +809,7 @@ def _translate_txt_with_runtime_pipeline(
 
             # 3. CONTEXT SELECTION
             selection = select_context_for_translation(
-                context_store=context_store,
+                context_store=context_memory_store,
                 chapter_id=current_chapter_id,
                 scene_id=current_scene_id,
                 sequence_index=idx,
@@ -775,16 +823,15 @@ def _translate_txt_with_runtime_pipeline(
             narrative_engine.analyze_chunk(source=chunk, translation=prev_translation)
             narrative_context = narrative_engine.get_context_for_prompt()
 
-            # 5. ENTITY INJECTION (RM-7.2) - optional, None if not available
+            # 5. ENTITY INJECTION (RM-7.2) - will be resolved per-chunk by RuntimeOrchestrator
             entity_injection_set = None
-            # if entity_resolver_available:
-            #     entity_injection_set = entity_resolver.resolve(chunk)
+            # Entity injection set is now created inline in RuntimeOrchestrator.execute()
 
             # Compose context_state metadata (feature-gated)
             context_state_metadata = {
                 "context_selection_fingerprint": selection.fingerprint,
                 "scene_id": current_scene_id,
-                "scene_version": context_store.get_scene(current_scene_id).scene_version,
+                "scene_version": context_memory_store.get_scene(current_scene_id).scene_version,
                 "narrative": narrative_context,
                 "boundary": boundary.to_dict(),
                 "selected_context_ids": tuple(r.item_id for r in selection.selected_records),
@@ -826,9 +873,19 @@ def _translate_txt_with_runtime_pipeline(
                 "enable_cross_chunk_context": enable_cross_chunk_context,
                 "context_state": context_state_metadata,
                 "context_selection": selection if enable_cross_chunk_context else None,
-                "scene_state": context_store.get_scene(current_scene_id) if enable_cross_chunk_context and context_store else None,
+                "scene_state": context_memory_store.get_scene(current_scene_id) if enable_cross_chunk_context and context_memory_store else None,
                 "narrative_state": narrative_context if enable_cross_chunk_context else None,
                 "entity_injection_set": entity_injection_set,
+                "character_memory_store": character_memory_store,
+                "character_memory_scope": character_memory_scope,
+                "context_memory_store": context_memory_store,
+                "context_memory_scope": context_memory_scope,
+                # Character memory metadata for checkpoint verification
+                "character_memory_hash": None,  # Will be populated after save
+                "character_memory_snapshot_version": None,
+                # Context memory metadata for checkpoint verification
+                "context_memory_hash": None,
+                "context_memory_snapshot_version": None,
             },
         )
 
@@ -946,6 +1003,31 @@ def _translate_txt_with_runtime_pipeline(
 
         # RM-8.2: Update prev_chunk_text for next iteration's boundary detection
         prev_chunk_text = chunk
+
+        # Character Memory v2: Persist updated store after each chunk
+        if character_memory_store is not None:
+            save_character_memory(character_memory_store, get_memory_file_path(output_dir, compute_book_identity(input_path, options.project_name)))
+
+        # Context/Scene Memory: Persist updated store after each chunk
+        if enable_cross_chunk_context and context_memory_store is not None:
+            save_context_memory(context_memory_store, get_context_memory_file_path(output_dir, compute_book_identity(input_path, options.project_name)))
+
+        # Update character memory scope for next chunk
+        character_memory_scope = {
+            "chapter_id": current_chapter_id,
+            "scene_id": current_scene_id,
+            "session_id": session_id,
+        }
+
+        # Update context/scene memory scope for next chunk
+        context_memory_scope = {
+            "chapter_id": current_chapter_id,
+            "scene_id": current_scene_id,
+            "session_id": session_id,
+            "active_character_ids": active_character_ids,
+            "source_language": "ko",
+            "token_budget": 512,
+        }
 
     # Ensure session transitions to RUNNING before completing.
     # Dry-run or all-resume paths may skip execute() calls entirely.
@@ -2487,6 +2569,17 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
     return manifest
 
 
+def _create_v72_stores() -> tuple[MemoryStore, ContextMemoryStore]:
+    """Create TE v7.2 quality integration stores.
+
+    These stores are instantiated but remain inactive unless the corresponding
+    feature flags (quality_integration_v72, quality_character_memory_v72,
+    quality_context_scene_v72) are explicitly enabled. This ensures default
+    translation behavior is unchanged.
+    """
+    return MemoryStore(), ContextMemoryStore()
+
+
 def parse_args(argv: Iterable[str] | None = None) -> TxtTranslationOptions:
     parser = argparse.ArgumentParser(description="NTPE 1.1 LTS Stage-05 TXT novel translation entry")
     parser.add_argument("input", help="input TXT file path")
@@ -2516,6 +2609,9 @@ def parse_args(argv: Iterable[str] | None = None) -> TxtTranslationOptions:
     parser.add_argument("--quality-delivery-formats-v83", nargs="+", default=["txt"], choices=["txt", "epub", "pdf"], help="output formats for RM-8.3 delivery")
     parser.add_argument("--dry-run", action="store_true", help="build prompt packages without calling provider")
     ns = parser.parse_args(list(argv) if argv is not None else None)
+
+    character_store, context_scene_store = _create_v72_stores()
+
     return TxtTranslationOptions(
         input_path=Path(ns.input),
         output_dir=Path(ns.output),
@@ -2544,6 +2640,8 @@ def parse_args(argv: Iterable[str] | None = None) -> TxtTranslationOptions:
         quality_v5_report_enabled=not ns.no_quality_v5_report,
         quality_delivery_v83=ns.quality_delivery_v83,
         quality_delivery_formats_v83=tuple(ns.quality_delivery_formats_v83),
+        quality_character_store_v72=character_store,
+        quality_context_scene_store_v72=context_scene_store,
     )
 
 

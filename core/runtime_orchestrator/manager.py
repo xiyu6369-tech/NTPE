@@ -32,6 +32,19 @@ from core.translation_runtime import TranslationRuntimeAdapter
 from core.runtime_session import RuntimeSessionManager, RunStatus, TranslationSession
 from core.runtime_checkpoint import RuntimeCheckpointManager
 from core.runtime_trace import RuntimeTraceCollector, EventType
+from core.entity_resolver import EntityExtractor, EntityResolver, build_known_entities_from_runtime
+from core.character_memory_v2 import (
+    MemoryStore,
+    select_prompt_eligible_memories,
+    load_character_memory,
+    save_character_memory,
+)
+from core.context_scene_memory import (
+    ContextMemoryStore,
+    select_context_for_translation,
+    load_context_memory,
+    save_context_memory,
+)
 from core.runtime_orchestrator.models import (
     RuntimeExecutionContext,
     RuntimeExecutionResult,
@@ -158,10 +171,64 @@ class RuntimeOrchestrator:
         narrative_state = metadata.pop("narrative_state", None) if enable_cross_chunk_context else None
         entity_injection_set = metadata.pop("entity_injection_set", None)
 
+        # Extract character memory store (if provided)
+        character_memory_store = metadata.pop("character_memory_store", None)
+        character_memory_scope = metadata.pop("character_memory_scope", None) or {}
+
+        # Extract context/scene memory store (if provided)
+        context_memory_store = metadata.pop("context_memory_store", None)
+        context_memory_scope = metadata.pop("context_memory_scope", None) or {}
+
         # 1. Knowledge Runtime → MergedRuntime
         bundled_entries = self.knowledge.load_all()
         bundle_list = list(bundled_entries.values())
         merged = self.knowledge.build_merged_runtime(bundles=bundle_list)
+
+        # 1b. Entity Resolver — per-chunk resolution (RM-7.2)
+        known_entities = build_known_entities_from_runtime(merged)
+        extractor = EntityExtractor(known_entities=known_entities)
+        resolver = EntityResolver(runtime=merged)
+        extracted = extractor.extract(chunk_text)
+        entity_injection_set = resolver.resolve(extracted)
+
+        # 1c. Character Memory v2 — per-chunk selection
+        character_memories = None
+        if character_memory_store is not None:
+            from core.character_memory_v2 import FactType
+            from core.character_memory_v2.selection import select_prompt_eligible_memories
+            selection_result = select_prompt_eligible_memories(
+                character_memory_store,
+                character_ids=None,  # All characters
+                token_budget=256,
+                language_profile="ko",
+                include_pending=False,
+                scope=character_memory_scope,
+                now=metadata.get("selection_time"),
+            )
+            character_memories = selection_result.items
+
+        # 1d. Context/Scene Memory — per-chunk selection
+        context_selection_from_memory = None
+        if enable_cross_chunk_context and context_memory_store is not None:
+            from core.context_scene_memory.context_selection import select_context_for_translation
+            context_selection_from_memory = select_context_for_translation(
+                context_memory_store,
+                chapter_id=context_memory_scope.get("chapter_id"),
+                scene_id=context_memory_scope.get("scene_id"),
+                sequence_index=context_memory_scope.get("sequence_index", 0),
+                character_ids=context_memory_scope.get("active_character_ids"),
+                source_language=context_memory_scope.get("source_language", "ko"),
+                token_budget=context_memory_scope.get("token_budget", 512),
+                character_context_view=(),
+                character_token_budget=0,
+                include_previous_translation=True,
+                include_unresolved=True,
+                include_experimental_inference=False,
+                now=metadata.get("selection_time"),
+            )
+            # Override the passed context_selection if we have one from memory
+            if context_selection is None:
+                context_selection = context_selection_from_memory
 
         # 2. Prompt Builder → PromptAssembly (EXTENDED when enabled)
         builder = PromptBuilder(
@@ -171,6 +238,7 @@ class RuntimeOrchestrator:
             scene_state=scene_state,
             narrative_state=narrative_state,
             enable_cross_chunk_context=enable_cross_chunk_context,
+            character_memories=character_memories,
         )
         assembly = builder.build(merged)
 

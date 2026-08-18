@@ -20,7 +20,7 @@ def make_runtime(domains: dict) -> MergedRuntime:
 
 
 def test_build_prompt_full_assembly():
-    """build_prompt assembles all sections in correct order."""
+    """build_prompt assembles all sections in correct order (default: feature OFF)."""
     runtime = make_runtime({
         "character": {"Hero": "knight"},
         "glossary": {"術語": "term"},
@@ -30,13 +30,76 @@ def test_build_prompt_full_assembly():
     })
     assembly = build_prompt(runtime, "Source text to translate")
 
+    # Feature OFF: 8 sections (Context not included)
     assert assembly.section_count == 8
     section_names = [s.name for s in assembly.sections]
+    # Verify order without Context section
+    assert section_names == [
+        "System",
+        "Character",
+        "Entity Mapping",
+        "Glossary",
+        "Scene",
+        "Narrative",
+        "Style",
+        "Chunk",
+    ]
+
+
+def test_build_prompt_full_assembly_feature_on():
+    """build_prompt with enable_cross_chunk_context=True includes Context section (feature ON)."""
+    from core.prompt_runtime.builder import PromptBuilder
+    from core.context_scene_memory.models import ContextSelectionResult, SelectedContextItem
+
+    runtime = make_runtime({
+        "character": {"Hero": "knight"},
+        "glossary": {"術語": "term"},
+        "scene": {"location": "castle"},
+        "narrative": {"tone": "dark"},
+        "style": {"register": "formal"},
+    })
+
+    # Feature ON: Use PromptBuilder directly with enable_cross_chunk_context=True
+    builder = PromptBuilder(
+        chunk_text="Source text to translate",
+        enable_cross_chunk_context=True,
+        context_selection=ContextSelectionResult(
+            selected_records=(
+                SelectedContextItem(
+                    item_id="ctx_1",
+                    item_type="scene_summary",
+                    value="Previous scene summary",
+                    evidence_ids=("ev_1",),
+                    estimated_tokens=10,
+                    priority=0,
+                ),
+            ),
+            selected_character_memories=(),
+            estimated_tokens=10,
+            character_estimated_tokens=0,
+            budget=512,
+            character_budget=256,
+            dropped_records=(),
+            drop_reasons={},
+            deterministic_fingerprint="abc123",
+        ),
+    )
+    assembly = builder.build(runtime)
+
+    # Feature ON: 9 sections (Context included)
+    assert assembly.section_count == 9
+    section_names = [s.name for s in assembly.sections]
+    # Verify full SECTION_ORDER with Context
     assert section_names == list(SECTION_ORDER)
+
+    # Verify Context section content
+    context_section = next(s for s in assembly.sections if s.name == "Context")
+    assert "Cross-Chunk Context" in context_section.content
+    assert "Previous scene summary" in context_section.content
 
 
 def test_build_prompt_section_order():
-    """Sections must be in fixed order: System→Character→Entity Mapping→Glossary→Scene→Narrative→Style→Chunk."""
+    """Sections must be in fixed order: System→Character→Entity Mapping→Glossary→Scene→Narrative→Style→Chunk (feature OFF)."""
     runtime = make_runtime({})
     assembly = build_prompt(runtime, "chunk")
     names = [s.name for s in assembly.sections]

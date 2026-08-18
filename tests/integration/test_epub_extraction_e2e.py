@@ -140,6 +140,8 @@ class TestEpubExtractionE2E:
             chapter_map=extraction_result.chapter_map,
             extraction_manifest=extraction_result.extraction_manifest,
             extractor_version=extraction_result.extraction_manifest.extractor_version,
+            status=extraction_result.status,
+            warnings=extraction_result.warnings,
         )
 
         # Verify preconditions
@@ -369,12 +371,16 @@ class TestEpubAdapterContract:
             chapter_map=result.chapter_map,
             extraction_manifest=result.extraction_manifest,
             extractor_version=result.extraction_manifest.extractor_version,
+            status=result.status,
+            warnings=result.warnings,
         )
 
         # Verify all fields present
         assert request.source_path == epub_path
         assert request.source_format == "epub"
         assert request.extracted_text == result.extracted_text
+        assert request.status == result.status
+        assert request.warnings == result.warnings
         assert request.original_file_hash == result.original_hash
         assert request.extracted_text_hash == result.extracted_hash
         assert "title" in request.epub_metadata
@@ -399,6 +405,8 @@ class TestEpubAdapterContract:
             chapter_map=result.chapter_map,
             extraction_manifest=result.extraction_manifest,
             extractor_version=result.extraction_manifest.extractor_version,
+            status=result.status,
+            warnings=result.warnings,
         )
 
         # Precondition: extracted_text_hash matches

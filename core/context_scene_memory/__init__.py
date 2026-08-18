@@ -11,6 +11,14 @@ from .models import (
     UnresolvedReference, DEFAULT_CHARACTER_TOKEN_BUDGET, DEFAULT_CONTEXT_TOKEN_BUDGET,
     SCHEMA_VERSION,
 )
+from .persistence import (
+    compute_book_identity,
+    get_context_memory_file_path,
+    load_context_memory,
+    load_or_create_context_memory,
+    save_context_memory,
+    verify_context_memory_integrity,
+)
 from .scene_state import (
     add_scene_participant, add_unresolved_reference, remove_scene_participant,
     resolve_reference, transition_chapter, transition_scene, update_scene_state,

@@ -7,6 +7,7 @@ import pytest
 from core.prompt_runtime.models import (
     CharacterSection,
     ChunkSection,
+    ContextSection,
     EntityMappingSection,
     GlossarySection,
     NarrativeSection,
@@ -29,13 +30,14 @@ def test_section_order_constant():
         "Scene",
         "Narrative",
         "Style",
+        "Context",  # RM-8.2
         "Chunk",
     )
 
 
 def test_section_map_complete():
     """SECTION_MAP must contain all required sections."""
-    expected = {"System", "Character", "Entity Mapping", "Glossary", "Scene", "Narrative", "Style", "Chunk"}
+    expected = {"System", "Character", "Entity Mapping", "Glossary", "Scene", "Narrative", "Style", "Context", "Chunk"}
     assert set(SECTION_MAP.keys()) == expected
 
 

@@ -2,10 +2,12 @@
 
 import pytest
 
+from core.context_scene_memory.models import ContextSelectionResult, SelectedContextItem
 from core.knowledge_runtime.merger import MergedKnowledge, MergedRuntime
 from core.prompt_runtime.sections import (
     build_chunk,
     build_character,
+    build_context_selection,
     build_glossary,
     build_narrative,
     build_scene,
@@ -135,9 +137,47 @@ def test_build_chunk_empty_text():
     assert section.metadata["has_text"] is False
 
 
+def test_build_context_selection():
+    """Context section formats selected records correctly (RM-8.2)."""
+    selection = ContextSelectionResult(
+        selected_records=(
+            SelectedContextItem(
+                item_id="ctx_1",
+                item_type="scene_summary",
+                value="Previous scene: hero enters castle",
+                evidence_ids=("ev_1",),
+                estimated_tokens=10,
+                priority=0,
+            ),
+        ),
+        selected_character_memories=(),
+        estimated_tokens=10,
+        character_estimated_tokens=0,
+        budget=512,
+        character_budget=256,
+        dropped_records=(),
+        drop_reasons={},
+        deterministic_fingerprint="abc123",
+    )
+    section = build_context_selection(selection)
+    assert section.name == "Context"
+    assert "Cross-Chunk Context" in section.content
+    assert "Previous scene: hero enters castle" in section.content
+    assert section.metadata["record_count"] == 1
+    assert section.metadata["fingerprint"] == "abc123"
+
+
+def test_build_context_selection_empty():
+    """Context section handles empty selection gracefully."""
+    section = build_context_selection(None)
+    assert section.name == "Context"
+    assert "No relevant context from prior chunks" in section.content
+    assert section.metadata["record_count"] == 0
+
+
 def test_all_builders_in_map():
     """SECTION_BUILDERS must contain all required builders."""
-    required = {"System", "Character", "Glossary", "Scene", "Narrative", "Style", "Chunk"}
+    required = {"System", "Character", "Glossary", "Scene", "Narrative", "Style", "Context", "Chunk"}
     assert set(SECTION_BUILDERS.keys()) == required
 
 
@@ -151,3 +191,4 @@ def test_builders_return_correct_types():
     assert build_narrative(runtime).__class__.__name__ == "NarrativeSection"
     assert build_style(runtime).__class__.__name__ == "StyleSection"
     assert build_chunk(runtime).__class__.__name__ == "ChunkSection"
+    assert build_context_selection(None).__class__.__name__ == "ContextSection"

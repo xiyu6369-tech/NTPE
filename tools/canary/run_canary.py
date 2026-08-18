@@ -422,10 +422,10 @@ PASS
     }
     ART_RUNTIME.parent.mkdir(parents=True, exist_ok=True)
     with open(RESULTS_JSON, "w", encoding="utf-8") as f:
-        json.dump(full_report, f, indent=2, ensure_ascii=False, default=str)
+        json.dump(full, f, indent=2, ensure_ascii=False, default=str)
 
-    print(f"\n✓ Main report: {MAIN_REPORT}")
-    print(f"✓ Results JSON: {RESULTS_JSON}")
+    print(f"\n[OK] Main report: {MAIN_REPORT}")
+    print(f"[OK] Results JSON: {RESULTS_JSON}")
 
 
 def parse_args() -> argparse.Namespace:

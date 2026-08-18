@@ -24,6 +24,15 @@ from .models import (
     PromptMemoryItem,
     SelectionResult,
 )
+from .persistence import (
+    compute_book_identity,
+    get_memory_file_path,
+    load_character_memory,
+    load_or_create_character_memory,
+    migrate_lts_to_v2,
+    save_character_memory,
+    verify_memory_integrity,
+)
 from .selection import estimate_memory_tokens, select_prompt_eligible_memories
 from .serialization import deserialize_memory_store, serialize_memory_store
 from .store import MemoryStore, add_or_merge_memory, create_evidence, create_memory
@@ -39,4 +48,7 @@ __all__ = [
     "estimate_memory_tokens", "expire_memory", "reject_memory", "rollback_memory",
     "select_prompt_eligible_memories", "serialize_memory_store", "supersede_memory",
     "validate_memory_store", "validate_record",
+    "compute_book_identity", "get_memory_file_path", "load_character_memory",
+    "load_or_create_character_memory", "migrate_lts_to_v2", "save_character_memory",
+    "verify_memory_integrity",
 ]

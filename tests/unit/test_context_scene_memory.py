@@ -235,5 +235,12 @@ def test_invalid_enum_timestamp_confidence_path_and_secret_fail_closed():
 def test_public_api_is_finite_and_has_no_runtime_or_prompt_entrypoint():
     assert "select_context_for_translation" in csm.__all__
     assert "serialize_context_store" in csm.__all__
+    # Persistence API added in Batch 3D-2
+    assert "compute_book_identity" in csm.__all__
+    assert "get_context_memory_file_path" in csm.__all__
+    assert "save_context_memory" in csm.__all__
+    assert "load_context_memory" in csm.__all__
+    assert "verify_context_memory_integrity" in csm.__all__
+    assert "load_or_create_context_memory" in csm.__all__
     assert not {"run_provider", "build_prompt", "translate", "execute_runtime"} & set(csm.__all__)
-    assert len(csm.__all__) < 70
+    assert len(csm.__all__) < 80

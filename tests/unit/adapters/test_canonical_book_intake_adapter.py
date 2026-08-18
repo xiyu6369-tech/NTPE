@@ -14,6 +14,13 @@ from core.adapters.canonical_book_intake_adapter import (
     CanonicalIntakeResult,
     SourceIdentity,
 )
+from core.adapters.epub_extraction_boundary import (
+    ChapterBoundary,
+    EpubExtractionError,
+    ExtractionManifest,
+    ExtractedTextIntakeRequest,
+    ResourceRef,
+)
 
 
 class TestCanonicalBookIntakeAdapter:
@@ -331,3 +338,240 @@ class TestCanonicalBookIntakeAdapter:
                 result = adapter.process(request)
 
             assert result.submission_eligible is True, f"Status '{status}' should be submission eligible"
+
+    # ============================================================
+    # ingest_extracted tests (EPUB Canonical Intake Integration)
+    # ============================================================
+
+    def _make_extracted_request(self, tmp_path: Path, status: str = "success", warnings: tuple[str, ...] = ()) -> ExtractedTextIntakeRequest:
+        """Create a minimal ExtractedTextIntakeRequest for testing."""
+        source = tmp_path / "test.epub"
+        source.write_bytes(b"dummy")
+        extracted_text = "안녕하세요 반갑습니다 이것은 한국어 텍스트입니다."
+        original_hash = hashlib.sha256(b"dummy").hexdigest()
+        extracted_hash = hashlib.sha256(extracted_text.encode("utf-8")).hexdigest()
+
+        manifest = ExtractionManifest(
+            extractor_version="epub-extraction-v1.0.0",
+            extracted_at="2024-01-01T00:00:00Z",
+            chapter_count=1,
+            total_characters=len(extracted_text),
+            total_words=len(extracted_text.split()),
+            warnings=warnings,
+            resources=(),
+            spine_item_count=1,
+            nav_toc_entries=1,
+            encoding_used="utf-8",
+            parsing_duration_ms=100,
+        )
+
+        chapter_map = (
+            ChapterBoundary(
+                index=1,
+                spine_position=1,
+                title="Chapter 1",
+                start_offset=0,
+                end_offset=len(extracted_text),
+                source_href="chapter1.xhtml",
+                toc_level=1,
+                is_linear=True,
+                word_count=len(extracted_text.split()),
+                landmark_type="bodymatter",
+                status="linear",
+            ),
+)
+
+        return ExtractedTextIntakeRequest(
+            source_path=source,
+            source_format="epub",
+            extracted_text=extracted_text,
+            original_file_hash=original_hash,
+            extracted_text_hash=extracted_hash,
+            epub_metadata={
+                "title": "Test Book",
+                "author": "Test Author",
+                "language": "ko",
+                "identifier": "test-id",
+                "publisher": "Test Publisher",
+                "date": "2024-01-01",
+                "raw": {},
+            },
+            chapter_map=chapter_map,
+            extraction_manifest=manifest,
+            extractor_version="epub-extraction-v1.0.0",
+            status=status,
+            warnings=warnings,
+        )
+
+    def test_ingest_extracted_valid_epub_succeeds(self, tmp_path: Path):
+        """Test valid EPUB extraction flows through canonical intake successfully."""
+        adapter = CanonicalBookIntakeAdapter()
+        request = self._make_extracted_request(tmp_path, status="success")
+
+        result = adapter.ingest_extracted(request)
+
+        assert isinstance(result, CanonicalIntakeResult)
+        assert result.status in ("ready", "ready_with_warnings")
+        assert result.submission_eligible is True
+        assert result.source_identity.source_hash == request.original_file_hash[:16]
+        assert result.epub_metadata is not None
+        assert result.epub_metadata["title"] == "Test Book"
+        assert result.epub_metadata["author"] == "Test Author"
+        assert result.chapter_map is not None
+        assert len(result.chapter_map) == 1
+        assert result.chapter_map[0].title == "Chapter 1"
+        assert result.resource_refs is not None
+        assert result.extraction_manifest is not None
+        assert result.extraction_provenance is not None
+        assert result.extraction_provenance["extractor_version"] == "epub-extraction-v1.0.0"
+
+    def test_ingest_extracted_blocked_status_raises(self, tmp_path: Path):
+        """Test that blocked extraction status raises EpubExtractionError (fail closed)."""
+        adapter = CanonicalBookIntakeAdapter()
+        request = self._make_extracted_request(tmp_path, status="blocked", warnings=("zip bomb detected",))
+
+        with pytest.raises(EpubExtractionError) as exc_info:
+            adapter.ingest_extracted(request)
+
+        assert exc_info.value.blocked is True
+        assert "zip bomb" in str(exc_info.value).lower()
+
+    def test_ingest_extracted_manual_review_status_raises(self, tmp_path: Path):
+        """Test that manual_review_required status raises EpubExtractionError (fail closed)."""
+        adapter = CanonicalBookIntakeAdapter()
+        request = self._make_extracted_request(tmp_path, status="manual_review_required", warnings=("remote image resource detected",))
+
+        with pytest.raises(EpubExtractionError) as exc_info:
+            adapter.ingest_extracted(request)
+
+        assert exc_info.value.blocked is False
+        assert "remote image" in str(exc_info.value).lower()
+
+    def test_ingest_extracted_partial_status_proceeds_with_warnings(self, tmp_path: Path):
+        """Test that partial extraction status proceeds but includes warnings."""
+        adapter = CanonicalBookIntakeAdapter()
+        request = self._make_extracted_request(tmp_path, status="partial", warnings=("parse error in chapter 2",))
+
+        result = adapter.ingest_extracted(request)
+
+        assert result.status in ("ready", "ready_with_warnings", "manual_review_required")
+        assert "parse error" in str(result.warnings).lower()
+
+    def test_ingest_extracted_metadata_preservation(self, tmp_path: Path):
+        """Test that EPUB metadata is preserved in canonical intake result."""
+        adapter = CanonicalBookIntakeAdapter()
+        request = self._make_extracted_request(tmp_path)
+
+        result = adapter.ingest_extracted(request)
+
+        assert result.epub_metadata is not None
+        assert result.epub_metadata["title"] == "Test Book"
+        assert result.epub_metadata["author"] == "Test Author"
+        assert result.epub_metadata["language"] == "ko"
+        assert result.epub_metadata["identifier"] == "test-id"
+        assert result.epub_metadata["publisher"] == "Test Publisher"
+        assert result.epub_metadata["date"] == "2024-01-01"
+
+    def test_ingest_extracted_chapter_map_preservation(self, tmp_path: Path):
+        """Test that chapter map is preserved with all boundary information."""
+        adapter = CanonicalBookIntakeAdapter()
+        request = self._make_extracted_request(tmp_path)
+
+        result = adapter.ingest_extracted(request)
+
+        assert result.chapter_map is not None
+        assert len(result.chapter_map) == 1
+        chapter = result.chapter_map[0]
+        assert chapter.index == 1
+        assert chapter.spine_position == 1
+        assert chapter.title == "Chapter 1"
+        assert chapter.start_offset == 0
+        assert chapter.end_offset > 0
+        assert chapter.source_href == "chapter1.xhtml"
+        assert chapter.toc_level == 1
+        assert chapter.is_linear is True
+        assert chapter.word_count > 0
+        assert chapter.landmark_type == "bodymatter"
+        assert chapter.status == "linear"
+
+    def test_ingest_extracted_resource_tracking_preservation(self, tmp_path: Path):
+        """Test that resource references are preserved."""
+        adapter = CanonicalBookIntakeAdapter()
+        request = self._make_extracted_request(tmp_path)
+
+        result = adapter.ingest_extracted(request)
+
+        assert result.resource_refs is not None
+        assert isinstance(result.resource_refs, tuple)
+
+    def test_ingest_extracted_source_identity_deterministic(self, tmp_path: Path):
+        """Test that source identity is deterministic based on original_file_hash."""
+        adapter = CanonicalBookIntakeAdapter()
+        request1 = self._make_extracted_request(tmp_path)
+        request2 = self._make_extracted_request(tmp_path)
+
+        result1 = adapter.ingest_extracted(request1)
+        result2 = adapter.ingest_extracted(request2)
+
+        assert result1.source_identity.source_hash == result2.source_identity.source_hash
+        assert result1.source_identity.source_hash == request1.original_file_hash[:16]
+
+    def test_ingest_extracted_extraction_provenance(self, tmp_path: Path):
+        """Test that extraction provenance is recorded."""
+        adapter = CanonicalBookIntakeAdapter()
+        request = self._make_extracted_request(tmp_path)
+
+        result = adapter.ingest_extracted(request)
+
+        assert result.extraction_provenance is not None
+        assert result.extraction_provenance["extractor_version"] == "epub-extraction-v1.0.0"
+        assert result.extraction_provenance["extracted_text_hash"] == request.extracted_text_hash
+        assert result.extraction_provenance["extraction_status"] == "success"
+        assert result.extraction_provenance["original_file_hash"] == request.original_file_hash
+
+    def test_ingest_extracted_preserves_warnings(self, tmp_path: Path):
+        """Test that extraction warnings are preserved in result."""
+        adapter = CanonicalBookIntakeAdapter()
+        warnings = ("warning 1", "warning 2")
+        request = self._make_extracted_request(tmp_path, status="success", warnings=warnings)
+
+        result = adapter.ingest_extracted(request)
+
+        for w in warnings:
+            assert w in result.warnings
+
+    def test_ingest_extracted_language_detection_korean(self, tmp_path: Path):
+        """Test that Korean text is detected correctly through BookIntakeProcessor."""
+        adapter = CanonicalBookIntakeAdapter()
+        request = self._make_extracted_request(tmp_path)
+
+        result = adapter.ingest_extracted(request)
+
+        assert result.intake_result.language_result.language == "ko"
+        assert result.intake_result.language_result.confidence > 0
+
+    def test_ingest_extracted_quality_analysis(self, tmp_path: Path):
+        """Test that text quality analysis runs on extracted text."""
+        adapter = CanonicalBookIntakeAdapter()
+        request = self._make_extracted_request(tmp_path)
+
+        result = adapter.ingest_extracted(request)
+
+        assert result.intake_result.quality_report is not None
+        assert result.intake_result.quality_report.status in ("clean", "warning", "manual_review_required", "blocked")
+        assert result.intake_result.quality_report.score >= 0
+        assert isinstance(result.intake_result.quality_report.findings, tuple)
+
+    def test_ingest_extracted_txt_regression_unchanged(self, tmp_path: Path):
+        """Test that TXT path (process/process_path) remains unchanged."""
+        source = tmp_path / "test.txt"
+        source.write_text("Sample English text for testing.")
+
+        adapter = CanonicalBookIntakeAdapter()
+
+        result1 = adapter.process_path(source)
+        result2 = adapter.process_path(source)
+
+        assert result1.status == result2.status
+        assert result1.source_identity.source_hash == result2.source_identity.source_hash
+        assert result1.intake_result.text == result2.intake_result.text

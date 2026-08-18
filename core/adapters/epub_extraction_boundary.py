@@ -98,6 +98,8 @@ class ExtractedTextIntakeRequest:
     chapter_map: tuple[ChapterBoundary, ...]
     extraction_manifest: ExtractionManifest
     extractor_version: str
+    status: str
+    warnings: tuple[str, ...]
 
 
 # Module-level constants
