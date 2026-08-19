@@ -81,6 +81,7 @@ class SeriesRegistry:
             books=(),
             series_memory_hash="",
             series_checkpoint_hash="",
+            series_entity_registry_hash="",
             manifest_fingerprint="",
         )
 
@@ -321,6 +322,7 @@ class SeriesRegistry:
             books=manifest.books,
             series_memory_hash=manifest.series_memory_hash,
             series_checkpoint_hash=manifest.series_checkpoint_hash,
+            series_entity_registry_hash=manifest.series_entity_registry_hash,
             manifest_fingerprint="",
         )
 
@@ -346,10 +348,10 @@ class SeriesRegistry:
 
         return updated_manifest
 
-    def update_series_checkpoint_hash(self, series_id: str, checkpoint_hash: str) -> SeriesManifest:
-        """Update series_checkpoint_hash after checkpoint creation."""
+    def update_series_entity_registry_hash(self, series_id: str, registry_hash: str) -> SeriesManifest:
+        """Update series_entity_registry_hash after registry changes."""
         manifest = self.get(series_id)
-        updated_manifest = manifest.with_series_checkpoint_hash(checkpoint_hash)
+        updated_manifest = manifest.with_series_entity_registry_hash(registry_hash)
         fingerprint = compute_manifest_fingerprint(updated_manifest.to_canonical_dict())
         updated_manifest = updated_manifest.with_fingerprint(fingerprint)
 

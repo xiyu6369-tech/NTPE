@@ -103,6 +103,7 @@ class SeriesManifest:
     books: tuple[SeriesBookEntry, ...]
     series_memory_hash: str
     series_checkpoint_hash: str
+    series_entity_registry_hash: str
     manifest_fingerprint: str
 
     def to_dict(self, include_manifest_fingerprint: bool = True) -> dict[str, Any]:
@@ -117,6 +118,7 @@ class SeriesManifest:
             "books": [book.to_dict() for book in self.books],
             "series_memory_hash": self.series_memory_hash,
             "series_checkpoint_hash": self.series_checkpoint_hash,
+            "series_entity_registry_hash": self.series_entity_registry_hash,
         }
         if include_manifest_fingerprint:
             payload["manifest_fingerprint"] = self.manifest_fingerprint
@@ -140,6 +142,7 @@ class SeriesManifest:
             books=books,
             series_memory_hash=data.get("series_memory_hash", ""),
             series_checkpoint_hash=data.get("series_checkpoint_hash", ""),
+            series_entity_registry_hash=data.get("series_entity_registry_hash", ""),
             manifest_fingerprint=data.get("manifest_fingerprint", ""),
         )
 
@@ -180,6 +183,7 @@ class SeriesManifest:
             books=self.books,
             series_memory_hash=self.series_memory_hash,
             series_checkpoint_hash=self.series_checkpoint_hash,
+            series_entity_registry_hash=self.series_entity_registry_hash,
             manifest_fingerprint="",  # Will be recomputed
         )
 
@@ -196,6 +200,7 @@ class SeriesManifest:
             books=new_books,
             series_memory_hash=self.series_memory_hash,
             series_checkpoint_hash=self.series_checkpoint_hash,
+            series_entity_registry_hash=self.series_entity_registry_hash,
             manifest_fingerprint="",
         )
 
@@ -218,6 +223,7 @@ class SeriesManifest:
             books=tuple(new_books),
             series_memory_hash=self.series_memory_hash,
             series_checkpoint_hash=self.series_checkpoint_hash,
+            series_entity_registry_hash=self.series_entity_registry_hash,
             manifest_fingerprint="",
         )
 
@@ -233,6 +239,7 @@ class SeriesManifest:
             books=self.books,
             series_memory_hash=hash_value,
             series_checkpoint_hash=self.series_checkpoint_hash,
+            series_entity_registry_hash=self.series_entity_registry_hash,
             manifest_fingerprint="",
         )
 
@@ -248,6 +255,7 @@ class SeriesManifest:
             books=self.books,
             series_memory_hash=self.series_memory_hash,
             series_checkpoint_hash=hash_value,
+            series_entity_registry_hash=self.series_entity_registry_hash,
             manifest_fingerprint="",
         )
 
@@ -263,5 +271,22 @@ class SeriesManifest:
             books=self.books,
             series_memory_hash=self.series_memory_hash,
             series_checkpoint_hash=self.series_checkpoint_hash,
+            series_entity_registry_hash=self.series_entity_registry_hash,
             manifest_fingerprint=fingerprint,
+        )
+
+    def with_series_entity_registry_hash(self, hash_value: str) -> "SeriesManifest":
+        return SeriesManifest(
+            schema_name=self.schema_name,
+            schema_version=self.schema_version,
+            series_id=self.series_id,
+            series_name=self.series_name,
+            lifecycle_status=self.lifecycle_status,
+            created_at=self.created_at,
+            updated_at=utc_now_iso(),
+            books=self.books,
+            series_memory_hash=self.series_memory_hash,
+            series_checkpoint_hash=self.series_checkpoint_hash,
+            series_entity_registry_hash=hash_value,
+            manifest_fingerprint="",
         )
