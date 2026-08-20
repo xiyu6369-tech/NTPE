@@ -13,10 +13,13 @@
 from __future__ import annotations
 
 import csv
+import hashlib
 import json
 import re
+from dataclasses import dataclass, field
 from pathlib import Path
 from datetime import datetime
+from typing import Any
 
 from core.character_resolver import CharacterResolver
 
@@ -440,6 +443,641 @@ def save_csv(glossary: dict) -> None:
                 aliases,
                 notes,
             ])
+
+
+# =====================================================
+# P0 Stage 5 Batch 5.4 — Series Glossary Extensions
+# =====================================================
+
+SERIES_GLOSSARY_SCHEMA_NAME = "ntpe.series_glossary"
+SERIES_GLOSSARY_SCHEMA_VERSION = "1.0"
+
+
+class SeriesGlossaryValidationError(Exception):
+    """Raised when SeriesGlossary schema validation fails."""
+    pass
+
+
+class SeriesGlossaryIntegrityError(Exception):
+    """Raised when SeriesGlossary fingerprint verification fails (fail-closed)."""
+    pass
+
+
+@dataclass(frozen=True)
+class SeriesGlossaryTerm:
+    """Persistent canonical glossary term — series-scoped."""
+    source: str
+    translation: str
+    category: str
+    locked: bool
+    status: str  # "manual_locked" | "auto_high_confidence" | "series_canonical"
+    source_books: tuple[str, ...]
+    book_coverage: int
+    confidence: float
+    aliases: tuple[str, ...]
+    notes: tuple[str, ...]
+    approved_at: str
+    approved_by: str
+    version: int
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "source": self.source,
+            "translation": self.translation,
+            "category": self.category,
+            "locked": self.locked,
+            "status": self.status,
+            "source_books": list(self.source_books),
+            "book_coverage": self.book_coverage,
+            "confidence": self.confidence,
+            "aliases": list(self.aliases),
+            "notes": list(self.notes),
+            "approved_at": self.approved_at,
+            "approved_by": self.approved_by,
+            "version": self.version,
+        }
+
+    @classmethod
+    def from_dict(cls, data: dict[str, Any]) -> "SeriesGlossaryTerm":
+        return cls(
+            source=data["source"],
+            translation=data["translation"],
+            category=data["category"],
+            locked=data["locked"],
+            status=data["status"],
+            source_books=tuple(data.get("source_books", [])),
+            book_coverage=data["book_coverage"],
+            confidence=data["confidence"],
+            aliases=tuple(data.get("aliases", [])),
+            notes=tuple(data.get("notes", [])),
+            approved_at=data["approved_at"],
+            approved_by=data["approved_by"],
+            version=data["version"],
+        )
+
+    def with_updated_translation(self, new_translation: str, approved_by: str, now: str) -> "SeriesGlossaryTerm":
+        """Return new term with updated translation (version increment)."""
+        return SeriesGlossaryTerm(
+            source=self.source,
+            translation=new_translation,
+            category=self.category,
+            locked=self.locked,
+            status=self.status,
+            source_books=self.source_books,
+            book_coverage=self.book_coverage,
+            confidence=self.confidence,
+            aliases=self.aliases,
+            notes=self.notes + (f"updated from {self.translation} to {new_translation}",),
+            approved_at=now,
+            approved_by=approved_by,
+            version=self.version + 1,
+        )
+
+
+@dataclass(frozen=True)
+class SeriesGlossary:
+    """Series-canonical glossary — persistent across volumes."""
+    schema_name: str
+    schema_version: str
+    series_id: str
+    terms: dict[str, SeriesGlossaryTerm]
+    glossary_hash: str
+
+    def to_dict(self, include_glossary_hash: bool = True) -> dict[str, Any]:
+        payload = {
+            "schema_name": self.schema_name,
+            "schema_version": self.schema_version,
+            "series_id": self.series_id,
+            "terms": {k: v.to_dict() for k, v in self.terms.items()},
+        }
+        if include_glossary_hash:
+            payload["glossary_hash"] = self.glossary_hash
+        return payload
+
+    def get_glossary_hash(self) -> str:
+        """Return the glossary hash (same as glossary_hash field)."""
+        return self.glossary_hash
+
+    def get_locked_dictionary(self) -> dict[str, str]:
+        """Extract locked terms for frozen component integration (adapter pattern)."""
+        return {
+            term.source: term.translation
+            for term in self.terms.values()
+            if term.locked or term.confidence >= 0.95
+        }
+
+    def get_alias_map(self) -> dict[str, str]:
+        """Extract aliases for GlossaryContext alias_map."""
+        alias_map = {}
+        for term in self.terms.values():
+            for alias in term.aliases:
+                if alias not in alias_map:
+                    alias_map[alias] = term.translation
+        return alias_map
+
+
+@dataclass(frozen=True)
+class GlossaryPromotionRecord:
+    """Audit trail for Book → Series glossary promotion."""
+    promotion_id: str
+    series_id: str
+    book_identity: str
+    source_term: str
+    previous_translation: str | None
+    new_translation: str
+    action: str  # "created" | "no_op" | "conflict" | "updated"
+    resolved_by: str | None
+    resolved_at: str
+    source_status: str  # "locked" | "auto_high_confidence"
+
+
+def to_canonical_json(obj: dict) -> str:
+    """Deterministic JSON: sorted keys, no whitespace, UTF-8."""
+    return json.dumps(obj, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+
+
+def compute_series_glossary_fingerprint(series_glossary_dict: dict) -> str:
+    """Compute SHA-256 of canonical glossary payload (excluding glossary_hash itself)."""
+    payload = {k: v for k, v in series_glossary_dict.items() if k != "glossary_hash"}
+    canonical = to_canonical_json(payload)
+    return hashlib.sha256(canonical.encode("utf-8")).hexdigest()
+
+
+def get_series_glossary_path(output_root: Path, series_id: str) -> Path:
+    """Get the path for series glossary file."""
+    series_dir = output_root / "series" / series_id
+    return series_dir / f"series_glossary_{series_id}.json"
+
+
+def save_series_glossary(series_glossary: SeriesGlossary, path: Path) -> None:
+    """Save SeriesGlossary to disk with atomic write and fingerprint."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temp_path = path.with_suffix(".tmp")
+    data = series_glossary.to_dict(include_glossary_hash=True)
+    temp_path.write_text(
+        to_canonical_json(data),
+        encoding="utf-8"
+    )
+    temp_path.replace(path)
+
+
+def load_series_glossary_from_path(path: Path, expected_series_id: str) -> SeriesGlossary:
+    """Load SeriesGlossary from disk with integrity verification (fail-closed)."""
+    if not path.exists():
+        # Return empty glossary for fresh series
+        return SeriesGlossary(
+            schema_name=SERIES_GLOSSARY_SCHEMA_NAME,
+            schema_version=SERIES_GLOSSARY_SCHEMA_VERSION,
+            series_id=expected_series_id,
+            terms={},
+            glossary_hash="",
+        )
+
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as e:
+        raise SeriesGlossaryValidationError(f"Invalid JSON in glossary file: {e}")
+
+    # Schema validation
+    if data.get("schema_name") != SERIES_GLOSSARY_SCHEMA_NAME:
+        raise SeriesGlossaryValidationError(f"Invalid schema_name: {data.get('schema_name')}")
+    if data.get("schema_version") != SERIES_GLOSSARY_SCHEMA_VERSION:
+        raise SeriesGlossaryValidationError(f"Invalid schema_version: {data.get('schema_version')}")
+    if data.get("series_id") != expected_series_id:
+        raise SeriesGlossaryValidationError(f"Series ID mismatch: expected {expected_series_id}, got {data.get('series_id')}")
+
+    # Fingerprint verification (fail-closed)
+    stored_hash = data.get("glossary_hash", "")
+    if stored_hash:
+        computed_hash = compute_series_glossary_fingerprint(data)
+        if stored_hash != computed_hash:
+            raise SeriesGlossaryIntegrityError(f"Glossary fingerprint mismatch: stored={stored_hash}, computed={computed_hash}")
+
+    # Parse terms
+    terms = {}
+    for source, term_data in data.get("terms", {}).items():
+        try:
+            terms[source] = SeriesGlossaryTerm.from_dict(term_data)
+        except Exception as e:
+            raise SeriesGlossaryValidationError(f"Invalid term data for '{source}': {e}")
+
+    return SeriesGlossary(
+        schema_name=data["schema_name"],
+        schema_version=data["schema_version"],
+        series_id=data["series_id"],
+        terms=terms,
+        glossary_hash=stored_hash,
+    )
+
+
+def load_series_glossary(series_id: str, output_root: Path) -> SeriesGlossary:
+    """Load SeriesGlossary from output root with integrity verification."""
+    path = get_series_glossary_path(output_root, series_id)
+    return load_series_glossary_from_path(path, series_id)
+
+
+def validate_series_glossary(series_glossary: SeriesGlossary) -> None:
+    """Validate SeriesGlossary business rules."""
+    if not series_glossary.schema_name == SERIES_GLOSSARY_SCHEMA_NAME:
+        raise SeriesGlossaryValidationError("Invalid schema_name")
+    if not series_glossary.schema_version == SERIES_GLOSSARY_SCHEMA_VERSION:
+        raise SeriesGlossaryValidationError("Invalid schema_version")
+
+    for term in series_glossary.terms.values():
+        if not term.locked and term.confidence < 0.95:
+            raise SeriesGlossaryValidationError(f"Term '{term.source}' is not locked and confidence < 0.95")
+        if not 0.0 <= term.confidence <= 1.0:
+            raise SeriesGlossaryValidationError(f"Term '{term.source}' confidence out of range: {term.confidence}")
+        if term.version < 1:
+            raise SeriesGlossaryValidationError(f"Term '{term.source}' version < 1: {term.version}")
+
+
+def _get_book_glossary_terms(series_id: str, book_identity: str, output_root: Path) -> dict[str, dict]:
+    """Load book glossary from analysis file for promotion."""
+    # Look for analysis file matching the book
+    analysis_dir = output_root.parent / "analysis"
+    if not analysis_dir.exists():
+        return {}
+
+    for file in analysis_dir.glob("*_glossary_auto.json"):
+        if infer_book_name(file) == book_identity:
+            data = load_json(file)
+            if isinstance(data, dict):
+                return data
+    return {}
+
+
+def build_series_glossary(
+    series_id: str,
+    series_manifest: Any,  # SeriesManifest from series_identity
+    output_root: Path,
+    character_memory_store: Any | None = None,  # SeriesMemoryStore
+    entity_registry: Any | None = None,  # SeriesEntityRegistry
+) -> SeriesGlossary:
+    """
+    Build canonical glossary from all completed books in series.
+
+    Rules:
+    - Only terms from books with status="completed" or "promoted"
+    - Only terms with locked=True or confidence >= 0.95
+    - Merged across all volumes (reuse existing merge_glossary logic)
+    - EntityRegistry canonical names included as locked terms
+    - CharacterMemory canonical names included as locked terms
+    """
+    # Collect completed book identities from SeriesManifest
+    completed_book_identities = []
+    for book in series_manifest.books:
+        if book.status.value in ("completed", "promoted"):
+            completed_book_identities.append(book.book_identity)
+
+    if not completed_book_identities:
+        # No completed books yet - return empty glossary
+        return SeriesGlossary(
+            schema_name=SERIES_GLOSSARY_SCHEMA_NAME,
+            schema_version=SERIES_GLOSSARY_SCHEMA_VERSION,
+            series_id=series_id,
+            terms={},
+            glossary_hash="",
+        )
+
+    # Collect glossary files for completed books
+    glossary_files = []
+    for book_id in completed_book_identities:
+        # Find analysis file for this book
+        analysis_dir = output_root.parent / "analysis"
+        if analysis_dir.exists():
+            for file in analysis_dir.glob("*_glossary_auto.json"):
+                if infer_book_name(file) == book_id:
+                    glossary_files.append(file)
+
+    if not glossary_files:
+        # No glossary files found
+        return SeriesGlossary(
+            schema_name=SERIES_GLOSSARY_SCHEMA_NAME,
+            schema_version=SERIES_GLOSSARY_SCHEMA_VERSION,
+            series_id=series_id,
+            terms={},
+            glossary_hash="",
+        )
+
+    # Merge glossaries from completed books using existing logic
+    merged = merge_glossary(glossary_files)
+    override = load_override()
+    merged = apply_override(merged, override)
+    finalized = finalize_glossary(merged)
+
+    # Filter: only locked or confidence >= 0.95
+    filtered_terms = {}
+    for source, item in finalized.items():
+        if item.get("locked") or item.get("confidence", 0) >= 0.95:
+            filtered_terms[source] = item
+
+    # Enrich with EntityRegistry canonical names (locked terms)
+    if entity_registry is not None:
+        for record in entity_registry.get_all():
+            if record.source_name not in filtered_terms:
+                filtered_terms[record.source_name] = {
+                    "source": record.source_name,
+                    "translation": record.canonical_target,
+                    "category": "person_name",
+                    "total_count": 0,
+                    "books": {},
+                    "book_count": 0,
+                    "locked": True,
+                    "status": "series_canonical",
+                    "aliases": [],
+                    "notes": [f"from entity_registry: {record.series_entity_id}"],
+                    "confidence": 1.0,
+                    "created_by": "NTPE Series Glossary Builder",
+                }
+
+    # Enrich with CharacterMemory canonical names (locked terms)
+    if character_memory_store is not None:
+        for record in character_memory_store.get_all_canonical_facts():
+            if record.korean_name not in filtered_terms and record.canonical_name:
+                filtered_terms[record.korean_name] = {
+                    "source": record.korean_name,
+                    "translation": record.canonical_name,
+                    "category": "person_name",
+                    "total_count": 0,
+                    "books": {},
+                    "book_count": 0,
+                    "locked": True,
+                    "status": "series_canonical",
+                    "aliases": list(record.aliases),
+                    "notes": [f"from character_memory: {record.series_character_id}"],
+                    "confidence": 1.0,
+                    "created_by": "NTPE Series Glossary Builder",
+                }
+
+    # Convert to SeriesGlossaryTerm objects
+    now = datetime.now().isoformat(timespec="seconds")
+    series_terms = {}
+    for source, item in filtered_terms.items():
+        # Determine status
+        if item.get("status") == "manual_locked" or item.get("locked"):
+            status = "manual_locked" if item.get("locked") else "auto_high_confidence"
+            if item.get("status") == "series_canonical":
+                status = "series_canonical"
+        else:
+            status = "auto_high_confidence"
+
+        series_terms[source] = SeriesGlossaryTerm(
+            source=source,
+            translation=item.get("translation", ""),
+            category=item.get("category", "unknown"),
+            locked=item.get("locked", False) or item.get("confidence", 0) >= 0.95,
+            status=status,
+            source_books=tuple(item.get("books", {}).keys()),
+            book_coverage=item.get("book_count", 0),
+            confidence=item.get("confidence", 1.0 if item.get("locked") else 0.95),
+            aliases=tuple(item.get("aliases", [])),
+            notes=tuple(item.get("notes", [])),
+            approved_at=item.get("notes", [now])[-1] if item.get("notes") else now,
+            approved_by="series_promotion" if status == "series_canonical" else "auto_high_confidence",
+            version=1,
+        )
+
+    # Compute fingerprint
+    glossary = SeriesGlossary(
+        schema_name=SERIES_GLOSSARY_SCHEMA_NAME,
+        schema_version=SERIES_GLOSSARY_SCHEMA_VERSION,
+        series_id=series_id,
+        terms=series_terms,
+        glossary_hash="",  # Will be computed
+    )
+
+    fingerprint = compute_series_glossary_fingerprint(glossary.to_dict(include_glossary_hash=False))
+    glossary = SeriesGlossary(
+        schema_name=glossary.schema_name,
+        schema_version=glossary.schema_version,
+        series_id=glossary.series_id,
+        terms=glossary.terms,
+        glossary_hash=fingerprint,
+    )
+
+    validate_series_glossary(glossary)
+    return glossary
+
+
+def merge_into_series_glossary(
+    series_glossary: SeriesGlossary,
+    book_glossary: dict,  # Terms dict from glossary_builder output
+    book_identity: str,
+    approval_gate: bool = True,
+) -> tuple[SeriesGlossary, tuple[GlossaryPromotionRecord, ...]]:
+    """
+    Promote locked/high-confidence terms from completed book to SeriesGlossary.
+
+    Requires MANUAL approval gate (D-07 frozen).
+    Only processes terms with locked=True or confidence >= 0.95.
+    """
+    if not approval_gate:
+        raise SeriesGlossaryValidationError(
+            "Glossary promotion requires MANUAL approval gate (D-07 frozen). "
+            "Auto-promotion is not permitted."
+        )
+
+    now = datetime.now().isoformat(timespec="seconds")
+    promotion_id = hashlib.sha256(f"{series_glossary.series_id}|{book_identity}|{now}".encode()).hexdigest()[:12]
+
+    promotions = []
+    updated_terms = dict(series_glossary.terms)
+
+    for source, item in book_glossary.items():
+        # Check eligibility: locked or confidence >= 0.95
+        is_locked = item.get("locked", False)
+        confidence = item.get("confidence", 0)
+        translation = item.get("translation", "")
+
+        if not translation:
+            continue
+
+        if not (is_locked or confidence >= 0.95):
+            continue  # Not eligible for promotion
+
+        source_status = "locked" if is_locked else "auto_high_confidence"
+
+        if source not in updated_terms:
+            # CREATE new term
+            new_term = SeriesGlossaryTerm(
+                source=source,
+                translation=translation,
+                category=item.get("category", "unknown"),
+                locked=True,
+                status=source_status,
+                source_books=(book_identity,),
+                book_coverage=1,
+                confidence=1.0 if is_locked else confidence,
+                aliases=tuple(item.get("aliases", [])),
+                notes=(f"promoted from {book_identity}",),
+                approved_at=now,
+                approved_by="series_promotion",
+                version=1,
+            )
+            updated_terms[source] = new_term
+            promotions.append(GlossaryPromotionRecord(
+                promotion_id=promotion_id,
+                series_id=series_glossary.series_id,
+                book_identity=book_identity,
+                source_term=source,
+                previous_translation=None,
+                new_translation=translation,
+                action="created",
+                resolved_by="user",
+                resolved_at=now,
+                source_status=source_status,
+            ))
+        else:
+            # Existing term - check for conflict
+            existing = updated_terms[source]
+            if existing.translation == translation:
+                # NO-OP
+                promotions.append(GlossaryPromotionRecord(
+                    promotion_id=promotion_id,
+                    series_id=series_glossary.series_id,
+                    book_identity=book_identity,
+                    source_term=source,
+                    previous_translation=existing.translation,
+                    new_translation=translation,
+                    action="no_op",
+                    resolved_by=None,
+                    resolved_at=now,
+                    source_status=source_status,
+                ))
+            else:
+                # CONFLICT - different translation
+                promotions.append(GlossaryPromotionRecord(
+                    promotion_id=promotion_id,
+                    series_id=series_glossary.series_id,
+                    book_identity=book_identity,
+                    source_term=source,
+                    previous_translation=existing.translation,
+                    new_translation=translation,
+                    action="conflict",
+                    resolved_by=None,  # Requires manual resolution
+                    resolved_at=now,
+                    source_status=source_status,
+                ))
+
+    # Build updated glossary
+    updated_glossary = SeriesGlossary(
+        schema_name=series_glossary.schema_name,
+        schema_version=series_glossary.schema_version,
+        series_id=series_glossary.series_id,
+        terms=updated_terms,
+        glossary_hash="",
+    )
+
+    fingerprint = compute_series_glossary_fingerprint(updated_glossary.to_dict(include_glossary_hash=False))
+    updated_glossary = SeriesGlossary(
+        schema_name=updated_glossary.schema_name,
+        schema_version=updated_glossary.schema_version,
+        series_id=updated_glossary.series_id,
+        terms=updated_glossary.terms,
+        glossary_hash=fingerprint,
+    )
+
+    validate_series_glossary(updated_glossary)
+    return updated_glossary, tuple(promotions)
+
+
+def resolve_promotion_conflict(
+    series_glossary: SeriesGlossary,
+    source_term: str,
+    resolution: str,  # "book_wins" | "series_wins" | "manual"
+    resolved_by: str,
+    manual_value: str | None = None,
+) -> tuple[SeriesGlossary, GlossaryPromotionRecord]:
+    """
+    Resolve a promotion conflict manually.
+
+    Args:
+        series_glossary: Current series glossary
+        source_term: The source term with conflict
+        resolution: "book_wins" (use book translation), "series_wins" (keep series), "manual" (use manual_value)
+        resolved_by: Who resolved the conflict
+        manual_value: Custom value for "manual" resolution
+
+    Returns:
+        Updated SeriesGlossary and the resolution record
+    """
+    now = datetime.now().isoformat(timespec="seconds")
+
+    if source_term not in series_glossary.terms:
+        raise SeriesGlossaryValidationError(f"Term not found in series glossary: {source_term}")
+
+    existing = series_glossary.terms[source_term]
+
+    if resolution == "book_wins":
+        # This would require knowing the book translation - pass via manual_value
+        if manual_value is None:
+            raise SeriesGlossaryValidationError("book_wins requires manual_value")
+        new_translation = manual_value
+        action = "updated"
+    elif resolution == "series_wins":
+        # Keep existing translation - no change needed
+        return series_glossary, GlossaryPromotionRecord(
+            promotion_id=hashlib.sha256(f"{series_glossary.series_id}|{source_term}|{now}".encode()).hexdigest()[:12],
+            series_id=series_glossary.series_id,
+            book_identity="",
+            source_term=source_term,
+            previous_translation=existing.translation,
+            new_translation=existing.translation,
+            action="no_op",
+            resolved_by=resolved_by,
+            resolved_at=now,
+            source_status="manual_resolution",
+        )
+    elif resolution == "manual":
+        if manual_value is None:
+            raise SeriesGlossaryValidationError("manual resolution requires manual_value")
+        new_translation = manual_value
+        action = "updated"
+    else:
+        raise SeriesGlossaryValidationError(f"Invalid resolution: {resolution}")
+
+    if new_translation == existing.translation:
+        action = "no_op"
+
+    updated_term = existing.with_updated_translation(new_translation, resolved_by, now)
+
+    updated_terms = dict(series_glossary.terms)
+    updated_terms[source_term] = updated_term
+
+    updated_glossary = SeriesGlossary(
+        schema_name=series_glossary.schema_name,
+        schema_version=series_glossary.schema_version,
+        series_id=series_glossary.series_id,
+        terms=updated_terms,
+        glossary_hash="",
+    )
+
+    fingerprint = compute_series_glossary_fingerprint(updated_glossary.to_dict(include_glossary_hash=False))
+    updated_glossary = SeriesGlossary(
+        schema_name=updated_glossary.schema_name,
+        schema_version=updated_glossary.schema_version,
+        series_id=updated_glossary.series_id,
+        terms=updated_glossary.terms,
+        glossary_hash=fingerprint,
+    )
+
+    validate_series_glossary(updated_glossary)
+
+    resolution_record = GlossaryPromotionRecord(
+        promotion_id=hashlib.sha256(f"{series_glossary.series_id}|{source_term}|{now}".encode()).hexdigest()[:12],
+        series_id=series_glossary.series_id,
+        book_identity="",
+        source_term=source_term,
+        previous_translation=existing.translation,
+        new_translation=new_translation,
+        action=action,
+        resolved_by=resolved_by,
+        resolved_at=now,
+        source_status="manual_resolution",
+    )
+
+    return updated_glossary, resolution_record
 
 
 def main() -> None:

@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from enum import Enum
 from typing import Any
@@ -101,10 +101,11 @@ class SeriesManifest:
     created_at: str
     updated_at: str
     books: tuple[SeriesBookEntry, ...]
-    series_memory_hash: str
-    series_checkpoint_hash: str
-    series_entity_registry_hash: str
-    manifest_fingerprint: str
+    series_memory_hash: str = field(default="")
+    series_checkpoint_hash: str = field(default="")
+    series_entity_registry_hash: str = field(default="")
+    series_glossary_hash: str = field(default="")
+    manifest_fingerprint: str = field(default="")
 
     def to_dict(self, include_manifest_fingerprint: bool = True) -> dict[str, Any]:
         payload = {
@@ -119,6 +120,7 @@ class SeriesManifest:
             "series_memory_hash": self.series_memory_hash,
             "series_checkpoint_hash": self.series_checkpoint_hash,
             "series_entity_registry_hash": self.series_entity_registry_hash,
+            "series_glossary_hash": self.series_glossary_hash,
         }
         if include_manifest_fingerprint:
             payload["manifest_fingerprint"] = self.manifest_fingerprint
@@ -143,6 +145,7 @@ class SeriesManifest:
             series_memory_hash=data.get("series_memory_hash", ""),
             series_checkpoint_hash=data.get("series_checkpoint_hash", ""),
             series_entity_registry_hash=data.get("series_entity_registry_hash", ""),
+            series_glossary_hash=data.get("series_glossary_hash", ""),
             manifest_fingerprint=data.get("manifest_fingerprint", ""),
         )
 
@@ -184,6 +187,7 @@ class SeriesManifest:
             series_memory_hash=self.series_memory_hash,
             series_checkpoint_hash=self.series_checkpoint_hash,
             series_entity_registry_hash=self.series_entity_registry_hash,
+            series_glossary_hash=self.series_glossary_hash,
             manifest_fingerprint="",  # Will be recomputed
         )
 
@@ -201,6 +205,7 @@ class SeriesManifest:
             series_memory_hash=self.series_memory_hash,
             series_checkpoint_hash=self.series_checkpoint_hash,
             series_entity_registry_hash=self.series_entity_registry_hash,
+            series_glossary_hash=self.series_glossary_hash,
             manifest_fingerprint="",
         )
 
@@ -224,6 +229,7 @@ class SeriesManifest:
             series_memory_hash=self.series_memory_hash,
             series_checkpoint_hash=self.series_checkpoint_hash,
             series_entity_registry_hash=self.series_entity_registry_hash,
+            series_glossary_hash=self.series_glossary_hash,
             manifest_fingerprint="",
         )
 
@@ -240,6 +246,7 @@ class SeriesManifest:
             series_memory_hash=hash_value,
             series_checkpoint_hash=self.series_checkpoint_hash,
             series_entity_registry_hash=self.series_entity_registry_hash,
+            series_glossary_hash=self.series_glossary_hash,
             manifest_fingerprint="",
         )
 
@@ -256,6 +263,7 @@ class SeriesManifest:
             series_memory_hash=self.series_memory_hash,
             series_checkpoint_hash=hash_value,
             series_entity_registry_hash=self.series_entity_registry_hash,
+            series_glossary_hash=self.series_glossary_hash,
             manifest_fingerprint="",
         )
 
@@ -272,6 +280,7 @@ class SeriesManifest:
             series_memory_hash=self.series_memory_hash,
             series_checkpoint_hash=self.series_checkpoint_hash,
             series_entity_registry_hash=self.series_entity_registry_hash,
+            series_glossary_hash=self.series_glossary_hash,
             manifest_fingerprint=fingerprint,
         )
 
@@ -288,5 +297,23 @@ class SeriesManifest:
             series_memory_hash=self.series_memory_hash,
             series_checkpoint_hash=self.series_checkpoint_hash,
             series_entity_registry_hash=hash_value,
+            series_glossary_hash=self.series_glossary_hash,
+            manifest_fingerprint="",
+        )
+
+    def with_series_glossary_hash(self, hash_value: str) -> "SeriesManifest":
+        return SeriesManifest(
+            schema_name=self.schema_name,
+            schema_version=self.schema_version,
+            series_id=self.series_id,
+            series_name=self.series_name,
+            lifecycle_status=self.lifecycle_status,
+            created_at=self.created_at,
+            updated_at=utc_now_iso(),
+            books=self.books,
+            series_memory_hash=self.series_memory_hash,
+            series_checkpoint_hash=self.series_checkpoint_hash,
+            series_entity_registry_hash=self.series_entity_registry_hash,
+            series_glossary_hash=hash_value,
             manifest_fingerprint="",
         )
