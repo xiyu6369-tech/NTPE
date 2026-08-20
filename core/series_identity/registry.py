@@ -83,6 +83,7 @@ class SeriesRegistry:
             series_checkpoint_hash="",
             series_entity_registry_hash="",
             series_glossary_hash="",
+            series_knowledge_hash="",
             manifest_fingerprint="",
         )
 
@@ -325,6 +326,7 @@ class SeriesRegistry:
             series_checkpoint_hash=manifest.series_checkpoint_hash,
             series_entity_registry_hash=manifest.series_entity_registry_hash,
             series_glossary_hash=manifest.series_glossary_hash,
+            series_knowledge_hash=manifest.series_knowledge_hash,
             manifest_fingerprint="",
         )
 
@@ -367,6 +369,19 @@ class SeriesRegistry:
         """Update series_glossary_hash after glossary changes."""
         manifest = self.get(series_id)
         updated_manifest = manifest.with_series_glossary_hash(glossary_hash)
+        fingerprint = compute_manifest_fingerprint(updated_manifest.to_canonical_dict())
+        updated_manifest = updated_manifest.with_fingerprint(fingerprint)
+
+        series_dir = get_series_dir(self.output_root, series_id)
+        manifest_path = manifest_file_path(series_dir, series_id)
+        save_manifest(updated_manifest, manifest_path)
+
+        return updated_manifest
+
+    def update_series_knowledge_hash(self, series_id: str, knowledge_hash: str) -> SeriesManifest:
+        """Update series_knowledge_hash after knowledge changes."""
+        manifest = self.get(series_id)
+        updated_manifest = manifest.with_series_knowledge_hash(knowledge_hash)
         fingerprint = compute_manifest_fingerprint(updated_manifest.to_canonical_dict())
         updated_manifest = updated_manifest.with_fingerprint(fingerprint)
 

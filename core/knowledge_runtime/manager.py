@@ -1,15 +1,23 @@
 """RM-6.1.2 Knowledge Runtime Manager — domain-aware orchestration with Merge Engine.
 
 No provider imports. No benchmark hooks. No feedback integration.
-Coordinates Loader → Snapshot → Merger → Resolver pipeline.
+Coordinates Loader -> Snapshot -> Merger -> Resolver pipeline.
 """
 
 from __future__ import annotations
 
+from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 from .errors import KnowledgeManagerError
-from .loader import KnowledgeLoader
+from .loader import (
+    KnowledgeLoader,
+    SeriesKnowledge,
+    KnowledgePopulationReport,
+    compute_series_knowledge_fingerprint,
+    get_series_knowledge_path,
+    save_series_knowledge,
+)
 from .merger import KnowledgeMerger, MergedRuntime
 from .models import KnowledgeBundle, KnowledgeEntry, KnowledgeSnapshot
 from .resolver import KnowledgeResolver
@@ -83,6 +91,118 @@ class KnowledgeRuntimeManager:
         self, metadata: Optional[Dict[str, Any]] = None
     ) -> Dict[str, KnowledgeBundle]:
         return self.loader.load_all_bundles(metadata)
+
+    def load_series_knowledge(
+        self,
+        series_id: str,
+        series_memory_store: Any,  # SeriesMemoryStore from core.series_memory
+        series_glossary: Any,  # SeriesGlossary from core.glossary_builder
+        output_root: Path,
+        series_registry: Any,  # SeriesRegistry from core.series_identity
+    ) -> KnowledgePopulationReport:
+        """
+        Populate Novel tier from Series sources and persist SeriesKnowledge artifact.
+
+        Called during Series orchestration before translation.
+        """
+        # Validate series_id consistency
+        if series_memory_store.series_id != series_id:
+            raise KnowledgeManagerError("SeriesMemoryStore series_id mismatch")
+        if series_glossary.series_id != series_id:
+            raise KnowledgeManagerError("SeriesGlossary series_id mismatch")
+
+        self.merger.reset()
+
+        # Load character canonical facts -> Novel tier
+        character_entries = self.loader.load_series_character_knowledge(series_memory_store)
+        if character_entries:
+            self.merger.set_novel("character", character_entries)
+
+        # Load glossary locked terms -> Novel tier
+        glossary_entries = self.loader.load_series_glossary_knowledge(series_glossary)
+        if glossary_entries:
+            self.merger.set_novel("glossary", glossary_entries)
+
+        # Build merged runtime
+        merged_runtime = self.merger.merge_all()
+        self._update_resolver_from_merged()
+
+        # Build SeriesKnowledge artifact
+        knowledge = SeriesKnowledge(
+            schema_name="ntpe.series_knowledge",
+            schema_version="1.0",
+            series_id=series_id,
+            character_entries=character_entries,
+            glossary_entries=glossary_entries,
+            general_entries={},
+            knowledge_hash="",
+        )
+
+        fingerprint = compute_series_knowledge_fingerprint(knowledge.to_dict(include_knowledge_hash=False))
+        knowledge = SeriesKnowledge(
+            schema_name=knowledge.schema_name,
+            schema_version=knowledge.schema_version,
+            series_id=knowledge.series_id,
+            character_entries=knowledge.character_entries,
+            glossary_entries=knowledge.glossary_entries,
+            general_entries=knowledge.general_entries,
+            knowledge_hash=fingerprint,
+        )
+
+        # Save to disk
+        save_series_knowledge(knowledge, get_series_knowledge_path(output_root, series_id))
+
+        # Update manifest
+        series_registry.update_series_knowledge_hash(series_id, fingerprint)
+
+        return KnowledgePopulationReport(
+            series_id=series_id,
+            character_terms_populated=len(character_entries),
+            glossary_terms_populated=len(glossary_entries),
+            general_facts_populated=0,
+            knowledge_hash=fingerprint,
+            source_memory_hash=series_memory_store.series_memory_hash,
+            source_glossary_hash=series_glossary.glossary_hash,
+        )
+
+    def populate_volume_tier(
+        self,
+        book_memory_store: Any,  # MemoryStore from core.character_memory_v2
+        book_glossary: Dict[str, Any],
+        book_identity: str,
+    ) -> None:
+        """
+        Populate Volume tier for current book translation.
+
+        Called at translation start for the specific book (after Series Novel tier populated).
+        Book facts override Novel tier via KEY_OVERRIDE strategy.
+        """
+        from core.character_memory_v2.models import FactType
+
+        # Character facts from BookMemoryStore (includes hydrated series facts)
+        volume_character_entries = {}
+        for record in book_memory_store.get_all():
+            if record.fact_type == FactType.CANONICAL_NAME:
+                # Use book-scoped character_id as key
+                volume_character_entries[f"char:{record.character_id}"] = record.value
+            elif record.fact_type == FactType.RELATIONSHIP:
+                volume_character_entries[f"rel:{record.character_id}:{record.value}"] = record.value
+
+        if volume_character_entries:
+            self.merger.set_volume("character", volume_character_entries)
+
+        # Glossary terms from Book glossary (includes hydrated series terms)
+        volume_glossary_entries = {
+            f"term:{term}": item["translation"]
+            for term, item in book_glossary.items()
+            if item.get("translation")
+        }
+        if volume_glossary_entries:
+            self.merger.set_volume("glossary", volume_glossary_entries)
+
+        # Re-merge to update MergedRuntime
+        self._merged_runtime = self.merger.merge_all()
+        self._update_resolver_from_merged()
 
     def build_merged_runtime(
         self,

@@ -7,10 +7,147 @@ any external schema, benchmark, or feedback module.
 
 from __future__ import annotations
 
+import hashlib
+import json
+from dataclasses import dataclass, field
+from datetime import datetime, timezone
+from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional
 
 from .errors import KnowledgeLoadError
 from .models import KnowledgeBundle, KnowledgeEntry, KnowledgePrototype
+
+
+def utc_now_iso() -> str:
+    return datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
+
+
+def to_canonical_json(obj: dict) -> str:
+    """Deterministic JSON: sorted keys, no whitespace, UTF-8."""
+    return json.dumps(obj, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+
+
+@dataclass(frozen=True)
+class SeriesKnowledge:
+    """Series-canonical knowledge for Novel tier population."""
+    schema_name: str = "ntpe.series_knowledge"
+    schema_version: str = "1.0"
+    series_id: str = ""
+    character_entries: Dict[str, Any] = field(default_factory=dict)
+    glossary_entries: Dict[str, Any] = field(default_factory=dict)
+    general_entries: Dict[str, Any] = field(default_factory=dict)
+    knowledge_hash: str = ""
+
+    def to_dict(self, include_knowledge_hash: bool = True) -> Dict[str, Any]:
+        payload = {
+            "schema_name": self.schema_name,
+            "schema_version": self.schema_version,
+            "series_id": self.series_id,
+            "character_entries": self.character_entries,
+            "glossary_entries": self.glossary_entries,
+            "general_entries": self.general_entries,
+        }
+        if include_knowledge_hash:
+            payload["knowledge_hash"] = self.knowledge_hash
+        return payload
+
+
+@dataclass(frozen=True)
+class KnowledgePopulationReport:
+    """Report of Series -> KnowledgeRuntime population."""
+    series_id: str
+    character_terms_populated: int
+    glossary_terms_populated: int
+    general_facts_populated: int
+    knowledge_hash: str
+    source_memory_hash: str
+    source_glossary_hash: str
+
+
+class SeriesKnowledgeValidationError(Exception):
+    """Raised when SeriesKnowledge schema validation fails."""
+    pass
+
+
+class SeriesKnowledgeIntegrityError(Exception):
+    """Raised when SeriesKnowledge fingerprint verification fails (fail-closed)."""
+    pass
+
+
+def compute_series_knowledge_fingerprint(series_knowledge_dict: dict) -> str:
+    """Compute SHA-256 of canonical knowledge payload (excluding knowledge_hash itself)."""
+    payload = {k: v for k, v in series_knowledge_dict.items() if k != "knowledge_hash"}
+    canonical = to_canonical_json(payload)
+    return hashlib.sha256(canonical.encode("utf-8")).hexdigest()
+
+
+def get_series_knowledge_path(output_root: Path, series_id: str) -> Path:
+    """Get the path for series knowledge file."""
+    series_dir = output_root / "series" / series_id
+    return series_dir / f"series_knowledge_{series_id}.json"
+
+
+def save_series_knowledge(series_knowledge: SeriesKnowledge, path: Path) -> None:
+    """Save SeriesKnowledge to disk with atomic write and fingerprint."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temp_path = path.with_suffix(".tmp")
+    data = series_knowledge.to_dict(include_knowledge_hash=True)
+    temp_path.write_text(
+        to_canonical_json(data),
+        encoding="utf-8"
+    )
+    temp_path.replace(path)
+
+
+def load_series_knowledge_from_path(path: Path, expected_series_id: str) -> SeriesKnowledge:
+    """Load SeriesKnowledge from disk with integrity verification (fail-closed)."""
+    if not path.exists():
+        # Return empty knowledge for fresh series
+        return SeriesKnowledge(
+            schema_name="ntpe.series_knowledge",
+            schema_version="1.0",
+            series_id=expected_series_id,
+            character_entries={},
+            glossary_entries={},
+            general_entries={},
+            knowledge_hash="",
+        )
+
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as e:
+        raise SeriesKnowledgeValidationError(f"Invalid JSON in knowledge file: {e}")
+
+    # Schema validation
+    if data.get("schema_name") != "ntpe.series_knowledge":
+        raise SeriesKnowledgeValidationError(f"Invalid schema_name: {data.get('schema_name')}")
+    if data.get("schema_version") != "1.0":
+        raise SeriesKnowledgeValidationError(f"Invalid schema_version: {data.get('schema_version')}")
+    if data.get("series_id") != expected_series_id:
+        raise SeriesKnowledgeValidationError(f"Series ID mismatch: expected {expected_series_id}, got {data.get('series_id')}")
+
+    # Fingerprint verification (fail-closed)
+    stored_hash = data.get("knowledge_hash", "")
+    if stored_hash:
+        computed_hash = compute_series_knowledge_fingerprint(data)
+        if stored_hash != computed_hash:
+            raise SeriesKnowledgeIntegrityError(f"Knowledge fingerprint mismatch: stored={stored_hash}, computed={computed_hash}")
+
+    return SeriesKnowledge(
+        schema_name=data["schema_name"],
+        schema_version=data["schema_version"],
+        series_id=data["series_id"],
+        character_entries=data.get("character_entries", {}),
+        glossary_entries=data.get("glossary_entries", {}),
+        general_entries=data.get("general_entries", {}),
+        knowledge_hash=stored_hash,
+    )
+
+
+def load_series_knowledge(series_id: str, output_root: Path) -> SeriesKnowledge:
+    """Load SeriesKnowledge from output root with integrity verification."""
+    path = get_series_knowledge_path(output_root, series_id)
+    return load_series_knowledge_from_path(path, series_id)
 
 
 class KnowledgeLoader:
@@ -130,6 +267,48 @@ class KnowledgeLoader:
                 pass
         return result
 
+    def load_series_character_knowledge(
+        self,
+        series_memory_store: Any,  # SeriesMemoryStore from core.series_memory
+    ) -> Dict[str, Any]:
+        """
+        Load character canonical facts for Novel tier.
+
+        Returns dict suitable for KnowledgeMerger.set_novel("character", entries).
+        Only APPROVED NEVER-expiry facts from SeriesMemoryStore.
+        """
+        from core.character_memory_v2.models import FactType
+
+        entries = {}
+        for record in series_memory_store.get_all_canonical_facts():
+            # Canonical names
+            if record.fact_type == FactType.CANONICAL_NAME:
+                entries[f"char:{record.korean_name}"] = record.canonical_name
+                for alias in record.aliases:
+                    entries[f"alias:{alias}"] = record.canonical_name
+            # Relationships
+            elif record.fact_type == FactType.RELATIONSHIP:
+                entries[f"rel:{record.korean_name}:{record.value}"] = record.value
+            # Terminology preferences
+            elif record.fact_type == FactType.TERMINOLOGY_PREFERENCE:
+                entries[f"term:{record.korean_name}"] = record.value
+            # World facts / background / physical traits / personality
+            elif record.fact_type in (FactType.OTHER, FactType.APPEARANCE, FactType.PERSONALITY_TRAIT):
+                entries[f"fact:{record.fact_type.value.lower()}:{record.korean_name}"] = record.value
+        return entries
+
+    def load_series_glossary_knowledge(
+        self,
+        series_glossary: Any,  # SeriesGlossary from core.glossary_builder
+    ) -> Dict[str, Any]:
+        """
+        Load locked glossary terms for Novel tier.
+
+        Returns dict suitable for KnowledgeMerger.set_novel("glossary", entries).
+        Uses SeriesGlossary.get_locked_dictionary() adapter.
+        """
+        return series_glossary.get_locked_dictionary()
+
     def manifest(self) -> Dict[str, Any]:
         return {
             "name": "knowledge_loader",
@@ -139,4 +318,17 @@ class KnowledgeLoader:
         }
 
 
-__all__ = ["KnowledgeLoader"]
+__all__ = [
+    "KnowledgeLoader",
+    "SeriesKnowledge",
+    "KnowledgePopulationReport",
+    "SeriesKnowledgeValidationError",
+    "SeriesKnowledgeIntegrityError",
+    "compute_series_knowledge_fingerprint",
+    "get_series_knowledge_path",
+    "save_series_knowledge",
+    "load_series_knowledge_from_path",
+    "load_series_knowledge",
+    "utc_now_iso",
+    "to_canonical_json",
+]
