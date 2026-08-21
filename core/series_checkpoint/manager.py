@@ -17,7 +17,12 @@ from .models import (
     compute_series_checkpoint_fingerprint,
 )
 from .persistence import get_series_checkpoint_path, save_series_checkpoint
-from .validation import validate_series_checkpoint_full, validate_cross_series_isolation
+from .validation import (
+    validate_series_checkpoint_full,
+    validate_cross_series_isolation,
+    SeriesCheckpointValidationError,
+    SeriesCheckpointIntegrityError,
+)
 
 
 class SeriesCheckpointManager:
@@ -53,14 +58,12 @@ class SeriesCheckpointManager:
         - Book promotion completed (series memory/glossary/knowledge updated)
         - Manual series-level save requested
         """
-        # Validate cross-series isolation
-        validate_cross_series_isolation(
-            SeriesCheckpoint(series_id=series_id, checkpoint_id="dummy"),
-            series_id,
-        )
-
         # Get SeriesManifest for book list and manifest fingerprint
         series_manifest = self.series_registry.get(series_id)
+
+        # Validate series exists in registry (cross-series isolation)
+        if series_manifest.series_id != series_id:
+            raise SeriesCheckpointValidationError(f"Series ID mismatch: expected {series_id}, got {series_manifest.series_id}")
 
         # Collect Series artifact hashes
         series_memory_hash = getattr(self.series_memory_store, "series_memory_hash", "")

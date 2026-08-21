@@ -390,3 +390,16 @@ class SeriesRegistry:
         save_manifest(updated_manifest, manifest_path)
 
         return updated_manifest
+
+    def update_series_checkpoint_hash(self, series_id: str, checkpoint_hash: str) -> SeriesManifest:
+        """Update series_checkpoint_hash after checkpoint creation."""
+        manifest = self.get(series_id)
+        updated_manifest = manifest.with_series_checkpoint_hash(checkpoint_hash)
+        fingerprint = compute_manifest_fingerprint(updated_manifest.to_canonical_dict())
+        updated_manifest = updated_manifest.with_fingerprint(fingerprint)
+
+        series_dir = get_series_dir(self.output_root, series_id)
+        manifest_path = manifest_file_path(series_dir, series_id)
+        save_manifest(updated_manifest, manifest_path)
+
+        return updated_manifest

@@ -1,0 +1,9 @@
+{
+  "정태의": {"count": 15, "context": "주인공"},
+  "이수현": {"count": 12, "context": "여주인공"},
+  "김도훈": {"count": 8, "context": "라이벌"},
+  "가문": {"count": 5, "context": "가문의 의무"},
+  "의무": {"count": 4, "context": "의무와 명예"},
+  "명예": {"count": 4, "context": "가문의 명예"},
+  "운명": {"count": 6, "context": "운명의 실타래"}
+}

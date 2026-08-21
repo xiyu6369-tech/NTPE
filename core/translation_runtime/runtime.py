@@ -52,6 +52,25 @@ class TranslationRuntime:
         self.plugins = TranslationPluginManager(self.root)
         self.plugin_runtime = TranslationPluginRuntime(self.root, self.plugins)
 
+        # Series context stores (set by SeriesTranslationCoordinator for series-aware execution)
+        self._series_registry: Any = None
+        self._series_memory_store: Any = None
+        self._series_entity_registry: Any = None
+        self._series_glossary: Any = None
+        self._series_knowledge: Any = None
+        self._series_checkpoint_manager: Any = None
+
+        # Series context injected by coordinator
+        self._series_context: Any = None
+        self._series_book_memory_store: Any = None
+        self._series_book_context_store: Any = None
+        self._series_user_overrides: Any = None
+        self._series_locked_dictionary: Any = None
+        self._series_alias_map: Any = None
+        self._series_hydration_summary: Any = None
+        self._series_entity_hydration_report: Any = None
+        self._last_entity_resolver_overrides: Any = None
+
 
 
     def bind_ai_provider_manager(self, manager: ProviderManager) -> dict[str, Any]:
@@ -108,6 +127,22 @@ class TranslationRuntime:
         saved = self.ai_provider_config.save_template(target)
         return {"status": "success", "path": str(saved)}
 
+    def set_series_context(
+        self,
+        series_registry: Any,
+        series_memory_store: Any,
+        series_entity_registry: Any,
+        series_glossary: Any,
+        series_knowledge: Any,
+        series_checkpoint_manager: Any,
+    ) -> None:
+        """Set series stores for series-aware translation (called by SeriesTranslationCoordinator)."""
+        self._series_registry = series_registry
+        self._series_memory_store = series_memory_store
+        self._series_entity_registry = series_entity_registry
+        self._series_glossary = series_glossary
+        self._series_knowledge = series_knowledge
+        self._series_checkpoint_manager = series_checkpoint_manager
 
     def describe_plugin_runtime(self) -> dict[str, Any]:
         return self.plugin_runtime.describe()
@@ -184,7 +219,41 @@ class TranslationRuntime:
     def translate_package_file(self, package_path: str | Path) -> dict[str, Any]:
         return self.provider.translate_package_file(package_path)
 
-    def translate_package(self, package: dict, package_path: str | Path | None = None) -> dict[str, Any]:
+    def translate_package(
+    self,
+    package: dict,
+    package_path: str | Path | None = None,
+    series_id: str | None = None,
+    book_identity: str | None = None,
+) -> dict[str, Any]:
+        # If series context is provided, inject it before translation
+        if series_id and book_identity:
+            if self._series_context is None:
+                from core.series_orchestration.runtime_integration import build_series_context, inject_series_context
+
+                series_context = build_series_context(
+                    series_id=series_id,
+                    book_identity=book_identity,
+                    output_root=self.root,
+                    series_registry=self._series_registry,
+                    series_memory_store=self._series_memory_store,
+                    series_entity_registry=self._series_entity_registry,
+                    series_glossary=self._series_glossary,
+                    series_knowledge=self._series_knowledge,
+                    series_checkpoint_manager=self._series_checkpoint_manager,
+                )
+                inject_series_context(
+                    runtime=self,
+                    series_context=series_context,
+                    output_root=self.root,
+                    series_memory_store=self._series_memory_store,
+                    series_entity_registry=self._series_entity_registry,
+                    series_glossary=self._series_glossary,
+                    series_knowledge=self._series_knowledge,
+                    series_registry=self._series_registry,
+                    book_identity=book_identity,
+                )
+
         return self.provider.translate_package(package, package_path=package_path)
 
     def analyze_quality(self, source_text: str, translated_text: str, policy: RuntimeQAPolicy | None = None) -> dict[str, Any]:
@@ -208,9 +277,44 @@ class TranslationRuntime:
     def recovery_summary(self) -> dict[str, Any]:
         return recovery_summary(self.root)
 
-    def translate_txt(self, options: Any) -> dict[str, Any]:
+    def translate_txt(
+    self,
+    options: Any,
+    series_id: str | None = None,
+    book_identity: str | None = None,
+) -> dict[str, Any]:
         # Lazy import prevents circular imports and preserves the frozen LTS module.
         from lts.txt_translation_runtime import translate_txt
+
+        # If series context is provided, inject it before translation
+        if series_id and book_identity:
+            if self._series_context is None:
+                # Build series context on-demand if not already injected by coordinator
+                from core.series_orchestration.runtime_integration import build_series_context, inject_series_context
+
+                series_context = build_series_context(
+                    series_id=series_id,
+                    book_identity=book_identity,
+                    output_root=self.root,
+                    series_registry=self._series_registry,
+                    series_memory_store=self._series_memory_store,
+                    series_entity_registry=self._series_entity_registry,
+                    series_glossary=self._series_glossary,
+                    series_knowledge=self._series_knowledge,
+                    series_checkpoint_manager=self._series_checkpoint_manager,
+                )
+                inject_series_context(
+                    runtime=self,
+                    series_context=series_context,
+                    output_root=self.root,
+                    series_memory_store=self._series_memory_store,
+                    series_entity_registry=self._series_entity_registry,
+                    series_glossary=self._series_glossary,
+                    series_knowledge=self._series_knowledge,
+                    series_registry=self._series_registry,
+                    book_identity=book_identity,
+                )
+
         return translate_txt(options, root=self.root)
 
     def translate_batch(self, options: Any) -> dict[str, Any]:
