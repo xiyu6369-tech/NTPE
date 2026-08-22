@@ -31,6 +31,7 @@ from .validation import (
     validate_book_status_for_promotion,
 )
 from .runtime_integration import build_series_context, inject_series_context
+from core.series_identity.manifest import BookStatus
 
 
 class SeriesTranslationCoordinator:
@@ -180,7 +181,7 @@ class SeriesTranslationCoordinator:
         validate_series_not_archived(series_manifest, "translate_book")
 
         # 3. Set book status to "in_progress" in SeriesManifest
-        updated_manifest = self.series_registry.set_book_status(series_id, volume_number, "in_progress")
+        updated_manifest = self.series_registry.set_book_status(series_id, volume_number, BookStatus.IN_PROGRESS)
 
         # 4. Build SeriesContext via runtime_integration
         series_context = build_series_context(
@@ -218,6 +219,7 @@ class SeriesTranslationCoordinator:
                 source_language="ko",
                 target_language="zh",
                 dry_run=True,
+                project_name=series_manifest.series_name,
             )
 
         # Call translate with series context
@@ -235,7 +237,7 @@ class SeriesTranslationCoordinator:
 
             # 7. On completion: set book status to "completed"
             if status == "success":
-                self.series_registry.set_book_status(series_id, volume_number, "completed")
+                self.series_registry.set_book_status(series_id, volume_number, BookStatus.COMPLETED)
 
             # 8. Create SeriesCheckpoint
             checkpoint_report = self.series_checkpoint_manager.create_checkpoint(series_id, include_completed_books=True)
@@ -255,7 +257,7 @@ class SeriesTranslationCoordinator:
 
         except Exception as e:
             # On failure, set book status to "failed"
-            self.series_registry.set_book_status(series_id, volume_number, "failed")
+            self.series_registry.set_book_status(series_id, volume_number, BookStatus.FAILED)
             raise
 
     def promote_book(
@@ -336,7 +338,7 @@ class SeriesTranslationCoordinator:
         self.series_registry.update_series_knowledge_hash(series_id, knowledge_report.knowledge_hash)
 
         # 10. Set book status to "promoted"
-        self.series_registry.set_book_status(series_id, volume_number, "promoted")
+        self.series_registry.set_book_status(series_id, volume_number, BookStatus.PROMOTED)
 
         # 11. Create SeriesCheckpoint
         checkpoint_report = self.series_checkpoint_manager.create_checkpoint(series_id, include_completed_books=True)

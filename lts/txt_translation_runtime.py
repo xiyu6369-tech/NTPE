@@ -62,7 +62,15 @@ from core.translation_quality_integration_v72 import (
     QualityIntegrationFlags,
     apply_to_prompt_package as apply_translation_quality_integration_v72,
 )
-from core.character_memory_v2 import MemoryStore
+from core.character_memory_v2 import (
+    MemoryStore,
+    load_or_create_character_memory,
+)
+from core.character_memory_v2.persistence import (
+    save_character_memory,
+    get_memory_file_path,
+    compute_book_identity,
+)
 from core.context_scene_memory import (
     ContextMemoryStore,
     load_context_memory,
@@ -694,6 +702,19 @@ def _translate_txt_with_runtime_pipeline(
         project_name=options.project_name,
         lts_path=lts_memory_path,
     )
+
+    # Start a single Runtime Session for the entire file
+    session = orchestrator.start_session(metadata={
+        "input": str(input_path),
+        "chunk_total": len(chunks),
+        "profile": options.quality_profile,
+        "model": options.model,
+        "pipeline": "runtime",
+        "enable_cross_chunk_context": enable_cross_chunk_context,
+    })
+    session_id = session.session_id
+    emit_progress(f"runtime session created: {session_id}", options=options)
+
     # Character memory scope for selection (chapter/scene/session)
     character_memory_scope = {
         "chapter_id": current_chapter_id,
@@ -720,18 +741,6 @@ def _translate_txt_with_runtime_pipeline(
         f"runtime pipeline enabled: orchestrator={orchestrator.version} chunks={len(chunks)} cross_chunk_context={enable_cross_chunk_context}",
         options=options,
     )
-
-    # Start a single Runtime Session for the entire file
-    session = orchestrator.start_session(metadata={
-        "input": str(input_path),
-        "chunk_total": len(chunks),
-        "profile": options.quality_profile,
-        "model": options.model,
-        "pipeline": "runtime",
-        "enable_cross_chunk_context": enable_cross_chunk_context,
-    })
-    session_id = session.session_id
-    emit_progress(f"runtime session created: {session_id}", options=options)
 
     for idx, chunk in enumerate(chunks, start=1):
         emit_progress(f"runtime chunk {idx}/{len(chunks)} prepare chars={len(chunk)}", options=options)
@@ -1039,6 +1048,14 @@ def _translate_txt_with_runtime_pipeline(
         except Exception:
             pass
     orchestrator.complete(session_id, success=True)
+
+    # Persist Character Memory v2 store (even in dry-run to maintain checkpoint consistency)
+    if character_memory_store is not None:
+        save_character_memory(character_memory_store, get_memory_file_path(output_dir, compute_book_identity(input_path, options.project_name)))
+
+    # Persist Context/Scene Memory store
+    if enable_cross_chunk_context and context_memory_store is not None:
+        save_context_memory(context_memory_store, get_context_memory_file_path(output_dir, compute_book_identity(input_path, options.project_name)))
 
     # Finalize output
     save_live_progress(live_progress_path, {

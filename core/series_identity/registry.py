@@ -261,14 +261,14 @@ class SeriesRegistry:
         if book is None:
             raise ValidationError(f"Book not found in series: volume={volume_number}")
 
-        # Validate state transition
+        # Validate state transition (allow idempotent self-transitions)
         valid_transitions = {
-            BookStatus.PENDING: {BookStatus.IN_PROGRESS, BookStatus.FAILED, BookStatus.ARCHIVED},
-            BookStatus.IN_PROGRESS: {BookStatus.COMPLETED, BookStatus.FAILED, BookStatus.ARCHIVED},
-            BookStatus.COMPLETED: {BookStatus.PROMOTED, BookStatus.ARCHIVED},
-            BookStatus.PROMOTED: {BookStatus.ARCHIVED},
-            BookStatus.FAILED: {BookStatus.ARCHIVED},
-            BookStatus.ARCHIVED: set(),  # Terminal
+            BookStatus.PENDING: {BookStatus.PENDING, BookStatus.IN_PROGRESS, BookStatus.FAILED, BookStatus.ARCHIVED},
+            BookStatus.IN_PROGRESS: {BookStatus.IN_PROGRESS, BookStatus.COMPLETED, BookStatus.FAILED, BookStatus.ARCHIVED},
+            BookStatus.COMPLETED: {BookStatus.COMPLETED, BookStatus.PROMOTED, BookStatus.ARCHIVED},
+            BookStatus.PROMOTED: {BookStatus.PROMOTED, BookStatus.ARCHIVED},
+            BookStatus.FAILED: {BookStatus.FAILED, BookStatus.ARCHIVED},
+            BookStatus.ARCHIVED: {BookStatus.ARCHIVED},  # Terminal
         }
 
         if new_status not in valid_transitions.get(book.status, set()):

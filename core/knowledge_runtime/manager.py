@@ -181,7 +181,7 @@ class KnowledgeRuntimeManager:
 
         # Character facts from BookMemoryStore (includes hydrated series facts)
         volume_character_entries = {}
-        for record in book_memory_store.get_all():
+        for record in book_memory_store.active_records():
             if record.fact_type == FactType.CANONICAL_NAME:
                 # Use book-scoped character_id as key
                 volume_character_entries[f"char:{record.character_id}"] = record.value

@@ -81,14 +81,16 @@ class SeriesCheckpointManager:
 
             # Get book memory hash
             from core.character_memory_v2.persistence import get_memory_file_path
-            memory_path = get_memory_file_path(self.output_root, book_entry.book_identity)
+            # Translation output is stored in translations/{book_identity}/ subdirectory
+            book_output_dir = self.output_root / "translations" / book_entry.book_identity
+            memory_path = get_memory_file_path(book_output_dir, book_entry.book_identity)
             book_memory_hash = ""
             if memory_path.exists():
                 book_memory_hash = hashlib.sha256(memory_path.read_bytes()).hexdigest()
 
             # Get book context hash
             from core.context_scene_memory.persistence import get_context_memory_file_path
-            context_path = get_context_memory_file_path(self.output_root, book_entry.book_identity)
+            context_path = get_context_memory_file_path(book_output_dir, book_entry.book_identity)
             book_context_hash = ""
             if context_path.exists():
                 book_context_hash = hashlib.sha256(context_path.read_bytes()).hexdigest()
