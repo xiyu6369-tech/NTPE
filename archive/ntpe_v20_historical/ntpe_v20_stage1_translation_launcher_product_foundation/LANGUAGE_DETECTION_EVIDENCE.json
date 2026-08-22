@@ -1,0 +1,124 @@
+{
+  "detector": "deterministic_offline_unicode_ranges",
+  "maximum_file_sample_bytes": 65536,
+  "network_requests": 0,
+  "results": {
+    "empty": {
+      "ambiguous": true,
+      "confidence": 0.0,
+      "language": "unknown",
+      "sample_size": 0,
+      "signals": [
+        "hangul=0",
+        "hiragana=0",
+        "katakana=0",
+        "cjk=0",
+        "latin=0"
+      ]
+    },
+    "english": {
+      "ambiguous": false,
+      "confidence": 0.99,
+      "language": "en",
+      "sample_size": 50,
+      "signals": [
+        "hangul=0",
+        "hiragana=0",
+        "katakana=0",
+        "cjk=0",
+        "latin=41"
+      ]
+    },
+    "japanese": {
+      "ambiguous": false,
+      "confidence": 0.8461,
+      "language": "ja",
+      "sample_size": 20,
+      "signals": [
+        "hangul=0",
+        "hiragana=11",
+        "katakana=0",
+        "cjk=7",
+        "latin=0"
+      ]
+    },
+    "korean": {
+      "ambiguous": false,
+      "confidence": 0.99,
+      "language": "ko",
+      "sample_size": 27,
+      "signals": [
+        "hangul=20",
+        "hiragana=0",
+        "katakana=0",
+        "cjk=0",
+        "latin=0"
+      ]
+    },
+    "mixed": {
+      "ambiguous": true,
+      "confidence": 0.35,
+      "language": "unknown",
+      "sample_size": 13,
+      "signals": [
+        "hangul=2",
+        "hiragana=0",
+        "katakana=0",
+        "cjk=4",
+        "latin=4"
+      ]
+    },
+    "traditional_chinese_only": {
+      "ambiguous": true,
+      "confidence": 0.35,
+      "language": "unknown",
+      "sample_size": 11,
+      "signals": [
+        "hangul=0",
+        "hiragana=0",
+        "katakana=0",
+        "cjk=11",
+        "latin=0"
+      ]
+    }
+  },
+  "source_catalog": [
+    {
+      "display_name": "Automatic detection",
+      "language_id": "auto",
+      "runtime_integrated": true,
+      "selectable": true,
+      "status_reason": "offline_detection"
+    },
+    {
+      "display_name": "Korean",
+      "language_id": "ko",
+      "runtime_integrated": true,
+      "selectable": true,
+      "status_reason": "integrated"
+    },
+    {
+      "display_name": "Japanese",
+      "language_id": "ja",
+      "runtime_integrated": false,
+      "selectable": true,
+      "status_reason": "not_yet_integrated"
+    },
+    {
+      "display_name": "English",
+      "language_id": "en",
+      "runtime_integrated": false,
+      "selectable": true,
+      "status_reason": "not_yet_integrated"
+    }
+  ],
+  "target_catalog": [
+    {
+      "display_name": "Traditional Chinese",
+      "language_id": "zh-Hant",
+      "runtime_integrated": true,
+      "selectable": true,
+      "status_reason": "integrated"
+    }
+  ]
+}
