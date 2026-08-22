@@ -1,0 +1,10 @@
+{
+  "status": "running",
+  "input": "D:\\Python\\NTPE\\tests\\fixtures\\rm73_entity_canary\\novel_sample.txt",
+  "output_dir": "D:\\Python\\NTPE\\artifacts\\rm7_entity_canary\\legacy",
+  "chunk_total": 3,
+  "chunk_completed": 1,
+  "current_chunk": 2,
+  "current_step": "provider_and_qa_attempt_1",
+  "updated_at": "2026-08-09T21:08:43"
+}

@@ -143,3 +143,15 @@ output/
 NTPE.zip
 
 .kilo/
+
+# --------------------------
+# Local Learning Data
+# --------------------------
+knowledge/
+
+# --------------------------
+# Historical Artifacts (archived separately)
+# --------------------------
+artifacts/p0_productization/
+artifacts/rm7_entity_canary/
+artifacts/rm8_5_audit/

@@ -1,0 +1,490 @@
+{
+  "report": "RM-7.3.1 Entity Normalization Runtime Integration Canary",
+  "date": "2026-08-17T21:36:43.333251+00:00",
+  "runtime": {
+    "mode": "runtime",
+    "exit_code": 1,
+    "status": "failed",
+    "elapsed_seconds": 0.2,
+    "output_path": "",
+    "output_size_bytes": 0,
+    "input_chars": 2537,
+    "input_size_bytes": 5837,
+    "chunk_total": 0,
+    "provider_requests": 9,
+    "session_id": null,
+    "error": "Traceback (most recent call last):\n  File \"D:\\Python\\NTPE\\launcher_translate.py\", line 5, in <module>\n    from ntpe_production_translate import main\n  File \"D:\\Python\\NTPE\\ntpe_production_translate.py\", line 13, in <module>\n    from ntpe_literary_regression import LiteraryRegressionOptions, discover_test_sets, ensure_literary_structure, run_literary_regression\nModuleNotFoundError: No module named 'ntpe_literary_regression'"
+  },
+  "legacy": {
+    "mode": "legacy",
+    "exit_code": 1,
+    "status": "failed",
+    "elapsed_seconds": 0.28,
+    "output_path": "D:\\Python\\NTPE\\artifacts\\rm7_entity_canary\\legacy\\novel_sample_chunks\\novel_sample_chunk_000001_zh.txt",
+    "output_size_bytes": 1801,
+    "input_chars": 2537,
+    "input_size_bytes": 5837,
+    "chunk_total": 0,
+    "provider_requests": 0,
+    "session_id": null,
+    "error": "Traceback (most recent call last):\n  File \"D:\\Python\\NTPE\\launcher_translate.py\", line 5, in <module>\n    from ntpe_production_translate import main\n  File \"D:\\Python\\NTPE\\ntpe_production_translate.py\", line 13, in <module>\n    from ntpe_literary_regression import LiteraryRegressionOptions, discover_test_sets, ensure_literary_structure, run_literary_regression\nModuleNotFoundError: No module named 'ntpe_literary_regression'"
+  },
+  "comparison": {
+    "runtime_status": "FAIL",
+    "legacy_status": "FAIL",
+    "time_runtime": 0.2,
+    "time_legacy": 0.28,
+    "chunks_runtime": 0,
+    "chunks_legacy": 0,
+    "provider_runtime": 9,
+    "provider_legacy": 0
+  },
+  "entity_pipeline": {
+    "extracted_count": 25,
+    "resolved_count": 25,
+    "normalized_count": 25,
+    "conflicts_count": 0,
+    "entity_details": [
+      {
+        "source": "정태의",
+        "target": "鄭泰義",
+        "entity_type": "CHARACTER",
+        "source_level": "USER",
+        "is_known": true,
+        "is_user_override": true,
+        "canonical_entity_id": "character_50c67afc",
+        "canonical_translation": "鄭泰義",
+        "normalized_form": "FULL_NAME",
+        "normalized_translation": "鄭泰義"
+      },
+      {
+        "source": "태의",
+        "target": "泰義",
+        "entity_type": "CHARACTER",
+        "source_level": "USER",
+        "is_known": true,
+        "is_user_override": true,
+        "canonical_entity_id": "character_50c67afc",
+        "canonical_translation": "鄭泰義",
+        "normalized_form": "GIVEN_NAME",
+        "normalized_translation": "泰義"
+      },
+      {
+        "source": "태의",
+        "target": "泰義",
+        "entity_type": "CHARACTER",
+        "source_level": "USER",
+        "is_known": true,
+        "is_user_override": true,
+        "canonical_entity_id": "character_50c67afc",
+        "canonical_translation": "鄭泰義",
+        "normalized_form": "GIVEN_NAME",
+        "normalized_translation": "泰義"
+      },
+      {
+        "source": "정태의",
+        "target": "鄭泰義",
+        "entity_type": "CHARACTER",
+        "source_level": "USER",
+        "is_known": true,
+        "is_user_override": true,
+        "canonical_entity_id": "character_50c67afc",
+        "canonical_translation": "鄭泰義",
+        "normalized_form": "FULL_NAME",
+        "normalized_translation": "鄭泰義"
+      },
+      {
+        "source": "태의",
+        "target": "泰義",
+        "entity_type": "CHARACTER",
+        "source_level": "USER",
+        "is_known": true,
+        "is_user_override": true,
+        "canonical_entity_id": "character_50c67afc",
+        "canonical_translation": "鄭泰義",
+        "normalized_form": "GIVEN_NAME",
+        "normalized_translation": "泰義"
+      },
+      {
+        "source": "태의",
+        "target": "泰義",
+        "entity_type": "CHARACTER",
+        "source_level": "USER",
+        "is_known": true,
+        "is_user_override": true,
+        "canonical_entity_id": "character_50c67afc",
+        "canonical_translation": "鄭泰義",
+        "normalized_form": "GIVEN_NAME",
+        "normalized_translation": "泰義"
+      },
+      {
+        "source": "정태의",
+        "target": "鄭泰義",
+        "entity_type": "CHARACTER",
+        "source_level": "USER",
+        "is_known": true,
+        "is_user_override": true,
+        "canonical_entity_id": "character_50c67afc",
+        "canonical_translation": "鄭泰義",
+        "normalized_form": "FULL_NAME",
+        "normalized_translation": "鄭泰義"
+      },
+      {
+        "source": "태의",
+        "target": "泰義",
+        "entity_type": "CHARACTER",
+        "source_level": "USER",
+        "is_known": true,
+        "is_user_override": true,
+        "canonical_entity_id": "character_50c67afc",
+        "canonical_translation": "鄭泰義",
+        "normalized_form": "GIVEN_NAME",
+        "normalized_translation": "泰義"
+      },
+      {
+        "source": "태의",
+        "target": "泰義",
+        "entity_type": "CHARACTER",
+        "source_level": "USER",
+        "is_known": true,
+        "is_user_override": true,
+        "canonical_entity_id": "character_50c67afc",
+        "canonical_translation": "鄭泰義",
+        "normalized_form": "GIVEN_NAME",
+        "normalized_translation": "泰義"
+      },
+      {
+        "source": "태의",
+        "target": "泰義",
+        "entity_type": "CHARACTER",
+        "source_level": "USER",
+        "is_known": true,
+        "is_user_override": true,
+        "canonical_entity_id": "character_50c67afc",
+        "canonical_translation": "鄭泰義",
+        "normalized_form": "GIVEN_NAME",
+        "normalized_translation": "泰義"
+      },
+      {
+        "source": "태의",
+        "target": "泰義",
+        "entity_type": "CHARACTER",
+        "source_level": "USER",
+        "is_known": true,
+        "is_user_override": true,
+        "canonical_entity_id": "character_50c67afc",
+        "canonical_translation": "鄭泰義",
+        "normalized_form": "GIVEN_NAME",
+        "normalized_translation": "泰義"
+      },
+      {
+        "source": "태의",
+        "target": "泰義",
+        "entity_type": "CHARACTER",
+        "source_level": "USER",
+        "is_known": true,
+        "is_user_override": true,
+        "canonical_entity_id": "character_50c67afc",
+        "canonical_translation": "鄭泰義",
+        "normalized_form": "GIVEN_NAME",
+        "normalized_translation": "泰義"
+      },
+      {
+        "source": "태의",
+        "target": "泰義",
+        "entity_type": "CHARACTER",
+        "source_level": "USER",
+        "is_known": true,
+        "is_user_override": true,
+        "canonical_entity_id": "character_50c67afc",
+        "canonical_translation": "鄭泰義",
+        "normalized_form": "GIVEN_NAME",
+        "normalized_translation": "泰義"
+      },
+      {
+        "source": "태의",
+        "target": "泰義",
+        "entity_type": "CHARACTER",
+        "source_level": "USER",
+        "is_known": true,
+        "is_user_override": true,
+        "canonical_entity_id": "character_50c67afc",
+        "canonical_translation": "鄭泰義",
+        "normalized_form": "GIVEN_NAME",
+        "normalized_translation": "泰義"
+      },
+      {
+        "source": "정 씨",
+        "target": "鄭先生",
+        "entity_type": "CHARACTER",
+        "source_level": "USER",
+        "is_known": true,
+        "is_user_override": true,
+        "canonical_entity_id": "character_50c67afc",
+        "canonical_translation": "鄭泰義",
+        "normalized_form": "FORMAL",
+        "normalized_translation": "鄭先生"
+      },
+      {
+        "source": "태의",
+        "target": "泰義",
+        "entity_type": "CHARACTER",
+        "source_level": "USER",
+        "is_known": true,
+        "is_user_override": true,
+        "canonical_entity_id": "character_50c67afc",
+        "canonical_translation": "鄭泰義",
+        "normalized_form": "GIVEN_NAME",
+        "normalized_translation": "泰義"
+      },
+      {
+        "source": "태의",
+        "target": "泰義",
+        "entity_type": "CHARACTER",
+        "source_level": "USER",
+        "is_known": true,
+        "is_user_override": true,
+        "canonical_entity_id": "character_50c67afc",
+        "canonical_translation": "鄭泰義",
+        "normalized_form": "GIVEN_NAME",
+        "normalized_translation": "泰義"
+      },
+      {
+        "source": "태의",
+        "target": "泰義",
+        "entity_type": "CHARACTER",
+        "source_level": "USER",
+        "is_known": true,
+        "is_user_override": true,
+        "canonical_entity_id": "character_50c67afc",
+        "canonical_translation": "鄭泰義",
+        "normalized_form": "GIVEN_NAME",
+        "normalized_translation": "泰義"
+      },
+      {
+        "source": "태의",
+        "target": "泰義",
+        "entity_type": "CHARACTER",
+        "source_level": "USER",
+        "is_known": true,
+        "is_user_override": true,
+        "canonical_entity_id": "character_50c67afc",
+        "canonical_translation": "鄭泰義",
+        "normalized_form": "GIVEN_NAME",
+        "normalized_translation": "泰義"
+      },
+      {
+        "source": "태의",
+        "target": "泰義",
+        "entity_type": "CHARACTER",
+        "source_level": "USER",
+        "is_known": true,
+        "is_user_override": true,
+        "canonical_entity_id": "character_50c67afc",
+        "canonical_translation": "鄭泰義",
+        "normalized_form": "GIVEN_NAME",
+        "normalized_translation": "泰義"
+      },
+      {
+        "source": "태의",
+        "target": "泰義",
+        "entity_type": "CHARACTER",
+        "source_level": "USER",
+        "is_known": true,
+        "is_user_override": true,
+        "canonical_entity_id": "character_50c67afc",
+        "canonical_translation": "鄭泰義",
+        "normalized_form": "GIVEN_NAME",
+        "normalized_translation": "泰義"
+      },
+      {
+        "source": "태의",
+        "target": "泰義",
+        "entity_type": "CHARACTER",
+        "source_level": "USER",
+        "is_known": true,
+        "is_user_override": true,
+        "canonical_entity_id": "character_50c67afc",
+        "canonical_translation": "鄭泰義",
+        "normalized_form": "GIVEN_NAME",
+        "normalized_translation": "泰義"
+      },
+      {
+        "source": "태의야",
+        "target": "泰義啊",
+        "entity_type": "CHARACTER",
+        "source_level": "USER",
+        "is_known": true,
+        "is_user_override": true,
+        "canonical_entity_id": "character_50c67afc",
+        "canonical_translation": "鄭泰義",
+        "normalized_form": "INTIMATE",
+        "normalized_translation": "泰義啊"
+      },
+      {
+        "source": "태의",
+        "target": "泰義",
+        "entity_type": "CHARACTER",
+        "source_level": "USER",
+        "is_known": true,
+        "is_user_override": true,
+        "canonical_entity_id": "character_50c67afc",
+        "canonical_translation": "鄭泰義",
+        "normalized_form": "GIVEN_NAME",
+        "normalized_translation": "泰義"
+      },
+      {
+        "source": "정 씨",
+        "target": "鄭先生",
+        "entity_type": "CHARACTER",
+        "source_level": "USER",
+        "is_known": true,
+        "is_user_override": true,
+        "canonical_entity_id": "character_50c67afc",
+        "canonical_translation": "鄭泰義",
+        "normalized_form": "FORMAL",
+        "normalized_translation": "鄭先生"
+      }
+    ]
+  },
+  "entity_detection": {
+    "result": "PASS",
+    "details": {
+      "정태의": {
+        "detected": true,
+        "canonical": "鄭泰義",
+        "expected": "鄭泰義",
+        "match": true,
+        "source_level": "USER",
+        "normalized_form": "FULL_NAME",
+        "normalized_translation": "鄭泰義"
+      },
+      "태의": {
+        "detected": true,
+        "canonical": "鄭泰義",
+        "expected": "泰義",
+        "match": true,
+        "source_level": "USER",
+        "normalized_form": "GIVEN_NAME",
+        "normalized_translation": "泰義"
+      },
+      "정 씨": {
+        "detected": true,
+        "canonical": "鄭泰義",
+        "expected": "鄭先生",
+        "match": true,
+        "source_level": "USER",
+        "normalized_form": "FORMAL",
+        "normalized_translation": "鄭先生"
+      },
+      "태의야": {
+        "detected": true,
+        "canonical": "鄭泰義",
+        "expected": "泰義啊",
+        "match": true,
+        "source_level": "USER",
+        "normalized_form": "INTIMATE",
+        "normalized_translation": "泰義啊"
+      }
+    },
+    "form_checks": {
+      "FULL_NAME": {
+        "sources": [
+          "정태의"
+        ],
+        "ok": true,
+        "translations": [
+          "鄭泰義"
+        ]
+      },
+      "GIVEN_NAME": {
+        "sources": [
+          "태의"
+        ],
+        "ok": true,
+        "translations": [
+          "泰義"
+        ]
+      },
+      "FORMAL": {
+        "sources": [
+          "정 씨"
+        ],
+        "ok": true,
+        "translations": [
+          "鄭先生"
+        ]
+      },
+      "INTIMATE": {
+        "sources": [
+          "태의야"
+        ],
+        "ok": true,
+        "translations": [
+          "泰義啊"
+        ]
+      }
+    },
+    "total_detected": 25
+  },
+  "prompt_injection": {
+    "result": "PASS",
+    "checks": {
+      "has_entity_identity": true,
+      "has_source_정태의": true,
+      "has_canonical_鄭泰義": true,
+      "has_forms_full": true,
+      "has_forms_given": true,
+      "has_forms_intimate": true,
+      "has_rule_no_expand": true
+    },
+    "entity_mapping_content": "Known Entities:\n  정태의 → 鄭泰義 [USER OVERRIDE]\n  태의 → 泰義 [USER OVERRIDE]\n  태의 → 泰義 [USER OVERRIDE]\n  정태의 → 鄭泰義 [USER OVERRIDE]\n  태의 → 泰義 [USER OVERRIDE]\n  태의 → 泰義 [USER OVERRIDE]\n  정태의 → 鄭泰義 [USER OVERRIDE]\n  태의 → 泰義 [USER OVERRIDE]\n  태의 → 泰義 [USER OVERRIDE]\n  태의 → 泰義 [USER OVERRIDE]\n  태의 → 泰義 [USER OVERRIDE]\n  태의 → 泰義 [USER OVERRIDE]\n  태의 → 泰義 [USER OVERRIDE]\n  태의 → 泰義 [USER OVERRIDE]\n  정 씨 → 鄭先生 [USER OVERRIDE]\n  태의 → 泰義 [USER OVERRIDE]\n  태의 → 泰義 [USER OVERRIDE]\n  태의 → 泰義 [USER OVERRIDE]\n  태의 → 泰"
+  },
+  "translation_output": {
+    "result": "SKIP",
+    "detail": "No output path (dry-run mode)",
+    "checks": {}
+  },
+  "provider_count": {
+    "result": "FAIL",
+    "checks": {
+      "runtime_requests": 9,
+      "legacy_requests": 0,
+      "delta": 9,
+      "no_increase": false
+    }
+  },
+  "legacy_compat": {
+    "result": "FAIL",
+    "legacy_status": "failed",
+    "legacy_chunks": 0,
+    "legacy_provider": 0
+  },
+  "granular": {
+    "Entity Detection": {
+      "result": "PASS"
+    },
+    "FULL_NAME": {
+      "result": "PASS"
+    },
+    "GIVEN_NAME": {
+      "result": "PASS"
+    },
+    "FORMAL": {
+      "result": "PASS"
+    },
+    "INTIMATE": {
+      "result": "PASS"
+    },
+    "Rule": {
+      "result": "PASS"
+    },
+    "Source": {
+      "result": "PASS"
+    },
+    "Canonical": {
+      "result": "PASS"
+    }
+  },
+  "overall": "FAIL"
+}

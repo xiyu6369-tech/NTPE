@@ -1,0 +1,1175 @@
+{
+  "total_extracted": 25,
+  "total_resolved": 25,
+  "entities": [
+    {
+      "source": "정태의",
+      "target": "鄭泰義",
+      "entity_type": "CHARACTER",
+      "source_level": "USER",
+      "is_known": true,
+      "is_user_override": true,
+      "canonical_entity_id": "character_50c67afc",
+      "canonical_translation": "鄭泰義",
+      "normalized_form": "FULL_NAME",
+      "normalized_translation": "鄭泰義"
+    },
+    {
+      "source": "태의",
+      "target": "泰義",
+      "entity_type": "CHARACTER",
+      "source_level": "USER",
+      "is_known": true,
+      "is_user_override": true,
+      "canonical_entity_id": "character_50c67afc",
+      "canonical_translation": "鄭泰義",
+      "normalized_form": "GIVEN_NAME",
+      "normalized_translation": "泰義"
+    },
+    {
+      "source": "태의",
+      "target": "泰義",
+      "entity_type": "CHARACTER",
+      "source_level": "USER",
+      "is_known": true,
+      "is_user_override": true,
+      "canonical_entity_id": "character_50c67afc",
+      "canonical_translation": "鄭泰義",
+      "normalized_form": "GIVEN_NAME",
+      "normalized_translation": "泰義"
+    },
+    {
+      "source": "정태의",
+      "target": "鄭泰義",
+      "entity_type": "CHARACTER",
+      "source_level": "USER",
+      "is_known": true,
+      "is_user_override": true,
+      "canonical_entity_id": "character_50c67afc",
+      "canonical_translation": "鄭泰義",
+      "normalized_form": "FULL_NAME",
+      "normalized_translation": "鄭泰義"
+    },
+    {
+      "source": "태의",
+      "target": "泰義",
+      "entity_type": "CHARACTER",
+      "source_level": "USER",
+      "is_known": true,
+      "is_user_override": true,
+      "canonical_entity_id": "character_50c67afc",
+      "canonical_translation": "鄭泰義",
+      "normalized_form": "GIVEN_NAME",
+      "normalized_translation": "泰義"
+    },
+    {
+      "source": "태의",
+      "target": "泰義",
+      "entity_type": "CHARACTER",
+      "source_level": "USER",
+      "is_known": true,
+      "is_user_override": true,
+      "canonical_entity_id": "character_50c67afc",
+      "canonical_translation": "鄭泰義",
+      "normalized_form": "GIVEN_NAME",
+      "normalized_translation": "泰義"
+    },
+    {
+      "source": "정태의",
+      "target": "鄭泰義",
+      "entity_type": "CHARACTER",
+      "source_level": "USER",
+      "is_known": true,
+      "is_user_override": true,
+      "canonical_entity_id": "character_50c67afc",
+      "canonical_translation": "鄭泰義",
+      "normalized_form": "FULL_NAME",
+      "normalized_translation": "鄭泰義"
+    },
+    {
+      "source": "태의",
+      "target": "泰義",
+      "entity_type": "CHARACTER",
+      "source_level": "USER",
+      "is_known": true,
+      "is_user_override": true,
+      "canonical_entity_id": "character_50c67afc",
+      "canonical_translation": "鄭泰義",
+      "normalized_form": "GIVEN_NAME",
+      "normalized_translation": "泰義"
+    },
+    {
+      "source": "태의",
+      "target": "泰義",
+      "entity_type": "CHARACTER",
+      "source_level": "USER",
+      "is_known": true,
+      "is_user_override": true,
+      "canonical_entity_id": "character_50c67afc",
+      "canonical_translation": "鄭泰義",
+      "normalized_form": "GIVEN_NAME",
+      "normalized_translation": "泰義"
+    },
+    {
+      "source": "태의",
+      "target": "泰義",
+      "entity_type": "CHARACTER",
+      "source_level": "USER",
+      "is_known": true,
+      "is_user_override": true,
+      "canonical_entity_id": "character_50c67afc",
+      "canonical_translation": "鄭泰義",
+      "normalized_form": "GIVEN_NAME",
+      "normalized_translation": "泰義"
+    },
+    {
+      "source": "태의",
+      "target": "泰義",
+      "entity_type": "CHARACTER",
+      "source_level": "USER",
+      "is_known": true,
+      "is_user_override": true,
+      "canonical_entity_id": "character_50c67afc",
+      "canonical_translation": "鄭泰義",
+      "normalized_form": "GIVEN_NAME",
+      "normalized_translation": "泰義"
+    },
+    {
+      "source": "태의",
+      "target": "泰義",
+      "entity_type": "CHARACTER",
+      "source_level": "USER",
+      "is_known": true,
+      "is_user_override": true,
+      "canonical_entity_id": "character_50c67afc",
+      "canonical_translation": "鄭泰義",
+      "normalized_form": "GIVEN_NAME",
+      "normalized_translation": "泰義"
+    },
+    {
+      "source": "태의",
+      "target": "泰義",
+      "entity_type": "CHARACTER",
+      "source_level": "USER",
+      "is_known": true,
+      "is_user_override": true,
+      "canonical_entity_id": "character_50c67afc",
+      "canonical_translation": "鄭泰義",
+      "normalized_form": "GIVEN_NAME",
+      "normalized_translation": "泰義"
+    },
+    {
+      "source": "태의",
+      "target": "泰義",
+      "entity_type": "CHARACTER",
+      "source_level": "USER",
+      "is_known": true,
+      "is_user_override": true,
+      "canonical_entity_id": "character_50c67afc",
+      "canonical_translation": "鄭泰義",
+      "normalized_form": "GIVEN_NAME",
+      "normalized_translation": "泰義"
+    },
+    {
+      "source": "정 씨",
+      "target": "鄭先生",
+      "entity_type": "CHARACTER",
+      "source_level": "USER",
+      "is_known": true,
+      "is_user_override": true,
+      "canonical_entity_id": "character_50c67afc",
+      "canonical_translation": "鄭泰義",
+      "normalized_form": "FORMAL",
+      "normalized_translation": "鄭先生"
+    },
+    {
+      "source": "태의",
+      "target": "泰義",
+      "entity_type": "CHARACTER",
+      "source_level": "USER",
+      "is_known": true,
+      "is_user_override": true,
+      "canonical_entity_id": "character_50c67afc",
+      "canonical_translation": "鄭泰義",
+      "normalized_form": "GIVEN_NAME",
+      "normalized_translation": "泰義"
+    },
+    {
+      "source": "태의",
+      "target": "泰義",
+      "entity_type": "CHARACTER",
+      "source_level": "USER",
+      "is_known": true,
+      "is_user_override": true,
+      "canonical_entity_id": "character_50c67afc",
+      "canonical_translation": "鄭泰義",
+      "normalized_form": "GIVEN_NAME",
+      "normalized_translation": "泰義"
+    },
+    {
+      "source": "태의",
+      "target": "泰義",
+      "entity_type": "CHARACTER",
+      "source_level": "USER",
+      "is_known": true,
+      "is_user_override": true,
+      "canonical_entity_id": "character_50c67afc",
+      "canonical_translation": "鄭泰義",
+      "normalized_form": "GIVEN_NAME",
+      "normalized_translation": "泰義"
+    },
+    {
+      "source": "태의",
+      "target": "泰義",
+      "entity_type": "CHARACTER",
+      "source_level": "USER",
+      "is_known": true,
+      "is_user_override": true,
+      "canonical_entity_id": "character_50c67afc",
+      "canonical_translation": "鄭泰義",
+      "normalized_form": "GIVEN_NAME",
+      "normalized_translation": "泰義"
+    },
+    {
+      "source": "태의",
+      "target": "泰義",
+      "entity_type": "CHARACTER",
+      "source_level": "USER",
+      "is_known": true,
+      "is_user_override": true,
+      "canonical_entity_id": "character_50c67afc",
+      "canonical_translation": "鄭泰義",
+      "normalized_form": "GIVEN_NAME",
+      "normalized_translation": "泰義"
+    },
+    {
+      "source": "태의",
+      "target": "泰義",
+      "entity_type": "CHARACTER",
+      "source_level": "USER",
+      "is_known": true,
+      "is_user_override": true,
+      "canonical_entity_id": "character_50c67afc",
+      "canonical_translation": "鄭泰義",
+      "normalized_form": "GIVEN_NAME",
+      "normalized_translation": "泰義"
+    },
+    {
+      "source": "태의",
+      "target": "泰義",
+      "entity_type": "CHARACTER",
+      "source_level": "USER",
+      "is_known": true,
+      "is_user_override": true,
+      "canonical_entity_id": "character_50c67afc",
+      "canonical_translation": "鄭泰義",
+      "normalized_form": "GIVEN_NAME",
+      "normalized_translation": "泰義"
+    },
+    {
+      "source": "태의야",
+      "target": "泰義啊",
+      "entity_type": "CHARACTER",
+      "source_level": "USER",
+      "is_known": true,
+      "is_user_override": true,
+      "canonical_entity_id": "character_50c67afc",
+      "canonical_translation": "鄭泰義",
+      "normalized_form": "INTIMATE",
+      "normalized_translation": "泰義啊"
+    },
+    {
+      "source": "태의",
+      "target": "泰義",
+      "entity_type": "CHARACTER",
+      "source_level": "USER",
+      "is_known": true,
+      "is_user_override": true,
+      "canonical_entity_id": "character_50c67afc",
+      "canonical_translation": "鄭泰義",
+      "normalized_form": "GIVEN_NAME",
+      "normalized_translation": "泰義"
+    },
+    {
+      "source": "정 씨",
+      "target": "鄭先生",
+      "entity_type": "CHARACTER",
+      "source_level": "USER",
+      "is_known": true,
+      "is_user_override": true,
+      "canonical_entity_id": "character_50c67afc",
+      "canonical_translation": "鄭泰義",
+      "normalized_form": "FORMAL",
+      "normalized_translation": "鄭先生"
+    }
+  ],
+  "injection_set": {
+    "entities": [
+      {
+        "source": "정태의",
+        "target": "鄭泰義",
+        "entity_type": "CHARACTER",
+        "source_level": "USER",
+        "metadata": {
+          "override": true,
+          "context": "\n겨울비가 창문을 두드리고 있었다. 정태의는 김이 서린 유리창 너머로 희미하게"
+        },
+        "version": "rm-7.2.0"
+      },
+      {
+        "source": "태의",
+        "target": "泰義",
+        "entity_type": "CHARACTER",
+        "source_level": "USER",
+        "metadata": {
+          "override": true,
+          "context": "겨울비가 창문을 두드리고 있었다. 정태의는 김이 서린 유리창 너머로 희미하게"
+        },
+        "version": "rm-7.2.0"
+      },
+      {
+        "source": "태의",
+        "target": "泰義",
+        "entity_type": "CHARACTER",
+        "source_level": "USER",
+        "metadata": {
+          "override": true,
+          "context": "때문일 것이다.\n\n오후 3시 무렵, 태의는 평범한 카페에 앉아 있었다. 이름"
+        },
+        "version": "rm-7.2.0"
+      },
+      {
+        "source": "정태의",
+        "target": "鄭泰義",
+        "entity_type": "CHARACTER",
+        "source_level": "USER",
+        "metadata": {
+          "override": true,
+          "context": "누군가 그의 테이블 앞에 섰다.\n\n\"정태의 씨죠?\"\n\n고개를 들자 하얀 겨울 "
+        },
+        "version": "rm-7.2.0"
+      },
+      {
+        "source": "태의",
+        "target": "泰義",
+        "entity_type": "CHARACTER",
+        "source_level": "USER",
+        "metadata": {
+          "override": true,
+          "context": "군가 그의 테이블 앞에 섰다.\n\n\"정태의 씨죠?\"\n\n고개를 들자 하얀 겨울 "
+        },
+        "version": "rm-7.2.0"
+      },
+      {
+        "source": "태의",
+        "target": "泰義",
+        "entity_type": "CHARACTER",
+        "source_level": "USER",
+        "metadata": {
+          "override": true,
+          "context": "젊은 여성이 그의 앞에 서 있었다. 태의는 긴장했다. 그가 개인 일정을 남에"
+        },
+        "version": "rm-7.2.0"
+      },
+      {
+        "source": "정태의",
+        "target": "鄭泰義",
+        "entity_type": "CHARACTER",
+        "source_level": "USER",
+        "metadata": {
+          "override": true,
+          "context": ". 신림동 사건에 관한 겁니다.\"\n\n정태의의 표정이 순간 굳어졌다. 신림동 사"
+        },
+        "version": "rm-7.2.0"
+      },
+      {
+        "source": "태의",
+        "target": "泰義",
+        "entity_type": "CHARACTER",
+        "source_level": "USER",
+        "metadata": {
+          "override": true,
+          "context": " 신림동 사건에 관한 겁니다.\"\n\n정태의의 표정이 순간 굳어졌다. 신림동 사"
+        },
+        "version": "rm-7.2.0"
+      },
+      {
+        "source": "태의",
+        "target": "泰義",
+        "entity_type": "CHARACTER",
+        "source_level": "USER",
+        "metadata": {
+          "override": true,
+          "context": "야기를 꺼내시는 분이 계시는군요.\" 태의는 불쾌하게 웃음을 지었다. \"3년 "
+        },
+        "version": "rm-7.2.0"
+      },
+      {
+        "source": "태의",
+        "target": "泰義",
+        "entity_type": "CHARACTER",
+        "source_level": "USER",
+        "metadata": {
+          "override": true,
+          "context": " 일입니다.\"\n\n\"끝나지 않았어요, 태의 형사님.\" 여성이 단호하게 말했다."
+        },
+        "version": "rm-7.2.0"
+      },
+      {
+        "source": "태의",
+        "target": "泰義",
+        "entity_type": "CHARACTER",
+        "source_level": "USER",
+        "metadata": {
+          "override": true,
+          "context": ", 그걸 모르실 리가 없잖아요.\"\n\n태의의 마음속에서 오래된 의문이 일어났다"
+        },
+        "version": "rm-7.2.0"
+      },
+      {
+        "source": "태의",
+        "target": "泰義",
+        "entity_type": "CHARACTER",
+        "source_level": "USER",
+        "metadata": {
+          "override": true,
+          "context": "오래 기다려 줄지는 모르겠네요.\"\n\n태의는 갑자기 떠오르는 기억 하나를 붙잡"
+        },
+        "version": "rm-7.2.0"
+      },
+      {
+        "source": "태의",
+        "target": "泰義",
+        "entity_type": "CHARACTER",
+        "source_level": "USER",
+        "metadata": {
+          "override": true,
+          "context": "르게 움직였다.\n\n\"여기까지인가.\" 태의가 중얼거렀다. \"이런 형태로 끝난다"
+        },
+        "version": "rm-7.2.0"
+      },
+      {
+        "source": "태의",
+        "target": "泰義",
+        "entity_type": "CHARACTER",
+        "source_level": "USER",
+        "metadata": {
+          "override": true,
+          "context": "과했다.\n\n---\n\n다음 날 오전, 태의는 지하철 3호선을 타고 익명의 의뢰"
+        },
+        "version": "rm-7.2.0"
+      },
+      {
+        "source": "정 씨",
+        "target": "鄭先生",
+        "entity_type": "CHARACTER",
+        "source_level": "USER",
+        "metadata": {
+          "override": true,
+          "context": "이 상자가 세 개 놓여 있었다.\n\n\"정 씨, 마침내 오셨군요.\"\n\n목소리는 낯"
+        },
+        "version": "rm-7.2.0"
+      },
+      {
+        "source": "태의",
+        "target": "泰義",
+        "entity_type": "CHARACTER",
+        "source_level": "USER",
+        "metadata": {
+          "override": true,
+          "context": "을 쓰고 검은 정장을 입고 있었다. 태의였기에 이 사람의 정체를 모르는 건 "
+        },
+        "version": "rm-7.2.0"
+      },
+      {
+        "source": "태의",
+        "target": "泰義",
+        "entity_type": "CHARACTER",
+        "source_level": "USER",
+        "metadata": {
+          "override": true,
+          "context": " 못 하면 지시대로 처리됩니다.\"\n\n태의는 심호흡을 하고 문서들을 살폈다. "
+        },
+        "version": "rm-7.2.0"
+      },
+      {
+        "source": "태의",
+        "target": "泰義",
+        "entity_type": "CHARACTER",
+        "source_level": "USER",
+        "metadata": {
+          "override": true,
+          "context": ".\"\n\n그가 말을 채 마치기도 전에 태의가 끊어 들었다. \"아직입니다. 먼저"
+        },
+        "version": "rm-7.2.0"
+      },
+      {
+        "source": "태의",
+        "target": "泰義",
+        "entity_type": "CHARACTER",
+        "source_level": "USER",
+        "metadata": {
+          "override": true,
+          "context": "속에서 무거운 일들 소리가 들렸다. 태의는 본고적으로 자리에서 일어나 벽으로"
+        },
+        "version": "rm-7.2.0"
+      },
+      {
+        "source": "태의",
+        "target": "泰義",
+        "entity_type": "CHARACTER",
+        "source_level": "USER",
+        "metadata": {
+          "override": true,
+          "context": "살아서 돌아오는 것이다. — Y\"\n\n태의의 이마에 식은땀이 맺힌다. 이 사인"
+        },
+        "version": "rm-7.2.0"
+      },
+      {
+        "source": "태의",
+        "target": "泰義",
+        "entity_type": "CHARACTER",
+        "source_level": "USER",
+        "metadata": {
+          "override": true,
+          "context": "기였다.\n\n커피를 한 모금 마시고, 태의는 조용히 중얼거렸다.\n\n\"좋아, 한"
+        },
+        "version": "rm-7.2.0"
+      },
+      {
+        "source": "태의",
+        "target": "泰義",
+        "entity_type": "CHARACTER",
+        "source_level": "USER",
+        "metadata": {
+          "override": true,
+          "context": "rms for extraction)\n태의\n태의야\n정 씨"
+        },
+        "version": "rm-7.2.0"
+      },
+      {
+        "source": "태의야",
+        "target": "泰義啊",
+        "entity_type": "CHARACTER",
+        "source_level": "USER",
+        "metadata": {
+          "override": true,
+          "context": " for extraction)\n태의\n태의야\n정 씨"
+        },
+        "version": "rm-7.2.0"
+      },
+      {
+        "source": "태의",
+        "target": "泰義",
+        "entity_type": "CHARACTER",
+        "source_level": "USER",
+        "metadata": {
+          "override": true,
+          "context": " for extraction)\n태의\n태의야\n정 씨"
+        },
+        "version": "rm-7.2.0"
+      },
+      {
+        "source": "정 씨",
+        "target": "鄭先生",
+        "entity_type": "CHARACTER",
+        "source_level": "USER",
+        "metadata": {
+          "override": true,
+          "context": " extraction)\n태의\n태의야\n정 씨"
+        },
+        "version": "rm-7.2.0"
+      }
+    ],
+    "metadata": {
+      "total_extracted": 25,
+      "user_overrides": 25,
+      "runtime_resolved": 0,
+      "learning_resolved": 0,
+      "auto_unknown": 0
+    },
+    "version": "rm-7.2.0",
+    "count": 25
+  },
+  "normalization_result": {
+    "entities": [
+      {
+        "source_text": "정태의",
+        "entity_id": "character_50c67afc",
+        "entity_type": "CHARACTER",
+        "matched_form": {
+          "source": "정태의",
+          "translation": "鄭泰義",
+          "form_type": "FULL_NAME",
+          "metadata": {}
+        },
+        "translation": "鄭泰義",
+        "confidence": 1.0,
+        "context": {
+          "source_text": "정태의는 김이 서린",
+          "position": 31,
+          "surrounding_text": "제1장 — 첫 만남\n\n겨울비가 창문을 두드리고 있었다. 정태의는 김이 서린 유리창 너머로 희미하게 보이는 가로등 불빛을 바라보며 생각에 잠겼다. ",
+          "speaker": null,
+          "listener": null,
+          "relationship_hint": null,
+          "metadata": {}
+        },
+        "metadata": {}
+      },
+      {
+        "source_text": "태의",
+        "entity_id": "character_50c67afc",
+        "entity_type": "CHARACTER",
+        "matched_form": {
+          "source": "태의",
+          "translation": "泰義",
+          "form_type": "GIVEN_NAME",
+          "metadata": {}
+        },
+        "translation": "泰義",
+        "confidence": 1.0,
+        "context": {
+          "source_text": "태의는 김이 서린 ",
+          "position": 32,
+          "surrounding_text": "제1장 — 첫 만남\n\n겨울비가 창문을 두드리고 있었다. 정태의는 김이 서린 유리창 너머로 희미하게 보이는 가로등 불빛을 바라보며 생각에 잠겼다. 그",
+          "speaker": null,
+          "listener": null,
+          "relationship_hint": null,
+          "metadata": {}
+        },
+        "metadata": {}
+      },
+      {
+        "source_text": "태의",
+        "entity_id": "character_50c67afc",
+        "entity_type": "CHARACTER",
+        "matched_form": {
+          "source": "태의",
+          "translation": "泰義",
+          "form_type": "GIVEN_NAME",
+          "metadata": {}
+        },
+        "translation": "泰義",
+        "confidence": 1.0,
+        "context": {
+          "source_text": "태의는 평범한 카페",
+          "position": 160,
+          "surrounding_text": "었다는 게 아니라, 결과적으로 그날 모든 게 바뀌었기 때문일 것이다.\n\n오후 3시 무렵, 태의는 평범한 카페에 앉아 있었다. 이름은 '별다방'이었고, 커피 값은 조금 비쌌지만 분위",
+          "speaker": null,
+          "listener": null,
+          "relationship_hint": null,
+          "metadata": {}
+        },
+        "metadata": {}
+      },
+      {
+        "source_text": "정태의",
+        "entity_id": "character_50c67afc",
+        "entity_type": "CHARACTER",
+        "matched_form": {
+          "source": "정태의",
+          "translation": "鄭泰義",
+          "form_type": "FULL_NAME",
+          "metadata": {}
+        },
+        "translation": "鄭泰義",
+        "confidence": 1.0,
+        "context": {
+          "source_text": "정태의 씨죠?\"\n\n",
+          "position": 256,
+          "surrounding_text": "만 분위기는 좋았다. 아메리카노 두 모금을 마셨을 때 누군가 그의 테이블 앞에 섰다.\n\n\"정태의 씨죠?\"\n\n고개를 들자 하얀 겨울 코트를 입은 젊은 여성이 그의 앞에 서 있었다. ",
+          "speaker": null,
+          "listener": null,
+          "relationship_hint": "formal",
+          "metadata": {}
+        },
+        "metadata": {}
+      },
+      {
+        "source_text": "태의",
+        "entity_id": "character_50c67afc",
+        "entity_type": "CHARACTER",
+        "matched_form": {
+          "source": "태의",
+          "translation": "泰義",
+          "form_type": "GIVEN_NAME",
+          "metadata": {}
+        },
+        "translation": "泰義",
+        "confidence": 1.0,
+        "context": {
+          "source_text": "태의 씨죠?\"\n\n고",
+          "position": 257,
+          "surrounding_text": " 분위기는 좋았다. 아메리카노 두 모금을 마셨을 때 누군가 그의 테이블 앞에 섰다.\n\n\"정태의 씨죠?\"\n\n고개를 들자 하얀 겨울 코트를 입은 젊은 여성이 그의 앞에 서 있었다. 태",
+          "speaker": null,
+          "listener": null,
+          "relationship_hint": "formal",
+          "metadata": {}
+        },
+        "metadata": {}
+      },
+      {
+        "source_text": "태의",
+        "entity_id": "character_50c67afc",
+        "entity_type": "CHARACTER",
+        "matched_form": {
+          "source": "태의",
+          "translation": "泰義",
+          "form_type": "GIVEN_NAME",
+          "metadata": {}
+        },
+        "translation": "泰義",
+        "confidence": 1.0,
+        "context": {
+          "source_text": "태의는 긴장했다. ",
+          "position": 306,
+          "surrounding_text": "정태의 씨죠?\"\n\n고개를 들자 하얀 겨울 코트를 입은 젊은 여성이 그의 앞에 서 있었다. 태의는 긴장했다. 그가 개인 일정을 남에게 알린 적은 없었기 때문이다.\n\n\"네, 그렇습니다",
+          "speaker": null,
+          "listener": null,
+          "relationship_hint": "formal",
+          "metadata": {}
+        },
+        "metadata": {}
+      },
+      {
+        "source_text": "정태의",
+        "entity_id": "character_50c67afc",
+        "entity_type": "CHARACTER",
+        "matched_form": {
+          "source": "정태의",
+          "translation": "鄭泰義",
+          "form_type": "FULL_NAME",
+          "metadata": {}
+        },
+        "translation": "鄭泰義",
+        "confidence": 1.0,
+        "context": {
+          "source_text": "정태의의 표정이 순",
+          "position": 467,
+          "surrounding_text": "손에 든 봉투를 테이블 위로 밀었다. \"이걸 읽어보세요. 신림동 사건에 관한 겁니다.\"\n\n정태의의 표정이 순간 굳어졌다. 신림동 사건이라는 말을 들을 때마다, 그의 가슴 한복판에는",
+          "speaker": null,
+          "listener": null,
+          "relationship_hint": null,
+          "metadata": {}
+        },
+        "metadata": {}
+      },
+      {
+        "source_text": "태의",
+        "entity_id": "character_50c67afc",
+        "entity_type": "CHARACTER",
+        "matched_form": {
+          "source": "태의",
+          "translation": "泰義",
+          "form_type": "GIVEN_NAME",
+          "metadata": {}
+        },
+        "translation": "泰義",
+        "confidence": 1.0,
+        "context": {
+          "source_text": "태의의 표정이 순간",
+          "position": 468,
+          "surrounding_text": "에 든 봉투를 테이블 위로 밀었다. \"이걸 읽어보세요. 신림동 사건에 관한 겁니다.\"\n\n정태의의 표정이 순간 굳어졌다. 신림동 사건이라는 말을 들을 때마다, 그의 가슴 한복판에는 ",
+          "speaker": null,
+          "listener": null,
+          "relationship_hint": null,
+          "metadata": {}
+        },
+        "metadata": {}
+      },
+      {
+        "source_text": "태의",
+        "entity_id": "character_50c67afc",
+        "entity_type": "CHARACTER",
+        "matched_form": {
+          "source": "태의",
+          "translation": "泰義",
+          "form_type": "GIVEN_NAME",
+          "metadata": {}
+        },
+        "translation": "泰義",
+        "confidence": 1.0,
+        "context": {
+          "source_text": "태의는 불쾌하게 웃",
+          "position": 618,
+          "surrounding_text": "사로부터 명백한 오명을 쓴 상태였다.\n\n\"아직도 그 이야기를 꺼내시는 분이 계시는군요.\" 태의는 불쾌하게 웃음을 지었다. \"3년 전에 이미 끝난 일입니다.\"\n\n\"끝나지 않았어요, ",
+          "speaker": null,
+          "listener": null,
+          "relationship_hint": null,
+          "metadata": {}
+        },
+        "metadata": {}
+      },
+      {
+        "source_text": "태의",
+        "entity_id": "character_50c67afc",
+        "entity_type": "CHARACTER",
+        "matched_form": {
+          "source": "태의",
+          "translation": "泰義",
+          "form_type": "GIVEN_NAME",
+          "metadata": {}
+        },
+        "translation": "泰義",
+        "confidence": 1.0,
+        "context": {
+          "source_text": "태의 형사님.\" 여",
+          "position": 668,
+          "surrounding_text": "태의는 불쾌하게 웃음을 지었다. \"3년 전에 이미 끝난 일입니다.\"\n\n\"끝나지 않았어요, 태의 형사님.\" 여성이 단호하게 말했다. \"공범자가 아직 경리실에서 자유롭게 근무하고 있는",
+          "speaker": null,
+          "listener": null,
+          "relationship_hint": "formal",
+          "metadata": {}
+        },
+        "metadata": {}
+      },
+      {
+        "source_text": "태의",
+        "entity_id": "character_50c67afc",
+        "entity_type": "CHARACTER",
+        "matched_form": {
+          "source": "태의",
+          "translation": "泰義",
+          "form_type": "GIVEN_NAME",
+          "metadata": {}
+        },
+        "translation": "泰義",
+        "confidence": 1.0,
+        "context": {
+          "source_text": "태의의 마음속에서 ",
+          "position": 739,
+          "surrounding_text": ". \"공범자가 아직 경리실에서 자유롭게 근무하고 있는데, 그걸 모르실 리가 없잖아요.\"\n\n태의의 마음속에서 오래된 의문이 일어났다. 신림동 사건 당시, 현장에서 발견된 회계 장부는",
+          "speaker": null,
+          "listener": null,
+          "relationship_hint": "intimate",
+          "metadata": {}
+        },
+        "metadata": {}
+      },
+      {
+        "source_text": "태의",
+        "entity_id": "character_50c67afc",
+        "entity_type": "CHARACTER",
+        "matched_form": {
+          "source": "태의",
+          "translation": "泰義",
+          "form_type": "GIVEN_NAME",
+          "metadata": {}
+        },
+        "translation": "泰義",
+        "confidence": 1.0,
+        "context": {
+          "source_text": "태의는 갑자기 떠오",
+          "position": 976,
+          "surrounding_text": " \"이건 본래 선물이 아니라 자폭이에요. 내가 얼마나 오래 기다려 줄지는 모르겠네요.\"\n\n태의는 갑자기 떠오르는 기억 하나를 붙잡았다. \"거짓말 마세요. 어 디렉터가 보냈나요?\"\n",
+          "speaker": null,
+          "listener": null,
+          "relationship_hint": null,
+          "metadata": {}
+        },
+        "metadata": {}
+      },
+      {
+        "source_text": "태의",
+        "entity_id": "character_50c67afc",
+        "entity_type": "CHARACTER",
+        "matched_form": {
+          "source": "태의",
+          "translation": "泰義",
+          "form_type": "GIVEN_NAME",
+          "metadata": {}
+        },
+        "translation": "泰義",
+        "confidence": 1.0,
+        "context": {
+          "source_text": "태의가 중얼거렀다.",
+          "position": 1193,
+          "surrounding_text": "다. 여성은 서둘러 뒷문으로 사라지만 그 그림자처럼 빠르게 움직였다.\n\n\"여기까지인가.\" 태의가 중얼거렀다. \"이런 형태로 끝난다면…….\"\n\n하지만 그는 잘못 생각했다. 이건 시작",
+          "speaker": null,
+          "listener": null,
+          "relationship_hint": null,
+          "metadata": {}
+        },
+        "metadata": {}
+      },
+      {
+        "source_text": "태의",
+        "entity_id": "character_50c67afc",
+        "entity_type": "CHARACTER",
+        "matched_form": {
+          "source": "태의",
+          "translation": "泰義",
+          "form_type": "GIVEN_NAME",
+          "metadata": {}
+        },
+        "translation": "泰義",
+        "confidence": 1.0,
+        "context": {
+          "source_text": "태의는 지하철 3호",
+          "position": 1266,
+          "surrounding_text": "…….\"\n\n하지만 그는 잘못 생각했다. 이건 시작에 불과했다.\n\n---\n\n다음 날 오전, 태의는 지하철 3호선을 타고 익명의 의뢰인이 지정한 장소로 향했다. 회의는 서울의 졸업된 ",
+          "speaker": null,
+          "listener": null,
+          "relationship_hint": null,
+          "metadata": {}
+        },
+        "metadata": {}
+      },
+      {
+        "source_text": "정 씨",
+        "entity_id": "character_50c67afc",
+        "entity_type": "CHARACTER",
+        "matched_form": {
+          "source": "정 씨",
+          "translation": "鄭先生",
+          "form_type": "FORMAL",
+          "metadata": {}
+        },
+        "translation": "鄭先生",
+        "confidence": 1.0,
+        "context": {
+          "source_text": "정 씨, 마침내 오",
+          "position": 1364,
+          "surrounding_text": "된 상가 건물 지하에서 열렸다. 탁자 위에는 오래된 종이 상자가 세 개 놓여 있었다.\n\n\"정 씨, 마침내 오셨군요.\"\n\n목소리는 낯선 중년의 남성이었다. 그는 짙은 색 안경을 쓰고",
+          "speaker": null,
+          "listener": null,
+          "relationship_hint": null,
+          "metadata": {}
+        },
+        "metadata": {}
+      },
+      {
+        "source_text": "태의",
+        "entity_id": "character_50c67afc",
+        "entity_type": "CHARACTER",
+        "matched_form": {
+          "source": "태의",
+          "translation": "泰義",
+          "form_type": "GIVEN_NAME",
+          "metadata": {}
+        },
+        "translation": "泰義",
+        "confidence": 1.0,
+        "context": {
+          "source_text": "태의였기에 이 사람",
+          "position": 1430,
+          "surrounding_text": "\n목소리는 낯선 중년의 남성이었다. 그는 짙은 색 안경을 쓰고 검은 정장을 입고 있었다. 태의였기에 이 사람의 정체를 모르는 건 당연했다. 하지만 그에게서 풍기는 무게감 있는 분위",
+          "speaker": null,
+          "listener": null,
+          "relationship_hint": null,
+          "metadata": {}
+        },
+        "metadata": {}
+      },
+      {
+        "source_text": "태의",
+        "entity_id": "character_50c67afc",
+        "entity_type": "CHARACTER",
+        "matched_form": {
+          "source": "태의",
+          "translation": "泰義",
+          "form_type": "GIVEN_NAME",
+          "metadata": {}
+        },
+        "translation": "泰義",
+        "confidence": 1.0,
+        "context": {
+          "source_text": "태의는 심호흡을 하",
+          "position": 1783,
+          "surrounding_text": " 얼마나 되는 시간이 있나요?\"\n\n\"5분입니다. 결정을 못 하면 지시대로 처리됩니다.\"\n\n태의는 심호흡을 하고 문서들을 살폈다. 경찰 시절 이럴 때마다 그의 감각은 특별히 예리해졌",
+          "speaker": null,
+          "listener": null,
+          "relationship_hint": null,
+          "metadata": {}
+        },
+        "metadata": {}
+      },
+      {
+        "source_text": "태의",
+        "entity_id": "character_50c67afc",
+        "entity_type": "CHARACTER",
+        "matched_form": {
+          "source": "태의",
+          "translation": "泰義",
+          "form_type": "GIVEN_NAME",
+          "metadata": {}
+        },
+        "translation": "泰義",
+        "confidence": 1.0,
+        "context": {
+          "source_text": "태의가 끊어 들었다",
+          "position": 1985,
+          "surrounding_text": "지었다. \"훌륭한 선택이군요. 이제 두 번째 질문입니다.\"\n\n그가 말을 채 마치기도 전에 태의가 끊어 들었다. \"아직입니다. 먼저 말씀드릴 게 있습니다.\"\n\n\"무엇입니까?\"\n\n\"신",
+          "speaker": null,
+          "listener": null,
+          "relationship_hint": null,
+          "metadata": {}
+        },
+        "metadata": {}
+      },
+      {
+        "source_text": "태의",
+        "entity_id": "character_50c67afc",
+        "entity_type": "CHARACTER",
+        "matched_form": {
+          "source": "태의",
+          "translation": "泰義",
+          "form_type": "GIVEN_NAME",
+          "metadata": {}
+        },
+        "translation": "泰義",
+        "confidence": 1.0,
+        "context": {
+          "source_text": "태의는 본고적으로 ",
+          "position": 2124,
+          "surrounding_text": "니다.\"\n\n순간, 지하실의 조명이 모두 꺼졌다. 어둠 속에서 무거운 일들 소리가 들렸다. 태의는 본고적으로 자리에서 일어나 벽으로 등을 붙였다. 그의 손은 오랫동안 망각한 권총의 ",
+          "speaker": null,
+          "listener": null,
+          "relationship_hint": null,
+          "metadata": {}
+        },
+        "metadata": {}
+      },
+      {
+        "source_text": "태의",
+        "entity_id": "character_50c67afc",
+        "entity_type": "CHARACTER",
+        "matched_form": {
+          "source": "태의",
+          "translation": "泰義",
+          "form_type": "GIVEN_NAME",
+          "metadata": {}
+        },
+        "translation": "泰義",
+        "confidence": 1.0,
+        "context": {
+          "source_text": "태의의 이마에 식은",
+          "position": 2294,
+          "surrounding_text": "이곳에는 짧은 글귀가 적고 있었다.\n\n\"마지막 임무는 살아서 돌아오는 것이다. — Y\"\n\n태의의 이마에 식은땀이 맺힌다. 이 사인, 그리고 그 초기. 그는 이 모든 것이 하나의 거",
+          "speaker": null,
+          "listener": null,
+          "relationship_hint": null,
+          "metadata": {}
+        },
+        "metadata": {}
+      },
+      {
+        "source_text": "태의",
+        "entity_id": "character_50c67afc",
+        "entity_type": "CHARACTER",
+        "matched_form": {
+          "source": "태의",
+          "translation": "泰義",
+          "form_type": "GIVEN_NAME",
+          "metadata": {}
+        },
+        "translation": "泰義",
+        "confidence": 1.0,
+        "context": {
+          "source_text": "태의는 조용히 중얼",
+          "position": 2427,
+          "surrounding_text": "수 없었다. 그가 선택한 길은 죽음과 진실 사이의 줄타기였다.\n\n커피를 한 모금 마시고, 태의는 조용히 중얼거렸다.\n\n\"좋아, 한 번 해보지.\"\n\n---\n\n# Entity Norm",
+          "speaker": null,
+          "listener": null,
+          "relationship_hint": null,
+          "metadata": {}
+        },
+        "metadata": {}
+      },
+      {
+        "source_text": "태의",
+        "entity_id": "character_50c67afc",
+        "entity_type": "CHARACTER",
+        "matched_form": {
+          "source": "태의",
+          "translation": "泰義",
+          "form_type": "GIVEN_NAME",
+          "metadata": {}
+        },
+        "translation": "泰義",
+        "confidence": 1.0,
+        "context": {
+          "source_text": "태의\n태의야\n정 씨",
+          "position": 2527,
+          "surrounding_text": "alization Test Cases (exact forms for extraction)\n태의\n태의야\n정 씨",
+          "speaker": null,
+          "listener": null,
+          "relationship_hint": "intimate",
+          "metadata": {}
+        },
+        "metadata": {}
+      },
+      {
+        "source_text": "태의야",
+        "entity_id": "character_50c67afc",
+        "entity_type": "CHARACTER",
+        "matched_form": {
+          "source": "태의야",
+          "translation": "泰義啊",
+          "form_type": "INTIMATE",
+          "metadata": {}
+        },
+        "translation": "泰義啊",
+        "confidence": 1.0,
+        "context": {
+          "source_text": "태의야\n정 씨",
+          "position": 2530,
+          "surrounding_text": "zation Test Cases (exact forms for extraction)\n태의\n태의야\n정 씨",
+          "speaker": null,
+          "listener": null,
+          "relationship_hint": "intimate",
+          "metadata": {}
+        },
+        "metadata": {}
+      },
+      {
+        "source_text": "태의",
+        "entity_id": "character_50c67afc",
+        "entity_type": "CHARACTER",
+        "matched_form": {
+          "source": "태의",
+          "translation": "泰義",
+          "form_type": "GIVEN_NAME",
+          "metadata": {}
+        },
+        "translation": "泰義",
+        "confidence": 1.0,
+        "context": {
+          "source_text": "태의야\n정 씨",
+          "position": 2530,
+          "surrounding_text": "zation Test Cases (exact forms for extraction)\n태의\n태의야\n정 씨",
+          "speaker": null,
+          "listener": null,
+          "relationship_hint": "intimate",
+          "metadata": {}
+        },
+        "metadata": {}
+      },
+      {
+        "source_text": "정 씨",
+        "entity_id": "character_50c67afc",
+        "entity_type": "CHARACTER",
+        "matched_form": {
+          "source": "정 씨",
+          "translation": "鄭先生",
+          "form_type": "FORMAL",
+          "metadata": {}
+        },
+        "translation": "鄭先生",
+        "confidence": 1.0,
+        "context": {
+          "source_text": "정 씨",
+          "position": 2534,
+          "surrounding_text": "on Test Cases (exact forms for extraction)\n태의\n태의야\n정 씨",
+          "speaker": null,
+          "listener": null,
+          "relationship_hint": "intimate",
+          "metadata": {}
+        },
+        "metadata": {}
+      }
+    ],
+    "conflicts": [],
+    "metadata": {}
+  }
+}
