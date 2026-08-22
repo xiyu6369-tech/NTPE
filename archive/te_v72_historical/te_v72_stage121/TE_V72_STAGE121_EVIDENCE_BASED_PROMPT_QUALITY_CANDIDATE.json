@@ -1,0 +1,83 @@
+{
+  "stage": "TE-v7.2-Stage12.1",
+  "version": "7.2.0-stage12.1",
+  "status": "completed_offline_prepared_not_validated_by_provider",
+  "quality_problem": [
+    "unsupported detail",
+    "omission/completeness",
+    "literal or unnatural phrasing",
+    "narrative naturalness",
+    "character voice",
+    "historical/contextual tone"
+  ],
+  "evidence_sources": [
+    "artifacts/te_v71_stage111/TE_V71_STAGE111_TRANSLATION_DEFECTS.json",
+    "artifacts/te_v71_stage114/TE_V71_STAGE114_PROMPT_IMPROVEMENT_PLAN.json",
+    "artifacts/te_v7_stage10101/review/TE_V7_STAGE10101_TRANSLATION_REVIEW.txt"
+  ],
+  "candidate_scope": "one additive, opt-in literary prompt policy overlay",
+  "candidate_policy": {
+    "implementation": "core/literary_prompt_quality_candidate_v72/candidate.py",
+    "sha256": "a41337d874ab12b64f87182866b0744d96edd4b806a53bb796f43ca24f37a211",
+    "plans_applied_to_frozen_stage11": 0
+  },
+  "feature_flag": {
+    "name": "--quality-candidate-v72",
+    "configuration": "candidate_enabled",
+    "default": false,
+    "rollback": "set candidate_enabled=false"
+  },
+  "prompt_profile": {
+    "observable": true,
+    "candidate_version": "7.2.0-stage12.1",
+    "candidate_tokens_field": "candidate_tokens",
+    "candidate_chars_field": "candidate_chars"
+  },
+  "token_delta": {
+    "estimated_tokens": 109,
+    "characters": 263,
+    "limit": 120,
+    "over_limit": false
+  },
+  "offline_validation": {
+    "root_test": "ntpe_te_v720_stage121_evidence_based_prompt_quality_candidate_test.py",
+    "focused_integration": "tests/integration/translation_engine_v720_stage121_evidence_based_prompt_quality_candidate_test.py",
+    "static_evidence_coverage_only": true,
+    "model_output_evaluated": false
+  },
+  "provider_execution": {
+    "package": "artifacts/te_v72_stage121/TE_V72_STAGE121_PROVIDER_EXECUTION_PACKAGE.json",
+    "provider_executed": false,
+    "network_requests": 0,
+    "expected_requests_if_later_authorized": 2
+  },
+  "quality_claim": {
+    "translation_quality_improved": false,
+    "quality_improvement_verified": false,
+    "comparison_executed": false,
+    "candidate_status": "prepared_not_validated"
+  },
+  "boundary": {
+    "network_requests": 0,
+    "real_provider_executed": false,
+    "new_translation_generated": false,
+    "prompt_candidate_created": true,
+    "prompt_candidate_enabled_by_default": false,
+    "production_prompt_replaced": false,
+    "prompt_builder_frozen_contract_broken": false,
+    "runtime_modified": false,
+    "provider_modified": false,
+    "model_modified": false,
+    "timeout_modified": false,
+    "retry_modified": false,
+    "chunking_modified": false,
+    "stage11_framework_modified": false,
+    "golden_corpus_modified": false,
+    "quality_improvement_verified": false,
+    "comparison_executed": false,
+    "quality_baseline_created": false,
+    "quality_candidate_accepted": false,
+    "te_v72_stage122_started": false
+  },
+  "next_step": "After separate explicit authorization, run same-source baseline/candidate requests and complete human A/B review; do not start Stage 12.2 in this delivery."
+}

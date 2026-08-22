@@ -1,0 +1,15 @@
+{
+  "api_key_persisted": false,
+  "arm": "baseline",
+  "authorization_header_persisted": false,
+  "content": null,
+  "content_capture": "existing_nvidia_client_text_output",
+  "exception_category": "timeout",
+  "headers_persisted": false,
+  "http_status": null,
+  "provider_model": "meta/llama-3.3-70b-instruct",
+  "response_sha256": "ce9b783307437359dedd58c615ebd4f3b0471052b9a291dd099d79fee0463f49",
+  "sensitive_headers_removed": true,
+  "stage": "TE-v7.2-Stage12.2.2",
+  "status": "failed"
+}

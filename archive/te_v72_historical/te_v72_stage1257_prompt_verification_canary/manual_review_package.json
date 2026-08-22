@@ -1,0 +1,1 @@
+{"allowed_decisions":["candidate_improved","candidate_same","candidate_regressed","not_reviewable"],"automated_quality_claim":null,"dimensions":["Fidelity","Completeness","Naturalness","Character voice","Dialogue quality","Honorific handling","Context continuity","Era-appropriate wording","Additions","Omissions","Overall preference"],"manual_review_status":"not_reviewable"}

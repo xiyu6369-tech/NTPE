@@ -1,0 +1,62 @@
+{
+  "attempt_count": 1,
+  "attempt_limit": 1,
+  "attempts": [
+    {
+      "attempt_number": 1,
+      "attempt_status": "success",
+      "elapsed_milliseconds": 158034.322,
+      "estimated_input_tokens": 498,
+      "estimated_output_tokens": 800,
+      "external_condition_failure": false,
+      "fallback_used": false,
+      "http_503": false,
+      "retry_count": 0,
+      "suspicious_short_output": false,
+      "timeout": false,
+      "timing_complete": true
+    }
+  ],
+  "baseline_created": false,
+  "candidate_created": false,
+  "chunk_identity": "Golden_Set:1",
+  "comparison_executed": false,
+  "content_redacted": true,
+  "fallback_allowed": false,
+  "http_503_detected": false,
+  "human_review_required": true,
+  "integrity": {
+    "algorithm": "sha256",
+    "payload_sha256": "d91be3f604fec0da91dbb79b76a878c52aa106041cf5dd77d8bd4f885c205e51"
+  },
+  "invocation_id": "stage10101-controlled-retry-001",
+  "model": "meta/llama-3.3-70b-instruct",
+  "network_requests": 1,
+  "payload_preserved": true,
+  "prior_invocation_integrity": "58cb6a987b3563ff9a12cc4d41f5128763f403a60df5ca74b40a7aba86236347",
+  "prior_invocation_status": "single_real_invocation_failed",
+  "prior_network_requests": 1,
+  "prior_timeout_confirmed": true,
+  "prior_timeout_evidence_valid": true,
+  "production_ready": false,
+  "prompt_preserved": true,
+  "readiness_evaluated": false,
+  "real_provider_execution": true,
+  "retry_executed": true,
+  "review_status": "awaiting_human_translation_review",
+  "source_fingerprint": "ac76cf63de96d465d23ed6a131fbc1008ed06adae76c8e0668b27e58cde1c2b5",
+  "stage": "TE-v7.0-Stage10.10.1",
+  "status": "single_controlled_retry_completed",
+  "timeout_detected": false,
+  "timeout_seconds": 180,
+  "token_evidence": {
+    "actual_input_tokens": null,
+    "actual_output_tokens": null,
+    "estimated_input_tokens": 498,
+    "estimated_output_token_budget": 800,
+    "token_usage_complete": false,
+    "token_usage_source": "estimate_only"
+  },
+  "translation_output_generated": true,
+  "version": "7.0.0-stage10.10.1"
+}

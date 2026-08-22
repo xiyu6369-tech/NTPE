@@ -1,0 +1,48 @@
+{
+  "stage": "TE-v7.2-Stage12.1",
+  "status": "prepared_not_executed",
+  "source_input_reference": {
+    "path": "tests/literary/Golden_Set/original_ko.txt",
+    "chunk_identity": "Golden_Set:1",
+    "chunk_index": 1,
+    "source_unit_fingerprint_sha256": "ac76cf63de96d465d23ed6a131fbc1008ed06adae76c8e0668b27e58cde1c2b5",
+    "same_as_stage10101": true
+  },
+  "prompt_baseline_configuration": {
+    "builder": "core.literary.LiteraryPromptBuilder",
+    "candidate_enabled": false
+  },
+  "prompt_candidate_configuration": {
+    "builder": "core.literary_prompt_quality_candidate_v72.build_literary_prompt",
+    "feature_flag": "--quality-candidate-v72",
+    "candidate_enabled": true,
+    "candidate_version": "7.2.0-stage12.1"
+  },
+  "provider_settings": {
+    "model": "meta/llama-3.3-70b-instruct",
+    "timeout_seconds": 180,
+    "attempt_limit": 1,
+    "max_output_tokens": 800,
+    "chunk_size": 600
+  },
+  "expected_request_count": 2,
+  "request_plan": ["one baseline request", "one candidate request"],
+  "comparison_instructions": "Use the same frozen source unit and settings for both requests; redact credentials; do not choose a winner automatically; complete the manual review template.",
+  "prompt_profile": {
+    "candidate_policy_sha256": "a41337d874ab12b64f87182866b0744d96edd4b806a53bb796f43ca24f37a211",
+    "candidate_token_delta_estimate": 109,
+    "candidate_character_delta": 263
+  },
+  "artifact_output_paths": {
+    "baseline_translation": "artifacts/te_v72_stage121/provider/baseline_translation.txt",
+    "candidate_translation": "artifacts/te_v72_stage121/provider/candidate_translation.txt",
+    "request_evidence": "artifacts/te_v72_stage121/provider/request_evidence.json",
+    "manual_review": "artifacts/te_v72_stage121/TE_V72_STAGE121_MANUAL_REVIEW_TEMPLATE.json"
+  },
+  "manual_review_instructions": "A human reviewer must assess every field and select only one allowed reviewer_preference value. Automated metrics cannot decide the winner.",
+  "execution_command": "Not enabled in Stage 12.1: use the existing authorized provider harness only after explicit real-provider authorization and a separately reviewed prompt-adapter hookup.",
+  "provider_executed": false,
+  "network_requests": 0,
+  "quality_baseline": null,
+  "quality_candidate_result": null
+}

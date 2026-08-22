@@ -1,0 +1,1 @@
+{"activation_gate":"translation_quality_integration_ready_for_controlled_canary","fail_closed":false,"fallback":false,"integration_budget_exhausted":false,"network_requests_added":0,"prompt_canary_ready":true,"provider_eligible":false,"provider_requests_added":0,"retry_added":0,"stage":"TE-v7.2-Stage12.5.5","status":"PASS"}

@@ -1,0 +1,31 @@
+{
+  "allowed_overall_judgements": [
+    "baseline_better",
+    "candidate_better",
+    "equivalent",
+    "both_unacceptable",
+    "insufficient_evidence"
+  ],
+  "automated_scoring_performed": false,
+  "baseline_reference": "artifacts/te_v72_stage1221/baseline/translation.txt",
+  "candidate_reference": "artifacts/te_v72_stage1221/candidate/translation.txt",
+  "manual_review_completed": false,
+  "review": {
+    "blocking_defects": null,
+    "character_voice": null,
+    "dialogue": null,
+    "historical_contextual_tone": null,
+    "meaning_distortion": null,
+    "narrative_flow": null,
+    "naturalness": null,
+    "omissions": null,
+    "overall_judgement": null,
+    "review_reason": null,
+    "terminology": null,
+    "traditional_chinese_consistency": null,
+    "unsupported_additions": null
+  },
+  "source_reference": "tests/literary/Golden_Set/original_ko.txt#Golden_Set:1",
+  "stage": "TE-v7.2-Stage12.2.1",
+  "status": "ab_pair_incomplete"
+}

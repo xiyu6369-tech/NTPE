@@ -1,0 +1,15 @@
+{
+  "schema_version": "te-v7.2-milestone-a-performance-v1",
+  "status": "PASS",
+  "measurement_scope": "pure offline translation-quality integration layer; excludes existing LiteraryPromptBuilder",
+  "single_chunk_p50_ms": 0.03655,
+  "single_chunk_p95_ms": 0.0609,
+  "single_chunk_max_ms": 0.3749,
+  "hundred_run_total_ms": 4.7597,
+  "determinism_runs": 100,
+  "p95_target_ms": 10.0,
+  "max_target_ms": 25.0,
+  "targets_passed": true,
+  "provider_requests": 0,
+  "network_requests": 0
+}

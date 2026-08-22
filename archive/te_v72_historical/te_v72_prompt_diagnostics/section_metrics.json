@@ -1,0 +1,225 @@
+{
+  "cases": [
+    {
+      "added_tokens": 204,
+      "baseline_total_tokens": 328,
+      "candidate_growth_percent": 62.2,
+      "candidate_sections": [
+        {
+          "characters": 143,
+          "estimated_tokens": 59,
+          "header": "【Policy】",
+          "order": 1
+        },
+        {
+          "characters": 35,
+          "estimated_tokens": 14,
+          "header": "【Profile】",
+          "order": 2
+        },
+        {
+          "characters": 24,
+          "estimated_tokens": 10,
+          "header": "【Narrative】",
+          "order": 3
+        },
+        {
+          "characters": 17,
+          "estimated_tokens": 7,
+          "header": "【Characters】",
+          "order": 4
+        },
+        {
+          "characters": 11,
+          "estimated_tokens": 4,
+          "header": "【Glossary】",
+          "order": 5
+        },
+        {
+          "characters": 234,
+          "estimated_tokens": 97,
+          "header": "【翻譯紀律】",
+          "order": 6
+        },
+        {
+          "characters": 204,
+          "estimated_tokens": 85,
+          "header": "【小說語感規範】",
+          "order": 7
+        },
+        {
+          "characters": 8,
+          "estimated_tokens": 3,
+          "header": "【Korean】",
+          "order": 8
+        },
+        {
+          "characters": 100,
+          "estimated_tokens": 41,
+          "header": "【人物一致性記憶（只作翻譯輔助，來源文字優先）】",
+          "order": 9
+        },
+        {
+          "characters": 98,
+          "estimated_tokens": 40,
+          "header": "【目前場景提示】",
+          "order": 10
+        },
+        {
+          "characters": 101,
+          "estimated_tokens": 42,
+          "header": "【有限上下文連貫提示（不得摘要或改寫來源）】",
+          "order": 11
+        },
+        {
+          "characters": 188,
+          "estimated_tokens": 78,
+          "header": "【自然度政策（TE v7.2）】",
+          "order": 12
+        },
+        {
+          "characters": 46,
+          "estimated_tokens": 19,
+          "header": "[Korean Source Payload]",
+          "order": 13
+        },
+        {
+          "characters": 30,
+          "estimated_tokens": 12,
+          "header": "【Output】",
+          "order": 14
+        }
+      ],
+      "candidate_total_tokens": 532,
+      "case_id": "canary-001-character-honorific",
+      "integration_breakdown_tokens": {
+        "character_tokens": 10,
+        "context_tokens": 19,
+        "naturalness_tokens": 78,
+        "scene_tokens": 17,
+        "total_added_tokens": 204
+      },
+      "policy_relative_share_drop_points": 6.9,
+      "translation_policy_percent_baseline": 17.99,
+      "translation_policy_percent_candidate": 11.09,
+      "translation_policy_tokens": 59
+    },
+    {
+      "added_tokens": 205,
+      "baseline_total_tokens": 331,
+      "candidate_growth_percent": 61.93,
+      "candidate_sections": [
+        {
+          "characters": 143,
+          "estimated_tokens": 59,
+          "header": "【Policy】",
+          "order": 1
+        },
+        {
+          "characters": 35,
+          "estimated_tokens": 14,
+          "header": "【Profile】",
+          "order": 2
+        },
+        {
+          "characters": 24,
+          "estimated_tokens": 10,
+          "header": "【Narrative】",
+          "order": 3
+        },
+        {
+          "characters": 17,
+          "estimated_tokens": 7,
+          "header": "【Characters】",
+          "order": 4
+        },
+        {
+          "characters": 11,
+          "estimated_tokens": 4,
+          "header": "【Glossary】",
+          "order": 5
+        },
+        {
+          "characters": 234,
+          "estimated_tokens": 97,
+          "header": "【翻譯紀律】",
+          "order": 6
+        },
+        {
+          "characters": 204,
+          "estimated_tokens": 85,
+          "header": "【小說語感規範】",
+          "order": 7
+        },
+        {
+          "characters": 8,
+          "estimated_tokens": 3,
+          "header": "【Korean】",
+          "order": 8
+        },
+        {
+          "characters": 100,
+          "estimated_tokens": 41,
+          "header": "【人物一致性記憶（只作翻譯輔助，來源文字優先）】",
+          "order": 9
+        },
+        {
+          "characters": 98,
+          "estimated_tokens": 40,
+          "header": "【目前場景提示】",
+          "order": 10
+        },
+        {
+          "characters": 101,
+          "estimated_tokens": 42,
+          "header": "【有限上下文連貫提示（不得摘要或改寫來源）】",
+          "order": 11
+        },
+        {
+          "characters": 188,
+          "estimated_tokens": 78,
+          "header": "【自然度政策（TE v7.2）】",
+          "order": 12
+        },
+        {
+          "characters": 54,
+          "estimated_tokens": 22,
+          "header": "[Korean Source Payload]",
+          "order": 13
+        },
+        {
+          "characters": 30,
+          "estimated_tokens": 12,
+          "header": "【Output】",
+          "order": 14
+        }
+      ],
+      "candidate_total_tokens": 536,
+      "case_id": "canary-002-scene-pronoun",
+      "integration_breakdown_tokens": {
+        "character_tokens": 10,
+        "context_tokens": 19,
+        "naturalness_tokens": 78,
+        "scene_tokens": 17,
+        "total_added_tokens": 204
+      },
+      "policy_relative_share_drop_points": 6.82,
+      "translation_policy_percent_baseline": 17.82,
+      "translation_policy_percent_candidate": 11.01,
+      "translation_policy_tokens": 59
+    }
+  ],
+  "mode": "offline_render_only",
+  "observed_canary_estimates": {
+    "canary-001-character-honorific": {
+      "baseline": 328,
+      "candidate": 532
+    },
+    "canary-002-scene-pronoun": {
+      "baseline": 331,
+      "candidate": 536
+    }
+  },
+  "provider_requests": 0,
+  "stage": "TE-v7.2-Stage12.5.3"
+}

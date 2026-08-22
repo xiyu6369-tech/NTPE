@@ -1,0 +1,1 @@
+{"stage":"TE-v7.1-Stage11.2","quality_pass":false,"human_review_based":true,"provider_execution_performed":false,"new_translation_generated":false,"overall_score":41.91,"blocking_defect_count":1,"insufficient_evidence_dimensions":["dialogue","terminology"],"integrity":{"algorithm":"sha256","payload_sha256":"4f05bdcebcceced2679379e6f68aa66fa604948746c239a29c634645bc7e9144"}}

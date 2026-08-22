@@ -1,0 +1,162 @@
+{
+  "stage": "TE-v7.0-Stage03",
+  "version": "7.0.0-stage03",
+  "benchmark_type": "assembly-only-runtime-shadow",
+  "provider_called": false,
+  "provider_calls_added": 0,
+  "chunks": 5,
+  "payload_equivalent_chunks": 5,
+  "baseline_context_tokens": 2514,
+  "ace_context_tokens": 2514,
+  "estimated_tokens_saved": 0,
+  "admissible_chunks": 0,
+  "fallback_chunks": 5,
+  "records": [
+    {
+      "version": "7.0.0-stage03",
+      "package_id": "TXT_original_ko_000001",
+      "mode": "shadow",
+      "payload_hash_before": "3d44effbc4b84bc5631fd16569abd597617a7e454bab0a9943818404fb5d8815",
+      "payload_hash_after": "3d44effbc4b84bc5631fd16569abd597617a7e454bab0a9943818404fb5d8815",
+      "payload_equivalent": true,
+      "provider_calls_added": 0,
+      "metrics": {
+        "ace_build_latency_ms": 0.322,
+        "ace_compressed_count": 0,
+        "ace_context_tokens": 247,
+        "ace_fingerprint": "0016a6d97fbe1ced51b158900018edb0e4ed4cbabccf7d7978a3927ad85fa0cd",
+        "ace_omitted_count": 0,
+        "ace_selected_count": 2,
+        "admissible": false,
+        "baseline_context_tokens": 247,
+        "baseline_item_count": 2,
+        "estimated_reduction_ratio": 0.0,
+        "estimated_tokens_saved": 0,
+        "fallback_reasons": [
+          "no-token-reduction"
+        ],
+        "fallback_required": true,
+        "mode": "shadow",
+        "raw_context_retained": false
+      }
+    },
+    {
+      "version": "7.0.0-stage03",
+      "package_id": "TXT_original_ko_000002",
+      "mode": "shadow",
+      "payload_hash_before": "1d07de4b4dcf7950df2e178f809c9e5cdea591a4501492b7260ea26e6990a557",
+      "payload_hash_after": "1d07de4b4dcf7950df2e178f809c9e5cdea591a4501492b7260ea26e6990a557",
+      "payload_equivalent": true,
+      "provider_calls_added": 0,
+      "metrics": {
+        "ace_build_latency_ms": 0.516,
+        "ace_compressed_count": 0,
+        "ace_context_tokens": 502,
+        "ace_fingerprint": "9a6eb52076e5b3d8522aea754cff545b9e8a30015b55b7f4944bb22680308f2a",
+        "ace_omitted_count": 0,
+        "ace_selected_count": 3,
+        "admissible": false,
+        "baseline_context_tokens": 502,
+        "baseline_item_count": 3,
+        "estimated_reduction_ratio": 0.0,
+        "estimated_tokens_saved": 0,
+        "fallback_reasons": [
+          "no-token-reduction"
+        ],
+        "fallback_required": true,
+        "mode": "shadow",
+        "raw_context_retained": false
+      }
+    },
+    {
+      "version": "7.0.0-stage03",
+      "package_id": "TXT_original_ko_000003",
+      "mode": "shadow",
+      "payload_hash_before": "3101428e41d9e081c2f7b6aab5bcfc9fe711347c5a4fff4b905ea95863e1e324",
+      "payload_hash_after": "3101428e41d9e081c2f7b6aab5bcfc9fe711347c5a4fff4b905ea95863e1e324",
+      "payload_equivalent": true,
+      "provider_calls_added": 0,
+      "metrics": {
+        "ace_build_latency_ms": 0.622,
+        "ace_compressed_count": 0,
+        "ace_context_tokens": 620,
+        "ace_fingerprint": "c1d711299cbca00b9c708d1f1d19b45c0b9e1c1cc5aabd42355ade624b94837e",
+        "ace_omitted_count": 0,
+        "ace_selected_count": 3,
+        "admissible": false,
+        "baseline_context_tokens": 620,
+        "baseline_item_count": 3,
+        "estimated_reduction_ratio": 0.0,
+        "estimated_tokens_saved": 0,
+        "fallback_reasons": [
+          "no-token-reduction"
+        ],
+        "fallback_required": true,
+        "mode": "shadow",
+        "raw_context_retained": false
+      }
+    },
+    {
+      "version": "7.0.0-stage03",
+      "package_id": "TXT_original_ko_000004",
+      "mode": "shadow",
+      "payload_hash_before": "a436082042035dc8f4c5a495fe40e11360778e3beb493cc6866c18e4f50612c3",
+      "payload_hash_after": "a436082042035dc8f4c5a495fe40e11360778e3beb493cc6866c18e4f50612c3",
+      "payload_equivalent": true,
+      "provider_calls_added": 0,
+      "metrics": {
+        "ace_build_latency_ms": 0.55,
+        "ace_compressed_count": 0,
+        "ace_context_tokens": 558,
+        "ace_fingerprint": "78a7388ced802c778bd74389c01709628ccabe7c9190ec8f5abf04d20ce78242",
+        "ace_omitted_count": 0,
+        "ace_selected_count": 3,
+        "admissible": false,
+        "baseline_context_tokens": 558,
+        "baseline_item_count": 3,
+        "estimated_reduction_ratio": 0.0,
+        "estimated_tokens_saved": 0,
+        "fallback_reasons": [
+          "no-token-reduction"
+        ],
+        "fallback_required": true,
+        "mode": "shadow",
+        "raw_context_retained": false
+      }
+    },
+    {
+      "version": "7.0.0-stage03",
+      "package_id": "TXT_original_ko_000005",
+      "mode": "shadow",
+      "payload_hash_before": "9cf4a3b673e371fdfa6a56cb4d187fb3cfd0f0869d3c33962a4f1984d61661ce",
+      "payload_hash_after": "9cf4a3b673e371fdfa6a56cb4d187fb3cfd0f0869d3c33962a4f1984d61661ce",
+      "payload_equivalent": true,
+      "provider_calls_added": 0,
+      "metrics": {
+        "ace_build_latency_ms": 0.55,
+        "ace_compressed_count": 0,
+        "ace_context_tokens": 587,
+        "ace_fingerprint": "c8eff3f672a08ce8ba78df5df4bac32bca96fcb7e201e6a041f914d581a06a0e",
+        "ace_omitted_count": 0,
+        "ace_selected_count": 3,
+        "admissible": false,
+        "baseline_context_tokens": 587,
+        "baseline_item_count": 3,
+        "estimated_reduction_ratio": 0.0,
+        "estimated_tokens_saved": 0,
+        "fallback_reasons": [
+          "no-token-reduction"
+        ],
+        "fallback_required": true,
+        "mode": "shadow",
+        "raw_context_retained": false
+      }
+    }
+  ],
+  "limitations": [
+    "No Provider request was sent.",
+    "Token counts are deterministic estimates, not NVIDIA tokenizer output.",
+    "Payload equivalence covers the returned runtime prompt package."
+  ],
+  "estimated_reduction_ratio": 0.0
+}

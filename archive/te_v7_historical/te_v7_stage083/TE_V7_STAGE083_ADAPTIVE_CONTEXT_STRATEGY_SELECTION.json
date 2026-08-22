@@ -1,0 +1,28 @@
+{
+  "version": "7.0.0-stage08.3",
+  "status": "not_evaluated",
+  "ready": false,
+  "strategy": "disabled",
+  "profile": "literary",
+  "rollout_percent": 0,
+  "effective_context_tokens": 0,
+  "blockers": ["strategy-evidence-not-provided"],
+  "limitations": [],
+  "metadata": {
+    "content_redacted": true,
+    "deterministic": true,
+    "default_strategy": "disabled",
+    "automatic_runtime_activation": false,
+    "explicit_opt_in_required": true,
+    "kill_switch_supported": true,
+    "quality_evidence_inherited_from_activation_policy": true,
+    "profile_budget_required": true,
+    "max_rollout_percent": 5,
+    "runtime_auto_hook": false,
+    "provider_policy_modified": false,
+    "prompt_policy_modified": false,
+    "quality_gate_modified": false,
+    "translation_quality_improvement_claimed": false,
+    "provider_latency_improvement_claimed": false
+  }
+}
