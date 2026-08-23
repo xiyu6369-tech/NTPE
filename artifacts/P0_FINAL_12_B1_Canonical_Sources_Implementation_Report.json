@@ -1,0 +1,194 @@
+{
+  "baseline": {
+    "head": "5e346d1975ff7d34855483e224562788d7ef9800",
+    "origin_main": "5e346d1975ff7d34855483e224562788d7ef9800",
+    "branch": "main",
+    "head_equals_origin": true,
+    "timestamp": "2026-08-23T19:45:00+08:00"
+  },
+  "scope": {
+    "batch": "B1",
+    "name": "Canonical Sources",
+    "risk": "LOW",
+    "modules_modified": 7,
+    "references_migrated": 10
+  },
+  "modified_files": [
+    {
+      "file": "core/production_runtime/manifest.py",
+      "change_type": "ENHANCED",
+      "description": "Added canonical path resolution functions and artifact name constants for all TE-v7 stages",
+      "functions_added": [
+        "get_canonical_artifact_root",
+        "get_te_v7_stage_path",
+        "get_te_v7_artifact_path"
+      ],
+      "constants_added": 17,
+      "references_migrated": 0,
+      "canonical_source_created": true
+    },
+    {
+      "file": "core/adaptive_context_real_provider_preflight/config.py",
+      "change_type": "MIGRATED",
+      "description": "Migrated hardcoded artifact paths to canonical source functions",
+      "references_before": [
+        "artifacts/te_v7_stage109/TE_V7_STAGE109_REAL_PROVIDER_PREFLIGHT.json",
+        "artifacts/te_v7_stage108/TE_V7_STAGE108_FAKE_TRANSPORT_FREEZE.json"
+      ],
+      "canonical_source": "core.production_runtime.manifest.get_te_v7_artifact_path",
+      "references_migrated": 2,
+      "semantic_equivalence": true
+    },
+    {
+      "file": "core/adaptive_context_controlled_provider_retry/config.py",
+      "change_type": "MIGRATED",
+      "description": "Migrated hardcoded artifact paths to canonical source functions",
+      "references_before": [
+        "artifacts/te_v7_stage1010/TE_V7_STAGE1010_SINGLE_REAL_INVOCATION.json",
+        "artifacts/te_v7_stage10101/TE_V7_STAGE10101_CONTROLLED_RETRY.json",
+        "artifacts/te_v7_stage10101/review/TE_V7_STAGE10101_TRANSLATION_REVIEW.txt"
+      ],
+      "canonical_source": "core.production_runtime.manifest.get_te_v7_artifact_path",
+      "references_migrated": 3,
+      "semantic_equivalence": true
+    },
+    {
+      "file": "core/adaptive_context_provider_execution_freeze/freeze.py",
+      "change_type": "MIGRATED",
+      "description": "Migrated hardcoded stage09 path to canonical source function",
+      "references_before": [
+        "base / \"artifacts\" / \"te_v7_stage09\""
+      ],
+      "canonical_source": "core.production_runtime.manifest.get_te_v7_stage_path",
+      "references_migrated": 1,
+      "semantic_equivalence": true
+    },
+    {
+      "file": "core/translation_release/release_validation.py",
+      "change_type": "MIGRATED",
+      "description": "Migrated output directory path to canonical source function",
+      "references_before": [
+        "root / \"artifacts/te_v6_0_final_validation\""
+      ],
+      "canonical_source": "core.production_runtime.manifest.get_te_v7_stage_path",
+      "references_migrated": 1,
+      "semantic_equivalence": true
+    },
+    {
+      "file": "core/translation_quality_defects/catalog.py",
+      "change_type": "MIGRATED",
+      "description": "Migrated hardcoded review path to canonical TIC corpus fixture source",
+      "references_before": [
+        "artifacts/te_v7_stage10101/review/TE_V7_STAGE10101_TRANSLATION_REVIEW.txt"
+      ],
+      "canonical_source": "tests/fixtures/tic_corpus/review/TE_V7_STAGE10101_TRANSLATION_REVIEW.txt (Priority 1)",
+      "references_migrated": 1,
+      "semantic_equivalence": true,
+      "additional_changes": "Updated _location() signature to accept root parameter; updated all 6 calls in initial_human_confirmed_defects()"
+    },
+    {
+      "file": "core/prompt_contract_verification_canary/framework.py",
+      "change_type": "MIGRATED",
+      "description": "Migrated hardcoded readiness summary path to canonical source function",
+      "references_before": [
+        "base / \"artifacts/te_v72_prompt_canary_readiness/readiness_summary.json\""
+      ],
+      "canonical_source": "core.production_runtime.manifest.get_te_v7_stage_path",
+      "references_migrated": 1,
+      "semantic_equivalence": true
+    }
+  ],
+  "migration_summary": {
+    "total_references_migrated": 10,
+    "modules_modified": 7,
+    "canonical_source_hub": "core/production_runtime/manifest.py",
+    "canonical_functions_created": 3,
+    "artifact_constants_defined": 17,
+    "b1_scope_complete": true,
+    "b2_b5_references_untouched": 33
+  },
+  "validation_results": {
+    "compileall_core": "PASS",
+    "ntpe_validate": "PASS_WITH_WARNINGS",
+    "git_diff_check": "PASS",
+    "git_diff_cached_check": "PASS",
+    "series_batch5_4_regression": "43_PASS",
+    "catalog_load_test": "PASS (6 defects loaded)",
+    "manifest_functions_test": "PASS",
+    "adaptive_config_instantiation": "PASS",
+    "warnings": [
+      "ntpe_validate: 1 optional import warning (core.prompt_builder.prompt_builder) - pre-existing",
+      "git diff --check: CRLF warnings on Protected Worktree files - pre-existing"
+    ]
+  },
+  "protected_worktree": {
+    "files": [
+      "artifacts/rm6_canary/legacy_kr/novel_sample_live_progress.json",
+      "artifacts/rm6_canary/runtime_kr/novel_sample_live_progress.json",
+      "tests/literary/outputs/PS-03-integration/Literary_Quality_Report.json",
+      "tests/literary/outputs/PS-03-smoke/Literary_Quality_Report.json",
+      "tests/literary/outputs/PS-03-smoke/Literary_Regression_Report.json",
+      "tests/literary/outputs/Regression_History.json",
+      "tests/literary/outputs/Regression_History.md"
+    ],
+    "status": "UNCHANGED",
+    "staged": false
+  },
+  "frozen_contracts": {
+    "affected": 7,
+    "modified": 0,
+    "status": "UNCHANGED"
+  },
+  "root_hygiene": {
+    "dummy_txt": "ABSENT",
+    "new_root_artifacts": 0
+  },
+  "scope_isolation": {
+    "b1_files_modified": 7,
+    "b2_b5_files_modified": 0,
+    "deleted_artifacts_restored": 0,
+    "tools_one_shots_handled": 0
+  },
+  "stop_conditions": {
+    "stop_b1_01": false,
+    "stop_b1_02": false,
+    "stop_b1_03": false,
+    "stop_b1_04": false,
+    "stop_b1_05": false,
+    "stop_b1_06": false,
+    "stop_b1_07": false,
+    "stop_b1_08": false,
+    "stop_b1_09": false,
+    "stop_b1_10": false
+  },
+  "production_reference_audit_post_b1": {
+    "b1_hardcoded_refs_before": 10,
+    "b1_hardcoded_refs_after": 0,
+    "b1_refs_via_canonical": 10,
+    "b2_b5_refs_remaining": 33,
+    "categories_migrated": [
+      "te_v7_stage09",
+      "te_v7_stage109",
+      "te_v7_stage108",
+      "te_v7_stage1010",
+      "te_v7_stage10101",
+      "te_v7_stage081",
+      "te_v7_stage082",
+      "te_v7_stage083",
+      "te_v7_stage075",
+      "te_v7_stage06",
+      "te_v7_stage04",
+      "te_v6_0_final_validation",
+      "te_v71_stage113",
+      "te_v7_stage10101",
+      "te_v72_prompt_canary_readiness"
+    ]
+  },
+  "deliverables": [
+    "docs/governance/repository/P0_FINAL_12_B1_CANONICAL_SOURCES_IMPLEMENTATION.md",
+    "artifacts/P0_FINAL_12_B1_Canonical_Sources_Implementation_Report.json"
+  ],
+  "commit": false,
+  "push": false,
+  "final_verdict": "P0-FINAL-12-B1 = COMPLETE"
+}

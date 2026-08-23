@@ -1,23 +1,24 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+from pathlib import Path
 
 from core.adaptive_context_real_provider_boundary import ALLOWED_MODELS, ALLOWED_PROVIDER_URLS
 from core.adaptive_context_real_provider_preflight import safe_identifier
+from core.production_runtime.manifest import (
+    get_te_v7_artifact_path,
+    TE_V7_STAGE1010_SINGLE_REAL_INVOCATION,
+    TE_V7_STAGE10101_CONTROLLED_RETRY,
+    TE_V7_STAGE10101_TRANSLATION_REVIEW,
+)
 
 CONTROLLED_RETRY_VERSION = "7.0.0-stage10.10.1"
 CONTROLLED_RETRY_AUTHORIZATION_TOKEN = (
     "AUTHORIZE_NTPE_TE_V7_STAGE10101_SINGLE_CONTROLLED_RETRY"
 )
-DEFAULT_PRIOR_ARTIFACT_PATH = (
-    "artifacts/te_v7_stage1010/TE_V7_STAGE1010_SINGLE_REAL_INVOCATION.json"
-)
-DEFAULT_ARTIFACT_PATH = (
-    "artifacts/te_v7_stage10101/TE_V7_STAGE10101_CONTROLLED_RETRY.json"
-)
-DEFAULT_REVIEW_PATH = (
-    "artifacts/te_v7_stage10101/review/TE_V7_STAGE10101_TRANSLATION_REVIEW.txt"
-)
+DEFAULT_PRIOR_ARTIFACT_PATH = field(default_factory=lambda: str(get_te_v7_artifact_path(".", "te_v7_stage1010", TE_V7_STAGE1010_SINGLE_REAL_INVOCATION)))
+DEFAULT_ARTIFACT_PATH = field(default_factory=lambda: str(get_te_v7_artifact_path(".", "te_v7_stage10101", TE_V7_STAGE10101_CONTROLLED_RETRY)))
+DEFAULT_REVIEW_PATH = field(default_factory=lambda: str(get_te_v7_artifact_path(".", "te_v7_stage10101", TE_V7_STAGE10101_TRANSLATION_REVIEW)))
 DEFAULT_SOURCE_PATH = "tests/literary/Golden_Set/original_ko.txt"
 FROZEN_TIMEOUT_SECONDS = 180
 FROZEN_OUTPUT_TOKEN_BUDGET = 800

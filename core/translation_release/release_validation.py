@@ -9,6 +9,7 @@ from core.translation_evidence import build_translation_evidence_freeze
 from core.translation_naturalness import build_translation_naturalness_freeze
 
 from .te_v6_release import build_te_v6_release_contract
+from core.production_runtime.manifest import get_te_v7_stage_path
 
 
 def _read_json(path: Path) -> dict[str, Any]:
@@ -55,7 +56,8 @@ def validate_te_v6_release(
         "network_activity": {"provider_client_created": False, "http_requests": 0, "nvidia_api_calls": 0},
     }
     if write_reports:
-        out = root / "artifacts/te_v6_0_final_validation"
+        # Use canonical validation output directory under artifacts
+        out = get_te_v7_stage_path(root, "te_v6_0_final_validation")
         out.mkdir(parents=True, exist_ok=True)
         (out / "TE_V6_0_FINAL_VALIDATION.json").write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
         lines = ["# TE v6.0 Final Validation", "", f"- Ready: `{str(payload['ready']).lower()}`",

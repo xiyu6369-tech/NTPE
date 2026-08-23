@@ -20,6 +20,7 @@ from core.adaptive_context_provider_evidence_pipeline import (
 
 from .contract import FREEZE_VERSION, FakeTransportFreezeContract
 from .validator import validate_fake_transport_chain
+from core.production_runtime.manifest import get_te_v7_stage_path
 
 
 @dataclass(frozen=True)
@@ -71,7 +72,7 @@ def run_fake_transport_freeze(
     if not outcomes:
         raise ValueError("provider-execution-freeze-attempt-required")
     base = Path(root).resolve()
-    stage09 = base / "artifacts" / "te_v7_stage09"
+    stage09 = get_te_v7_stage_path(base, "te_v7_stage09")
     te_v6_paths = (
         base / "launcher_translate.py",
         base / "lts" / "txt_translation_runtime.py",

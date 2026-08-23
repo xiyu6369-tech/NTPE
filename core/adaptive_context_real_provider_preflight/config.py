@@ -1,9 +1,15 @@
 from __future__ import annotations
 
 import re
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from pathlib import Path
 
 from core.adaptive_context_real_provider_boundary import ALLOWED_MODELS
+from core.production_runtime.manifest import (
+    get_te_v7_artifact_path,
+    TE_V7_STAGE109_REAL_PROVIDER_PREFLIGHT,
+    TE_V7_STAGE108_FAKE_TRANSPORT_FREEZE,
+)
 
 PREFLIGHT_VERSION = "7.0.0-stage10.9"
 MAX_PREFLIGHT_ATTEMPTS = 3
@@ -43,8 +49,8 @@ class RealProviderPreflightConfig:
     single_chunk_only: bool = True
     single_controlled_session: bool = True
     resumed: bool = False
-    artifact_path: str = "artifacts/te_v7_stage109/TE_V7_STAGE109_REAL_PROVIDER_PREFLIGHT.json"
-    stage108_freeze_path: str = "artifacts/te_v7_stage108/TE_V7_STAGE108_FAKE_TRANSPORT_FREEZE.json"
+    artifact_path: str = field(default_factory=lambda: str(get_te_v7_artifact_path(".", "te_v7_stage109", TE_V7_STAGE109_REAL_PROVIDER_PREFLIGHT)))
+    stage108_freeze_path: str = field(default_factory=lambda: str(get_te_v7_artifact_path(".", "te_v7_stage108", TE_V7_STAGE108_FAKE_TRANSPORT_FREEZE)))
     te_v6_manifest_path: str = "manifests/te_v600_final_release_manifest.json"
 
     def __post_init__(self) -> None:

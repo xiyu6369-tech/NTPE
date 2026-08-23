@@ -11,6 +11,7 @@ from typing import Protocol
 
 from core.translation_engine.nvidia_client import NvidiaClient
 from core.translation_quality_provider_canary.framework import ALLOWED_MODEL, PROVIDER_URL, _build_prompts
+from core.production_runtime.manifest import get_te_v7_stage_path
 
 
 AUTHORIZATION_TOKEN = "AUTHORIZE_NTPE_TE_V72_STAGE1256_PROMPT_VERIFICATION_CANARY"
@@ -151,7 +152,7 @@ def _hash_valid(base: Path) -> bool:
 
 
 def _preflight(base: Path, config: CanaryConfig, claim_path: Path) -> dict[str, object]:
-    readiness_path = base / "artifacts/te_v72_prompt_canary_readiness/readiness_summary.json"
+    readiness_path = get_te_v7_stage_path(base, "te_v72_prompt_canary_readiness") / "readiness_summary.json"
     readiness = json.loads(readiness_path.read_text(encoding="utf-8")) if readiness_path.is_file() else {}
     checks = {
         "worktree_clean": _clean_worktree(base),
