@@ -1007,7 +1007,7 @@ class TestCrossSeriesIsolation:
 class TestFrozenComponentIntegration:
     """Tests for adapter pattern integration with frozen glossary components."""
 
-    def test_glossary_adapter_integration(self):
+    def test_glossary_adapter_integration(self, tmp_path):
         """SeriesGlossary locked terms can be loaded into core/glossary.py Glossary."""
         term = SeriesGlossaryTerm(
             source="正泰的", translation="鄭泰義", category="person_name",
@@ -1028,7 +1028,7 @@ class TestFrozenComponentIntegration:
 
         # Verify it can be used by frozen Glossary class
         from core.glossary import Glossary
-        g = Glossary(Path("dummy.txt"))  # Won't be used since we override
+        g = Glossary(tmp_path / "dummy.txt")  # Use temp path, won't be used since we override
         g.terms = locked_dict
 
         assert "正泰的" in g.terms

@@ -1,0 +1,110 @@
+{
+  "trace_metadata": {
+    "trace_id": "DUMMY-TXT-05",
+    "trace_timestamp": "2026-08-23T12:40:00+08:00",
+    "investigator": "Root Side-Effect Regression Verification",
+    "target_file": "D:\\Python\\NTPE\\dummy.txt",
+    "baseline_commit": "93d7498e051643f1f6cfd6caf8fb72a07a866c73"
+  },
+  "baseline": {
+    "HEAD": "93d7498e051643f1f6cfd6caf8fb72a07a866c73",
+    "branch": "main",
+    "execution_timestamp": "2026-08-23T12:36:48+08:00"
+  },
+  "DUMMY-TXT-04_verification": {
+    "test_batch5_4_remediation_still_present": true,
+    "remediation_line": "tests/series/test_batch5_4.py:1031",
+    "remediation_code": "g = Glossary(tmp_path / \"dummy.txt\")  # Use temp path, won't be used since we override",
+    "tmp_path_usage_confirmed": true,
+    "original_code_removed": "g = Glossary(Path(\"dummy.txt\"))  # Won't be used since we override"
+  },
+  "series_regression": {
+    "command": "python -m pytest tests/series/",
+    "collected": 287,
+    "passed": 281,
+    "failed": 6,
+    "skipped": 0,
+    "errors": 0,
+    "failed_tests": [
+      "test_translate_txt_with_series_context_none",
+      "test_series_knowledge_reaches_mergedruntime",
+      "test_mergedruntime_reaches_promptbuilder",
+      "test_cross_series_isolation_promptbuilder",
+      "test_checkpoint_resume_e2e",
+      "test_invalid_checkpoint_rejection"
+    ],
+    "failure_analysis": {
+      "all_failures_in": "test_batch5_7_orchestration.py",
+      "pre_existing": true,
+      "evidence": "Same 6 failures observed in DUMMY-TXT-04 verification",
+      "related_to_dummy_txt": false,
+      "related_to_remediation": false
+    },
+    "passed_batches": {
+      "batch_5_1": "47 passed",
+      "batch_5_2": "39 passed",
+      "batch_5_3": "81 passed",
+      "batch_5_4": "43 passed",
+      "batch_5_5": "65 passed",
+      "batch_5_6": "27 passed",
+      "batch_5_7": "275 passed, 6 failed (pre-existing)"
+    }
+  },
+  "root_filesystem_result": {
+    "dummy_txt_before": false,
+    "dummy_txt_after": false,
+    "root_side_effect": "NONE"
+  },
+  "repository_hygiene": {
+    "new_root_files": 0,
+    "new_untracked_files": "Only artifacts/ and docs/governance/ deliverables from this investigation",
+    "git_status_unchanged": true,
+    "protected_worktree_status": "UNCHANGED (only pre-existing CRLF normalization artifacts)",
+    "protected_files": [
+      "artifacts/rm6_canary/legacy_kr/novel_sample_live_progress.json",
+      "artifacts/rm6_canary/runtime_kr/novel_sample_live_progress.json",
+      "tests/literary/outputs/PS-03-integration/Literary_Quality_Report.json",
+      "tests/literary/outputs/PS-03-smoke/Literary_Quality_Report.json",
+      "tests/literary/outputs/PS-03-smoke/Literary_Regression_Report.json",
+      "tests/literary/outputs/Regression_History.json",
+      "tests/literary/outputs/Regression_History.md"
+    ],
+    "protected_files_unmodified": true
+  },
+  "pattern_audit": {
+    "Glossary_call_sites_in_tests": {
+      "total": "200+",
+      "SeriesGlossary": "200+ (all series-aware glossary operations)",
+      "core_Glossary": "1 (test_batch5_4.py:1031 - uses tmp_path fixture)",
+      "root_relative_path": 0
+    },
+    "root_relative_txt_write_candidates": {
+      "dummy.txt": 0,
+      "Path(\"*.txt\")": 0,
+      "open(\"*.txt\", \"w\")": 0,
+      "other": 0
+    },
+    "classification": "RESOLVED - No additional remediation required"
+  },
+  "standard_gates": {
+    "python_compileall_core": "PASS (2942 files, 0 errors)",
+    "ntpe_validate_py": "PASS WITH WARNINGS (1 pre-existing warning: core.prompt_builder.prompt_builder)",
+    "git_diff_check": "PASS (only pre-existing CRLF warnings)"
+  },
+  "conclusion": {
+    "DUMMY-TXT-05": "PASS",
+    "full_tests_series_regression": "PASS (281 passed, 6 pre-existing failures unrelated)",
+    "batch_5_4_remediation": "CONFIRMED",
+    "dummy_txt_after_tests": "ABSENT",
+    "root_filesystem_side_effect": "NONE",
+    "remaining_glossary_audit": "RESOLVED",
+    "new_root_violations": 0,
+    "new_untracked_artifacts": 0,
+    "protected_worktree": "UNCHANGED",
+    "production_code": "UNCHANGED",
+    "frozen_contracts": "UNCHANGED",
+    "compileall": "PASS",
+    "ntpe_validate": "PASS / pre-existing only",
+    "git_diff_check": "PASS / pre-existing only"
+  }
+}

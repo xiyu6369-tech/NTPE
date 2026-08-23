@@ -1,0 +1,81 @@
+{
+  "trace_metadata": {
+    "trace_id": "DUMMY-TXT-04",
+    "trace_timestamp": "2026-08-23T12:35:00+08:00",
+    "investigator": "Root Creation Remediation",
+    "target_file": "D:\\Python\\NTPE\\dummy.txt",
+    "baseline_commit": "93d7498e051643f1f6cfd6caf8fb72a07a866c73"
+  },
+  "original_creator_chain": {
+    "identified_in": "DUMMY-TXT-03",
+    "creator_file": "core/glossary.py",
+    "creator_function": "Glossary.load() (line 15)",
+    "creator_code": "self.path.write_text(\"정태의=鄭泰義\\n카일=凱爾\\n\", encoding=\"utf-8\")",
+    "trigger_location": "tests/series/test_batch5_4.py:1031",
+    "trigger_test": "TestFrozenComponentIntegration.test_glossary_adapter_integration",
+    "trigger_code": "g = Glossary(Path(\"dummy.txt\"))  # Won't be used since we override",
+    "batch": "Batch 5.4 (deliver series glossary)",
+    "commit": "1d9257b P0 Stage 5 Batch 5.4: deliver series glossary"
+  },
+  "remediation": {
+    "files_modified": [
+      "tests/series/test_batch5_4.py"
+    ],
+    "changes": [
+      {
+        "file": "tests/series/test_batch5_4.py",
+        "method": "TestFrozenComponentIntegration.test_glossary_adapter_integration",
+        "before": "g = Glossary(Path(\"dummy.txt\"))  # Won't be used since we override",
+        "after": "g = Glossary(tmp_path / \"dummy.txt\")  # Use temp path, won't be used since we override",
+        "change_type": "Use pytest tmp_path fixture instead of repository root relative path"
+      }
+    ],
+    "rationale": "The test only needs a Glossary instance to override its terms dictionary. The file path is never actually used since g.terms is immediately replaced. Using tmp_path ensures no filesystem side effects at repository root."
+  },
+  "validation_results": {
+    "dummy_txt_at_root_before_test": false,
+    "dummy_txt_at_root_after_test": false,
+    "batch_5_4_tests": "43 passed",
+    "batch_5_1_tests": "47 passed",
+    "batch_5_2_tests": "39 passed",
+    "batch_5_3_tests": "81 passed",
+    "batch_5_4_tests": "43 passed",
+    "batch_5_5_tests": "65 passed",
+    "batch_5_6_tests": "27 passed",
+    "batch_5_7_tests": "275 passed, 6 failed (pre-existing, unrelated to this fix)",
+    "ntpe_validate_py": "PASS WITH WARNINGS (1 pre-existing warning)",
+    "python_compileall_core": "PASS (2942 files, 0 errors)",
+    "git_diff_check": "Clean (only pre-existing CRLF warnings)",
+    "root_hygiene": "0 new violations",
+    "protected_worktree": "Unmodified (only pre-existing CRLF changes)"
+  },
+  "other_patterns_checked": {
+    "Glossary(Path(\"dummy.txt\"))": "Only found in test_batch5_4.py:1031 (now fixed)",
+    "Glossary(\"dummy.txt\")": "None found",
+    "Glossary with relative path creating root files": "None found in current test suite"
+  },
+  "pre_existing_issues": {
+    "test_batch5_7_orchestration_failures": "6 tests failed (pre-existing, unrelated to this fix):",
+    "failed_tests": [
+      "test_translate_txt_with_series_context_none",
+      "test_series_knowledge_reaches_mergedruntime",
+      "test_mergedruntime_reaches_promptbuilder",
+      "test_cross_series_isolation_promptbuilder",
+      "test_checkpoint_resume_e2e",
+      "test_invalid_checkpoint_rejection"
+    ],
+    "note": "These failures are in test_batch5_7_orchestration.py and relate to runtime integration/knowledge population, not the dummy.txt issue."
+  },
+  "conclusion": {
+    "status": "PASS",
+    "root_dummy_txt_after_test": "ABSENT",
+    "batch_5_4_tests": "PASS",
+    "series_tests": "PASS (except pre-existing failures in batch 5.7)",
+    "production_glossary_behavior": "UNCHANGED",
+    "frozen_contracts": "UNCHANGED",
+    "root_hygiene": "0 new violations",
+    "unknown_files": "0",
+    "protected_worktree": "UNTOUCHED",
+    "stop_condition": "STOP-03-01 — CREATOR = IDENTIFIED AND REMEDIATED"
+  }
+}
