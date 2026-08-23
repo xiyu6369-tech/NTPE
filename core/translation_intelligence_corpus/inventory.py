@@ -6,10 +6,15 @@ import re
 from pathlib import Path
 from typing import Any, Iterable
 
+from core.production_runtime.manifest import (
+    get_tic_batch_artifact_path,
+    get_tic_batch_path,
+)
+
 SCHEMA_VERSION = "tic.batch1.inventory.v1"
-INVENTORY_PATH = Path("artifacts/tic_batch1/TRANSLATION_CORPUS_INVENTORY.json")
-STATISTICS_PATH = Path("artifacts/tic_batch1/TRANSLATION_CORPUS_STATISTICS.json")
-ARTIFACT_MANIFEST_PATH = Path("artifacts/tic_batch1/TRANSLATION_CORPUS_MANIFEST.json")
+INVENTORY_PATH = "artifacts/tic_batch1/TRANSLATION_CORPUS_INVENTORY.json"
+STATISTICS_PATH = "artifacts/tic_batch1/TRANSLATION_CORPUS_STATISTICS.json"
+ARTIFACT_MANIFEST_PATH = "artifacts/tic_batch1/TRANSLATION_CORPUS_MANIFEST.json"
 ROOT_MANIFEST_PATH = Path("manifests/tic_batch1_translation_corpus_inventory_manifest.json")
 ROOT_MANIFEST_FILES = (
     "core/translation_intelligence_corpus/__init__.py",
@@ -383,9 +388,9 @@ def generate_batch1_artifacts(root: str | Path) -> tuple[Path, Path, Path]:
     base = Path(root).resolve()
     inventory = build_inventory(base)
     statistics = build_statistics(inventory)
-    inventory_path = base / INVENTORY_PATH
-    statistics_path = base / STATISTICS_PATH
-    manifest_path = base / ARTIFACT_MANIFEST_PATH
+    inventory_path = get_tic_batch_artifact_path(base, "tic_batch1", "TRANSLATION_CORPUS_INVENTORY.json")
+    statistics_path = get_tic_batch_artifact_path(base, "tic_batch1", "TRANSLATION_CORPUS_STATISTICS.json")
+    manifest_path = get_tic_batch_artifact_path(base, "tic_batch1", "TRANSLATION_CORPUS_MANIFEST.json")
     inventory_path.parent.mkdir(parents=True, exist_ok=True)
     inventory_path.write_bytes(_canonical_json(inventory))
     statistics_path.write_bytes(_canonical_json(statistics))
@@ -394,8 +399,8 @@ def generate_batch1_artifacts(root: str | Path) -> tuple[Path, Path, Path]:
         "batch": "TIC Batch 1",
         "status": "completed",
         "files": {
-            INVENTORY_PATH.as_posix(): sha256_file(inventory_path),
-            STATISTICS_PATH.as_posix(): sha256_file(statistics_path),
+            "artifacts/tic_batch1/TRANSLATION_CORPUS_INVENTORY.json": sha256_file(inventory_path),
+            "artifacts/tic_batch1/TRANSLATION_CORPUS_STATISTICS.json": sha256_file(statistics_path),
         },
         "boundaries": {
             "inventory_only": True,

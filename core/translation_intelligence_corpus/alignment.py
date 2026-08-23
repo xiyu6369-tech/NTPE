@@ -10,16 +10,23 @@ from typing import Any
 from .evidence_linker import link_all_evidence, sha256_file, sha256_text
 from .segmentation import segment_text
 
+from core.production_runtime.manifest import (
+    get_tic_batch_artifact_path,
+    get_tic_batch_path,
+    TE_V71_STAGE118_TRANSLATION_QUALITY_FRAMEWORK_FREEZE,
+    TE_V72_STAGE1223_SOURCE_EXCERPT_FREEZE,
+)
+
 BATCH1_INPUTS = (
-    "artifacts/tic_batch1/TRANSLATION_CORPUS_INVENTORY.json",
-    "artifacts/tic_batch1/TRANSLATION_CORPUS_STATISTICS.json",
+    get_tic_batch_artifact_path(".", "tic_batch1", "TRANSLATION_CORPUS_INVENTORY.json"),
+    get_tic_batch_artifact_path(".", "tic_batch1", "TRANSLATION_CORPUS_STATISTICS.json"),
 )
 BATCH2_INPUTS = (
-    "artifacts/tic_batch2/TRANSLATION_CASES.json",
-    "artifacts/tic_batch2/TRANSLATION_CASE_INDEX.json",
-    "artifacts/tic_batch2/TRANSLATION_CASE_STATISTICS.json",
+    get_tic_batch_artifact_path(".", "tic_batch2", "TRANSLATION_CASES.json"),
+    get_tic_batch_artifact_path(".", "tic_batch2", "TRANSLATION_CASE_INDEX.json"),
+    get_tic_batch_artifact_path(".", "tic_batch2", "TRANSLATION_CASE_STATISTICS.json"),
 )
-ARTIFACT_DIR = Path("artifacts/tic_batch3")
+ARTIFACT_DIR = get_tic_batch_path(".", "tic_batch3")
 EVIDENCE_SOURCE = ARTIFACT_DIR / "KNOWN_SUBJECT_SHIFT_HUMAN_REVIEW.json"
 INVENTORY = ARTIFACT_DIR / "MANUAL_EVIDENCE_INVENTORY.json"
 LINKS = ARTIFACT_DIR / "MANUAL_EVIDENCE_LINKS.json"

@@ -12,11 +12,17 @@ from core.shared.evidence import (
     sha256_text,
 )
 
-STAGE11_DEFECTS = "artifacts/te_v71_stage111/TE_V71_STAGE111_TRANSLATION_DEFECTS.json"
-STAGE11_CASE_ID = "TIC-CASE-B2-598DC16E43DB4363D420"
-BATCH3_STAGE11_EVIDENCE_ID = "TIC-EVID-B3-4C47ECCEDCAB1775DE59"
-STAGE1223_SOURCE_FREEZE = "artifacts/te_v72_stage1223/TE_V72_STAGE1223_SOURCE_EXCERPT_FREEZE.json"
+from core.production_runtime.manifest import (
+    get_te_v7_stage_path,
+    TE_V71_STAGE111_TRANSLATION_DEFECTS,
+    TE_V72_STAGE1223_SOURCE_EXCERPT_FREEZE,
+)
+
 PRAISE_TERMS = ("很好", "自然", "出版級", "語氣正確", "人物口吻正確", "忠實且流暢", "approved", "accepted as final")
+
+
+def _to_relative(root: Path, path: Path) -> str:
+    return path.relative_to(root).as_posix()
 
 
 def discover_review_files(root: str | Path) -> list[str]:
@@ -27,12 +33,12 @@ def discover_review_files(root: str | Path) -> list[str]:
         if path.is_file() and path.suffix.lower() in {".json", ".txt", ".md"} and (
             "review" in path.name.lower() or "defect" in path.name.lower()
         ):
-            found.add(path.relative_to(base).as_posix())
+            found.add(_to_relative(base, path))
     for path in (base / "docs" / "releases").rglob("*.md"):
-        found.add(path.relative_to(base).as_posix())
+        found.add(_to_relative(base, path))
     for path in (base / "tests" / "literary" / "outputs").rglob("evaluation.md"):
-        found.add(path.relative_to(base).as_posix())
-    found.add(STAGE1223_SOURCE_FREEZE)
+        found.add(_to_relative(base, path))
+    found.add(_to_relative(base, get_te_v7_stage_path(base, "te_v72_stage1223") / TE_V72_STAGE1223_SOURCE_EXCERPT_FREEZE))
     return sorted(found)
 
 
@@ -68,19 +74,21 @@ def search_historical_human_evidence(
 ) -> tuple[list[dict[str, Any]], dict[str, Any]]:
     base = Path(root).resolve()
     files = discover_review_files(base)
-    defects_payload = _json_object(base, STAGE11_DEFECTS)
+    defects_path = _to_relative(base, get_te_v7_stage_path(base, "te_v71_stage111") / TE_V71_STAGE111_TRANSLATION_DEFECTS)
+    defects_payload = _json_object(base, defects_path)
     if defects_payload.get("human_review_based") is not True:
         raise ValueError("Stage 11 defects lack human-review provenance")
-    case = cases_by_id[STAGE11_CASE_ID]
-    source_freeze = _json_object(base, STAGE1223_SOURCE_FREEZE)
+    case = cases_by_id["TIC-CASE-B2-598DC16E43DB4363D420"]
+    source_freeze_path = _to_relative(base, get_te_v7_stage_path(base, "te_v72_stage1223") / TE_V72_STAGE1223_SOURCE_EXCERPT_FREEZE)
+    source_freeze = _json_object(base, source_freeze_path)
     if source_freeze["parent_source_reference"] != case["source_file"]:
         raise ValueError("Stage 12.2.3 source freeze references a different source")
     if source_freeze["parent_source_sha256"] != case["source_sha256"]:
         raise ValueError("Stage 12.2.3 source freeze SHA mismatch")
-    if f"{STAGE11_DEFECTS}#TQ-DEF-A" not in source_freeze["evidence_references"]:
+    if f"{defects_path}#TQ-DEF-A" not in source_freeze["evidence_references"]:
         raise ValueError("Stage 12.2.3 source freeze lacks TQ-DEF-A reference")
     defect_file_sha = sha256_file(
-        resolve_project_relative_path(base, STAGE11_DEFECTS, must_exist=True)
+        resolve_project_relative_path(base, defects_path, must_exist=True)
     )
     items: list[dict[str, Any]] = []
     for defect in defects_payload["defects"]:
@@ -104,12 +112,12 @@ def search_historical_human_evidence(
         )
         precise = source_excerpt is not None and translation_excerpt is not None
         evidence_id = (
-            BATCH3_STAGE11_EVIDENCE_ID
+            "TIC-EVID-B3-4C47ECCEDCAB1775DE59"
             if defect["defect_id"] == "TQ-DEF-A"
             else f"TIC-EVID-B5-{defect['defect_id']}"
         )
-        source_sha = sha256_text(source_excerpt) if source_excerpt else None
-        translation_sha = sha256_text(translation_excerpt) if translation_excerpt else None
+        source_sha = sha256_text(source_excerpt) if source_excerpt else ""
+        translation_sha = sha256_text(translation_excerpt) if translation_excerpt else ""
         alignment_id = (
             _alignment_id(case["case_id"], evidence_id, source_sha, translation_sha)
             if precise
@@ -120,7 +128,7 @@ def search_historical_human_evidence(
                 "evidence_id": evidence_id,
                 "source_batch": "TIC Batch 3 / TE-v7.1-Stage11.1",
                 "evidence_type": "historical_human_confirmed_defect",
-                "evidence_path": STAGE11_DEFECTS,
+                "evidence_path": defects_path,
                 "evidence_sha256": defect_file_sha,
                 "reviewer_type": "human",
                 "human_provenance": {
@@ -135,12 +143,12 @@ def search_historical_human_evidence(
                 "case_id": case["case_id"],
                 "source_excerpt": source_excerpt,
                 "translation_excerpt": translation_excerpt,
-                "source_start_offset": source_start,
-                "source_end_offset": source_start + len(source_excerpt) if source_excerpt else None,
-                "translation_start_offset": translation_start,
-                "translation_end_offset": translation_start + len(translation_excerpt) if translation_excerpt else None,
-                "source_excerpt_sha256": source_sha,
-                "translation_excerpt_sha256": translation_sha,
+                "source_start_offset": source_start if source_excerpt is not None else None,
+                "source_end_offset": source_start + len(source_excerpt) if source_excerpt is not None and source_start is not None else None,
+                "translation_start_offset": translation_start if translation_excerpt is not None else None,
+                "translation_end_offset": translation_start + len(translation_excerpt) if translation_excerpt is not None and translation_start is not None else None,
+                "source_excerpt_sha256": source_sha if source_excerpt else None,
+                "translation_excerpt_sha256": translation_sha if translation_excerpt else None,
                 "failure_category": defect["category"],
                 "failure_subcategory": None,
                 "quality_judgement": "human_confirmed_failure",
@@ -168,7 +176,7 @@ def search_historical_human_evidence(
                     "source_match_count": source_count,
                     "source_match_count_in_frozen_range": frozen_source_match_count,
                     "translation_match_count": translation_count,
-                    "source_disambiguation_artifact": STAGE1223_SOURCE_FREEZE
+                    "source_disambiguation_artifact": source_freeze["evidence_path"]
                     if defect["defect_id"] == "TQ-DEF-A"
                     else None,
                     "source_disambiguation_range": [

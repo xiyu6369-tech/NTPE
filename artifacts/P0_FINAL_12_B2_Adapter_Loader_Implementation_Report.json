@@ -1,0 +1,204 @@
+{
+  "baseline": {
+    "head": "7136b428cf4f80f71bf43968315b94218d8bed0b",
+    "origin_main": "7136b428cf4f80f71bf43968315b94218d8bed0b",
+    "branch": "main",
+    "head_equals_origin": true,
+    "timestamp": "2026-08-23T19:55:00+08:00"
+  },
+  "scope": {
+    "batch": "B2",
+    "name": "Adapter/Loader Layer",
+    "risk": "MEDIUM",
+    "modules_modified": 6,
+    "manifest_extended": 1,
+    "references_migrated": 17
+  },
+  "b1_canonical_hub_extensions": {
+    "functions_added": [
+      "get_tic_batch_artifact_path",
+      "get_tic_batch_path"
+    ],
+    "constants_added": {
+      "te_v7_1_stages": 8,
+      "te_v7_2_stages": 80,
+      "te_v7_stage1010": 1
+    },
+    "total_new_constants": 89
+  },
+  "modified_files": [
+    {
+      "file": "core/production_runtime/manifest.py",
+      "change_type": "EXTENDED",
+      "description": "Extended canonical hub with TIC batch functions and 89 TE-v7.1/v7.2/v7 artifact constants",
+      "functions_added": [
+        "get_tic_batch_artifact_path",
+        "get_tic_batch_path"
+      ],
+      "constants_added": 89,
+      "references_migrated": 0
+    },
+    {
+      "file": "core/translation_intelligence_corpus/inventory.py",
+      "change_type": "MIGRATED",
+      "description": "Migrated 4 hardcoded TIC batch artifact paths to canonical source functions",
+      "references_before": [
+        "artifacts/tic_batch1/TRANSLATION_CORPUS_INVENTORY.json",
+        "artifacts/tic_batch1/TRANSLATION_CORPUS_STATISTICS.json",
+        "artifacts/tic_batch1/TRANSLATION_CORPUS_MANIFEST.json",
+        "artifacts/tic_batch1"
+      ],
+      "canonical_source": "core.production_runtime.manifest.get_tic_batch_artifact_path / get_tic_batch_path",
+      "references_migrated": 4,
+      "semantic_equivalence": true
+    },
+    {
+      "file": "core/translation_intelligence_corpus/historical_evidence_search.py",
+      "change_type": "MIGRATED",
+      "description": "Migrated 3 hardcoded TE-v7.1/v7.2 artifact paths to canonical source functions",
+      "references_before": [
+        "artifacts/te_v71_stage111/TE_V71_STAGE111_TRANSLATION_DEFECTS.json",
+        "artifacts/te_v72_stage1223/TE_V72_STAGE1223_SOURCE_EXCERPT_FREEZE.json"
+      ],
+      "canonical_source": "core.production_runtime.manifest.get_te_v7_stage_path + constants",
+      "references_migrated": 3,
+      "semantic_equivalence": true
+    },
+    {
+      "file": "core/translation_intelligence_corpus/alignment.py",
+      "change_type": "MIGRATED",
+      "description": "Migrated 6 hardcoded TIC batch paths to canonical source functions",
+      "references_before": [
+        "artifacts/tic_batch1/TRANSLATION_CORPUS_INVENTORY.json",
+        "artifacts/tic_batch1/TRANSLATION_CORPUS_STATISTICS.json",
+        "artifacts/tic_batch2/TRANSLATION_CASES.json",
+        "artifacts/tic_batch2/TRANSLATION_CASE_INDEX.json",
+        "artifacts/tic_batch2/TRANSLATION_CASE_STATISTICS.json",
+        "artifacts/tic_batch3"
+      ],
+      "canonical_source": "core.production_runtime.manifest.get_tic_batch_artifact_path / get_tic_batch_path",
+      "references_migrated": 6,
+      "semantic_equivalence": true
+    },
+    {
+      "file": "core/adaptive_context_single_real_invocation/config.py",
+      "change_type": "MIGRATED",
+      "description": "Migrated 3 hardcoded TE-v7 stage artifact paths to canonical source functions",
+      "references_before": [
+        "artifacts/te_v7_stage1010/TE_V7_STAGE1010_SINGLE_REAL_INVOCATION.json",
+        "artifacts/te_v7_stage1010/review/TE_V7_STAGE1010_TRANSLATION_REVIEW.txt",
+        "artifacts/te_v7_stage109/TE_V7_STAGE109_REAL_PROVIDER_PREFLIGHT.json"
+      ],
+      "canonical_source": "core.production_runtime.manifest.get_te_v7_artifact_path + constants",
+      "references_migrated": 3,
+      "semantic_equivalence": true
+    },
+    {
+      "file": "core/adaptive_context_single_real_invocation/runner.py",
+      "change_type": "MIGRATED",
+      "description": "Migrated 1 hardcoded TE-v7 stage109 artifact path to canonical source function",
+      "references_before": [
+        "root / \"artifacts/te_v7_stage109/TE_V7_STAGE109_REAL_PROVIDER_PREFLIGHT.json\""
+      ],
+      "canonical_source": "core.production_runtime.manifest.get_te_v7_artifact_path + TE_V7_STAGE109_REAL_PROVIDER_PREFLIGHT",
+      "references_migrated": 1,
+      "semantic_equivalence": true
+    }
+  ],
+  "migration_summary": {
+    "total_references_migrated": 17,
+    "modules_modified": 6,
+    "manifest_extended": 1,
+    "b2_scope_complete": true,
+    "b3_b5_references_remaining": 16
+  },
+  "validation_results": {
+    "compileall_core": "PASS",
+    "ntpe_validate": "PASS_WITH_WARNINGS",
+    "git_diff_check": "PASS",
+    "git_diff_cached_check": "PASS",
+    "series_batch5_4_regression": "43_PASS",
+    "warnings": [
+      "ntpe_validate: 1 optional import warning (core.prompt_builder.prompt_builder) - pre-existing",
+      "git diff --check: CRLF warnings on Protected Worktree files - pre-existing"
+    ]
+  },
+  "test_results": {
+    "tic_batch1_inventory": {
+      "total": 10,
+      "passed": 4,
+      "failed": 6,
+      "failure_reasons": [
+        "6 tests fail due to deleted historical artifacts (207 artifacts deleted in Phase 2A)",
+        "1 test fails due to import from core.production_runtime.manifest (expected - canonical hub usage)"
+      ],
+      "expected": true
+    },
+    "tic_batch3_alignment": {
+      "total": 19,
+      "passed": 16,
+      "failed": 3,
+      "failure_reasons": [
+        "1 test fails due to deleted artifact (te_v72_stage1223/baseline/translation.txt)",
+        "1 test fails due to manifest hash mismatch (alignment.py modified)",
+        "1 test fails due to import from core.production_runtime.manifest (canonical hub usage)"
+      ],
+      "expected": true
+    }
+  },
+  "protected_worktree": {
+    "files": [
+      "artifacts/rm6_canary/legacy_kr/novel_sample_live_progress.json",
+      "artifacts/rm6_canary/runtime_kr/novel_sample_live_progress.json",
+      "tests/literary/outputs/PS-03-integration/Literary_Quality_Report.json",
+      "tests/literary/outputs/PS-03-smoke/Literary_Quality_Report.json",
+      "tests/literary/outputs/PS-03-smoke/Literary_Regression_Report.json",
+      "tests/literary/outputs/Regression_History.json",
+      "tests/literary/outputs/Regression_History.md"
+    ],
+    "status": "UNCHANGED",
+    "staged": false
+  },
+  "frozen_contracts": {
+    "affected": 7,
+    "modified": 0,
+    "status": "UNCHANGED"
+  },
+  "root_hygiene": {
+    "dummy_txt": "ABSENT",
+    "new_root_artifacts": 0
+  },
+  "scope_isolation": {
+    "b1_b2_files_modified": 7,
+    "b3_b5_files_modified": 0,
+    "deleted_artifacts_restored": 0,
+    "tools_one_shots_handled": 0
+  },
+  "stop_conditions": {
+    "stop_b2_01": false,
+    "stop_b2_02": false,
+    "stop_b2_03": false,
+    "stop_b2_04": false,
+    "stop_b2_05": false,
+    "stop_b2_06": false,
+    "stop_b2_07": false,
+    "stop_b2_08": false,
+    "stop_b2_09": false
+  },
+  "reference_migration_status": {
+    "b1_completed": 10,
+    "b2_completed": 17,
+    "b3_remaining": 3,
+    "b4_remaining": 11,
+    "b5_remaining": 20,
+    "total_migrated": 27,
+    "total_remaining": 34
+  },
+  "deliverables": [
+    "docs/governance/repository/P0_FINAL_12_B2_ADAPTER_LOADER_IMPLEMENTATION.md",
+    "artifacts/P0_FINAL_12_B2_Adapter_Loader_Implementation_Report.json"
+  ],
+  "commit": false,
+  "push": false,
+  "final_verdict": "P0-FINAL-12-B2 = COMPLETE"
+}

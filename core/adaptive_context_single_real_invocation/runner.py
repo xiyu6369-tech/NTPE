@@ -41,6 +41,7 @@ from .report import (
     write_invocation_artifact,
     write_translation_review,
 )
+from core.production_runtime.manifest import get_te_v7_artifact_path, TE_V7_STAGE109_REAL_PROVIDER_PREFLIGHT
 
 
 class SingleInvocationTransport(Protocol):
@@ -180,13 +181,13 @@ def _load_single_chunk(config: SingleRealInvocationConfig, root: Path) -> str:
 
 
 def _stage109_valid(config: SingleRealInvocationConfig, root: Path) -> bool:
-    expected = (root / "artifacts/te_v7_stage109/TE_V7_STAGE109_REAL_PROVIDER_PREFLIGHT.json").resolve()
+    expected = get_te_v7_artifact_path(root, "te_v7_stage109", TE_V7_STAGE109_REAL_PROVIDER_PREFLIGHT)
     candidate = Path(config.stage109_artifact_path)
     if not candidate.is_absolute():
         candidate = root / candidate
     try:
         artifact = verify_preflight_artifact(candidate)
-        return candidate.resolve() == expected and artifact.eligible and not artifact.provider_executed
+        return candidate.resolve() == expected.resolve() and artifact.eligible and not artifact.provider_executed
     except (OSError, TypeError, ValueError):
         return False
 

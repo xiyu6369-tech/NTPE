@@ -4,12 +4,14 @@ from dataclasses import dataclass, field
 
 from core.adaptive_context_real_provider_boundary import ALLOWED_MODELS, ALLOWED_PROVIDER_URLS
 from core.adaptive_context_real_provider_preflight import PreflightAttemptPlan, safe_identifier
+from core.production_runtime.manifest import get_te_v7_artifact_path, TE_V7_STAGE1010_SINGLE_REAL_INVOCATION, TE_V7_STAGE1010_TRANSLATION_REVIEW, TE_V7_STAGE109_REAL_PROVIDER_PREFLIGHT
 
 INVOCATION_VERSION = "7.0.0-stage10.10A"
 EXECUTION_AUTHORIZATION_TOKEN = "AUTHORIZE_NTPE_TE_V7_STAGE1010_SINGLE_REAL_INVOCATION"
 DEFAULT_SOURCE_PATH = "tests/literary/Golden_Set/original_ko.txt"
-DEFAULT_ARTIFACT_PATH = "artifacts/te_v7_stage1010/TE_V7_STAGE1010_SINGLE_REAL_INVOCATION.json"
-DEFAULT_REVIEW_PATH = "artifacts/te_v7_stage1010/review/TE_V7_STAGE1010_TRANSLATION_REVIEW.txt"
+DEFAULT_ARTIFACT_PATH = field(default_factory=lambda: str(get_te_v7_artifact_path(".", "te_v7_stage1010", TE_V7_STAGE1010_SINGLE_REAL_INVOCATION)))
+DEFAULT_REVIEW_PATH = field(default_factory=lambda: str(get_te_v7_artifact_path(".", "te_v7_stage1010", TE_V7_STAGE1010_TRANSLATION_REVIEW)))
+DEFAULT_STAGE109_PATH = field(default_factory=lambda: str(get_te_v7_artifact_path(".", "te_v7_stage109", TE_V7_STAGE109_REAL_PROVIDER_PREFLIGHT)))
 
 
 @dataclass(frozen=True)
@@ -24,7 +26,7 @@ class SingleRealInvocationConfig:
     provider_url: str = "https://integrate.api.nvidia.com/v1/chat/completions"
     model: str = "meta/llama-3.3-70b-instruct"
     session_id: str = "stage1010-single-session"
-    source_path: str = DEFAULT_SOURCE_PATH
+    source_path: str = "tests/literary/Golden_Set/original_ko.txt"
     chunk_index: int = 1
     chunk_size: int = 600
     chunk_count: int = 1
@@ -35,7 +37,7 @@ class SingleRealInvocationConfig:
     max_retries: int = 1
     artifact_path: str = DEFAULT_ARTIFACT_PATH
     review_path: str = DEFAULT_REVIEW_PATH
-    stage109_artifact_path: str = "artifacts/te_v7_stage109/TE_V7_STAGE109_REAL_PROVIDER_PREFLIGHT.json"
+    stage109_artifact_path: str = DEFAULT_STAGE109_PATH
 
     def __post_init__(self) -> None:
         object.__setattr__(self, "attempt_plan", tuple(self.attempt_plan))
