@@ -1,0 +1,135 @@
+{
+  "baseline": {
+    "HEAD": "2ad6ac3b57dcb912d21fa9a93cc17884738cc376",
+    "origin_main": "2ad6ac3b57dcb912d21fa9a93cc17884738cc376",
+    "branch": "main",
+    "head_equals_origin": true,
+    "deleted_items_count": 237,
+    "modified_items_count": 10,
+    "protected_worktree_unchanged": true,
+    "dummy_txt_absent": true
+  },
+  "target_modules": [
+    "core/translation_quality_framework_integration/integration_validator.py",
+    "core/translation_quality_defects/catalog.py"
+  ],
+  "reference_count_before": 3,
+  "migration_table": [
+    {
+      "ref_id": "R9-1",
+      "deleted_artifact": "TE_V71_STAGE113_REVIEW_DEFECTS.json",
+      "deleted_path": "artifacts/te_v71_stage113/TE_V71_STAGE113_REVIEW_DEFECTS.json",
+      "module": "core/translation_quality_framework_integration/integration_validator.py",
+      "function": "validate_cross_stage_references",
+      "line": 85,
+      "reference_type": "RUNTIME_VALIDATION",
+      "runtime_role": "QUALITY GATE",
+      "canonical_source": "core/production_runtime/manifest.py -> get_te_v7_artifact_path()",
+      "migration_method": "Replace hardcoded path with canonical function call",
+      "semantic_impact": "NONE - same artifact path resolved through canonical source"
+    },
+    {
+      "ref_id": "R9-2",
+      "deleted_artifact": "TE_V71_STAGE113_REVIEW_METRICS.json",
+      "deleted_path": "artifacts/te_v71_stage113/TE_V71_STAGE113_REVIEW_METRICS.json",
+      "module": "core/translation_quality_framework_integration/integration_validator.py",
+      "function": "validate_cross_stage_references",
+      "line": 86,
+      "reference_type": "RUNTIME_VALIDATION",
+      "runtime_role": "QUALITY GATE",
+      "canonical_source": "core/production_runtime/manifest.py -> get_te_v7_artifact_path()",
+      "migration_method": "Replace hardcoded path with canonical function call",
+      "semantic_impact": "NONE - same artifact path resolved through canonical source"
+    },
+    {
+      "ref_id": "R19",
+      "deleted_artifact": "TE_V7_STAGE10101_TRANSLATION_REVIEW.txt",
+      "deleted_path": "artifacts/te_v7_stage10101/review/TE_V7_STAGE10101_TRANSLATION_REVIEW.txt",
+      "module": "core/translation_quality_defects/catalog.py",
+      "function": "_get_review_path",
+      "line": 25,
+      "reference_type": "RUNTIME_FIXTURE",
+      "runtime_role": "DEFECT CATALOG",
+      "canonical_source": "core/production_runtime/manifest.py -> get_te_v7_artifact_path() + TE_V7_STAGE10101_TRANSLATION_REVIEW constant",
+      "migration_method": "Replace hardcoded fallback path with canonical function call",
+      "semantic_impact": "NONE - same artifact path resolved through canonical source; Priority 1 fixtures still preferred"
+    }
+  ],
+  "canonical_sources": {
+    "hub": "core/production_runtime/manifest.py",
+    "functions": [
+      "get_canonical_artifact_root",
+      "get_te_v7_stage_path",
+      "get_te_v7_artifact_path",
+      "get_tic_batch_artifact_path",
+      "get_tic_batch_path"
+    ],
+    "constants_used": [
+      "TE_V71_STAGE113_REVIEW_DEFECTS",
+      "TE_V71_STAGE113_REVIEW_METRICS",
+      "TE_V7_STAGE10101_TRANSLATION_REVIEW"
+    ]
+  },
+  "semantic_preservation": {
+    "input_preserved": true,
+    "output_preserved": true,
+    "resolution_equivalent": true,
+    "failure_behavior_unchanged": true,
+    "ordering_semantics_unchanged": true,
+    "identity_semantics_unchanged": true
+  },
+  "reference_count_after": 3,
+  "remaining_b3_references": 0,
+  "remaining_b4_references": 11,
+  "remaining_b5_references": "20+",
+  "validation_results": {
+    "compileall": "PASS",
+    "ntpe_validate": "PASS WITH WARNINGS (1 pre-existing optional import warning)",
+    "git_diff_check": "PASS (CRLF warnings on Protected Worktree only)",
+    "b3_targeted_tests": "PASS (core modules load correctly)",
+    "series_regression": "43 PASS"
+  },
+  "protected_worktree_status": {
+    "files_count": 7,
+    "all_unchanged": true,
+    "all_unstaged": true
+  },
+  "frozen_contract_status": {
+    "affected_contracts": 7,
+    "contracts_modified": 0,
+    "contract_changes_required": false
+  },
+  "historical_artifact_status": {
+    "total_deleted": 207,
+    "restored_during_b3": 0,
+    "still_deleted": 207
+  },
+  "tools_one_shots_status": {
+    "total_deleted": 30,
+    "still_deleted": 30
+  },
+  "dummy_txt_status": "ABSENT",
+  "root_hygiene_status": "CLEAN",
+  "scope_isolation": {
+    "b3_files_modified": 2,
+    "b1_files_modified": 0,
+    "b2_files_modified": 0,
+    "b4_files_modified": 0,
+    "b5_files_modified": 0,
+    "unintended_modifications": 0
+  },
+  "stop_conditions": {
+    "B3-01": false,
+    "B3-02": false,
+    "B3-03": false,
+    "B3-04": false,
+    "B3-05": false,
+    "B3-06": false,
+    "B3-07": false,
+    "B3-08": false,
+    "B3-09": false,
+    "B3-10": false
+  },
+  "commit_status": "NO",
+  "push_status": "NO"
+}

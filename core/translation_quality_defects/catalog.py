@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
+from core.production_runtime.manifest import get_te_v7_artifact_path, TE_V7_STAGE10101_TRANSLATION_REVIEW
 from .location import DefectLocation
 from .model import TranslationDefect
 from .validator import validate_defects
@@ -21,8 +22,8 @@ def _get_review_path(root: Path) -> Path:
     corpus_root = Path("tests/fixtures/tic_corpus")
     if corpus_root.exists():
         return corpus_root / "review" / "TE_V7_STAGE10101_TRANSLATION_REVIEW.txt"
-    # Fallback to the historical path for backward compatibility
-    return Path("artifacts/te_v7_stage10101/review/TE_V7_STAGE10101_TRANSLATION_REVIEW.txt")
+    # Fallback to canonical path via manifest
+    return get_te_v7_artifact_path(root, "te_v7_stage10101", TE_V7_STAGE10101_TRANSLATION_REVIEW)
 
 
 def _location(locator: str, root: Path | None = None) -> DefectLocation:

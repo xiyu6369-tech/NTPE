@@ -5,6 +5,11 @@ from dataclasses import asdict
 from datetime import datetime
 from pathlib import Path
 
+from core.production_runtime.manifest import (
+    get_te_v7_artifact_path,
+    TE_V71_STAGE113_REVIEW_DEFECTS,
+    TE_V71_STAGE113_REVIEW_METRICS,
+)
 from .integration_model import QualityFrameworkIntegration
 from .integrity import verify_quality_framework_integrity
 from .references import load_reference, reference_sha256
@@ -82,8 +87,8 @@ def validate_cross_stage_references(record: QualityFrameworkIntegration, *, root
     overall = next(row for row in metrics["metrics"] if row["dimension"] == "overall")
     if overall["evidence_count"] != defects["defect_count"] or overall["blocking_defect_count"] != defects["blocking_defect_count"]:
         raise ValueError("Stage 11.1 to 11.2 defect evidence mismatch")
-    review_defects_ref = "artifacts/te_v71_stage113/TE_V71_STAGE113_REVIEW_DEFECTS.json"
-    review_metrics_ref = "artifacts/te_v71_stage113/TE_V71_STAGE113_REVIEW_METRICS.json"
+    review_defects_ref = str(get_te_v7_artifact_path(root, "te_v71_stage113", TE_V71_STAGE113_REVIEW_DEFECTS))
+    review_metrics_ref = str(get_te_v7_artifact_path(root, "te_v71_stage113", TE_V71_STAGE113_REVIEW_METRICS))
     review_defects = load_reference(root, review_defects_ref)
     review_metrics = load_reference(root, review_metrics_ref)
     if review_defects["defects_artifact"] != record.defects_reference or set(review_defects["defect_ids"]) != defect_ids:
