@@ -1,0 +1,216 @@
+{
+  "baseline": {
+    "HEAD": "4de1c4a",
+    "origin_main": "4de1c4a",
+    "branch": "main",
+    "head_equals_origin": true,
+    "deleted_items_count": 237,
+    "modified_items_count": 9,
+    "protected_worktree_unchanged": true,
+    "dummy_txt_absent": true
+  },
+  "target": "ntpe_production_translate.py",
+  "reference_count_before": 11,
+  "reference_migration_table": [
+    {
+      "ref_id": "R1",
+      "old_path": "ROOT / \"artifacts\" / \"te_v7_stage09\" / \"TE_V7_STAGE09_BASELINE.json\"",
+      "function": "_stage09_artifact(\"baseline\")",
+      "purpose": "Stage 09 baseline artifact",
+      "runtime_phase": "production benchmark",
+      "canonical_replacement": "get_te_v7_artifact_path(ROOT, \"te_v7_stage09\", TE_V7_STAGE09_BASELINE)",
+      "migration_method": "Replace hardcoded path with canonical function + constant",
+      "risk": "LOW"
+    },
+    {
+      "ref_id": "R2",
+      "old_path": "ROOT / \"artifacts\" / \"te_v7_stage09\" / \"TE_V7_STAGE09_CANDIDATE.json\"",
+      "function": "_stage09_artifact(\"candidate\")",
+      "purpose": "Stage 09 candidate artifact",
+      "runtime_phase": "production benchmark",
+      "canonical_replacement": "get_te_v7_artifact_path(ROOT, \"te_v7_stage09\", TE_V7_STAGE09_CANDIDATE)",
+      "migration_method": "Replace hardcoded path with canonical function + constant",
+      "risk": "LOW"
+    },
+    {
+      "ref_id": "R3",
+      "old_path": "ROOT / \"artifacts\" / \"te_v7_stage09\" / \"TE_V7_STAGE09_COMPARISON.json\"",
+      "function": "_stage09_artifact(\"comparison\")",
+      "purpose": "Stage 09 comparison artifact",
+      "runtime_phase": "production benchmark",
+      "canonical_replacement": "get_te_v7_artifact_path(ROOT, \"te_v7_stage09\", TE_V7_STAGE09_COMPARISON)",
+      "migration_method": "Replace hardcoded path with canonical function + constant",
+      "risk": "LOW"
+    },
+    {
+      "ref_id": "R4",
+      "old_path": "ROOT / \"artifacts\" / \"te_v7_stage09\" / \"TE_V7_STAGE09_READINESS.json\"",
+      "function": "_stage09_artifact(\"readiness\")",
+      "purpose": "Stage 09 readiness artifact",
+      "runtime_phase": "production benchmark",
+      "canonical_replacement": "get_te_v7_artifact_path(ROOT, \"te_v7_stage09\", TE_V7_STAGE09_READINESS)",
+      "migration_method": "Replace hardcoded path with canonical function + constant",
+      "risk": "LOW"
+    },
+    {
+      "ref_id": "R5",
+      "old_path": "ROOT / \"artifacts\" / \"te_v7_stage081\" / \"TE_V7_STAGE081_PRODUCTION_ACTIVATION_POLICY.json\"",
+      "function": "run_regression (strategy select)",
+      "purpose": "Production activation policy",
+      "runtime_phase": "ACE strategy selection",
+      "canonical_replacement": "get_te_v7_artifact_path(ROOT, \"te_v7_stage081\", TE_V7_STAGE081_PRODUCTION_ACTIVATION_POLICY)",
+      "migration_method": "Replace hardcoded path with canonical function + constant",
+      "risk": "MEDIUM"
+    },
+    {
+      "ref_id": "R6",
+      "old_path": "ROOT / \"artifacts\" / \"te_v7_stage082\" / \"TE_V7_STAGE082_PROFILE_AWARE_CONTEXT_BUDGET.json\"",
+      "function": "run_regression (strategy select, profile budget)",
+      "purpose": "Profile-aware context budget",
+      "runtime_phase": "ACE strategy selection / profile budget",
+      "canonical_replacement": "get_te_v7_artifact_path(ROOT, \"te_v7_stage082\", TE_V7_STAGE082_PROFILE_AWARE_CONTEXT_BUDGET)",
+      "migration_method": "Replace hardcoded path with canonical function + constant",
+      "risk": "MEDIUM"
+    },
+    {
+      "ref_id": "R7",
+      "old_path": "ROOT / \"artifacts\" / \"te_v7_stage083\" / \"TE_V7_STAGE083_ADAPTIVE_CONTEXT_STRATEGY_SELECTION.json\"",
+      "function": "run_regression (strategy select)",
+      "purpose": "Adaptive context strategy selection",
+      "runtime_phase": "ACE strategy selection",
+      "canonical_replacement": "get_te_v7_artifact_path(ROOT, \"te_v7_stage083\", TE_V7_STAGE083_ADAPTIVE_CONTEXT_STRATEGY_SELECTION)",
+      "migration_method": "Replace hardcoded path with canonical function + constant",
+      "risk": "MEDIUM"
+    },
+    {
+      "ref_id": "R8",
+      "old_path": "ROOT / \"artifacts\" / \"te_v7_stage075\" / \"TE_V7_STAGE075_CANARY_AB_QUALITY_VALIDATION.json\"",
+      "function": "run_regression (production policy, canary AB)",
+      "purpose": "Canary AB quality validation",
+      "runtime_phase": "ACE production policy / canary AB",
+      "canonical_replacement": "get_te_v7_artifact_path(ROOT, \"te_v7_stage075\", TE_V7_STAGE075_CANARY_AB_QUALITY_VALIDATION)",
+      "migration_method": "Replace hardcoded path with canonical function + constant",
+      "risk": "MEDIUM"
+    },
+    {
+      "ref_id": "R9",
+      "old_path": "ROOT / \"artifacts\" / \"te_v7_stage06\" / \"TE_V7_STAGE06_CANARY_PRODUCTION_VALIDATION.json\"",
+      "function": "run_regression (production policy, canary validate)",
+      "purpose": "Canary production validation",
+      "runtime_phase": "ACE production policy / canary validation",
+      "canonical_replacement": "get_te_v7_artifact_path(ROOT, \"te_v7_stage06\", TE_V7_STAGE06_CANARY_PRODUCTION_VALIDATION)",
+      "migration_method": "Replace hardcoded path with canonical function + constant",
+      "risk": "MEDIUM"
+    },
+    {
+      "ref_id": "R10",
+      "old_path": "ROOT / \"artifacts\" / \"te_v7_stage04\" / \"TE_V7_STAGE04_PRODUCTION_SHADOW_VALIDATION.json\"",
+      "function": "run_regression (shadow validate)",
+      "purpose": "Production shadow validation",
+      "runtime_phase": "ACE shadow validation",
+      "canonical_replacement": "get_te_v7_artifact_path(ROOT, \"te_v7_stage04\", TE_V7_STAGE04_PRODUCTION_SHADOW_VALIDATION)",
+      "migration_method": "Replace hardcoded path with canonical function + constant",
+      "risk": "MEDIUM"
+    }
+  ],
+  "canonical_sources": {
+    "hub": "core/production_runtime/manifest.py",
+    "functions": [
+      "get_te_v7_artifact_path",
+      "get_te_v7_stage_path"
+    ],
+    "constants_used": [
+      "TE_V7_STAGE09_BASELINE",
+      "TE_V7_STAGE09_CANDIDATE",
+      "TE_V7_STAGE09_COMPARISON",
+      "TE_V7_STAGE09_READINESS",
+      "TE_V7_STAGE081_PRODUCTION_ACTIVATION_POLICY",
+      "TE_V7_STAGE082_PROFILE_AWARE_CONTEXT_BUDGET",
+      "TE_V7_STAGE083_ADAPTIVE_CONTEXT_STRATEGY_SELECTION",
+      "TE_V7_STAGE075_CANARY_AB_QUALITY_VALIDATION",
+      "TE_V7_STAGE06_CANARY_PRODUCTION_VALIDATION",
+      "TE_V7_STAGE04_PRODUCTION_SHADOW_VALIDATION"
+    ]
+  },
+  "cli_behavior_preservation": {
+    "cli_entrypoint": true,
+    "argument_parsing": true,
+    "runtime_selection": true,
+    "provider_behavior": true
+  },
+  "semantic_preservation": {
+    "input_preserved": true,
+    "output_preserved": true,
+    "resolution_equivalent": true,
+    "failure_behavior_unchanged": true,
+    "ordering_unchanged": true,
+    "identity_unchanged": true
+  },
+  "failure_behavior_preservation": {
+    "missing_artifact": "FileNotOnDiskError raised (unchanged)",
+    "invalid_artifact": "JSON decode error raised (unchanged)",
+    "malformed_data": "Validation error raised (unchanged)",
+    "validation_failure": "Returns failure status (unchanged)",
+    "unavailable_source": "Exception propagated (unchanged)"
+  },
+  "reference_count_after": 11,
+  "remaining_b4_references": 0,
+  "remaining_b5_references": "20+",
+  "validation_results": {
+    "compileall": "PASS (2944 files)",
+    "ntpe_validate": "PASS WITH WARNINGS (1 pre-existing optional import warning)",
+    "git_diff_check": "PASS (CRLF warnings on Protected Worktree only)",
+    "cli_import": "PASS",
+    "cli_help": "PASS",
+    "cli_doctor": "PASS (input dir FAIL is expected)",
+    "b4_targeted_tests": "PASS (launcher_ps02, launcher_ps02_smoke)",
+    "series_regression": "43 PASS"
+  },
+  "protected_worktree_status": {
+    "files_count": 7,
+    "all_unchanged": true,
+    "all_unstaged": true
+  },
+  "frozen_contract_status": {
+    "affected_contracts": 7,
+    "contracts_modified": 0,
+    "contract_changes_required": false
+  },
+  "historical_artifact_status": {
+    "total_deleted": 207,
+    "restored_during_b4": 0,
+    "still_deleted": 207,
+    "note": "2 runtime modules (ntpe_literary_regression.py, ntpe_literary_evaluation.py) restored; these are production modules, not historical artifacts"
+  },
+  "tools_one_shots_status": {
+    "total_deleted": 30,
+    "still_deleted": 30
+  },
+  "dummy_txt_status": "ABSENT",
+  "root_hygiene_status": "CLEAN",
+  "scope_isolation": {
+    "b4_files_modified": 1,
+    "b4_files_restored": 2,
+    "b1_files_modified": 0,
+    "b2_files_modified": 0,
+    "b3_files_modified": 0,
+    "b5_files_modified": 0,
+    "unintended_modifications": 0
+  },
+  "stop_conditions": {
+    "B4-01": false,
+    "B4-02": false,
+    "B4-03": false,
+    "B4-04": false,
+    "B4-05": false,
+    "B4-06": false,
+    "B4-07": false,
+    "B4-08": false,
+    "B4-09": false,
+    "B4-10": false,
+    "B4-11": false,
+    "B4-12": false
+  },
+  "commit_status": "NO",
+  "push_status": "NO"
+}

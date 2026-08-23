@@ -10,6 +10,20 @@ import sys
 from pathlib import Path
 from typing import Iterable
 
+from core.production_runtime.manifest import (
+    get_te_v7_artifact_path,
+    get_te_v7_stage_path,
+    TE_V7_STAGE09_BASELINE,
+    TE_V7_STAGE09_CANDIDATE,
+    TE_V7_STAGE09_COMPARISON,
+    TE_V7_STAGE09_READINESS,
+    TE_V7_STAGE081_PRODUCTION_ACTIVATION_POLICY,
+    TE_V7_STAGE082_PROFILE_AWARE_CONTEXT_BUDGET,
+    TE_V7_STAGE083_ADAPTIVE_CONTEXT_STRATEGY_SELECTION,
+    TE_V7_STAGE075_CANARY_AB_QUALITY_VALIDATION,
+    TE_V7_STAGE06_CANARY_PRODUCTION_VALIDATION,
+    TE_V7_STAGE04_PRODUCTION_SHADOW_VALIDATION,
+)
 from ntpe_literary_regression import LiteraryRegressionOptions, discover_test_sets, ensure_literary_structure, run_literary_regression
 from ntpe_literary_evaluation import evaluate_stage_outputs
 
@@ -468,7 +482,16 @@ def run_evaluate(args: argparse.Namespace) -> int:
 
 
 def _stage09_artifact(kind: str) -> Path:
-    return ROOT / "artifacts" / "te_v7_stage09" / f"TE_V7_STAGE09_{kind.upper()}.json"
+    artifact_map = {
+        "baseline": TE_V7_STAGE09_BASELINE,
+        "candidate": TE_V7_STAGE09_CANDIDATE,
+        "comparison": TE_V7_STAGE09_COMPARISON,
+        "readiness": TE_V7_STAGE09_READINESS,
+    }
+    artifact_name = artifact_map.get(kind.lower())
+    if artifact_name is None:
+        raise ValueError(f"Unknown stage09 artifact kind: {kind}")
+    return get_te_v7_artifact_path(ROOT, "te_v7_stage09", artifact_name)
 
 
 def _benchmark_input(value: str, kind: str) -> tuple[Path, str | None]:
@@ -704,9 +727,9 @@ def run_regression(args: argparse.Namespace) -> int:
         base_rc = _print_regression_result(regression_result)
         return 1 if rollback.rollback else base_rc
     if bool(getattr(args, "ace_strategy_select_validate", False)):
-        policy_path = _resolve(args.ace_strategy_policy_report) if args.ace_strategy_policy_report else ROOT / "artifacts" / "te_v7_stage081" / "TE_V7_STAGE081_PRODUCTION_ACTIVATION_POLICY.json"
-        budget_path = _resolve(args.ace_strategy_budget_report) if args.ace_strategy_budget_report else ROOT / "artifacts" / "te_v7_stage082" / "TE_V7_STAGE082_PROFILE_AWARE_CONTEXT_BUDGET.json"
-        out_path = _resolve(args.ace_strategy_report) if args.ace_strategy_report else ROOT / "artifacts" / "te_v7_stage083" / "TE_V7_STAGE083_ADAPTIVE_CONTEXT_STRATEGY_SELECTION.json"
+        policy_path = _resolve(args.ace_strategy_policy_report) if args.ace_strategy_policy_report else get_te_v7_artifact_path(ROOT, "te_v7_stage081", TE_V7_STAGE081_PRODUCTION_ACTIVATION_POLICY)
+        budget_path = _resolve(args.ace_strategy_budget_report) if args.ace_strategy_budget_report else get_te_v7_artifact_path(ROOT, "te_v7_stage082", TE_V7_STAGE082_PROFILE_AWARE_CONTEXT_BUDGET)
+        out_path = _resolve(args.ace_strategy_report) if args.ace_strategy_report else get_te_v7_artifact_path(ROOT, "te_v7_stage083", TE_V7_STAGE083_ADAPTIVE_CONTEXT_STRATEGY_SELECTION)
         try:
             evidence = load_strategy_selection_evidence(policy_path, budget_path)
             decision = evaluate_strategy_selection(
@@ -731,7 +754,7 @@ def run_regression(args: argparse.Namespace) -> int:
         print(f"ace_strategy_blockers: {','.join(decision.blockers) or 'none'}")
         return 0 if decision.ready else 1
     if bool(getattr(args, "ace_profile_budget_validate", False)):
-        out_path = _resolve(args.ace_profile_budget_report) if args.ace_profile_budget_report else ROOT / "artifacts" / "te_v7_stage082" / "TE_V7_STAGE082_PROFILE_AWARE_CONTEXT_BUDGET.json"
+        out_path = _resolve(args.ace_profile_budget_report) if args.ace_profile_budget_report else get_te_v7_artifact_path(ROOT, "te_v7_stage082", TE_V7_STAGE082_PROFILE_AWARE_CONTEXT_BUDGET)
         decision = evaluate_profile_budget(
             ProfileBudgetRequest(
                 profile=args.profile,
@@ -752,9 +775,9 @@ def run_regression(args: argparse.Namespace) -> int:
         print(f"ace_profile_budget_limitations: {','.join(decision.limitations) or 'none'}")
         return 0 if decision.ready else 1
     if bool(getattr(args, "ace_production_policy_validate", False)):
-        ab_path = _resolve(args.ace_production_policy_ab_report) if args.ace_production_policy_ab_report else ROOT / "artifacts" / "te_v7_stage075" / "TE_V7_STAGE075_CANARY_AB_QUALITY_VALIDATION.json"
-        canary_path = _resolve(args.ace_production_policy_canary_report) if args.ace_production_policy_canary_report else ROOT / "artifacts" / "te_v7_stage06" / "TE_V7_STAGE06_CANARY_PRODUCTION_VALIDATION.json"
-        out_path = _resolve(args.ace_production_policy_report) if args.ace_production_policy_report else ROOT / "artifacts" / "te_v7_stage081" / "TE_V7_STAGE081_PRODUCTION_ACTIVATION_POLICY.json"
+        ab_path = _resolve(args.ace_production_policy_ab_report) if args.ace_production_policy_ab_report else get_te_v7_artifact_path(ROOT, "te_v7_stage075", TE_V7_STAGE075_CANARY_AB_QUALITY_VALIDATION)
+        canary_path = _resolve(args.ace_production_policy_canary_report) if args.ace_production_policy_canary_report else get_te_v7_artifact_path(ROOT, "te_v7_stage06", TE_V7_STAGE06_CANARY_PRODUCTION_VALIDATION)
+        out_path = _resolve(args.ace_production_policy_report) if args.ace_production_policy_report else get_te_v7_artifact_path(ROOT, "te_v7_stage081", TE_V7_STAGE081_PRODUCTION_ACTIVATION_POLICY)
         try:
             evidence = load_activation_evidence(ab_path, canary_path)
             decision = evaluate_activation_policy(
@@ -791,7 +814,7 @@ def run_regression(args: argparse.Namespace) -> int:
         except (OSError,ValueError,TypeError) as exc:
             print(f"ACE A/B validation error: {exc}")
             return 2
-        path=_resolve(args.ace_canary_ab_report) if args.ace_canary_ab_report else ROOT/"artifacts"/"te_v7_stage075"/"TE_V7_STAGE075_CANARY_AB_QUALITY_VALIDATION.json"
+        path = _resolve(args.ace_canary_ab_report) if args.ace_canary_ab_report else get_te_v7_artifact_path(ROOT, "te_v7_stage075", TE_V7_STAGE075_CANARY_AB_QUALITY_VALIDATION)
         write_ab_report(report,path)
         print(f"ace_canary_ab_report: {path}")
         print(f"ace_canary_ab_status: {report.status}")
@@ -838,9 +861,7 @@ def run_regression(args: argparse.Namespace) -> int:
         return _print_regression_result(regression_result)
 
     if canary_validate:
-        report_path = _resolve(args.ace_canary_report) if args.ace_canary_report else (
-            ROOT / "artifacts" / "te_v7_stage06" / "TE_V7_STAGE06_CANARY_PRODUCTION_VALIDATION.json"
-        )
+        report_path = _resolve(args.ace_canary_report) if args.ace_canary_report else get_te_v7_artifact_path(ROOT, "te_v7_stage06", TE_V7_STAGE06_CANARY_PRODUCTION_VALIDATION)
         target_chunk = max(1, int(args.ace_canary_chunk))
         context_tokens = max(1, int(args.ace_canary_context_tokens))
         audit_path = str(report_path.with_suffix(".jsonl"))
@@ -890,9 +911,7 @@ def run_regression(args: argparse.Namespace) -> int:
             base_rc = 0
         return 0 if base_rc == 0 and canary_gate_passed else 1
 
-    report_path = _resolve(args.ace_shadow_report) if args.ace_shadow_report else (
-        ROOT / "artifacts" / "te_v7_stage04" / "TE_V7_STAGE04_PRODUCTION_SHADOW_VALIDATION.json"
-    )
+    report_path = _resolve(args.ace_shadow_report) if args.ace_shadow_report else get_te_v7_artifact_path(ROOT, "te_v7_stage04", TE_V7_STAGE04_PRODUCTION_SHADOW_VALIDATION)
     audit_path = str(report_path.with_suffix(".jsonl"))
     with production_shadow_session(audit_path=audit_path):
         regression_result = run_literary_regression(options)
