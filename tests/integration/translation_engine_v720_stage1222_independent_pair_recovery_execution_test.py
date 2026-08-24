@@ -11,7 +11,8 @@ from core.literary_prompt_quality_candidate_v72 import CANDIDATE_POLICY, build_l
 from lts.txt_translation_runtime import split_text
 
 ROOT = Path(__file__).resolve().parents[2]
-STAGE = ROOT / "artifacts/te_v72_stage1222"
+FIXTURES = ROOT / "tests/fixtures/te_v72_canary"
+STAGE = FIXTURES
 EXECUTION = STAGE / "TE_V72_STAGE1222_INDEPENDENT_PAIR_EXECUTION.json"
 REVIEW = STAGE / "TE_V72_STAGE1222_MANUAL_AB_REVIEW.json"
 SOURCE_SHA = "ac76cf63de96d465d23ed6a131fbc1008ed06adae76c8e0668b27e58cde1c2b5"

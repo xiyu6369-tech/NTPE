@@ -12,7 +12,8 @@ from core.translation_quality_provider_canary.framework import _build_prompts
 
 ROOT = Path(__file__).resolve().parents[2]
 CASE = json.loads((ROOT / "tests/fixtures/te_v72_canary/golden_corpus.json").read_text(encoding="utf-8"))["cases"][0]
-CLAIM = ROOT / "artifacts/te_v72_canary_execution/execution_claim.json"
+FIXTURES = ROOT / "tests/fixtures/te_v72_canary"
+CLAIM = FIXTURES / "execution_claim.json"
 
 def _candidate() -> tuple[str, str, str, dict[str, object]]:
     return _build_prompts(str(CASE["case_id"]), str(CASE["source_text"]))

@@ -16,20 +16,51 @@ from core.translation_intelligence_corpus.failure_corpus import (
 )
 
 ROOT = Path(__file__).resolve().parents[2]
+FIXTURES_BATCH2 = ROOT / "tests/fixtures/tic_batch2"
+FIXTURES_BATCH3 = ROOT / "tests/fixtures/tic_batch3"
+FIXTURES_BATCH4 = ROOT / "tests/fixtures/tic_batch4"
+FIXTURES_BATCH5 = ROOT / "tests/fixtures/tic_batch5"
+FIXTURES_BATCH6 = ROOT / "tests/fixtures/tic_batch6"
+FIXTURES_BATCH61 = ROOT / "tests/fixtures/tic_batch61"
+FIXTURES_BATCH7 = ROOT / "tests/fixtures/tic_batch7"
 
 
-def load(relative: str):
-    return json.loads((ROOT / relative).read_text(encoding="utf-8"))
+def load_batch2(relative: str):
+    return json.loads((FIXTURES_BATCH2 / relative).read_text(encoding="utf-8"))
+
+
+def load_batch3(relative: str):
+    return json.loads((FIXTURES_BATCH3 / relative).read_text(encoding="utf-8"))
+
+
+def load_batch4(relative: str):
+    return json.loads((FIXTURES_BATCH4 / relative).read_text(encoding="utf-8"))
+
+
+def load_batch5(relative: str):
+    return json.loads((FIXTURES_BATCH5 / relative).read_text(encoding="utf-8"))
+
+
+def load_batch6(relative: str):
+    return json.loads((FIXTURES_BATCH6 / relative).read_text(encoding="utf-8"))
+
+
+def load_batch61(relative: str):
+    return json.loads((FIXTURES_BATCH61 / relative).read_text(encoding="utf-8"))
+
+
+def load_batch7(relative: str):
+    return json.loads((FIXTURES_BATCH7 / relative).read_text(encoding="utf-8"))
 
 
 def file_sha(relative: str) -> str:
     return hashlib.sha256((ROOT / relative).read_bytes()).hexdigest()
 
 
-CORPUS = load("artifacts/tic_batch4/HUMAN_CONFIRMED_FAILURE_CORPUS.json")
-EXCLUDED = load("artifacts/tic_batch4/EXCLUDED_FAILURE_CANDIDATES.json")
-STATISTICS = load("artifacts/tic_batch4/FAILURE_CORPUS_STATISTICS.json")
-INDEX = load("artifacts/tic_batch4/FAILURE_CASE_INDEX.json")
+CORPUS = load_batch4("HUMAN_CONFIRMED_FAILURE_CORPUS.json")
+EXCLUDED = load_batch4("EXCLUDED_FAILURE_CANDIDATES.json")
+STATISTICS = load_batch4("FAILURE_CORPUS_STATISTICS.json")
+INDEX = load_batch4("FAILURE_CASE_INDEX.json")
 FAILURES = CORPUS["failure_cases"]
 
 
@@ -158,8 +189,8 @@ def test_duplicate_failure_evidence_is_rejected(monkeypatch):
 
 
 def test_manifest_sha256_values_and_boundaries_are_valid():
-    for relative in ("artifacts/tic_batch4/FAILURE_CORPUS_MANIFEST.json", "manifests/tic_batch4_human_confirmed_failure_corpus_manifest.json"):
-        manifest = load(relative)
+    for relative in ("tests/fixtures/tic_batch4/FAILURE_CORPUS_MANIFEST.json", "manifests/tic_batch4_human_confirmed_failure_corpus_manifest.json"):
+        manifest = json.loads((ROOT / relative).read_text(encoding="utf-8"))
         assert all(file_sha(path) == digest for path, digest in manifest["files"].items())
     boundary = CORPUS["boundary"]
     assert boundary["failure_case_count"] == 1
@@ -176,7 +207,7 @@ def test_manifest_sha256_values_and_boundaries_are_valid():
 
 
 def test_historical_translation_sha256_values_are_unchanged_and_no_forbidden_imports_exist():
-    cases = load("artifacts/tic_batch2/TRANSLATION_CASES.json")["translation_cases"]
+    cases = load_batch2("TRANSLATION_CASES.json")["translation_cases"]
     checked = set()
     for case in cases:
         if case["translation_file"] not in checked:

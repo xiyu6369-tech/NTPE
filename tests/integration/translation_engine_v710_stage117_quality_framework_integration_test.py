@@ -18,14 +18,15 @@ from core.translation_quality_framework_integration import (
 )
 
 ROOT = Path(__file__).resolve().parents[2]
-DEFECTS = "artifacts/te_v71_stage111/TE_V71_STAGE111_TRANSLATION_DEFECTS.json"
-METRICS = "artifacts/te_v71_stage112/TE_V71_STAGE112_QUALITY_METRICS.json"
-REVIEW = "artifacts/te_v71_stage113/TE_V71_STAGE113_REVIEW.json"
-PLAN = "artifacts/te_v71_stage114/TE_V71_STAGE114_PROMPT_IMPROVEMENT_PLAN.json"
-DECISION = "artifacts/te_v71_stage115/TE_V71_STAGE115_REVIEW_DECISION_CONTRACT.json"
-GOVERNANCE = "artifacts/te_v71_stage116/TE_V71_STAGE116_GOLDEN_CORPUS_GOVERNANCE.json"
-CORPUS = "quality_corpus/golden_review/te_v71_initial_defects.json"
-ARTIFACT = ROOT / "artifacts/te_v71_stage117/TE_V71_STAGE117_QUALITY_FRAMEWORK_INTEGRATION.json"
+FIXTURES = ROOT / "tests/fixtures/te_v71_quality_framework"
+DEFECTS = "tests/fixtures/te_v71_quality_framework/TE_V71_STAGE111_TRANSLATION_DEFECTS.json"
+METRICS = "tests/fixtures/te_v71_quality_framework/TE_V71_STAGE112_QUALITY_METRICS.json"
+REVIEW = "tests/fixtures/te_v71_quality_framework/TE_V71_STAGE113_REVIEW.json"
+PLAN = "tests/fixtures/te_v71_quality_framework/TE_V71_STAGE114_PROMPT_IMPROVEMENT_PLAN.json"
+DECISION = "tests/fixtures/te_v71_quality_framework/TE_V71_STAGE115_REVIEW_DECISION_CONTRACT.json"
+GOVERNANCE = "tests/fixtures/te_v71_quality_framework/TE_V71_STAGE116_GOLDEN_CORPUS_GOVERNANCE.json"
+CORPUS = "archive/historical/quality_corpus/golden_review/te_v71_initial_defects.json"
+ARTIFACT = FIXTURES / "TE_V71_STAGE117_QUALITY_FRAMEWORK_INTEGRATION.json"
 
 
 def _record():

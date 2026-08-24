@@ -18,10 +18,11 @@ from core.translation_intelligence_corpus.case_index import build_case_index
 from core.translation_intelligence_corpus.statistics import build_case_statistics
 
 ROOT = Path(__file__).resolve().parents[2]
-CASES_PATH = ROOT / "artifacts/tic_batch2/TRANSLATION_CASES.json"
-INDEX_PATH = ROOT / "artifacts/tic_batch2/TRANSLATION_CASE_INDEX.json"
-STATISTICS_PATH = ROOT / "artifacts/tic_batch2/TRANSLATION_CASE_STATISTICS.json"
-ARTIFACT_MANIFEST = ROOT / "artifacts/tic_batch2/TRANSLATION_CASE_MANIFEST.json"
+FIXTURES = ROOT / "tests/fixtures/tic_batch2"
+CASES_PATH = FIXTURES / "TRANSLATION_CASES.json"
+INDEX_PATH = FIXTURES / "TRANSLATION_CASE_INDEX.json"
+STATISTICS_PATH = FIXTURES / "TRANSLATION_CASE_STATISTICS.json"
+ARTIFACT_MANIFEST = FIXTURES / "TRANSLATION_CASE_MANIFEST.json"
 ROOT_MANIFEST = ROOT / "manifests/tic_batch2_translation_case_extraction_manifest.json"
 SHA256 = re.compile(r"^[0-9a-f]{64}$")
 

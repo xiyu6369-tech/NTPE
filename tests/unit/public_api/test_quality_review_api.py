@@ -9,9 +9,10 @@ from ntpe.quality import build_review_view
 
 
 ROOT = Path(__file__).resolve().parents[3]
-REVIEW = ROOT / "artifacts/te_v71_stage113/TE_V71_STAGE113_REVIEW.json"
-PLANS = ROOT / "artifacts/te_v71_stage114/TE_V71_STAGE114_PROMPT_IMPROVEMENT_PLAN.json"
-DECISION = ROOT / "artifacts/te_v71_stage115/TE_V71_STAGE115_REVIEW_DECISION_CONTRACT.json"
+FIXTURES = ROOT / "tests/fixtures/te_v71_quality_framework"
+REVIEW = FIXTURES / "TE_V71_STAGE113_REVIEW.json"
+PLANS = FIXTURES / "TE_V71_STAGE114_PROMPT_IMPROVEMENT_PLAN.json"
+DECISION = FIXTURES / "TE_V71_STAGE115_REVIEW_DECISION_CONTRACT.json"
 
 
 def test_review_view_preserves_plans_and_human_provenance() -> None:

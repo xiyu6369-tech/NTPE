@@ -17,12 +17,13 @@ from core.translation_quality_corpus import load_golden_corpus
 from core.translation_prompt_improvement_planner import verify_improvement_plan_artifact
 
 ROOT = Path(__file__).resolve().parents[2]
-REVIEW = ROOT / "artifacts/te_v71_stage113/TE_V71_STAGE113_REVIEW.json"
-METRICS = ROOT / "artifacts/te_v71_stage113/TE_V71_STAGE113_REVIEW_METRICS.json"
-DEFECTS = ROOT / "artifacts/te_v71_stage113/TE_V71_STAGE113_REVIEW_DEFECTS.json"
-ARTIFACT = ROOT / "artifacts/te_v71_stage115/TE_V71_STAGE115_REVIEW_DECISION_CONTRACT.json"
-CORPUS = ROOT / "quality_corpus/golden_review/te_v71_initial_defects.json"
-PLAN = ROOT / "artifacts/te_v71_stage114/TE_V71_STAGE114_PROMPT_IMPROVEMENT_PLAN.json"
+FIXTURES = ROOT / "tests/fixtures/te_v71_quality_framework"
+REVIEW = FIXTURES / "TE_V71_STAGE113_REVIEW.json"
+METRICS = FIXTURES / "TE_V71_STAGE112_QUALITY_METRICS.json"
+DEFECTS = FIXTURES / "TE_V71_STAGE111_TRANSLATION_DEFECTS.json"
+ARTIFACT = FIXTURES / "TE_V71_STAGE115_REVIEW_DECISION_CONTRACT.json"
+CORPUS = ROOT / "archive/historical/quality_corpus/golden_review/te_v71_initial_defects.json"
+PLAN = FIXTURES / "TE_V71_STAGE114_PROMPT_IMPROVEMENT_PLAN.json"
 
 
 def _decision(status: str = "accepted"):

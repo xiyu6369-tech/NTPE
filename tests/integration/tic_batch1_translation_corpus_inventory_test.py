@@ -14,9 +14,10 @@ from core.translation_intelligence_corpus import (
 )
 
 ROOT = Path(__file__).resolve().parents[2]
-INVENTORY = ROOT / "artifacts/tic_batch1/TRANSLATION_CORPUS_INVENTORY.json"
-STATISTICS = ROOT / "artifacts/tic_batch1/TRANSLATION_CORPUS_STATISTICS.json"
-ARTIFACT_MANIFEST = ROOT / "artifacts/tic_batch1/TRANSLATION_CORPUS_MANIFEST.json"
+FIXTURES = ROOT / "tests/fixtures/tic_batch1"
+INVENTORY = FIXTURES / "TRANSLATION_CORPUS_INVENTORY.json"
+STATISTICS = FIXTURES / "TRANSLATION_CORPUS_STATISTICS.json"
+ARTIFACT_MANIFEST = FIXTURES / "TRANSLATION_CORPUS_MANIFEST.json"
 ROOT_MANIFEST = ROOT / "manifests/tic_batch1_translation_corpus_inventory_manifest.json"
 MODULE = ROOT / "core/translation_intelligence_corpus/inventory.py"
 SHA256 = re.compile(r"^[0-9a-f]{64}$")

@@ -11,7 +11,8 @@ from core.literary_prompt_quality_candidate_v72 import CANDIDATE_POLICY, build_l
 from lts.txt_translation_runtime import split_text
 
 ROOT = Path(__file__).resolve().parents[2]
-STAGE = ROOT / "artifacts/te_v72_stage1223"
+FIXTURES = ROOT / "tests/fixtures/te_v72_canary"
+STAGE = FIXTURES
 FREEZE = STAGE / "TE_V72_STAGE1223_SOURCE_EXCERPT_FREEZE.json"
 EXECUTION = STAGE / "TE_V72_STAGE1223_MINIMAL_EXCERPT_AB_EXECUTION.json"
 REVIEW = STAGE / "TE_V72_STAGE1223_MANUAL_AB_REVIEW.json"

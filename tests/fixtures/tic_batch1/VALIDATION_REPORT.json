@@ -1,0 +1,127 @@
+{
+  "schema_version": "ntpe.stage0.validation-report.v1",
+  "initial_head": "83066c8 feat(te-v7.2): prepare offline name resolution contract remediation",
+  "origin_main_sync": {
+    "left": 0,
+    "right": 0
+  },
+  "scope": {
+    "historical_root_wrappers_excluded": 321,
+    "consumer_files_excluded": 49,
+    "excluded_files_head_match": true,
+    "wrapper_relocation_performed": false,
+    "wrapper_deduplication_performed": false,
+    "manifest_rewrite_performed": false
+  },
+  "layout": {
+    "initial_root_total_files": 424,
+    "final_root_total_files": 348,
+    "initial_root_python_files": 339,
+    "final_root_python_files": 339,
+    "non_python_pure_moves": 76,
+    "retained_root_wrappers": 321,
+    "unexpected_root_files": 0,
+    "unclassified_root_files": 0
+  },
+  "boundaries": {
+    "provider_requests": 0,
+    "network_requests": 0,
+    "provider_files_modified": 0,
+    "runtime_files_modified": 0,
+    "production_hooks_added": 0,
+    "translation_output_behavior_modified": false,
+    "frozen_manifests_modified": 0,
+    "stage1258_claim_or_response_regenerated": false,
+    "tracked_content_deletions": 0
+  },
+  "tests": [
+    {
+      "command": "python ntpe_validate.py",
+      "status": "PASS",
+      "detail": "ALL PASS; 2616 Python files compile"
+    },
+    {
+      "command": "python tools/audit_project_layout.py",
+      "status": "PASS",
+      "detail": "deterministic SHA-256 73a4e2a53e91f7e87e0a4c6a7cb00bb61acca0842b8bbbb2d1e1821db918919e"
+    },
+    {
+      "command": "python verification/release/ntpe_v20_stage0_project_layout_consolidation_test.py",
+      "status": "PASS"
+    },
+    {
+      "command": "python launcher_translate.py --help",
+      "status": "PASS"
+    },
+    {
+      "command": "python ntpe_production_translate.py --help",
+      "status": "PASS"
+    },
+    {
+      "command": "python ntpe_te_v720_stage1259_name_resolution_contract_remediation_test.py",
+      "status": "PASS"
+    },
+    {
+      "command": "python ntpe_te_v600_final_release_freeze_test.py",
+      "status": "PASS"
+    },
+    {
+      "command": "python ntpe_lcr_batch111_governance_baseline_consumption_audit_test.py",
+      "status": "PASS",
+      "detail": "36 passed"
+    },
+    {
+      "command": "python ntpe_stage18_1_enterprise_deployment_foundation_test.py",
+      "status": "PASS"
+    },
+    {
+      "command": "python -m pytest tests/unit -q",
+      "status": "PRE_EXISTING_COLLECTION_FAILURE",
+      "detail": "2 collection errors: missing core.quality.quality_context"
+    },
+    {
+      "command": "python -m pytest tests/integration -q",
+      "status": "PRE_EXISTING_COLLECTION_FAILURE",
+      "detail": "Stage 18.13 import-time prompt check failed and raised SystemExit(1)"
+    },
+    {
+      "command": "git diff --check",
+      "status": "PASS"
+    }
+  ],
+  "artifact_inventory": [
+    {
+      "path": "artifacts/ntpe_v20_stage0_project_layout_consolidation/COMPATIBILITY_WRAPPERS.json",
+      "sha256": "9ce04bc4e9aea589dae7f772d96f6da10835ab74e3bca85f1b2d1f11d9e276d4"
+    },
+    {
+      "path": "artifacts/ntpe_v20_stage0_project_layout_consolidation/EXCLUDED_TRACKED_FILES.json",
+      "sha256": "2cfb5c26a0629ebf92e39b0a2f334f57c5744da4b18527afc2df394d264ece07"
+    },
+    {
+      "path": "artifacts/ntpe_v20_stage0_project_layout_consolidation/FINAL_ROOT_INVENTORY.json",
+      "sha256": "3a7048d24b28ea9a0ad2c840f3140fb2d1f97015aa0884e95c79224a88bb2eca"
+    },
+    {
+      "path": "artifacts/ntpe_v20_stage0_project_layout_consolidation/IMMUTABLE_PATH_EXCEPTIONS.json",
+      "sha256": "b21e7f62ba7563ec8190a17ee6f3edc391d2f04b74c0a363ba1fb36b9f3593cc"
+    },
+    {
+      "path": "artifacts/ntpe_v20_stage0_project_layout_consolidation/INITIAL_ROOT_INVENTORY.json",
+      "sha256": "f490ea904d57fc87c0b200ba21f674d925514117e3f6d28f2b9f0a16034a81ae"
+    },
+    {
+      "path": "artifacts/ntpe_v20_stage0_project_layout_consolidation/MOVE_MAP.json",
+      "sha256": "18174e892d05ba69ad653f4d48ce3cb78e10278dae77c8cf8b0b644c14efc6ab"
+    },
+    {
+      "path": "artifacts/ntpe_v20_stage0_project_layout_consolidation/RETAINED_ROOT_WRAPPERS.json",
+      "sha256": "2e185404fee39327fdb0b87205dfb93eb6a2e929122d70c2d09a72427d2e2d20"
+    }
+  ],
+  "git_decision": {
+    "commit": "HOLD",
+    "push": "NO",
+    "tag": "NO"
+  }
+}

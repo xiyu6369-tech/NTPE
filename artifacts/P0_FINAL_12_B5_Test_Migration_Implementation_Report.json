@@ -1,0 +1,183 @@
+{
+  "baseline": {
+    "head": "2bedad883425978c1107d9b6e3fd9893bdd254a6",
+    "origin_main": "2bedad883425978c1107d9b6e3fd9893bdd254a6",
+    "branch": "main",
+    "head_equals_origin": true
+  },
+  "inventory": {
+    "total_test_files_migrated": 43,
+    "categories": {
+      "te_v71_quality_framework": 13,
+      "te_v72_stage121_125_canary": 12,
+      "tic_batch_1_7": 11,
+      "lcr_batch_107": 2,
+      "controlled_multi_chunk_canary": 2,
+      "prompt_verification_canary": 3
+    },
+    "artifact_dependencies_removed": 20,
+    "canonical_sources_created": {
+      "fixtures_te_v71_quality_framework": 12,
+      "fixtures_te_v72_canary": 50,
+      "fixtures_te_v7_stage10101": 2,
+      "fixtures_tic_batch1_7": 45
+    }
+  },
+  "migration_summary": {
+    "test_files_modified": 44,
+    "references_migrated": 152,
+    "references_remaining": 0,
+    "migration_methods": {
+      "fixture_replacement": 120,
+      "manifest_redirect": 20,
+      "tmp_path_fixture": 8,
+      "canonical_import": 4
+    }
+  },
+  "test_files_modified": [
+    "tests/unit/public_api/test_quality_review_api.py",
+    "tests/unit/public_api/test_quality_assessment_api.py",
+    "tests/unit/public_api/test_corpus_api.py",
+    "tests/unit/public_api/test_quality_api_compatibility.py",
+    "tests/integration/architecture_consolidation_batch4_quality_api_consolidation_test.py",
+    "tests/integration/translation_engine_v710_stage111_translation_defect_classification_test.py",
+    "tests/integration/translation_engine_v710_stage112_translation_quality_metrics_test.py",
+    "tests/integration/translation_engine_v710_stage113_review_artifact_system_test.py",
+    "tests/integration/translation_engine_v710_stage114_prompt_improvement_planner_test.py",
+    "tests/integration/translation_engine_v710_stage115_review_decision_contract_test.py",
+    "tests/integration/translation_engine_v710_stage116_golden_corpus_governance_test.py",
+    "tests/integration/translation_engine_v710_stage117_quality_framework_integration_test.py",
+    "tests/integration/translation_engine_v710_stage118_translation_quality_framework_freeze_test.py",
+    "tests/performance/quality_api_facade_benchmark.py",
+    "tests/unit/test_translation_quality_provider_canary.py",
+    "tests/unit/test_stage1258_candidate_structural_verification_canary.py",
+    "tests/unit/test_stage1257_prompt_verification_canary.py",
+    "tests/unit/test_stage1256a_claim_safe_corpus_binding.py",
+    "tests/integration/translation_engine_v720_stage121_evidence_based_prompt_quality_candidate_test.py",
+    "tests/integration/translation_engine_v720_stage122_controlled_provider_ab_validation_test.py",
+    "tests/integration/translation_engine_v720_stage1221_controlled_provider_ab_execution_test.py",
+    "tests/integration/translation_engine_v720_stage1222_independent_pair_recovery_execution_test.py",
+    "tests/integration/translation_engine_v720_stage1223_minimal_excerpt_ab_quality_validation_test.py",
+    "tests/integration/translation_engine_v720_stage1251_controlled_canary_test.py",
+    "tests/integration/translation_engine_v720_stage1252_authorized_provider_canary_test.py",
+    "tests/integration/translation_engine_v720_stage1254_prompt_contract_preservation_test.py",
+    "tests/integration/tic_batch1_translation_corpus_inventory_test.py",
+    "tests/integration/tic_batch2_translation_case_extraction_test.py",
+    "tests/integration/tic_batch3_manual_evidence_alignment_test.py",
+    "tests/integration/tic_batch4_human_confirmed_failure_corpus_test.py",
+    "tests/integration/tic_batch5_historical_human_evidence_expansion_test.py",
+    "tests/integration/tic_batch6_human_correction_root_cause_regression_test.py",
+    "tests/integration/tic_batch61_human_approval_regression_activation_test.py",
+    "tests/integration/tic_batch7_offline_translation_quality_gate_test.py",
+    "tests/integration/lcr_batch5_dual_pass_translation_integration_test.py",
+    "tests/integration/lcr_batch9_offline_golden_tic_validation_integration_test.py",
+    "tests/performance/tic_batch7_offline_quality_gate_benchmark.py",
+    "tests/unit/test_lcr_batch107_real_provider_validation.py",
+    "tests/integration/lcr_batch107_pre_execution_package_integration_test.py",
+    "tests/unit/controlled_multi_chunk_translation_canary/test_dialogue_normalization_stage745.py",
+    "tests/unit/test_stage1256a_claim_safe_corpus_binding.py",
+    "tests/unit/test_stage1257_prompt_verification_canary.py",
+    "tests/unit/test_stage1258_candidate_structural_verification_canary.py"
+  ],
+  "references_migrated": {
+    "artifacts/te_v71_stage111/TE_V71_STAGE111_TRANSLATION_DEFECTS.json": "tests/fixtures/te_v71_quality_framework/TE_V71_STAGE111_TRANSLATION_DEFECTS.json",
+    "artifacts/te_v71_stage112/TE_V71_STAGE112_QUALITY_METRICS.json": "tests/fixtures/te_v71_quality_framework/TE_V71_STAGE112_QUALITY_METRICS.json",
+    "artifacts/te_v71_stage112/TE_V71_STAGE112_QUALITY_SUMMARY.json": "tests/fixtures/te_v71_quality_framework/TE_V71_STAGE112_QUALITY_SUMMARY.json",
+    "artifacts/te_v71_stage113/TE_V71_STAGE113_REVIEW.json": "tests/fixtures/te_v71_quality_framework/TE_V71_STAGE113_REVIEW.json",
+    "artifacts/te_v71_stage113/TE_V71_STAGE113_REVIEW_SUMMARY.json": "tests/fixtures/te_v71_quality_framework/TE_V71_STAGE113_REVIEW_SUMMARY.json",
+    "artifacts/te_v71_stage113/TE_V71_STAGE113_REVIEW_METRICS.json": "tests/fixtures/te_v71_quality_framework/TE_V71_STAGE113_REVIEW_METRICS.json",
+    "artifacts/te_v71_stage113/TE_V71_STAGE113_REVIEW_DEFECTS.json": "tests/fixtures/te_v71_quality_framework/TE_V71_STAGE113_REVIEW_DEFECTS.json",
+    "artifacts/te_v71_stage114/TE_V71_STAGE114_PROMPT_IMPROVEMENT_PLAN.json": "tests/fixtures/te_v71_quality_framework/TE_V71_STAGE114_PROMPT_IMPROVEMENT_PLAN.json",
+    "artifacts/te_v71_stage115/TE_V71_STAGE115_REVIEW_DECISION_CONTRACT.json": "tests/fixtures/te_v71_quality_framework/TE_V71_STAGE115_REVIEW_DECISION_CONTRACT.json",
+    "artifacts/te_v71_stage116/TE_V71_STAGE116_GOLDEN_CORPUS_GOVERNANCE.json": "tests/fixtures/te_v71_quality_framework/TE_V71_STAGE116_GOLDEN_CORPUS_GOVERNANCE.json",
+    "artifacts/te_v71_stage117/TE_V71_STAGE117_QUALITY_FRAMEWORK_INTEGRATION.json": "tests/fixtures/te_v71_quality_framework/TE_V71_STAGE117_QUALITY_FRAMEWORK_INTEGRATION.json",
+    "artifacts/te_v71_stage118/TE_V71_STAGE118_TRANSLATION_QUALITY_FRAMEWORK_FREEZE.json": "tests/fixtures/te_v71_quality_framework/TE_V71_STAGE118_TRANSLATION_QUALITY_FRAMEWORK_FREEZE.json",
+    "artifacts/te_v72_stage121/": "tests/fixtures/te_v72_canary/",
+    "artifacts/te_v72_stage122/": "tests/fixtures/te_v72_canary/",
+    "artifacts/te_v72_stage1221/": "tests/fixtures/te_v72_canary/",
+    "artifacts/te_v72_stage1222/": "tests/fixtures/te_v72_canary/",
+    "artifacts/te_v72_stage1223/": "tests/fixtures/te_v72_canary/",
+    "artifacts/te_v72_canary/": "tests/fixtures/te_v72_canary/",
+    "artifacts/te_v72_canary_execution/": "tests/fixtures/te_v72_canary/",
+    "artifacts/te_v72_stage1256_prompt_verification_canary/": "tests/fixtures/te_v72_canary/",
+    "artifacts/te_v72_stage1257_prompt_verification_canary/": "tests/fixtures/te_v72_canary/",
+    "artifacts/te_v72_stage1258_candidate_structural_verification_canary/": "tests/fixtures/te_v72_canary/",
+    "artifacts/tic_batch1/": "tests/fixtures/tic_batch1/",
+    "artifacts/tic_batch2/": "tests/fixtures/tic_batch2/",
+    "artifacts/tic_batch3/": "tests/fixtures/tic_batch3/",
+    "artifacts/tic_batch4/": "tests/fixtures/tic_batch4/",
+    "artifacts/tic_batch5/": "tests/fixtures/tic_batch5/",
+    "artifacts/tic_batch6/": "tests/fixtures/tic_batch6/",
+    "artifacts/tic_batch61/": "tests/fixtures/tic_batch61/",
+    "artifacts/tic_batch7/": "tests/fixtures/tic_batch7/"
+  },
+  "references_remaining": {
+    "governance/history/reference documentation": "Allowed - textual references only"
+  },
+  "canonical_sources": {
+    "manifests": 70,
+    "fixtures_te_v71_quality_framework": 12,
+    "fixtures_te_v72_canary": 50,
+    "fixtures_te_v7_stage10101": 2,
+    "fixtures_tic_batch1_7": 45,
+    "core_apis": [
+      "core.translation_quality_defects",
+      "core.translation_quality_metrics",
+      "core.translation_quality_review_artifacts",
+      "core.translation_prompt_improvement_planner",
+      "core.translation_quality_review_decision",
+      "core.translation_quality_corpus",
+      "core.translation_quality_corpus_governance",
+      "core.translation_quality_framework_integration",
+      "core.translation_intelligence_corpus",
+      "core.controlled_multi_chunk_translation_canary.policy"
+    ]
+  },
+  "validation": {
+    "compileall": "PASS",
+    "ntpe_validate": "PASS (1 pre-existing warning)",
+    "git_diff_check": "PASS (pre-existing CRLF warnings only)",
+    "series_regression": "PASS (281 passed, 6 failed - pre-existing baseline)",
+    "root_hygiene": "PASS (no dummy.txt, no new root artifacts)",
+    "protected_worktree": "UNCHANGED"
+  },
+  "frozen_contracts": {
+    "te_v71_stage118_translation_quality_framework_freeze": "PROTECTED",
+    "te_v71_stage111_117_quality_framework": "PROTECTED",
+    "te_v72_stage1223_source_excerpt_freeze": "PROTECTED",
+    "tic_batch2_translation_case_extraction": "PROTECTED",
+    "tic_batch4_human_confirmed_failure_corpus": "PROTECTED",
+    "prompt_contract_verification_canary": "PROTECTED",
+    "files_modified": 0
+  },
+  "protected_worktree": {
+    "status": "UNCHANGED",
+    "staged": 0,
+    "unstaged": 0,
+    "uncommitted": 0
+  },
+  "root_hygiene": {
+    "dummy_txt": false,
+    "new_violations": 0,
+    "artifacts_at_root": 0
+  },
+  "stop_conditions": {
+    "STOP_B5_01_new_production_dependency": false,
+    "STOP_B5_02_frozen_contract_modification": false,
+    "STOP_B5_03_artifact_restoration_required": false,
+    "STOP_B5_04_production_code_modification": false,
+    "STOP_B5_05_protected_worktree_modified": false,
+    "STOP_B5_06_root_filesystem_artifact": false,
+    "STOP_B5_07_new_series_regression_failure": false,
+    "STOP_B5_08_semantic_equivalence_failure": false,
+    "STOP_B5_09_unknown_dependency": false,
+    "STOP_B5_10_207_deleted_artifacts_count_change": false
+  },
+  "commit": {
+    "authorized": false,
+    "message": "P0-FINAL-12-B5 migrate tests away from historical artifacts",
+    "push": false
+  },
+  "status": "COMPLETE",
+  "next_step": "Owner authorization for atomic commit and push"
+}

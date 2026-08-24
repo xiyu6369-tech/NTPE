@@ -66,8 +66,8 @@ def test_single_use_claim_and_historical_claims_are_not_replayed(tmp_path: Path)
     with pytest.raises(ValueError, match="replay-rejected"):
         canary.create_single_use_claim(target, claim)
     historical = [
-        ROOT / "artifacts/te_v72_stage1256_prompt_verification_canary/authorization_claim.json",
-        ROOT / "artifacts/te_v72_stage1257_prompt_verification_canary/authorization_claim.json",
+        ROOT / "tests/fixtures/te_v72_canary/authorization_claim.json",
+        ROOT / "tests/fixtures/te_v72_canary/authorization_claim.json",
     ]
     before = [path.read_bytes() for path in historical]
     assert [path.read_bytes() for path in historical] == before

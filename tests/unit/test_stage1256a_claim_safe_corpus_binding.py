@@ -52,7 +52,7 @@ def test_post_claim_exception_is_captured_and_claim_cannot_replay(tmp_path: Path
     with pytest.raises(ClaimLifecycleError): create_claim_after_validation(result, claim, {})
 
 def test_historical_claim_is_immutable_and_not_replayable() -> None:
-    claim = ROOT / "artifacts/te_v72_stage1256_prompt_verification_canary/authorization_claim.json"
+    claim = ROOT / "tests/fixtures/te_v72_canary/authorization_claim.json"
     before = claim.read_bytes()
     result = validate_before_claim(root=ROOT, logical_id="canary-001", claim_path=claim, prerequisite_checks=PREREQUISITES)
     assert result.status == "FAIL" and result.ordered_steps[-1]["passed"] is False

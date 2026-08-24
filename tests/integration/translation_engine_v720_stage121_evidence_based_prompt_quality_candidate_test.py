@@ -141,28 +141,28 @@ def test_no_provider_or_runtime_settings_are_part_of_candidate_payload() -> None
 
 
 def test_execution_package_keeps_frozen_provider_settings() -> None:
-    package = json.loads((ROOT / "artifacts/te_v72_stage121/TE_V72_STAGE121_PROVIDER_EXECUTION_PACKAGE.json").read_text(encoding="utf-8"))
+    package = json.loads((ROOT / "tests/fixtures/te_v72_canary/TE_V72_STAGE121_PROVIDER_EXECUTION_PACKAGE.json").read_text(encoding="utf-8"))
     settings = package["provider_settings"]
     assert settings == {"model":"meta/llama-3.3-70b-instruct", "timeout_seconds":180, "attempt_limit":1, "max_output_tokens":800, "chunk_size":600}
 
 
 def test_execution_package_is_non_executing() -> None:
-    package = json.loads((ROOT / "artifacts/te_v72_stage121/TE_V72_STAGE121_PROVIDER_EXECUTION_PACKAGE.json").read_text(encoding="utf-8"))
+    package = json.loads((ROOT / "tests/fixtures/te_v72_canary/TE_V72_STAGE121_PROVIDER_EXECUTION_PACKAGE.json").read_text(encoding="utf-8"))
     assert package["expected_request_count"] == 2
     assert package["provider_executed"] is False and package["network_requests"] == 0
 
 
 def test_stage_artifact_preserves_quality_claim_boundary() -> None:
-    artifact = json.loads((ROOT / "artifacts/te_v72_stage121/TE_V72_STAGE121_EVIDENCE_BASED_PROMPT_QUALITY_CANDIDATE.json").read_text(encoding="utf-8"))
+    artifact = json.loads((ROOT / "tests/fixtures/te_v72_canary/TE_V72_STAGE121_EVIDENCE_BASED_PROMPT_QUALITY_CANDIDATE.json").read_text(encoding="utf-8"))
     assert artifact["quality_claim"] == {"translation_quality_improved":False, "quality_improvement_verified":False, "comparison_executed":False, "candidate_status":"prepared_not_validated"}
 
 
 def test_no_golden_corpus_mutation_or_new_translation_claim() -> None:
-    artifact = json.loads((ROOT / "artifacts/te_v72_stage121/TE_V72_STAGE121_EVIDENCE_BASED_PROMPT_QUALITY_CANDIDATE.json").read_text(encoding="utf-8"))
+    artifact = json.loads((ROOT / "tests/fixtures/te_v72_canary/TE_V72_STAGE121_EVIDENCE_BASED_PROMPT_QUALITY_CANDIDATE.json").read_text(encoding="utf-8"))
     assert artifact["boundary"]["golden_corpus_modified"] is False
     assert artifact["boundary"]["new_translation_generated"] is False
 
 
 def test_stage_11_plans_remain_unmodified_and_not_applied() -> None:
-    plan = json.loads((ROOT / "artifacts/te_v71_stage114/TE_V71_STAGE114_PROMPT_IMPROVEMENT_PLAN.json").read_text(encoding="utf-8"))
+    plan = json.loads((ROOT / "tests/fixtures/te_v71_quality_framework/TE_V71_STAGE114_PROMPT_IMPROVEMENT_PLAN.json").read_text(encoding="utf-8"))
     assert plan["plans_applied"] == 0 and all(row["implementation_status"] == "planned_not_applied" for row in plan["plans"])

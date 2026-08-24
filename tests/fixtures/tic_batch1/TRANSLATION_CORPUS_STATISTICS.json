@@ -1,0 +1,24 @@
+{
+  "available_quality_evidence": 125,
+  "golden_outputs": 89,
+  "historical_translations": 130,
+  "manual_reviews": 1,
+  "partial_translations": 25,
+  "provider_outputs": 120,
+  "regression_outputs": 113,
+  "schema_version": "tic.batch1.statistics.v1",
+  "status_counts": {
+    "Completed Translation": 99,
+    "Historical Translation": 1,
+    "Manual Reviewed": 1,
+    "Partial Translation": 14,
+    "Provider Timeout": 15
+  },
+  "successful_translations": 100,
+  "timeout_translations": 15,
+  "translation_coverage": {
+    "attempted_denominator": 129,
+    "percent": 77.52,
+    "successful_numerator": 100
+  }
+}

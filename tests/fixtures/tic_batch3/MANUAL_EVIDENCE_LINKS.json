@@ -1,0 +1,79 @@
+{
+  "items": [
+    {
+      "ambiguity_reason": null,
+      "case_id": "TIC-CASE-B2-598DC16E43DB4363D420",
+      "case_source_offset": null,
+      "case_translation_offset": 51,
+      "evidence_id": "TIC-EVID-B3-4C47ECCEDCAB1775DE59",
+      "human_confirmed": true,
+      "link_confidence": "exact",
+      "link_id": "TIC-LINK-B3-7047223819BEF76AB6BA",
+      "link_method": "translation_path",
+      "link_type": "exact_file_reference",
+      "precise_alignment_status": "linked_but_not_aligned",
+      "precise_alignment_unit_ids": [],
+      "source_excerpt_sha256": null,
+      "source_overlap": 0.0,
+      "translation_excerpt_sha256": "3f8db06e3ef29fb701585229eaf51c78d6bd0369efd9cb22c7c86392414465ec",
+      "translation_overlap": 1.0
+    },
+    {
+      "ambiguity_reason": "no exact file or excerpt match",
+      "case_id": null,
+      "case_source_offset": null,
+      "case_translation_offset": null,
+      "evidence_id": "TIC-EVID-B3-EF8594197F5D82C674A0",
+      "human_confirmed": false,
+      "link_confidence": "unresolved",
+      "link_id": "TIC-LINK-B3-9AA2D6BF93277C3B0565",
+      "link_method": "no_exact_candidate",
+      "link_type": "unlinked",
+      "precise_alignment_status": "not_applicable",
+      "precise_alignment_unit_ids": [],
+      "source_excerpt_sha256": null,
+      "source_overlap": 0.0,
+      "translation_excerpt_sha256": null,
+      "translation_overlap": 0.0
+    },
+    {
+      "ambiguity_reason": null,
+      "case_id": "TIC-CASE-B2-8AE44C56C7AD3DE4A6FD",
+      "case_source_offset": null,
+      "case_translation_offset": null,
+      "evidence_id": "TIC-EVID-B3-5A1E78336F76B1B5369A",
+      "human_confirmed": false,
+      "link_confidence": "exact",
+      "link_id": "TIC-LINK-B3-0FE242339F7300222162",
+      "link_method": "translation_path",
+      "link_type": "exact_file_reference",
+      "precise_alignment_status": "not_applicable",
+      "precise_alignment_unit_ids": [],
+      "source_excerpt_sha256": null,
+      "source_overlap": 0.0,
+      "translation_excerpt_sha256": null,
+      "translation_overlap": 0.0
+    },
+    {
+      "ambiguity_reason": null,
+      "case_id": "TIC-CASE-B2-8AE44C56C7AD3DE4A6FD",
+      "case_source_offset": 107,
+      "case_translation_offset": 61,
+      "evidence_id": "TIC-EVID-B3-SUBJECT-SHIFT-001",
+      "human_confirmed": true,
+      "link_confidence": "exact",
+      "link_id": "TIC-LINK-B3-3C1CF47E7EF471AABE2C",
+      "link_method": "translation_path",
+      "link_type": "exact_file_reference",
+      "precise_alignment_status": "aligned",
+      "precise_alignment_unit_ids": [
+        "TIC-ALIGN-B3-11B052F25F723F5BDD53"
+      ],
+      "source_excerpt_sha256": "1fdbdc91e30c161f8d545422f1787519a4ab14f055e0d0efe98bbf1a63bf9a6a",
+      "source_overlap": 1.0,
+      "translation_excerpt_sha256": "5e3d87c1bd1fe55f6a22959a62554f128f94d20e792627049c131edd6a06add7",
+      "translation_overlap": 1.0
+    }
+  ],
+  "schema_version": "tic.batch3.manual-evidence-links.v1"
+}

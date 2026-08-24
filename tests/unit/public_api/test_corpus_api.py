@@ -11,8 +11,8 @@ from ntpe.corpus import manage
 
 
 ROOT = Path(__file__).resolve().parents[3]
-CORPUS = ROOT / "quality_corpus/golden_review/te_v71_initial_defects.json"
-GOVERNANCE = ROOT / "artifacts/te_v71_stage116/TE_V71_STAGE116_GOLDEN_CORPUS_GOVERNANCE.json"
+CORPUS = ROOT / "archive/historical/quality_corpus/golden_review/te_v71_initial_defects.json"
+GOVERNANCE = ROOT / "tests/fixtures/te_v71_quality_framework/TE_V71_STAGE116_GOLDEN_CORPUS_GOVERNANCE.json"
 
 
 def test_corpus_view_reads_six_unapproved_cases_with_file_sha_parity() -> None:

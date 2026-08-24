@@ -11,7 +11,8 @@ from core.translation_quality_defects import initial_human_confirmed_defects
 from core.translation_quality_metrics import calculate_quality_metrics
 
 ROOT = Path(__file__).resolve().parents[2]
-ARTIFACT = ROOT / "artifacts/te_v71_stage114/TE_V71_STAGE114_PROMPT_IMPROVEMENT_PLAN.json"
+FIXTURES = ROOT / "tests/fixtures/te_v71_quality_framework"
+ARTIFACT = FIXTURES / "TE_V71_STAGE114_PROMPT_IMPROVEMENT_PLAN.json"
 
 
 def _plans():

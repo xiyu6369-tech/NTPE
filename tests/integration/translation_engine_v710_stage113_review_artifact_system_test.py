@@ -12,9 +12,9 @@ from core.translation_quality_metrics import calculate_quality_metrics
 from core.translation_quality_review_artifacts import FORBIDDEN_REVIEW_KEYS, StructuredReview, assert_review_redacted, build_structured_review, review_summary, validate_review, verify_review_artifact
 
 ROOT = Path(__file__).resolve().parents[2]
-SOURCE_ARTIFACT = ROOT / "artifacts/te_v7_stage10101/TE_V7_STAGE10101_CONTROLLED_RETRY.json"
-SOURCE_REVIEW = ROOT / "artifacts/te_v7_stage10101/review/TE_V7_STAGE10101_TRANSLATION_REVIEW.txt"
-STAGE_DIR = ROOT / "artifacts/te_v71_stage113"
+SOURCE_ARTIFACT = ROOT / "tests/fixtures/te_v7_stage10101/TE_V7_STAGE10101_CONTROLLED_RETRY.json"
+SOURCE_REVIEW = ROOT / "tests/fixtures/te_v7_stage10101/review/TE_V7_STAGE10101_TRANSLATION_REVIEW.txt"
+STAGE_DIR = ROOT / "tests/fixtures/te_v71_quality_framework"
 
 
 def _review() -> StructuredReview:

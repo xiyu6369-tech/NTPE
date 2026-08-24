@@ -51,5 +51,5 @@ def test_public_exports_do_not_leak_stage_specific_names() -> None:
 
 
 def test_frozen_artifact_and_schema_files_remain_byte_identical() -> None:
-    assert hashlib.sha256((ROOT / "quality_corpus/golden_review/te_v71_initial_defects.json").read_bytes()).hexdigest() == "4a06d256d900c8bb7706098fd79f2d53889d469e9b62516d81334ef34433f2cc"
+    assert hashlib.sha256((ROOT / "archive/historical/quality_corpus/golden_review/te_v71_initial_defects.json").read_bytes()).hexdigest() == "4a06d256d900c8bb7706098fd79f2d53889d469e9b62516d81334ef34433f2cc"
 

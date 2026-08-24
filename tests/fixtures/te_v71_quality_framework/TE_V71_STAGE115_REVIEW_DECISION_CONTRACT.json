@@ -1,0 +1,73 @@
+{
+  "stage": "TE-v7.1-Stage11.5",
+  "version": "7.1.0-stage11.5",
+  "status": "completed",
+  "decision_contract": "human_review_decision",
+  "allowed_decisions": [
+    "accepted",
+    "rejected",
+    "needs_revision",
+    "insufficient_evidence"
+  ],
+  "human_only_policy": {
+    "decision_source": "human_review",
+    "automatic_acceptance": false
+  },
+  "review_provenance": {
+    "required": true,
+    "reviewer_id": "human-reviewer-001",
+    "display_name": "Human Reviewer"
+  },
+  "integrity_references": {
+    "review_artifact_sha256": "95ba3c34546da35381925de5c90067a5c0b7d1c762b3879e15dfe8b75c38e665",
+    "metrics_sha256": "b1cdc65b7ee3a2386c90e7849b573c310309c4dbb772d40530c1892a325e631a",
+    "defects_sha256": "30b04eff75a2febdaf3904fdbbeb679686dd3ece2fa5961aff986faa881dfe5e"
+  },
+  "fixture": {
+    "fixture": true,
+    "test_only": true,
+    "example": true,
+    "not_applied": true,
+    "decision": {
+      "created_at": "2026-07-15T00:00:00+08:00",
+      "decision": "accepted",
+      "decision_id": "TQ-DEC-369011A5A7F59B5E6B54",
+      "decision_reason": "Human reviewer accepts this redacted review fixture solely to validate the Stage 11.5 contract.",
+      "decision_source": "human_review",
+      "defects_sha256": "5ddc0d7d91f1aecc4d503a9e49839881ac6a3265e07426916591eb71d6c0668e",
+      "metrics_sha256": "176233daa24afb272092b27921e26047502b01baaa581236a5f3e60660140b45",
+      "review_artifact_sha256": "95ba3c34546da35381925de5c90067a5c0b7d1c762b3879e15dfe8b75c38e665",
+      "review_id": "TE-V71-STAGE113-REVIEW-001",
+      "reviewer": {
+        "display_name": "Human Reviewer",
+        "reviewer_id": "human-reviewer-001"
+      },
+      "schema_version": "te-v7.1-stage11.5"
+    },
+    "decision_payload_sha256": "29f058c04eccd0caeb6fbe46361080c48c76d73ac39e3e206f0862a53395c978"
+  },
+  "boundary": {
+    "provider_executed": false,
+    "real_provider_executed": false,
+    "new_translation_generated": false,
+    "translation_generated": false,
+    "prompt_modified": false,
+    "runtime_modified": false,
+    "provider_modified": false,
+    "translation_strategy_modified": false,
+    "decision_applied": false,
+    "plans_applied": 0,
+    "baseline_created": false,
+    "candidate_created": false,
+    "comparison_executed": false,
+    "readiness_evaluated": false,
+    "stage116_started": false,
+    "network_requests": 0,
+    "golden_corpus_approved_translation_modified": false
+  },
+  "validation_summary": {
+    "contract": "fixture_only",
+    "decision_applied": false,
+    "stage116_started": false
+  }
+}

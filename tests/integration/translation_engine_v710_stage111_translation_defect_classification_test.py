@@ -10,8 +10,9 @@ from core.translation_quality_corpus import GoldenReviewCase, load_golden_corpus
 from core.translation_quality_defects import DEFECT_CATEGORIES, SEVERITIES, initial_human_confirmed_defects, severity_rank, validate_category, validate_defect, validate_defects, validate_severity, verify_defect_artifact
 
 ROOT = Path(__file__).resolve().parents[2]
-ARTIFACT = ROOT / "artifacts/te_v71_stage111/TE_V71_STAGE111_TRANSLATION_DEFECTS.json"
-CORPUS = ROOT / "quality_corpus/golden_review/te_v71_initial_defects.json"
+FIXTURES = ROOT / "tests/fixtures/te_v71_quality_framework"
+ARTIFACT = FIXTURES / "TE_V71_STAGE111_TRANSLATION_DEFECTS.json"
+CORPUS = ROOT / "archive/historical/quality_corpus/golden_review/te_v71_initial_defects.json"
 
 
 @pytest.mark.parametrize("category", DEFECT_CATEGORIES)

@@ -10,7 +10,8 @@ from core.literary_prompt_quality_candidate_v72 import CANDIDATE_POLICY, build_l
 from lts.txt_translation_runtime import split_text
 
 ROOT = Path(__file__).resolve().parents[2]
-STAGE = ROOT / "artifacts/te_v72_stage122"
+FIXTURES = ROOT / "tests/fixtures/te_v72_canary"
+STAGE = FIXTURES
 PACKAGE = STAGE / "TE_V72_STAGE122_AB_EXECUTION_PACKAGE.json"
 REVIEW = STAGE / "TE_V72_STAGE122_MANUAL_AB_REVIEW.json"
 SOURCE = ROOT / "tests/literary/Golden_Set/original_ko.txt"
@@ -133,7 +134,7 @@ def test_execution_package_forbids_retry_and_rerun() -> None:
 ])
 def test_expected_artifact_exists_and_is_in_package(name: str) -> None:
     package = json.loads(PACKAGE.read_text(encoding="utf-8"))
-    path = f"artifacts/te_v72_stage122/{name}"
+    path = f"tests/fixtures/te_v72_canary/{name}"
     assert (ROOT / path).is_file() and path in package["expected_artifacts"]
 
 

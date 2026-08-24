@@ -10,8 +10,9 @@ from core.translation_quality_defects import initial_human_confirmed_defects
 from core.translation_quality_metrics import DIMENSION_WEIGHTS, QUALITY_DIMENSIONS, SEVERITY_PENALTIES, QualityMetricsConfig, calculate_quality_metrics, defects_for_dimension, score_evidence, validate_dimension, verify_quality_metrics_artifact
 
 ROOT = Path(__file__).resolve().parents[2]
-METRICS = ROOT / "artifacts/te_v71_stage112/TE_V71_STAGE112_QUALITY_METRICS.json"
-SUMMARY = ROOT / "artifacts/te_v71_stage112/TE_V71_STAGE112_QUALITY_SUMMARY.json"
+FIXTURES = ROOT / "tests/fixtures/te_v71_quality_framework"
+METRICS = FIXTURES / "TE_V71_STAGE112_QUALITY_METRICS.json"
+SUMMARY = FIXTURES / "TE_V71_STAGE112_QUALITY_SUMMARY.json"
 
 
 @pytest.mark.parametrize("dimension", QUALITY_DIMENSIONS)

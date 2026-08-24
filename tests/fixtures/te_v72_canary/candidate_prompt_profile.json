@@ -1,0 +1,22 @@
+{
+  "stage": "TE-v7.2-Stage12.2",
+  "arm": "candidate",
+  "candidate_enabled": true,
+  "candidate_version": "7.2.0-stage12.1",
+  "system_tokens": 11,
+  "policy_tokens": 269,
+  "candidate_tokens": 109,
+  "context_tokens": 91,
+  "glossary_tokens": 4,
+  "source_tokens": 242,
+  "total_tokens": 617,
+  "total_chars": 1488,
+  "component_sha256": {
+    "system": "b2d23d7df28ae19bf3cd13c5420343f698c2aa4d402927da746728e50d721e31",
+    "context": "8be43ed4f34ac83580b60d88fdf84fd133e6fd959387118abe317b3c54e41676",
+    "glossary": "6a6869f4e591acffddb490194f4f3f0e22f9b0c1fcc3d07e61f55d3b32281c88",
+    "source_section": "acc6e6657a26a004d6eaa59711aa88b4ec8ab33f0967b89bfa27149ac4c44352",
+    "user_prompt": "cdecf4b1ea2470d41ce8570ad9b03211f2c92521346c18d96befe780984a3d14"
+  },
+  "content_redacted": true
+}

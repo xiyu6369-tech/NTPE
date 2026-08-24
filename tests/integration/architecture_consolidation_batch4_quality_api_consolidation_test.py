@@ -14,13 +14,14 @@ from core.translation_quality_metrics import verify_quality_metrics_artifact
 
 
 ROOT = Path(__file__).resolve().parents[2]
-DEFECTS = ROOT / "artifacts/te_v71_stage111/TE_V71_STAGE111_TRANSLATION_DEFECTS.json"
-METRICS = ROOT / "artifacts/te_v71_stage112/TE_V71_STAGE112_QUALITY_METRICS.json"
-REVIEW = ROOT / "artifacts/te_v71_stage113/TE_V71_STAGE113_REVIEW.json"
-PLANS = ROOT / "artifacts/te_v71_stage114/TE_V71_STAGE114_PROMPT_IMPROVEMENT_PLAN.json"
-DECISION = ROOT / "artifacts/te_v71_stage115/TE_V71_STAGE115_REVIEW_DECISION_CONTRACT.json"
-CORPUS = ROOT / "quality_corpus/golden_review/te_v71_initial_defects.json"
-GOVERNANCE = ROOT / "artifacts/te_v71_stage116/TE_V71_STAGE116_GOLDEN_CORPUS_GOVERNANCE.json"
+FIXTURES = ROOT / "tests/fixtures/te_v71_quality_framework"
+DEFECTS = FIXTURES / "TE_V71_STAGE111_TRANSLATION_DEFECTS.json"
+METRICS = FIXTURES / "TE_V71_STAGE112_QUALITY_METRICS.json"
+REVIEW = FIXTURES / "TE_V71_STAGE113_REVIEW.json"
+PLANS = FIXTURES / "TE_V71_STAGE114_PROMPT_IMPROVEMENT_PLAN.json"
+DECISION = FIXTURES / "TE_V71_STAGE115_REVIEW_DECISION_CONTRACT.json"
+CORPUS = ROOT / "archive/historical/quality_corpus/golden_review/te_v71_initial_defects.json"
+GOVERNANCE = FIXTURES / "TE_V71_STAGE116_GOLDEN_CORPUS_GOVERNANCE.json"
 FROZEN = (DEFECTS, METRICS, REVIEW, PLANS, DECISION, CORPUS, GOVERNANCE)
 
 

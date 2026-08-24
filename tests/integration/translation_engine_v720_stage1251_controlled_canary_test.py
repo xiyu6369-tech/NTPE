@@ -9,7 +9,8 @@ from core.translation_quality_canary import ACTIVATION_GATE_READY, CHECKLIST
 
 
 ROOT = Path(__file__).resolve().parents[2]
-ARTIFACT_ROOT = ROOT / "artifacts/te_v72_canary"
+FIXTURES = ROOT / "tests/fixtures/te_v72_canary"
+ARTIFACT_ROOT = FIXTURES
 MANIFEST = ROOT / "manifests/te_v720_controlled_canary_manifest.json"
 MILESTONE_A = ROOT / "manifests/te_v720_milestone_a_translation_quality_integration_manifest.json"
 

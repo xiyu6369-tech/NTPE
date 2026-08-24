@@ -9,26 +9,32 @@ from core.translation_intelligence_corpus.evidence_linker import link_all_eviden
 from core.translation_intelligence_corpus.segmentation import reconstruct_text, segment_text
 
 ROOT = Path(__file__).resolve().parents[2]
+FIXTURES_BATCH2 = ROOT / "tests/fixtures/tic_batch2"
+FIXTURES_BATCH3 = ROOT / "tests/fixtures/tic_batch3"
 
 
-def load(relative: str):
-    return json.loads((ROOT / relative).read_text(encoding="utf-8"))
+def load_batch2(relative: str):
+    return json.loads((FIXTURES_BATCH2 / relative).read_text(encoding="utf-8"))
+
+
+def load_batch3(relative: str):
+    return json.loads((FIXTURES_BATCH3 / relative).read_text(encoding="utf-8"))
 
 
 def file_sha(relative: str) -> str:
     return hashlib.sha256((ROOT / relative).read_bytes()).hexdigest()
 
 
-CASES = load("artifacts/tic_batch2/TRANSLATION_CASES.json")["translation_cases"]
-INVENTORY = load("artifacts/tic_batch3/MANUAL_EVIDENCE_INVENTORY.json")
-LINKS = load("artifacts/tic_batch3/MANUAL_EVIDENCE_LINKS.json")
-ALIGNMENTS = load("artifacts/tic_batch3/TRANSLATION_ALIGNMENT_UNITS.json")
-STATISTICS = load("artifacts/tic_batch3/TRANSLATION_ALIGNMENT_STATISTICS.json")
-INDEX = load("artifacts/tic_batch3/TRANSLATION_ALIGNMENT_INDEX.json")
+CASES = load_batch2("TRANSLATION_CASES.json")["translation_cases"]
+INVENTORY = load_batch3("MANUAL_EVIDENCE_INVENTORY.json")
+LINKS = load_batch3("MANUAL_EVIDENCE_LINKS.json")
+ALIGNMENTS = load_batch3("TRANSLATION_ALIGNMENT_UNITS.json")
+STATISTICS = load_batch3("TRANSLATION_ALIGNMENT_STATISTICS.json")
+INDEX = load_batch3("TRANSLATION_ALIGNMENT_INDEX.json")
 
 
 def test_batch1_and_batch2_anchors_are_preserved():
-    manifest = load("artifacts/tic_batch3/TRANSLATION_ALIGNMENT_MANIFEST.json")
+    manifest = load_batch3("TRANSLATION_ALIGNMENT_MANIFEST.json")
     for path, digest in manifest["input_anchors"].items():
         assert file_sha(path) == digest
     assert len(CASES) == 125
@@ -162,7 +168,7 @@ def test_missing_source_or_translation_coverage_never_marks_failure():
 
 
 def test_no_revision_or_automatic_excellence_was_created():
-    review = load("artifacts/tic_batch3/KNOWN_SUBJECT_SHIFT_HUMAN_REVIEW.json")
+    review = load_batch3("KNOWN_SUBJECT_SHIFT_HUMAN_REVIEW.json")
     assert review["approved_revision"] is None
     assert review["new_translation_generated"] is False
     assert STATISTICS["human_confirmed_excellence_units"] == 0
@@ -199,11 +205,11 @@ def test_index_is_complete_and_searchable():
 
 
 def test_manifests_have_valid_sha256_and_frozen_boundaries():
-    for manifest_path in ("artifacts/tic_batch3/TRANSLATION_ALIGNMENT_MANIFEST.json", "manifests/tic_batch3_manual_evidence_alignment_manifest.json"):
-        manifest = load(manifest_path)
+    for manifest_path in ("tests/fixtures/tic_batch3/TRANSLATION_ALIGNMENT_MANIFEST.json", "manifests/tic_batch3_manual_evidence_alignment_manifest.json"):
+        manifest = json.loads((ROOT / manifest_path).read_text(encoding="utf-8"))
         for path, digest in manifest["files"].items():
             assert file_sha(path) == digest
-    boundaries = load("manifests/tic_batch3_manual_evidence_alignment_manifest.json")["boundaries"]
+    boundaries = json.loads((ROOT / "manifests/tic_batch3_manual_evidence_alignment_manifest.json").read_text(encoding="utf-8"))["boundaries"]
     assert boundaries["provider_executed"] is False
     assert boundaries["network_requests"] == 0
     assert boundaries["new_translation_generated"] is False

@@ -12,8 +12,9 @@ from ntpe.quality import assess
 
 
 ROOT = Path(__file__).resolve().parents[3]
-DEFECTS = ROOT / "artifacts/te_v71_stage111/TE_V71_STAGE111_TRANSLATION_DEFECTS.json"
-METRICS = ROOT / "artifacts/te_v71_stage112/TE_V71_STAGE112_QUALITY_METRICS.json"
+FIXTURES = ROOT / "tests/fixtures/te_v71_quality_framework"
+DEFECTS = FIXTURES / "TE_V71_STAGE111_TRANSLATION_DEFECTS.json"
+METRICS = FIXTURES / "TE_V71_STAGE112_QUALITY_METRICS.json"
 
 
 def test_assessment_reads_frozen_models_and_serialized_artifacts_with_parity() -> None:

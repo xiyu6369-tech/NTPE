@@ -11,9 +11,10 @@ from core.translation_quality_corpus import load_golden_corpus
 from core.translation_quality_framework_integration import build_quality_framework_integration
 
 ROOT = Path(__file__).resolve().parents[2]
-FREEZE = ROOT / "artifacts/te_v71_stage118/TE_V71_STAGE118_TRANSLATION_QUALITY_FRAMEWORK_FREEZE.json"
+FIXTURES = ROOT / "tests/fixtures/te_v71_quality_framework"
+FREEZE = FIXTURES / "TE_V71_STAGE118_TRANSLATION_QUALITY_FRAMEWORK_FREEZE.json"
 MANIFEST = ROOT / "manifests/te_v710_stage118_translation_quality_framework_freeze_manifest.json"
-CORPUS = ROOT / "quality_corpus/golden_review/te_v71_initial_defects.json"
+CORPUS = ROOT / "archive/historical/quality_corpus/golden_review/te_v71_initial_defects.json"
 
 
 def _freeze():
@@ -27,13 +28,13 @@ def _sha(path: Path) -> str:
 def _integration():
     return build_quality_framework_integration(
         root=ROOT, source_case_id="TQ-DEF-B", created_at="2026-07-15T02:00:00+08:00",
-        defects_reference="artifacts/te_v71_stage111/TE_V71_STAGE111_TRANSLATION_DEFECTS.json",
-        metrics_reference="artifacts/te_v71_stage112/TE_V71_STAGE112_QUALITY_METRICS.json",
-        review_artifact_reference="artifacts/te_v71_stage113/TE_V71_STAGE113_REVIEW.json",
-        improvement_plan_reference="artifacts/te_v71_stage114/TE_V71_STAGE114_PROMPT_IMPROVEMENT_PLAN.json",
-        human_decision_reference="artifacts/te_v71_stage115/TE_V71_STAGE115_REVIEW_DECISION_CONTRACT.json",
-        corpus_governance_reference="artifacts/te_v71_stage116/TE_V71_STAGE116_GOLDEN_CORPUS_GOVERNANCE.json",
-        golden_corpus_reference="quality_corpus/golden_review/te_v71_initial_defects.json",
+        defects_reference="tests/fixtures/te_v71_quality_framework/TE_V71_STAGE111_TRANSLATION_DEFECTS.json",
+        metrics_reference="tests/fixtures/te_v71_quality_framework/TE_V71_STAGE112_QUALITY_METRICS.json",
+        review_artifact_reference="tests/fixtures/te_v71_quality_framework/TE_V71_STAGE113_REVIEW.json",
+        improvement_plan_reference="tests/fixtures/te_v71_quality_framework/TE_V71_STAGE114_PROMPT_IMPROVEMENT_PLAN.json",
+        human_decision_reference="tests/fixtures/te_v71_quality_framework/TE_V71_STAGE115_REVIEW_DECISION_CONTRACT.json",
+        corpus_governance_reference="tests/fixtures/te_v71_quality_framework/TE_V71_STAGE116_GOLDEN_CORPUS_GOVERNANCE.json",
+        golden_corpus_reference="archive/historical/quality_corpus/golden_review/te_v71_initial_defects.json",
     )
 
 
@@ -72,7 +73,7 @@ def test_every_file_in_prior_manifests_matches_sha256() -> None:
 
 
 def test_stage117_integration_artifact_is_frozen() -> None:
-    path = ROOT / "artifacts/te_v71_stage117/TE_V71_STAGE117_QUALITY_FRAMEWORK_INTEGRATION.json"
+    path = FIXTURES / "TE_V71_STAGE117_QUALITY_FRAMEWORK_INTEGRATION.json"
     assert _freeze()["integrity"]["stage117_integration_artifact_sha256"] == _sha(path)
     assert _integration().integration_status == "blocked" and _integration().integrity_status == "valid"
 
@@ -84,17 +85,17 @@ def test_golden_corpus_hash_and_content_are_frozen() -> None:
 
 
 def test_no_plan_was_applied() -> None:
-    plan = json.loads((ROOT / "artifacts/te_v71_stage114/TE_V71_STAGE114_PROMPT_IMPROVEMENT_PLAN.json").read_text(encoding="utf-8"))
+    plan = json.loads((FIXTURES / "TE_V71_STAGE114_PROMPT_IMPROVEMENT_PLAN.json").read_text(encoding="utf-8"))
     assert plan["plans_applied"] == 0 and all(row["implementation_status"] == "planned_not_applied" for row in plan["plans"])
 
 
 def test_no_decision_was_applied() -> None:
-    decision = json.loads((ROOT / "artifacts/te_v71_stage115/TE_V71_STAGE115_REVIEW_DECISION_CONTRACT.json").read_text(encoding="utf-8"))
+    decision = json.loads((FIXTURES / "TE_V71_STAGE115_REVIEW_DECISION_CONTRACT.json").read_text(encoding="utf-8"))
     assert decision["fixture"]["not_applied"] and decision["boundary"]["decision_applied"] is False
 
 
 def test_no_corpus_approval_was_created() -> None:
-    governance = json.loads((ROOT / "artifacts/te_v71_stage116/TE_V71_STAGE116_GOLDEN_CORPUS_GOVERNANCE.json").read_text(encoding="utf-8"))
+    governance = json.loads((FIXTURES / "TE_V71_STAGE116_GOLDEN_CORPUS_GOVERNANCE.json").read_text(encoding="utf-8"))
     assert governance["current_corpus_summary"]["approved_cases"] == 0
     assert governance["current_corpus_summary"]["approved_translations"] == 0
 

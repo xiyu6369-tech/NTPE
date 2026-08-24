@@ -21,7 +21,7 @@ def test_preparation_fixture_resolution_hashes_and_request_plan(tmp_path: Path) 
     assert hashlib.sha256((ROOT / "tests/fixtures/te_v72_canary/golden_corpus.json").read_bytes()).hexdigest() == FIXTURE_HASH
 
 def test_historical_claim_unchanged_and_new_claim_single_use(tmp_path: Path) -> None:
-    historical = ROOT / "artifacts/te_v72_stage1256_prompt_verification_canary/authorization_claim.json"
+    historical = ROOT / "tests/fixtures/te_v72_canary/authorization_claim.json"
     assert hashlib.sha256(historical.read_bytes()).hexdigest() == HISTORICAL_CLAIM_HASH
     claim = tmp_path / "claim.json"; config = Stage1257Config("offline-test", AUTHORIZATION_TOKEN)
     _claim(claim, config)

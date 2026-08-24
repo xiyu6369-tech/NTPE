@@ -18,12 +18,13 @@ from core.translation_quality_corpus_governance import (
 from core.translation_quality_review_decision import ReviewDecisionStatus, deserialize_review_decision
 
 ROOT = Path(__file__).resolve().parents[2]
-CORPUS = ROOT / "quality_corpus/golden_review/te_v71_initial_defects.json"
-STAGE115 = ROOT / "artifacts/te_v71_stage115/TE_V71_STAGE115_REVIEW_DECISION_CONTRACT.json"
-REVIEW = ROOT / "artifacts/te_v71_stage113/TE_V71_STAGE113_REVIEW.json"
-METRICS = ROOT / "artifacts/te_v71_stage113/TE_V71_STAGE113_REVIEW_METRICS.json"
-DEFECTS = ROOT / "artifacts/te_v71_stage113/TE_V71_STAGE113_REVIEW_DEFECTS.json"
-ARTIFACT = ROOT / "artifacts/te_v71_stage116/TE_V71_STAGE116_GOLDEN_CORPUS_GOVERNANCE.json"
+FIXTURES = ROOT / "tests/fixtures/te_v71_quality_framework"
+CORPUS = ROOT / "archive/historical/quality_corpus/golden_review/te_v71_initial_defects.json"
+STAGE115 = FIXTURES / "TE_V71_STAGE115_REVIEW_DECISION_CONTRACT.json"
+REVIEW = FIXTURES / "TE_V71_STAGE113_REVIEW.json"
+METRICS = FIXTURES / "TE_V71_STAGE112_QUALITY_METRICS.json"
+DEFECTS = FIXTURES / "TE_V71_STAGE111_TRANSLATION_DEFECTS.json"
+ARTIFACT = FIXTURES / "TE_V71_STAGE116_GOLDEN_CORPUS_GOVERNANCE.json"
 SOURCE_TEXT = "isolated governance source evidence"
 
 

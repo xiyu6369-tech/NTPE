@@ -8,7 +8,8 @@ from core.shared.evidence import canonical_json_bytes
 from core.translation_quality_canary import ACTIVATION_GATE_READY, CHECKLIST
 
 ROOT = Path(__file__).resolve().parents[2]
-ARTIFACT = ROOT / "artifacts/te_v72_canary_execution"
+FIXTURES = ROOT / "tests/fixtures/te_v72_canary"
+ARTIFACT = FIXTURES
 MANIFEST = ROOT / "manifests/te_v720_authorized_provider_canary_manifest.json"
 
 

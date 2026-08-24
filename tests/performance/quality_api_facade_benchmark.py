@@ -12,6 +12,8 @@ ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
+FIXTURES = ROOT / "tests/fixtures/te_v71_quality_framework"
+
 from core.shared.evidence import write_canonical_json  # noqa: E402
 from ntpe.corpus import manage  # noqa: E402
 from ntpe.quality import assess, build_review_view  # noqa: E402
@@ -19,13 +21,13 @@ from ntpe.corpus.compatibility import corpus_input, governance_input  # noqa: E4
 from ntpe.quality.compatibility import decision_input, defects_input, metrics_input, plans_input, review_input  # noqa: E402
 
 
-DEFECTS = ROOT / "artifacts/te_v71_stage111/TE_V71_STAGE111_TRANSLATION_DEFECTS.json"
-METRICS = ROOT / "artifacts/te_v71_stage112/TE_V71_STAGE112_QUALITY_METRICS.json"
-REVIEW = ROOT / "artifacts/te_v71_stage113/TE_V71_STAGE113_REVIEW.json"
-PLANS = ROOT / "artifacts/te_v71_stage114/TE_V71_STAGE114_PROMPT_IMPROVEMENT_PLAN.json"
-DECISION = ROOT / "artifacts/te_v71_stage115/TE_V71_STAGE115_REVIEW_DECISION_CONTRACT.json"
-CORPUS = ROOT / "quality_corpus/golden_review/te_v71_initial_defects.json"
-GOVERNANCE = ROOT / "artifacts/te_v71_stage116/TE_V71_STAGE116_GOLDEN_CORPUS_GOVERNANCE.json"
+DEFECTS = FIXTURES / "TE_V71_STAGE111_TRANSLATION_DEFECTS.json"
+METRICS = FIXTURES / "TE_V71_STAGE112_QUALITY_METRICS.json"
+REVIEW = FIXTURES / "TE_V71_STAGE113_REVIEW.json"
+PLANS = FIXTURES / "TE_V71_STAGE114_PROMPT_IMPROVEMENT_PLAN.json"
+DECISION = FIXTURES / "TE_V71_STAGE115_REVIEW_DECISION_CONTRACT.json"
+CORPUS = ROOT / "archive/historical/quality_corpus/golden_review/te_v71_initial_defects.json"
+GOVERNANCE = FIXTURES / "TE_V71_STAGE116_GOLDEN_CORPUS_GOVERNANCE.json"
 
 
 def _median_ns(operation, *, iterations: int, warmup: int) -> int:
