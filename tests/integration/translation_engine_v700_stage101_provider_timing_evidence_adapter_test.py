@@ -159,7 +159,7 @@ def test_artifact_sha256_detects_mutation() -> None:
 
 def test_stage09_artifacts_and_frozen_runtime_are_unchanged() -> None:
     targets = (
-        ROOT / "artifacts/te_v7_stage09/TE_V7_STAGE09_BASELINE.json",
+        ROOT / "tests" / "fixtures" / "te_v7_stage09" / "TE_V7_STAGE09_BASELINE.json",
         ROOT / "lts/txt_translation_runtime.py",
         ROOT / "core/translation_runtime/runtime_speed_policy.py",
     )

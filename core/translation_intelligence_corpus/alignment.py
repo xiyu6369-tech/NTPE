@@ -13,8 +13,14 @@ from .segmentation import segment_text
 from core.production_runtime.manifest import (
     get_tic_batch_artifact_path,
     get_tic_batch_path,
+    get_te_v7_artifact_path,
+    get_te_v7_stage_path,
+    TE_V71_STAGE111_TRANSLATION_DEFECTS,
+    TE_V71_STAGE112_QUALITY_METRICS,
     TE_V71_STAGE118_TRANSLATION_QUALITY_FRAMEWORK_FREEZE,
+    TE_V72_STAGE1223_MANUAL_AB_REVIEW,
     TE_V72_STAGE1223_SOURCE_EXCERPT_FREEZE,
+    TE_V7_STAGE10101_TRANSLATION_REVIEW,
 )
 
 BATCH1_INPUTS = (
@@ -54,14 +60,14 @@ def _evidence_id(path: str, suffix: str = "") -> str:
 
 
 def build_evidence_inventory(root: Path, cases: list[dict[str, Any]]) -> dict[str, Any]:
-    known = next(case for case in cases if case["translation_file"] == "artifacts/te_v72_stage1223/baseline/translation.txt")
-    stage10101 = next(case for case in cases if case["translation_file"] == "artifacts/te_v7_stage10101/review/TE_V7_STAGE10101_TRANSLATION_REVIEW.txt")
+    known = next(case for case in cases if case["translation_file"] == get_te_v7_artifact_path(".", "te_v72_stage1223", "baseline/translation.txt").as_posix())
+    stage10101 = next(case for case in cases if case["translation_file"] == get_te_v7_artifact_path(".", "te_v7_stage10101", TE_V7_STAGE10101_TRANSLATION_REVIEW).as_posix())
     known_review = _load(root / EVIDENCE_SOURCE)
     sources = [
         {
-            "evidence_id": _evidence_id("artifacts/te_v71_stage111/TE_V71_STAGE111_TRANSLATION_DEFECTS.json"),
+            "evidence_id": _evidence_id(get_te_v7_artifact_path(".", "te_v71_stage111", TE_V71_STAGE111_TRANSLATION_DEFECTS).as_posix()),
             "evidence_type": "human_confirmed_defect_collection",
-            "evidence_path": "artifacts/te_v71_stage111/TE_V71_STAGE111_TRANSLATION_DEFECTS.json",
+            "evidence_path": get_te_v7_artifact_path(".", "te_v71_stage111", TE_V71_STAGE111_TRANSLATION_DEFECTS).as_posix(),
             "review_source": "TE-v7.1-Stage11.1 from Stage10.10.1 human review",
             "reviewer_type": "human",
             "human_provenance": {"complete": True, "origin": "human_review_stage10101", "reviewer_id": "human-reviewer-001"},
@@ -78,9 +84,9 @@ def build_evidence_inventory(root: Path, cases: list[dict[str, Any]]) -> dict[st
             "usable_for_excellence_corpus": False,
         },
         {
-            "evidence_id": _evidence_id("artifacts/te_v71_stage112/TE_V71_STAGE112_QUALITY_METRICS.json"),
+            "evidence_id": _evidence_id(get_te_v7_artifact_path(".", "te_v71_stage112", TE_V71_STAGE112_QUALITY_METRICS).as_posix()),
             "evidence_type": "automatic_quality_metrics",
-            "evidence_path": "artifacts/te_v71_stage112/TE_V71_STAGE112_QUALITY_METRICS.json",
+            "evidence_path": get_te_v7_artifact_path(".", "te_v71_stage112", TE_V71_STAGE112_QUALITY_METRICS).as_posix(),
             "review_source": "TE-v7.1-Stage11.2 automatic metrics",
             "reviewer_type": "automatic",
             "human_provenance": {"complete": False, "origin": None, "reviewer_id": None},
@@ -97,9 +103,9 @@ def build_evidence_inventory(root: Path, cases: list[dict[str, Any]]) -> dict[st
             "usable_for_excellence_corpus": False,
         },
         {
-            "evidence_id": _evidence_id("artifacts/te_v72_stage1223/TE_V72_STAGE1223_MANUAL_AB_REVIEW.json"),
+            "evidence_id": _evidence_id(get_te_v7_artifact_path(".", "te_v72_stage1223", TE_V72_STAGE1223_MANUAL_AB_REVIEW).as_posix()),
             "evidence_type": "incomplete_manual_review_template",
-            "evidence_path": "artifacts/te_v72_stage1223/TE_V72_STAGE1223_MANUAL_AB_REVIEW.json",
+            "evidence_path": get_te_v7_artifact_path(".", "te_v72_stage1223", TE_V72_STAGE1223_MANUAL_AB_REVIEW).as_posix(),
             "review_source": "TE-v7.2-Stage12.2.3 incomplete A/B review",
             "reviewer_type": "unknown",
             "human_provenance": {"complete": False, "origin": None, "reviewer_id": None},

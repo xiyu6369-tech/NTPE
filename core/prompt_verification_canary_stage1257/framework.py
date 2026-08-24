@@ -11,6 +11,7 @@ from typing import Protocol
 from core.prompt_contract_verification_canary.corpus_identity import build_corpus_identity_contract, resolve_canary_corpus_id
 from core.prompt_contract_verification_canary.framework import NvidiaTransport, ProviderOutcome, validate_output
 from core.translation_quality_provider_canary.framework import ALLOWED_MODEL, _build_prompts
+from core.production_runtime.manifest import get_te_v7_stage_path, get_te_v7_artifact_path
 
 AUTHORIZATION_TOKEN = "AUTHORIZE_NTPE_TE_V72_STAGE1257_PROMPT_VERIFICATION_CANARY"
 GATE_READY = "translation_quality_integration_ready_for_controlled_canary"
@@ -68,10 +69,11 @@ def build_preflight(root: str | Path, config: Stage1257Config, *, clean_override
                     claim_path: str | Path | None = None, artifact_validation_override: bool | None = None) -> tuple[dict[str, object], dict[str, object] | None]:
     base = Path(root).resolve(); artifact_root = base / ARTIFACT_DIR
     claim = Path(claim_path) if claim_path is not None else artifact_root / "authorization_claim.json"
-    readiness = json.loads((base / "artifacts/te_v72_prompt_canary_readiness/readiness_summary.json").read_text(encoding="utf-8"))
+    readiness_path = get_te_v7_stage_path(base, "te_v72_prompt_canary_readiness") / "readiness_summary.json"
+    readiness = json.loads(readiness_path.read_text(encoding="utf-8"))
     stage1254 = json.loads((base / "manifests/te_v720_stage1254_prompt_contract_preservation_manifest.json").read_text(encoding="utf-8"))
-    old_claim = base / "artifacts/te_v72_stage1256_prompt_verification_canary/authorization_claim.json"
-    seal = base / "artifacts/te_v72_stage1256a_claim_safe_corpus_binding_remediation/historical_stage1256_seal.json"
+    old_claim = get_te_v7_artifact_path(base, "te_v72_stage1256_prompt_verification_canary", "authorization_claim.json")
+    seal = get_te_v7_artifact_path(base, "te_v72_stage1256a_claim_safe_corpus_binding_remediation", "historical_stage1256_seal.json")
     manifest_a = base / "manifests/te_v720_stage1256a_claim_safe_corpus_binding_remediation_manifest.json"
     steps: list[dict[str, object]] = []
     def add(name: str, passed: bool, **extra: object) -> None: steps.append({"ordinal": len(steps)+1, "name": name, "passed": passed, **extra})

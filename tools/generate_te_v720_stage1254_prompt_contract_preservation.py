@@ -19,13 +19,17 @@ from core.translation_quality_integration_v72.prompt_contract import (
     verify_candidate_prompt,
 )
 from core.translation_quality_provider_canary.framework import _build_prompts
+from core.production_runtime.manifest import (
+    get_te_v7_stage_path,
+    get_te_v7_artifact_path,
+)
 
 
 ARTIFACT_ROOT = ROOT / "artifacts/te_v72_prompt_contract_preservation"
 MANIFEST = ROOT / "manifests/te_v720_stage1254_prompt_contract_preservation_manifest.json"
 RELEASE = ROOT / "docs/releases/te_v7_2/TE_V720_STAGE1254_PROMPT_CONTRACT_PRESERVATION.md"
 CORPUS = ROOT / "tests/fixtures/te_v72_canary/golden_corpus.json"
-CLAIM = ROOT / "artifacts/te_v72_canary_execution/execution_claim.json"
+CLAIM = get_te_v7_artifact_path(ROOT, "te_v72_canary_execution", "execution_claim.json")
 STAGE1252_MANIFEST = ROOT / "manifests/te_v720_authorized_provider_canary_manifest.json"
 MANAGED_ARTIFACTS = (
     "baseline_prompt_snapshot.txt",

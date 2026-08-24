@@ -1,0 +1,134 @@
+{
+  "schema_version": "tic.batch7.test-context.v1",
+"regressions": [
+    {
+      "approval_id": "TIC-APPROVAL-B61-F7658C4698DEAA5ECBF0",
+      "approved_translation": "被拋在遠方的那個男人雖然像個怪物，但至少他仍然是個理智清醒的人，他也會明白這種情況不可能是鄭泰義故意製造的。",
+      "approved_translation_sha256": "a1b2c3d4e5f6789012345678901234567890abcdef1234567890abcdef123456",
+      "bad_translation": "相當理性的人間",
+      "bad_translation_sha256": "f6e5d4c3b2a10987654321fedcba0987654321fedcba0987654321fedcba0987",
+      "blocking": true,
+      "category": "subject_reference_shift",
+      "evaluation_type": "fixed_source_sha_and_case_metadata",
+      "failure_case_id": "TIC-FAIL-B4-FAA4C8AD021D6103DDA6",
+      "integrity": {
+        "algorithm": "sha256",
+        "payload_sha256": "test_integrity_hash"
+      },
+      "must_not_contain": [],
+      "must_preserve": [],
+      "regression_id": "TIC-REG-B6-8553877ED5F0F955C76F",
+      "regression_status": "active",
+      "review_status": "human_reviewed",
+      "schema_version": "tic.batch6.regression.v1",
+      "semantic_constraints": {
+        "requires": ["被拋在遠方的那個男人", "理解", "鄭泰義", "故意", "製造"],
+        "forbids": ["怪物", "理性"]
+      },
+      "source_sha256": "653f8ba2683eaad8df85d062b826257768c2e8250445797362429ad4a02479a0",
+      "source_text": "먼 타국에 떼어놓고 온 괴물 같은 남자는 어쨌든 이지가 제대로 돌아가고 있는, 나름대로 이성적인 인간이었고, 그는 이 상황이 결코 정태의가 의도해서 벌어진 상황이 아니란 걸 이해해줄 것이다. ",
+      "case_id": "TIC-CASE-B2-8AE44C56C7AD3DE4A6FD",
+      "defect_blocking": false,
+      "regression_gate_blocking": true,
+      "alignment_id": null
+    },
+    {
+      "approval_id": "TIC-APPROVAL-B61-AEDE0789DE3B56671E3F",
+      "approved_translation": "相當理性的人",
+      "approved_translation_sha256": "bafb7bce2df1e944b0ae32b843721ca128f0f9d484f3306f317844443e970ee5",
+      "bad_translation": "相當理性的人間",
+      "bad_translation_sha256": "3f8db06e3ef29fb701585229eaf51c78d6bd0369efd9cb22c7c86392414465ec",
+      "blocking": true,
+      "category": "lexical_choice",
+      "evaluation_type": "fixed_source_sha_and_case_metadata",
+      "failure_case_id": "TIC-FAIL-B5-B9C4571532433778FB01",
+      "integrity": {
+        "algorithm": "sha256",
+        "payload_sha256": "test_integrity_hash_2"
+      },
+      "must_not_contain": [],
+      "must_preserve": [],
+      "regression_id": "TIC-REG-B6-F2DF2A880E97026C31EA",
+      "regression_status": "active",
+      "review_status": "human_reviewed",
+      "schema_version": "tic.batch6.regression.v1",
+      "semantic_constraints": {
+        "requires": ["理性", "人"],
+        "forbids": ["間"],
+        "human_person_allowlist": ["人"],
+        "global_replacement_rule": false
+      },
+      "source_sha256": "93c03197da6febce72a4bf9982d9643550ca2f156fe46f134fccc6f10490a60e",
+      "source_text": "인간",
+      "case_id": "TIC-CASE-B2-598DC16E43DB4363D420",
+      "defect_blocking": false,
+      "regression_gate_blocking": true,
+      "alignment_id": null
+    }
+  ],
+  "approvals": {
+    "TIC-APPROVAL-B61-F7658C4698DEAA5ECBF0": {
+      "approval_id": "TIC-APPROVAL-B61-F7658C4698DEAA5ECBF0",
+      "approved_translation": "被拋在遠方的那個男人雖然像個怪物，但至少他仍然是個理智清醒的人，他也會明白這種情況不可能是鄭泰義故意製造的。",
+      "approved_translation_sha256": "a1b2c3d4e5f6789012345678901234567890abcdef1234567890abcdef123456",
+      "approval_status": "human_approved",
+      "approval_timestamp": "2026-07-16T00:00:00+08:00",
+      "integrity": {
+        "algorithm": "sha256",
+        "payload_sha256": "test_approval_integrity"
+      },
+      "regression_id": "TIC-REG-B6-8553877ED5F0F955C76F",
+      "schema_version": "tic.batch61.approval.v1"
+    },
+    "TIC-APPROVAL-B61-AEDE0789DE3B56671E3F": {
+      "approval_id": "TIC-APPROVAL-B61-AEDE0789DE3B56671E3F",
+      "approved_translation": "相當理性的人",
+      "approved_translation_sha256": "b2c3d4e5f6789012345678901234567890abcdef1234567890abcdef1234567",
+      "approval_status": "human_approved",
+      "approval_timestamp": "2026-07-16T00:00:00+08:00",
+      "integrity": {
+        "algorithm": "sha256",
+        "payload_sha256": "test_approval_integrity_2"
+      },
+      "regression_id": "TIC-REG-B6-F2DF2A880E97026C31EA",
+      "schema_version": "tic.batch61.approval.v1"
+    }
+  },
+  "corrections": {
+    "TIC-CASE-B2-8AE44C56C7AD3DE4A6FD": {
+      "case_id": "TIC-CASE-B2-8AE44C56C7AD3DE4A6FD",
+      "correction_status": "human_approved",
+      "correction_timestamp": "2026-07-16T00:00:00+08:00",
+      "failure_case_id": "TIC-FAIL-B4-FAA4C8AD021D6103DDA6",
+      "integrity": {
+        "algorithm": "sha256",
+        "payload_sha256": "test_correction_integrity"
+      },
+      "regression_id": "TIC-REG-B6-8553877ED5F0F955C76F",
+      "schema_version": "tic.batch61.correction.v1"
+    },
+    "TIC-CASE-B2-598DC16E43DB4363D420": {
+      "case_id": "TIC-CASE-B2-598DC16E43DB4363D420",
+      "correction_status": "human_approved",
+      "correction_timestamp": "2026-07-16T00:00:00+08:00",
+      "failure_case_id": "TIC-FAIL-B5-B9C4571532433778FB01",
+      "integrity": {
+        "algorithm": "sha256",
+        "payload_sha256": "test_correction_integrity_2"
+      },
+      "regression_id": "TIC-REG-B6-F2DF2A880E97026C31EA",
+      "schema_version": "tic.batch61.correction.v1"
+    }
+  },
+  "source_anchors": {
+    "artifacts/tic_batch1/TRANSLATION_CORPUS_INVENTORY.json": "d767b8dd48ef176178638c36fe83333665bdf573b9d91c9b9a62dc8a9a08bcd4",
+    "artifacts/tic_batch2/TRANSLATION_CASES.json": "3130ca4051f359428cfe6a5d938e5e89ebf50f38fb63a41320bd4977ece02655",
+    "artifacts/tic_batch61/ACTIVE_REGRESSION_INDEX.json": "b71c875e53a0bde2c0e3bf36b3a4e1a4e165bedcbfcddc2ef5e81dca62e05845",
+    "artifacts/tic_batch61/ACTIVE_REGRESSION_VALIDATION.json": "cb5aefa9af935cee76e72fe6317b4743b2c98ca7119592e8b71ec1ee0751014b",
+    "artifacts/tic_batch61/ACTIVE_TRANSLATION_QUALITY_REGRESSIONS.json": "275b5586e483001bde2625f91bbae6796a55016f7c460eb27f22b30db37e3b41",
+    "artifacts/tic_batch61/HUMAN_APPROVAL_RECORDS.json": "01e08149f7a3f8362998cd9e817f545cba5317a39217fb17a5a0fce344844191",
+    "artifacts/tic_batch61/HUMAN_CORRECTION_RECORDS_V2.json": "b66e27c58bbc9b5e07ead6893ce0a16a1ea45865557265a14e21b7fe4b604f5b",
+    "artifacts/tic_batch61/TIC_BATCH61_STATISTICS.json": "9341febd24a825b5c0b23aac1286b84cd8479645cdbf5ad12ebae3373884daef",
+    "manifests/tic_batch61_human_approval_regression_activation_manifest.json": "test_manifest_hash"
+  }
+}

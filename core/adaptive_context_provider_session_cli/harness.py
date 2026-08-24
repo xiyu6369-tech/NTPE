@@ -9,6 +9,7 @@ from core.adaptive_context_provider_benchmark_session import (
     write_session_report,
 )
 from core.adaptive_context_provider_evidence import ProviderRequestIdentity
+from core.production_runtime.manifest import get_te_v7_stage_path
 
 from .config import ControlledCliConfig
 from .mock_provider import DeterministicMockProvider
@@ -18,7 +19,7 @@ from .parser import build_parser
 def _controlled_report_path(value: str) -> Path:
     target = Path(value).resolve()
     root = Path.cwd().resolve()
-    allowed = (root / ".ntpe_test_sandbox", root / "artifacts" / "te_v7_stage103")
+    allowed = (root / ".ntpe_test_sandbox", get_te_v7_stage_path(root, "te_v7_stage103"))
     if target.suffix.lower() != ".json" or not any(target == base or base in target.parents for base in allowed):
         raise ValueError("controlled-cli-report-path-outside-stage-boundary")
     return target

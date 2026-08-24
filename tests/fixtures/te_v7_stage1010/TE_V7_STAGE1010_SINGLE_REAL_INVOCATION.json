@@ -1,0 +1,42 @@
+{
+  "schema_version": "te.v7.stage1010.single-real-invocation.v1",
+  "stage": "TE-v7.0-Stage10.10B",
+  "status": "single_real_invocation_failed",
+  "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "translation_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "invocation_id": "stage10101-test-001",
+  "model": "meta/llama-3.3-70b-instruct",
+  "provider": "nvidia",
+  "provider_url": "https://integrate.api.nvidia.com/v1/chat/completions",
+  "timeout_seconds": 180,
+  "attempt_limit": 1,
+  "fallback_allowed": false,
+  "single_chunk_only": true,
+  "single_controlled_session": true,
+  "attempts": [
+    {
+      "request_id": "req-001",
+      "chunk_index": 1,
+      "status": "timeout",
+      "network_requests": 1,
+      "real_provider_execution": true,
+      "timeout_detected": true,
+      "translation_output_generated": false,
+      "input_tokens": 100,
+      "output_tokens": 0,
+      "latency_seconds": 180.0,
+      "error_code": "TIMEOUT",
+      "error_message": "Request timed out",
+      "retry_count": 0,
+      "fallback_used": false
+    }
+  ],
+  "network_requests": 1,
+  "real_provider_execution": true,
+  "timeout_detected": true,
+  "translation_output_generated": false,
+  "integrity": {
+    "algorithm": "sha256",
+    "payload_sha256": "d6807ec7767a100a65ae83df7f413ae2c1dfa279865fa584ababfab1b2e22672"
+  }
+}

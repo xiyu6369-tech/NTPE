@@ -13,13 +13,14 @@ from core.prompt_contract_verification_canary.candidate_structural_canary import
     PASS_GATE, PREPARATION_STEPS, PROVIDER, READY_GATE, SOURCE_HASH, STAGE_ID,
     build_candidate_request_plan, canonical, public_request_plan, sha,
 )
+from core.production_runtime.manifest import get_te_v7_stage_path, get_te_v7_artifact_path
 
 ARTIFACT_ROOT = ROOT / ARTIFACT_DIR
 MANIFEST_PATH = ROOT / "manifests/te_v720_stage1258_candidate_structural_verification_canary_manifest.json"
 RELEASE_PATH = ROOT / "docs/releases/te_v7_2/TE_V720_STAGE1258_CANDIDATE_STRUCTURAL_VERIFICATION_CANARY.md"
 HISTORICAL_CLAIMS = (
-    ROOT / "artifacts/te_v72_stage1256_prompt_verification_canary/authorization_claim.json",
-    ROOT / "artifacts/te_v72_stage1257_prompt_verification_canary/authorization_claim.json",
+    get_te_v7_artifact_path(ROOT, "te_v72_stage1256_prompt_verification_canary", "authorization_claim.json"),
+    get_te_v7_artifact_path(ROOT, "te_v72_stage1257_prompt_verification_canary", "authorization_claim.json"),
 )
 
 

@@ -9,9 +9,11 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-HISTORICAL_ROOT = ROOT / "artifacts/te_v72_stage1257_prompt_verification_canary"
+from core.production_runtime.manifest import get_te_v7_stage_path, get_te_v7_artifact_path
+
+HISTORICAL_ROOT = get_te_v7_stage_path(ROOT, "te_v72_stage1257_prompt_verification_canary")
 ARTIFACT_ROOT = ROOT / "artifacts/te_v72_stage1257a_execution_evidence_sealing"
-CLAIM = HISTORICAL_ROOT / "authorization_claim.json"
+CLAIM = get_te_v7_artifact_path(ROOT, "te_v72_stage1257_prompt_verification_canary", "authorization_claim.json")
 EXPECTED_CLAIM_SHA256 = "8b6c99602e6c6d192a41e024e017dc3ebe3a141a9af13914ead38691753a3c21"
 GATE = "translation_quality_integration_ready_for_controlled_canary"
 

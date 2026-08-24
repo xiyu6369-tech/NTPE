@@ -12,6 +12,7 @@ from typing import Protocol
 from core.prompt_contract_verification_canary.corpus_identity import build_corpus_identity_contract, resolve_canary_corpus_id
 from core.prompt_contract_verification_canary.framework import NvidiaTransport, ProviderOutcome
 from core.translation_quality_provider_canary.framework import ALLOWED_MODEL, _build_prompts
+from core.production_runtime.manifest import get_te_v7_artifact_path
 
 STAGE_ID = "TE-v7.2-Stage12.5.8"
 PROVIDER = "nvidia"
@@ -152,11 +153,11 @@ def build_preflight(
     anchor = _git(base, "merge-base", "--is-ancestor", config.preparation_commit, "HEAD")
     add(PREPARATION_STEPS[2], anchor.returncode == 0, preparation_commit=config.preparation_commit)
     add(PREPARATION_STEPS[3], _manifest_valid(base, "manifests/te_v720_stage1254_prompt_contract_preservation_manifest.json"))
-    readiness = _json(base, "artifacts/te_v72_prompt_canary_readiness/readiness_summary.json")
+    readiness = _json(base, get_te_v7_artifact_path(base, "te_v72_prompt_canary_readiness", "readiness_summary.json").as_posix())
     add(PREPARATION_STEPS[4], readiness.get("status") == "PASS" and readiness.get("prompt_canary_ready") is True)
-    seal56 = _json(base, "artifacts/te_v72_stage1256a_claim_safe_corpus_binding_remediation/historical_stage1256_seal.json")
+    seal56 = _json(base, get_te_v7_artifact_path(base, "te_v72_stage1256a_claim_safe_corpus_binding_remediation", "historical_stage1256_seal.json").as_posix())
     add(PREPARATION_STEPS[5], seal56.get("status") == "PASS" and seal56.get("historical_claim_preserved") is True)
-    seal57 = _json(base, "artifacts/te_v72_stage1257a_execution_evidence_sealing/historical_execution_seal.json")
+    seal57 = _json(base, get_te_v7_artifact_path(base, "te_v72_stage1257a_execution_evidence_sealing", "historical_execution_seal.json").as_posix())
     add(PREPARATION_STEPS[6], seal57.get("status") == "PASS" and seal57.get("execution_status") == "completed_fail_closed")
     add(PREPARATION_STEPS[7], readiness.get("activation_gate") == READY_GATE and seal57.get("activation_gate") == READY_GATE)
     plan: dict[str, object] | None = None

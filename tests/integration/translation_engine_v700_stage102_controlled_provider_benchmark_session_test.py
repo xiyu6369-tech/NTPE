@@ -213,7 +213,7 @@ def test_stage101_evidence_artifact_round_trip() -> None:
 
 def test_stage09_and_te_v6_frozen_files_unchanged() -> None:
     targets = (
-        ROOT / "artifacts/te_v7_stage09/TE_V7_STAGE09_BASELINE.json",
+        ROOT / "tests" / "fixtures" / "te_v7_stage09" / "TE_V7_STAGE09_BASELINE.json",
         ROOT / "lts/txt_translation_runtime.py",
         ROOT / "core/translation_runtime/runtime_speed_policy.py",
     )

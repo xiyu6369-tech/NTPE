@@ -1,0 +1,138 @@
+{
+  "verification": "P0-FINAL-12-R1-D",
+  "date": "2026-08-24",
+  "baseline_commit": "53e04767f9a1012641152e96786011fbb3b0e466",
+  "branch": "main",
+  "head": "53e0476",
+  "origin_main": "53e0476",
+  "status": "PASS",
+  "git_state": {
+    "branch": "main",
+    "head": "53e0476",
+    "origin_main": "53e0476",
+    "working_tree_clean": false,
+    "staged_paths": [],
+    "unstaged_paths_count": 360,
+    "protected_worktree_preserved": true
+  },
+  "b1_verification": {
+    "scope": "Repository layout consolidation",
+    "migration_paths_verified": true,
+    "integrity_verified": true,
+    "artifacts_dir": "artifacts/ntpe_v20_stage0_project_layout_consolidation/"
+  },
+  "b2_verification": {
+    "scope": "Translation Engine v7.0 foundation (stage 09, 10.x, 11.x)",
+    "migration_integrity": true,
+    "remediated_in": "R1-A"
+  },
+  "b3_verification": {
+    "scope": "Translation Engine v7.1 quality framework (stage 111-118)",
+    "migration_integrity": true,
+    "remediated_in": "R1-A"
+  },
+  "b4_verification": {
+    "scope": "Translation Engine v7.2 canary/contract (stage 121-125, milestone A)",
+    "migration_integrity": true,
+    "remediated_in": "R1-A"
+  },
+  "b5_verification": {
+    "expected_files": 165,
+    "staged_files": 165,
+    "tests": 29,
+    "fixtures": 134,
+    "governance": 2,
+    "expected_only": [],
+    "staged_only": [],
+    "intersection": 165,
+    "unexpected_files": 0,
+    "base_commit": "2bedad8"
+  },
+  "r1_a_production_closure": {
+    "status": "PASS",
+    "references_remediated": 34,
+    "files_changed": 13,
+    "operational_refs_removed": true
+  },
+  "r1_b_test_fixture_closure": {
+    "status": "PASS",
+    "references_remediated": 14,
+    "files_changed": 10,
+    "fixtures_created": 4,
+    "collection_fixed": true
+  },
+  "r1_c_tools_closure": {
+    "status": "PASS",
+    "references_reconciled": 17,
+    "tools_changed": 8,
+    "remediated": 10,
+    "preserved": 7
+  },
+  "global_reference_classification": {
+    "operational": 0,
+    "canonical_metadata": 18,
+    "valid_negative_check": 4,
+    "historical_only": 8,
+    "tools_only": 0,
+    "acceptance": {
+      "operational_zero": true,
+      "tools_only_zero": true
+    }
+  },
+  "production_validation": {
+    "import_ntpe_production_translate": "PASS",
+    "cli_help": "PASS",
+    "cli_doctor": "PASS",
+    "ntpe_validate": "PASS_WITH_WARNINGS",
+    "warning_details": "core.prompt_builder.prompt_builder ModuleNotFoundError (pre-existing)",
+    "production_imports": "PASS",
+    "compile_all": "PASS (2944 files)"
+  },
+  "test_validation": {
+    "full_collection": "PASS (368 tests)",
+    "tic_batch7": "38/39 PASS (1 pre-existing manifest SHA mismatch)",
+    "tic_batch5": "18/18 PASS",
+    "stage101": "16/16 PASS",
+    "stage102": "22/22 PASS",
+    "stage103": "20/21 PASS (1 pre-existing CLI entrypoint failure)",
+    "stage1010": "28/48 PASS (20 pre-existing missing tools)",
+    "stage10101": "27/47 PASS (20 pre-existing missing tools)",
+    "series_regression": "6/6 FAIL (matches baseline)",
+    "unit_tests": "10/10 PASS",
+    "literary_regression_dry_run": "PASS",
+    "no_operational_deps_on_deleted_artifacts": true
+  },
+  "regression_comparison": {
+    "baseline_failures": [
+      "6 known series failures",
+      "tic_batch7 manifest SHA mismatch (test_27)",
+      "CLI entrypoint failure (stage103)",
+      "Missing tools scripts (stage1010/10101, ~40 failures)"
+    ],
+    "current_match_baseline": true,
+    "new_regressions": 0
+  },
+  "runtime_safety": {
+    "provider_invocations": 0,
+    "network_calls": 0,
+    "real_translation_calls": 0
+  },
+  "repository_hygiene": {
+    "deleted_artifacts_restored": false,
+    "unexpected_root_files": false,
+    "root_hygiene": "PASS",
+    "unexpected_staged_files": false,
+    "protected_worktree_preserved": true,
+    "git_diff_check": "PASS (CRLF warnings only)"
+  },
+  "stop_conditions": {
+    "STOP-FINAL-12-02": "RESOLVED",
+    "STOP-FINAL-12-03": "RESOLVED"
+  },
+  "deliverables": [
+    "docs/governance/repository/P0_FINAL_12_FINAL_GLOBAL_MIGRATION_VERIFICATION.md",
+    "artifacts/P0_FINAL_12_FINAL_Global_Migration_Verification_Report.json"
+  ],
+  "committed": false,
+  "pushed": false
+}

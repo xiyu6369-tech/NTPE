@@ -167,7 +167,7 @@ def test_mock_evidence_never_claims_real_provider() -> None:
 
 
 def test_report_path_cannot_overwrite_stage09_artifact() -> None:
-    target = ROOT / "artifacts/te_v7_stage09/TE_V7_STAGE09_BASELINE.json"
+    target = ROOT / "tests" / "fixtures" / "te_v7_stage09" / "TE_V7_STAGE09_BASELINE.json"
     before = hashlib.sha256(target.read_bytes()).hexdigest()
     assert run_harness(_args(target)) == 2
     assert hashlib.sha256(target.read_bytes()).hexdigest() == before
@@ -201,7 +201,7 @@ def test_frozen_runtime_and_stage09_artifacts_remain_unchanged() -> None:
     targets = (
         ROOT / "lts/txt_translation_runtime.py",
         ROOT / "core/translation_runtime/runtime_speed_policy.py",
-        ROOT / "artifacts/te_v7_stage09/TE_V7_STAGE09_BASELINE.json",
+        ROOT / "tests" / "fixtures" / "te_v7_stage09" / "TE_V7_STAGE09_BASELINE.json",
     )
     before = {path: hashlib.sha256(path.read_bytes()).hexdigest() for path in targets}
     sandbox = _sandbox("stage103_frozen"); report = sandbox / "r.json"

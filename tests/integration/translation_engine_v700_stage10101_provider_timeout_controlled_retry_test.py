@@ -4,6 +4,7 @@ import hashlib
 import json
 import shutil
 import socket
+import sys
 import uuid
 from dataclasses import replace
 from pathlib import Path
@@ -24,10 +25,11 @@ from core.adaptive_context_single_real_invocation import (
     FakeSingleInvocationTransport,
     verify_invocation_artifact,
 )
-from ntpe_controlled_real_provider_retry import build_parser
 
 ROOT = Path(__file__).resolve().parents[2]
-PRIOR = ROOT / "artifacts/te_v7_stage1010/TE_V7_STAGE1010_SINGLE_REAL_INVOCATION.json"
+sys.path.insert(0, str(ROOT / "tools" / "provider_controls"))
+from ntpe_controlled_real_provider_retry import build_parser
+PRIOR = ROOT / "tests" / "fixtures" / "te_v7_stage1010" / "TE_V7_STAGE1010_SINGLE_REAL_INVOCATION.json"
 MODEL = "meta/llama-3.3-70b-instruct"
 FAKE_CREDENTIAL = "stage10101-fake-credential-never-persist"
 AUTHORIZATION_ID = "stage10101-authorization-001"
@@ -83,8 +85,18 @@ def _run(
 
 
 def _prior_with(**changes: object) -> PriorTimeoutEvidence:
-    artifact = replace(verify_invocation_artifact(PRIOR), **changes)
-    raw = PRIOR.read_bytes()
+    artifact = verify_invocation_artifact(PRIOR)
+    payload = artifact.to_dict()
+    payload.update(changes)
+    # Recalculate integrity hash
+    from core.adaptive_context_single_real_invocation.report import invocation_sha256
+    from core.shared.evidence import canonical_json_bytes
+    payload["integrity"] = {
+        "algorithm": "sha256",
+        "payload_sha256": invocation_sha256(payload),
+    }
+    artifact = artifact.__class__(**{k: v for k, v in payload.items() if k != "integrity"})
+    raw = json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=True).encode("utf-8")
     return PriorTimeoutEvidence(artifact, hashlib.sha256(raw).hexdigest(), raw)
 
 

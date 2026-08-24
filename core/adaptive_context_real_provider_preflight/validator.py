@@ -12,6 +12,12 @@ from core.adaptive_context_real_provider_boundary import (
     ALLOWED_MODELS,
     ALLOWED_PROVIDER_URLS,
 )
+from core.production_runtime.manifest import (
+    get_te_v7_stage_path,
+    get_te_v7_artifact_path,
+    TE_V7_STAGE108_FAKE_TRANSPORT_FREEZE,
+    TE_V7_STAGE109_REAL_PROVIDER_PREFLIGHT,
+)
 
 from .config import (
     MAX_PREFLIGHT_ATTEMPTS,
@@ -31,12 +37,12 @@ def resolve_preflight_artifact_path(path: str | Path, *, root: str | Path) -> Pa
     if target.suffix.lower() != ".json":
         raise ValueError("real-provider-preflight-artifact-extension-invalid")
     allowed = (
-        (base / "artifacts" / "te_v7_stage109").resolve(),
+        get_te_v7_stage_path(base, "te_v7_stage109"),
         (base / ".ntpe_test_sandbox").resolve(),
     )
     if not any(target == directory or directory in target.parents for directory in allowed):
         raise ValueError("real-provider-preflight-artifact-path-forbidden")
-    stage09 = (base / "artifacts" / "te_v7_stage09").resolve()
+    stage09 = get_te_v7_stage_path(base, "te_v7_stage09")
     if target == stage09 or stage09 in target.parents:
         raise ValueError("real-provider-preflight-stage09-overwrite-forbidden")
     return target
@@ -67,7 +73,7 @@ def _attempt_plan_checks(config: RealProviderPreflightConfig) -> tuple[bool, boo
 
 
 def _stage108_integrity_valid(config: RealProviderPreflightConfig, root: Path) -> bool:
-    expected = (root / "artifacts/te_v7_stage108/TE_V7_STAGE108_FAKE_TRANSPORT_FREEZE.json").resolve()
+    expected = get_te_v7_artifact_path(root, "te_v7_stage108", TE_V7_STAGE108_FAKE_TRANSPORT_FREEZE)
     candidate = Path(config.stage108_freeze_path)
     if not candidate.is_absolute():
         candidate = root / candidate

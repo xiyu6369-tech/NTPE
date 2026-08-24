@@ -6,6 +6,7 @@ from pathlib import Path
 
 from core.adaptive_context_provider_evidence.redaction import assert_redacted
 from core.adaptive_context_provider_evidence_pipeline import artifact_sha256
+from core.production_runtime.manifest import get_te_v7_stage_path
 
 from .freeze import FakeTransportFreezeArtifact
 
@@ -17,12 +18,12 @@ def _resolve_freeze_path(path: str | Path, *, root: str | Path) -> Path:
         target = base / target
     target = target.resolve()
     allowed = (
-        (base / "artifacts" / "te_v7_stage108").resolve(),
+        get_te_v7_stage_path(base, "te_v7_stage108"),
         (base / ".ntpe_test_sandbox").resolve(),
     )
     if not any(target == directory or directory in target.parents for directory in allowed):
         raise ValueError("provider-execution-freeze-artifact-path-forbidden")
-    stage09 = (base / "artifacts" / "te_v7_stage09").resolve()
+    stage09 = get_te_v7_stage_path(base, "te_v7_stage09")
     if target == stage09 or stage09 in target.parents:
         raise ValueError("provider-execution-freeze-stage09-overwrite-forbidden")
     return target

@@ -10,6 +10,12 @@ from core.adaptive_context_controlled_provider_retry import (
     ControlledProviderRetryConfig,
     ControlledProviderRetryRunner,
 )
+from core.production_runtime.manifest import (
+    get_te_v7_artifact_path,
+    get_te_v7_stage_path,
+    TE_V7_STAGE10101_CONTROLLED_RETRY,
+    TE_V7_STAGE10101_TRANSLATION_REVIEW,
+)
 
 ROOT = Path(__file__).resolve().parents[3]
 
@@ -25,11 +31,11 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--prepare-only", action="store_true")
     parser.add_argument(
         "--artifact-path",
-        default="artifacts/te_v7_stage10101/TE_V7_STAGE10101_CONTROLLED_RETRY.json",
+        default=str(get_te_v7_artifact_path(ROOT, "te_v7_stage10101", TE_V7_STAGE10101_CONTROLLED_RETRY)),
     )
     parser.add_argument(
         "--review-path",
-        default="artifacts/te_v7_stage10101/review/TE_V7_STAGE10101_TRANSLATION_REVIEW.txt",
+        default=str(get_te_v7_artifact_path(ROOT, "te_v7_stage10101", TE_V7_STAGE10101_TRANSLATION_REVIEW)),
     )
     return parser
 

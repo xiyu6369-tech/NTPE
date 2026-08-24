@@ -19,6 +19,7 @@ from core.translation_quality_integration_v72 import (
     QualityIntegrationRequest,
     integrate_prompt,
 )
+from core.production_runtime.manifest import get_te_v7_stage_path
 
 AUTHORIZATION_TOKEN = "AUTHORIZE_NTPE_TE_V72_STAGE1252_PROVIDER_CANARY"
 PROVIDER_URL = "https://integrate.api.nvidia.com/v1/chat/completions"
@@ -181,14 +182,14 @@ def _claim(path: Path, config: CanaryExecutionConfig) -> None:
 
 def execute_canary(
     config: CanaryExecutionConfig,
-    *,
+*,
     root: str | Path,
     transport: CanaryTransport | None = None,
     claim: bool = True,
 ) -> CanaryExecutionResult:
     blockers = config.validate()
     base = Path(root).resolve()
-    artifact_root = base / "artifacts/te_v72_canary_execution"
+    artifact_root = get_te_v7_stage_path(base, "te_v72_canary_execution")
     if blockers:
         return CanaryExecutionResult("blocked", 0, 0, str(artifact_root), blockers)
     active = transport or NvidiaCanaryTransport()
@@ -334,7 +335,7 @@ def execute_canary(
 
 def build_evidence_and_manifest(*, root: str | Path) -> tuple[Path, Path]:
     base = Path(root).resolve()
-    artifact_root = base / "artifacts/te_v72_canary_execution"
+    artifact_root = get_te_v7_stage_path(base, "te_v72_canary_execution")
     quality = json.loads((artifact_root / "quality_report.json").read_text(encoding="utf-8"))
     human_review_completed = bool(quality.get("human_review_completed"))
     canary_pass = bool(quality.get("canary_pass"))

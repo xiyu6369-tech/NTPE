@@ -13,12 +13,13 @@ if str(ROOT) not in sys.path:
 from core.prompt_contract_verification_canary.candidate_structural_canary import (
     READY_GATE, build_candidate_request_plan,
 )
+from core.production_runtime.manifest import get_te_v7_stage_path, get_te_v7_artifact_path
 
 STAGE = "TE-v7.2-Stage12.5.8A"
-HISTORICAL_ROOT = ROOT / "artifacts/te_v72_stage1258_candidate_structural_verification_canary"
+HISTORICAL_ROOT = get_te_v7_stage_path(ROOT, "te_v72_stage1258_candidate_structural_verification_canary")
 ARTIFACT_ROOT = ROOT / "artifacts/te_v72_stage1258a_candidate_structural_failure_sealing"
-CLAIM = HISTORICAL_ROOT / "authorization_claim.json"
-RESPONSE = HISTORICAL_ROOT / "candidate_response.json"
+CLAIM = get_te_v7_artifact_path(ROOT, "te_v72_stage1258_candidate_structural_verification_canary", "authorization_claim.json")
+RESPONSE = get_te_v7_artifact_path(ROOT, "te_v72_stage1258_candidate_structural_verification_canary", "candidate_response.json")
 EXPECTED_CLAIM_SHA256 = "81736fc37a12df55c3ce16ad8f09c3b7dd1c45f8a755b49a4c292f36c28acd8c"
 EXPECTED_RESPONSE_SHA256 = "df46eddcc4360b0257a2347beeb0652a731c3752df3b8453ee33a53cbdc12873"
 PREPARATION_MANIFEST = ROOT / "manifests/te_v720_stage1258_candidate_structural_verification_canary_manifest.json"

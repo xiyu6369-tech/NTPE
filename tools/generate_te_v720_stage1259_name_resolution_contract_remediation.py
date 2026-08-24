@@ -14,14 +14,15 @@ from core.name_resolution_contract_v72 import (
     apply_name_resolution_candidate, canonical_json, mapping_exclusion_reasons,
     render_prompt_mappings, resolve_inventory, validate_name_output,
 )
+from core.production_runtime.manifest import get_te_v7_stage_path, get_te_v7_artifact_path
 
 STAGE = "TE-v7.2-Stage12.5.9"
 ARTIFACT_ROOT = ROOT / "artifacts/te_v72_stage1259_name_resolution_contract_remediation"
 MANIFEST = ROOT / "manifests/te_v720_stage1259_name_resolution_contract_remediation_manifest.json"
 RELEASE = ROOT / "docs/releases/te_v7_2/TE_V720_STAGE1259_NAME_RESOLUTION_CONTRACT_REMEDIATION.md"
-HISTORICAL_ROOT = ROOT / "artifacts/te_v72_stage1258_candidate_structural_verification_canary"
-CLAIM = HISTORICAL_ROOT / "authorization_claim.json"
-RESPONSE = HISTORICAL_ROOT / "candidate_response.json"
+HISTORICAL_ROOT = get_te_v7_stage_path(ROOT, "te_v72_stage1258_candidate_structural_verification_canary")
+CLAIM = get_te_v7_artifact_path(ROOT, "te_v72_stage1258_candidate_structural_verification_canary", "authorization_claim.json")
+RESPONSE = get_te_v7_artifact_path(ROOT, "te_v72_stage1258_candidate_structural_verification_canary", "candidate_response.json")
 EXPECTED_CLAIM_SHA256 = "81736fc37a12df55c3ce16ad8f09c3b7dd1c45f8a755b49a4c292f36c28acd8c"
 EXPECTED_RESPONSE_SHA256 = "df46eddcc4360b0257a2347beeb0652a731c3752df3b8453ee33a53cbdc12873"
 ACTIVATION_GATE = "translation_quality_integration_ready_for_controlled_canary"

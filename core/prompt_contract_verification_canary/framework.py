@@ -11,7 +11,7 @@ from typing import Protocol
 
 from core.translation_engine.nvidia_client import NvidiaClient
 from core.translation_quality_provider_canary.framework import ALLOWED_MODEL, PROVIDER_URL, _build_prompts
-from core.production_runtime.manifest import get_te_v7_stage_path
+from core.production_runtime.manifest import get_te_v7_stage_path, get_te_v7_artifact_path
 
 
 AUTHORIZATION_TOKEN = "AUTHORIZE_NTPE_TE_V72_STAGE1256_PROMPT_VERIFICATION_CANARY"

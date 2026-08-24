@@ -10,10 +10,11 @@ if str(ROOT) not in sys.path: sys.path.insert(0, str(ROOT))
 
 from core.prompt_contract_verification_canary.claim_safe_remediation import validate_before_claim
 from core.prompt_contract_verification_canary.corpus_identity import build_corpus_identity_contract, resolve_canary_corpus_id
+from core.production_runtime.manifest import get_te_v7_stage_path, get_te_v7_artifact_path
 
-HISTORICAL_ROOT = ROOT / "artifacts/te_v72_stage1256_prompt_verification_canary"
+HISTORICAL_ROOT = get_te_v7_stage_path(ROOT, "te_v72_stage1256_prompt_verification_canary")
 ARTIFACT_ROOT = ROOT / "artifacts/te_v72_stage1256a_claim_safe_corpus_binding_remediation"
-CLAIM = HISTORICAL_ROOT / "authorization_claim.json"
+CLAIM = get_te_v7_artifact_path(ROOT, "te_v72_stage1256_prompt_verification_canary", "authorization_claim.json")
 FIXTURE = ROOT / "tests/fixtures/te_v72_canary/golden_corpus.json"
 EXPECTED_CLAIM_SHA256 = "82a0747c084e3844047e8d6e701bc4c4309ba20b56519119b2f7c0988c56f5eb"
 GATE = "translation_quality_integration_ready_for_controlled_canary"

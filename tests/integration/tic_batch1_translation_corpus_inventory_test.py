@@ -35,7 +35,7 @@ def test_repository_scan_covers_every_recognizable_translation_artifact() -> Non
     assert any(path.endswith("_zh.txt") for path in discovered)
     assert any(".partial.txt" in path for path in discovered)
     assert any(path.startswith("translation_cache/") for path in discovered)
-    assert "artifacts/te_v7_stage10101/review/TE_V7_STAGE10101_TRANSLATION_REVIEW.txt" in discovered
+    assert "tests/fixtures/te_v7_stage10101/review/TE_V7_STAGE10101_TRANSLATION_REVIEW.txt" in discovered
 
 
 def test_inventory_is_fresh_and_deterministic() -> None:

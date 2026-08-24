@@ -22,6 +22,9 @@ from core.adaptive_context_single_real_invocation import (
     verify_invocation_artifact,
     write_translation_review,
 )
+
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "tools" / "provider_controls"))
 from ntpe_single_real_provider_invocation import build_parser
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -183,7 +186,7 @@ def test_artifact_path_escape_is_rejected(sandbox: Path) -> None:
 def test_stage09_overwrite_path_is_rejected(sandbox: Path) -> None:
     result = _run(
         sandbox,
-        config=_config(sandbox, artifact_path=str(ROOT / "artifacts/te_v7_stage09/invocation.json")),
+        config=_config(sandbox, artifact_path=str(ROOT / "tests" / "fixtures" / "te_v7_stage09" / "invocation.json")),
     )
     assert "artifact-path-forbidden" in result.blockers[0]
 

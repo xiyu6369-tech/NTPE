@@ -11,6 +11,12 @@ from core.adaptive_context_single_real_invocation import (
     SingleRealInvocationConfig,
     SingleRealInvocationRunner,
 )
+from core.production_runtime.manifest import (
+    get_te_v7_artifact_path,
+    get_te_v7_stage_path,
+    TE_V7_STAGE1010_SINGLE_REAL_INVOCATION,
+    TE_V7_STAGE1010_TRANSLATION_REVIEW,
+)
 
 ROOT = Path(__file__).resolve().parents[3]
 
@@ -23,8 +29,14 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--authorization-id", default="")
     parser.add_argument("--execution-mode", choices=("fake", "real"), default="fake")
     parser.add_argument("--session-id", default="stage1010-single-session")
-    parser.add_argument("--artifact-path", default="artifacts/te_v7_stage1010/TE_V7_STAGE1010_SINGLE_REAL_INVOCATION.json")
-    parser.add_argument("--review-path", default="artifacts/te_v7_stage1010/review/TE_V7_STAGE1010_TRANSLATION_REVIEW.txt")
+    parser.add_argument(
+        "--artifact-path",
+        default=str(get_te_v7_artifact_path(ROOT, "te_v7_stage1010", TE_V7_STAGE1010_SINGLE_REAL_INVOCATION)),
+    )
+    parser.add_argument(
+        "--review-path",
+        default=str(get_te_v7_artifact_path(ROOT, "te_v7_stage1010", TE_V7_STAGE1010_TRANSLATION_REVIEW)),
+    )
     return parser
 
 

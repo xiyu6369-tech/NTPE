@@ -5,6 +5,11 @@ from pathlib import Path
 
 from core.adaptive_context_provider_evidence.redaction import assert_redacted
 from core.adaptive_context_provider_evidence_pipeline import ProviderEvidenceAttempt
+from core.production_runtime.manifest import (
+    get_te_v7_stage_path,
+    TE_V7_STAGE1010_SINGLE_REAL_INVOCATION,
+    TE_V7_STAGE1010_TRANSLATION_REVIEW,
+)
 
 from .integrity import invocation_sha256
 from .model import INVOCATION_STATUSES, SingleRealInvocationArtifact
@@ -19,12 +24,12 @@ def resolve_invocation_artifact_path(path: str | Path, *, root: str | Path) -> P
     if target.suffix.lower() != ".json":
         raise ValueError("single-real-invocation-artifact-extension-invalid")
     allowed = (
-        (base / "artifacts" / "te_v7_stage1010").resolve(),
+        get_te_v7_stage_path(base, "te_v7_stage1010"),
         (base / ".ntpe_test_sandbox").resolve(),
     )
     if not any(target == directory or directory in target.parents for directory in allowed):
         raise ValueError("single-real-invocation-artifact-path-forbidden")
-    stage09 = (base / "artifacts" / "te_v7_stage09").resolve()
+    stage09 = get_te_v7_stage_path(base, "te_v7_stage09")
     if target == stage09 or stage09 in target.parents:
         raise ValueError("single-real-invocation-stage09-overwrite-forbidden")
     return target
@@ -39,7 +44,7 @@ def resolve_review_path(path: str | Path, *, root: str | Path) -> Path:
     if target.suffix.lower() != ".txt":
         raise ValueError("single-real-invocation-review-extension-invalid")
     allowed = (
-        (base / "artifacts" / "te_v7_stage1010" / "review").resolve(),
+        get_te_v7_stage_path(base, "te_v7_stage1010") / "review",
         (base / ".ntpe_test_sandbox").resolve(),
     )
     if not any(target == directory or directory in target.parents for directory in allowed):

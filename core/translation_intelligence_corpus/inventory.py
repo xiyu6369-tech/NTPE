@@ -7,8 +7,13 @@ from pathlib import Path
 from typing import Any, Iterable
 
 from core.production_runtime.manifest import (
+    get_te_v7_artifact_path,
+    get_te_v7_stage_path,
     get_tic_batch_artifact_path,
     get_tic_batch_path,
+    TE_V7_STAGE10101_CONTROLLED_RETRY,
+    TE_V7_STAGE10101_TRANSLATION_REVIEW,
+    TE_V72_STAGE1223_SOURCE_EXCERPT_FREEZE,
 )
 
 SCHEMA_VERSION = "tic.batch1.inventory.v1"
@@ -83,7 +88,7 @@ def discover_translation_artifacts(root: str | Path) -> tuple[Path, ...]:
             found.append(path)
         elif relative.parts and relative.parts[0] == "translation_cache" and name.endswith("_result.json"):
             found.append(path)
-        elif relative.as_posix() == "artifacts/te_v7_stage10101/review/TE_V7_STAGE10101_TRANSLATION_REVIEW.txt":
+        elif relative.as_posix() == get_te_v7_artifact_path(".", "te_v7_stage10101", TE_V7_STAGE10101_TRANSLATION_REVIEW).as_posix():
             found.append(path)
     return tuple(sorted(found, key=lambda item: _relative(item, base).casefold()))
 
@@ -132,7 +137,7 @@ def _metadata(path: Path, root: Path) -> tuple[dict[str, Any], Path | None]:
         if cache.is_file():
             return _load_json(cache), cache
     if relative.endswith("TE_V7_STAGE10101_TRANSLATION_REVIEW.txt"):
-        controlled = root / "artifacts/te_v7_stage10101/TE_V7_STAGE10101_CONTROLLED_RETRY.json"
+        controlled = get_te_v7_artifact_path(root, "te_v7_stage10101", TE_V7_STAGE10101_CONTROLLED_RETRY)
         if controlled.is_file():
             return _load_json(controlled), controlled
     execution = _execution_metadata(path)
@@ -145,7 +150,7 @@ def _metadata(path: Path, root: Path) -> tuple[dict[str, Any], Path | None]:
 def _source_path(path: Path, root: Path) -> Path:
     relative = _relative(path, root)
     if relative.startswith("artifacts/te_v72_stage1223/"):
-        excerpt = root / "artifacts/te_v72_stage1223/TE_V72_STAGE1223_SOURCE_EXCERPT_FREEZE.json"
+        excerpt = get_te_v7_artifact_path(root, "te_v72_stage1223", TE_V72_STAGE1223_SOURCE_EXCERPT_FREEZE)
         if excerpt.is_file():
             return excerpt
     set_names = ("Golden_Set", "Smoke_Set", "Test_Set_0", "Passion")

@@ -1,0 +1,14 @@
+{
+  "schema_version": "te.v7.stage09.baseline.v1",
+  "stage": "TE-v7 Stage 09",
+  "status": "frozen",
+  "source_text": "测试源文本",
+  "translation_text": "测试译文",
+  "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "translation_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "freeze_timestamp": "2026-07-16T00:00:00+08:00",
+  "integrity": {
+    "algorithm": "sha256",
+    "payload_sha256": "test_baseline_integrity"
+  }
+}

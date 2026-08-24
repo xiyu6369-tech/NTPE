@@ -5,6 +5,11 @@ from pathlib import Path
 
 from core.adaptive_context_provider_evidence.redaction import assert_redacted
 from core.adaptive_context_provider_evidence_pipeline import ProviderEvidenceAttempt
+from core.production_runtime.manifest import (
+    get_te_v7_stage_path,
+    TE_V7_STAGE10101_CONTROLLED_RETRY,
+    TE_V7_STAGE10101_TRANSLATION_REVIEW,
+)
 
 from .integrity import controlled_retry_sha256
 from .model import CONTROLLED_RETRY_STATUSES, ControlledRetryArtifact
@@ -22,7 +27,7 @@ def resolve_controlled_retry_artifact_path(
     if target.suffix.lower() != ".json":
         raise ValueError("controlled-retry-artifact-extension-invalid")
     allowed = (
-        (base / "artifacts" / "te_v7_stage10101").resolve(),
+        get_te_v7_stage_path(base, "te_v7_stage10101"),
         (base / ".ntpe_test_sandbox").resolve(),
     )
     if not any(target == directory or directory in target.parents for directory in allowed):
@@ -41,7 +46,7 @@ def resolve_controlled_retry_review_path(
     if target.suffix.lower() != ".txt":
         raise ValueError("controlled-retry-review-extension-invalid")
     allowed = (
-        (base / "artifacts" / "te_v7_stage10101" / "review").resolve(),
+        get_te_v7_stage_path(base, "te_v7_stage10101") / "review",
         (base / ".ntpe_test_sandbox").resolve(),
     )
     if not any(target == directory or directory in target.parents for directory in allowed):
