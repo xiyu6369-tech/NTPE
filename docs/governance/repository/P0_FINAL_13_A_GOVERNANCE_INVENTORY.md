@@ -1,0 +1,588 @@
+# P0-FINAL-13-A GOVERNANCE DOCUMENTATION INVENTORY & RECONCILIATION
+**Generated**: 2026-08-25T12:23:05.942113
+**Git Baseline**: 76ea24f1e34c0f1796236de4d676404d7e45f00a
+
+## Executive Summary
+- **Total governance paths analyzed**: 66
+- **Classification breakdown**:
+  - CURRENT_CANONICAL: 27
+  - CURRENT_SUPPORTING: 19
+  - HISTORICAL_RECORD: 11
+  - SUPERSEDED: 9
+
+## Classification Details
+
+### CURRENT_CANONICAL (27)
+- **artifacts/P0_FINAL_12_B5_Staged_Scope_Reconciliation_Report.json** [??]
+  - Title: P0 FINAL 12 B5 Staged Scope Reconciliation Report
+  - Rationale: P0-FINAL-12 B5 scope reconciliation - part of R1 baseline
+  - ⚠ Broken references: artifacts/tic_batch3/TRANSLATION_ALIGNMENT_MANIFEST.json, tests/fixtures/tic_batch2/TRANSLATION_CASE_MANIFEST.json",, artifacts/,, tests/integration/lcr_batch107_pre_execution_package_integration_test.py",, tests/integration/lcr_batch9_offline_golden_tic_validation_integration_test.py",
+  - 📦 References deleted artifacts: Yes
+- **artifacts/P0_FINAL_12_R1_A_Production_Reference_Closure_Report.json** [??]
+  - Title: P0 FINAL 12 R1 A Production Reference Closure Report
+  - Rationale: P0-FINAL-12-R1 closure deliverable - authoritative R1 baseline documentation
+  - ⚠ Broken references: tests/integration/translation_engine_v720_stage1221_controlled_provider_ab_execution_test.py",, core/translation_intelligence_corpus/inventory.py",, artifacts/te_v72_stage1223/\", tools/provider_controls/ntpe_single_real_provider_invocation.py",, core/prompt_contract_verification_canary/candidate_structural_canary.py":
+  - 📦 References deleted artifacts: Yes
+  - ⏮ References pre-R1 baseline: Yes
+- **artifacts/P0_FINAL_12_R1_B_Test_Fixture_Closure_Report.json** [??]
+  - Title: P0 FINAL 12 R1 B Test Fixture Closure Report
+  - Rationale: P0-FINAL-12-R1 closure deliverable - authoritative R1 baseline documentation
+  - ⚠ Broken references: tests/integration/translation_engine_v700_stage108_fake_transport_end_to_end_freeze_test.py",, tests/integration/translation_engine_v700_stage103_controlled_provider_session_cli_harness_test.py", artifacts/te_v7_stage09/invocation.json",, tools/provider_controls/ntpe_single_real_provider_invocation.py",, tools/generate_ntpe_v20_stage1_launcher_foundation_artifacts.py",
+  - 📦 References deleted artifacts: Yes
+  - ⏮ References pre-R1 baseline: Yes
+- **artifacts/P0_FINAL_12_R1_C_Tools_Reference_Closure_Report.json** [??]
+  - Title: P0 FINAL 12 R1 C Tools Reference Closure Report
+  - Rationale: P0-FINAL-12-R1 closure deliverable - authoritative R1 baseline documentation
+  - ⚠ Broken references: docs/governance/repository/P0_FINAL_12_R1_C_TOOLS_REFERENCE_CLOSURE.md",, artifacts/ntpe_v20_stage1_translation_launcher_product_foundation",, tools/provider_controls/ntpe_single_real_provider_invocation.py",, tools/generate_ntpe_v20_stage1_launcher_foundation_artifacts.py",, core/controlled_multi_chunk_translation_canary/policy.py"
+  - 📦 References deleted artifacts: Yes
+  - ⏮ References pre-R1 baseline: Yes
+- **artifacts/P0_FINAL_12_R1_E_Commit_Boundary_Audit_Report.json** [??]
+  - Title: P0 FINAL 12 R1 E Commit Boundary Audit Report
+  - Rationale: P0-FINAL-12-R1 closure deliverable - authoritative R1 baseline documentation
+  - ⚠ Broken references: artifacts/te_v7_stage06/TE_V7_STAGE06_CANARY_PRODUCTION_VALIDATION.jsonl",, docs/governance/repository/P0_FINAL_12_R1_C_TOOLS_REFERENCE_CLOSURE.md",, artifacts/te_v72_stage121/TE_V72_STAGE121_MANUAL_REVIEW_TEMPLATE.json",, artifacts/te_v72_stage1223/TE_V72_STAGE1223_SOURCE_EXCERPT_FREEZE.json",, artifacts/te_v72_stage1256_prompt_verification_canary/failure_record.json",
+  - ⏮ References pre-R1 baseline: Yes
+- **artifacts/P0_FINAL_12_R1_F_Current_Commit_Boundary_Reconciliation_Report.json** [??]
+  - Title: P0 FINAL 12 R1 F Current Commit Boundary Reconciliation Report
+  - Rationale: P0-FINAL-12-R1 closure deliverable - authoritative R1 baseline documentation
+  - ⚠ Broken references: tests/integration/translation_engine_v700_stage103_controlled_provider_session_cli_harness_test.py", core/translation_intelligence_corpus/inventory.py",, tests/fixtures/te_v7_stage1010/",, tools/maintenance/classify_changes.py",, tools/provider_controls/ntpe_single_real_provider_invocation.py"
+  - 📦 References deleted artifacts: Yes
+  - ⏮ References pre-R1 baseline: Yes
+- **artifacts/P0_FINAL_12_R1_F_Root_Hygiene_Provenance_Audit_Report.json** [??]
+  - Title: P0 FINAL 12 R1 F Root Hygiene Provenance Audit Report
+  - Rationale: P0-FINAL-12-R1 closure deliverable - authoritative R1 baseline documentation
+  - ⚠ Broken references: docs/governance/repository/P0_FINAL_12_R1_F_ROOT_HYGIENE_PROVENANCE_AUDIT.md",, artifacts/P0_FINAL_12_R1_F_Root_Hygiene_Provenance_Audit_Report.json", tools/maintenance/classify_changes.py",, tools/maintenance/audit_r1_e.py",, tools/maintenance/check_missing.py",
+  - 📦 References deleted artifacts: Yes
+  - ⏮ References pre-R1 baseline: Yes
+- **artifacts/P0_FINAL_12_R1_F_Root_Hygiene_Remediation_Report.json** [??]
+  - Title: P0 FINAL 12 R1 F Root Hygiene Remediation Report
+  - Rationale: P0-FINAL-12-R1 closure deliverable - authoritative R1 baseline documentation
+  - ⚠ Broken references: tools/maintenance/classify_changes.py",, artifacts/P0_FINAL_12_R1_F_Root_Hygiene_Remediation_Report.json", tools/maintenance/audit_r1_e.py",, tools/maintenance/check_missing.py",, docs/governance/repository/P0_FINAL_12_R1_F_ROOT_HYGIENE_REMEDIATION.md",
+  - ⏮ References pre-R1 baseline: Yes
+- **artifacts/P0_FINAL_12_R1_H_Post_Commit_Integrity_Verification_Report.json** [??]
+  - Title: P0 FINAL 12 R1 H Post Commit Integrity Verification Report
+  - Rationale: P0-FINAL-12-R1 closure deliverable - authoritative R1 baseline documentation
+  - ⚠ Broken references: artifacts/P0_FINAL_12_R1_H_Post_Commit_Integrity_Verification_Report.json", docs/governance/repository/P0_FINAL_12_R1_H_POST_COMMIT_INTEGRITY_VERIFICATION.md",
+  - 📦 References deleted artifacts: Yes
+  - ⏮ References pre-R1 baseline: Yes
+  - ✅ References R1 baseline (76ea24f): Yes
+- **artifacts/P0_FINAL_13_Post_R1_Worktree_Inventory_Report.json** [??]
+  - Title: P0 FINAL 13 Post R1 Worktree Inventory Report
+  - Rationale: P0-FINAL-13 audit report - current canonical
+  - ⚠ Broken references: artifacts/te_v7_stage06/TE_V7_STAGE06_CANARY_PRODUCTION_VALIDATION.jsonl",, docs/governance/repository/P0_FINAL_12_R1_C_TOOLS_REFERENCE_CLOSURE.md",, artifacts/te_v72_stage121/TE_V72_STAGE121_MANUAL_REVIEW_TEMPLATE.json",, artifacts/te_v72_stage1223/TE_V72_STAGE1223_SOURCE_EXCERPT_FREEZE.json",, artifacts/te_v72_stage1256_prompt_verification_canary/failure_record.json",
+  - 📦 References deleted artifacts: Yes
+  - ✅ References R1 baseline (76ea24f): Yes
+- **docs/governance/repository/P0_FINAL_12_B5_SCOPE_RECONCILIATION.md** [??]
+  - Title: P0-FINAL-12-B5 Scope Reconciliation Report
+  - Rationale: P0-FINAL-12 B5 scope reconciliation - part of R1 baseline
+  - ⚠ Broken references: tests/integration/architecture_consolidation_batch4_quality_api_consolidation_test.py`, tests/integration/translation_engine_v720_stage121_evidence_based_prompt_quality_candidate_test.py`, tests/performance/tic_batch7_offline_quality_gate_benchmark.py`, tests/integration/lcr_batch107_pre_execution_package_integration_test.py`, tests/integration/lcr_batch9_offline_golden_tic_validation_integration_test.py`
+  - 📦 References deleted artifacts: Yes
+- **docs/governance/repository/P0_FINAL_12_B5_STAGED_SCOPE_RECONCILIATION.md** [??]
+  - Title: P0-FINAL-12-B5 Staged Scope Reconciliation Report
+  - Rationale: P0-FINAL-12 B5 scope reconciliation - part of R1 baseline
+  - ⚠ Broken references: tests/integration/lcr_batch107_pre_execution_package_integration_test.py`, tests/performance/tic_batch7_offline_quality_gate_benchmark.py`, tests/integration/lcr_batch9_offline_golden_tic_validation_integration_test.py`, core/`, tests/integration/tic_batch5_historical_human_evidence_expansion_test.py`
+  - 📦 References deleted artifacts: Yes
+- **docs/governance/repository/P0_FINAL_12_B5_TEST_MIGRATION_INVENTORY.md** [??]
+  - Title: P0-FINAL-12-B5 Test Migration Inventory
+  - Rationale: P0-FINAL-12 B5 scope reconciliation - part of R1 baseline
+  - ⚠ Broken references: artifacts/te_v72_stage1256-1258/*, artifacts/te_v72_canary_execution/provider_metrics.json, artifacts/te_v71_stage111/TE_V71_STAGE111_TRANSLATION_DEFECTS.json, artifacts/te_v71_stage116/TE_V71_STAGE116_GOLDEN_CORPUS_GOVERNANCE.json, artifacts/tic_batch61/HUMAN_APPROVAL_RECORDS.json,
+  - 📦 References deleted artifacts: Yes
+- **docs/governance/repository/P0_FINAL_12_R1_A_PRODUCTION_REFERENCE_CLOSURE.md** [??]
+  - Title: P0-FINAL-12-R1-A Production Canonical Boundary Migration — Closure Report
+  - Rationale: P0-FINAL-12-R1 closure deliverable - authoritative R1 baseline documentation
+  - ⚠ Broken references: core/adaptive_context_single_real_invocation/report.py`, core/adaptive_context_real_provider_preflight/validator.py`, core/adaptive_context_controlled_provider_retry/report.py`, core/production_runtime.manifest`, tests/integration/translation_engine_v720_stage1222_independent_pair_recovery_execution_test.py`
+  - 📦 References deleted artifacts: Yes
+  - ⏮ References pre-R1 baseline: Yes
+- **docs/governance/repository/P0_FINAL_12_R1_B_TEST_FIXTURE_CLOSURE.md** [??]
+  - Title: P0-FINAL-12-R1-B Test Fixture / Integration Dependency Closure — Final Report
+  - Rationale: P0-FINAL-12-R1 closure deliverable - authoritative R1 baseline documentation
+  - ⚠ Broken references: artifacts/te_v7_stage09/invocation.json`, artifacts/te_v71_stage113/TE_V71_STAGE113_REVIEW_DEFECTS.json`, tests/integration/translation_engine_v700_stage1010_single_real_provider_invocation_test.py`, artifacts/te_v7_stage09/freeze.json`, tests/fixtures/te_v7_stage09/TE_V7_STAGE09_BASELINE.json`
+  - 📦 References deleted artifacts: Yes
+  - ⏮ References pre-R1 baseline: Yes
+- **docs/governance/repository/P0_FINAL_12_R1_C_TOOLS_REFERENCE_CLOSURE.md** [??]
+  - Title: P0-FINAL-12-R1-C Tools / Generator Canonical Path Migration — Closure Report
+  - Rationale: P0-FINAL-12-R1 closure deliverable - authoritative R1 baseline documentation
+  - ⚠ Broken references: artifacts/te_v7_stage10101/review/TE_V7_STAGE10101_TRANSLATION_REVIEW.txt`, artifacts/te_v72_stage1258/...`, artifacts/te_v72_stage1257/...`, core/translation_intelligence_corpus/failure_corpus.py`, tools/generate_te_v720_stage1256a_claim_safe_corpus_binding_remediation.py`
+  - 📦 References deleted artifacts: Yes
+  - ⏮ References pre-R1 baseline: Yes
+- **docs/governance/repository/P0_FINAL_12_R1_E_COMMIT_BOUNDARY_AUDIT.md** [??]
+  - Title: P0-FINAL-12-R1-E — Remediation Commit Boundary & Worktree Preservation Audit
+  - Rationale: P0-FINAL-12-R1 closure deliverable - authoritative R1 baseline documentation
+  - ⚠ Broken references: tools/one_shots/`, artifacts/P0_FINAL_12_R1_E_Commit_Boundary_Audit_Report.json`, tests/fixtures/`,, tools/monitoring/`, artifacts/`
+  - 📦 References deleted artifacts: Yes
+  - ⏮ References pre-R1 baseline: Yes
+- **docs/governance/repository/P0_FINAL_12_R1_F_CURRENT_COMMIT_BOUNDARY_RECONCILIATION.md** [??]
+  - Title: P0-FINAL-12-R1-F — Current-State Commit Boundary Reconciliation
+  - Rationale: P0-FINAL-12-R1 closure deliverable - authoritative R1 baseline documentation
+  - ⚠ Broken references: tools/one_shots/launcher_character_db.py, tools/one_shots/launcher_structure_test.py, tools/one_shots/write_report_part1.py, tools/one_shots/launcher_expansion_plan.py, tools/one_shots/write_narrative_part2.py
+  - 📦 References deleted artifacts: Yes
+  - ⏮ References pre-R1 baseline: Yes
+- **docs/governance/repository/P0_FINAL_12_R1_F_ROOT_HYGIENE_PROVENANCE_AUDIT.md** [??]
+  - Title: P0-FINAL-12-R1-F — Root Hygiene Provenance Audit
+  - Rationale: P0-FINAL-12-R1 closure deliverable - authoritative R1 baseline documentation
+  - ⚠ Broken references: tools/maintenance/audit_r1_e.py`, artifacts/`;, tools/maintenance/check_missing.py`, tools/maintenance/`, docs/governance/repository/P0_FINAL_12_R1_F_ROOT_HYGIENE_PROVENANCE_AUDIT.md`
+  - 📦 References deleted artifacts: Yes
+  - ⏮ References pre-R1 baseline: Yes
+- **docs/governance/repository/P0_FINAL_12_R1_F_ROOT_HYGIENE_REMEDIATION.md** [??]
+  - Title: P0-FINAL-12-R1-F — Root Hygiene Remediation
+  - Rationale: P0-FINAL-12-R1 closure deliverable - authoritative R1 baseline documentation
+  - ⚠ Broken references: docs/governance/repository/P0_FINAL_12_R1_F_ROOT_HYGIENE_REMEDIATION.md`, tools/maintenance/audit_r1_e.py`, artifacts/P0_FINAL_12_R1_F_Root_Hygiene_Remediation_Report.json`, tools/maintenance/check_missing.py`, tools/maintenance/`
+  - 📦 References deleted artifacts: Yes
+  - ⏮ References pre-R1 baseline: Yes
+- **docs/governance/repository/P0_FINAL_12_R1_H_POST_COMMIT_INTEGRITY_VERIFICATION.md** [??]
+  - Title: P0-FINAL-12-R1-H — Post-Commit Integrity / Push Gate Verification
+  - Rationale: P0-FINAL-12-R1 closure deliverable - authoritative R1 baseline documentation
+  - ⚠ Broken references: artifacts/P0_FINAL_12_R1_H_Post_Commit_Integrity_Verification_Report.json`, docs/governance/repository/P0_FINAL_12_R1_H_POST_COMMIT_INTEGRITY_VERIFICATION.md`
+  - 📦 References deleted artifacts: Yes
+  - ⏮ References pre-R1 baseline: Yes
+  - ✅ References R1 baseline (76ea24f): Yes
+- **docs/governance/repository/P0_FINAL_13_POST_R1_WORKTREE_INVENTORY.md** [??]
+  - Title: P0-FINAL-13 POST-R1 WORKTREE INVENTORY & SCOPE DEFINITION
+  - Rationale: P0-FINAL-13 series deliverable - current authoritative inventory/handoff document
+  - ⚠ Broken references: artifacts/te_v72_canary_execution/candidate_output/canary-002-scene-pronoun.txt`, artifacts/te_v72_stage1257_prompt_verification_canary/manual_review_package.json`, docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F3_PREFLIGHT.md`, artifacts/te_v72_stage1259_name_resolution_contract_remediation/conflict_resolution_contract.json`, artifacts/book_intake_stage28/book_intake_freeze_evidence.json`
+  - 📦 References deleted artifacts: Yes
+  - ✅ References R1 baseline (76ea24f): Yes
+- **docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_E_RESOLUTION.md** [??]
+  - Title: P0 Repository Final Cleanup — STOP-02 Core WIP Resolution
+  - Rationale: Final cleanup verification/resolution - current canonical state
+  - ⚠ Broken references: core/series_orchestration/runtime_integration.py:153,155`, core/series_checkpoint/manager.py:92`, core/translation_runtime/boundary_detector.py`, core/adapters/production_submission_adapter.py`, core/adapters/production_submission_adapter.py.new
+  - 📦 References deleted artifacts: Yes
+- **docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_F6_FINAL_VERIFICATION.md** [??]
+  - Title: P0 Repository Final Cleanup — F6 Final Verification
+  - Rationale: Final cleanup verification/resolution - current canonical state
+  - ⚠ Broken references: tests/literary/outputs/PS-03-smoke/Literary_Regression_Report.json`, artifacts/test_out/`, artifacts/rm6_canary/legacy_kr/novel_sample_live_progress.json`, tools/one_shots/`, core/`
+  - 📦 References deleted artifacts: Yes
+- **docs/governance/rm8/P0_STAGE5_FINAL_ACCEPTANCE_REVIEW.md** [??]
+  - Title: P0 Stage 5 Final Acceptance / Freeze Review
+  - Rationale: Stage 5 final acceptance/integrated review - authoritative
+  - ⚠ Broken references: tests/literary/outputs/*`, core/`, tools/one_shots/`, core/context_scene_memory/*`, core/entity_resolver/*`
+  - 📦 References deleted artifacts: Yes
+- **docs/governance/rm8/P0_STAGE5_INTEGRATED_REVIEW.md** [??]
+  - Title: P0 Stage 5.1–5.7 Integrated Review
+  - Rationale: Stage 5 final acceptance/integrated review - authoritative
+  - ⚠ Broken references: tests/literary/outputs/*`, core/adapters/production_submission_adapter.py.new`,, core/context_scene_memory/persistence.py`,, core/character_memory_v2/persistence.py`, artifacts/rm6_canary/*`,
+  - 📦 References deleted artifacts: Yes
+- **docs/governance/rm8/P0_STAGE5_ROOT_LEVEL_INVENTORY.md** [??]
+  - Title: P0 Stage 5 Root-Level Inventory
+  - Rationale: Root level inventory - authoritative reference
+  - ⚠ Broken references: docs/governance/rm8/`., tests/`,, tools/`,, docs/governance/rm8/`;, docs/governance/rm8/`
+  - 📦 References deleted artifacts: Yes
+
+### CURRENT_SUPPORTING (19)
+- **docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_D_RECONCILIATION.md** [M]
+  - Title: P0 Repository Final Cleanup — Batch D Reconciliation
+  - Rationale: Batch reconciliation - supporting evidence for cleanup
+  - ⚠ Broken references: artifacts/rm8_5_audit/, artifacts/p0_productization/P0_ADAPTER_ARCHITECTURE.md, core/`, artifacts/p0_productization/P0_IMPLEMENTATION_SPECIFICATION.md, core/`,
+  - 📦 References deleted artifacts: Yes
+- **artifacts/P0_FINAL_11_Reference_Migration_Design_Report.json** [??]
+  - Title: P0 FINAL 11 Reference Migration Design Report
+  - Rationale: Reference migration design - supporting R1 closure
+  - ⚠ Broken references: artifacts/te_v72_stage1223/TE_V72_STAGE1223_SOURCE_EXCERPT_FREEZE.json",, core/translation_quality_defects/catalog.py", core/translation_quality_review_artifacts/builder.py",, core/adaptive_context_controlled_provider_retry/report.py",, artifacts/te_v7_stage10101",
+  - 📦 References deleted artifacts: Yes
+- **docs/governance/repository/P0_FINAL_11_REFERENCE_MIGRATION_DESIGN.md** [??]
+  - Title: P0-FINAL-11 Reference Migration Design & Safety Preflight
+  - Rationale: Reference migration design - supporting R1 closure
+  - ⚠ Broken references: core/adaptive_context_single_real_invocation/report.py`, artifacts/te_v72_stage125*/*.json`, core/adaptive_context_authorized_provider_cli/config.py`, tests/unit/test_translation_quality_canary.py`, artifacts/P0_FINAL_11_Reference_Migration_Design_Report.json`
+  - 📦 References deleted artifacts: Yes
+- **docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_A_RECONCILIATION.md** [??]
+  - Title: P0 Repository Final Cleanup — Batch A Reconciliation
+  - Rationale: Batch reconciliation - supporting evidence for cleanup
+  - ⚠ Broken references: artifacts/rm8_5_audit/, tools/one_shots/ntpe_literary_regression.py, core/`, tools/one_shots/fix_char_rules.py, tools/one_shots/fix_narrative.py
+  - 📦 References deleted artifacts: Yes
+- **docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_B_CORE_RECONCILIATION.md** [??]
+  - Title: P0 Repository Final Cleanup — Batch B + Core Module Reconciliation: COMPLETE
+  - Rationale: Batch reconciliation - supporting evidence for cleanup
+  - ⚠ Broken references: tests/literary/outputs/*`, artifacts/rm7_entity_canary/`,, tools/one_shots/`, core/`, artifacts/tic_batch*`,
+  - 📦 References deleted artifacts: Yes
+- **docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_B_PARTIAL_RECONCILIATION.md** [??]
+  - Title: P0 Repository Final Cleanup — Batch B Partial Reconciliation
+  - Rationale: Batch reconciliation - supporting evidence for cleanup
+  - ⚠ Broken references: artifacts/rm8_5_audit/, tools/one_shots/ntpe_literary_regression.py, docs/governance/rm6/`, tools/one_shots/`, tools/one_shots/fix_char_rules.py
+  - 📦 References deleted artifacts: Yes
+- **docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_C_RECONCILIATION.md** [??]
+  - Title: P0 Repository Final Cleanup — Batch C Reconciliation (FINAL)
+  - Rationale: Batch reconciliation - supporting evidence for cleanup
+  - ⚠ Broken references: artifacts/rm8_5_audit/, tools/one_shots/`, core/`/`lts`/`tests`, tools/archive/one_shots_launcher/`, docs/governance/repository/*.md
+- **docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F1_RECONCILIATION.md** [??]
+  - Title: P0 Repository Final Cleanup — Batch F1 Reconciliation
+  - Rationale: Batch reconciliation - supporting evidence for cleanup
+  - ⚠ Broken references: artifacts/te_v71_stage*/`, artifacts/te_v72_*/`, core/`, artifacts/te_v71*`, artifacts/te_v7_stage*/`
+  - 📦 References deleted artifacts: Yes
+- **docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F3_RECONCILIATION.md** [??]
+  - Title: P0 Repository Final Cleanup — Batch F3-1 Reconciliation
+  - Rationale: Batch reconciliation - supporting evidence for cleanup
+  - ⚠ Broken references: artifacts/controlled_multi_chunk_translation_stage742/checkpoint-001.json, core/`, artifacts/controlled_multi_chunk_translation_stage742/`, artifacts/controlled_multi_chunk_translation_stage743_diagnostic/chunk-002.invalid-candidate.txt, artifacts/controlled_multi_chunk_translation_stage743_diagnostic/chunk-002.dialogue-diagnostic.json
+  - 📦 References deleted artifacts: Yes
+- **docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F4_1_RECONCILIATION.md** [??]
+  - Title: P0 Repository Final Cleanup — Batch F4-1 Reconciliation
+  - Rationale: Batch reconciliation - supporting evidence for cleanup
+  - ⚠ Broken references: core/`, artifacts/book_preparation_stage34/`, artifacts/book_intake_stage28/`
+  - 📦 References deleted artifacts: Yes
+- **docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F4_2_RECONCILIATION.md** [??]
+  - Title: P0 Repository Final Cleanup — Batch F4-2 Reconciliation
+  - Rationale: Batch reconciliation - supporting evidence for cleanup
+  - ⚠ Broken references: artifacts/ntpe_v20_stage1_translation_launcher_product_foundation/PROVIDER_CATALOG.json, artifacts/ntpe_v20_stage1_translation_launcher_product_foundation/COMMAND_BUILDER_EVIDENCE.json, artifacts/ntpe_v20_stage0_project_layout_consolidation/EXCLUDED_TRACKED_FILES.json, artifacts/ntpe_v20_stage0_project_layout_consolidation/COMPATIBILITY_WRAPPERS.json, core/`
+  - 📦 References deleted artifacts: Yes
+- **docs/governance/rm8/P0_STAGE5_BATCH5_2_ATOMIC_DELIVERY_REPORT.md** [??]
+  - Title: P0 Stage 5 Batch 5.2 — Atomic Git Delivery Report
+  - Rationale: Stage 5 delivery reconciliation - supporting evidence
+  - ⚠ Broken references: artifacts/rm8_5_audit/, tools/one_shots/ntpe_literary_regression.py, artifacts/p0_productization/P0_STAGE3_POSTFLIGHT_ROOT_ENTRIES.txt, core/`, tools/one_shots/fix_char_rules.py
+  - 📦 References deleted artifacts: Yes
+- **docs/governance/rm8/P0_STAGE5_BATCH5_2_GIT_DELIVERY_RECONCILIATION.md** [??]
+  - Title: P0 Stage 5 Batch 5.2 — Git Delivery Reconciliation
+  - Rationale: Stage 5 delivery reconciliation - supporting evidence
+  - ⚠ Broken references: docs/governance/rm8/P0_STAGE5_BATCH5_2_SERIES_MEMORY_PREFLIGHT_AUDIT.md`, artifacts/p0_productization/P0_STAGE2_IMPLEMENTATION_REPORT.md, docs/governance/rm8/RM_8_3_PREFLIGHT_REPORT.md`, docs/governance/rm8/RM_8_2_PRE_IMPLEMENTATION_AUDIT.md`, core/series_memory/persistence.py`
+- **docs/governance/rm8/P0_STAGE5_BATCH5_3_GIT_DELIVERY_RECONCILIATION.md** [??]
+  - Title: P0 Stage 5 Batch 5.3 — Git Delivery Reconciliation
+  - Rationale: Stage 5 delivery reconciliation - supporting evidence
+  - ⚠ Broken references: tests/series/`, artifacts/p0_productization/P0_STAGE2_IMPLEMENTATION_REPORT.md, core/controlled_runtime_queue_admission_record/`, artifacts/rm6_canary/runtime_kr/novel_sample_live_progress.json`, tests/literary/outputs/PS-03-smoke/Literary_Quality_Report.json`
+  - 📦 References deleted artifacts: Yes
+- **docs/governance/rm8/P0_STAGE5_BATCH5_4_GIT_DELIVERY_RECONCILIATION.md** [??]
+  - Title: P0 Stage 5 Batch 5.4 — Git Delivery Reconciliation Report
+  - Rationale: Stage 5 delivery reconciliation - supporting evidence
+  - ⚠ Broken references: tests/series/test_batch5_4.py`, artifacts/rm8_5_audit/, tools/one_shots/ntpe_literary_regression.py, core/series_identity/registry.py`, tests/literary/outputs/PS-03-smoke/Literary_Regression_Report.json`
+  - 📦 References deleted artifacts: Yes
+- **docs/governance/rm8/P0_STAGE5_BATCH5_5_GIT_DELIVERY_RECONCILIATION.md** [??]
+  - Title: P0 Stage 5 Batch 5.5 — Git Delivery Reconciliation Report
+  - Rationale: Stage 5 delivery reconciliation - supporting evidence
+  - ⚠ Broken references: artifacts/p0_productization/P0_STAGE2_IMPLEMENTATION_REPORT.md, core/glossary.py`, core/knowledge_runtime/merger.py`, artifacts/rm6_canary/runtime_kr/novel_sample_live_progress.json`, tests/literary/outputs/PS-03-smoke/Literary_Quality_Report.json`
+  - 📦 References deleted artifacts: Yes
+- **docs/governance/rm8/P0_STAGE5_BATCH5_6_GIT_DELIVERY_RECONCILIATION.md** [??]
+  - Title: P0 Stage 5 Batch 5.6 — Git Delivery Reconciliation
+  - Rationale: Stage 5 delivery reconciliation - supporting evidence
+  - ⚠ Broken references: docs/governance/rm8/P0_STAGE5_BATCH5_2_ATOMIC_DELIVERY_REPORT.md`, artifacts/p0_productization/P0_STAGE3_POSTFLIGHT_ROOT_ENTRIES.txt`, tests/literary/outputs/PS-03-smoke/Literary_Regression_Report.json`, docs/governance/rm8/P0_STAGE5_BATCH5_3_IMPLEMENTATION_TASK.md`, docs/governance/rm8/P0_STAGE5_BATCH5_6_PREFLIGHT_AUDIT.md`
+  - 📦 References deleted artifacts: Yes
+- **docs/governance/rm8/P0_STAGE5_BATCH5_7_GIT_DELIVERY_RECONCILIATION.md** [??]
+  - Title: P0 Stage 5 Batch 5.7 — Git Delivery Reconciliation
+  - Rationale: Stage 5 delivery reconciliation - supporting evidence
+  - ⚠ Broken references: core/series_orchestration/__init__.py`, docs/governance/rm8/P0_STAGE5_BATCH5_2_*`, core/series_orchestration/validation.py`, artifacts/rm6_canary/runtime_kr/novel_sample_live_progress.json`, tests/fixtures/passion_6book/fixture.py`<br>`tests/fixtures/passion_6book/passion_v01.txt`<br>`tests/fixtures/passion_6book/passion_v02.txt`<br>`tests/fixtures/passion_6book/passion_v03.txt`<br>`tests/fixtures/passion_6book/passion_v04.txt`<br>`tests/fixtures/passion_6book/passion_v05.txt`<br>`tests/fixtures/passion_6book/passion_v06.txt`<br>`tests/analysis/passion_v01_glossary_auto.json`<br>`tests/analysis/passion_v02_glossary_auto.json`<br>`tests/analysis/passion_v03_glossary_auto.json`<br>`tests/analysis/passion_v04_glossary_auto.json`<br>`tests/analysis/passion_v05_glossary_auto.json`<br>`tests/analysis/passion_v06_glossary_auto.json`
+  - 📦 References deleted artifacts: Yes
+  - ⏮ References pre-R1 baseline: Yes
+- **docs/governance/rm8/P0_STAGE5_BATCH5_8_1_GIT_DELIVERY_RECONCILIATION.md** [??]
+  - Title: P0 Stage 5 Batch 5.8.1 — Git Delivery Reconciliation
+  - Rationale: Stage 5 delivery reconciliation - supporting evidence
+  - ⚠ Broken references: docs/governance/rm8/P0_STAGE5_BATCH5_3_*.md`, core/character_memory_v2/models.py`,, core/series_identity/registry.py`, artifacts/rm8_5_audit/, docs/governance/rm8/P0_STAGE5_BATCH5_7_*.md
+  - 📦 References deleted artifacts: Yes
+
+### SUPERSEDED (9)
+- **docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_D_PREFLIGHT.md** [??]
+  - Title: P0 Repository Final Cleanup — Batch D Preflight
+  - Rationale: Preflight check - superseded by final verification
+  - ⚠ Broken references: artifacts/rm8_5_audit/, artifacts/rm7_entity_canary/`,, runtime/`,, tests/literary/outputs/PS-03-smoke/Literary_Regression_Report.json`, artifacts/te_v*/`
+  - 📦 References deleted artifacts: Yes
+- **docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F2_PREFLIGHT.md** [??]
+  - Title: P0 Repository Final Cleanup — Batch F2 Preflight
+  - Rationale: Preflight check - superseded by final verification
+  - ⚠ Broken references: docs/governance/`,, artifacts/tic_batch4/`, core/`, core/`,, artifacts/tic_batch5/`
+- **docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F3_PREFLIGHT.md** [??]
+  - Title: P0 Repository Final Cleanup — Batch F3 Preflight
+  - Rationale: Preflight check - superseded by final verification
+  - ⚠ Broken references: artifacts/tic_batch*, tests/literary/outputs/PS-03-smoke/Literary_Regression_Report.json`, docs/governance/`,, artifacts/rm6_canary/legacy_kr/novel_sample_live_progress.json`, core/`
+- **docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F4_PREFLIGHT.md** [??]
+  - Title: P0 Repository Final Cleanup — Batch F4 Preflight
+  - Rationale: Preflight check - superseded by final verification
+  - ⚠ Broken references: artifacts/tic_batch*, tests/literary/outputs/PS-03-smoke/Literary_Regression_Report.json`, artifacts/rm6_canary/legacy_kr/novel_sample_live_progress.json`, core/`, artifacts/book_preparation_stage34/`
+  - 📦 References deleted artifacts: Yes
+- **docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F5_PREFLIGHT.md** [??]
+  - Title: P0 Repository Final Cleanup — Batch F5 Preflight
+  - Rationale: Preflight check - superseded by final verification
+  - ⚠ Broken references: artifacts/tic_batch*, tests/literary/outputs/PS-03-smoke/Literary_Regression_Report.json`, artifacts/test_out/`, artifacts/rm6_canary/legacy_kr/novel_sample_live_progress.json`, core/`
+- **docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F_PREFLIGHT.md** [??]
+  - Title: P0 Repository Final Cleanup — Batch F Preflight
+  - Rationale: Preflight check - superseded by final verification
+  - ⚠ Broken references: artifacts/book_intake_stage28/`,, artifacts/te_v7_*/`, runtime/`,, tests/literary/outputs/PS-03-smoke/Literary_Regression_Report.json`, core/controlled_translation_runtime_integration/policy.py`.
+- **docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_PREFLIGHT.md** [??]
+  - Title: P0 Repository Final Cleanup — Preflight Document
+  - Rationale: Preflight check - superseded by final verification
+  - ⚠ Broken references: tests/literary/outputs/*`, artifacts/rm8_5_audit/, tools/one_shots/ntpe_literary_regression.py, tests/literary/outputs/PS-03-smoke/Literary_Regression_Report.json`, docs/governance/rm6/`
+  - 📦 References deleted artifacts: Yes
+- **docs/governance/rm8/P0_STAGE5_BATCH5_3_SERIES_ENTITY_PREFLIGHT_AUDIT.md** [??]
+  - Title: P0 Stage 5 Batch 5.3 — Series Entity Registry Preflight Audit
+  - Rationale: Preflight audit - superseded by final acceptance
+  - ⚠ Broken references: core/entity_normalization/identity.py`, core/entity_review/`,, docs/governance/rm8/P0_STAGE5_BATCH5_3_IMPLEMENTATION_TASK.md`, core/entity_normalization/`, core/`
+  - 📦 References deleted artifacts: Yes
+  - ⏮ References pre-R1 baseline: Yes
+- **docs/governance/rm8/P0_STAGE5_BATCH5_8_PREFLIGHT_AUDIT.md** [??]
+  - Title: P0 Stage 5 Batch 5.8 Preflight Audit
+  - Rationale: Preflight audit - superseded by final acceptance
+  - ⚠ Broken references: core/character_memory_v2/models.py`,, tests/series/test_batch5_7_orchestration.py:298`, core/entity_resolver/resolver.py`,, tests/series/test_batch5_7_orchestration.py`:, core/translation_engine/translation_engine.py`
+  - 📦 References deleted artifacts: Yes
+
+### HISTORICAL_RECORD (11)
+- **artifacts/P0_FINAL_07_Worktree_Reconciliation_Report.json** [??]
+  - Title: P0 FINAL 07 Worktree Reconciliation Report
+  - Rationale: Early worktree reconciliation - historical record
+  - ⚠ Broken references: tests/literary/outputs/Regression_History.json",, artifacts/DUMMY-TXT-04_Root_Creation_Remediation_Report.json",, docs/governance/repository/DUMMY-TXT-04_ROOT_CREATION_REMEDIATION.md",, docs/governance/repository/P0_STAGE5_SERIES_ID_ORIGIN_TRACE.md",, artifacts/rm6_canary/legacy_kr/novel_sample_live_progress.json",
+  - 📦 References deleted artifacts: Yes
+- **artifacts/P0_FINAL_09_Residual_Worktree_Reconciliation_Report.json** [??]
+  - Title: P0 FINAL 09 Residual Worktree Reconciliation Report
+  - Rationale: Early worktree reconciliation - historical record
+  - ⚠ Broken references: artifacts/DUMMY-TXT-04_Root_Creation_Remediation_Report.json",, artifacts/te_v7_stage10101/review/TE_V7_STAGE10101_TRANSLATION_REVIEW.txt", docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F_PREFLIGHT.md",, artifacts/te_v72_stage1223/TE_V72_STAGE1223_SOURCE_EXCERPT_FREEZE.json", docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_C_RECONCILIATION.md",
+  - 📦 References deleted artifacts: Yes
+- **artifacts/P0_FINAL_10A_STOP_10_06_Baseline_Reconciliation_Report.json** [??]
+  - Title: P0 FINAL 10A STOP 10 06 Baseline Reconciliation Report
+  - Rationale: Pre-R1 reconciliation work - historical record of baseline establishment
+  - ⚠ Broken references: tools/one_shots":
+  - 📦 References deleted artifacts: Yes
+- **artifacts/P0_FINAL_10_R2_Production_Reference_Reconciliation_Report.json** [??]
+  - Title: P0 FINAL 10 R2 Production Reference Reconciliation Report
+  - Rationale: Pre-R1 reconciliation work - historical record of baseline establishment
+  - ⚠ Broken references: tools/one_shots/write_report_part1.py",, tools/one_shots/write_report_part2b.py",, artifacts/te_v72_stage1223/baseline/execution_metadata.json",, artifacts/te_v72_stage1223/TE_V72_STAGE1223_SOURCE_EXCERPT_FREEZE.json",, core/translation_quality_defects/catalog.py"
+  - 📦 References deleted artifacts: Yes
+- **docs/governance/repository/P0_FINAL_07_WORKTREE_RECONCILIATION.md** [??]
+  - Title: P0-FINAL-07 Worktree Reconciliation & Commit Scope Audit
+  - Rationale: Early worktree reconciliation - historical record
+  - ⚠ Broken references: tools/one_shots/*`, tests/series/test_batch5_4.py`, artifacts/DUMMY-TXT-02_trace_20260823_110532.json`, tests/literary/outputs/PS-03-smoke/Literary_Regression_Report.json`, artifacts/te_v72_prompt_contract_preservation/*`
+  - 📦 References deleted artifacts: Yes
+- **docs/governance/repository/P0_FINAL_09_RESIDUAL_WORKTREE_RECONCILIATION.md** [??]
+  - Title: P0-FINAL-09 Residual Worktree Reconciliation
+  - Rationale: Early worktree reconciliation - historical record
+  - ⚠ Broken references: tools/one_shots/*`, tests/series/test_batch5_4.py`, core/tools, tests/unit/test_translation_quality_canary.py`, core/translation_*`
+  - 📦 References deleted artifacts: Yes
+  - ⏮ References pre-R1 baseline: Yes
+- **docs/governance/repository/P0_FINAL_10A_STOP_10_06_BASELINE_RECONCILIATION.md** [??]
+  - Title: P0-FINAL-10A STOP-10-06 Baseline Reconciliation
+  - Rationale: Pre-R1 reconciliation work - historical record of baseline establishment
+  - ⚠ Broken references: core/translation_intelligence_corpus/`, core/translation_quality_framework_integration/integration_validator.py`, docs/governance/repository/P0_FINAL_10A_STOP_10_06_BASELINE_RECONCILIATION.md`, tools/one_shots`, tools/one_shots`.
+  - 📦 References deleted artifacts: Yes
+- **docs/governance/repository/P0_FINAL_10_R2_PRODUCTION_REFERENCE_RECONCILIATION.md** [??]
+  - Title: P0-FINAL-10 R2 Production Reference Reconciliation
+  - Rationale: Pre-R1 reconciliation work - historical record of baseline establishment
+  - ⚠ Broken references: core/adaptive_context_single_real_invocation/report.py`, tests/unit/test_translation_quality_canary.py`, tools/one_shots/write_provider2.py`, tools/one_shots/write_style_part2.py`, tools/one_shots/launcher_semantic_test.py`
+  - 📦 References deleted artifacts: Yes
+- **docs/governance/rm8/P0_STAGE5_BATCH5_3_IMPLEMENTATION_TASK.md** [??]
+  - Title: P0 Stage 5 Batch 5.3 — Series Entity Registry Implementation Task
+  - Rationale: Implementation task - historical record
+  - ⚠ Broken references: core/series_identity/registry.py`, core/book_intake/`, docs/governance/rm8/P0_STAGE5_BATCH_PLAN.md`, tests/series/`, core/`
+- **docs/governance/rm8/P0_STAGE5_BATCH5_8_BLOCKER_RECONCILIATION.md** [??]
+  - Title: P0 Stage 5 Batch 5.8 — Blocker Reconciliation
+  - Rationale: Blocker reconciliation - historical record
+  - ⚠ Broken references: tests/series/test_batch5_7_orchestration.py`, core/adapters/production_submission_adapter.py.new`
+  - 📦 References deleted artifacts: Yes
+- **docs/governance/rm8/P0_STAGE5_BATCH5_8_IMPLEMENTATION_TASK.md** [??]
+  - Title: P0 Stage 5 Batch 5.8 Implementation Task
+  - Rationale: Implementation task - historical record
+  - ⚠ Broken references: tests/series/test_batch5_7_orchestration.py`, core/character_memory_v2/models.py`,, tests/fixtures/passion_6book/`, docs/governance/repository/FOUNDATION_FROZEN_CONTRACTS.md`, tools/`,
+
+## Canonical Document Hierarchy
+
+### Canonical Documents (27)
+- `artifacts/P0_FINAL_12_B5_Staged_Scope_Reconciliation_Report.json` - P0 FINAL 12 B5 Staged Scope Reconciliation Report
+- `artifacts/P0_FINAL_12_R1_A_Production_Reference_Closure_Report.json` - P0 FINAL 12 R1 A Production Reference Closure Report
+- `artifacts/P0_FINAL_12_R1_B_Test_Fixture_Closure_Report.json` - P0 FINAL 12 R1 B Test Fixture Closure Report
+- `artifacts/P0_FINAL_12_R1_C_Tools_Reference_Closure_Report.json` - P0 FINAL 12 R1 C Tools Reference Closure Report
+- `artifacts/P0_FINAL_12_R1_E_Commit_Boundary_Audit_Report.json` - P0 FINAL 12 R1 E Commit Boundary Audit Report
+- `artifacts/P0_FINAL_12_R1_F_Current_Commit_Boundary_Reconciliation_Report.json` - P0 FINAL 12 R1 F Current Commit Boundary Reconciliation Report
+- `artifacts/P0_FINAL_12_R1_F_Root_Hygiene_Provenance_Audit_Report.json` - P0 FINAL 12 R1 F Root Hygiene Provenance Audit Report
+- `artifacts/P0_FINAL_12_R1_F_Root_Hygiene_Remediation_Report.json` - P0 FINAL 12 R1 F Root Hygiene Remediation Report
+- `artifacts/P0_FINAL_12_R1_H_Post_Commit_Integrity_Verification_Report.json` - P0 FINAL 12 R1 H Post Commit Integrity Verification Report
+- `artifacts/P0_FINAL_13_Post_R1_Worktree_Inventory_Report.json` - P0 FINAL 13 Post R1 Worktree Inventory Report
+- `docs/governance/repository/P0_FINAL_12_B5_SCOPE_RECONCILIATION.md` - P0-FINAL-12-B5 Scope Reconciliation Report
+- `docs/governance/repository/P0_FINAL_12_B5_STAGED_SCOPE_RECONCILIATION.md` - P0-FINAL-12-B5 Staged Scope Reconciliation Report
+- `docs/governance/repository/P0_FINAL_12_B5_TEST_MIGRATION_INVENTORY.md` - P0-FINAL-12-B5 Test Migration Inventory
+- `docs/governance/repository/P0_FINAL_12_R1_A_PRODUCTION_REFERENCE_CLOSURE.md` - P0-FINAL-12-R1-A Production Canonical Boundary Migration — Closure Report
+- `docs/governance/repository/P0_FINAL_12_R1_B_TEST_FIXTURE_CLOSURE.md` - P0-FINAL-12-R1-B Test Fixture / Integration Dependency Closure — Final Report
+- `docs/governance/repository/P0_FINAL_12_R1_C_TOOLS_REFERENCE_CLOSURE.md` - P0-FINAL-12-R1-C Tools / Generator Canonical Path Migration — Closure Report
+- `docs/governance/repository/P0_FINAL_12_R1_E_COMMIT_BOUNDARY_AUDIT.md` - P0-FINAL-12-R1-E — Remediation Commit Boundary & Worktree Preservation Audit
+- `docs/governance/repository/P0_FINAL_12_R1_F_CURRENT_COMMIT_BOUNDARY_RECONCILIATION.md` - P0-FINAL-12-R1-F — Current-State Commit Boundary Reconciliation
+- `docs/governance/repository/P0_FINAL_12_R1_F_ROOT_HYGIENE_PROVENANCE_AUDIT.md` - P0-FINAL-12-R1-F — Root Hygiene Provenance Audit
+- `docs/governance/repository/P0_FINAL_12_R1_F_ROOT_HYGIENE_REMEDIATION.md` - P0-FINAL-12-R1-F — Root Hygiene Remediation
+- `docs/governance/repository/P0_FINAL_12_R1_H_POST_COMMIT_INTEGRITY_VERIFICATION.md` - P0-FINAL-12-R1-H — Post-Commit Integrity / Push Gate Verification
+- `docs/governance/repository/P0_FINAL_13_POST_R1_WORKTREE_INVENTORY.md` - P0-FINAL-13 POST-R1 WORKTREE INVENTORY & SCOPE DEFINITION
+- `docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_E_RESOLUTION.md` - P0 Repository Final Cleanup — STOP-02 Core WIP Resolution
+- `docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_F6_FINAL_VERIFICATION.md` - P0 Repository Final Cleanup — F6 Final Verification
+- `docs/governance/rm8/P0_STAGE5_FINAL_ACCEPTANCE_REVIEW.md` - P0 Stage 5 Final Acceptance / Freeze Review
+- `docs/governance/rm8/P0_STAGE5_INTEGRATED_REVIEW.md` - P0 Stage 5.1–5.7 Integrated Review
+- `docs/governance/rm8/P0_STAGE5_ROOT_LEVEL_INVENTORY.md` - P0 Stage 5 Root-Level Inventory
+
+### Supporting Documents (19)
+- `docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_D_RECONCILIATION.md` - P0 Repository Final Cleanup — Batch D Reconciliation
+- `artifacts/P0_FINAL_11_Reference_Migration_Design_Report.json` - P0 FINAL 11 Reference Migration Design Report
+- `docs/governance/repository/P0_FINAL_11_REFERENCE_MIGRATION_DESIGN.md` - P0-FINAL-11 Reference Migration Design & Safety Preflight
+- `docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_A_RECONCILIATION.md` - P0 Repository Final Cleanup — Batch A Reconciliation
+- `docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_B_CORE_RECONCILIATION.md` - P0 Repository Final Cleanup — Batch B + Core Module Reconciliation: COMPLETE
+- `docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_B_PARTIAL_RECONCILIATION.md` - P0 Repository Final Cleanup — Batch B Partial Reconciliation
+- `docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_C_RECONCILIATION.md` - P0 Repository Final Cleanup — Batch C Reconciliation (FINAL)
+- `docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F1_RECONCILIATION.md` - P0 Repository Final Cleanup — Batch F1 Reconciliation
+- `docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F3_RECONCILIATION.md` - P0 Repository Final Cleanup — Batch F3-1 Reconciliation
+- `docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F4_1_RECONCILIATION.md` - P0 Repository Final Cleanup — Batch F4-1 Reconciliation
+- `docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F4_2_RECONCILIATION.md` - P0 Repository Final Cleanup — Batch F4-2 Reconciliation
+- `docs/governance/rm8/P0_STAGE5_BATCH5_2_ATOMIC_DELIVERY_REPORT.md` - P0 Stage 5 Batch 5.2 — Atomic Git Delivery Report
+- `docs/governance/rm8/P0_STAGE5_BATCH5_2_GIT_DELIVERY_RECONCILIATION.md` - P0 Stage 5 Batch 5.2 — Git Delivery Reconciliation
+- `docs/governance/rm8/P0_STAGE5_BATCH5_3_GIT_DELIVERY_RECONCILIATION.md` - P0 Stage 5 Batch 5.3 — Git Delivery Reconciliation
+- `docs/governance/rm8/P0_STAGE5_BATCH5_4_GIT_DELIVERY_RECONCILIATION.md` - P0 Stage 5 Batch 5.4 — Git Delivery Reconciliation Report
+- `docs/governance/rm8/P0_STAGE5_BATCH5_5_GIT_DELIVERY_RECONCILIATION.md` - P0 Stage 5 Batch 5.5 — Git Delivery Reconciliation Report
+- `docs/governance/rm8/P0_STAGE5_BATCH5_6_GIT_DELIVERY_RECONCILIATION.md` - P0 Stage 5 Batch 5.6 — Git Delivery Reconciliation
+- `docs/governance/rm8/P0_STAGE5_BATCH5_7_GIT_DELIVERY_RECONCILIATION.md` - P0 Stage 5 Batch 5.7 — Git Delivery Reconciliation
+- `docs/governance/rm8/P0_STAGE5_BATCH5_8_1_GIT_DELIVERY_RECONCILIATION.md` - P0 Stage 5 Batch 5.8.1 — Git Delivery Reconciliation
+
+### Historical Records (11)
+- `artifacts/P0_FINAL_07_Worktree_Reconciliation_Report.json` - P0 FINAL 07 Worktree Reconciliation Report
+- `artifacts/P0_FINAL_09_Residual_Worktree_Reconciliation_Report.json` - P0 FINAL 09 Residual Worktree Reconciliation Report
+- `artifacts/P0_FINAL_10A_STOP_10_06_Baseline_Reconciliation_Report.json` - P0 FINAL 10A STOP 10 06 Baseline Reconciliation Report
+- `artifacts/P0_FINAL_10_R2_Production_Reference_Reconciliation_Report.json` - P0 FINAL 10 R2 Production Reference Reconciliation Report
+- `docs/governance/repository/P0_FINAL_07_WORKTREE_RECONCILIATION.md` - P0-FINAL-07 Worktree Reconciliation & Commit Scope Audit
+- `docs/governance/repository/P0_FINAL_09_RESIDUAL_WORKTREE_RECONCILIATION.md` - P0-FINAL-09 Residual Worktree Reconciliation
+- `docs/governance/repository/P0_FINAL_10A_STOP_10_06_BASELINE_RECONCILIATION.md` - P0-FINAL-10A STOP-10-06 Baseline Reconciliation
+- `docs/governance/repository/P0_FINAL_10_R2_PRODUCTION_REFERENCE_RECONCILIATION.md` - P0-FINAL-10 R2 Production Reference Reconciliation
+- `docs/governance/rm8/P0_STAGE5_BATCH5_3_IMPLEMENTATION_TASK.md` - P0 Stage 5 Batch 5.3 — Series Entity Registry Implementation Task
+- `docs/governance/rm8/P0_STAGE5_BATCH5_8_BLOCKER_RECONCILIATION.md` - P0 Stage 5 Batch 5.8 — Blocker Reconciliation
+- `docs/governance/rm8/P0_STAGE5_BATCH5_8_IMPLEMENTATION_TASK.md` - P0 Stage 5 Batch 5.8 Implementation Task
+
+### Superseded Documents (9)
+- `docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_D_PREFLIGHT.md` - P0 Repository Final Cleanup — Batch D Preflight
+- `docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F2_PREFLIGHT.md` - P0 Repository Final Cleanup — Batch F2 Preflight
+- `docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F3_PREFLIGHT.md` - P0 Repository Final Cleanup — Batch F3 Preflight
+- `docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F4_PREFLIGHT.md` - P0 Repository Final Cleanup — Batch F4 Preflight
+- `docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F5_PREFLIGHT.md` - P0 Repository Final Cleanup — Batch F5 Preflight
+- `docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F_PREFLIGHT.md` - P0 Repository Final Cleanup — Batch F Preflight
+- `docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_PREFLIGHT.md` - P0 Repository Final Cleanup — Preflight Document
+- `docs/governance/rm8/P0_STAGE5_BATCH5_3_SERIES_ENTITY_PREFLIGHT_AUDIT.md` - P0 Stage 5 Batch 5.3 — Series Entity Registry Preflight Audit
+- `docs/governance/rm8/P0_STAGE5_BATCH5_8_PREFLIGHT_AUDIT.md` - P0 Stage 5 Batch 5.8 Preflight Audit
+
+## Topic Groups
+
+### CLEANUP_BATCH (28)
+- `docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_D_RECONCILIATION.md`
+- `docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_A_RECONCILIATION.md`
+- `docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_B_CORE_RECONCILIATION.md`
+- `docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_B_PARTIAL_RECONCILIATION.md`
+- `docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_C_RECONCILIATION.md`
+- `docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_D_PREFLIGHT.md`
+- `docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F1_RECONCILIATION.md`
+- `docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F2_PREFLIGHT.md`
+- `docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F3_PREFLIGHT.md`
+- `docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F3_RECONCILIATION.md`
+- `docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F4_1_RECONCILIATION.md`
+- `docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F4_2_RECONCILIATION.md`
+- `docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F4_PREFLIGHT.md`
+- `docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F5_PREFLIGHT.md`
+- `docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F_PREFLIGHT.md`
+- `docs/governance/rm8/P0_STAGE5_BATCH5_2_ATOMIC_DELIVERY_REPORT.md`
+- `docs/governance/rm8/P0_STAGE5_BATCH5_2_GIT_DELIVERY_RECONCILIATION.md`
+- `docs/governance/rm8/P0_STAGE5_BATCH5_3_GIT_DELIVERY_RECONCILIATION.md`
+- `docs/governance/rm8/P0_STAGE5_BATCH5_3_IMPLEMENTATION_TASK.md`
+- `docs/governance/rm8/P0_STAGE5_BATCH5_3_SERIES_ENTITY_PREFLIGHT_AUDIT.md`
+- `docs/governance/rm8/P0_STAGE5_BATCH5_4_GIT_DELIVERY_RECONCILIATION.md`
+- `docs/governance/rm8/P0_STAGE5_BATCH5_5_GIT_DELIVERY_RECONCILIATION.md`
+- `docs/governance/rm8/P0_STAGE5_BATCH5_6_GIT_DELIVERY_RECONCILIATION.md`
+- `docs/governance/rm8/P0_STAGE5_BATCH5_7_GIT_DELIVERY_RECONCILIATION.md`
+- `docs/governance/rm8/P0_STAGE5_BATCH5_8_1_GIT_DELIVERY_RECONCILIATION.md`
+- `docs/governance/rm8/P0_STAGE5_BATCH5_8_BLOCKER_RECONCILIATION.md`
+- `docs/governance/rm8/P0_STAGE5_BATCH5_8_IMPLEMENTATION_TASK.md`
+- `docs/governance/rm8/P0_STAGE5_BATCH5_8_PREFLIGHT_AUDIT.md`
+
+### OTHER (11)
+- `artifacts/P0_FINAL_07_Worktree_Reconciliation_Report.json`
+- `artifacts/P0_FINAL_09_Residual_Worktree_Reconciliation_Report.json`
+- `artifacts/P0_FINAL_10A_STOP_10_06_Baseline_Reconciliation_Report.json`
+- `artifacts/P0_FINAL_10_R2_Production_Reference_Reconciliation_Report.json`
+- `artifacts/P0_FINAL_11_Reference_Migration_Design_Report.json`
+- `artifacts/P0_FINAL_12_B5_Staged_Scope_Reconciliation_Report.json`
+- `docs/governance/repository/P0_FINAL_11_REFERENCE_MIGRATION_DESIGN.md`
+- `docs/governance/repository/P0_FINAL_12_B5_TEST_MIGRATION_INVENTORY.md`
+- `docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_E_RESOLUTION.md`
+- `docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_F6_FINAL_VERIFICATION.md`
+- `docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_PREFLIGHT.md`
+
+### R1_CLOSURE (18)
+- `artifacts/P0_FINAL_12_R1_A_Production_Reference_Closure_Report.json`
+- `artifacts/P0_FINAL_12_R1_B_Test_Fixture_Closure_Report.json`
+- `artifacts/P0_FINAL_12_R1_C_Tools_Reference_Closure_Report.json`
+- `artifacts/P0_FINAL_12_R1_E_Commit_Boundary_Audit_Report.json`
+- `artifacts/P0_FINAL_12_R1_F_Current_Commit_Boundary_Reconciliation_Report.json`
+- `artifacts/P0_FINAL_12_R1_F_Root_Hygiene_Provenance_Audit_Report.json`
+- `artifacts/P0_FINAL_12_R1_F_Root_Hygiene_Remediation_Report.json`
+- `artifacts/P0_FINAL_12_R1_H_Post_Commit_Integrity_Verification_Report.json`
+- `artifacts/P0_FINAL_13_Post_R1_Worktree_Inventory_Report.json`
+- `docs/governance/repository/P0_FINAL_12_R1_A_PRODUCTION_REFERENCE_CLOSURE.md`
+- `docs/governance/repository/P0_FINAL_12_R1_B_TEST_FIXTURE_CLOSURE.md`
+- `docs/governance/repository/P0_FINAL_12_R1_C_TOOLS_REFERENCE_CLOSURE.md`
+- `docs/governance/repository/P0_FINAL_12_R1_E_COMMIT_BOUNDARY_AUDIT.md`
+- `docs/governance/repository/P0_FINAL_12_R1_F_CURRENT_COMMIT_BOUNDARY_RECONCILIATION.md`
+- `docs/governance/repository/P0_FINAL_12_R1_F_ROOT_HYGIENE_PROVENANCE_AUDIT.md`
+- `docs/governance/repository/P0_FINAL_12_R1_F_ROOT_HYGIENE_REMEDIATION.md`
+- `docs/governance/repository/P0_FINAL_12_R1_H_POST_COMMIT_INTEGRITY_VERIFICATION.md`
+- `docs/governance/repository/P0_FINAL_13_POST_R1_WORKTREE_INVENTORY.md`
+
+### RECONCILIATION (6)
+- `docs/governance/repository/P0_FINAL_07_WORKTREE_RECONCILIATION.md`
+- `docs/governance/repository/P0_FINAL_09_RESIDUAL_WORKTREE_RECONCILIATION.md`
+- `docs/governance/repository/P0_FINAL_10A_STOP_10_06_BASELINE_RECONCILIATION.md`
+- `docs/governance/repository/P0_FINAL_10_R2_PRODUCTION_REFERENCE_RECONCILIATION.md`
+- `docs/governance/repository/P0_FINAL_12_B5_SCOPE_RECONCILIATION.md`
+- `docs/governance/repository/P0_FINAL_12_B5_STAGED_SCOPE_RECONCILIATION.md`
+
+### STAGE5 (3)
+- `docs/governance/rm8/P0_STAGE5_FINAL_ACCEPTANCE_REVIEW.md`
+- `docs/governance/rm8/P0_STAGE5_INTEGRATED_REVIEW.md`
+- `docs/governance/rm8/P0_STAGE5_ROOT_LEVEL_INVENTORY.md`
+
+## Conflicts & Duplicates
+
+### Conflicting Authorities
+- **B5**: 4 CURRENT_CANONICAL docs
+  - `artifacts/P0_FINAL_12_B5_Staged_Scope_Reconciliation_Report.json`
+  - `docs/governance/repository/P0_FINAL_12_B5_SCOPE_RECONCILIATION.md`
+  - `docs/governance/repository/P0_FINAL_12_B5_STAGED_SCOPE_RECONCILIATION.md`
+  - `docs/governance/repository/P0_FINAL_12_B5_TEST_MIGRATION_INVENTORY.md`
+- **R1**: 18 CURRENT_CANONICAL docs
+  - `artifacts/P0_FINAL_12_R1_A_Production_Reference_Closure_Report.json`
+  - `artifacts/P0_FINAL_12_R1_B_Test_Fixture_Closure_Report.json`
+  - `artifacts/P0_FINAL_12_R1_C_Tools_Reference_Closure_Report.json`
+  - `artifacts/P0_FINAL_12_R1_E_Commit_Boundary_Audit_Report.json`
+  - `artifacts/P0_FINAL_12_R1_F_Current_Commit_Boundary_Reconciliation_Report.json`
+  - `artifacts/P0_FINAL_12_R1_F_Root_Hygiene_Provenance_Audit_Report.json`
+  - `artifacts/P0_FINAL_12_R1_F_Root_Hygiene_Remediation_Report.json`
+  - `artifacts/P0_FINAL_12_R1_H_Post_Commit_Integrity_Verification_Report.json`
+  - `artifacts/P0_FINAL_13_Post_R1_Worktree_Inventory_Report.json`
+  - `docs/governance/repository/P0_FINAL_12_R1_A_PRODUCTION_REFERENCE_CLOSURE.md`
+  - `docs/governance/repository/P0_FINAL_12_R1_B_TEST_FIXTURE_CLOSURE.md`
+  - `docs/governance/repository/P0_FINAL_12_R1_C_TOOLS_REFERENCE_CLOSURE.md`
+  - `docs/governance/repository/P0_FINAL_12_R1_E_COMMIT_BOUNDARY_AUDIT.md`
+  - `docs/governance/repository/P0_FINAL_12_R1_F_CURRENT_COMMIT_BOUNDARY_RECONCILIATION.md`
+  - `docs/governance/repository/P0_FINAL_12_R1_F_ROOT_HYGIENE_PROVENANCE_AUDIT.md`
+  - `docs/governance/repository/P0_FINAL_12_R1_F_ROOT_HYGIENE_REMEDIATION.md`
+  - `docs/governance/repository/P0_FINAL_12_R1_H_POST_COMMIT_INTEGRITY_VERIFICATION.md`
+  - `docs/governance/repository/P0_FINAL_13_POST_R1_WORKTREE_INVENTORY.md`
+- **CLEANUP**: 2 CURRENT_CANONICAL docs
+  - `docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_E_RESOLUTION.md`
+  - `docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_F6_FINAL_VERIFICATION.md`
+- **STAGE5**: 3 CURRENT_CANONICAL docs
+  - `docs/governance/rm8/P0_STAGE5_FINAL_ACCEPTANCE_REVIEW.md`
+  - `docs/governance/rm8/P0_STAGE5_INTEGRATED_REVIEW.md`
+  - `docs/governance/rm8/P0_STAGE5_ROOT_LEVEL_INVENTORY.md`
+
+No duplicates detected.
+
+## Issues Summary
+
+- **Total broken references**: 3247
+- **Documents with broken references**: 66
+- **Documents referencing deleted artifacts**: 56
+- **Documents referencing pre-R1 baseline**: 19
+- **Documents referencing R1 baseline (76ea24f)**: 4
+- **Conflicting authority sets**: 4
+- **Duplicate canonical candidates**: 0
+
+## Validation
+- **HEAD**: 76ea24f1e34c0f1796236de4d676404d7e45f00a
+- **origin/main**: 76ea24f1e34c0f1796236de4d676404d7e45f00a
+- **divergence**: 0 0
+- **staged**: 0
+- **committed**: 0
+- **pushed**: 0
+- **provider/network/translation**: 0/0/0
+- **Root Hygiene**: PASS
+- **git diff --check**: PASS
+
+## Preservation
+- **Protected Worktree**: PRESERVED
+- **Generated Outputs**: PRESERVED
+- **Historical/Legacy**: PRESERVED
+
+## Deliverables
+- `docs/governance/repository/P0_FINAL_13_A_GOVERNANCE_INVENTORY.md`
+- `artifacts/P0_FINAL_13_A_Governance_Inventory_Report.json`
+
+## Unresolved
+- None - all 66 paths classified and analyzed

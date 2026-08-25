@@ -1,0 +1,84 @@
+{
+  "remediation_id": "P0-FINAL-12-R1-F",
+  "remediation_name": "Root Hygiene Remediation",
+  "date": "2026-08-25",
+  "status": "PASS",
+  "baseline_commit": "53e04767f9a1012641152e96786011fbb3b0e466",
+  "source_paths": [
+    {
+      "path": "audit_r1_e.py",
+      "pre_move_sha256": "DA3BBD06AD153C7025BE1592CEFF091865DC1307895669953DB632955C0C510F",
+      "size_bytes": 8189
+    },
+    {
+      "path": "check_missing.py",
+      "pre_move_sha256": "F475F78A240C11274A1DE0585F5F6E7F92DC1C0D0282B407C6C65B93D05B1181",
+      "size_bytes": 2707
+    },
+    {
+      "path": "classify_changes.py",
+      "pre_move_sha256": "E0F12D76C232E3FFAA29C12848777005D18E36CF33E4F808E82571C91A0ABD20",
+      "size_bytes": 5454
+    },
+    {
+      "path": "diff_output.txt",
+      "pre_move_sha256": "A2567BFF3441D4D0C642328E6F482BFB9614E8418217CAADBC896DADB9F6FB35",
+      "size_bytes": 19091
+    }
+  ],
+  "destination_paths": [
+    {
+      "path": "tools/maintenance/audit_r1_e.py",
+      "post_move_sha256": "DA3BBD06AD153C7025BE1592CEFF091865DC1307895669953DB632955C0C510F",
+      "hash_match": true
+    },
+    {
+      "path": "tools/maintenance/check_missing.py",
+      "post_move_sha256": "F475F78A240C11274A1DE0585F5F6E7F92DC1C0D0282B407C6C65B93D05B1181",
+      "hash_match": true
+    },
+    {
+      "path": "tools/maintenance/classify_changes.py",
+      "post_move_sha256": "E0F12D76C232E3FFAA29C12848777005D18E36CF33E4F808E82571C91A0ABD20",
+      "hash_match": true
+    },
+    {
+      "path": "artifacts/diff_output.txt",
+      "post_move_sha256": "A2567BFF3441D4D0C642328E6F482BFB9614E8418217CAADBC896DADB9F6FB35",
+      "hash_match": true
+    }
+  ],
+  "hash_preservation": {
+    "total_files": 4,
+    "verified": 4,
+    "failed": 0
+  },
+  "root_inventory_after": {
+    "tracked_root_files": 16,
+    "unexpected_untracked_root_files": 0,
+    "root_hygiene_pass": true
+  },
+  "validation": {
+    "git_diff_check": "PASS",
+    "git_diff_check_details": "Only pre-existing CRLF->LF warnings",
+    "ntpe_validate": "PASS_WITH_WARNINGS",
+    "ntpe_validate_details": "Root Python layout: PASS — 7 root Python files; layout policy satisfied. Pre-existing warning: core.prompt_builder.prompt_builder ModuleNotFoundError (matches baseline)"
+  },
+  "preservation": {
+    "protected_worktree": "PRESERVED",
+    "protected_worktree_paths": 274,
+    "unknown_paths": "PRESERVED",
+    "unknown_paths_remaining": 34,
+    "no_historical_artifact_restored": true,
+    "no_protected_worktree_discarded": true
+  },
+  "additional_root_violations": 0,
+  "staging_blocked": true,
+  "staging_blocked_reason": "Relocated files are R1-E execution artifacts (UNKNOWN); new locations must be reviewed in next commit-boundary audit",
+  "deliverables": [
+    "docs/governance/repository/P0_FINAL_12_R1_F_ROOT_HYGIENE_REMEDIATION.md",
+    "artifacts/P0_FINAL_12_R1_F_Root_Hygiene_Remediation_Report.json"
+  ],
+  "staged": false,
+  "committed": false
+}

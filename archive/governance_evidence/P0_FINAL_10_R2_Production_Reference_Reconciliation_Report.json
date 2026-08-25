@@ -1,0 +1,609 @@
+{
+  "baseline": {
+    "head": "5e346d1975ff7d34855483e224562788d7ef9800",
+    "origin_main": "5e346d1975ff7d34855483e224562788d7ef9800",
+    "branch": "main",
+    "head_equals_origin": true,
+    "timestamp": "2026-08-23T16:45:00+08:00"
+  },
+  "inventory": {
+    "actual_deleted_total": 237,
+    "artifacts_deleted": 207,
+    "tools_deleted": 30,
+    "modified_items": 8,
+    "protected_worktree": 7,
+    "untracked_items": 43
+  },
+  "items": [
+    {
+      "category": "te_v72_stage122",
+      "count": 45,
+      "paths": [
+        "artifacts/te_v72_stage122/TE_V72_STAGE122_AB_EXECUTION_PACKAGE.json",
+        "artifacts/te_v72_stage122/TE_V72_STAGE122_MANUAL_AB_REVIEW.json",
+        "artifacts/te_v72_stage122/baseline_prompt_profile.json",
+        "artifacts/te_v72_stage122/baseline_request.json",
+        "artifacts/te_v72_stage122/baseline_response.json",
+        "artifacts/te_v72_stage122/candidate_prompt_profile.json",
+        "artifacts/te_v72_stage122/candidate_request.json",
+        "artifacts/te_v72_stage122/candidate_response.json"
+      ],
+      "disposition": "RESTORE_REQUIRED + REFERENCE_MIGRATION_REQUIRED",
+      "production_refs": [
+        "tests/integration/translation_engine_v720_stage122_controlled_provider_ab_validation_test.py",
+        "tests/integration/translation_engine_v720_stage1221_controlled_provider_ab_execution_test.py"
+      ],
+      "test_refs": 2,
+      "frozen_contract_ref": false
+    },
+    {
+      "category": "te_v72_stage1258",
+      "count": 21,
+      "paths": [
+        "artifacts/te_v72_stage1258_candidate_structural_verification_canary/activation_contract.json",
+        "artifacts/te_v72_stage1258_candidate_structural_verification_canary/authorization_claim.json",
+        "artifacts/te_v72_stage1258_candidate_structural_verification_canary/candidate_request.json",
+        "artifacts/te_v72_stage1258_candidate_structural_verification_canary/candidate_response.json",
+        "artifacts/te_v72_stage1258_candidate_structural_verification_canary/claim_contract.json",
+        "artifacts/te_v72_stage1258_candidate_structural_verification_canary/corpus_resolution.json",
+        "artifacts/te_v72_stage1258_candidate_structural_verification_canary/execution_summary.json",
+        "artifacts/te_v72_stage1258_candidate_structural_verification_canary/final_activation_decision.json",
+        "artifacts/te_v72_stage1258_candidate_structural_verification_canary/preflight.json",
+        "artifacts/te_v72_stage1258_candidate_structural_verification_canary/preflight_template.json",
+        "artifacts/te_v72_stage1258_candidate_structural_verification_canary/preparation_summary.json",
+        "artifacts/te_v72_stage1258_candidate_structural_verification_canary/request_plan.json",
+        "artifacts/te_v72_stage1258_candidate_structural_verification_canary/structural_validation.json",
+        "artifacts/te_v72_stage1258_candidate_structural_verification_canary/structural_validation_contract.json"
+      ],
+      "disposition": "RESTORE_REQUIRED + REFERENCE_MIGRATION_REQUIRED",
+      "production_refs": [
+        "core/prompt_contract_verification_canary/candidate_structural_canary.py",
+        "tools/generate_te_v720_stage1258_candidate_structural_verification_canary.py",
+        "tools/generate_te_v720_stage1258a_candidate_structural_failure_sealing.py"
+      ],
+      "test_refs": [
+        "tests/unit/test_stage1258_candidate_structural_verification_canary.py"
+      ],
+      "frozen_contract_ref": false
+    },
+    {
+      "category": "te_v72_stage1257",
+      "count": 17,
+      "paths": [
+        "artifacts/te_v72_stage1257_prompt_verification_canary/authorization_claim.json",
+        "artifacts/te_v72_stage1257_prompt_verification_canary/baseline_request.json",
+        "artifacts/te_v72_stage1257_prompt_verification_canary/baseline_response.json",
+        "artifacts/te_v72_stage1257_prompt_verification_canary/corpus_resolution.json",
+        "artifacts/te_v72_stage1257_prompt_verification_canary/execution_summary.json",
+        "artifacts/te_v72_stage1257_prompt_verification_canary/latency_comparison.json",
+        "artifacts/te_v72_stage1257_prompt_verification_canary/manual_review_package.json",
+        "artifacts/te_v72_stage1257_prompt_verification_canary/preflight.json",
+        "artifacts/te_v72_stage1257_prompt_verification_canary/provisional_activation_decision.json",
+        "artifacts/te_v72_stage1257_prompt_verification_canary/request_plan.json",
+        "artifacts/te_v72_stage1257_prompt_verification_canary/structural_validation.json",
+        "artifacts/te_v72_stage1257a_execution_evidence_sealing/claim_lifecycle.json",
+        "artifacts/te_v72_stage1257a_execution_evidence_sealing/final_activation_decision.json",
+        "artifacts/te_v72_stage1257a_execution_evidence_sealing/historical_execution_seal.json",
+        "artifacts/te_v72_stage1257a_execution_evidence_sealing/request_budget_accounting.json",
+        "artifacts/te_v72_stage1257a_execution_evidence_sealing/sealing_summary.json",
+        "artifacts/te_v72_stage1257a_execution_evidence_sealing/test_state_isolation.json"
+      ],
+      "disposition": "RESTORE_REQUIRED + REFERENCE_MIGRATION_REQUIRED",
+      "production_refs": [
+        "core/prompt_verification_canary_stage1257/framework.py",
+        "core/prompt_contract_verification_canary/framework.py",
+        "tools/generate_te_v720_stage1257_prompt_verification_canary.py",
+        "tools/generate_te_v720_stage1257a_execution_evidence_sealing.py",
+        "tools/generate_te_v720_stage1256a_claim_safe_corpus_binding_remediation.py"
+      ],
+      "test_refs": [
+        "tests/unit/test_stage1257_prompt_verification_canary.py",
+        "tests/unit/test_stage1256a_claim_safe_corpus_binding.py",
+        "tests/integration/translation_engine_v720_stage1255_prompt_canary_readiness_test.py"
+      ],
+      "frozen_contract_ref": false
+    },
+    {
+      "category": "te_v72_stage1223",
+      "count": 13,
+      "paths": [
+        "artifacts/te_v72_stage1223/TE_V72_STAGE1223_MANUAL_AB_REVIEW.json",
+        "artifacts/te_v72_stage1223/TE_V72_STAGE1223_MINIMAL_EXCERPT_AB_EXECUTION.json",
+        "artifacts/te_v72_stage1223/TE_V72_STAGE1223_SOURCE_EXCERPT_FREEZE.json",
+        "artifacts/te_v72_stage1223/baseline/execution_metadata.json",
+        "artifacts/te_v72_stage1223/baseline/prompt_profile.json",
+        "artifacts/te_v72_stage1223/baseline/raw_response.json",
+        "artifacts/te_v72_stage1223/baseline/request.json",
+        "artifacts/te_v72_stage1223/baseline/translation.txt",
+        "artifacts/te_v72_stage1223/candidate/execution_metadata.json",
+        "artifacts/te_v72_stage1223/candidate/prompt_profile.json",
+        "artifacts/te_v72_stage1223/candidate/raw_response.json",
+        "artifacts/te_v72_stage1223/candidate/request.json",
+        "artifacts/te_v72_stage1223/candidate/translation.txt"
+      ],
+      "disposition": "RESTORE_REQUIRED + REFERENCE_MIGRATION_REQUIRED",
+      "production_refs": [
+        "core/translation_intelligence_corpus/inventory.py",
+        "core/translation_intelligence_corpus/historical_evidence_search.py",
+        "core/translation_intelligence_corpus/alignment.py",
+        "tests/integration/translation_engine_v720_stage1223_minimal_excerpt_ab_quality_validation_test.py",
+        "tests/integration/tic_batch5_historical_human_evidence_expansion_test.py"
+      ],
+      "test_refs": 2,
+      "frozen_contract_ref": true,
+      "frozen_contract_detail": "TE_V72_STAGE1223_SOURCE_EXCERPT_FREEZE.json referenced as frozen source excerpt in TIC corpus"
+    },
+    {
+      "category": "te_v72_stage1221",
+      "count": 12,
+      "disposition": "RESTORE_REQUIRED + REFERENCE_MIGRATION_REQUIRED",
+      "production_refs": [
+        "tests/integration/translation_engine_v720_stage1221_controlled_provider_ab_execution_test.py",
+        "archive/stage_tests/ntpe_architecture_consolidation_batch*.py"
+      ],
+      "test_refs": 2,
+      "frozen_contract_ref": false
+    },
+    {
+      "category": "te_v72_stage1222",
+      "count": 12,
+      "disposition": "RESTORE_REQUIRED + REFERENCE_MIGRATION_REQUIRED",
+      "production_refs": [
+        "tests/integration/translation_engine_v720_stage1222_independent_pair_recovery_execution_test.py",
+        "archive/stage_tests/ntpe_architecture_consolidation_batch*.py"
+      ],
+      "test_refs": 2,
+      "frozen_contract_ref": false
+    },
+    {
+      "category": "te_v72_stage1256",
+      "count": 11,
+      "disposition": "RESTORE_REQUIRED + REFERENCE_MIGRATION_REQUIRED",
+      "production_refs": [
+        "core/prompt_verification_canary_stage1257/framework.py",
+        "core/prompt_contract_verification_canary/framework.py",
+        "core/prompt_contract_verification_canary/claim_safe_remediation.py",
+        "tools/generate_te_v720_stage1256_prompt_verification_canary.py",
+        "tools/generate_te_v720_stage1256a_claim_safe_corpus_binding_remediation.py"
+      ],
+      "test_refs": [
+        "tests/unit/test_stage1256a_claim_safe_corpus_binding.py",
+        "tests/unit/test_stage1257_prompt_verification_canary.py"
+      ],
+      "frozen_contract_ref": false
+    },
+    {
+      "category": "te_v72_stage1259",
+      "count": 10,
+      "disposition": "RESTORE_REQUIRED + REFERENCE_MIGRATION_REQUIRED",
+      "production_refs": [
+        "tools/generate_te_v720_stage1259_name_resolution_contract_remediation.py"
+      ],
+      "test_refs": 0,
+      "frozen_contract_ref": false
+    },
+    {
+      "category": "te_v72_canary_and_execution",
+      "count": 17,
+      "disposition": "RESTORE_REQUIRED + REFERENCE_MIGRATION_REQUIRED",
+      "production_refs": [
+        "core/translation_quality_provider_canary/framework.py",
+        "core/prompt_contract_verification_canary/candidate_structural_canary.py",
+        "tools/generate_te_v720_controlled_canary.py"
+      ],
+      "test_refs": [
+        "tests/unit/test_translation_quality_canary.py",
+        "tests/unit/test_translation_quality_provider_canary.py",
+        "tests/unit/test_translation_quality_integration_v72_core.py",
+        "tests/integration/translation_engine_v720_stage1251_controlled_canary_test.py",
+        "tests/integration/translation_engine_v720_stage1252_authorized_provider_canary_test.py"
+      ],
+      "frozen_contract_ref": false
+    },
+    {
+      "category": "te_v72_milestone_a",
+      "count": 5,
+      "disposition": "RESTORE_REQUIRED + REFERENCE_MIGRATION_REQUIRED",
+      "production_refs": [
+        "tools/generate_te_v720_milestone_a_manifest.py"
+      ],
+      "test_refs": [
+        "tests/unit/test_translation_quality_integration_v72_core.py"
+      ],
+      "frozen_contract_ref": false
+    },
+    {
+      "category": "te_v72_prompt_canary_readiness",
+      "count": 6,
+      "disposition": "RESTORE_REQUIRED + REFERENCE_MIGRATION_REQUIRED",
+      "production_refs": [
+        "core/prompt_verification_canary_stage1257/framework.py",
+        "core/prompt_contract_verification_canary/framework.py",
+        "tools/generate_te_v720_stage1255_prompt_canary_readiness.py"
+      ],
+      "test_refs": [
+        "tests/integration/translation_engine_v720_stage1255_prompt_canary_readiness_test.py"
+      ],
+      "frozen_contract_ref": false
+    },
+    {
+      "category": "te_v72_prompt_contract_preservation",
+      "count": 8,
+      "disposition": "RESTORE_REQUIRED + REFERENCE_MIGRATION_REQUIRED",
+      "production_refs": [
+        "core/prompt_contract_verification_canary/framework.py",
+        "tools/generate_te_v720_stage1254_prompt_contract_preservation.py"
+      ],
+      "test_refs": [
+        "tests/integration/translation_engine_v720_stage1254_prompt_contract_preservation_test.py"
+      ],
+      "frozen_contract_ref": false
+    },
+    {
+      "category": "te_v72_prompt_diagnostics",
+      "count": 6,
+      "disposition": "RESTORE_REQUIRED + REFERENCE_MIGRATION_REQUIRED",
+      "production_refs": [
+        "archive/te_v72_historical/te_v72_prompt_diagnostics/generate_diagnostics.py"
+      ],
+      "test_refs": 0,
+      "frozen_contract_ref": false
+    },
+    {
+      "category": "te_v71_stages_111_118",
+      "count": 12,
+      "disposition": "RESTORE_REQUIRED + REFERENCE_MIGRATION_REQUIRED",
+      "production_refs": [
+        "core/translation_quality_framework_integration/integration_validator.py",
+        "core/translation_intelligence_corpus/alignment.py",
+        "core/translation_quality_defects/catalog.py"
+      ],
+      "test_refs": [
+        "tests/unit/public_api/test_quality_review_api.py",
+        "tests/unit/public_api/test_quality_assessment_api.py",
+        "tests/unit/public_api/test_corpus_api.py",
+        "archive/stage_tests/ntpe_te_v710_stage118_translation_quality_framework_freeze_test.py"
+      ],
+      "frozen_contract_ref": true,
+      "frozen_contract_detail": "TE_V71_STAGE118_TRANSLATION_QUALITY_FRAMEWORK_FREEZE.json loaded with manifest in test"
+    },
+    {
+      "category": "te_v7_stages",
+      "count": 22,
+      "disposition": "RESTORE_REQUIRED + REFERENCE_MIGRATION_REQUIRED",
+      "production_refs": [
+        "ntpe_production_translate.py (11 refs)",
+        "core/translation_release/release_validation.py",
+        "core/adaptive_context_single_real_invocation/runner.py",
+        "core/adaptive_context_single_real_invocation/report.py",
+        "core/adaptive_context_single_real_invocation/config.py",
+        "core/adaptive_context_real_provider_preflight/validator.py",
+        "core/adaptive_context_real_provider_preflight/config.py",
+        "core/adaptive_context_provider_execution_freeze/report.py",
+        "core/adaptive_context_provider_execution_freeze/freeze.py",
+        "core/adaptive_context_provider_evidence_pipeline/report.py",
+        "core/adaptive_context_production_rollout/runtime.py",
+        "core/adaptive_context_controlled_provider_retry/report.py",
+        "core/adaptive_context_controlled_provider_retry/config.py",
+        "core/adaptive_context_authorized_provider_cli/report_path.py",
+        "tools/provider_controls/ntpe_single_real_provider_invocation.py",
+        "tools/provider_controls/ntpe_controlled_real_provider_retry.py",
+        "archive/stage_tests/ntpe_te_v700_stage*.py"
+      ],
+      "test_refs": 8,
+      "frozen_contract_ref": true,
+      "frozen_contract_detail": "Stage 4.4, Stage 108, Stage 084 frozen contracts reference te_v7 artifacts"
+    },
+    {
+      "category": "te_v6_0_final_validation",
+      "count": 2,
+      "disposition": "RESTORE_REQUIRED + REFERENCE_MIGRATION_REQUIRED",
+      "production_refs": [
+        "core/translation_release/release_validation.py"
+      ],
+      "test_refs": 0,
+      "frozen_contract_ref": false
+    },
+    {
+      "category": "ntpe_v20_stages",
+      "count": 14,
+      "disposition": "RESTORE_REQUIRED + REFERENCE_MIGRATION_REQUIRED",
+      "production_refs": [
+        "tools/rm_3_2_validate_classifications.py",
+        "tools/generate_ntpe_v20_stage1_launcher_foundation_artifacts.py",
+        "verification/release/ntpe_v20_stage0_project_layout_consolidation_test.py",
+        "verification/release/ntpe_v20_stage1_translation_launcher_product_foundation_test.py"
+      ],
+      "test_refs": 2,
+      "frozen_contract_ref": true,
+      "frozen_contract_detail": "LCR Batch 110 governance freeze references ntpe_v20_stage0"
+    },
+    {
+      "category": "book_intake_stage28",
+      "count": 1,
+      "disposition": "RESTORE_REQUIRED + REFERENCE_MIGRATION_REQUIRED",
+      "production_refs": [
+        "tests/unit/book_intake/test_freeze.py"
+      ],
+      "test_refs": 1,
+      "frozen_contract_ref": true,
+      "frozen_contract_detail": "Book Intake Stage 3.4 freeze manifest references book_intake_stage28"
+    },
+    {
+      "category": "book_preparation_stage34",
+      "count": 1,
+      "disposition": "RESTORE_REQUIRED + REFERENCE_MIGRATION_REQUIRED",
+      "production_refs": [
+        "tests/unit/book_preparation/test_freeze.py"
+      ],
+      "test_refs": 1,
+      "frozen_contract_ref": true,
+      "frozen_contract_detail": "Book Preparation Stage 3.4 freeze manifest references book_preparation_stage34"
+    },
+    {
+      "category": "controlled_multi_chunk_translation_stage742_743",
+      "count": 5,
+      "disposition": "RESTORE_REQUIRED + REFERENCE_MIGRATION_REQUIRED",
+      "production_refs": [
+        "verification/controlled_runtime/controlled_multi_chunk_translation_stage74_*.py"
+      ],
+      "test_refs": 3,
+      "frozen_contract_ref": true,
+      "frozen_contract_detail": "Controlled Runtime Stage 54 freeze references stage 74 artifacts"
+    },
+    {
+      "category": "tools_one_shots",
+      "count": 30,
+      "paths": [
+        "tools/one_shots/launcher_analyzer.py",
+        "tools/one_shots/launcher_character_db.py",
+        "tools/one_shots/launcher_coverage_test.py",
+        "tools/one_shots/launcher_expansion_plan.py",
+        "tools/one_shots/launcher_glossary.py",
+        "tools/one_shots/launcher_kb.py",
+        "tools/one_shots/launcher_memory.py",
+        "tools/one_shots/launcher_novel_prompt_test.py",
+        "tools/one_shots/launcher_profile.py",
+        "tools/one_shots/launcher_prompt_builder.py",
+        "tools/one_shots/launcher_quality_benchmark.py",
+        "tools/one_shots/launcher_retranslate_chunk.py",
+        "tools/one_shots/launcher_semantic_repair.py",
+        "tools/one_shots/launcher_semantic_test.py",
+        "tools/one_shots/launcher_structure_test.py",
+        "tools/one_shots/launcher_style_expansion.py",
+        "tools/one_shots/launcher_style_planner_test.py",
+        "tools/one_shots/write_narrative_part1.py",
+        "tools/one_shots/write_narrative_part2.py",
+        "tools/one_shots/write_override.py",
+        "tools/one_shots/write_p1.py",
+        "tools/one_shots/write_provider.py",
+        "tools/one_shots/write_provider2.py",
+        "tools/one_shots/write_report_part1.py",
+        "tools/one_shots/write_report_part2a.py",
+        "tools/one_shots/write_report_part2b.py",
+        "tools/one_shots/write_report_part3.py",
+        "tools/one_shots/write_scene_part2b.py",
+        "tools/one_shots/write_style_part1.py",
+        "tools/one_shots/write_style_part2.py"
+      ],
+      "disposition": "REMOVE_SAFE",
+      "production_refs": [],
+      "test_refs": 0,
+      "frozen_contract_ref": false,
+      "evidence": "Only referenced in tools/archive/one_shots_launcher/ comments; no production/test imports"
+    }
+  ],
+  "production_references": [
+    {
+      "file": "ntpe_production_translate.py",
+      "deleted_artifacts": [
+        "te_v7_stage09/TE_V7_STAGE09_BASELINE.json",
+        "te_v7_stage09/TE_V7_STAGE09_CANDIDATE.json",
+        "te_v7_stage09/TE_V7_STAGE09_COMPARISON.json",
+        "te_v7_stage09/TE_V7_STAGE09_READINESS.json",
+        "te_v7_stage081/TE_V7_STAGE081_PRODUCTION_ACTIVATION_POLICY.json",
+        "te_v7_stage082/TE_V7_STAGE082_PROFILE_AWARE_CONTEXT_BUDGET.json",
+        "te_v7_stage083/TE_V7_STAGE083_ADAPTIVE_CONTEXT_STRATEGY_SELECTION.json",
+        "te_v7_stage075/TE_V7_STAGE075_CANARY_AB_QUALITY_VALIDATION.json",
+        "te_v7_stage06/TE_V7_STAGE06_CANARY_PRODUCTION_VALIDATION.json",
+        "te_v7_stage04/TE_V7_STAGE04_PRODUCTION_SHADOW_VALIDATION.json"
+      ],
+      "reference_type": "FILE_READ",
+      "execution_path": "CLI entrypoint — production translation",
+      "disposition": "REFERENCE_MIGRATION_REQUIRED",
+      "line_numbers": [471, 707, 708, 709, 734, 755, 756, 757, 794, 842, 894]
+    },
+    {
+      "file": "core/translation_release/release_validation.py",
+      "deleted_artifacts": [
+        "te_v6_0_final_validation"
+      ],
+      "reference_type": "FILE_WRITE/READ",
+      "execution_path": "Release pipeline validation",
+      "disposition": "REFERENCE_MIGRATION_REQUIRED",
+      "line_numbers": [58]
+    },
+    {
+      "file": "core/translation_quality_framework_integration/integration_validator.py",
+      "deleted_artifacts": [
+        "te_v71_stage113/TE_V71_STAGE113_REVIEW_DEFECTS.json",
+        "te_v71_stage113/TE_V71_STAGE113_REVIEW_METRICS.json"
+      ],
+      "reference_type": "FILE_READ",
+      "execution_path": "Quality gate integration validator",
+      "disposition": "REFERENCE_MIGRATION_REQUIRED",
+      "line_numbers": [85, 86]
+    },
+    {
+      "file": "core/translation_intelligence_corpus/inventory.py",
+      "deleted_artifacts": [
+        "te_v7_stage10101/review/TE_V7_STAGE10101_TRANSLATION_REVIEW.txt",
+        "te_v72_stage1223/TE_V72_STAGE1223_SOURCE_EXCERPT_FREEZE.json"
+      ],
+      "reference_type": "FILE_READ",
+      "execution_path": "TIC corpus inventory builder",
+      "disposition": "REFERENCE_MIGRATION_REQUIRED",
+      "line_numbers": [81, 142, 143]
+    },
+    {
+      "file": "core/translation_intelligence_corpus/historical_evidence_search.py",
+      "deleted_artifacts": [
+        "te_v71_stage111/TE_V71_STAGE111_TRANSLATION_DEFECTS.json",
+        "te_v72_stage1223/TE_V72_STAGE1223_SOURCE_EXCERPT_FREEZE.json"
+      ],
+      "reference_type": "FILE_READ",
+      "execution_path": "TIC historical evidence search",
+      "disposition": "REFERENCE_MIGRATION_REQUIRED",
+      "line_numbers": [15, 18, 35, 75, 171]
+    },
+    {
+      "file": "core/translation_intelligence_corpus/alignment.py",
+      "deleted_artifacts": [
+        "te_v72_stage1223/baseline/translation.txt",
+        "te_v7_stage10101/review/TE_V7_STAGE10101_TRANSLATION_REVIEW.txt",
+        "te_v71_stage111/TE_V71_STAGE111_TRANSLATION_DEFECTS.json",
+        "te_v71_stage112/TE_V71_STAGE112_QUALITY_METRICS.json"
+      ],
+      "reference_type": "FILE_READ",
+      "execution_path": "TIC alignment engine",
+      "disposition": "REFERENCE_MIGRATION_REQUIRED",
+      "line_numbers": [50, 51, 55, 57, 74, 93, 95]
+    },
+    {
+      "file": "core/translation_quality_defects/catalog.py",
+      "deleted_artifacts": [
+        "te_v7_stage10101/review/TE_V7_STAGE10101_TRANSLATION_REVIEW.txt"
+      ],
+      "reference_type": "FILE_READ",
+      "execution_path": "Defect catalog loader",
+      "disposition": "REFERENCE_MIGRATION_REQUIRED",
+      "line_numbers": [7]
+    }
+  ],
+  "frozen_contract_dependencies": [
+    {
+      "contract": "Stage 4.4 Translation Execution Freeze",
+      "deleted_artifacts": [
+        "te_v7_stage108/TE_V7_STAGE108_FAKE_TRANSPORT_FREEZE.json",
+        "te_v7_stage09/TE_V7_STAGE09_*.json",
+        "te_v7_stage10101/TE_V7_STAGE10101_CONTROLLED_RETRY.json"
+      ],
+      "dependency_type": "Manifest validation loads artifacts",
+      "impact": "Frozen contract validation will fail if artifacts missing",
+      "production_files_affected": [
+        "core/adaptive_context_real_provider_preflight/validator.py",
+        "core/adaptive_context_provider_execution_freeze/freeze.py",
+        "core/adaptive_context_provider_evidence_pipeline/report.py"
+      ]
+    },
+    {
+      "contract": "TE-v7.1 Stage 118 Translation Quality Framework Freeze",
+      "deleted_artifacts": [
+        "te_v71_stage118/TE_V71_STAGE118_TRANSLATION_QUALITY_FRAMEWORK_FREEZE.json"
+      ],
+      "dependency_type": "Test loads freeze artifact with manifest",
+      "impact": "Freeze acceptance test fails",
+      "production_files_affected": [
+        "archive/stage_tests/ntpe_te_v710_stage118_translation_quality_framework_freeze_test.py"
+      ]
+    },
+    {
+      "contract": "TE-v7.2 Stage 1223 Source Excerpt Freeze",
+      "deleted_artifacts": [
+        "te_v72_stage1223/TE_V72_STAGE1223_SOURCE_EXCERPT_FREEZE.json"
+      ],
+      "dependency_type": "TIC corpus historical search references as frozen source",
+      "impact": "Historical evidence search fails",
+      "production_files_affected": [
+        "core/translation_intelligence_corpus/historical_evidence_search.py",
+        "core/translation_intelligence_corpus/inventory.py",
+        "core/translation_intelligence_corpus/alignment.py"
+      ]
+    },
+    {
+      "contract": "LCR Batch 110 Governance Freeze",
+      "deleted_artifacts": [
+        "ntpe_v20_stage0_project_layout_consolidation/",
+        "ntpe_v20_stage1_translation_launcher_product_foundation/"
+      ],
+      "dependency_type": "Tools validate classifications against frozen artifacts",
+      "impact": "Governance validation fails",
+      "production_files_affected": [
+        "tools/rm_3_2_validate_classifications.py",
+        "archive/historical/audits/legacy_capability_recovery/batch11_0/generate_lcr_batch110_audit.py"
+      ]
+    },
+    {
+      "contract": "Controlled Runtime Stage 54 Freeze",
+      "deleted_artifacts": [
+        "controlled_multi_chunk_translation_stage742/",
+        "controlled_multi_chunk_translation_stage743_diagnostic/"
+      ],
+      "dependency_type": "Verification tests load stage 74 artifacts",
+      "impact": "Freeze acceptance tests fail",
+      "production_files_affected": [
+        "verification/controlled_runtime/controlled_multi_chunk_translation_stage74_*.py",
+        "tests/unit/controlled_multi_chunk_translation_canary/*.py"
+      ]
+    },
+    {
+      "contract": "Book Intake Stage 28 Freeze",
+      "deleted_artifacts": [
+        "book_intake_stage28/book_intake_freeze_evidence.json"
+      ],
+      "dependency_type": "Freeze manifest references evidence",
+      "impact": "Freeze test fails",
+      "production_files_affected": [
+        "tests/unit/book_intake/test_freeze.py"
+      ]
+    },
+    {
+      "contract": "Book Preparation Stage 34 Freeze",
+      "deleted_artifacts": [
+        "book_preparation_stage34/book_preparation_freeze_evidence.json"
+      ],
+      "dependency_type": "Freeze manifest references evidence",
+      "impact": "Freeze test fails",
+      "production_files_affected": [
+        "tests/unit/book_preparation/test_freeze.py"
+      ]
+    }
+  ],
+  "test_references_summary": {
+    "total_test_files": 20,
+    "unit_tests": 8,
+    "integration_tests": 12,
+    "archive_stage_tests": 8
+  },
+  "governance_references": {
+    "p0_docs": 22,
+    "rm8_docs": 20,
+    "type": "DOCUMENTATION_ONLY"
+  },
+  "disposition_summary": {
+    "RESTORE_REQUIRED": 207,
+    "REFERENCE_MIGRATION_REQUIRED": 207,
+    "ARCHIVE_SAFE": 0,
+    "REMOVE_SAFE": 30,
+    "GOVERNANCE_ONLY": 0,
+    "UNKNOWN": 0
+  },
+  "stop_conditions": {
+    "stop_10_01": false,
+    "stop_10_02": false,
+    "stop_10_03": false,
+    "stop_10_04": false,
+    "stop_10_05": true,
+    "stop_10_05_detail": "Frozen contracts depend on deleted artifacts; documented above with migration paths",
+    "stop_10_06": false,
+    "stop_10_07": false
+  },
+  "validation": {
+    "compileall_core": "PASS",
+    "ntpe_validate": "PASS_WITH_WARNINGS",
+    "git_diff_check": "PASS"
+  },
+  "commit": false,
+  "push": false,
+  "final_verdict": "P0-FINAL-10 = COMPLETE — ANALYSIS ONLY"
+}

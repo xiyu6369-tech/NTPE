@@ -1,0 +1,65 @@
+[
+  {
+    "sha256": "15C172C20DAB5A675E04FB29CEA0759EC5F17742F5B5A41B51BE2F0B867FAEE2",
+    "destination_path": "archive/governance_evidence/P0_REPOSITORY_FINAL_CLEANUP_BATCH_D_PREFLIGHT.md",
+    "description": "Superseded local governance document (preflight)",
+    "date_archived": "2026-08-25",
+    "source_path": "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_D_PREFLIGHT.md"
+  },
+  {
+    "sha256": "C2E2B17A5B2DA1F1BC83BC5ADB5969590F53C2574DED2A2E9C929587DB9B05F2",
+    "destination_path": "archive/governance_evidence/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F2_PREFLIGHT.md",
+    "description": "Superseded local governance document (preflight)",
+    "date_archived": "2026-08-25",
+    "source_path": "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F2_PREFLIGHT.md"
+  },
+  {
+    "sha256": "0EAE584E0866993D3DF49DDE3958F4E99977A5922B25950BB3B1BC2B5B640A01",
+    "destination_path": "archive/governance_evidence/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F3_PREFLIGHT.md",
+    "description": "Superseded local governance document (preflight)",
+    "date_archived": "2026-08-25",
+    "source_path": "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F3_PREFLIGHT.md"
+  },
+  {
+    "sha256": "FFAFC7A1D28E12A01C33C3624877446434A2DFAD3BF03CF65EB3801EF02BD08C",
+    "destination_path": "archive/governance_evidence/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F4_PREFLIGHT.md",
+    "description": "Superseded local governance document (preflight)",
+    "date_archived": "2026-08-25",
+    "source_path": "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F4_PREFLIGHT.md"
+  },
+  {
+    "sha256": "6B64DF2DB3B78A09080CA541262D7AFA0BA939CB1EBA40A4B1D177E7F21E6E91",
+    "destination_path": "archive/governance_evidence/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F5_PREFLIGHT.md",
+    "description": "Superseded local governance document (preflight)",
+    "date_archived": "2026-08-25",
+    "source_path": "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F5_PREFLIGHT.md"
+  },
+  {
+    "sha256": "2DA4D4955433B4ACB9560EAA93EA14139ACBD2D9A1B8B574E902BAEE77DAF784",
+    "destination_path": "archive/governance_evidence/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F_PREFLIGHT.md",
+    "description": "Superseded local governance document (preflight)",
+    "date_archived": "2026-08-25",
+    "source_path": "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F_PREFLIGHT.md"
+  },
+  {
+    "sha256": "4DE429AA9FF0423AB7C26920E2A0DE4F2FD6C5F01E0C7622AFB6EC04232EA780",
+    "destination_path": "archive/governance_evidence/P0_REPOSITORY_FINAL_CLEANUP_PREFLIGHT.md",
+    "description": "Superseded local governance document (preflight)",
+    "date_archived": "2026-08-25",
+    "source_path": "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_PREFLIGHT.md"
+  },
+  {
+    "sha256": "8D6845C5CD09AA2557D73F97DCC3453B1EBC5D2444369A0586158252DEF286EF",
+    "destination_path": "archive/governance_evidence/P0_STAGE5_BATCH5_3_SERIES_ENTITY_PREFLIGHT_AUDIT.md",
+    "description": "Superseded local governance document (preflight)",
+    "date_archived": "2026-08-25",
+    "source_path": "docs/governance/rm8/P0_STAGE5_BATCH5_3_SERIES_ENTITY_PREFLIGHT_AUDIT.md"
+  },
+  {
+    "sha256": "EAD044A44BE823ADF3F59813B3112B0E214B5151F128BB29C1882325D079BFAF",
+    "destination_path": "archive/governance_evidence/P0_STAGE5_BATCH5_8_PREFLIGHT_AUDIT.md",
+    "description": "Superseded local governance document (preflight)",
+    "date_archived": "2026-08-25",
+    "source_path": "docs/governance/rm8/P0_STAGE5_BATCH5_8_PREFLIGHT_AUDIT.md"
+  }
+]

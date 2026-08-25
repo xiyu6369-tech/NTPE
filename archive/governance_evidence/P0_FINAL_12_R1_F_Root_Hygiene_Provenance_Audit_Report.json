@@ -1,0 +1,144 @@
+{
+  "audit_id": "P0-FINAL-12-R1-F",
+  "audit_name": "Root Hygiene Provenance Audit",
+  "date": "2026-08-25",
+  "status": "BLOCKED",
+  "baseline_commit": "53e04767f9a1012641152e96786011fbb3b0e466",
+  "current_head": "53e04767f9a1012641152e96786011fbb3b0e466",
+  "origin_main": "53e04767f9a1012641152e96786011fbb3b0e466",
+  "branch": "main",
+  "git_state": {
+    "staged_files": 0,
+    "unstaged_modified_deleted": 283,
+    "untracked_files": 66,
+    "protected_worktree_paths": 274,
+    "unknown_paths_r1e": 38
+  },
+  "root_inventory": {
+    "tracked_at_head": 16,
+    "untracked_unexpected": 4,
+    "directories_allowed": true,
+    "tracked_files": [
+      ".clineignore",
+      ".clinerules",
+      ".editorconfig",
+      ".gitattributes",
+      ".gitignore",
+      "launcher_translate.py",
+      "ntpe_batch_monitor.py",
+      "ntpe_launcher.py",
+      "ntpe_literary_evaluation.py",
+      "ntpe_literary_regression.py",
+      "ntpe_production_translate.py",
+      "ntpe_validate.py",
+      "pyproject.toml",
+      "README.md",
+      "requirements.txt",
+      "VERSION.txt"
+    ]
+  },
+  "unexpected_items": [
+    {
+      "path": "audit_r1_e.py",
+      "type": "file",
+      "status": "untracked",
+      "modification_status": "new",
+      "last_write_timestamp": "2026-08-24T23:39:47+08:00",
+      "size_bytes": 8189,
+      "existed_at_head": false,
+      "in_r1e_inventory": true,
+      "in_protected_worktree": false,
+      "in_unknown_set": true,
+      "provenance": "Agent/tool execution artifact from R1-E commit boundary audit task",
+      "classification": "UNKNOWN (R1-E audit script)",
+      "root_policy_violations": ["§3 Temporary Utilities", "§4 Experimental Modules"],
+      "recommended_disposition": "MOVE to tools/maintenance/audit_r1_e.py",
+      "cleanup_authorized": "MOVE only"
+    },
+    {
+      "path": "check_missing.py",
+      "type": "file",
+      "status": "untracked",
+      "modification_status": "new",
+      "last_write_timestamp": "2026-08-24T23:30:56+08:00",
+      "size_bytes": 2707,
+      "existed_at_head": false,
+      "in_r1e_inventory": true,
+      "in_protected_worktree": false,
+      "in_unknown_set": true,
+      "provenance": "Agent/tool execution artifact from R1-E classification phase",
+      "classification": "UNKNOWN (R1-E audit script)",
+      "root_policy_violations": ["§3 Temporary Utilities", "§4 Experimental Modules"],
+      "recommended_disposition": "MOVE to tools/maintenance/check_missing.py",
+      "cleanup_authorized": "MOVE only"
+    },
+    {
+      "path": "classify_changes.py",
+      "type": "file",
+      "status": "untracked",
+      "modification_status": "new",
+      "last_write_timestamp": "2026-08-24T23:28:56+08:00",
+      "size_bytes": 5454,
+      "existed_at_head": false,
+      "in_r1e_inventory": true,
+      "in_protected_worktree": false,
+      "in_unknown_set": true,
+      "provenance": "Agent/tool execution artifact from R1-E classification phase",
+      "classification": "UNKNOWN (R1-E audit script)",
+      "root_policy_violations": ["§3 Temporary Utilities", "§4 Experimental Modules"],
+      "recommended_disposition": "MOVE to tools/maintenance/classify_changes.py",
+      "cleanup_authorized": "MOVE only"
+    },
+    {
+      "path": "diff_output.txt",
+      "type": "file",
+      "status": "untracked",
+      "modification_status": "new",
+      "last_write_timestamp": "2026-08-25T00:09:33+08:00",
+      "size_bytes": 19091,
+      "existed_at_head": false,
+      "in_r1e_inventory": true,
+      "in_protected_worktree": false,
+      "in_unknown_set": true,
+      "provenance": "Agent/tool execution artifact from R1-E diff capture phase",
+      "classification": "UNKNOWN (R1-E diagnostic output)",
+      "root_policy_violations": ["§3 Temporary Utilities", "§7 Archive Files"],
+      "recommended_disposition": "MOVE to artifacts/diff_output.txt",
+      "cleanup_authorized": "MOVE only"
+    }
+  ],
+  "classification_summary": {
+    "protected_worktree_items": 0,
+    "unknown_items": 4,
+    "r1_related_items": 4,
+    "temporary_generated_items": 4,
+    "root_hygiene_violations": 4
+  },
+  "policy_assessment": {
+    "root_policy_violated": true,
+    "violated_sections": ["§3", "§4", "§7"],
+    "allowlist_compliant": false,
+    "ntpe_validate_result": "FAIL",
+    "ntpe_validate_details": "Unexpected root items: audit_r1_e.py, check_missing.py, classify_changes.py, diff_output.txt"
+  },
+  "disposition": {
+    "cleanup_authorized": true,
+    "deletion_authorized": false,
+    "staging_blocked": true,
+    "separate_cleanup_task_required": true,
+    "actions_required": [
+      "Create tools/maintenance/ directory",
+      "Move audit_r1_e.py → tools/maintenance/audit_r1_e.py",
+      "Move check_missing.py → tools/maintenance/check_missing.py",
+      "Move classify_changes.py → tools/maintenance/classify_changes.py",
+      "Move diff_output.txt → artifacts/diff_output.txt",
+      "Re-run python ntpe_validate.py — must PASS"
+    ]
+  },
+  "deliverables": [
+    "docs/governance/repository/P0_FINAL_12_R1_F_ROOT_HYGIENE_PROVENANCE_AUDIT.md",
+    "artifacts/P0_FINAL_12_R1_F_Root_Hygiene_Provenance_Audit_Report.json"
+  ],
+  "staged": false,
+  "committed": false
+}

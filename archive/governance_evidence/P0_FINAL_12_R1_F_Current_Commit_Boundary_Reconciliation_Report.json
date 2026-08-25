@@ -1,0 +1,380 @@
+{
+  "reconciliation_id": "P0-FINAL-12-R1-F",
+  "reconciliation_name": "Current-State Commit Boundary Reconciliation",
+  "date": "2026-08-25",
+  "status": "PASS",
+  "baseline": {
+    "head": "53e04767f9a1012641152e96786011fbb3b0e466",
+    "branch": "main",
+    "origin_main": "53e04767f9a1012641152e96786011fbb3b0e466",
+    "staging_occurred": false,
+    "commit_occurred": false,
+    "push_occurred": false
+  },
+  "current_change_inventory": {
+    "tracked_modified": 33,
+    "tracked_deleted": 290,
+    "total_tracked_changes": 323,
+    "untracked": 66,
+    "grand_total": 389
+  },
+  "previous_r1e_candidates": 37,
+  "previous_candidate_dispositions": [
+    {
+      "path": "core/adaptive_context_authorized_provider_cli/report_path.py",
+      "disposition": "CURRENT_R1_CANDIDATE",
+      "phase": "R1-A"
+    },
+    {
+      "path": "core/adaptive_context_controlled_provider_retry/config.py",
+      "disposition": "CURRENT_R1_CANDIDATE",
+      "phase": "R1-A"
+    },
+    {
+      "path": "core/adaptive_context_controlled_provider_retry/report.py",
+      "disposition": "CURRENT_R1_CANDIDATE",
+      "phase": "R1-A"
+    },
+    {
+      "path": "core/adaptive_context_provider_evidence_pipeline/report.py",
+      "disposition": "CURRENT_R1_CANDIDATE",
+      "phase": "R1-A"
+    },
+    {
+      "path": "core/adaptive_context_provider_execution_freeze/report.py",
+      "disposition": "CURRENT_R1_CANDIDATE",
+      "phase": "R1-A"
+    },
+    {
+      "path": "core/adaptive_context_provider_session_cli/harness.py",
+      "disposition": "CURRENT_R1_CANDIDATE",
+      "phase": "R1-A"
+    },
+    {
+      "path": "core/adaptive_context_real_provider_preflight/validator.py",
+      "disposition": "CURRENT_R1_CANDIDATE",
+      "phase": "R1-A"
+    },
+    {
+      "path": "core/adaptive_context_single_real_invocation/report.py",
+      "disposition": "CURRENT_R1_CANDIDATE",
+      "phase": "R1-A"
+    },
+    {
+      "path": "core/prompt_contract_verification_canary/candidate_structural_canary.py",
+      "disposition": "CURRENT_R1_CANDIDATE",
+      "phase": "R1-A"
+    },
+    {
+      "path": "core/prompt_contract_verification_canary/framework.py",
+      "disposition": "CURRENT_R1_CANDIDATE",
+      "phase": "R1-A"
+    },
+    {
+      "path": "core/prompt_verification_canary_stage1257/framework.py",
+      "disposition": "CURRENT_R1_CANDIDATE",
+      "phase": "R1-A"
+    },
+    {
+      "path": "core/translation_intelligence_corpus/alignment.py",
+      "disposition": "CURRENT_R1_CANDIDATE",
+      "phase": "R1-A"
+    },
+    {
+      "path": "core/translation_intelligence_corpus/inventory.py",
+      "disposition": "CURRENT_R1_CANDIDATE",
+      "phase": "R1-A"
+    },
+    {
+      "path": "core/translation_quality_provider_canary/framework.py",
+      "disposition": "CURRENT_R1_CANDIDATE",
+      "phase": "R1-A"
+    },
+    {
+      "path": "tests/integration/tic_batch1_translation_corpus_inventory_test.py",
+      "disposition": "CURRENT_R1_CANDIDATE",
+      "phase": "R1-B"
+    },
+    {
+      "path": "tests/integration/tic_batch5_historical_human_evidence_expansion_test.py",
+      "disposition": "CURRENT_R1_CANDIDATE",
+      "phase": "R1-B"
+    },
+    {
+      "path": "tests/integration/tic_batch7_offline_translation_quality_gate_test.py",
+      "disposition": "CURRENT_R1_CANDIDATE",
+      "phase": "R1-B"
+    },
+    {
+      "path": "tests/integration/translation_engine_v700_stage10101_provider_timeout_controlled_retry_test.py",
+      "disposition": "CURRENT_R1_CANDIDATE",
+      "phase": "R1-B"
+    },
+    {
+      "path": "tests/integration/translation_engine_v700_stage1010_single_real_provider_invocation_test.py",
+      "disposition": "CURRENT_R1_CANDIDATE",
+      "phase": "R1-B"
+    },
+    {
+      "path": "tests/integration/translation_engine_v700_stage101_provider_timing_evidence_adapter_test.py",
+      "disposition": "CURRENT_R1_CANDIDATE",
+      "phase": "R1-B"
+    },
+    {
+      "path": "tests/integration/translation_engine_v700_stage102_controlled_provider_benchmark_session_test.py",
+      "disposition": "CURRENT_R1_CANDIDATE",
+      "phase": "R1-B"
+    },
+    {
+      "path": "tests/integration/translation_engine_v700_stage103_controlled_provider_session_cli_harness_test.py",
+      "disposition": "CURRENT_R1_CANDIDATE",
+      "phase": "R1-B"
+    },
+    {
+      "path": "tests/fixtures/tic_batch5/HISTORICAL_HUMAN_EVIDENCE_EXPANSION.json",
+      "disposition": "CURRENT_R1_CANDIDATE",
+      "phase": "R1-B"
+    },
+    {
+      "path": "tests/fixtures/te_v7_stage09/",
+      "disposition": "CURRENT_R1_CANDIDATE",
+      "phase": "R1-B"
+    },
+    {
+      "path": "tests/fixtures/te_v7_stage1010/",
+      "disposition": "CURRENT_R1_CANDIDATE",
+      "phase": "R1-B"
+    },
+    {
+      "path": "tests/fixtures/tic_batch7/quality_gate_context.json",
+      "disposition": "CURRENT_R1_CANDIDATE",
+      "phase": "R1-B"
+    },
+    {
+      "path": "tools/generate_te_v720_stage1254_prompt_contract_preservation.py",
+      "disposition": "CURRENT_R1_CANDIDATE",
+      "phase": "R1-C"
+    },
+    {
+      "path": "tools/generate_te_v720_stage1256a_claim_safe_corpus_binding_remediation.py",
+      "disposition": "CURRENT_R1_CANDIDATE",
+      "phase": "R1-C"
+    },
+    {
+      "path": "tools/generate_te_v720_stage1257a_execution_evidence_sealing.py",
+      "disposition": "CURRENT_R1_CANDIDATE",
+      "phase": "R1-C"
+    },
+    {
+      "path": "tools/generate_te_v720_stage1258_candidate_structural_verification_canary.py",
+      "disposition": "CURRENT_R1_CANDIDATE",
+      "phase": "R1-C"
+    },
+    {
+      "path": "tools/generate_te_v720_stage1258a_candidate_structural_failure_sealing.py",
+      "disposition": "CURRENT_R1_CANDIDATE",
+      "phase": "R1-C"
+    },
+    {
+      "path": "tools/generate_te_v720_stage1259_name_resolution_contract_remediation.py",
+      "disposition": "CURRENT_R1_CANDIDATE",
+      "phase": "R1-C"
+    },
+    {
+      "path": "tools/provider_controls/ntpe_controlled_real_provider_retry.py",
+      "disposition": "CURRENT_R1_CANDIDATE",
+      "phase": "R1-C"
+    },
+    {
+      "path": "tools/provider_controls/ntpe_single_real_provider_invocation.py",
+      "disposition": "CURRENT_R1_CANDIDATE",
+      "phase": "R1-C"
+    },
+    {
+      "path": "artifacts/P0_FINAL_12_FINAL_Global_Migration_Verification_Report.json",
+      "disposition": "CURRENT_R1_CANDIDATE",
+      "phase": "R1-D"
+    },
+    {
+      "path": "docs/governance/repository/P0_FINAL_12_FINAL_GLOBAL_MIGRATION_VERIFICATION.md",
+      "disposition": "CURRENT_R1_CANDIDATE",
+      "phase": "R1-D"
+    },
+    {
+      "path": "docs/governance/repository/P0_FINAL_12_R1_INVENTORY_REPORT.md",
+      "disposition": "CURRENT_R1_CANDIDATE",
+      "phase": "R1-INVENTORY"
+    }
+  ],
+  "current_r1_candidates": {
+    "total": 41,
+    "r1_a": 14,
+    "r1_b": 12,
+    "r1_c": 8,
+    "r1_d": 2,
+    "r1_inventory": 1,
+    "r1_f": 4,
+    "tracked_modified": 25,
+    "untracked_new": 16
+  },
+  "current_r1_candidates_list": {
+    "r1_a_production": [
+      "core/adaptive_context_authorized_provider_cli/report_path.py",
+      "core/adaptive_context_controlled_provider_retry/config.py",
+      "core/adaptive_context_controlled_provider_retry/report.py",
+      "core/adaptive_context_provider_evidence_pipeline/report.py",
+      "core/adaptive_context_provider_execution_freeze/report.py",
+      "core/adaptive_context_provider_session_cli/harness.py",
+      "core/adaptive_context_real_provider_preflight/validator.py",
+      "core/adaptive_context_single_real_invocation/report.py",
+      "core/prompt_contract_verification_canary/candidate_structural_canary.py",
+      "core/prompt_contract_verification_canary/framework.py",
+      "core/prompt_verification_canary_stage1257/framework.py",
+      "core/translation_intelligence_corpus/alignment.py",
+      "core/translation_intelligence_corpus/inventory.py",
+      "core/translation_quality_provider_canary/framework.py"
+    ],
+    "r1_b_test_fixtures": {
+      "tracked_modified_tests": [
+        "tests/integration/tic_batch1_translation_corpus_inventory_test.py",
+        "tests/integration/tic_batch5_historical_human_evidence_expansion_test.py",
+        "tests/integration/tic_batch7_offline_translation_quality_gate_test.py",
+        "tests/integration/translation_engine_v700_stage10101_provider_timeout_controlled_retry_test.py",
+        "tests/integration/translation_engine_v700_stage1010_single_real_provider_invocation_test.py",
+        "tests/integration/translation_engine_v700_stage101_provider_timing_evidence_adapter_test.py",
+        "tests/integration/translation_engine_v700_stage102_controlled_provider_benchmark_session_test.py",
+        "tests/integration/translation_engine_v700_stage103_controlled_provider_session_cli_harness_test.py"
+      ],
+      "tracked_modified_fixtures": [
+        "tests/fixtures/tic_batch5/HISTORICAL_HUMAN_EVIDENCE_EXPANSION.json"
+      ],
+      "untracked_new_fixtures": [
+        "tests/fixtures/te_v7_stage09/TE_V7_STAGE09_BASELINE.json",
+        "tests/fixtures/te_v7_stage1010/TE_V7_STAGE1010_SINGLE_REAL_INVOCATION.json",
+        "tests/fixtures/tic_batch7/quality_gate_context.json"
+      ]
+    },
+    "r1_c_tools": [
+      "tools/generate_te_v720_stage1254_prompt_contract_preservation.py",
+      "tools/generate_te_v720_stage1256a_claim_safe_corpus_binding_remediation.py",
+      "tools/generate_te_v720_stage1257a_execution_evidence_sealing.py",
+      "tools/generate_te_v720_stage1258_candidate_structural_verification_canary.py",
+      "tools/generate_te_v720_stage1258a_candidate_structural_failure_sealing.py",
+      "tools/generate_te_v720_stage1259_name_resolution_contract_remediation.py",
+      "tools/provider_controls/ntpe_controlled_real_provider_retry.py",
+      "tools/provider_controls/ntpe_single_real_provider_invocation.py"
+    ],
+    "r1_d_verification": [
+      "artifacts/P0_FINAL_12_FINAL_Global_Migration_Verification_Report.json",
+      "docs/governance/repository/P0_FINAL_12_FINAL_GLOBAL_MIGRATION_VERIFICATION.md"
+    ],
+    "r1_inventory": [
+      "docs/governance/repository/P0_FINAL_12_R1_INVENTORY_REPORT.md"
+    ],
+    "r1_f_remediation": [
+      "tools/maintenance/audit_r1_e.py",
+      "tools/maintenance/check_missing.py",
+      "tools/maintenance/classify_changes.py",
+      "artifacts/diff_output.txt"
+    ]
+  },
+  "must_not_stage": {
+    "protected_worktree": 290,
+    "unknown": 34,
+    "modified_non_r1": 1,
+    "total": 325,
+    "protected_worktree_paths": [
+      "artifacts/ (269 deleted historical artifact directories)",
+      "tools/one_shots/ (21 deleted one-shot scripts)"
+    ],
+    "unknown_paths": [
+      "artifacts/ (12 prior phase reports + dummy traces)",
+      "docs/governance/repository/ (19 prior phase reconciliation docs)",
+      "docs/governance/rm8/ (13 stage5 delivery docs)",
+      "tools/monitoring/file_creation_trace.py"
+    ],
+    "modified_non_r1": [
+      "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_D_RECONCILIATION.md"
+    ]
+  },
+  "protected_worktree_verification": {
+    "previously_identified": 274,
+    "current_tracked_deleted": 290,
+    "paths_changed": 0,
+    "paths_staged": 0,
+    "paths_candidates": 0,
+    "overlap_with_r1": 0,
+    "preserved": true
+  },
+  "unknown_verification": {
+    "previous_count": 38,
+    "relocated_r1f": 4,
+    "new_audit_deliverables": 2,
+    "current_count": 34,
+    "all_untracked": true,
+    "all_classified": true,
+    "r1_related": 2,
+    "protected_from_staging": true
+  },
+  "relocated_artifacts_disposition": [
+    {
+      "source": "audit_r1_e.py",
+      "destination": "tools/maintenance/audit_r1_e.py",
+      "classification": "Audit-only execution artifact",
+      "staging_recommendation": "DO_NOT_STAGE"
+    },
+    {
+      "source": "check_missing.py",
+      "destination": "tools/maintenance/check_missing.py",
+      "classification": "Audit-only execution artifact",
+      "staging_recommendation": "DO_NOT_STAGE"
+    },
+    {
+      "source": "classify_changes.py",
+      "destination": "tools/maintenance/classify_changes.py",
+      "classification": "Audit-only execution artifact",
+      "staging_recommendation": "DO_NOT_STAGE"
+    },
+    {
+      "source": "diff_output.txt",
+      "destination": "artifacts/diff_output.txt",
+      "classification": "Diagnostic output artifact",
+      "staging_recommendation": "DO_NOT_STAGE"
+    }
+  ],
+  "validation_results": {
+    "ntpe_validate": "PASS_WITH_WARNINGS",
+    "ntpe_validate_details": "Root layout PASS; pre-existing core.prompt_builder.prompt_builder warning matches baseline",
+    "git_diff_check": "PASS",
+    "git_diff_check_details": "Only pre-existing CRLF->LF warnings (5 files)",
+    "root_hygiene": "PASS",
+    "provider_invocations": 0,
+    "network_calls": 0,
+    "real_translation_calls": 0
+  },
+  "summary_counts": {
+    "previous_r1e_candidates": 37,
+    "current_r1_candidates": 41,
+    "r1_a": 14,
+    "r1_b": 12,
+    "r1_c": 8,
+    "r1_d": 2,
+    "r1_inventory": 1,
+    "r1_f": 4,
+    "protected_worktree": 290,
+    "unknown": 34,
+    "must_not_stage": 324
+  },
+  "staging_recommendation": {
+    "authorized": true,
+    "candidates": 41,
+    "condition": "Stage ONLY the 41 CURRENT_R1_COMMIT_CANDIDATES paths; exclude all 324 MUST_NOT_STAGE paths"
+  },
+  "unresolved_issues": [],
+  "deliverables": [
+    "docs/governance/repository/P0_FINAL_12_R1_F_CURRENT_COMMIT_BOUNDARY_RECONCILIATION.md",
+    "artifacts/P0_FINAL_12_R1_F_Current_Commit_Boundary_Reconciliation_Report.json"
+  ],
+  "staged": false,
+  "committed": false
+}

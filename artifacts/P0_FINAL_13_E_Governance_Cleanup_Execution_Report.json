@@ -1,0 +1,131 @@
+{
+  "metadata": {
+    "task": "P0-FINAL-13-E",
+    "generated_at": "2026-08-25T16:30:00.000000",
+    "git_baseline": {
+      "head": "76ea24f1e34c0f1796236de4d676404d7e45f00a",
+      "origin_main": "76ea24f1e34c0f1796236de4d676404d7e45f00a",
+      "branch": "main",
+      "divergence": "0 0"
+    },
+    "overall_pass": true
+  },
+  "pre_execution_reconciliation": {
+    "KEEP_GITHUB_CANONICAL": 7,
+    "KEEP_GITHUB_SUPPORTING": 8,
+    "LOCAL_AUDIT_EVIDENCE": 28,
+    "LOCAL_HISTORY": 13,
+    "SUPERSEDED_LOCAL": 9,
+    "NEEDS_EXPLICIT_DECISION": 1,
+    "TOTAL": 66,
+    "matched": true
+  },
+  "execution": {
+    "moved": 51,
+    "deleted": 0,
+    "github_target": 15,
+    "local_only": 51
+  },
+  "archive_manifests": [
+    {
+      "file": "archive/archive_manifest_governance_local_history.json",
+      "count": 13,
+      "disposition": "LOCAL_HISTORY"
+    },
+    {
+      "file": "archive/archive_manifest_governance_local_audit.json",
+      "count": 28,
+      "disposition": "LOCAL_AUDIT_EVIDENCE"
+    },
+    {
+      "file": "archive/archive_manifest_governance_superseded.json",
+      "count": 9,
+      "disposition": "SUPERSEDED_LOCAL"
+    },
+    {
+      "file": "archive/archive_manifest_governance_p13b.json",
+      "count": 1,
+      "disposition": "NEEDS_EXPLICIT_DECISION -> LOCAL_AUDIT_EVIDENCE"
+    }
+  ],
+  "sha256_preservation": {
+    "total_moved": 51,
+    "verified": 51,
+    "mismatches": 0,
+    "missing": 0,
+    "duplicates": 0
+  },
+  "github_governance_surface": {
+    "KEEP_GITHUB_CANONICAL": [
+      "artifacts/P0_FINAL_13_Post_R1_Worktree_Inventory_Report.json",
+      "docs/governance/repository/P0_FINAL_12_R1_A_PRODUCTION_REFERENCE_CLOSURE.md",
+      "docs/governance/repository/P0_FINAL_12_R1_B_TEST_FIXTURE_CLOSURE.md",
+      "docs/governance/repository/P0_FINAL_12_R1_C_TOOLS_REFERENCE_CLOSURE.md",
+      "docs/governance/repository/P0_FINAL_13_POST_R1_WORKTREE_INVENTORY.md",
+      "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_F6_FINAL_VERIFICATION.md",
+      "docs/governance/rm8/P0_STAGE5_FINAL_ACCEPTANCE_REVIEW.md"
+    ],
+    "KEEP_GITHUB_SUPPORTING": [
+      "docs/governance/repository/P0_FINAL_12_B5_SCOPE_RECONCILIATION.md",
+      "docs/governance/repository/P0_FINAL_12_B5_STAGED_SCOPE_RECONCILIATION.md",
+      "docs/governance/repository/P0_FINAL_12_R1_E_COMMIT_BOUNDARY_AUDIT.md",
+      "docs/governance/repository/P0_FINAL_12_R1_F_CURRENT_COMMIT_BOUNDARY_RECONCILIATION.md",
+      "docs/governance/repository/P0_FINAL_12_R1_H_POST_COMMIT_INTEGRITY_VERIFICATION.md",
+      "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_E_RESOLUTION.md",
+      "docs/governance/rm8/P0_STAGE5_INTEGRATED_REVIEW.md",
+      "docs/governance/rm8/P0_STAGE5_ROOT_LEVEL_INVENTORY.md"
+    ],
+    "total": 15
+  },
+  "local_only_governance": {
+    "archive_path": "archive/governance_evidence/",
+    "count": 51,
+    "breakdown": {
+      "LOCAL_HISTORY": 13,
+      "LOCAL_AUDIT_EVIDENCE": 28,
+      "SUPERSEDED_LOCAL": 9,
+      "DECISION_LOCAL": 1
+    }
+  },
+  "protected_worktree": "PRESERVED",
+  "generated_outputs": "PRESERVED",
+  "historical_legacy": "PRESERVED",
+  "validation": {
+    "ntpe_validate_py": "PASS WITH BASELINE WARNING",
+    "git_diff_check": "PASS",
+    "provider_calls": 0,
+    "network_calls": 0,
+    "translation_calls": 0,
+    "root_hygiene": "PASS"
+  },
+  "git_safety": {
+    "staged": 0,
+    "committed": 0,
+    "pushed": 0,
+    "head_unchanged": true,
+    "origin_main_unchanged": true
+  },
+  "stop_conditions": {
+    "STOP-13-E-01": false,
+    "STOP-13-E-02": false,
+    "STOP-13-E-03": false,
+    "STOP-13-E-04": false,
+    "STOP-13-E-05": false,
+    "STOP-13-E-06": false,
+    "STOP-13-E-07": false,
+    "STOP-13-E-08": false,
+    "STOP-13-E-09": false,
+    "STOP-13-E-10": false
+  },
+  "unresolved_issues": [],
+  "deliverables": [
+    "docs/governance/repository/P0_FINAL_13_E_GOVERNANCE_CLEANUP_EXECUTION.md",
+    "artifacts/P0_FINAL_13_E_Governance_Cleanup_Execution_Report.json",
+    "archive/archive_manifest_governance_local_history.json",
+    "archive/archive_manifest_governance_local_audit.json",
+    "archive/archive_manifest_governance_superseded.json",
+    "archive/archive_manifest_governance_p13b.json",
+    "archive/governance_evidence/ (51 files)"
+  ],
+  "final_verdict": "PASS"
+}

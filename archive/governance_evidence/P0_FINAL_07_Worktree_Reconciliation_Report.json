@@ -1,0 +1,109 @@
+{
+  "baseline_head": "93d7498e051643f1f6cfd6caf8fb72a07a866c73",
+  "origin_main": "93d7498e051643f1f6cfd6caf8fb72a07a866c73",
+  "branch": "main",
+  "worktree_cleanliness": "DIRTY - 190+ changes (9 modified, 150+ deleted, 40+ untracked)",
+  "protected_worktree": {
+    "status": "MODIFIED_UNSTAGED",
+    "files": [
+      "artifacts/rm6_canary/legacy_kr/novel_sample_live_progress.json",
+      "artifacts/rm6_canary/runtime_kr/novel_sample_live_progress.json",
+      "tests/literary/outputs/PS-03-integration/Literary_Quality_Report.json",
+      "tests/literary/outputs/PS-03-smoke/Literary_Quality_Report.json",
+      "tests/literary/outputs/PS-03-smoke/Literary_Regression_Report.json",
+      "tests/literary/outputs/Regression_History.json",
+      "tests/literary/outputs/Regression_History.md"
+    ],
+    "staged": false,
+    "stop_07_01_triggered": false
+  },
+  "dummy_txt_status": "ABSENT",
+  "dummy_txt_remediation": {
+    "file": "tests/series/test_batch5_4.py",
+    "confirmed": true,
+    "change": "Path(\"dummy.txt\") -> tmp_path / \"dummy.txt\"",
+    "test_method_signature_updated": true
+  },
+  "incident_deliverables": {
+    "dummy_txt_03": {
+      "artifact": "artifacts/DUMMY-TXT-03_P0_STAGE5_Series_ID_Origin_Trace_Report.json",
+      "documentation": "docs/governance/repository/P0_STAGE5_SERIES_ID_ORIGIN_TRACE.md",
+      "status": "UNTRACKED",
+      "present": true
+    },
+    "dummy_txt_04": {
+      "artifact": "artifacts/DUMMY-TXT-04_Root_Creation_Remediation_Report.json",
+      "documentation": "docs/governance/repository/DUMMY-TXT-04_ROOT_CREATION_REMEDIATION.md",
+      "status": "UNTRACKED",
+      "present": true
+    },
+    "dummy_txt_05": {
+      "artifact": "artifacts/DUMMY-TXT-05_Root_Side_Effect_Regression_Report.json",
+      "documentation": "docs/governance/repository/DUMMY-TXT-05_ROOT_SIDE_EFFECT_REGRESSION_VERIFICATION.md",
+      "status": "UNTRACKED",
+      "present": true
+    },
+    "dummy_txt_06": {
+      "artifact": "artifacts/DUMMY-TXT-06_Incident_Closure_Report.json",
+      "documentation": "docs/governance/repository/DUMMY-TXT-06_DUMMY_TXT_INCIDENT_CLOSURE.md",
+      "status": "UNTRACKED",
+      "present": true
+    },
+    "consistency": "CONSISTENT",
+    "contradictions": 0
+  },
+  "production_changes": "NONE",
+  "frozen_contract_changes": "NONE",
+  "unknown_files": 0,
+  "proposed_commit_scope": {
+    "class_a_should_commit": [
+      "tests/series/test_batch5_4.py",
+      "artifacts/DUMMY-TXT-03_P0_STAGE5_Series_ID_Origin_Trace_Report.json",
+      "docs/governance/repository/P0_STAGE5_SERIES_ID_ORIGIN_TRACE.md",
+      "artifacts/DUMMY-TXT-04_Root_Creation_Remediation_Report.json",
+      "docs/governance/repository/DUMMY-TXT-04_ROOT_CREATION_REMEDIATION.md",
+      "artifacts/DUMMY-TXT-05_Root_Side_Effect_Regression_Report.json",
+      "docs/governance/repository/DUMMY-TXT-05_ROOT_SIDE_EFFECT_REGRESSION_VERIFICATION.md",
+      "artifacts/DUMMY-TXT-06_Incident_Closure_Report.json",
+      "docs/governance/repository/DUMMY-TXT-06_DUMMY_TXT_INCIDENT_CLOSURE.md"
+    ],
+    "count": 9,
+    "atomic_commit_recommended": true,
+    "commit_message": "DUMMY-TXT root filesystem side-effect remediation and closure\n\n- Fix test_batch5_4.py to use tmp_path fixture instead of root Path(\"dummy.txt\")\n- Add incident evidence: origin trace, remediation report, regression verification, closure report\n- Resolves root filesystem pollution during series glossary adapter integration test\n\nRelated: DUMMY-TXT-03, DUMMY-TXT-04, DUMMY-TXT-05, DUMMY-TXT-06"
+  },
+  "excluded_scope": {
+    "class_b_must_not_commit": {
+      "protected_worktree": 7,
+      "p0_cleanup_deletions": 150,
+      "p0_cleanup_governance_docs": 24,
+      "rm8_governance_docs": 20,
+      "dummy_txt_02_artifacts": 3,
+      "tools_monitoring": 1,
+      "modified_governance_doc": 1
+    },
+    "class_c_unknown": 0,
+    "total_excluded": 206
+  },
+  "validation": {
+    "compileall_core": "PASS",
+    "ntpe_validate": "PASS_WITH_WARNINGS",
+    "git_diff_check": "PASS",
+    "git_diff_cached_check": "PASS",
+    "warnings": [
+      "ntpe_validate: 1 optional import warning (core.prompt_builder.prompt_builder)",
+      "git diff --check: CRLF warnings on protected worktree files"
+    ]
+  },
+  "commit_recommendation": "ONE_ATOMIC_COMMIT",
+  "push_recommendation": "AWAIT_OWNER_AUTHORIZATION",
+  "final_verdict": "P0-FINAL-07 = COMPLETE",
+  "stop_conditions": {
+    "stop_07_01": false,
+    "stop_07_02": false,
+    "stop_07_03": false,
+    "stop_07_04": false,
+    "stop_07_05": false,
+    "stop_07_06": false,
+    "stop_07_07": false
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "verification_id": "P0-FINAL-12-R1-H",
+  "verification_name": "Post-Commit Integrity / Push Gate Verification",
+  "date": "2026-08-25",
+  "status": "PASS",
+  "git_identity": {
+    "head": "76ea24f1e34c0f1796236de4d676404d7e45f00a",
+    "parent": "53e04767f9a1012641152e96786011fbb3b0e466",
+    "branch": "main",
+    "origin_main": "53e04767f9a1012641152e96786011fbb3b0e466",
+    "all_match": true
+  },
+  "commit_metadata": {
+    "message": "P0-FINAL-12-R1: complete global migration reference closure",
+    "message_exact_match": true,
+    "parent_exact_match": true
+  },
+  "commit_path_verification": {
+    "expected_count": 41,
+    "actual_count": 41,
+    "unexpected_count": 0,
+    "missing_count": 0,
+    "paths_match_authoritative_list": true
+  },
+  "commit_content": {
+    "r1_a_production": 14,
+    "r1_b_test_fixtures": 12,
+    "r1_c_tools": 8,
+    "r1_d_verification": 2,
+    "r1_inventory": 1,
+    "r1_f_remediation": 4,
+    "total": 41,
+    "protected_worktree_in_commit": 0,
+    "unknown_in_commit": 0,
+    "non_r1_in_commit": 0
+  },
+  "parent_commit_diff": {
+    "git_diff_check": "PASS",
+    "details": "Only pre-existing trailing whitespace in newly added .md files (baseline)"
+  },
+  "working_tree_preservation": {
+    "tracked_modified_deleted": 252,
+    "untracked": 65,
+    "protected_paths_lost": 0,
+    "protected_paths_newly_modified": 0,
+    "protected_paths_committed": 0,
+    "unknown_paths_lost": 0,
+    "unknown_paths_committed": 0,
+    "working_tree_dirty_as_expected": true
+  },
+  "protected_worktree_integrity": {
+    "r1f_baseline_count": 290,
+    "current_count": 286,
+    "overlap_with_r1_commit": 0,
+    "preserved": true
+  },
+  "unknown_integrity": {
+    "r1f_baseline_count": 34,
+    "current_untracked_unknown": 34,
+    "unknown_committed": 0,
+    "preserved": true
+  },
+  "root_hygiene": {
+    "unexpected_root_files": 0,
+    "root_hygiene_pass": true
+  },
+  "repository_validation": {
+    "ntpe_validate": "PASS_WITH_WARNINGS",
+    "warning_details": "core.prompt_builder.prompt_builder ModuleNotFoundError (matches baseline)"
+  },
+  "regression_safety": {
+    "provider_invocations": 0,
+    "network_calls": 0,
+    "real_translation_calls": 0,
+    "new_regressions": 0
+  },
+  "origin_push_gate": {
+    "rev_list_left_right": "0 1",
+    "log_origin_main_to_head": "76ea24f P0-FINAL-12-R1: complete global migration reference closure",
+    "local_ahead_by_exactly_one": true
+  },
+  "historical_artifact_protection": {
+    "restored_by_r1_commit": 0,
+    "r1_commit_contains_only_approved_paths": true
+  },
+  "push_authorized": false,
+  "unresolved_issues": [],
+  "deliverables": [
+    "docs/governance/repository/P0_FINAL_12_R1_H_POST_COMMIT_INTEGRITY_VERIFICATION.md",
+    "artifacts/P0_FINAL_12_R1_H_Post_Commit_Integrity_Verification_Report.json"
+  ],
+  "staged": false,
+  "committed": false
+}

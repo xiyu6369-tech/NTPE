@@ -1,0 +1,279 @@
+{
+  "task": "P0-FINAL-12-R1-C",
+  "date": "2026-08-24",
+  "baseline_commit": "53e04767f9a1012641152e96786011fbb3b0e466",
+  "branch": "main",
+  "status": "PASS",
+  "r1_a_status": "PASS",
+  "r1_b_status": "PASS",
+  "reconciliation": {
+    "total_references": 17,
+    "historical_only_preserved": 1,
+    "output_dir_preserved": 6,
+    "remediated": 10,
+    "details": [
+      {
+        "file": "tools/rm_3_2_validate_classifications.py",
+        "line": 55,
+        "reference": "artifacts/ntpe_v20_stage0",
+        "type": "validation_pattern_match",
+        "classification": "HISTORICAL_ONLY",
+        "action": "PRESERVED",
+        "reason": "Intentionally matches historical metadata in evidence database"
+      },
+      {
+        "file": "tools/provider_controls/ntpe_single_real_provider_invocation.py",
+        "line": 26,
+        "reference": "artifacts/te_v7_stage1010/TE_V7_STAGE1010_SINGLE_REAL_INVOCATION.json",
+        "type": "cli_default_argument",
+        "classification": "REMEDIATE",
+        "action": "REPLACED",
+        "canonical_replacement": "get_te_v7_artifact_path(ROOT, \"te_v7_stage1010\", TE_V7_STAGE1010_SINGLE_REAL_INVOCATION)"
+      },
+      {
+        "file": "tools/provider_controls/ntpe_single_real_provider_invocation.py",
+        "line": 27,
+        "reference": "artifacts/te_v7_stage1010/review/TE_V7_STAGE1010_TRANSLATION_REVIEW.txt",
+        "type": "cli_default_argument",
+        "classification": "REMEDIATE",
+        "action": "REPLACED",
+        "canonical_replacement": "get_te_v7_artifact_path(ROOT, \"te_v7_stage1010\", TE_V7_STAGE1010_TRANSLATION_REVIEW)"
+      },
+      {
+        "file": "tools/provider_controls/ntpe_controlled_real_provider_retry.py",
+        "line": 28,
+        "reference": "artifacts/te_v7_stage10101/TE_V7_STAGE10101_CONTROLLED_RETRY.json",
+        "type": "cli_default_argument",
+        "classification": "REMEDIATE",
+        "action": "REPLACED",
+        "canonical_replacement": "get_te_v7_artifact_path(ROOT, \"te_v7_stage10101\", TE_V7_STAGE10101_CONTROLLED_RETRY)"
+      },
+      {
+        "file": "tools/provider_controls/ntpe_controlled_real_provider_retry.py",
+        "line": 32,
+        "reference": "artifacts/te_v7_stage10101/review/TE_V7_STAGE10101_TRANSLATION_REVIEW.txt",
+        "type": "cli_default_argument",
+        "classification": "REMEDIATE",
+        "action": "REPLACED",
+        "canonical_replacement": "get_te_v7_artifact_path(ROOT, \"te_v7_stage10101\", TE_V7_STAGE10101_TRANSLATION_REVIEW)"
+      },
+      {
+        "file": "tools/generate_te_v720_stage1255_prompt_canary_readiness.py",
+        "line": 17,
+        "reference": "artifacts/te_v72_prompt_canary_readiness",
+        "type": "generator_output_directory",
+        "classification": "OUTPUT_DIR",
+        "action": "PRESERVED",
+        "reason": "Creates artifacts, does not read deleted ones"
+      },
+      {
+        "file": "tools/generate_ntpe_v20_stage1_launcher_foundation_artifacts.py",
+        "line": 22,
+        "reference": "artifacts/ntpe_v20_stage1_translation_launcher_product_foundation",
+        "type": "generator_output_directory",
+        "classification": "OUTPUT_DIR",
+        "action": "PRESERVED",
+        "reason": "Creates artifacts, does not read deleted ones"
+      },
+      {
+        "file": "tools/generate_te_v720_stage1254_prompt_contract_preservation.py",
+        "line": 24,
+        "reference": "artifacts/te_v72_prompt_contract_preservation",
+        "type": "generator_output_directory",
+        "classification": "OUTPUT_DIR",
+        "action": "PRESERVED",
+        "reason": "Creates artifacts, does not read deleted ones"
+      },
+      {
+        "file": "tools/generate_te_v720_stage1254_prompt_contract_preservation.py",
+        "line": 28,
+        "reference": "artifacts/te_v72_canary_execution/execution_claim.json",
+        "type": "generator_input",
+        "classification": "REMEDIATE",
+        "action": "REPLACED",
+        "canonical_replacement": "get_te_v7_artifact_path(ROOT, \"te_v72_canary_execution\", \"execution_claim.json\")"
+      },
+      {
+        "file": "tools/generate_te_v720_stage1254_prompt_contract_preservation.py",
+        "line": 147,
+        "reference": "artifacts/te_v72_prompt_contract_preservation/{name}",
+        "type": "manifest_hash_key",
+        "classification": "OUTPUT_DIR",
+        "action": "PRESERVED",
+        "reason": "Manifest output path for generated artifacts"
+      },
+      {
+        "file": "tools/generate_te_v720_milestone_a_manifest.py",
+        "line": 10,
+        "reference": "artifacts/te_v72_milestone_a",
+        "type": "generator_output_directory",
+        "classification": "OUTPUT_DIR",
+        "action": "PRESERVED",
+        "reason": "Creates artifacts, does not read deleted ones"
+      },
+      {
+        "file": "tools/generate_te_v720_controlled_canary.py",
+        "line": 25,
+        "reference": "artifacts/te_v72_canary",
+        "type": "generator_output_directory",
+        "classification": "OUTPUT_DIR",
+        "action": "PRESERVED",
+        "reason": "Creates artifacts, does not read deleted ones"
+      },
+      {
+        "file": "tools/generate_te_v720_stage1258_candidate_structural_verification_canary.py",
+        "lines": "21-22",
+        "reference": "artifacts/te_v72_stage1256/..., artifacts/te_v72_stage1257/...",
+        "type": "generator_historical_inputs",
+        "classification": "REMEDIATE",
+        "action": "REPLACED",
+        "canonical_replacement": "get_te_v7_artifact_path() / get_te_v7_stage_path()"
+      },
+      {
+        "file": "tools/generate_te_v720_stage1258a_candidate_structural_failure_sealing.py",
+        "lines": "18-19",
+        "reference": "artifacts/te_v72_stage1258/...",
+        "type": "generator_historical_inputs",
+        "classification": "REMEDIATE",
+        "action": "REPLACED",
+        "canonical_replacement": "get_te_v7_artifact_path() / get_te_v7_stage_path()"
+      },
+      {
+        "file": "tools/generate_te_v720_stage1257a_execution_evidence_sealing.py",
+        "lines": "12-13",
+        "reference": "artifacts/te_v72_stage1257/...",
+        "type": "generator_historical_inputs",
+        "classification": "REMEDIATE",
+        "action": "REPLACED",
+        "canonical_replacement": "get_te_v7_artifact_path() / get_te_v7_stage_path()"
+      },
+      {
+        "file": "tools/generate_te_v720_stage1256a_claim_safe_corpus_binding_remediation.py",
+        "lines": "14-15",
+        "reference": "artifacts/te_v72_stage1256/...",
+        "type": "generator_historical_inputs",
+        "classification": "REMEDIATE",
+        "action": "REPLACED",
+        "canonical_replacement": "get_te_v7_artifact_path() / get_te_v7_stage_path()"
+      },
+      {
+        "file": "tools/generate_te_v720_stage1259_name_resolution_contract_remediation.py",
+        "lines": "19,22",
+        "reference": "artifacts/te_v72_stage1258/...",
+        "type": "generator_historical_inputs",
+        "classification": "REMEDIATE",
+        "action": "REPLACED",
+        "canonical_replacement": "get_te_v7_artifact_path() / get_te_v7_stage_path()"
+      }
+    ]
+  },
+  "files_changed": [
+    "tools/provider_controls/ntpe_single_real_provider_invocation.py",
+    "tools/provider_controls/ntpe_controlled_real_provider_retry.py",
+    "tools/generate_te_v720_stage1254_prompt_contract_preservation.py",
+    "tools/generate_te_v720_stage1258_candidate_structural_verification_canary.py",
+    "tools/generate_te_v720_stage1258a_candidate_structural_failure_sealing.py",
+    "tools/generate_te_v720_stage1257a_execution_evidence_sealing.py",
+    "tools/generate_te_v720_stage1256a_claim_safe_corpus_binding_remediation.py",
+    "tools/generate_te_v720_stage1259_name_resolution_contract_remediation.py"
+  ],
+  "historical_only_preserved": [
+    {
+      "file": "tools/rm_3_2_validate_classifications.py",
+      "reference": "artifacts/ntpe_v20_stage0",
+      "reason": "Validation pattern match against historical metadata in evidence database"
+    },
+    {
+      "file": "core/production_runtime/manifest.py",
+      "references": 7,
+      "constants": [
+        "TE_V72_STAGE1256_PROMPT_VERIFICATION_CANARY",
+        "TE_V72_STAGE1256A_CLAIM_SAFE_CORPUS_BINDING_REMEDIATION",
+        "TE_V72_STAGE1257_PROMPT_VERIFICATION_CANARY",
+        "TE_V72_STAGE1257A_EXECUTION_EVIDENCE_SEALING",
+        "TE_V72_STAGE1258_CANDIDATE_STRUCTURAL_VERIFICATION_CANARY",
+        "TE_V72_STAGE1258A_CANDIDATE_STRUCTURAL_FAILURE_SEALING",
+        "TE_V72_STAGE1259_NAME_RESOLUTION_CONTRACT_REMEDIATION"
+      ],
+      "reason": "Data for canonical functions (get_te_v7_artifact_path), not direct dependencies"
+    },
+    {
+      "file": "core/translation_intelligence_corpus/failure_corpus.py",
+      "references": 7,
+      "reason": "tic_batch3 historical inventory metadata constants"
+    }
+  ],
+  "validation_results": {
+    "ntpe_production_translate_import": "PASS",
+    "ntpe_production_translate_help": "PASS",
+    "ntpe_production_translate_doctor": "PASS",
+    "compileall_core_tools": "PASS (2944 files)",
+    "ntpe_validate": "PASS_WITH_WARNINGS (1 pre-existing: core.prompt_builder)",
+    "git_diff_check": "PASS (CRLF warnings only)",
+    "unit_test_translation_quality_provider_canary": "10/10 PASS",
+    "tic_batch7_tests": "38/39 PASS (1 pre-existing manifest SHA mismatch)",
+    "tic_batch5_tests": "18/18 PASS",
+    "stage101_103_tests": "58/59 PASS (1 pre-existing CLI entrypoint failure)",
+    "series_regression": "6/6 FAIL (matches pre-existing baseline)",
+    "new_regressions": 0
+  },
+  "r1_a_preservation": {
+    "production_operational_references": 0,
+    "status": "PASS"
+  },
+  "r1_b_preservation": {
+    "test_fixture_dependencies": 0,
+    "status": "PASS"
+  },
+  "root_hygiene": {
+    "new_root_files": 0,
+    "status": "PASS"
+  },
+  "remaining_references_categorized": {
+    "OPERATIONAL": {
+      "count": 0,
+      "files": [],
+      "description": "All production/test operational dependencies resolved"
+    },
+    "CANONICAL_METADATA": {
+      "count": 18,
+      "files": [
+        "core/production_runtime/manifest.py",
+        "core/prompt_verification_canary_stage1257/framework.py",
+        "core/prompt_contract_verification_canary/framework.py",
+        "core/prompt_contract_verification_canary/candidate_structural_canary.py",
+        "core/controlled_multi_chunk_translation_canary/policy.py"
+      ],
+      "description": "Manifest constants and output directory constants used by canonical path functions"
+    },
+    "VALID_NEGATIVE_CHECK": {
+      "count": 4,
+      "files": [
+        "tests/integration/translation_engine_v720_stage122_controlled_provider_ab_validation_test.py",
+        "tests/integration/translation_engine_v720_stage1223_minimal_excerpt_ab_quality_validation_test.py",
+        "tests/integration/translation_engine_v720_stage1222_independent_pair_recovery_execution_test.py",
+        "tests/integration/translation_engine_v720_stage1221_controlled_provider_ab_execution_test.py"
+      ],
+      "description": "Negative existence checks for te_v72_stage123 (never existed) - correct behavior"
+    },
+    "HISTORICAL_ONLY": {
+      "count": 8,
+      "files": [
+        "core/translation_intelligence_corpus/failure_corpus.py",
+        "tools/rm_3_2_validate_classifications.py"
+      ],
+      "description": "Historical inventory metadata constants and validation patterns"
+    },
+    "TOOLS_ONLY": {
+      "count": 0,
+      "files": [],
+      "description": "All 17 references remediated or explicitly preserved"
+    }
+  },
+  "deliverables": [
+    "docs/governance/repository/P0_FINAL_12_R1_C_TOOLS_REFERENCE_CLOSURE.md",
+    "artifacts/P0_FINAL_12_R1_C_Tools_Reference_Closure_Report.json"
+  ],
+  "staged": false,
+  "committed": false
+}

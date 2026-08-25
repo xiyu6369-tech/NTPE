@@ -1,0 +1,93 @@
+[
+  {
+    "description": "Local history governance document",
+    "sha256": "ECCD44A1FAA2E83E5E63A88F059595704F79BDBC5A98252B3600C730A4A2F72C",
+    "destination_path": "archive/governance_evidence/P0_FINAL_07_Worktree_Reconciliation_Report.json",
+    "source_path": "artifacts/P0_FINAL_07_Worktree_Reconciliation_Report.json",
+    "date_archived": "2026-08-25"
+  },
+  {
+    "description": "Local history governance document",
+    "sha256": "F7597636C06ED85DE60C00ED1E57BA7932308B52039682C9DBC5CC6D5B888D9D",
+    "destination_path": "archive/governance_evidence/P0_FINAL_09_Residual_Worktree_Reconciliation_Report.json",
+    "source_path": "artifacts/P0_FINAL_09_Residual_Worktree_Reconciliation_Report.json",
+    "date_archived": "2026-08-25"
+  },
+  {
+    "description": "Local history governance document",
+    "sha256": "F5B30D11A26A917D3C856C36B9AD1B011FACEAE41247E8F70058AF6A1E97AAB3",
+    "destination_path": "archive/governance_evidence/P0_FINAL_10A_STOP_10_06_Baseline_Reconciliation_Report.json",
+    "source_path": "artifacts/P0_FINAL_10A_STOP_10_06_Baseline_Reconciliation_Report.json",
+    "date_archived": "2026-08-25"
+  },
+  {
+    "description": "Local history governance document",
+    "sha256": "E005DEC31F51F2D3A1B6820BE2F7C2876B4C6F6F0211C5F180AC0CD8941B857C",
+    "destination_path": "archive/governance_evidence/P0_FINAL_10_R2_Production_Reference_Reconciliation_Report.json",
+    "source_path": "artifacts/P0_FINAL_10_R2_Production_Reference_Reconciliation_Report.json",
+    "date_archived": "2026-08-25"
+  },
+  {
+    "description": "Local history governance document",
+    "sha256": "04A0626DEAF6F544FEF7D57BF5214A58EA5E1D8D8C547CEEEBF354986465CEE8",
+    "destination_path": "archive/governance_evidence/P0_FINAL_07_WORKTREE_RECONCILIATION.md",
+    "source_path": "docs/governance/repository/P0_FINAL_07_WORKTREE_RECONCILIATION.md",
+    "date_archived": "2026-08-25"
+  },
+  {
+    "description": "Local history governance document",
+    "sha256": "1B275CE333E163E96D3D1D32EDE79AA1A673A8FC90512AE6A21F385688F755DF",
+    "destination_path": "archive/governance_evidence/P0_FINAL_09_RESIDUAL_WORKTREE_RECONCILIATION.md",
+    "source_path": "docs/governance/repository/P0_FINAL_09_RESIDUAL_WORKTREE_RECONCILIATION.md",
+    "date_archived": "2026-08-25"
+  },
+  {
+    "description": "Local history governance document",
+    "sha256": "14C0E8EAF4C04E9F506365D8DEDA9A083B53A00DEA5061B52021B83F3FFB56FC",
+    "destination_path": "archive/governance_evidence/P0_FINAL_10A_STOP_10_06_BASELINE_RECONCILIATION.md",
+    "source_path": "docs/governance/repository/P0_FINAL_10A_STOP_10_06_BASELINE_RECONCILIATION.md",
+    "date_archived": "2026-08-25"
+  },
+  {
+    "description": "Local history governance document",
+    "sha256": "2D66AA840DD27CF05AF8438637AF73348F0493B96F946B4FDF1584FC2D9BC1EB",
+    "destination_path": "archive/governance_evidence/P0_FINAL_10_R2_PRODUCTION_REFERENCE_RECONCILIATION.md",
+    "source_path": "docs/governance/repository/P0_FINAL_10_R2_PRODUCTION_REFERENCE_RECONCILIATION.md",
+    "date_archived": "2026-08-25"
+  },
+  {
+    "description": "Local history governance document",
+    "sha256": "0CD1158400E2AE5C248A953AB92DB890CF8DBD529B996429D748A2DD62C890D7",
+    "destination_path": "archive/governance_evidence/P0_FINAL_11_REFERENCE_MIGRATION_DESIGN.md",
+    "source_path": "docs/governance/repository/P0_FINAL_11_REFERENCE_MIGRATION_DESIGN.md",
+    "date_archived": "2026-08-25"
+  },
+  {
+    "description": "Local history governance document",
+    "sha256": "8A163DB92A640633C0E62B9890240D05425EC0790832E083548EE769681944A7",
+    "destination_path": "archive/governance_evidence/P0_STAGE5_BATCH5_2_ATOMIC_DELIVERY_REPORT.md",
+    "source_path": "docs/governance/rm8/P0_STAGE5_BATCH5_2_ATOMIC_DELIVERY_REPORT.md",
+    "date_archived": "2026-08-25"
+  },
+  {
+    "description": "Local history governance document",
+    "sha256": "81FEEE49DF9D9FBDB7CF3B5FF8141ACE6113977D88EAEC04E15A369D97198FD6",
+    "destination_path": "archive/governance_evidence/P0_STAGE5_BATCH5_3_IMPLEMENTATION_TASK.md",
+    "source_path": "docs/governance/rm8/P0_STAGE5_BATCH5_3_IMPLEMENTATION_TASK.md",
+    "date_archived": "2026-08-25"
+  },
+  {
+    "description": "Local history governance document",
+    "sha256": "67ECBED9C05F270FE4FCE2CA43C0845ADAFF700347D964DF3DB23EB58A7FCA1C",
+    "destination_path": "archive/governance_evidence/P0_STAGE5_BATCH5_8_BLOCKER_RECONCILIATION.md",
+    "source_path": "docs/governance/rm8/P0_STAGE5_BATCH5_8_BLOCKER_RECONCILIATION.md",
+    "date_archived": "2026-08-25"
+  },
+  {
+    "description": "Local history governance document",
+    "sha256": "F1B4BF57C8B922A67F22ED42650C96658E4FC859903951C6817163F9CC3D778F",
+    "destination_path": "archive/governance_evidence/P0_STAGE5_BATCH5_8_IMPLEMENTATION_TASK.md",
+    "source_path": "docs/governance/rm8/P0_STAGE5_BATCH5_8_IMPLEMENTATION_TASK.md",
+    "date_archived": "2026-08-25"
+  }
+]

@@ -1,0 +1,230 @@
+{
+  "task": "P0-FINAL-12-R1-A",
+  "date": "2026-08-24",
+  "baseline_commit": "53e04767f9a1012641152e96786011fbb3b0e466",
+  "branch": "main",
+  "status": "PASS",
+  "files_changed": 13,
+  "references_remediated": 34,
+  "files": [
+    {
+      "file": "core/adaptive_context_authorized_provider_cli/report_path.py",
+      "category": "sandbox_boundary",
+      "references": 3,
+      "old_behavior": "Hardcoded (base / \"artifacts\" / \"te_v7_stage10\").resolve(), (base / \"artifacts\" / \"te_v7_stage106\").resolve(), (base / \"artifacts\" / \"te_v7_stage09\").resolve()",
+      "new_behavior": "get_te_v7_stage_path(base, \"te_v7_stage10\"), get_te_v7_stage_path(base, \"te_v7_stage106\"), get_te_v7_stage_path(base, \"te_v7_stage09\")"
+    },
+    {
+      "file": "core/adaptive_context_controlled_provider_retry/report.py",
+      "category": "sandbox_boundary",
+      "references": 2,
+      "old_behavior": "Hardcoded (base / \"artifacts\" / \"te_v7_stage10101\").resolve() and /review variant",
+      "new_behavior": "get_te_v7_stage_path(base, \"te_v7_stage10101\") and get_te_v7_stage_path(base, \"te_v7_stage10101\") / \"review\""
+    },
+    {
+      "file": "core/adaptive_context_real_provider_preflight/validator.py",
+      "category": "sandbox_boundary + data_load",
+      "references": 3,
+      "old_behavior": "Hardcoded te_v7_stage109, te_v7_stage09, te_v7_stage108/TE_V7_STAGE108_FAKE_TRANSPORT_FREEZE.json",
+      "new_behavior": "get_te_v7_stage_path() for sandbox, get_te_v7_artifact_path() for freeze integrity check"
+    },
+    {
+      "file": "core/adaptive_context_provider_execution_freeze/report.py",
+      "category": "sandbox_boundary",
+      "references": 2,
+      "old_behavior": "Hardcoded te_v7_stage108, te_v7_stage09",
+      "new_behavior": "get_te_v7_stage_path() for both"
+    },
+    {
+      "file": "core/adaptive_context_provider_evidence_pipeline/report.py",
+      "category": "sandbox_boundary",
+      "references": 4,
+      "old_behavior": "Hardcoded te_v7_stage10, te_v7_stage107, te_v7_stage108, te_v7_stage09",
+      "new_behavior": "get_te_v7_stage_path() for all"
+    },
+    {
+      "file": "core/adaptive_context_single_real_invocation/report.py",
+      "category": "sandbox_boundary",
+      "references": 3,
+      "old_behavior": "Hardcoded te_v7_stage1010, te_v7_stage09, te_v7_stage1010/review",
+      "new_behavior": "get_te_v7_stage_path() for all"
+    },
+    {
+      "file": "core/adaptive_context_provider_session_cli/harness.py",
+      "category": "sandbox_boundary",
+      "references": 1,
+      "old_behavior": "Hardcoded root / \"artifacts\" / \"te_v7_stage103\"",
+      "new_behavior": "get_te_v7_stage_path(root, \"te_v7_stage103\")"
+    },
+    {
+      "file": "core/translation_intelligence_corpus/inventory.py",
+      "category": "data_loading",
+      "references": 3,
+      "old_behavior": "Hardcoded discovery match, controlled retry load, source excerpt load",
+      "new_behavior": "get_te_v7_artifact_path() for all loads; pattern match for discovery"
+    },
+    {
+      "file": "core/translation_intelligence_corpus/alignment.py",
+      "category": "evidence_tracking",
+      "references": 8,
+      "old_behavior": "Hardcoded evidence IDs/paths for te_v71_stage111, te_v71_stage112, te_v72_stage1223, te_v7_stage10101",
+      "new_behavior": "get_te_v7_artifact_path() with manifest constants for all evidence IDs/paths"
+    },
+    {
+      "file": "core/prompt_verification_canary_stage1257/framework.py",
+      "category": "artifact_io",
+      "references": 4,
+      "old_behavior": "Hardcoded readiness_summary, old_claim, seal paths; ARTIFACT_DIR constant",
+      "new_behavior": "get_te_v7_stage_path() + get_te_v7_artifact_path() for reads; ARTIFACT_DIR retained for writes"
+    },
+    {
+      "file": "core/prompt_contract_verification_canary/framework.py",
+      "category": "artifact_io",
+      "references": 0,
+      "old_behavior": "Used get_te_v7_stage_path in _preflight (already canonical)",
+      "new_behavior": "Added get_te_v7_artifact_path import (no direct path changes needed)"
+    },
+    {
+      "file": "core/prompt_contract_verification_canary/candidate_structural_canary.py",
+      "category": "artifact_io",
+      "references": 3,
+      "old_behavior": "Hardcoded readiness, seal56, seal57 via _json() helper",
+      "new_behavior": "get_te_v7_artifact_path() for all historical loads"
+    },
+    {
+      "file": "core/translation_quality_provider_canary/framework.py",
+      "category": "artifact_io",
+      "references": 2,
+      "old_behavior": "Hardcoded base / \"artifacts/te_v72_canary_execution\" in execute_canary() and build_evidence_and_manifest()",
+      "new_behavior": "get_te_v7_stage_path(base, \"te_v72_canary_execution\")"
+    }
+  ],
+  "preserved_historical_metadata": {
+    "core/production_runtime/manifest.py": {
+      "constants": 7,
+      "lines": "189-250",
+      "reason": "Data for get_te_v7_artifact_path() canonical functions"
+    },
+    "core/prompt_verification_canary_stage1257/framework.py": {
+      "constants": 1,
+      "name": "ARTIFACT_DIR",
+      "reason": "Output directory constant for writing artifacts"
+    },
+    "core/prompt_contract_verification_canary/framework.py": {
+      "constants": 1,
+      "name": "ARTIFACT_DIR",
+      "reason": "Output directory constant for writing artifacts"
+    },
+    "core/prompt_contract_verification_canary/candidate_structural_canary.py": {
+      "constants": 1,
+      "name": "ARTIFACT_DIR",
+      "reason": "Output directory constant for writing artifacts"
+    },
+    "core/controlled_multi_chunk_translation_canary/policy.py": {
+      "constants": 1,
+      "name": "OUTPUT_ROOT",
+      "reason": "References EXISTING directory (controlled_multi_chunk_translation_stage743)"
+    },
+    "core/translation_intelligence_corpus/failure_corpus.py": {
+      "constants": 7,
+      "reason": "tic_batch3 inventory metadata constants (HISTORICAL_ONLY)"
+    },
+    "core/translation_intelligence_corpus/inventory.py": {
+      "pattern_match": 1,
+      "line": 152,
+      "reason": "startswith(\"artifacts/te_v72_stage1223/\") followed by canonical load"
+    }
+  },
+  "preserved_negative_checks": [
+    {
+      "file": "tests/integration/translation_engine_v720_stage122_controlled_provider_ab_validation_test.py",
+      "check": "assert not (ROOT / \"artifacts/te_v72_stage123\").exists()",
+      "reason": "Valid negative test - stage123 never existed"
+    },
+    {
+      "file": "tests/integration/translation_engine_v720_stage1223_minimal_excerpt_ab_quality_validation_test.py",
+      "check": "assert not (ROOT / \"artifacts/te_v72_stage123\").exists()",
+      "reason": "Valid negative test"
+    },
+    {
+      "file": "tests/integration/translation_engine_v720_stage1222_independent_pair_recovery_execution_test.py",
+      "check": "assert not (ROOT / \"artifacts/te_v72_stage123\").exists()",
+      "reason": "Valid negative test"
+    },
+    {
+      "file": "tests/integration/translation_engine_v720_stage1221_controlled_provider_ab_execution_test.py",
+      "check": "assert not (ROOT / \"artifacts/te_v72_stage123\").exists()",
+      "reason": "Valid negative test"
+    }
+  ],
+  "validation_results": {
+    "ntpe_production_translate_import": "PASS",
+    "ntpe_production_translate_help": "PASS",
+    "ntpe_production_translate_doctor": "PASS",
+    "compileall_core": "PASS (2944 files)",
+    "ntpe_validate": "PASS_WITH_WARNINGS (1 pre-existing)",
+    "git_diff_check": "PASS (CRLF warnings only)",
+    "unit_test_translation_quality_provider_canary": "10/10 PASS",
+    "series_regression_baseline": "6/6 FAIL (matches pre-existing baseline)",
+    "new_regressions": 0
+  },
+  "remaining_references_categorized": {
+    "OPERATIONAL": {
+      "count": 0,
+      "files": [],
+      "description": "All production operational dependencies on deleted artifacts removed"
+    },
+    "CANONICAL_METADATA": {
+      "count": 18,
+      "files": [
+        "core/production_runtime/manifest.py",
+        "core/prompt_verification_canary_stage1257/framework.py",
+        "core/prompt_contract_verification_canary/framework.py",
+        "core/prompt_contract_verification_canary/candidate_structural_canary.py",
+        "core/controlled_multi_chunk_translation_canary/policy.py",
+        "core/translation_intelligence_corpus/inventory.py"
+      ],
+      "description": "Manifest constants and output directory constants used by canonical path functions"
+    },
+    "VALID_NEGATIVE_CHECK": {
+      "count": 4,
+      "files": [
+        "tests/integration/translation_engine_v720_stage122_controlled_provider_ab_validation_test.py",
+        "tests/integration/translation_engine_v720_stage1223_minimal_excerpt_ab_quality_validation_test.py",
+        "tests/integration/translation_engine_v720_stage1222_independent_pair_recovery_execution_test.py",
+        "tests/integration/translation_engine_v720_stage1221_controlled_provider_ab_execution_test.py"
+      ],
+      "description": "Negative existence checks for te_v72_stage123 (never existed) - correct behavior"
+    },
+    "HISTORICAL_ONLY": {
+      "count": 7,
+      "files": ["core/translation_intelligence_corpus/failure_corpus.py"],
+      "description": "tic_batch3 inventory metadata constants for deleted files"
+    },
+    "TOOLS_ONLY": {
+      "count": 17,
+      "files": [
+        "tools/rm_3_2_validate_classifications.py",
+        "tools/provider_controls/ntpe_single_real_provider_invocation.py",
+        "tools/provider_controls/ntpe_controlled_real_provider_retry.py",
+        "tools/generate_te_v720_stage1255_prompt_canary_readiness.py",
+        "tools/generate_ntpe_v20_stage1_launcher_foundation_artifacts.py",
+        "tools/generate_te_v720_stage1254_prompt_contract_preservation.py",
+        "tools/generate_te_v720_milestone_a_manifest.py",
+        "tools/generate_te_v720_controlled_canary.py",
+        "tools/generate_te_v720_stage1258_candidate_structural_verification_canary.py",
+        "tools/generate_te_v720_stage1258a_candidate_structural_failure_sealing.py",
+        "tools/generate_te_v720_stage1257a_execution_evidence_sealing.py",
+        "tools/generate_te_v720_stage1256a_claim_safe_corpus_binding_remediation.py",
+        "tools/generate_te_v720_stage1259_name_resolution_contract_remediation.py"
+      ],
+      "description": "Development/generator scripts - not production runtime"
+    }
+  },
+  "stop_conditions": {
+    "STOP-FINAL-12-02": "RESOLVED - Production deleted-artifact references = 0",
+    "STOP-FINAL-12-03": "PENDING - Test fixture migration (separate R1-B task)"
+  },
+  "staged": false,
+  "committed": false
+}

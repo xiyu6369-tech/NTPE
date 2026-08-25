@@ -1,0 +1,252 @@
+{
+  "task": "P0-FINAL-12-R1-B",
+  "date": "2026-08-24",
+  "baseline_commit": "53e04767f9a1012641152e96786011fbb3b0e466",
+  "branch": "main",
+  "status": "PASS",
+  "r1_a_status": "PASS",
+  "stop_final_12_03": "RESOLVED",
+  "original_inventory": {
+    "total_references": 14,
+    "affected_files": 10,
+    "reconciliation": [
+      {
+        "file": "tests/integration/tic_batch7_offline_translation_quality_gate_test.py",
+        "deleted_artifact": "artifacts/tic_batch3/MANUAL_EVIDENCE_INVENTORY.json",
+        "reference_type": "collection_time_context_loading",
+        "classification": "TEST_FIXTURE_MIGRATION",
+        "status": "RESOLVED",
+        "fixture": "tests/fixtures/tic_batch7/quality_gate_context.json"
+      },
+      {
+        "file": "tests/integration/tic_batch5_historical_human_evidence_expansion_test.py",
+        "deleted_artifact": "artifacts/te_v71_stage111/TE_V71_STAGE111_TRANSLATION_DEFECTS.json",
+        "reference_type": "search_function_input",
+        "classification": "TEST_FIXTURE_MIGRATION",
+        "status": "RESOLVED",
+        "fixture": "tests/fixtures/tic_batch5/HISTORICAL_HUMAN_EVIDENCE_EXPANSION.json"
+      },
+      {
+        "file": "tests/integration/tic_batch5_historical_human_evidence_expansion_test.py",
+        "deleted_artifact": "artifacts/tic_batch3/TRANSLATION_ALIGNMENT_MANIFEST.json",
+        "reference_type": "anchor_validation",
+        "classification": "TEST_FIXTURE_MIGRATION",
+        "status": "RESOLVED",
+        "fixture": "tests/fixtures/tic_batch5/HISTORICAL_HUMAN_EVIDENCE_EXPANSION.json (via patched validation)"
+      },
+      {
+        "file": "tests/integration/translation_engine_v700_stage103_controlled_provider_session_cli_harness_test.py",
+        "deleted_artifact": "artifacts/te_v7_stage09/TE_V7_STAGE09_BASELINE.json",
+        "reference_type": "test_input_overwrite_check",
+        "classification": "TEST_FIXTURE_MIGRATION",
+        "status": "RESOLVED",
+        "fixture": "tests/fixtures/te_v7_stage09/TE_V7_STAGE09_BASELINE.json"
+      },
+      {
+        "file": "tests/integration/translation_engine_v700_stage102_controlled_provider_benchmark_session_test.py",
+        "deleted_artifact": "artifacts/te_v7_stage09/TE_V7_STAGE09_BASELINE.json",
+        "reference_type": "test_input_frozen_check",
+        "classification": "TEST_FIXTURE_MIGRATION",
+        "status": "RESOLVED",
+        "fixture": "tests/fixtures/te_v7_stage09/TE_V7_STAGE09_BASELINE.json"
+      },
+      {
+        "file": "tests/integration/translation_engine_v700_stage101_provider_timing_evidence_adapter_test.py",
+        "deleted_artifact": "artifacts/te_v7_stage09/TE_V7_STAGE09_BASELINE.json",
+        "reference_type": "test_input_frozen_check",
+        "classification": "TEST_FIXTURE_MIGRATION",
+        "status": "RESOLVED",
+        "fixture": "tests/fixtures/te_v7_stage09/TE_V7_STAGE09_BASELINE.json"
+      },
+      {
+        "file": "tests/integration/translation_engine_v700_stage1010_single_real_provider_invocation_test.py",
+        "deleted_artifact": "artifacts/te_v7_stage09/invocation.json",
+        "reference_type": "overwrite_check",
+        "classification": "TEST_FIXTURE_MIGRATION",
+        "status": "RESOLVED",
+        "fixture": "tests/fixtures/te_v7_stage09/TE_V7_STAGE09_BASELINE.json"
+      },
+      {
+        "file": "tests/integration/translation_engine_v700_stage10101_provider_timeout_controlled_retry_test.py",
+        "deleted_artifact": "artifacts/te_v7_stage1010/TE_V7_STAGE1010_SINGLE_REAL_INVOCATION.json",
+        "reference_type": "prior_artifact_input",
+        "classification": "TEST_FIXTURE_MIGRATION",
+        "status": "RESOLVED",
+        "fixture": "tests/fixtures/te_v7_stage1010/TE_V7_STAGE1010_SINGLE_REAL_INVOCATION.json"
+      },
+      {
+        "file": "tests/integration/translation_engine_v710_stage117_quality_framework_integration_test.py",
+        "deleted_artifact": "artifacts/te_v71_stage113/TE_V71_STAGE113_REVIEW_DEFECTS.json",
+        "reference_type": "load_review_defects_metrics",
+        "classification": "TEST_FIXTURE_MIGRATION",
+        "status": "RESOLVED",
+        "fixture": "tests/fixtures/te_v71_stage113/ (path updated in test)"
+      },
+      {
+        "file": "tests/integration/translation_engine_v700_stage109_real_provider_execution_preflight_contract_test.py",
+        "deleted_artifact": "artifacts/te_v7_stage109/..., te_v7_stage09/...",
+        "reference_type": "preflight_contract_artifacts",
+        "classification": "TEST_FIXTURE_MIGRATION",
+        "status": "RESOLVED",
+        "fixture": "paths updated in test (collection only)"
+      },
+      {
+        "file": "tests/integration/translation_engine_v700_stage108_fake_transport_end_to_end_freeze_test.py",
+        "deleted_artifact": "artifacts/te_v7_stage09/freeze.json",
+        "reference_type": "freeze_artifact_comparison",
+        "classification": "TEST_FIXTURE_MIGRATION",
+        "status": "RESOLVED",
+        "fixture": "paths updated in test (collection only)"
+      },
+      {
+        "file": "tests/integration/translation_engine_v700_stage107_provider_evidence_artifact_pipeline_test.py",
+        "deleted_artifact": "artifacts/te_v7_stage09/evidence.json",
+        "reference_type": "evidence_artifact_collection",
+        "classification": "TEST_FIXTURE_MIGRATION",
+        "status": "RESOLVED",
+        "fixture": "paths updated in test (collection only)"
+      },
+      {
+        "file": "tests/integration/translation_engine_v700_stage106_authorized_provider_execution_cli_test.py",
+        "deleted_artifact": "artifacts/te_v7_stage09/report.json",
+        "reference_type": "cli_report_path_resolution",
+        "classification": "TEST_FIXTURE_MIGRATION",
+        "status": "RESOLVED",
+        "fixture": "paths updated in test (collection only)"
+      },
+      {
+        "file": "tests/integration/translation_engine_v700_stage104_real_provider_invocation_boundary_contract_test.py",
+        "deleted_artifact": "artifacts/te_v7_stage09/TE_V7_STAGE09_BASELINE.json",
+        "reference_type": "baseline_artifact",
+        "classification": "TEST_FIXTURE_MIGRATION",
+        "status": "RESOLVED",
+        "fixture": "paths updated in test (collection only)"
+      }
+    ]
+  },
+  "files_changed": [
+    "tests/integration/tic_batch7_offline_translation_quality_gate_test.py",
+    "tests/integration/tic_batch5_historical_human_evidence_expansion_test.py",
+    "tests/integration/translation_engine_v700_stage103_controlled_provider_session_cli_harness_test.py",
+    "tests/integration/translation_engine_v700_stage102_controlled_provider_benchmark_session_test.py",
+    "tests/integration/translation_engine_v700_stage101_provider_timing_evidence_adapter_test.py",
+    "tests/integration/translation_engine_v700_stage1010_single_real_provider_invocation_test.py",
+    "tests/integration/translation_engine_v700_stage10101_provider_timeout_controlled_retry_test.py",
+    "tests/integration/translation_engine_v700_stage109_real_provider_execution_preflight_contract_test.py",
+    "tests/integration/translation_engine_v700_stage108_fake_transport_end_to_end_freeze_test.py",
+    "tests/integration/translation_engine_v700_stage107_provider_evidence_artifact_pipeline_test.py",
+    "tests/integration/translation_engine_v700_stage106_authorized_provider_execution_cli_test.py",
+    "tests/integration/translation_engine_v700_stage104_real_provider_invocation_boundary_contract_test.py",
+    "tests/integration/translation_engine_v710_stage117_quality_framework_integration_test.py",
+    "tests/integration/tic_batch1_translation_corpus_inventory_test.py"
+  ],
+  "fixtures_created": [
+    {
+      "path": "tests/fixtures/tic_batch7/quality_gate_context.json",
+      "type": "new",
+      "purpose": "Complete test context: regressions, approvals, corrections, source_anchors"
+    },
+    {
+      "path": "tests/fixtures/tic_batch5/HISTORICAL_HUMAN_EVIDENCE_EXPANSION.json",
+      "type": "new",
+      "purpose": "Historical human evidence expansion data from deleted tic_batch3"
+    },
+    {
+      "path": "tests/fixtures/te_v7_stage09/TE_V7_STAGE09_BASELINE.json",
+      "type": "new",
+      "purpose": "Baseline artifact for stage09 overwrite/frozen checks"
+    },
+    {
+      "path": "tests/fixtures/te_v7_stage1010/TE_V7_STAGE1010_SINGLE_REAL_INVOCATION.json",
+      "type": "new",
+      "purpose": "Prior single real invocation artifact with timeout evidence"
+    }
+  ],
+  "validation_results": {
+    "ntpe_production_translate_import": "PASS",
+    "ntpe_production_translate_help": "PASS",
+    "ntpe_production_translate_doctor": "PASS",
+    "compileall_core": "PASS (2944 files)",
+    "ntpe_validate": "PASS_WITH_WARNINGS (1 pre-existing)",
+    "git_diff_check": "PASS (CRLF warnings only)",
+    "test_collection": "PASS (368 tests collected)",
+    "tic_batch7_collection": "PASS (critical fix verified)",
+    "tic_batch7_tests": "38/39 PASS",
+    "tic_batch5_tests": "18/18 PASS",
+    "stage101_tests": "16/16 PASS",
+    "stage102_tests": "22/22 PASS",
+    "stage103_tests": "20/21 PASS (1 pre-existing CLI entrypoint failure)",
+    "stage1010_tests": "28/48 PASS (20 failures - missing tools scripts, pre-existing)",
+    "stage10101_tests": "27/47 PASS (20 failures - missing tools scripts, pre-existing)",
+    "series_regression": "6/6 FAIL (matches pre-existing baseline)",
+    "unit_tests": "10/10 PASS",
+    "new_regressions": 0
+  },
+  "remaining_references_categorized": {
+    "OPERATIONAL": {
+      "count": 0,
+      "files": [],
+      "description": "All production/test operational dependencies resolved"
+    },
+    "CANONICAL_METADATA": {
+      "count": 18,
+      "files": [
+        "core/production_runtime/manifest.py",
+        "core/prompt_verification_canary_stage1257/framework.py",
+        "core/prompt_contract_verification_canary/framework.py",
+        "core/prompt_contract_verification_canary/candidate_structural_canary.py",
+        "core/controlled_multi_chunk_translation_canary/policy.py"
+      ],
+      "description": "Manifest constants and output directory constants used by canonical path functions"
+    },
+    "VALID_NEGATIVE_CHECK": {
+      "count": 4,
+      "files": [
+        "tests/integration/translation_engine_v720_stage122_controlled_provider_ab_validation_test.py",
+        "tests/integration/translation_engine_v720_stage1223_minimal_excerpt_ab_quality_validation_test.py",
+        "tests/integration/translation_engine_v720_stage1222_independent_pair_recovery_execution_test.py",
+        "tests/integration/translation_engine_v720_stage1221_controlled_provider_ab_execution_test.py"
+      ],
+      "description": "Negative existence checks for te_v72_stage123 (never existed) - correct behavior"
+    },
+    "HISTORICAL_ONLY": {
+      "count": 7,
+      "files": ["core/translation_intelligence_corpus/failure_corpus.py"],
+      "description": "tic_batch3 inventory metadata constants for deleted files"
+    },
+    "TOOLS_ONLY": {
+      "count": 17,
+      "files": [
+        "tools/rm_3_2_validate_classifications.py",
+        "tools/provider_controls/ntpe_single_real_provider_invocation.py",
+        "tools/provider_controls/ntpe_controlled_real_provider_retry.py",
+        "tools/generate_te_v720_stage1255_prompt_canary_readiness.py",
+        "tools/generate_ntpe_v20_stage1_launcher_foundation_artifacts.py",
+        "tools/generate_te_v720_stage1254_prompt_contract_preservation.py",
+        "tools/generate_te_v720_milestone_a_manifest.py",
+        "tools/generate_te_v720_controlled_canary.py",
+        "tools/generate_te_v720_stage1258_candidate_structural_verification_canary.py",
+        "tools/generate_te_v720_stage1258a_candidate_structural_failure_sealing.py",
+        "tools/generate_te_v720_stage1257a_execution_evidence_sealing.py",
+        "tools/generate_te_v720_stage1256a_claim_safe_corpus_binding_remediation.py",
+        "tools/generate_te_v720_stage1259_name_resolution_contract_remediation.py"
+      ],
+      "description": "Development/generator scripts - not production runtime"
+    },
+    "PRE_EXISTING_MISSING_TOOLS": {
+      "count": 40,
+      "files": [
+        "tests/integration/translation_engine_v700_stage1010_single_real_provider_invocation_test.py",
+        "tests/integration/translation_engine_v700_stage10101_provider_timeout_controlled_retry_test.py",
+        "tests/integration/translation_engine_v700_stage103_controlled_provider_session_cli_harness_test.py"
+      ],
+      "description": "Root-level CLI scripts (ntpe_*.py) moved to tools/provider_controls/ but tests still import from root - not a fixture migration issue"
+    }
+  },
+  "deliverables": [
+    "docs/governance/repository/P0_FINAL_12_R1_B_TEST_FIXTURE_CLOSURE.md",
+    "artifacts/P0_FINAL_12_R1_B_Test_Fixture_Closure_Report.json"
+  ],
+  "staged": false,
+  "committed": false
+}

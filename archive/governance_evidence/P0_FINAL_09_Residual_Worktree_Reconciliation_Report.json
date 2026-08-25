@@ -1,0 +1,245 @@
+{
+  "baseline_head": "5e346d1975ff7d34855483e224562788d7ef9800",
+  "origin_main": "5e346d1975ff7d34855483e224562788d7ef9800",
+  "branch": "main",
+  "residual_count": 206,
+  "classification": {
+    "R1_PROTECTED_OWNER_WORK": [
+      "artifacts/rm6_canary/legacy_kr/novel_sample_live_progress.json",
+      "artifacts/rm6_canary/runtime_kr/novel_sample_live_progress.json",
+      "tests/literary/outputs/PS-03-integration/Literary_Quality_Report.json",
+      "tests/literary/outputs/PS-03-smoke/Literary_Quality_Report.json",
+      "tests/literary/outputs/PS-03-smoke/Literary_Regression_Report.json",
+      "tests/literary/outputs/Regression_History.json",
+      "tests/literary/outputs/Regression_History.md"
+    ],
+    "R2_P0_CLEANUP_RESIDUAL": {
+      "count": 151,
+      "status": "DELETED",
+      "categories": {
+        "book_intake_stage28": 2,
+        "book_preparation_stage34": 2,
+        "controlled_multi_chunk_translation_stage742": 3,
+        "controlled_multi_chunk_translation_stage743_diagnostic": 2,
+        "ntpe_v20_stage0_project_layout_consolidation": 8,
+        "ntpe_v20_stage1_translation_launcher_product_foundation": 6,
+        "te_v6_0_final_validation": 2,
+        "te_v71_stage111_to_118": 16,
+        "te_v72_canary": 7,
+        "te_v72_canary_execution": 10,
+        "te_v72_milestone_a": 6,
+        "te_v72_prompt_canary_readiness": 6,
+        "te_v72_prompt_contract_preservation": 9,
+        "te_v72_prompt_diagnostics": 7,
+        "te_v72_stage121_to_1259": 50,
+        "te_v7_stage02_to_109": 10,
+        "tools_one_shots": 23
+      },
+      "production_consumer_count": 5,
+      "test_consumer_count": 15,
+      "blocking_issue": "Production code references deleted artifacts"
+    },
+    "R3_P0_GOVERNANCE": [
+      "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_A_RECONCILIATION.md",
+      "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_B_CORE_RECONCILIATION.md",
+      "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_B_PARTIAL_RECONCILIATION.md",
+      "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_C_RECONCILIATION.md",
+      "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_D_PREFLIGHT.md",
+      "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F1_RECONCILIATION.md",
+      "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F2_PREFLIGHT.md",
+      "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F3_PREFLIGHT.md",
+      "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F3_RECONCILIATION.md",
+      "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F4_1_RECONCILIATION.md",
+      "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F4_2_RECONCILIATION.md",
+      "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F4_PREFLIGHT.md",
+      "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F5_PREFLIGHT.md",
+      "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F_PREFLIGHT.md",
+      "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_E_RESOLUTION.md",
+      "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_F6_FINAL_VERIFICATION.md",
+      "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_PREFLIGHT.md",
+      "docs/governance/repository/P0_STAGE5_SERIES_ID_ORIGIN_TRACE.md"
+    ],
+    "R4_RM8_GOVERNANCE": [
+      "docs/governance/rm8/P0_STAGE5_BATCH5_2_ATOMIC_DELIVERY_REPORT.md",
+      "docs/governance/rm8/P0_STAGE5_BATCH5_2_GIT_DELIVERY_RECONCILIATION.md",
+      "docs/governance/rm8/P0_STAGE5_BATCH5_3_GIT_DELIVERY_RECONCILIATION.md",
+      "docs/governance/rm8/P0_STAGE5_BATCH5_3_IMPLEMENTATION_TASK.md",
+      "docs/governance/rm8/P0_STAGE5_BATCH5_3_SERIES_ENTITY_PREFLIGHT_AUDIT.md",
+      "docs/governance/rm8/P0_STAGE5_BATCH5_4_GIT_DELIVERY_RECONCILIATION.md",
+      "docs/governance/rm8/P0_STAGE5_BATCH5_5_GIT_DELIVERY_RECONCILIATION.md",
+      "docs/governance/rm8/P0_STAGE5_BATCH5_6_GIT_DELIVERY_RECONCILIATION.md",
+      "docs/governance/rm8/P0_STAGE5_BATCH5_7_GIT_DELIVERY_RECONCILIATION.md",
+      "docs/governance/rm8/P0_STAGE5_BATCH5_8_1_GIT_DELIVERY_RECONCILIATION.md",
+      "docs/governance/rm8/P0_STAGE5_BATCH5_8_BLOCKER_RECONCILIATION.md",
+      "docs/governance/rm8/P0_STAGE5_BATCH5_8_IMPLEMENTATION_TASK.md",
+      "docs/governance/rm8/P0_STAGE5_BATCH5_8_PREFLIGHT_AUDIT.md",
+      "docs/governance/rm8/P0_STAGE5_FINAL_ACCEPTANCE_REVIEW.md",
+      "docs/governance/rm8/P0_STAGE5_INTEGRATED_REVIEW.md",
+      "docs/governance/rm8/P0_STAGE5_ROOT_LEVEL_INVENTORY.md"
+    ],
+    "R5_DUMMY_TXT_02": [
+      "artifacts/DUMMY-TXT-02_Runtime_Creation_Trace_Report.json",
+      "artifacts/DUMMY-TXT-02_trace_20260823_110532.json",
+      "artifacts/DUMMY-TXT-02_trace_20260823_110958.json"
+    ],
+    "R6_MONITORING_TOOL": [
+      "tools/monitoring/file_creation_trace.py"
+    ],
+    "R7_FINAL_07": [
+      "artifacts/P0_FINAL_07_Worktree_Reconciliation_Report.json",
+      "docs/governance/repository/P0_FINAL_07_WORKTREE_RECONCILIATION.md"
+    ],
+    "R8_UNKNOWN": []
+  },
+  "protected_worktree": {
+    "count": 7,
+    "status": "UNCHANGED_STAGING",
+    "files": [
+      "artifacts/rm6_canary/legacy_kr/novel_sample_live_progress.json",
+      "artifacts/rm6_canary/runtime_kr/novel_sample_live_progress.json",
+      "tests/literary/outputs/PS-03-integration/Literary_Quality_Report.json",
+      "tests/literary/outputs/PS-03-smoke/Literary_Quality_Report.json",
+      "tests/literary/outputs/PS-03-smoke/Literary_Regression_Report.json",
+      "tests/literary/outputs/Regression_History.json",
+      "tests/literary/outputs/Regression_History.md"
+    ],
+    "modified_unstaged": true,
+    "staged": false
+  },
+  "dummy_txt": {
+    "status": "ABSENT",
+    "remediation": "CONFIRMED",
+    "remediation_detail": "tests/series/test_batch5_4.py uses Glossary(tmp_path / \"dummy.txt\")"
+  },
+  "p0_final_08": {
+    "commit": "5e346d1975ff7d34855483e224562788d7ef9800",
+    "scope_files": 9,
+    "head_equals_origin": true,
+    "files": [
+      "tests/series/test_batch5_4.py",
+      "artifacts/DUMMY-TXT-03_P0_STAGE5_Series_ID_Origin_Trace_Report.json",
+      "docs/governance/repository/P0_STAGE5_SERIES_ID_ORIGIN_TRACE.md",
+      "artifacts/DUMMY-TXT-04_Root_Creation_Remediation_Report.json",
+      "docs/governance/repository/DUMMY-TXT-04_ROOT_CREATION_REMEDIATION.md",
+      "artifacts/DUMMY-TXT-05_Root_Side_Effect_Regression_Report.json",
+      "docs/governance/repository/DUMMY-TXT-05_ROOT_SIDE_EFFECT_REGRESSION_VERIFICATION.md",
+      "artifacts/DUMMY-TXT-06_Incident_Closure_Report.json",
+      "docs/governance/repository/DUMMY-TXT-06_DUMMY_TXT_INCIDENT_CLOSURE.md"
+    ]
+  },
+  "production_changes": [],
+  "frozen_contract_changes": [],
+  "consumer_audit": {
+    "production_references_to_deleted_artifacts": [
+      {
+        "file": "core/ntpe_production_translate.py",
+        "references": [
+          "artifacts/te_v7_stage09",
+          "artifacts/te_v7_stage081",
+          "artifacts/te_v7_stage082",
+          "artifacts/te_v7_stage083",
+          "artifacts/te_v7_stage075",
+          "artifacts/te_v7_stage06",
+          "artifacts/te_v7_stage04"
+        ],
+        "lines": [471, 707, 708, 709, 734, 755, 756, 757, 794, 842, 894]
+      },
+      {
+        "file": "core/translation_release/release_validation.py",
+        "references": ["artifacts/te_v6_0_final_validation"],
+        "lines": [58]
+      },
+      {
+        "file": "core/translation_quality_framework_integration/integration_validator.py",
+        "references": [
+          "artifacts/te_v71_stage113/TE_V71_STAGE113_REVIEW_DEFECTS.json",
+          "artifacts/te_v71_stage113/TE_V71_STAGE113_REVIEW_METRICS.json"
+        ],
+        "lines": [85, 86]
+      },
+      {
+        "file": "core/translation_intelligence_corpus/inventory.py",
+        "references": [
+          "artifacts/te_v7_stage10101/review/TE_V7_STAGE10101_TRANSLATION_REVIEW.txt",
+          "artifacts/te_v72_stage1223/TE_V72_STAGE1223_SOURCE_EXCERPT_FREEZE.json"
+        ],
+        "lines": [81, 142, 143]
+      },
+      {
+        "file": "core/translation_intelligence_corpus/historical_evidence_search.py",
+        "references": [
+          "artifacts/te_v71_stage111/TE_V71_STAGE111_TRANSLATION_DEFECTS.json",
+          "artifacts/te_v72_stage1223/TE_V72_STAGE1223_SOURCE_EXCERPT_FREEZE.json"
+        ],
+        "lines": [15, 18]
+      },
+      {
+        "file": "core/translation_intelligence_corpus/alignment.py",
+        "references": [
+          "artifacts/te_v72_stage1223/baseline/translation.txt",
+          "artifacts/te_v7_stage10101/review/TE_V7_STAGE10101_TRANSLATION_REVIEW.txt",
+          "artifacts/te_v71_stage111/TE_V71_STAGE111_TRANSLATION_DEFECTS.json",
+          "artifacts/te_v71_stage112/TE_V71_STAGE112_QUALITY_METRICS.json"
+        ],
+        "lines": [50, 51, 55, 57, 74]
+      },
+      {
+        "file": "core/translation_quality_defects/catalog.py",
+        "references": [
+          "artifacts/te_v7_stage10101/review/TE_V7_STAGE10101_TRANSLATION_REVIEW.txt"
+        ],
+        "lines": [7]
+      }
+    ],
+    "test_references_to_deleted_artifacts": [
+      "verification/release/ntpe_v20_stage0_project_layout_consolidation_test.py",
+      "verification/release/ntpe_v20_stage1_translation_launcher_product_foundation_test.py",
+      "tests/unit/public_api/test_quality_review_api.py",
+      "tests/unit/public_api/test_quality_assessment_api.py",
+      "tests/unit/public_api/test_corpus_api.py",
+      "tests/unit/test_translation_quality_canary.py",
+      "tests/unit/test_translation_quality_provider_canary.py",
+      "tests/unit/test_translation_quality_integration_v72_core.py",
+      "tests/unit/test_stage1256a_claim_safe_corpus_binding.py",
+      "tests/unit/test_stage1257_prompt_verification_canary.py",
+      "tests/unit/test_stage1258_candidate_structural_verification_canary.py"
+    ],
+    "frozen_contract_dependencies": 0
+  },
+  "proposed_actions": {
+    "R1_PROTECTED_OWNER_WORK": "PRESERVE",
+    "R2_P0_CLEANUP_RESIDUAL": "REVIEW_REQUIRED - Production code references deleted artifacts; Owner decision needed",
+    "R3_P0_GOVERNANCE": "ARCHIVE-CANDIDATE",
+    "R4_RM8_GOVERNANCE": "ARCHIVE-CANDIDATE",
+    "R5_DUMMY_TXT_02": "ARCHIVE-CANDIDATE",
+    "R6_MONITORING_TOOL": "KEEP",
+    "R7_FINAL_07": "COMMIT-CANDIDATE",
+    "R8_UNKNOWN": "NONE"
+  },
+  "unknown_count": 0,
+  "validation": {
+    "compileall_core": "PASS",
+    "ntpe_validate": "PASS_WITH_WARNINGS",
+    "git_diff_check": "PASS",
+    "git_diff_cached_check": "PASS",
+    "series_batch5_4_regression": "43_PASS",
+    "warnings": [
+      "ntpe_validate: 1 optional import warning (core.prompt_builder.prompt_builder)",
+      "git diff --check: CRLF warnings on protected worktree files"
+    ]
+  },
+  "stop_conditions": {
+    "stop_09_01": false,
+    "stop_09_02": false,
+    "stop_09_03": false,
+    "stop_09_04": false,
+    "stop_09_05": false,
+    "stop_09_06": false,
+    "stop_09_07": false,
+    "stop_09_08": false,
+    "stop_09_09": false
+  },
+  "commit": "NO",
+  "push": "NO",
+  "final_verdict": "P0-FINAL-09 = COMPLETE"
+}

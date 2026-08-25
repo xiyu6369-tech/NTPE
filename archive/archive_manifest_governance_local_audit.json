@@ -1,0 +1,198 @@
+[
+  {
+    "destination_path": "archive/governance_evidence/P0_REPOSITORY_FINAL_CLEANUP_BATCH_D_RECONCILIATION.md",
+    "date_archived": "2026-08-25",
+    "description": "Local audit evidence governance document",
+    "source_path": "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_D_RECONCILIATION.md",
+    "sha256": "419E92CA66B897CAE280C4665B3110834B4B328857272C9494A82268BCB1BDAF"
+  },
+  {
+    "destination_path": "archive/governance_evidence/P0_FINAL_11_Reference_Migration_Design_Report.json",
+    "date_archived": "2026-08-25",
+    "description": "Local audit evidence governance document",
+    "source_path": "artifacts/P0_FINAL_11_Reference_Migration_Design_Report.json",
+    "sha256": "78DEDCD25850D86F82A485B1E15FFBDD0594B3CD656A509DE067C9E7FC522EFD"
+  },
+  {
+    "destination_path": "archive/governance_evidence/P0_FINAL_12_R1_A_Production_Reference_Closure_Report.json",
+    "date_archived": "2026-08-25",
+    "description": "Local audit evidence governance document",
+    "source_path": "artifacts/P0_FINAL_12_R1_A_Production_Reference_Closure_Report.json",
+    "sha256": "386074EE343301A4542AAFD27B223F94D1CE957DB3F4D3505A9E18A1801F6A84"
+  },
+  {
+    "destination_path": "archive/governance_evidence/P0_FINAL_12_R1_B_Test_Fixture_Closure_Report.json",
+    "date_archived": "2026-08-25",
+    "description": "Local audit evidence governance document",
+    "source_path": "artifacts/P0_FINAL_12_R1_B_Test_Fixture_Closure_Report.json",
+    "sha256": "CA1A23FE2C2DF0010ECEFB302C27A87F948BFC0AD958C49905F865EA240E7A5E"
+  },
+  {
+    "destination_path": "archive/governance_evidence/P0_FINAL_12_R1_C_Tools_Reference_Closure_Report.json",
+    "date_archived": "2026-08-25",
+    "description": "Local audit evidence governance document",
+    "source_path": "artifacts/P0_FINAL_12_R1_C_Tools_Reference_Closure_Report.json",
+    "sha256": "2CFB677B12F6FAC1DFDF36F640C3485A5332D0B0F963AE4F81F455295839F38A"
+  },
+  {
+    "destination_path": "archive/governance_evidence/P0_FINAL_12_R1_E_Commit_Boundary_Audit_Report.json",
+    "date_archived": "2026-08-25",
+    "description": "Local audit evidence governance document",
+    "source_path": "artifacts/P0_FINAL_12_R1_E_Commit_Boundary_Audit_Report.json",
+    "sha256": "41D40846A424FD7948F77A1C73ED71BA63632A1D7DC9BDE96F9BB40BC424ECCF"
+  },
+  {
+    "destination_path": "archive/governance_evidence/P0_FINAL_12_R1_F_Current_Commit_Boundary_Reconciliation_Report.json",
+    "date_archived": "2026-08-25",
+    "description": "Local audit evidence governance document",
+    "source_path": "artifacts/P0_FINAL_12_R1_F_Current_Commit_Boundary_Reconciliation_Report.json",
+    "sha256": "AFEFF40C383420D67A23C0AAD13314C9AA6AD42B9CCD362E0F1851152660381A"
+  },
+  {
+    "destination_path": "archive/governance_evidence/P0_FINAL_12_R1_F_Root_Hygiene_Provenance_Audit_Report.json",
+    "date_archived": "2026-08-25",
+    "description": "Local audit evidence governance document",
+    "source_path": "artifacts/P0_FINAL_12_R1_F_Root_Hygiene_Provenance_Audit_Report.json",
+    "sha256": "A77C8529A283ABE137D56953500094818B79BAACFE81FB822DEE93DC1EA5AF89"
+  },
+  {
+    "destination_path": "archive/governance_evidence/P0_FINAL_12_R1_F_Root_Hygiene_Remediation_Report.json",
+    "date_archived": "2026-08-25",
+    "description": "Local audit evidence governance document",
+    "source_path": "artifacts/P0_FINAL_12_R1_F_Root_Hygiene_Remediation_Report.json",
+    "sha256": "1BC6F9ECD4341E82C1182259EEE5B4ECD6D2C1F7BA44342DAB7EB004C3EA586B"
+  },
+  {
+    "destination_path": "archive/governance_evidence/P0_FINAL_12_R1_H_Post_Commit_Integrity_Verification_Report.json",
+    "date_archived": "2026-08-25",
+    "description": "Local audit evidence governance document",
+    "source_path": "artifacts/P0_FINAL_12_R1_H_Post_Commit_Integrity_Verification_Report.json",
+    "sha256": "C4BF5E10E025EDF2E91BE3FE2B8DE12F1C157AD23B135F2399E2FEB527C03F95"
+  },
+  {
+    "destination_path": "archive/governance_evidence/P0_FINAL_12_B5_TEST_MIGRATION_INVENTORY.md",
+    "date_archived": "2026-08-25",
+    "description": "Local audit evidence governance document",
+    "source_path": "docs/governance/repository/P0_FINAL_12_B5_TEST_MIGRATION_INVENTORY.md",
+    "sha256": "047F11B0E90EC3C86B9C048427511E0ECBCDC359329C01ECDF4F5C54FFDA2234"
+  },
+  {
+    "destination_path": "archive/governance_evidence/P0_FINAL_12_R1_F_ROOT_HYGIENE_PROVENANCE_AUDIT.md",
+    "date_archived": "2026-08-25",
+    "description": "Local audit evidence governance document",
+    "source_path": "docs/governance/repository/P0_FINAL_12_R1_F_ROOT_HYGIENE_PROVENANCE_AUDIT.md",
+    "sha256": "73E58C9EED5C2F2B74A837A4819E88F577C2E4D8ADAC6D1B2BDEEDC3C5195221"
+  },
+  {
+    "destination_path": "archive/governance_evidence/P0_FINAL_12_R1_F_ROOT_HYGIENE_REMEDIATION.md",
+    "date_archived": "2026-08-25",
+    "description": "Local audit evidence governance document",
+    "source_path": "docs/governance/repository/P0_FINAL_12_R1_F_ROOT_HYGIENE_REMEDIATION.md",
+    "sha256": "0915906D9D5F3B0D6B66BE68E948EF2F515885B52EDBB70CF0D986833156AB70"
+  },
+  {
+    "destination_path": "archive/governance_evidence/P0_REPOSITORY_FINAL_CLEANUP_BATCH_A_RECONCILIATION.md",
+    "date_archived": "2026-08-25",
+    "description": "Local audit evidence governance document",
+    "source_path": "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_A_RECONCILIATION.md",
+    "sha256": "6D7A7C2E6681883913A50CD2B02D7A5B8A0ED3CEA300770C804750DC74858F6C"
+  },
+  {
+    "destination_path": "archive/governance_evidence/P0_REPOSITORY_FINAL_CLEANUP_BATCH_B_CORE_RECONCILIATION.md",
+    "date_archived": "2026-08-25",
+    "description": "Local audit evidence governance document",
+    "source_path": "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_B_CORE_RECONCILIATION.md",
+    "sha256": "9D3DD247FA2674CDDDFB4C692D89E9F5E6116E35AC6302E7E18524066D453BFA"
+  },
+  {
+    "destination_path": "archive/governance_evidence/P0_REPOSITORY_FINAL_CLEANUP_BATCH_B_PARTIAL_RECONCILIATION.md",
+    "date_archived": "2026-08-25",
+    "description": "Local audit evidence governance document",
+    "source_path": "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_B_PARTIAL_RECONCILIATION.md",
+    "sha256": "569B89BA8EF5C304BC8584E4E7164B200BC0909F534EB24F3E04688DDC84124F"
+  },
+  {
+    "destination_path": "archive/governance_evidence/P0_REPOSITORY_FINAL_CLEANUP_BATCH_C_RECONCILIATION.md",
+    "date_archived": "2026-08-25",
+    "description": "Local audit evidence governance document",
+    "source_path": "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_C_RECONCILIATION.md",
+    "sha256": "EB2782111A2E193134C13F9ADE0F373F621653DEBEA17CBC2738E84B0FBDEB54"
+  },
+  {
+    "destination_path": "archive/governance_evidence/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F1_RECONCILIATION.md",
+    "date_archived": "2026-08-25",
+    "description": "Local audit evidence governance document",
+    "source_path": "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F1_RECONCILIATION.md",
+    "sha256": "EA45AF5457818F5E80F05013D56FCB0EA0FDB28A84A33DC23E82C8A6F4699C08"
+  },
+  {
+    "destination_path": "archive/governance_evidence/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F3_RECONCILIATION.md",
+    "date_archived": "2026-08-25",
+    "description": "Local audit evidence governance document",
+    "source_path": "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F3_RECONCILIATION.md",
+    "sha256": "3D38DF7C815B11D8D301FC00A3F5C77095CC1696ED4B4DDFCA6200D64EC0379E"
+  },
+  {
+    "destination_path": "archive/governance_evidence/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F4_1_RECONCILIATION.md",
+    "date_archived": "2026-08-25",
+    "description": "Local audit evidence governance document",
+    "source_path": "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F4_1_RECONCILIATION.md",
+    "sha256": "FC9C78C3FD6D621AFCDDE7BAD64D6B79BA4161A2B7F891E68367F6F9517DD217"
+  },
+  {
+    "destination_path": "archive/governance_evidence/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F4_2_RECONCILIATION.md",
+    "date_archived": "2026-08-25",
+    "description": "Local audit evidence governance document",
+    "source_path": "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F4_2_RECONCILIATION.md",
+    "sha256": "DF89DCDC6D9CD1E591158C5E6B1728538849AF4C9C6CE0754D4DC5C19F1C8956"
+  },
+  {
+    "destination_path": "archive/governance_evidence/P0_STAGE5_BATCH5_2_GIT_DELIVERY_RECONCILIATION.md",
+    "date_archived": "2026-08-25",
+    "description": "Local audit evidence governance document",
+    "source_path": "docs/governance/rm8/P0_STAGE5_BATCH5_2_GIT_DELIVERY_RECONCILIATION.md",
+    "sha256": "A01D1DA1D07825CE4F4B2799FCB2861A5720FD6913EE8C1C04CF3525F4806DB8"
+  },
+  {
+    "destination_path": "archive/governance_evidence/P0_STAGE5_BATCH5_3_GIT_DELIVERY_RECONCILIATION.md",
+    "date_archived": "2026-08-25",
+    "description": "Local audit evidence governance document",
+    "source_path": "docs/governance/rm8/P0_STAGE5_BATCH5_3_GIT_DELIVERY_RECONCILIATION.md",
+    "sha256": "110F1F14018E9FDFB6F89F4065C42B68E65EEC0948D95E0B24DAA38636870726"
+  },
+  {
+    "destination_path": "archive/governance_evidence/P0_STAGE5_BATCH5_4_GIT_DELIVERY_RECONCILIATION.md",
+    "date_archived": "2026-08-25",
+    "description": "Local audit evidence governance document",
+    "source_path": "docs/governance/rm8/P0_STAGE5_BATCH5_4_GIT_DELIVERY_RECONCILIATION.md",
+    "sha256": "637EDA348F0D6F6D69A8CEF23272C0BA18DCC88D4A2E063A6D47E8EECD60A1F2"
+  },
+  {
+    "destination_path": "archive/governance_evidence/P0_STAGE5_BATCH5_5_GIT_DELIVERY_RECONCILIATION.md",
+    "date_archived": "2026-08-25",
+    "description": "Local audit evidence governance document",
+    "source_path": "docs/governance/rm8/P0_STAGE5_BATCH5_5_GIT_DELIVERY_RECONCILIATION.md",
+    "sha256": "34BB0AC3F4D46BB8FD0062BBD0F9D3CA078ED8CAB20F97CAF77CAA4B138FAEDA"
+  },
+  {
+    "destination_path": "archive/governance_evidence/P0_STAGE5_BATCH5_6_GIT_DELIVERY_RECONCILIATION.md",
+    "date_archived": "2026-08-25",
+    "description": "Local audit evidence governance document",
+    "source_path": "docs/governance/rm8/P0_STAGE5_BATCH5_6_GIT_DELIVERY_RECONCILIATION.md",
+    "sha256": "0810D9B85854C207DA8C32527AF3BB6B68B8FC2915D7D6C756ABB997E59FCB33"
+  },
+  {
+    "destination_path": "archive/governance_evidence/P0_STAGE5_BATCH5_7_GIT_DELIVERY_RECONCILIATION.md",
+    "date_archived": "2026-08-25",
+    "description": "Local audit evidence governance document",
+    "source_path": "docs/governance/rm8/P0_STAGE5_BATCH5_7_GIT_DELIVERY_RECONCILIATION.md",
+    "sha256": "66B299717A0D80F05A823E23DF74E4B093B43A3A2C341B8B22ABE9E9C811EB72"
+  },
+  {
+    "destination_path": "archive/governance_evidence/P0_STAGE5_BATCH5_8_1_GIT_DELIVERY_RECONCILIATION.md",
+    "date_archived": "2026-08-25",
+    "description": "Local audit evidence governance document",
+    "source_path": "docs/governance/rm8/P0_STAGE5_BATCH5_8_1_GIT_DELIVERY_RECONCILIATION.md",
+    "sha256": "F44D6C64DDC462F363D261391D108947952CA7E7EA2C99D3D8810BF898AA53E2"
+  }
+]
