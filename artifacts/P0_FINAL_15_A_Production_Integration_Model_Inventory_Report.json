@@ -1,0 +1,406 @@
+{
+  "baseline": {
+    "commit": "8c999b1219f65a6afaeaf0062e6c43f72691c188",
+    "message": "P0-FINAL-13: clean governance repository surface",
+    "branch": "main",
+    "origin_main": "8c999b1219f65a6afaeaf0062e6c43f72691c188",
+    "divergence_ahead": 0,
+    "divergence_behind": 0
+  },
+  "git_state": {
+    "dirty_path_count": 293,
+    "modified_count": 7,
+    "deleted_count": 207,
+    "untracked_count": 35,
+    "renamed_count": 0,
+    "copied_count": 0,
+    "matches_p14_inventory": true,
+    "p14_reported_count": 291,
+    "delta": 2
+  },
+  "model_inventory": {
+    "old_model": "meta/llama-3.3-70b-instruct",
+    "new_model": "minimaxai/minimax-m3",
+    "old_model_total_references": 200,
+    "new_model_total_references": 0,
+    "old_model_classification": {
+      "CURRENT_PRODUCTION": {
+        "count": 30,
+        "key_files": [
+          "config/default_config.json",
+          "config/provider_config.json",
+          "config/models.json",
+          "config/launcher_product_defaults.json",
+          "ntpe_production_translate.py",
+          "lts/txt_translation_runtime.py",
+          "core/launcher_product/config.py",
+          "core/launcher_product/model_catalog.py",
+          "core/ai_provider/adapters.py"
+        ]
+      },
+      "CURRENT_TEST": {
+        "count": 40,
+        "key_files": [
+          "tests/integration/translation_engine_v700_stage*.py",
+          "tests/integration/translation_engine_v720_stage*.py",
+          "tests/unit/test_translation_quality_canary.py",
+          "tests/unit/test_controlled_provider_routing.py",
+          "tests/unit/adapters/test_production_submission_adapter.py",
+          "tests/smoke/launcher_ter_v19_stability_repetition_guard_smoke_test.py",
+          "tests/stage_14/launcher_ai_provider_framework_test.py"
+        ]
+      },
+      "CURRENT_TOOLING": {
+        "count": 15,
+        "key_files": [
+          "tools/provider_controls/ntpe_single_real_provider_invocation.py",
+          "tools/generate_te_v720_controlled_canary.py",
+          "tools/generate_ntpe_v20_stage1_launcher_foundation_artifacts.py"
+        ]
+      },
+      "HISTORICAL_EVIDENCE": {
+        "count": 60,
+        "key_files": [
+          "artifacts/tic_batch*/*.json",
+          "artifacts/te_v72_canary_execution/",
+          "manifests/*.json",
+          "docs/releases/te_v*/*.md"
+        ]
+      },
+      "LEGACY": {
+        "count": 25,
+        "key_files": [
+          "core/translation_release/te_v6_release.py",
+          "engine/nvidia.py",
+          "core/expansion/style_expansion_engine.py",
+          "core/controlled_translation_runtime_integration/policy.py",
+          "core/controlled_provider_routing/provider_profiles.py",
+          "core/controlled_multi_chunk_translation_canary/policy.py",
+          "core/adaptive_context_*/config.py",
+          "core/adapters/production_submission_adapter.py"
+        ]
+      },
+      "DOCUMENTATION_HISTORY": {
+        "count": 30,
+        "key_files": [
+          "docs/releases/te_v7_0/*.md",
+          "docs/releases/te_v7_2/*.md",
+          "docs/releases/te_v6_0/*.md"
+        ]
+      }
+    },
+    "new_model_classification": {
+      "CURRENT_PRODUCTION": 0,
+      "CURRENT_TEST": 0,
+      "CURRENT_TOOLING": 0,
+      "HISTORICAL": 0,
+      "LEGACY": 0,
+      "DOCUMENTATION": 0
+    }
+  },
+  "model_configuration_precedence": {
+    "resolution_order": [
+      "CLI argument (--model)",
+      "Environment variable (NTPE_FALLBACK_MODELS for fallbacks)",
+      "Config file (launcher_product_defaults.json → default_config.json → models.json → provider_config.json)",
+      "ProviderAdapterConfig.default_model (core/ai_provider/adapters.py)",
+      "LauncherConfig._BASE_CONFIG (core/launcher_product/config.py)",
+      "TxtTranslationOptions.DEFAULT_MODEL (lts/txt_translation_runtime.py)",
+      "ntpe_production_translate.py DEFAULT_MODEL constant"
+    ],
+    "effective_production_default_without_override": "meta/llama-3.3-70b-instruct",
+    "target_production_default": "minimaxai/minimax-m3",
+    "canonical_config_locations_to_update": [
+      "config/launcher_product_defaults.json",
+      "config/default_config.json",
+      "config/models.json",
+      "config/provider_config.json",
+      "core/launcher_product/config.py",
+      "core/launcher_product/model_catalog.py",
+      "core/ai_provider/adapters.py",
+      "ntpe_production_translate.py",
+      "lts/txt_translation_runtime.py"
+    ]
+  },
+  "production_model_status": "meta/llama-3.3-70b-instruct (hardcoded in 6+ canonical config locations)",
+  "test_model_status": "meta/llama-3.3-70b-instruct (used in 40+ test files)",
+  "historical_model_references": "Preserved in artifacts/, manifests/, docs/releases/ — DO NOT MODIFY",
+  "launcher_audit": {
+    "ntpe_launcher.py": {
+      "model_source": "core/launcher_product/config.py → config/launcher_product_defaults.json",
+      "cli_override": "--config file",
+      "env_override": "N/A",
+      "current_default": "meta/llama-3.3-70b-instruct"
+    },
+    "ntpe_production_translate.py": {
+      "model_source": "DEFAULT_MODEL constant (line 95)",
+      "cli_override": "--model arg",
+      "env_override": "NTPE_FALLBACK_MODELS",
+      "current_default": "meta/llama-3.3-70b-instruct"
+    },
+    "lts_txt_translation_runtime.py": {
+      "model_source": "DEFAULT_MODEL constant (line 83)",
+      "cli_override": "--model arg",
+      "env_override": "NTPE_FALLBACK_MODELS",
+      "current_default": "meta/llama-3.3-70b-instruct"
+    },
+    "core_translation_runtime_runtime.py": {
+      "model_source": "Delegates to LTS",
+      "cli_override": "N/A",
+      "env_override": "N/A",
+      "current_default": "meta/llama-3.3-70b-instruct"
+    }
+  },
+  "runtime_audit": {
+    "hardcoded_old_model_locations": [
+      "lts/txt_translation_runtime.py:83 (module constant)",
+      "lts/txt_translation_runtime.py:115 (dataclass field default)",
+      "ntpe_production_translate.py:95 (module constant)",
+      "core/launcher_product/config.py:32 (_BASE_CONFIG dict)",
+      "core/launcher_product/model_catalog.py:8 (ModelDefinition)",
+      "core/ai_provider/adapters.py:104 (ProviderAdapterConfig.default_model)",
+      "core/ai_provider/adapters.py:110 (ProviderAdapterConfig.models[0].id)",
+      "config/default_config.json:4",
+      "config/models.json:3,5",
+      "config/provider_config.json:37",
+      "config/launcher_product_defaults.json:7",
+      "core/controlled_translation_runtime_integration/policy.py:22",
+      "core/controlled_provider_routing/provider_profiles.py:28",
+      "core/controlled_multi_chunk_translation_canary/policy.py:58",
+      "core/expansion/style_expansion_engine.py:38",
+      "core/adapters/production_submission_adapter.py:20,129",
+      "core/adaptive_context_*/config.py (multiple)",
+      "engine/nvidia.py:7"
+    ],
+    "no_hardcoded_in": [
+      "core/translation_engine/",
+      "core/translation_runtime/ (beyond LTS delegation)",
+      "core/runtime/",
+      "core/translation_pipeline/"
+    ]
+  },
+  "rm6_canary_status": {
+    "legacy_pipeline": {
+      "status": "COMPLETED",
+      "chunks_total": 3,
+      "chunks_completed": 3,
+      "output_exists": true,
+      "progress_file": "artifacts/rm6_canary/legacy_kr/novel_sample_live_progress.json",
+      "updated_at": "2026-08-08T00:48:13"
+    },
+    "runtime_pipeline": {
+      "status": "COMPLETED",
+      "chunks_total": 3,
+      "chunks_completed": 3,
+      "output_exists": true,
+      "output_file": "artifacts/rm6_canary/runtime_kr/novel_sample_zh.txt",
+      "progress_file": "artifacts/rm6_canary/runtime_kr/novel_sample_live_progress.json",
+      "resume_state": "artifacts/rm6_canary/runtime_kr/novel_sample_resume_state.json",
+      "updated_at": "2026-08-08T00:48:09"
+    },
+    "test_fixture": "tests/fixtures/rm6_canary/novel_sample.txt (Korean, ~5.8 KB)",
+    "ready_for_promotion": true,
+    "blockers": []
+  },
+  "epub_pipeline_status": {
+    "epub_extraction": {
+      "component": "EpubExtractionBoundary",
+      "location": "core/adapters/epub_extraction_boundary.py",
+      "status": "IMPLEMENTED",
+      "lines": 1235,
+      "features": ["EPUB 3/2 support", "security validation", "chapter mapping", "metadata extraction", "resource references"]
+    },
+    "extraction_to_intake": {
+      "request_type": "ExtractedTextIntakeRequest",
+      "status": "IMPLEMENTED",
+      "location": "core/adapters/epub_extraction_boundary.py:90-103"
+    },
+    "canonical_adapter": {
+      "component": "CanonicalBookIntakeAdapter.ingest_extracted()",
+      "status": "IMPLEMENTED",
+      "location": "core/adapters/canonical_book_intake_adapter.py:124-196"
+    },
+    "book_intake": {
+      "component": "BookIntakeProcessor",
+      "status": "IMPLEMENTED",
+      "location": "core/book_intake/"
+    },
+    "book_preparation": {
+      "component": "BookPreparationProcessor",
+      "status": "IMPLEMENTED",
+      "location": "core/book_preparation/"
+    },
+    "chunking_segmentation": {
+      "status": "IMPLEMENTED",
+      "components": ["core/book_chunking/", "core/book_segmentation/"]
+    },
+    "translation_runtime": {
+      "status": "IMPLEMENTED",
+      "component": "TranslationRuntime"
+    },
+    "translation_engine": {
+      "status": "IMPLEMENTED",
+      "component": "TranslationEngine"
+    },
+    "provider_runtime": {
+      "status": "IMPLEMENTED",
+      "components": ["core/ai_provider/", "core/translation_runtime/runtime_provider.py"]
+    },
+    "quality_repair": {
+      "status": "IMPLEMENTED",
+      "components": ["core/translation_quality_v5/", "core/literary/"]
+    },
+    "output": {
+      "status": "IMPLEMENTED",
+      "component": "runtime_output.py"
+    },
+    "user_entry_point": {
+      "status": "MISSING",
+      "cli_epub_command": false,
+      "launcher_epub_support": false,
+      "gui_epub_handler": false,
+      "note": "ui/translation_launcher/app.py shows EPUB in file dialog but no handler"
+    },
+    "user_can_drop_epub": false,
+    "missing_for_user_flow": "EPUB CLI subcommand in ntpe_production_translate.py and/or ntpe_launcher.py"
+  },
+  "literary_regression_status": {
+    "current_baseline": {
+      "stage": "PS-03-integration",
+      "status": "warning",
+      "score": 78.0,
+      "date": "2026-08-24",
+      "report": "tests/literary/outputs/PS-03-integration/Literary_Quality_Report.md"
+    },
+    "recent_history": [
+      {"stage": "PS-03-smoke", "status": "failed", "score": 0.0, "date": "2026-08-14"},
+      {"stage": "PS-03", "status": "failed", "score": 0.0, "date": "2026-08-18"},
+      {"stage": "PS-02-integration", "status": "failed", "score": 0.0, "date": "2026-08-24"}
+    ],
+    "historical_peak": {
+      "stage": "TER-v1.8-retry",
+      "status": "success",
+      "score": 100.0,
+      "date": "2026-07-08"
+    },
+    "components": {
+      "golden_set": "EXISTS (tests/literary/Golden_Set/original_ko.txt)",
+      "quality_gate": "IMPLEMENTED (ntpe_literary_evaluation.py, ntpe_literary_regression.py)",
+      "character_consistency": "IMPLEMENTED (core/character_memory_v2/, core/entity_consistency/)",
+      "glossary_consistency": "IMPLEMENTED (core/glossary_builder/, locked dictionary)",
+      "korean_residue_detection": "IMPLEMENTED (max_korean_chars QA)",
+      "repeated_paragraph_detection": "IMPLEMENTED (max_repeated_lines QA)",
+      "translation_length_ratio": "IMPLEMENTED (min_length_ratio QA)",
+      "quality_score": "IMPLEMENTED (Literary_Quality_Report.md/json)"
+    },
+    "baseline_classification": {
+      "CURRENT_BASELINE": "PS-03-integration (78.0, warning)",
+      "HISTORICAL_BASELINE": "TER-v1.x series (100.0, success)",
+      "FAILED_BASELINE": "PS-03-smoke, PS-03, PS-02-integration (0.0)",
+      "MISSING_BASELINE": "No clean SUCCESS baseline at current PS stage"
+    }
+  },
+  "user_flow_status": {
+    "general_user_drop_epub_get_translation": false,
+    "automated_steps": [
+      "EPUB extraction (EpubExtractionBoundary)",
+      "Text intake/preparation (CanonicalBookIntakeAdapter + processors)",
+      "Chunking (book_chunking + book_segmentation)",
+      "Translation (TranslationRuntime + TranslationEngine)",
+      "Quality/QA (multi-phase)",
+      "Output assembly (runtime_output)"
+    ],
+    "manual_steps_required": [
+      "EPUB file selection (no CLI entry point)",
+      "Manual EPUB → TXT extraction if using current launchers"
+    ],
+    "missing": [
+      "EPUB CLI subcommand in production launchers",
+      "EPUB output format wiring (exporter exists but not connected)",
+      "Clean SUCCESS literary regression baseline",
+      "minimaxai/minimax-m3 as default model"
+    ],
+    "technical_risks": [
+      "No EPUB direct translation entry point",
+      "Model migration pending (llama-3.3 → minimax-m3)",
+      "RM6 Canary not formally promoted to production baseline",
+      "Literary regression baseline is WARNING not SUCCESS"
+    ]
+  },
+  "github_product_gap": {
+    "production_code_in_github": true,
+    "config_files_in_github": true,
+    "epub_pipeline_in_github": true,
+    "launchers_in_github": true,
+    "tests_in_github": true,
+    "local_only_production_dependency": false,
+    "feature_gaps": [
+      "EPUB CLI entry point (missing from both GitHub and local)",
+      "minimaxai/minimax-m3 config (missing from both)",
+      "RM6 promoted baseline (missing from both)",
+      "Clean literary SUCCESS baseline (local has WARNING, GitHub has none)"
+    ],
+    "local_production_dependency_gap": false
+  },
+  "root_hygiene": {
+    "compliant": true,
+    "root_py_files": 7,
+    "root_py_files_list": [
+      "launcher_translate.py",
+      "ntpe_batch_monitor.py",
+      "ntpe_launcher.py",
+      "ntpe_literary_evaluation.py",
+      "ntpe_literary_regression.py",
+      "ntpe_production_translate.py",
+      "ntpe_validate.py"
+    ],
+    "root_txt_files": 2,
+    "root_txt_files_list": [
+      "requirements.txt",
+      "VERSION.txt"
+    ],
+    "prohibited_extensions_present": false,
+    "tools_structure_compliant": true,
+    "one_shots_archived": true,
+    "legacy_launchers_archived": true
+  },
+  "validation": {
+    "ntpe_validate": "PASS_WITH_WARNINGS",
+    "warnings": [
+      "core.prompt_builder.prompt_builder: ModuleNotFoundError"
+    ],
+    "git_diff_check": "3 CRLF warnings (pre-existing on tests/literary/outputs/*.json/.md)",
+    "new_failures": 0
+  },
+  "provider_safety": {
+    "provider_calls": 0,
+    "network_calls": 0,
+    "real_translation_calls": 0
+  },
+  "stop_conditions": {
+    "STOP-P15A-01_worktree_drift": false,
+    "STOP-P15A-02_baseline_mismatch": false,
+    "STOP-P15A-03_local_production_dependency": false,
+    "STOP-P15A-04_cannot_determine_model_config": false,
+    "STOP-P15A-05_historical_evidence_modification": false,
+    "STOP-P15A-06_unexpected_root_artifact": false,
+    "STOP-P15A-07_validation_regression": false,
+    "STOP-P15A-08_audit_modifies_repository": false,
+    "STOP-P15A-09_real_provider_request": false
+  },
+  "git_safety": {
+    "staged": 0,
+    "committed_this_phase": 0,
+    "pushed_this_phase": 0,
+    "head": "8c999b1219f65a6afaeaf0062e6c43f72691c188",
+    "origin_main": "8c999b1219f65a6afaeaf0062e6c43f72691c188",
+    "divergence": "0/0",
+    "working_tree_unchanged": true
+  },
+  "verdict": "PASS",
+  "deliverables": {
+    "governance_doc": "docs/governance/repository/P0_FINAL_15_A_PRODUCTION_INTEGRATION_MODEL_INVENTORY.md",
+    "json_report": "artifacts/P0_FINAL_15_A_Production_Integration_Model_Inventory_Report.json"
+  },
+  "recommended_next_scope": "P0-FINAL-15-B — NVIDIA minimaxai/minimax-m3 Production Model Migration (atomic config updates across 9 canonical locations, test fixture preservation, canary validation)"
+}

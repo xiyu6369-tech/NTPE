@@ -42,7 +42,7 @@ _POLICIES: dict[SpeedProfile, RuntimeSpeedPolicy] = {
     ),
     "balanced": RuntimeSpeedPolicy(
         speed="balanced",
-        provider_attempts=2,
+        provider_attempts=3,
         qa_attempts=2,
         timeout_seconds=120,
         chunk_size=1000,

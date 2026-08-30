@@ -1,0 +1,769 @@
+{
+  "head_commit": "8c999b1219f65a6afaeaf0062e6c43f72691c188",
+  "origin_main_commit": "8c999b1219f65a6afaeaf0062e6c43f72691c188",
+  "divergence": "0/0",
+  "branch": "main",
+  "python_version": "3.14.6",
+  "test_timestamp": "2026-08-29T05:58:31.741206Z",
+  "models_reconciled": [
+    {
+      "model_id": "minimaxai/minimax-m3",
+      "p15p_classification": "CONTEXT_INCOMPATIBLE",
+      "p15p_rationale": "Failed context compatibility tests",
+      "evidence_chain": [
+        {
+          "phase": "P15-I",
+          "model_id": "minimaxai/minimax-m3",
+          "metric": "http_status",
+          "value": 429,
+          "source": "P15-I I-01",
+          "confidence": "HIGH"
+        },
+        {
+          "phase": "P15-I",
+          "model_id": "minimaxai/minimax-m3",
+          "metric": "http_status",
+          "value": 429,
+          "source": "P15-I I-04",
+          "confidence": "HIGH"
+        },
+        {
+          "phase": "P15-J",
+          "model_id": "minimaxai/minimax-m3",
+          "metric": "account_entitlement",
+          "value": "UNCLEAR",
+          "source": "P15-J entitlement analysis",
+          "confidence": "MEDIUM"
+        },
+        {
+          "phase": "P15-K",
+          "model_id": "minimaxai/minimax-m3",
+          "metric": "429_semantics",
+          "value": "UNKNOWN",
+          "source": "P15-K semantics analysis",
+          "confidence": "MEDIUM"
+        },
+        {
+          "phase": "P15-L",
+          "model_id": "minimaxai/minimax-m3",
+          "metric": "provider_smoke",
+          "value": null,
+          "source": "P15-L smoke test",
+          "confidence": "HIGH"
+        },
+        {
+          "phase": "P15-P-inventory",
+          "model_id": "minimaxai/minimax-m3",
+          "metric": "screening_classification",
+          "value": "PRIMARY_CANDIDATE",
+          "source": "P15-P inventory screening",
+          "confidence": "HIGH"
+        },
+        {
+          "phase": "P15-P-eval",
+          "model_id": "minimaxai/minimax-m3",
+          "metric": "detailed_classification",
+          "value": "CONTEXT_INCOMPATIBLE",
+          "source": "P15-P detailed evaluation",
+          "confidence": "HIGH"
+        },
+        {
+          "phase": "P15-P-eval",
+          "model_id": "minimaxai/minimax-m3",
+          "metric": "smoke_429_rate",
+          "value": "3/3",
+          "source": "P15-P smoke observations",
+          "confidence": "HIGH"
+        },
+        {
+          "phase": "P15-P-eval",
+          "model_id": "minimaxai/minimax-m3",
+          "metric": "reliability_429_rate",
+          "value": "5/5",
+          "source": "P15-P reliability observations",
+          "confidence": "HIGH"
+        },
+        {
+          "phase": "P15-P-eval",
+          "model_id": "minimaxai/minimax-m3",
+          "metric": "context_compatible",
+          "value": false,
+          "source": "P15-P context tests",
+          "confidence": "HIGH"
+        },
+        {
+          "phase": "P15-P-eval",
+          "model_id": "minimaxai/minimax-m3",
+          "metric": "raw_translation_success",
+          "value": 0.0,
+          "source": "P15-P translation tests",
+          "confidence": "HIGH"
+        }
+      ],
+      "reconciled_classification": "M1_PROVIDER_FAILURE_429_UNRESOLVED",
+      "reconciled_rationale": "M1 consistently returns HTTP 429 across all context sizes and invocation types. Not context incompatibility (429 at small context too). Not account entitlement denial (no 'Function not found' message). 429 lacks rate-limit headers/quota detail. Root cause unresolved - provider-side failure.",
+      "classification_changed": true,
+      "confidence": "HIGH",
+      "key_findings": [
+        "M1 (minimaxai/minimax-m3) consistently returns HTTP 429 on all invocation attempts across all phases (P15-H, P15-I, P15-K, P15-L, P15-P-eval)",
+        "P15-J confirmed M1 429 lacks rate-limit headers, Retry-After, quota detail - differs from explicit account denial (404) seen for other models",
+        "P15-P-eval confirmed 100% 429 rate across 3 smoke + 5 reliability observations",
+        "P15-P-eval confirmed context_compatible = FALSE (all context levels return 429)",
+        "P15-P-eval confirmed raw_translation_success_rate = 0% (all translation attempts return 429)",
+        "No evidence of context-size correlation with 429 (small/medium/large/high all 429)",
+        "No evidence of entitlement denial (no 'Function not found for account' message)",
+        "Root cause of 429 remains undetermined: could be model-specific rate limit, capacity, or provider routing"
+      ]
+    },
+    {
+      "model_id": "nvidia/nemotron-3-super-120b-a12b",
+      "p15p_classification": "REJECT_C3 / MODEL_INTRINSIC_LIMITATION",
+      "p15p_rationale": "Model intrinsic limitation: single request at safe context also <65 (0.0)",
+      "evidence_chain": [
+        {
+          "phase": "P15-N",
+          "model_id": "nvidia/nemotron-3-super-120b-a12b",
+          "metric": "canary_result",
+          "value": "UNKNOWN",
+          "source": "P15-N controlled canary",
+          "confidence": "HIGH"
+        },
+        {
+          "phase": "P15-N1",
+          "model_id": "nvidia/nemotron-3-super-120b-a12b",
+          "metric": "high_context_timeout",
+          "value": "UNKNOWN",
+          "source": "P15-N1 root cause analysis",
+          "confidence": "HIGH"
+        },
+        {
+          "phase": "P15-N2",
+          "model_id": "nvidia/nemotron-3-super-120b-a12b",
+          "metric": "extended_stability",
+          "value": "UNKNOWN",
+          "source": "P15-N2 extended stability",
+          "confidence": "HIGH"
+        },
+        {
+          "phase": "P15-N3",
+          "model_id": "nvidia/nemotron-3-super-120b-a12b",
+          "metric": "context_boundary",
+          "value": "UNKNOWN",
+          "source": "P15-N3 context boundary",
+          "confidence": "HIGH"
+        },
+        {
+          "phase": "P15-N3.5",
+          "model_id": "nvidia/nemotron-3-super-120b-a12b",
+          "metric": "quality_regression",
+          "value": {
+            "best_strategy": "exp_chunked_glossary",
+            "best_quality": 84.0,
+            "chunked_glossary_quality": 84.0,
+            "decision": "REJECT_C3"
+          },
+          "source": "P15-N3.5 quality regression",
+          "confidence": "HIGH"
+        },
+        {
+          "phase": "P15-P-inventory",
+          "model_id": "nvidia/nemotron-3-super-120b-a12b",
+          "metric": "screening_classification",
+          "value": "PRIMARY_CANDIDATE",
+          "source": "P15-P inventory screening",
+          "confidence": "HIGH"
+        }
+      ],
+      "reconciled_classification": "PROVIDER_RUNTIME_COMPATIBILITY_LIMITATION",
+      "reconciled_rationale": "C3 demonstrates translation capability (84/100 with chunked+glossary) but high-context reliability unproven. Single requests at safe boundary timeout (408). Production operating envelope not validated. Not 'model intrinsic limitation' since chunked+glossary works. Limitation is provider runtime compatibility for high-context single requests.",
+      "classification_changed": true,
+      "confidence": "HIGH",
+      "key_findings": [
+        "C3 (nvidia/nemotron-3-super-120b-a12b) demonstrated translation capability: Chunked + Glossary achieved 84/100 quality (P15-N3.5)",
+        "C3 single request at safe context boundary (90%) failed with HTTP 408 timeout (P15-N3.5 control_single)",
+        "C3 chunked without glossary failed with HTTP 408 timeout (P15-N3.5 control_chunked)",
+        "C3 chunked with character memory succeeded (HTTP 200) but quality 64.3 (P15-N3.5 exp_chunked_char_memory)",
+        "C3 chunked with glossary succeeded (HTTP 200) quality 84.0 - PASS (P15-N3.5 exp_chunked_glossary)",
+        "C3 chunked with memory+glossary succeeded (HTTP 200) quality 57.0 - FAIL (P15-N3.5 exp_chunked_memory_glossary)",
+        "C3 chunked with prev_context succeeded (HTTP 200) quality 57.0 - FAIL (P15-N3.5 exp_chunked_prev_context)",
+        "Context boundary identified at ~90% (P15-N3 safe operating envelope)",
+        "High-context requests consistently timeout (HTTP 408) not 429 (P15-N1, P15-N3)",
+        "Translation capability EXISTS but production operating envelope NOT proven stable",
+        "P15-N3.5 Gate QR decision: REJECT_C3 with rationale 'Model intrinsic limitation: single request at safe context also <65 (0.0)'"
+      ]
+    },
+    {
+      "model_id": "minimaxai/minimax-m3",
+      "p15p_classification": "CONTEXT_INCOMPATIBLE",
+      "p15p_rationale": "P15-P detailed evaluation",
+      "evidence_chain": [
+        {
+          "phase": "P15-P-eval",
+          "model_id": "minimaxai/minimax-m3",
+          "metric": "detailed_classification",
+          "value": "CONTEXT_INCOMPATIBLE",
+          "source": "P15-P detailed evaluation",
+          "confidence": "HIGH"
+        },
+        {
+          "phase": "P15-P-eval",
+          "model_id": "minimaxai/minimax-m3",
+          "metric": "context_compatible",
+          "value": false,
+          "source": "P15-P context tests",
+          "confidence": "HIGH"
+        },
+        {
+          "phase": "P15-P-eval",
+          "model_id": "minimaxai/minimax-m3",
+          "metric": "raw_translation_success",
+          "value": 0.0,
+          "source": "P15-P translation tests",
+          "confidence": "HIGH"
+        },
+        {
+          "phase": "P15-P-eval",
+          "model_id": "minimaxai/minimax-m3",
+          "metric": "reliability_success",
+          "value": 0.0,
+          "source": "P15-P reliability tests",
+          "confidence": "HIGH"
+        },
+        {
+          "phase": "P15-P-eval",
+          "model_id": "minimaxai/minimax-m3",
+          "metric": "automated_quality_pass",
+          "value": false,
+          "source": "P15-P quality scoring",
+          "confidence": "MEDIUM"
+        }
+      ],
+      "reconciled_classification": "CONTEXT_INCOMPATIBLE",
+      "reconciled_rationale": "Failed context compatibility tests",
+      "classification_changed": false,
+      "confidence": "LOW",
+      "key_findings": [
+        "Context compatible: False",
+        "Raw translation success: 0%",
+        "Reliability success: 0%",
+        "Automated quality pass: False"
+      ]
+    },
+    {
+      "model_id": "nvidia/llama-3.1-nemoguard-8b-content-safety",
+      "p15p_classification": "QUALITY_INSUFFICIENT",
+      "p15p_rationale": "P15-P detailed evaluation",
+      "evidence_chain": [
+        {
+          "phase": "P15-P-eval",
+          "model_id": "nvidia/llama-3.1-nemoguard-8b-content-safety",
+          "metric": "detailed_classification",
+          "value": "QUALITY_INSUFFICIENT",
+          "source": "P15-P detailed evaluation",
+          "confidence": "HIGH"
+        },
+        {
+          "phase": "P15-P-eval",
+          "model_id": "nvidia/llama-3.1-nemoguard-8b-content-safety",
+          "metric": "context_compatible",
+          "value": true,
+          "source": "P15-P context tests",
+          "confidence": "HIGH"
+        },
+        {
+          "phase": "P15-P-eval",
+          "model_id": "nvidia/llama-3.1-nemoguard-8b-content-safety",
+          "metric": "raw_translation_success",
+          "value": 1.0,
+          "source": "P15-P translation tests",
+          "confidence": "HIGH"
+        },
+        {
+          "phase": "P15-P-eval",
+          "model_id": "nvidia/llama-3.1-nemoguard-8b-content-safety",
+          "metric": "reliability_success",
+          "value": 1.0,
+          "source": "P15-P reliability tests",
+          "confidence": "HIGH"
+        },
+        {
+          "phase": "P15-P-eval",
+          "model_id": "nvidia/llama-3.1-nemoguard-8b-content-safety",
+          "metric": "automated_quality_pass",
+          "value": false,
+          "source": "P15-P quality scoring",
+          "confidence": "MEDIUM"
+        },
+        {
+          "phase": "P15-P-eval",
+          "model_id": "nvidia/llama-3.1-nemoguard-8b-content-safety",
+          "metric": "avg_quality_score",
+          "value": 20.8,
+          "source": "P15-P automated quality",
+          "confidence": "MEDIUM"
+        }
+      ],
+      "reconciled_classification": "QUALITY_INSUFFICIENT",
+      "reconciled_rationale": "Automated quality score below 65 threshold (avg: 20.8). Translation capability confirmed but quality insufficient for publication-grade.",
+      "classification_changed": false,
+      "confidence": "MEDIUM",
+      "key_findings": [
+        "Context compatible: True",
+        "Raw translation success: 100%",
+        "Reliability success: 100%",
+        "Automated quality pass: False",
+        "Average quality score: 20.8"
+      ]
+    },
+    {
+      "model_id": "nvidia/nemotron-3-nano-30b-a3b",
+      "p15p_classification": "QUALITY_INSUFFICIENT",
+      "p15p_rationale": "P15-P detailed evaluation",
+      "evidence_chain": [
+        {
+          "phase": "P15-P-eval",
+          "model_id": "nvidia/nemotron-3-nano-30b-a3b",
+          "metric": "detailed_classification",
+          "value": "QUALITY_INSUFFICIENT",
+          "source": "P15-P detailed evaluation",
+          "confidence": "HIGH"
+        },
+        {
+          "phase": "P15-P-eval",
+          "model_id": "nvidia/nemotron-3-nano-30b-a3b",
+          "metric": "context_compatible",
+          "value": true,
+          "source": "P15-P context tests",
+          "confidence": "HIGH"
+        },
+        {
+          "phase": "P15-P-eval",
+          "model_id": "nvidia/nemotron-3-nano-30b-a3b",
+          "metric": "raw_translation_success",
+          "value": 1.0,
+          "source": "P15-P translation tests",
+          "confidence": "HIGH"
+        },
+        {
+          "phase": "P15-P-eval",
+          "model_id": "nvidia/nemotron-3-nano-30b-a3b",
+          "metric": "reliability_success",
+          "value": 1.0,
+          "source": "P15-P reliability tests",
+          "confidence": "HIGH"
+        },
+        {
+          "phase": "P15-P-eval",
+          "model_id": "nvidia/nemotron-3-nano-30b-a3b",
+          "metric": "automated_quality_pass",
+          "value": false,
+          "source": "P15-P quality scoring",
+          "confidence": "MEDIUM"
+        },
+        {
+          "phase": "P15-P-eval",
+          "model_id": "nvidia/nemotron-3-nano-30b-a3b",
+          "metric": "avg_quality_score",
+          "value": 58.0,
+          "source": "P15-P automated quality",
+          "confidence": "MEDIUM"
+        }
+      ],
+      "reconciled_classification": "QUALITY_INSUFFICIENT",
+      "reconciled_rationale": "Automated quality score below 65 threshold (avg: 58.0). Translation capability confirmed but quality insufficient for publication-grade.",
+      "classification_changed": false,
+      "confidence": "MEDIUM",
+      "key_findings": [
+        "Context compatible: True",
+        "Raw translation success: 100%",
+        "Reliability success: 100%",
+        "Automated quality pass: False",
+        "Average quality score: 58.0"
+      ]
+    }
+  ],
+  "m1_reconciliation": {
+    "model_id": "minimaxai/minimax-m3",
+    "p15p_classification": "CONTEXT_INCOMPATIBLE",
+    "p15p_rationale": "Failed context compatibility tests",
+    "evidence_chain": [
+      {
+        "phase": "P15-I",
+        "model_id": "minimaxai/minimax-m3",
+        "metric": "http_status",
+        "value": 429,
+        "source": "P15-I I-01",
+        "confidence": "HIGH"
+      },
+      {
+        "phase": "P15-I",
+        "model_id": "minimaxai/minimax-m3",
+        "metric": "http_status",
+        "value": 429,
+        "source": "P15-I I-04",
+        "confidence": "HIGH"
+      },
+      {
+        "phase": "P15-J",
+        "model_id": "minimaxai/minimax-m3",
+        "metric": "account_entitlement",
+        "value": "UNCLEAR",
+        "source": "P15-J entitlement analysis",
+        "confidence": "MEDIUM"
+      },
+      {
+        "phase": "P15-K",
+        "model_id": "minimaxai/minimax-m3",
+        "metric": "429_semantics",
+        "value": "UNKNOWN",
+        "source": "P15-K semantics analysis",
+        "confidence": "MEDIUM"
+      },
+      {
+        "phase": "P15-L",
+        "model_id": "minimaxai/minimax-m3",
+        "metric": "provider_smoke",
+        "value": null,
+        "source": "P15-L smoke test",
+        "confidence": "HIGH"
+      },
+      {
+        "phase": "P15-P-inventory",
+        "model_id": "minimaxai/minimax-m3",
+        "metric": "screening_classification",
+        "value": "PRIMARY_CANDIDATE",
+        "source": "P15-P inventory screening",
+        "confidence": "HIGH"
+      },
+      {
+        "phase": "P15-P-eval",
+        "model_id": "minimaxai/minimax-m3",
+        "metric": "detailed_classification",
+        "value": "CONTEXT_INCOMPATIBLE",
+        "source": "P15-P detailed evaluation",
+        "confidence": "HIGH"
+      },
+      {
+        "phase": "P15-P-eval",
+        "model_id": "minimaxai/minimax-m3",
+        "metric": "smoke_429_rate",
+        "value": "3/3",
+        "source": "P15-P smoke observations",
+        "confidence": "HIGH"
+      },
+      {
+        "phase": "P15-P-eval",
+        "model_id": "minimaxai/minimax-m3",
+        "metric": "reliability_429_rate",
+        "value": "5/5",
+        "source": "P15-P reliability observations",
+        "confidence": "HIGH"
+      },
+      {
+        "phase": "P15-P-eval",
+        "model_id": "minimaxai/minimax-m3",
+        "metric": "context_compatible",
+        "value": false,
+        "source": "P15-P context tests",
+        "confidence": "HIGH"
+      },
+      {
+        "phase": "P15-P-eval",
+        "model_id": "minimaxai/minimax-m3",
+        "metric": "raw_translation_success",
+        "value": 0.0,
+        "source": "P15-P translation tests",
+        "confidence": "HIGH"
+      }
+    ],
+    "reconciled_classification": "M1_PROVIDER_FAILURE_429_UNRESOLVED",
+    "reconciled_rationale": "M1 consistently returns HTTP 429 across all context sizes and invocation types. Not context incompatibility (429 at small context too). Not account entitlement denial (no 'Function not found' message). 429 lacks rate-limit headers/quota detail. Root cause unresolved - provider-side failure.",
+    "classification_changed": true,
+    "confidence": "HIGH",
+    "key_findings": [
+      "M1 (minimaxai/minimax-m3) consistently returns HTTP 429 on all invocation attempts across all phases (P15-H, P15-I, P15-K, P15-L, P15-P-eval)",
+      "P15-J confirmed M1 429 lacks rate-limit headers, Retry-After, quota detail - differs from explicit account denial (404) seen for other models",
+      "P15-P-eval confirmed 100% 429 rate across 3 smoke + 5 reliability observations",
+      "P15-P-eval confirmed context_compatible = FALSE (all context levels return 429)",
+      "P15-P-eval confirmed raw_translation_success_rate = 0% (all translation attempts return 429)",
+      "No evidence of context-size correlation with 429 (small/medium/large/high all 429)",
+      "No evidence of entitlement denial (no 'Function not found for account' message)",
+      "Root cause of 429 remains undetermined: could be model-specific rate limit, capacity, or provider routing"
+    ]
+  },
+  "c3_reconciliation": {
+    "model_id": "nvidia/nemotron-3-super-120b-a12b",
+    "p15p_classification": "REJECT_C3 / MODEL_INTRINSIC_LIMITATION",
+    "p15p_rationale": "Model intrinsic limitation: single request at safe context also <65 (0.0)",
+    "evidence_chain": [
+      {
+        "phase": "P15-N",
+        "model_id": "nvidia/nemotron-3-super-120b-a12b",
+        "metric": "canary_result",
+        "value": "UNKNOWN",
+        "source": "P15-N controlled canary",
+        "confidence": "HIGH"
+      },
+      {
+        "phase": "P15-N1",
+        "model_id": "nvidia/nemotron-3-super-120b-a12b",
+        "metric": "high_context_timeout",
+        "value": "UNKNOWN",
+        "source": "P15-N1 root cause analysis",
+        "confidence": "HIGH"
+      },
+      {
+        "phase": "P15-N2",
+        "model_id": "nvidia/nemotron-3-super-120b-a12b",
+        "metric": "extended_stability",
+        "value": "UNKNOWN",
+        "source": "P15-N2 extended stability",
+        "confidence": "HIGH"
+      },
+      {
+        "phase": "P15-N3",
+        "model_id": "nvidia/nemotron-3-super-120b-a12b",
+        "metric": "context_boundary",
+        "value": "UNKNOWN",
+        "source": "P15-N3 context boundary",
+        "confidence": "HIGH"
+      },
+      {
+        "phase": "P15-N3.5",
+        "model_id": "nvidia/nemotron-3-super-120b-a12b",
+        "metric": "quality_regression",
+        "value": {
+          "best_strategy": "exp_chunked_glossary",
+          "best_quality": 84.0,
+          "chunked_glossary_quality": 84.0,
+          "decision": "REJECT_C3"
+        },
+        "source": "P15-N3.5 quality regression",
+        "confidence": "HIGH"
+      },
+      {
+        "phase": "P15-P-inventory",
+        "model_id": "nvidia/nemotron-3-super-120b-a12b",
+        "metric": "screening_classification",
+        "value": "PRIMARY_CANDIDATE",
+        "source": "P15-P inventory screening",
+        "confidence": "HIGH"
+      }
+    ],
+    "reconciled_classification": "PROVIDER_RUNTIME_COMPATIBILITY_LIMITATION",
+    "reconciled_rationale": "C3 demonstrates translation capability (84/100 with chunked+glossary) but high-context reliability unproven. Single requests at safe boundary timeout (408). Production operating envelope not validated. Not 'model intrinsic limitation' since chunked+glossary works. Limitation is provider runtime compatibility for high-context single requests.",
+    "classification_changed": true,
+    "confidence": "HIGH",
+    "key_findings": [
+      "C3 (nvidia/nemotron-3-super-120b-a12b) demonstrated translation capability: Chunked + Glossary achieved 84/100 quality (P15-N3.5)",
+      "C3 single request at safe context boundary (90%) failed with HTTP 408 timeout (P15-N3.5 control_single)",
+      "C3 chunked without glossary failed with HTTP 408 timeout (P15-N3.5 control_chunked)",
+      "C3 chunked with character memory succeeded (HTTP 200) but quality 64.3 (P15-N3.5 exp_chunked_char_memory)",
+      "C3 chunked with glossary succeeded (HTTP 200) quality 84.0 - PASS (P15-N3.5 exp_chunked_glossary)",
+      "C3 chunked with memory+glossary succeeded (HTTP 200) quality 57.0 - FAIL (P15-N3.5 exp_chunked_memory_glossary)",
+      "C3 chunked with prev_context succeeded (HTTP 200) quality 57.0 - FAIL (P15-N3.5 exp_chunked_prev_context)",
+      "Context boundary identified at ~90% (P15-N3 safe operating envelope)",
+      "High-context requests consistently timeout (HTTP 408) not 429 (P15-N1, P15-N3)",
+      "Translation capability EXISTS but production operating envelope NOT proven stable",
+      "P15-N3.5 Gate QR decision: REJECT_C3 with rationale 'Model intrinsic limitation: single request at safe context also <65 (0.0)'"
+    ]
+  },
+  "p_candidates_reconciliation": [
+    {
+      "model_id": "minimaxai/minimax-m3",
+      "p15p_classification": "CONTEXT_INCOMPATIBLE",
+      "p15p_rationale": "P15-P detailed evaluation",
+      "evidence_chain": [
+        {
+          "phase": "P15-P-eval",
+          "model_id": "minimaxai/minimax-m3",
+          "metric": "detailed_classification",
+          "value": "CONTEXT_INCOMPATIBLE",
+          "source": "P15-P detailed evaluation",
+          "confidence": "HIGH"
+        },
+        {
+          "phase": "P15-P-eval",
+          "model_id": "minimaxai/minimax-m3",
+          "metric": "context_compatible",
+          "value": false,
+          "source": "P15-P context tests",
+          "confidence": "HIGH"
+        },
+        {
+          "phase": "P15-P-eval",
+          "model_id": "minimaxai/minimax-m3",
+          "metric": "raw_translation_success",
+          "value": 0.0,
+          "source": "P15-P translation tests",
+          "confidence": "HIGH"
+        },
+        {
+          "phase": "P15-P-eval",
+          "model_id": "minimaxai/minimax-m3",
+          "metric": "reliability_success",
+          "value": 0.0,
+          "source": "P15-P reliability tests",
+          "confidence": "HIGH"
+        },
+        {
+          "phase": "P15-P-eval",
+          "model_id": "minimaxai/minimax-m3",
+          "metric": "automated_quality_pass",
+          "value": false,
+          "source": "P15-P quality scoring",
+          "confidence": "MEDIUM"
+        }
+      ],
+      "reconciled_classification": "CONTEXT_INCOMPATIBLE",
+      "reconciled_rationale": "Failed context compatibility tests",
+      "classification_changed": false,
+      "confidence": "LOW",
+      "key_findings": [
+        "Context compatible: False",
+        "Raw translation success: 0%",
+        "Reliability success: 0%",
+        "Automated quality pass: False"
+      ]
+    },
+    {
+      "model_id": "nvidia/llama-3.1-nemoguard-8b-content-safety",
+      "p15p_classification": "QUALITY_INSUFFICIENT",
+      "p15p_rationale": "P15-P detailed evaluation",
+      "evidence_chain": [
+        {
+          "phase": "P15-P-eval",
+          "model_id": "nvidia/llama-3.1-nemoguard-8b-content-safety",
+          "metric": "detailed_classification",
+          "value": "QUALITY_INSUFFICIENT",
+          "source": "P15-P detailed evaluation",
+          "confidence": "HIGH"
+        },
+        {
+          "phase": "P15-P-eval",
+          "model_id": "nvidia/llama-3.1-nemoguard-8b-content-safety",
+          "metric": "context_compatible",
+          "value": true,
+          "source": "P15-P context tests",
+          "confidence": "HIGH"
+        },
+        {
+          "phase": "P15-P-eval",
+          "model_id": "nvidia/llama-3.1-nemoguard-8b-content-safety",
+          "metric": "raw_translation_success",
+          "value": 1.0,
+          "source": "P15-P translation tests",
+          "confidence": "HIGH"
+        },
+        {
+          "phase": "P15-P-eval",
+          "model_id": "nvidia/llama-3.1-nemoguard-8b-content-safety",
+          "metric": "reliability_success",
+          "value": 1.0,
+          "source": "P15-P reliability tests",
+          "confidence": "HIGH"
+        },
+        {
+          "phase": "P15-P-eval",
+          "model_id": "nvidia/llama-3.1-nemoguard-8b-content-safety",
+          "metric": "automated_quality_pass",
+          "value": false,
+          "source": "P15-P quality scoring",
+          "confidence": "MEDIUM"
+        },
+        {
+          "phase": "P15-P-eval",
+          "model_id": "nvidia/llama-3.1-nemoguard-8b-content-safety",
+          "metric": "avg_quality_score",
+          "value": 20.8,
+          "source": "P15-P automated quality",
+          "confidence": "MEDIUM"
+        }
+      ],
+      "reconciled_classification": "QUALITY_INSUFFICIENT",
+      "reconciled_rationale": "Automated quality score below 65 threshold (avg: 20.8). Translation capability confirmed but quality insufficient for publication-grade.",
+      "classification_changed": false,
+      "confidence": "MEDIUM",
+      "key_findings": [
+        "Context compatible: True",
+        "Raw translation success: 100%",
+        "Reliability success: 100%",
+        "Automated quality pass: False",
+        "Average quality score: 20.8"
+      ]
+    },
+    {
+      "model_id": "nvidia/nemotron-3-nano-30b-a3b",
+      "p15p_classification": "QUALITY_INSUFFICIENT",
+      "p15p_rationale": "P15-P detailed evaluation",
+      "evidence_chain": [
+        {
+          "phase": "P15-P-eval",
+          "model_id": "nvidia/nemotron-3-nano-30b-a3b",
+          "metric": "detailed_classification",
+          "value": "QUALITY_INSUFFICIENT",
+          "source": "P15-P detailed evaluation",
+          "confidence": "HIGH"
+        },
+        {
+          "phase": "P15-P-eval",
+          "model_id": "nvidia/nemotron-3-nano-30b-a3b",
+          "metric": "context_compatible",
+          "value": true,
+          "source": "P15-P context tests",
+          "confidence": "HIGH"
+        },
+        {
+          "phase": "P15-P-eval",
+          "model_id": "nvidia/nemotron-3-nano-30b-a3b",
+          "metric": "raw_translation_success",
+          "value": 1.0,
+          "source": "P15-P translation tests",
+          "confidence": "HIGH"
+        },
+        {
+          "phase": "P15-P-eval",
+          "model_id": "nvidia/nemotron-3-nano-30b-a3b",
+          "metric": "reliability_success",
+          "value": 1.0,
+          "source": "P15-P reliability tests",
+          "confidence": "HIGH"
+        },
+        {
+          "phase": "P15-P-eval",
+          "model_id": "nvidia/nemotron-3-nano-30b-a3b",
+          "metric": "automated_quality_pass",
+          "value": false,
+          "source": "P15-P quality scoring",
+          "confidence": "MEDIUM"
+        },
+        {
+          "phase": "P15-P-eval",
+          "model_id": "nvidia/nemotron-3-nano-30b-a3b",
+          "metric": "avg_quality_score",
+          "value": 58.0,
+          "source": "P15-P automated quality",
+          "confidence": "MEDIUM"
+        }
+      ],
+      "reconciled_classification": "QUALITY_INSUFFICIENT",
+      "reconciled_rationale": "Automated quality score below 65 threshold (avg: 58.0). Translation capability confirmed but quality insufficient for publication-grade.",
+      "classification_changed": false,
+      "confidence": "MEDIUM",
+      "key_findings": [
+        "Context compatible: True",
+        "Raw translation success: 100%",
+        "Reliability success: 100%",
+        "Automated quality pass: False",
+        "Average quality score: 58.0"
+      ]
+    }
+  ],
+  "limitations": [
+    "Reconciliation based on available phase artifacts; some phases may have incomplete data",
+    "P15-P evaluation only tested 3 candidates (M1, Nemoguard, Nemotron-3-Nano)",
+    "Automated quality scoring is approximate; human literary review not performed",
+    "M1 429 root cause not definitively determined without provider documentation",
+    "C3 high-context timeout vs context boundary distinction based on single-run observations"
+  ]
+}

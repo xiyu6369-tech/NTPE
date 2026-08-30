@@ -1,0 +1,592 @@
+{
+  "metadata": {
+    "task": "P0-FINAL-13-B",
+    "generated_at": "2026-08-25T12:52:00.738836",
+    "git_baseline": {
+      "head": "76ea24f1e34c0f1796236de4d676404d7e45f00a",
+      "origin_main": "76ea24f1e34c0f1796236de4d676404d7e45f00a",
+      "branch": "main",
+      "divergence": "0 0"
+    },
+    "p0_final_13_a_input": {
+      "total_paths": 66,
+      "classification_summary": {
+        "CURRENT_SUPPORTING": 19,
+        "HISTORICAL_RECORD": 11,
+        "CURRENT_CANONICAL": 27,
+        "SUPERSEDED": 9
+      }
+    }
+  },
+  "cleanup_batch_authority": {
+    "topic": "CLEANUP_BATCH",
+    "primary_canonical": "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_F6_FINAL_VERIFICATION.md",
+    "secondary_canonical": "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_E_RESOLUTION.md",
+    "supporting": [],
+    "historical_record": [],
+    "superseded": [],
+    "details": [
+      {
+        "path": "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_E_RESOLUTION.md",
+        "title": "P0 Repository Final Cleanup — STOP-02 Core WIP Resolution",
+        "classification": "CURRENT_CANONICAL",
+        "status": "??",
+        "authority_role": "SECONDARY_CANONICAL",
+        "authority_scope": "Cleanup resolution - documents the resolution of cleanup items and decisions. Authoritative for WHAT was cleaned up and WHY, but F6 verifies completeness.",
+        "rationale": "Final cleanup verification/resolution - current canonical state",
+        "is_implementation_authority": true,
+        "is_verification_authority": false,
+        "is_historical_evidence": false,
+        "baseline_ref": "76ea24f1e34c0f1796236de4d676404d7e45f00a"
+      },
+      {
+        "path": "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_F6_FINAL_VERIFICATION.md",
+        "title": "P0 Repository Final Cleanup — F6 Final Verification",
+        "classification": "CURRENT_CANONICAL",
+        "status": "??",
+        "authority_role": "PRIMARY_CANONICAL",
+        "authority_scope": "Final cleanup verification - authoritative confirmation that all cleanup batches are complete and verified. Defines the final state of the repository after cleanup.",
+        "rationale": "Final cleanup verification/resolution - current canonical state",
+        "is_implementation_authority": false,
+        "is_verification_authority": true,
+        "is_historical_evidence": false,
+        "baseline_ref": "76ea24f1e34c0f1796236de4d676404d7e45f00a"
+      }
+    ]
+  },
+  "r1_closure_authority": {
+    "topic": "R1_CLOSURE",
+    "r1_global_authority": [
+      "artifacts/P0_FINAL_13_Post_R1_Worktree_Inventory_Report.json",
+      "docs/governance/repository/P0_FINAL_12_R1_A_PRODUCTION_REFERENCE_CLOSURE.md",
+      "docs/governance/repository/P0_FINAL_12_R1_B_TEST_FIXTURE_CLOSURE.md",
+      "docs/governance/repository/P0_FINAL_12_R1_C_TOOLS_REFERENCE_CLOSURE.md",
+      "docs/governance/repository/P0_FINAL_13_POST_R1_WORKTREE_INVENTORY.md"
+    ],
+    "r1_stage_authority": [
+      "docs/governance/repository/P0_FINAL_12_R1_E_COMMIT_BOUNDARY_AUDIT.md",
+      "docs/governance/repository/P0_FINAL_12_R1_F_CURRENT_COMMIT_BOUNDARY_RECONCILIATION.md",
+      "docs/governance/repository/P0_FINAL_12_R1_F_ROOT_HYGIENE_PROVENANCE_AUDIT.md",
+      "docs/governance/repository/P0_FINAL_12_R1_H_POST_COMMIT_INTEGRITY_VERIFICATION.md"
+    ],
+    "r1_evidence": [
+      "docs/governance/repository/P0_FINAL_12_R1_F_ROOT_HYGIENE_REMEDIATION.md"
+    ],
+    "r1_historical_record": [],
+    "details": [
+      {
+        "path": "artifacts/P0_FINAL_12_R1_A_Production_Reference_Closure_Report.json",
+        "title": "P0 FINAL 12 R1 A Production Reference Closure Report",
+        "classification": "CURRENT_CANONICAL",
+        "status": "??",
+        "authority_role": "R1_EVIDENCE",
+        "authority_scope": "",
+        "rationale": "P0-FINAL-12-R1 closure deliverable - authoritative R1 baseline documentation",
+        "is_implementation_authority": false,
+        "is_verification_authority": false,
+        "is_historical_evidence": false,
+        "baseline_ref": ""
+      },
+      {
+        "path": "artifacts/P0_FINAL_12_R1_B_Test_Fixture_Closure_Report.json",
+        "title": "P0 FINAL 12 R1 B Test Fixture Closure Report",
+        "classification": "CURRENT_CANONICAL",
+        "status": "??",
+        "authority_role": "R1_EVIDENCE",
+        "authority_scope": "",
+        "rationale": "P0-FINAL-12-R1 closure deliverable - authoritative R1 baseline documentation",
+        "is_implementation_authority": false,
+        "is_verification_authority": false,
+        "is_historical_evidence": false,
+        "baseline_ref": ""
+      },
+      {
+        "path": "artifacts/P0_FINAL_12_R1_C_Tools_Reference_Closure_Report.json",
+        "title": "P0 FINAL 12 R1 C Tools Reference Closure Report",
+        "classification": "CURRENT_CANONICAL",
+        "status": "??",
+        "authority_role": "R1_EVIDENCE",
+        "authority_scope": "",
+        "rationale": "P0-FINAL-12-R1 closure deliverable - authoritative R1 baseline documentation",
+        "is_implementation_authority": false,
+        "is_verification_authority": false,
+        "is_historical_evidence": false,
+        "baseline_ref": ""
+      },
+      {
+        "path": "artifacts/P0_FINAL_12_R1_E_Commit_Boundary_Audit_Report.json",
+        "title": "P0 FINAL 12 R1 E Commit Boundary Audit Report",
+        "classification": "CURRENT_CANONICAL",
+        "status": "??",
+        "authority_role": "R1_EVIDENCE",
+        "authority_scope": "",
+        "rationale": "P0-FINAL-12-R1 closure deliverable - authoritative R1 baseline documentation",
+        "is_implementation_authority": false,
+        "is_verification_authority": false,
+        "is_historical_evidence": false,
+        "baseline_ref": ""
+      },
+      {
+        "path": "artifacts/P0_FINAL_12_R1_F_Current_Commit_Boundary_Reconciliation_Report.json",
+        "title": "P0 FINAL 12 R1 F Current Commit Boundary Reconciliation Report",
+        "classification": "CURRENT_CANONICAL",
+        "status": "??",
+        "authority_role": "R1_EVIDENCE",
+        "authority_scope": "",
+        "rationale": "P0-FINAL-12-R1 closure deliverable - authoritative R1 baseline documentation",
+        "is_implementation_authority": false,
+        "is_verification_authority": false,
+        "is_historical_evidence": false,
+        "baseline_ref": ""
+      },
+      {
+        "path": "artifacts/P0_FINAL_12_R1_F_Root_Hygiene_Provenance_Audit_Report.json",
+        "title": "P0 FINAL 12 R1 F Root Hygiene Provenance Audit Report",
+        "classification": "CURRENT_CANONICAL",
+        "status": "??",
+        "authority_role": "R1_EVIDENCE",
+        "authority_scope": "",
+        "rationale": "P0-FINAL-12-R1 closure deliverable - authoritative R1 baseline documentation",
+        "is_implementation_authority": false,
+        "is_verification_authority": false,
+        "is_historical_evidence": false,
+        "baseline_ref": ""
+      },
+      {
+        "path": "artifacts/P0_FINAL_12_R1_F_Root_Hygiene_Remediation_Report.json",
+        "title": "P0 FINAL 12 R1 F Root Hygiene Remediation Report",
+        "classification": "CURRENT_CANONICAL",
+        "status": "??",
+        "authority_role": "R1_EVIDENCE",
+        "authority_scope": "",
+        "rationale": "P0-FINAL-12-R1 closure deliverable - authoritative R1 baseline documentation",
+        "is_implementation_authority": false,
+        "is_verification_authority": false,
+        "is_historical_evidence": false,
+        "baseline_ref": ""
+      },
+      {
+        "path": "artifacts/P0_FINAL_12_R1_H_Post_Commit_Integrity_Verification_Report.json",
+        "title": "P0 FINAL 12 R1 H Post Commit Integrity Verification Report",
+        "classification": "CURRENT_CANONICAL",
+        "status": "??",
+        "authority_role": "R1_EVIDENCE",
+        "authority_scope": "",
+        "rationale": "P0-FINAL-12-R1 closure deliverable - authoritative R1 baseline documentation",
+        "is_implementation_authority": false,
+        "is_verification_authority": false,
+        "is_historical_evidence": false,
+        "baseline_ref": ""
+      },
+      {
+        "path": "artifacts/P0_FINAL_13_Post_R1_Worktree_Inventory_Report.json",
+        "title": "P0 FINAL 13 Post R1 Worktree Inventory Report",
+        "classification": "CURRENT_CANONICAL",
+        "status": "??",
+        "authority_role": "R1_GLOBAL_AUTHORITY",
+        "authority_scope": "Post-R1 baseline inventory - authoritative snapshot of worktree after R1 closure",
+        "rationale": "P0-FINAL-13 audit report - current canonical",
+        "is_implementation_authority": false,
+        "is_verification_authority": true,
+        "is_historical_evidence": false,
+        "baseline_ref": "76ea24f1e34c0f1796236de4d676404d7e45f00a"
+      },
+      {
+        "path": "docs/governance/repository/P0_FINAL_12_R1_A_PRODUCTION_REFERENCE_CLOSURE.md",
+        "title": "P0-FINAL-12-R1-A Production Canonical Boundary Migration — Closure Report",
+        "classification": "CURRENT_CANONICAL",
+        "status": "??",
+        "authority_role": "R1_GLOBAL_AUTHORITY",
+        "authority_scope": "R1 Global Closure - P0-FINAL-12-R1-A Production Canonical Boundary Migration — Closure Report",
+        "rationale": "P0-FINAL-12-R1 closure deliverable - authoritative R1 baseline documentation",
+        "is_implementation_authority": true,
+        "is_verification_authority": false,
+        "is_historical_evidence": false,
+        "baseline_ref": "76ea24f1e34c0f1796236de4d676404d7e45f00a"
+      },
+      {
+        "path": "docs/governance/repository/P0_FINAL_12_R1_B_TEST_FIXTURE_CLOSURE.md",
+        "title": "P0-FINAL-12-R1-B Test Fixture / Integration Dependency Closure — Final Report",
+        "classification": "CURRENT_CANONICAL",
+        "status": "??",
+        "authority_role": "R1_GLOBAL_AUTHORITY",
+        "authority_scope": "R1 Global Closure - P0-FINAL-12-R1-B Test Fixture / Integration Dependency Closure — Final Report",
+        "rationale": "P0-FINAL-12-R1 closure deliverable - authoritative R1 baseline documentation",
+        "is_implementation_authority": true,
+        "is_verification_authority": false,
+        "is_historical_evidence": false,
+        "baseline_ref": "76ea24f1e34c0f1796236de4d676404d7e45f00a"
+      },
+      {
+        "path": "docs/governance/repository/P0_FINAL_12_R1_C_TOOLS_REFERENCE_CLOSURE.md",
+        "title": "P0-FINAL-12-R1-C Tools / Generator Canonical Path Migration — Closure Report",
+        "classification": "CURRENT_CANONICAL",
+        "status": "??",
+        "authority_role": "R1_GLOBAL_AUTHORITY",
+        "authority_scope": "R1 Global Closure - P0-FINAL-12-R1-C Tools / Generator Canonical Path Migration — Closure Report",
+        "rationale": "P0-FINAL-12-R1 closure deliverable - authoritative R1 baseline documentation",
+        "is_implementation_authority": true,
+        "is_verification_authority": false,
+        "is_historical_evidence": false,
+        "baseline_ref": "76ea24f1e34c0f1796236de4d676404d7e45f00a"
+      },
+      {
+        "path": "docs/governance/repository/P0_FINAL_12_R1_E_COMMIT_BOUNDARY_AUDIT.md",
+        "title": "P0-FINAL-12-R1-E — Remediation Commit Boundary & Worktree Preservation Audit",
+        "classification": "CURRENT_CANONICAL",
+        "status": "??",
+        "authority_role": "R1_STAGE_AUTHORITY",
+        "authority_scope": "R1 Stage Authority - P0-FINAL-12-R1-E — Remediation Commit Boundary & Worktree Preservation Audit",
+        "rationale": "P0-FINAL-12-R1 closure deliverable - authoritative R1 baseline documentation",
+        "is_implementation_authority": false,
+        "is_verification_authority": true,
+        "is_historical_evidence": false,
+        "baseline_ref": "76ea24f1e34c0f1796236de4d676404d7e45f00a"
+      },
+      {
+        "path": "docs/governance/repository/P0_FINAL_12_R1_F_CURRENT_COMMIT_BOUNDARY_RECONCILIATION.md",
+        "title": "P0-FINAL-12-R1-F — Current-State Commit Boundary Reconciliation",
+        "classification": "CURRENT_CANONICAL",
+        "status": "??",
+        "authority_role": "R1_STAGE_AUTHORITY",
+        "authority_scope": "R1 Stage Authority - P0-FINAL-12-R1-F — Current-State Commit Boundary Reconciliation",
+        "rationale": "P0-FINAL-12-R1 closure deliverable - authoritative R1 baseline documentation",
+        "is_implementation_authority": false,
+        "is_verification_authority": true,
+        "is_historical_evidence": false,
+        "baseline_ref": "76ea24f1e34c0f1796236de4d676404d7e45f00a"
+      },
+      {
+        "path": "docs/governance/repository/P0_FINAL_12_R1_F_ROOT_HYGIENE_PROVENANCE_AUDIT.md",
+        "title": "P0-FINAL-12-R1-F — Root Hygiene Provenance Audit",
+        "classification": "CURRENT_CANONICAL",
+        "status": "??",
+        "authority_role": "R1_STAGE_AUTHORITY",
+        "authority_scope": "R1 Stage Authority - P0-FINAL-12-R1-F — Root Hygiene Provenance Audit",
+        "rationale": "P0-FINAL-12-R1 closure deliverable - authoritative R1 baseline documentation",
+        "is_implementation_authority": false,
+        "is_verification_authority": true,
+        "is_historical_evidence": false,
+        "baseline_ref": "76ea24f1e34c0f1796236de4d676404d7e45f00a"
+      },
+      {
+        "path": "docs/governance/repository/P0_FINAL_12_R1_F_ROOT_HYGIENE_REMEDIATION.md",
+        "title": "P0-FINAL-12-R1-F — Root Hygiene Remediation",
+        "classification": "CURRENT_CANONICAL",
+        "status": "??",
+        "authority_role": "R1_EVIDENCE",
+        "authority_scope": "R1 Evidence - P0-FINAL-12-R1-F — Root Hygiene Remediation",
+        "rationale": "P0-FINAL-12-R1 closure deliverable - authoritative R1 baseline documentation",
+        "is_implementation_authority": false,
+        "is_verification_authority": false,
+        "is_historical_evidence": true,
+        "baseline_ref": "76ea24f1e34c0f1796236de4d676404d7e45f00a"
+      },
+      {
+        "path": "docs/governance/repository/P0_FINAL_12_R1_H_POST_COMMIT_INTEGRITY_VERIFICATION.md",
+        "title": "P0-FINAL-12-R1-H — Post-Commit Integrity / Push Gate Verification",
+        "classification": "CURRENT_CANONICAL",
+        "status": "??",
+        "authority_role": "R1_STAGE_AUTHORITY",
+        "authority_scope": "R1 Stage Authority - P0-FINAL-12-R1-H — Post-Commit Integrity / Push Gate Verification",
+        "rationale": "P0-FINAL-12-R1 closure deliverable - authoritative R1 baseline documentation",
+        "is_implementation_authority": false,
+        "is_verification_authority": true,
+        "is_historical_evidence": false,
+        "baseline_ref": "76ea24f1e34c0f1796236de4d676404d7e45f00a"
+      },
+      {
+        "path": "docs/governance/repository/P0_FINAL_13_POST_R1_WORKTREE_INVENTORY.md",
+        "title": "P0-FINAL-13 POST-R1 WORKTREE INVENTORY & SCOPE DEFINITION",
+        "classification": "CURRENT_CANONICAL",
+        "status": "??",
+        "authority_role": "R1_GLOBAL_AUTHORITY",
+        "authority_scope": "Post-R1 baseline inventory - authoritative snapshot of worktree after R1 closure",
+        "rationale": "P0-FINAL-13 series deliverable - current authoritative inventory/handoff document",
+        "is_implementation_authority": false,
+        "is_verification_authority": true,
+        "is_historical_evidence": false,
+        "baseline_ref": "76ea24f1e34c0f1796236de4d676404d7e45f00a"
+      }
+    ]
+  },
+  "root_hygiene_authority": {
+    "topic": "ROOT_HYGIENE",
+    "primary_canonical": null,
+    "secondary_canonical": null,
+    "supporting": [
+      "docs/governance/repository/P0_FINAL_12_R1_F_ROOT_HYGIENE_PROVENANCE_AUDIT.md",
+      "docs/governance/repository/P0_FINAL_12_R1_F_ROOT_HYGIENE_REMEDIATION.md"
+    ],
+    "historical_record": [],
+    "details": [
+      {
+        "path": "artifacts/P0_FINAL_12_R1_F_Root_Hygiene_Provenance_Audit_Report.json",
+        "title": "P0 FINAL 12 R1 F Root Hygiene Provenance Audit Report",
+        "classification": "CURRENT_CANONICAL",
+        "status": "??",
+        "authority_role": "R1_EVIDENCE",
+        "authority_scope": "",
+        "rationale": "P0-FINAL-12-R1 closure deliverable - authoritative R1 baseline documentation",
+        "is_implementation_authority": false,
+        "is_verification_authority": false,
+        "is_historical_evidence": false,
+        "baseline_ref": ""
+      },
+      {
+        "path": "artifacts/P0_FINAL_12_R1_F_Root_Hygiene_Remediation_Report.json",
+        "title": "P0 FINAL 12 R1 F Root Hygiene Remediation Report",
+        "classification": "CURRENT_CANONICAL",
+        "status": "??",
+        "authority_role": "R1_EVIDENCE",
+        "authority_scope": "",
+        "rationale": "P0-FINAL-12-R1 closure deliverable - authoritative R1 baseline documentation",
+        "is_implementation_authority": false,
+        "is_verification_authority": false,
+        "is_historical_evidence": false,
+        "baseline_ref": ""
+      },
+      {
+        "path": "docs/governance/repository/P0_FINAL_12_R1_F_ROOT_HYGIENE_PROVENANCE_AUDIT.md",
+        "title": "P0-FINAL-12-R1-F — Root Hygiene Provenance Audit",
+        "classification": "CURRENT_CANONICAL",
+        "status": "??",
+        "authority_role": "R1_EVIDENCE",
+        "authority_scope": "R1 Root Hygiene Evidence - P0-FINAL-12-R1-F — Root Hygiene Provenance Audit",
+        "rationale": "P0-FINAL-12-R1 closure deliverable - authoritative R1 baseline documentation",
+        "is_implementation_authority": false,
+        "is_verification_authority": false,
+        "is_historical_evidence": true,
+        "baseline_ref": "76ea24f1e34c0f1796236de4d676404d7e45f00a"
+      },
+      {
+        "path": "docs/governance/repository/P0_FINAL_12_R1_F_ROOT_HYGIENE_REMEDIATION.md",
+        "title": "P0-FINAL-12-R1-F — Root Hygiene Remediation",
+        "classification": "CURRENT_CANONICAL",
+        "status": "??",
+        "authority_role": "R1_EVIDENCE",
+        "authority_scope": "R1 Root Hygiene Evidence - P0-FINAL-12-R1-F — Root Hygiene Remediation",
+        "rationale": "P0-FINAL-12-R1 closure deliverable - authoritative R1 baseline documentation",
+        "is_implementation_authority": false,
+        "is_verification_authority": false,
+        "is_historical_evidence": true,
+        "baseline_ref": "76ea24f1e34c0f1796236de4d676404d7e45f00a"
+      }
+    ]
+  },
+  "stage5_authority": {
+    "topic": "STAGE5",
+    "primary_canonical": "docs/governance/rm8/P0_STAGE5_FINAL_ACCEPTANCE_REVIEW.md",
+    "secondary_canonical": "docs/governance/rm8/P0_STAGE5_INTEGRATED_REVIEW.md",
+    "supporting": [
+      "docs/governance/rm8/P0_STAGE5_ROOT_LEVEL_INVENTORY.md"
+    ],
+    "historical_record": [],
+    "details": [
+      {
+        "path": "docs/governance/rm8/P0_STAGE5_FINAL_ACCEPTANCE_REVIEW.md",
+        "title": "P0 Stage 5 Final Acceptance / Freeze Review",
+        "classification": "CURRENT_CANONICAL",
+        "status": "??",
+        "authority_role": "PRIMARY_CANONICAL",
+        "authority_scope": "Stage 5 Final Acceptance Review - authoritative acceptance of Stage 5 deliverables. Defines what was accepted as complete.",
+        "rationale": "Stage 5 final acceptance/integrated review - authoritative",
+        "is_implementation_authority": false,
+        "is_verification_authority": true,
+        "is_historical_evidence": false,
+        "baseline_ref": "76ea24f1e34c0f1796236de4d676404d7e45f00a"
+      },
+      {
+        "path": "docs/governance/rm8/P0_STAGE5_INTEGRATED_REVIEW.md",
+        "title": "P0 Stage 5.1–5.7 Integrated Review",
+        "classification": "CURRENT_CANONICAL",
+        "status": "??",
+        "authority_role": "SECONDARY_CANONICAL",
+        "authority_scope": "Stage 5 Integrated Review - comprehensive review of all Stage 5 components. Supporting evidence for final acceptance.",
+        "rationale": "Stage 5 final acceptance/integrated review - authoritative",
+        "is_implementation_authority": false,
+        "is_verification_authority": true,
+        "is_historical_evidence": false,
+        "baseline_ref": "76ea24f1e34c0f1796236de4d676404d7e45f00a"
+      },
+      {
+        "path": "docs/governance/rm8/P0_STAGE5_ROOT_LEVEL_INVENTORY.md",
+        "title": "P0 Stage 5 Root-Level Inventory",
+        "classification": "CURRENT_CANONICAL",
+        "status": "??",
+        "authority_role": "SECONDARY_CANONICAL",
+        "authority_scope": "Stage 5 Root Level Inventory - authoritative inventory of repository root at Stage 5 completion. Reference for structural compliance.",
+        "rationale": "Root level inventory - authoritative reference",
+        "is_implementation_authority": true,
+        "is_verification_authority": false,
+        "is_historical_evidence": false,
+        "baseline_ref": "76ea24f1e34c0f1796236de4d676404d7e45f00a"
+      }
+    ]
+  },
+  "broken_reference_classification": {
+    "HISTORICAL_DOCUMENTATION": {
+      "count": 728,
+      "description": "References in historical documents to artifacts that were deleted as part of cleanup - expected and correct",
+      "examples": [
+        "artifacts/P0_FINAL_07_Worktree_Reconciliation_Report.json -> tests/literary/outputs/Regression_History.json\",",
+        "artifacts/P0_FINAL_07_Worktree_Reconciliation_Report.json -> artifacts/DUMMY-TXT-04_Root_Creation_Remediation_Report.json\",",
+        "artifacts/P0_FINAL_07_Worktree_Reconciliation_Report.json -> docs/governance/repository/DUMMY-TXT-04_ROOT_CREATION_REMEDIATION.md\",",
+        "artifacts/P0_FINAL_07_Worktree_Reconciliation_Report.json -> docs/governance/repository/P0_STAGE5_SERIES_ID_ORIGIN_TRACE.md\",",
+        "artifacts/P0_FINAL_07_Worktree_Reconciliation_Report.json -> artifacts/rm6_canary/legacy_kr/novel_sample_live_progress.json\","
+      ]
+    },
+    "CURRENT_GOVERNANCE_REFERENCE": {
+      "count": 2395,
+      "description": "References in CURRENT_CANONICAL docs to paths that should exist - potential defect",
+      "examples": [
+        "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_D_RECONCILIATION.md -> core/`",
+        "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_D_RECONCILIATION.md -> core/`,",
+        "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_D_RECONCILIATION.md -> tests/literary/outputs/`",
+        "artifacts/P0_FINAL_11_Reference_Migration_Design_Report.json -> artifacts/te_v72_stage1223/TE_V72_STAGE1223_SOURCE_EXCERPT_FREEZE.json\",",
+        "artifacts/P0_FINAL_11_Reference_Migration_Design_Report.json -> core/translation_quality_defects/catalog.py\""
+      ]
+    },
+    "CURRENT_OPERATIONAL_REFERENCE": {
+      "count": 0,
+      "description": "References in operational docs (scripts, tools) to missing paths - potential defect",
+      "examples": []
+    },
+    "DELETED_ARTIFACT_REFERENCE": {
+      "count": 0,
+      "description": "References to artifacts explicitly deleted during cleanup - historical documentation",
+      "examples": []
+    },
+    "LEGACY_PATH_REFERENCE": {
+      "count": 124,
+      "description": "References to legacy paths (tools/one_shots/, artifacts/te_v*, p0_productization/) - historical",
+      "examples": [
+        "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_D_RECONCILIATION.md -> artifacts/rm8_5_audit/",
+        "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_D_RECONCILIATION.md -> artifacts/p0_productization/P0_ADAPTER_ARCHITECTURE.md",
+        "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_D_RECONCILIATION.md -> artifacts/p0_productization/P0_IMPLEMENTATION_SPECIFICATION.md",
+        "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_D_RECONCILIATION.md -> artifacts/p0_productization/P0_RM8_DELIVERY_REACHABILITY_REPORT.md",
+        "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_D_RECONCILIATION.md -> artifacts/p0_productization/P0_RUNTIME_CONTRACT_REPORT.md"
+      ]
+    },
+    "EXPECTED_ARCHIVAL_REFERENCE": {
+      "count": 0,
+      "description": "References to archived content that should remain in archive/ - correct by design",
+      "examples": []
+    },
+    "UNKNOWN": {
+      "count": 0,
+      "description": "Unclassified reference patterns",
+      "examples": []
+    }
+  },
+  "primary_canonical_authorities": [
+    "artifacts/P0_FINAL_12_B5_Staged_Scope_Reconciliation_Report.json",
+    "artifacts/P0_FINAL_13_Post_R1_Worktree_Inventory_Report.json",
+    "docs/governance/repository/P0_FINAL_12_B5_SCOPE_RECONCILIATION.md",
+    "docs/governance/repository/P0_FINAL_12_B5_STAGED_SCOPE_RECONCILIATION.md",
+    "docs/governance/repository/P0_FINAL_12_B5_TEST_MIGRATION_INVENTORY.md",
+    "docs/governance/repository/P0_FINAL_12_R1_A_PRODUCTION_REFERENCE_CLOSURE.md",
+    "docs/governance/repository/P0_FINAL_12_R1_B_TEST_FIXTURE_CLOSURE.md",
+    "docs/governance/repository/P0_FINAL_12_R1_C_TOOLS_REFERENCE_CLOSURE.md",
+    "docs/governance/repository/P0_FINAL_12_R1_E_COMMIT_BOUNDARY_AUDIT.md",
+    "docs/governance/repository/P0_FINAL_12_R1_F_CURRENT_COMMIT_BOUNDARY_RECONCILIATION.md",
+    "docs/governance/repository/P0_FINAL_12_R1_F_ROOT_HYGIENE_PROVENANCE_AUDIT.md",
+    "docs/governance/repository/P0_FINAL_12_R1_H_POST_COMMIT_INTEGRITY_VERIFICATION.md",
+    "docs/governance/repository/P0_FINAL_13_POST_R1_WORKTREE_INVENTORY.md",
+    "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_F6_FINAL_VERIFICATION.md",
+    "docs/governance/rm8/P0_STAGE5_FINAL_ACCEPTANCE_REVIEW.md"
+  ],
+  "secondary_canonical_authorities": [
+    "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_E_RESOLUTION.md",
+    "docs/governance/rm8/P0_STAGE5_INTEGRATED_REVIEW.md",
+    "docs/governance/rm8/P0_STAGE5_ROOT_LEVEL_INVENTORY.md"
+  ],
+  "supporting_documents": [
+    "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_D_RECONCILIATION.md",
+    "artifacts/P0_FINAL_11_Reference_Migration_Design_Report.json",
+    "artifacts/P0_FINAL_12_R1_A_Production_Reference_Closure_Report.json",
+    "artifacts/P0_FINAL_12_R1_B_Test_Fixture_Closure_Report.json",
+    "artifacts/P0_FINAL_12_R1_C_Tools_Reference_Closure_Report.json",
+    "artifacts/P0_FINAL_12_R1_E_Commit_Boundary_Audit_Report.json",
+    "artifacts/P0_FINAL_12_R1_F_Current_Commit_Boundary_Reconciliation_Report.json",
+    "artifacts/P0_FINAL_12_R1_F_Root_Hygiene_Provenance_Audit_Report.json",
+    "artifacts/P0_FINAL_12_R1_F_Root_Hygiene_Remediation_Report.json",
+    "artifacts/P0_FINAL_12_R1_H_Post_Commit_Integrity_Verification_Report.json",
+    "docs/governance/repository/P0_FINAL_11_REFERENCE_MIGRATION_DESIGN.md",
+    "docs/governance/repository/P0_FINAL_12_R1_F_ROOT_HYGIENE_REMEDIATION.md",
+    "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_A_RECONCILIATION.md",
+    "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_B_CORE_RECONCILIATION.md",
+    "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_B_PARTIAL_RECONCILIATION.md",
+    "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_C_RECONCILIATION.md",
+    "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F1_RECONCILIATION.md",
+    "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F3_RECONCILIATION.md",
+    "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F4_1_RECONCILIATION.md",
+    "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F4_2_RECONCILIATION.md",
+    "docs/governance/rm8/P0_STAGE5_BATCH5_2_ATOMIC_DELIVERY_REPORT.md",
+    "docs/governance/rm8/P0_STAGE5_BATCH5_2_GIT_DELIVERY_RECONCILIATION.md",
+    "docs/governance/rm8/P0_STAGE5_BATCH5_3_GIT_DELIVERY_RECONCILIATION.md",
+    "docs/governance/rm8/P0_STAGE5_BATCH5_4_GIT_DELIVERY_RECONCILIATION.md",
+    "docs/governance/rm8/P0_STAGE5_BATCH5_5_GIT_DELIVERY_RECONCILIATION.md",
+    "docs/governance/rm8/P0_STAGE5_BATCH5_6_GIT_DELIVERY_RECONCILIATION.md",
+    "docs/governance/rm8/P0_STAGE5_BATCH5_7_GIT_DELIVERY_RECONCILIATION.md",
+    "docs/governance/rm8/P0_STAGE5_BATCH5_8_1_GIT_DELIVERY_RECONCILIATION.md"
+  ],
+  "historical_records": [
+    "artifacts/P0_FINAL_07_Worktree_Reconciliation_Report.json",
+    "artifacts/P0_FINAL_09_Residual_Worktree_Reconciliation_Report.json",
+    "artifacts/P0_FINAL_10A_STOP_10_06_Baseline_Reconciliation_Report.json",
+    "artifacts/P0_FINAL_10_R2_Production_Reference_Reconciliation_Report.json",
+    "docs/governance/repository/P0_FINAL_07_WORKTREE_RECONCILIATION.md",
+    "docs/governance/repository/P0_FINAL_09_RESIDUAL_WORKTREE_RECONCILIATION.md",
+    "docs/governance/repository/P0_FINAL_10A_STOP_10_06_BASELINE_RECONCILIATION.md",
+    "docs/governance/repository/P0_FINAL_10_R2_PRODUCTION_REFERENCE_RECONCILIATION.md",
+    "docs/governance/rm8/P0_STAGE5_BATCH5_3_IMPLEMENTATION_TASK.md",
+    "docs/governance/rm8/P0_STAGE5_BATCH5_8_BLOCKER_RECONCILIATION.md",
+    "docs/governance/rm8/P0_STAGE5_BATCH5_8_IMPLEMENTATION_TASK.md"
+  ],
+  "superseded_records": [
+    "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_D_PREFLIGHT.md",
+    "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F2_PREFLIGHT.md",
+    "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F3_PREFLIGHT.md",
+    "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F4_PREFLIGHT.md",
+    "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F5_PREFLIGHT.md",
+    "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F_PREFLIGHT.md",
+    "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_PREFLIGHT.md",
+    "docs/governance/rm8/P0_STAGE5_BATCH5_3_SERIES_ENTITY_PREFLIGHT_AUDIT.md",
+    "docs/governance/rm8/P0_STAGE5_BATCH5_8_PREFLIGHT_AUDIT.md"
+  ],
+  "operational_authority_risks": [
+    "CURRENT_GOVERNANCE_REFERENCE: 2395 broken refs in current canonical/supporting docs - may indicate missing dependencies"
+  ],
+  "recommended_future_remediation": [
+    "Consider consolidating CLEANUP_BATCH primary/secondary into single verification document",
+    "R1_CLOSURE: Stage authority docs (E, F, H) could be consolidated into a single R1 verification index",
+    "ROOT_HYGIENE: P0-FINAL-13-R1 is current policy; R1-H is historical evidence - no action needed",
+    "STAGE5: Final Acceptance is primary; Integrated Review and Root Inventory are supporting - clear hierarchy established",
+    "Broken references in historical/legacy docs should remain as-is (documenting history)",
+    "Any CURRENT_GOVERNANCE_REFERENCE broken refs should be investigated individually before remediation"
+  ],
+  "explicit_non_actions": [
+    "No files deleted",
+    "No files moved",
+    "No files renamed",
+    "No governance documents rewritten",
+    "No broken references repaired",
+    "No source/test/tool modifications",
+    "Protected Worktree preserved",
+    "Generated Outputs preserved",
+    "Historical/Legacy preserved"
+  ],
+  "validation": {
+    "head": "76ea24f1e34c0f1796236de4d676404d7e45f00a",
+    "origin_main": "76ea24f1e34c0f1796236de4d676404d7e45f00a",
+    "divergence": "0 0",
+    "staged": 0,
+    "committed": 0,
+    "pushed": 0,
+    "provider_network_translation": "0/0/0",
+    "root_hygiene": "PASS",
+    "git_diff_check": "PASS",
+    "ntpe_validate_py": "PASS WITH BASELINE WARNING"
+  }
+}

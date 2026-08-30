@@ -1,0 +1,179 @@
+{
+  "head_commit": "8c999b1219f65a6afaeaf0062e6c43f72691c188",
+  "origin_main_commit": "8c999b1219f65a6afaeaf0062e6c43f72691c188",
+  "divergence": "0/0",
+  "branch": "main",
+  "python_version": "3.14.6",
+  "client_path": "core/translation_engine/nvidia_client.py",
+  "test_timestamp": "2026-08-26T19:36:06.280250Z",
+  "endpoint": "https://integrate.api.nvidia.com/v1/chat/completions",
+  "credential_present": true,
+  "credential_source": "NVIDIA_API_KEY",
+  "models": [
+    {
+      "model": "minimaxai/minimax-m3",
+      "in_ntpe_model_catalog": true,
+      "in_ntpe_provider_adapter": true,
+      "in_provider_config_json": true,
+      "ntpe_catalog_enabled": true,
+      "ntpe_catalog_experimental": false,
+      "ntpe_catalog_context_notes": "Static catalog entry used by the existing NVIDIA CLI.",
+      "in_provider_catalog": true,
+      "provider_catalog_owned_by": "minimaxai",
+      "provider_catalog_created": 735790403,
+      "endpoint_supports_model": true,
+      "account_entitlement_evidence": "UNCLEAR",
+      "http_status": 429,
+      "response_body": "{\"status\":429,\"title\":\"Too Many Requests\"}",
+      "response_headers": {
+        "Date": "Wed, 26 Aug 2026 19:14:34 GMT",
+        "Content-Type": "application/problem+json",
+        "Content-Length": "42",
+        "Connection": "keep-alive",
+        "Vary": "Origin"
+      },
+      "provider_request_id": null,
+      "confidence": "LOW",
+      "classification": "UNCLEAR"
+    },
+    {
+      "model": "nvidia/llama-3.1-nemotron-70b-instruct",
+      "in_ntpe_model_catalog": false,
+      "in_ntpe_provider_adapter": false,
+      "in_provider_config_json": false,
+      "ntpe_catalog_enabled": null,
+      "ntpe_catalog_experimental": null,
+      "ntpe_catalog_context_notes": null,
+      "in_provider_catalog": true,
+      "provider_catalog_owned_by": "nvidia",
+      "provider_catalog_created": 735790403,
+      "endpoint_supports_model": true,
+      "account_entitlement_evidence": "NOT_ENTITLED",
+      "http_status": 404,
+      "response_body": "{\"status\":404,\"title\":\"Not Found\",\"detail\":\"Function '9b96341b-9791-4db9-a00d-4e43aa192a39': Not found for account '1V0ANVqp2OBpPKuHKGA1zY_YgNj09uy7yYnM52Boax4'\"}",
+      "response_headers": {
+        "Date": "Wed, 26 Aug 2026 19:14:36 GMT",
+        "Content-Type": "application/problem+json",
+        "Content-Length": "162",
+        "Connection": "keep-alive",
+        "Vary": "Origin"
+      },
+      "provider_request_id": null,
+      "confidence": "HIGH",
+      "classification": "ACCOUNT_NOT_ENTITLED"
+    },
+    {
+      "model": "meta/llama-3.2-90b-vision-instruct",
+      "in_ntpe_model_catalog": false,
+      "in_ntpe_provider_adapter": false,
+      "in_provider_config_json": false,
+      "ntpe_catalog_enabled": null,
+      "ntpe_catalog_experimental": null,
+      "ntpe_catalog_context_notes": null,
+      "in_provider_catalog": true,
+      "provider_catalog_owned_by": "meta",
+      "provider_catalog_created": 735790403,
+      "endpoint_supports_model": true,
+      "account_entitlement_evidence": "ENTITLED",
+      "http_status": 200,
+      "response_body": "{\"id\":\"chatcmpl-439fa62e3f124f03b090e07cd8fb4f2e\",\"object\":\"chat.completion\",\"created\":1787771672,\"model\":\"meta/llama-3.2-90b-vision-instruct\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"reasoning_content\":null,\"content\":\"你好。这是测试。\",\"tool_calls\":[]},\"logprobs\":null,\"finish_reason\":\"stop\",\"stop_reason\":null}],\"usage\":{\"prompt_tokens\":61,\"total_tokens\":68,\"completion_tokens\":7,\"prompt_tokens_details\":null},\"prompt_logprobs\":null}",
+      "response_headers": {
+        "Date": "Wed, 26 Aug 2026 19:14:34 GMT",
+        "Content-Type": "application/json",
+        "Content-Length": "455",
+        "Connection": "keep-alive",
+        "Access-Control-Expose-Headers": "nvcf-reqid",
+        "Nvcf-Reqid": "08dee51b-7b3a-45bb-9e94-06329e3793db",
+        "Nvcf-Status": "fulfilled",
+        "Server": "uvicorn",
+        "Vary": "Origin"
+      },
+      "provider_request_id": "chatcmpl-439fa62e3f124f03b090e07cd8fb4f2e",
+      "confidence": "HIGH",
+      "classification": "ACCOUNT_ENTITLED"
+    }
+  ],
+  "official_catalog_evidence": {
+    "minimaxai/minimax-m3": {
+      "in_provider_catalog": true,
+      "owned_by": "minimaxai",
+      "endpoint_supports": true
+    },
+    "nvidia/llama-3.1-nemotron-70b-instruct": {
+      "in_provider_catalog": true,
+      "owned_by": "nvidia",
+      "endpoint_supports": true
+    },
+    "meta/llama-3.2-90b-vision-instruct": {
+      "in_provider_catalog": true,
+      "owned_by": "meta",
+      "endpoint_supports": true
+    }
+  },
+  "provider_endpoint_evidence": {
+    "endpoint": "https://integrate.api.nvidia.com/v1/chat/completions",
+    "model_endpoint_available": true,
+    "models_endpoint_available": true
+  },
+  "account_evidence": {
+    "minimaxai/minimax-m3": {
+      "account_entitlement_evidence": "UNCLEAR",
+      "http_status": 429,
+      "provider_request_id": null,
+      "classification": "UNCLEAR"
+    },
+    "nvidia/llama-3.1-nemotron-70b-instruct": {
+      "account_entitlement_evidence": "NOT_ENTITLED",
+      "http_status": 404,
+      "provider_request_id": null,
+      "classification": "ACCOUNT_NOT_ENTITLED"
+    },
+    "meta/llama-3.2-90b-vision-instruct": {
+      "account_entitlement_evidence": "ENTITLED",
+      "http_status": 200,
+      "provider_request_id": "chatcmpl-439fa62e3f124f03b090e07cd8fb4f2e",
+      "classification": "ACCOUNT_ENTITLED"
+    }
+  },
+  "local_configuration_evidence": {
+    "minimaxai/minimax-m3": {
+      "in_ntpe_model_catalog": true,
+      "in_ntpe_provider_adapter": true,
+      "in_provider_config_json": true,
+      "catalog_enabled": true,
+      "catalog_experimental": false
+    },
+    "nvidia/llama-3.1-nemotron-70b-instruct": {
+      "in_ntpe_model_catalog": false,
+      "in_ntpe_provider_adapter": false,
+      "in_provider_config_json": false,
+      "catalog_enabled": null,
+      "catalog_experimental": null
+    },
+    "meta/llama-3.2-90b-vision-instruct": {
+      "in_ntpe_model_catalog": false,
+      "in_ntpe_provider_adapter": false,
+      "in_provider_config_json": false,
+      "catalog_enabled": null,
+      "catalog_experimental": null
+    }
+  },
+  "previous_classification": "NON_UNIFORM_PROVIDER_BEHAVIOR",
+  "current_classification": "MODEL_ACCOUNT_ENTITLEMENT_DIFFERENTIAL",
+  "confidence": "HIGH",
+  "production_changes": {
+    "retry": false,
+    "backoff": false,
+    "rpm_limiter": false,
+    "admission": false,
+    "runtime": false
+  },
+  "rm6_promotion": "BLOCKED",
+  "limitations": [
+    "No direct account entitlement API available",
+    "Cannot distinguish M1 429 cause without provider documentation",
+    "M2 404 indicates account-level function deployment absence, not necessarily model-level denial",
+    "Provider /v1/models lists model but doesn't guarantee account access",
+    "No official NVIDIA documentation on 429 vs 404 semantics for entitlement"
+  ]
+}

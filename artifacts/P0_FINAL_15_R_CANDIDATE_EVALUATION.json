@@ -1,0 +1,208 @@
+{
+  "head_commit": "8c999b1219f65a6afaeaf0062e6c43f72691c188",
+  "origin_main_commit": "8c999b1219f65a6afaeaf0062e6c43f72691c188",
+  "divergence": "0/0",
+  "branch": "main",
+  "python_version": "3.14.6",
+  "test_timestamp": "2026-08-29T07:00:17.047999Z",
+  "candidates": [
+    {
+      "model_id": "gpt-4o",
+      "provider": "OpenAI",
+      "api_type": "openai-compatible",
+      "smoke_results": [
+        {
+          "model": "gpt-4o",
+          "provider": "OpenAI",
+          "timestamp_utc": "2026-08-29T07:00:10.452251Z",
+          "http_status": 401,
+          "success": false,
+          "elapsed_ms": 538.2203999997728,
+          "provider_request_id": null,
+          "nvcf_reqid": null,
+          "nvcf_status": null,
+          "error": "HTTP 401: {\n    \"error\": {\n        \"message\": \"Incorrect API key provided: nvapi--D**********************************************************N5ga. You can find your API key at https://platform.openai.com/accoun"
+        },
+        {
+          "model": "gpt-4o",
+          "provider": "OpenAI",
+          "timestamp_utc": "2026-08-29T07:00:11.250764Z",
+          "http_status": 401,
+          "success": false,
+          "elapsed_ms": 296.60100000000966,
+          "provider_request_id": null,
+          "nvcf_reqid": null,
+          "nvcf_status": null,
+          "error": "HTTP 401: {\n    \"error\": {\n        \"message\": \"Incorrect API key provided: nvapi--D**********************************************************N5ga. You can find your API key at https://platform.openai.com/accoun"
+        },
+        {
+          "model": "gpt-4o",
+          "provider": "OpenAI",
+          "timestamp_utc": "2026-08-29T07:00:12.018581Z",
+          "http_status": 401,
+          "success": false,
+          "elapsed_ms": 265.87649999964924,
+          "provider_request_id": null,
+          "nvcf_reqid": null,
+          "nvcf_status": null,
+          "error": "HTTP 401: {\n    \"error\": {\n        \"message\": \"Incorrect API key provided: nvapi--D**********************************************************N5ga. You can find your API key at https://platform.openai.com/accoun"
+        }
+      ],
+      "smoke_success_rate": 0.0,
+      "smoke_median_latency_ms": 0.0,
+      "smoke_p95_latency_ms": 0.0,
+      "translation_results": [],
+      "translation_success_rate": 0.0,
+      "quality_scores": {},
+      "avg_quality_score": 0.0,
+      "quality_pass": false,
+      "glossary_improvement": 0.0,
+      "context_results": [],
+      "context_compatible": false,
+      "reliability_results": [],
+      "reliability_success_rate": 0.0,
+      "reliability_median_latency_ms": 0.0,
+      "reliability_p95_latency_ms": 0.0,
+      "classification": "PROVIDER_UNAVAILABLE",
+      "classification_rationale": "Smoke test failed",
+      "limitations": [
+        "Provider unavailable or no valid credentials"
+      ]
+    },
+    {
+      "model_id": "gpt-4o-mini",
+      "provider": "OpenAI",
+      "api_type": "openai-compatible",
+      "smoke_results": [
+        {
+          "model": "gpt-4o-mini",
+          "provider": "OpenAI",
+          "timestamp_utc": "2026-08-29T07:00:12.734819Z",
+          "http_status": 401,
+          "success": false,
+          "elapsed_ms": 212.75900000000547,
+          "provider_request_id": null,
+          "nvcf_reqid": null,
+          "nvcf_status": null,
+          "error": "HTTP 401: {\n    \"error\": {\n        \"message\": \"Incorrect API key provided: nvapi--D**********************************************************N5ga. You can find your API key at https://platform.openai.com/accoun"
+        },
+        {
+          "model": "gpt-4o-mini",
+          "provider": "OpenAI",
+          "timestamp_utc": "2026-08-29T07:00:13.492234Z",
+          "http_status": 401,
+          "success": false,
+          "elapsed_ms": 255.0733999996737,
+          "provider_request_id": null,
+          "nvcf_reqid": null,
+          "nvcf_status": null,
+          "error": "HTTP 401: {\n    \"error\": {\n        \"message\": \"Incorrect API key provided: nvapi--D**********************************************************N5ga. You can find your API key at https://platform.openai.com/accoun"
+        },
+        {
+          "model": "gpt-4o-mini",
+          "provider": "OpenAI",
+          "timestamp_utc": "2026-08-29T07:00:14.288997Z",
+          "http_status": 401,
+          "success": false,
+          "elapsed_ms": 293.6837999986892,
+          "provider_request_id": null,
+          "nvcf_reqid": null,
+          "nvcf_status": null,
+          "error": "HTTP 401: {\n    \"error\": {\n        \"message\": \"Incorrect API key provided: nvapi--D**********************************************************N5ga. You can find your API key at https://platform.openai.com/accoun"
+        }
+      ],
+      "smoke_success_rate": 0.0,
+      "smoke_median_latency_ms": 0.0,
+      "smoke_p95_latency_ms": 0.0,
+      "translation_results": [],
+      "translation_success_rate": 0.0,
+      "quality_scores": {},
+      "avg_quality_score": 0.0,
+      "quality_pass": false,
+      "glossary_improvement": 0.0,
+      "context_results": [],
+      "context_compatible": false,
+      "reliability_results": [],
+      "reliability_success_rate": 0.0,
+      "reliability_median_latency_ms": 0.0,
+      "reliability_p95_latency_ms": 0.0,
+      "classification": "PROVIDER_UNAVAILABLE",
+      "classification_rationale": "Smoke test failed",
+      "limitations": [
+        "Provider unavailable or no valid credentials"
+      ]
+    },
+    {
+      "model_id": "gpt-4-turbo",
+      "provider": "OpenAI",
+      "api_type": "openai-compatible",
+      "smoke_results": [
+        {
+          "model": "gpt-4-turbo",
+          "provider": "OpenAI",
+          "timestamp_utc": "2026-08-29T07:00:15.057875Z",
+          "http_status": 401,
+          "success": false,
+          "elapsed_ms": 262.62710000082734,
+          "provider_request_id": null,
+          "nvcf_reqid": null,
+          "nvcf_status": null,
+          "error": "HTTP 401: {\n    \"error\": {\n        \"message\": \"Incorrect API key provided: nvapi--D**********************************************************N5ga. You can find your API key at https://platform.openai.com/accoun"
+        },
+        {
+          "model": "gpt-4-turbo",
+          "provider": "OpenAI",
+          "timestamp_utc": "2026-08-29T07:00:15.776845Z",
+          "http_status": 401,
+          "success": false,
+          "elapsed_ms": 217.50280000014754,
+          "provider_request_id": null,
+          "nvcf_reqid": null,
+          "nvcf_status": null,
+          "error": "HTTP 401: {\n    \"error\": {\n        \"message\": \"Incorrect API key provided: nvapi--D**********************************************************N5ga. You can find your API key at https://platform.openai.com/accoun"
+        },
+        {
+          "model": "gpt-4-turbo",
+          "provider": "OpenAI",
+          "timestamp_utc": "2026-08-29T07:00:16.547429Z",
+          "http_status": 401,
+          "success": false,
+          "elapsed_ms": 268.05979999880947,
+          "provider_request_id": null,
+          "nvcf_reqid": null,
+          "nvcf_status": null,
+          "error": "HTTP 401: {\n    \"error\": {\n        \"message\": \"Incorrect API key provided: nvapi--D**********************************************************N5ga. You can find your API key at https://platform.openai.com/accoun"
+        }
+      ],
+      "smoke_success_rate": 0.0,
+      "smoke_median_latency_ms": 0.0,
+      "smoke_p95_latency_ms": 0.0,
+      "translation_results": [],
+      "translation_success_rate": 0.0,
+      "quality_scores": {},
+      "avg_quality_score": 0.0,
+      "quality_pass": false,
+      "glossary_improvement": 0.0,
+      "context_results": [],
+      "context_compatible": false,
+      "reliability_results": [],
+      "reliability_success_rate": 0.0,
+      "reliability_median_latency_ms": 0.0,
+      "reliability_p95_latency_ms": 0.0,
+      "classification": "PROVIDER_UNAVAILABLE",
+      "classification_rationale": "Smoke test failed",
+      "limitations": [
+        "Provider unavailable or no valid credentials"
+      ]
+    }
+  ],
+  "m1_baseline": null,
+  "limitations": [
+    "Only candidates with available API keys evaluated",
+    "Single-run per test condition",
+    "Automated quality scoring only",
+    "No human literary review",
+    "Glossary/char_memory are test versions",
+    "Context tests use estimated tokens"
+  ]
+}

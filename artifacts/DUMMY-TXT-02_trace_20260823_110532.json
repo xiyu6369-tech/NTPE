@@ -1,0 +1,17 @@
+{
+  "trace_timestamp": "2026-08-23T11:05:32.989991",
+  "target_file": "D:\\Python\\NTPE\\dummy.txt",
+  "file_metadata": {
+    "FullName": "D:\\Python\\NTPE\\dummy.txt",
+    "LastAccessTime": "2026-08-23T11:05:08.4584556+08:00",
+    "CreationTime": "2026-08-23T10:07:37.2452812+08:00",
+    "Directory": "D:\\Python\\NTPE",
+    "LastWriteTime": "2026-08-23T10:07:37.2452812+08:00",
+    "Length": 36
+  },
+  "file_creation_events": {
+    "events": []
+  },
+  "process_chains": [],
+  "working_directory": "D:\\Python\\NTPE"
+}

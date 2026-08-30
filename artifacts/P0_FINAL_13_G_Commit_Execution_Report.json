@@ -1,0 +1,70 @@
+{
+  "metadata": {
+    "task": "P0-FINAL-13-G",
+    "generated_at": "2026-08-25T17:05:00.000000",
+    "git_baseline": {
+      "head": "76ea24f1e34c0f1796236de4d676404d7e45f00a",
+      "origin_main": "76ea24f1e34c0f1796236de4d676404d7e45f00a",
+      "branch": "main",
+      "divergence": "0 0"
+    },
+    "commit": "8c999b1",
+    "overall_pass": true
+  },
+  "staging": {
+    "expected": 60,
+    "actual": 60,
+    "unexpected": 0,
+    "missing": 0
+  },
+  "commit": {
+    "expected": 60,
+    "actual": 60,
+    "unexpected": 0,
+    "missing": 0,
+    "commit_hash": "8c999b1",
+    "commit_message": "P0-FINAL-13: clean governance repository surface"
+  },
+  "protection_checks": {
+    "protected_worktree_staged": 0,
+    "generated_outputs_staged": 0,
+    "historical_legacy_staged": 0,
+    "unknown_staged": 0,
+    "protected_worktree_committed": 0,
+    "generated_outputs_committed": 0,
+    "historical_legacy_committed": 0,
+    "unknown_committed": 0
+  },
+  "protected_worktree": {
+    "preserved": true,
+    "count": 297,
+    "overlap": 0
+  },
+  "generated_outputs": {
+    "preserved": true,
+    "count": 7
+  },
+  "historical_legacy": {
+    "preserved": true,
+    "count": 16
+  },
+  "validation": {
+    "ntpe_validate_py": "PASS WITH BASELINE WARNING",
+    "git_diff_check": "PASS",
+    "root_hygiene": "PASS",
+    "provider_calls": 0,
+    "network_calls": 0,
+    "translation_calls": 0
+  },
+  "git_operations": {
+    "staged": 60,
+    "committed": 60,
+    "pushed": 0
+  },
+  "post_commit_deliverables": [
+    "docs/governance/repository/P0_FINAL_13_G_COMMIT_EXECUTION.md",
+    "artifacts/P0_FINAL_13_G_Commit_Execution_Report.json"
+  ],
+  "note": "Post-commit evidence deliverables NOT included in the 60-path commit. To be evaluated in future boundary audit.",
+  "final_verdict": "PASS"
+}

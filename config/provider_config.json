@@ -2,7 +2,7 @@
   "default_provider": "nvidia",
   "retry_defaults": {
     "max_attempts": 3,
-    "base_delay_seconds": 0.0,
+    "base_delay_seconds": 5.0,
     "backoff_factor": 2.0
   },
   "rate_limit_defaults": {
@@ -14,8 +14,8 @@
     "fallback_models_env": "NTPE_FALLBACK_MODELS",
     "fallback_models": [],
     "retry_defaults": {
-      "max_attempts": 1,
-      "base_delay_seconds": 0.0,
+      "max_attempts": 3,
+      "base_delay_seconds": 5.0,
       "backoff_factor": 2.0
     },
     "retryable_error_patterns": [

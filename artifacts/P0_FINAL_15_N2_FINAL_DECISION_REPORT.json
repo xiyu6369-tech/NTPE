@@ -1,0 +1,142 @@
+{
+  "stage": "P0-FINAL-15-N2",
+  "baseline_branch": "main",
+  "baseline_head": "8c999b1219f65a6afaeaf0062e6c43f72691c188",
+  "worktree": "D:\\Python\\NTPE",
+  "gate_results": [
+    {
+      "gate": "Gate A",
+      "name": "C3 Extended Stability",
+      "decision": "FAIL",
+      "reason": "Required fixture type 'high_context' failed all attempts",
+      "details": {}
+    },
+    {
+      "gate": "Gate B",
+      "name": "Human Literary Review",
+      "decision": "NOT_COMPLETED",
+      "reason": "Human literary review is a mandatory blocking gate. Reviewer must evaluate C3 translations.",
+      "details": {
+        "status": "AWAITING_HUMAN_REVIEW",
+        "message": "Human literary review is a mandatory blocking gate. Reviewer must evaluate C3 translations.",
+        "c3_files_found": [
+          "nvidia_nemotron-3-super-120b-a12b_continuity.txt",
+          "nvidia_nemotron-3-super-120b-a12b_dialogue.txt",
+          "nvidia_nemotron-3-super-120b-a12b_narrative.txt"
+        ],
+        "review_dimensions": [
+          "Literary Naturalness (formal published Traditional Chinese novel quality)",
+          "Semantic Fidelity (no added/deleted info, causal relationships preserved)",
+          "Character Voice (consistent tone, diction, personality, speech rhythm)",
+          "Dialogue Quality (natural, clear identity, consistent address, reasonable tone)",
+          "Narrative Quality (coherent, natural paragraphs, stable perspective, preserved atmosphere)",
+          "Continuity (names, honorifics, terminology, semantic relations, event consistency)"
+        ],
+        "blocking_criteria": [
+          "Major semantic distortion",
+          "Character identity confusion",
+          "Persistent naming inconsistency",
+          "Severe dialogue unnaturalness",
+          "Major omitted information",
+          "Major hallucination",
+          "Systematic Traditional Chinese quality degradation"
+        ]
+      }
+    },
+    {
+      "gate": "Gate C",
+      "name": "Fallback Readiness",
+      "decision": "PASS",
+      "reason": "All error classes mapped, all safety checks pass, all contract tests pass, production fallback not activated",
+      "details": {}
+    }
+  ],
+  "human_review_status": "PENDING",
+  "human_review_result": "NOT_COMPLETED",
+  "human_review_details": {
+    "status": "AWAITING_HUMAN_REVIEW",
+    "message": "Human literary review is a mandatory blocking gate. Reviewer must evaluate C3 translations.",
+    "c3_files_found": [
+      "nvidia_nemotron-3-super-120b-a12b_continuity.txt",
+      "nvidia_nemotron-3-super-120b-a12b_dialogue.txt",
+      "nvidia_nemotron-3-super-120b-a12b_narrative.txt"
+    ],
+    "review_dimensions": [
+      "Literary Naturalness (formal published Traditional Chinese novel quality)",
+      "Semantic Fidelity (no added/deleted info, causal relationships preserved)",
+      "Character Voice (consistent tone, diction, personality, speech rhythm)",
+      "Dialogue Quality (natural, clear identity, consistent address, reasonable tone)",
+      "Narrative Quality (coherent, natural paragraphs, stable perspective, preserved atmosphere)",
+      "Continuity (names, honorifics, terminology, semantic relations, event consistency)"
+    ],
+    "blocking_criteria": [
+      "Major semantic distortion",
+      "Character identity confusion",
+      "Persistent naming inconsistency",
+      "Severe dialogue unnaturalness",
+      "Major omitted information",
+      "Major hallucination",
+      "Systematic Traditional Chinese quality degradation"
+    ]
+  },
+  "final_decision": "REJECT_C3",
+  "final_reason": "Gate A (Extended Stability) = FAIL: C3 has reproducible/stable failures",
+  "rm6_ready": false,
+  "rm6_status": "BLOCKED",
+  "rm6_requirements": {
+    "gate_a_pass": false,
+    "gate_b_pass": false,
+    "gate_c_pass": true,
+    "governance_pass": false,
+    "regression_pass": true,
+    "credential_protection_pass": true,
+    "historical_evidence_preserved": true,
+    "production_baseline_unchanged": true
+  },
+  "production_model": "minimaxai/minimax-m3 (M1)",
+  "production_routing": "M1 primary",
+  "production_retry": "Conservative (2 attempts, 10s base)",
+  "production_backoff": "2.0x",
+  "production_rpm": "40",
+  "production_timeout": "60s read, 10s connect",
+  "production_chunk_size": "1000",
+  "production_runtime": "unchanged",
+  "next_authorized_phase": "Additional investigation required",
+  "tests_diagnostic": {
+    "status": "FAIL"
+  },
+  "tests_regression": {
+    "status": "PASS"
+  },
+  "tests_governance": {
+    "exit_code": 1,
+    "output": "====================================\nNTPE Project Validation Report\n====================================\nRoot: D:\\Python\\NTPE\nElapsed: 25.20s\n------------------------------------\nRequired directories   PASS  5 directories found\nLegacy entrypoints     PASS  archive OK (3/3 legacy preserved)\nCore imports           PASS  7 required imports OK\nOptional imports       WARN  3 OK; warnings: core.prompt_builder.prompt_builder: ModuleNotFoundError: No module named 'core.prompt_builder.prompt_builder'\nPython compile         PASS  3358 Python files compile\nPython cache           PASS  No Python cache artifacts found\nTest inventory         PASS  896 pytest tests; 2 relocated verification wrappers\nRoot Python layout     FAIL  Unexpected root items: .venv\n------------------------------------\nFAILED: 1 failure(s), 1 warning(s)\n",
+    "status": "FAIL"
+  },
+  "tests_root_hygiene": {
+    "status": "PASS"
+  },
+  "tests_credential_protection": {
+    "status": "PASS"
+  },
+  "deliverables": [
+    "artifacts/P0_FINAL_15_N2_C3_EXTENDED_STABILITY_REPORT.json",
+    "docs/governance/repository/P0_FINAL_15_N2_C3_EXTENDED_STABILITY.md",
+    "artifacts/P0_FINAL_15_N2_HUMAN_LITERARY_REVIEW_REPORT.json",
+    "docs/governance/repository/P0_FINAL_15_N2_HUMAN_LITERARY_REVIEW.md",
+    "artifacts/P0_FINAL_15_N2_FALLBACK_READINESS_REPORT.json",
+    "docs/governance/repository/P0_FINAL_15_N2_FALLBACK_READINESS.md",
+    "artifacts/P0_FINAL_15_N2_FINAL_DECISION_REPORT.json",
+    "docs/governance/repository/P0_FINAL_15_N2_FINAL_DECISION.md"
+  ],
+  "limitations": [
+    "Human literary review not completed (PENDING) - mandatory blocking gate",
+    "Token measurement uses character-based estimation (not exact tokenizer)",
+    "Limited test sample size (controlled observation, not stress test)",
+    "No sustained throughput testing",
+    "No cross-chunk continuity validation for chunked workflows",
+    "C3 long-term provider stability unknown",
+    "Fallback design validated at contract level only - not production-tested",
+    "Actual provider behavior under load may differ"
+  ]
+}

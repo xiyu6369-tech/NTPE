@@ -1,0 +1,207 @@
+{
+  "head_commit": "8c999b1219f65a6afaeaf0062e6c43f72691c188",
+  "origin_main_commit": "8c999b1219f65a6afaeaf0062e6c43f72691c188",
+  "divergence": "0/0",
+  "branch": "main",
+  "python_version": "3.14.6",
+  "test_timestamp": "2026-08-29T10:11:04.170621Z",
+  "candidate_model": "openai/gpt-oss-120b",
+  "hosting_provider": "NVIDIA",
+  "endpoint": "https://integrate.api.nvidia.com/v1/chat/completions",
+  "credential_source": "NVIDIA_API_KEY",
+  "observations": [
+    {
+      "sequence": 1,
+      "test_type": "baseline",
+      "timestamp_utc": "2026-08-29T10:09:12.811544Z",
+      "http_status": 200,
+      "success": true,
+      "elapsed_ms": 1255.0020000016957,
+      "provider_request_id": "chatcmpl-8c666d8d9fa9b056",
+      "nvcf_reqid": "7d5b7219-8461-4304-b808-57406a65d49f",
+      "nvcf_status": "fulfilled",
+      "error": null,
+      "response_preview": ""
+    },
+    {
+      "sequence": 2,
+      "test_type": "baseline",
+      "timestamp_utc": "2026-08-29T10:09:14.711254Z",
+      "http_status": 200,
+      "success": true,
+      "elapsed_ms": 897.4396999983583,
+      "provider_request_id": "chatcmpl-b59d0c33ae75ed82",
+      "nvcf_reqid": "1be07092-5fad-482d-8933-4dbf179d44f8",
+      "nvcf_status": "fulfilled",
+      "error": null,
+      "response_preview": ""
+    },
+    {
+      "sequence": 3,
+      "test_type": "baseline",
+      "timestamp_utc": "2026-08-29T10:09:16.971175Z",
+      "http_status": 200,
+      "success": true,
+      "elapsed_ms": 1256.8240000000515,
+      "provider_request_id": "chatcmpl-91e7155e201484d4",
+      "nvcf_reqid": "4076f7d9-eda3-4e01-bc0e-12699cb77230",
+      "nvcf_status": "fulfilled",
+      "error": null,
+      "response_preview": "您好。這是基線測試。"
+    },
+    {
+      "sequence": 4,
+      "test_type": "narrative",
+      "timestamp_utc": "2026-08-29T10:09:28.041003Z",
+      "http_status": 200,
+      "success": true,
+      "elapsed_ms": 10066.90730000264,
+      "provider_request_id": null,
+      "nvcf_reqid": "489b4888-ec97-4523-b707-c095ed893b54",
+      "nvcf_status": "fulfilled",
+      "error": null,
+      "response_preview": ""
+    },
+    {
+      "sequence": 5,
+      "test_type": "narrative",
+      "timestamp_utc": "2026-08-29T10:09:43.172196Z",
+      "http_status": 200,
+      "success": true,
+      "elapsed_ms": 14128.979599998274,
+      "provider_request_id": "chatcmpl-b184570078f60a0c",
+      "nvcf_reqid": "1f3df8c4-8d88-4623-851f-e3ba2bba0598",
+      "nvcf_status": "fulfilled",
+      "error": null,
+      "response_preview": "正泰正感到為難。\n\n然而事實上這根本不是他該為難的事。那個遠在異國、像怪物般的男人，無論如何都是一個理性且頭腦正常的人，他會明白這情況絕非正泰所策劃的結果。\n\n可是，當那人斬釘截鐵地說：「我從幾個月前"
+    },
+    {
+      "sequence": 6,
+      "test_type": "dialogue",
+      "timestamp_utc": "2026-08-29T10:09:49.712331Z",
+      "http_status": 200,
+      "success": true,
+      "elapsed_ms": 5537.170000003243,
+      "provider_request_id": "chatcmpl-abba3a0a1c51c5c0",
+      "nvcf_reqid": "159005a4-1214-496d-806c-c3ff4b0d243c",
+      "nvcf_status": "fulfilled",
+      "error": null,
+      "response_preview": "「真的沒事嗎？」敏秀小心翼翼地問。\n\n智賢點了點頭，勉強笑了笑。「嗯，沒事。只是…有點累而已。」\n\n「不，你的眼神不是這樣的。發生什麼事了？說給我聽。」\n\n智賢猶豫了一下，然後低聲嘆了口氣。\n\n「其實"
+    },
+    {
+      "sequence": 7,
+      "test_type": "dialogue",
+      "timestamp_utc": "2026-08-29T10:09:55.582935Z",
+      "http_status": 200,
+      "success": true,
+      "elapsed_ms": 4868.422699997609,
+      "provider_request_id": "chatcmpl-bd340fa63f438438",
+      "nvcf_reqid": "e392d138-9eb3-4f70-81d1-a571b28be1b8",
+      "nvcf_status": "fulfilled",
+      "error": null,
+      "response_preview": "「真的沒事嗎？」敏秀小心翼翼地問。\n\n智賢點頭，勉強露出微笑。「嗯，沒事。只是…有點累而已。」\n\n「不，你的眼神不像這樣。怎麼了？說說看。」\n\n智賢猶豫了一下，然後低聲嘆了口氣。\n\n「其實…明天要發表"
+    },
+    {
+      "sequence": 8,
+      "test_type": "continuity",
+      "timestamp_utc": "2026-08-29T10:10:01.260465Z",
+      "http_status": 200,
+      "success": true,
+      "elapsed_ms": 4674.5087999988755,
+      "provider_request_id": "chatcmpl-af3e4a3499912e6e",
+      "nvcf_reqid": "86f648be-becd-4633-b879-55facc1fa202",
+      "nvcf_status": "fulfilled",
+      "error": null,
+      "response_preview": "金哲秀是擁有30年經驗的刑警。他負責的案件總是複雜，但他憑藉獨特的直覺揭開真相。他的搭檔李英姬則與他截然相反，是只靠邏輯與證據破案的原則主義者。\n\n某天，兩人接手了一起連環失蹤案件。哲秀試圖從現場的細"
+    },
+    {
+      "sequence": 9,
+      "test_type": "continuity",
+      "timestamp_utc": "2026-08-29T10:10:06.531049Z",
+      "http_status": 200,
+      "success": true,
+      "elapsed_ms": 4268.770899998344,
+      "provider_request_id": "chatcmpl-8d94ec5b34d0801a",
+      "nvcf_reqid": "321bf14e-f44f-4457-aa4c-c6418455baac",
+      "nvcf_status": "fulfilled",
+      "error": null,
+      "response_preview": "金哲秀是有30年經驗的刑警。他負責的案件總是很複雜，但他憑藉獨特的直覺揭開真相。他的搭檔李英姬與他截然相反，是只靠邏輯與證據破案的原則主義者。\n\n某天，兩人接手了一起連環失蹤案件。哲秀試圖從現場的細微"
+    },
+    {
+      "sequence": 10,
+      "test_type": "high_context",
+      "timestamp_utc": "2026-08-29T10:10:39.766258Z",
+      "http_status": 200,
+      "success": true,
+      "elapsed_ms": 32232.36619999807,
+      "provider_request_id": "chatcmpl-91cfdfbc3af5c12d",
+      "nvcf_reqid": "e3335426-a7ed-4b6e-af4a-a49f62975232",
+      "nvcf_status": "fulfilled",
+      "error": null,
+      "response_preview": "鄭泰正感到困惑。\n\n然而事實上這並不是他需要感到困擾的事。遠在異國留下的那個怪物般的男人，無論如何都是一個理性的人，且他的精神狀態正常，他會明白這情況絕非鄭泰所刻意造成的。\n\n然而，凱爾堅持說「幾個月"
+    },
+    {
+      "sequence": 11,
+      "test_type": "high_context",
+      "timestamp_utc": "2026-08-29T10:11:03.169938Z",
+      "http_status": 200,
+      "success": true,
+      "elapsed_ms": 22400.51020000101,
+      "provider_request_id": "chatcmpl-a2ce59b9999a1111",
+      "nvcf_reqid": "32fb4739-b5f6-4195-b3f9-85e3eba099e8",
+      "nvcf_status": "fulfilled",
+      "error": null,
+      "response_preview": "鄭泰感到為難。\n\n然而實際上那並不是他該為難的事。遠在異國的那個怪物般的男人，無論如何都是一個理性且精神正常的人，他會明白這情況絕非鄭泰有意造成的。\n\n可是，當那個「幾個月前就暗中策劃、千辛萬苦才勉強"
+    }
+  ],
+  "total_observations": 11,
+  "success_count": 11,
+  "success_rate": 1.0,
+  "median_latency_ms": 4868.422699997609,
+  "p95_latency_ms": 32232.36619999807,
+  "http_200_count": 11,
+  "http_429_count": 0,
+  "http_408_count": 0,
+  "http_5xx_count": 0,
+  "by_test_type": {
+    "baseline": {
+      "total": 3,
+      "success": 3,
+      "success_rate": 1.0,
+      "median_latency_ms": 1255.0020000016957
+    },
+    "narrative": {
+      "total": 2,
+      "success": 2,
+      "success_rate": 1.0,
+      "median_latency_ms": 14128.979599998274
+    },
+    "dialogue": {
+      "total": 2,
+      "success": 2,
+      "success_rate": 1.0,
+      "median_latency_ms": 5537.170000003243
+    },
+    "continuity": {
+      "total": 2,
+      "success": 2,
+      "success_rate": 1.0,
+      "median_latency_ms": 4674.5087999988755
+    },
+    "high_context": {
+      "total": 2,
+      "success": 2,
+      "success_rate": 1.0,
+      "median_latency_ms": 32232.36619999807
+    }
+  },
+  "gate_result": "PASS",
+  "gate_rationale": "Success rate 100% >= 95%",
+  "limitations": [
+    "Single NVIDIA account only",
+    "Observations not statistically independent (sequential)",
+    "No cross-region test",
+    "Single test prompt per category",
+    "No concurrent load test"
+  ]
+}

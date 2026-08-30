@@ -1,0 +1,322 @@
+{
+  "baseline": {
+    "commit": "8c999b1219f65a6afaeaf0062e6c43f72691c188",
+    "message": "P0-FINAL-13: clean governance repository surface",
+    "branch": "main",
+    "origin_main": "8c999b1219f65a6afaeaf0062e6c43f72691c188",
+    "divergence_ahead": 0,
+    "divergence_behind": 0,
+    "production_default_model": "minimaxai/minimax-m3",
+    "dirty_path_count": 327
+  },
+  "d1_epub_entry_point": {
+    "pipeline_components": {
+      "epub_extraction": {
+        "implemented": true,
+        "class": "EpubExtractionBoundary",
+        "location": "core/adapters/epub_extraction_boundary.py",
+        "lines": 1235
+      },
+      "extraction_to_intake": {
+        "implemented": true,
+        "request_type": "ExtractedTextIntakeRequest",
+        "location": "core/adapters/epub_extraction_boundary.py"
+      },
+      "canonical_adapter": {
+        "implemented": true,
+        "class": "CanonicalBookIntakeAdapter",
+        "method": "ingest_extracted()",
+        "location": "core/adapters/canonical_book_intake_adapter.py"
+      },
+      "book_intake": {
+        "implemented": true,
+        "class": "BookIntakeProcessor",
+        "location": "core/book_intake/"
+      },
+      "book_preparation": {
+        "implemented": true,
+        "class": "BookPreparationProcessor",
+        "location": "core/book_preparation/"
+      },
+      "chunking_segmentation": {
+        "implemented": true,
+        "locations": ["core/book_chunking/", "core/book_segmentation/"]
+      },
+      "translation_runtime": {
+        "implemented": true,
+        "class": "TranslationRuntime",
+        "location": "core/translation_runtime/"
+      },
+      "translation_engine": {
+        "implemented": true,
+        "class": "TranslationEngine",
+        "location": "core/translation_engine/"
+      },
+      "provider_runtime": {
+        "implemented": true,
+        "locations": ["core/ai_provider/", "core/translation_runtime/runtime_provider.py"]
+      },
+      "quality_repair": {
+        "implemented": true,
+        "locations": ["core/translation_quality_v5/", "core/literary/"]
+      },
+      "output": {
+        "implemented": true,
+        "class": "runtime_output.py"
+      }
+    },
+    "user_entry_points": {
+      "ntpe_production_translate.py": {
+        "epub_support": false,
+        "subcommands": ["txt", "batch", "regression", "corpus", "evaluate", "doctor"]
+      },
+      "ntpe_launcher.py": {
+        "epub_support": false,
+        "subcommands": ["series", "translate (series)", "--list-*", "--dry-run", "--validate-config"]
+      },
+      "lts_txt_translation_runtime.py": {
+        "epub_support": false,
+        "input_format": "txt only",
+        "epub_output": true
+      },
+      "core_translation_runtime": {
+        "epub_support": false,
+        "delegates_to": "LTS"
+      }
+    },
+    "epub_output": {
+      "exporter_implemented": true,
+      "delivery_format_flag": true,
+      "location": "core/translation_release/exporters/epub_exporter.py",
+      "delivery_flag": "--quality-delivery-formats-v83 {txt,epub,pdf}"
+    },
+    "pipeline_complete": true,
+    "user_facing_epub_cli": false,
+    "gap": "Complete internal pipeline exists but NO user-facing CLI entry point accepts EPUB as input"
+  },
+  "d2_rm6_canary": {
+    "legacy_pipeline": {
+      "status": "COMPLETED",
+      "chunks_total": 3,
+      "chunks_completed": 3,
+      "output_file": "artifacts/rm6_canary/legacy_kr/novel_sample_zh.txt (missing)",
+      "progress_file": "artifacts/rm6_canary/legacy_kr/novel_sample_live_progress.json",
+      "updated_at": "2026-08-08T00:48:13"
+    },
+    "runtime_pipeline": {
+      "status": "COMPLETED",
+      "chunks_total": 3,
+      "chunks_completed": 3,
+      "output_file": "artifacts/rm6_canary/runtime_kr/novel_sample_zh.txt (3573 bytes, verified)",
+      "progress_file": "artifacts/rm6_canary/runtime_kr/novel_sample_live_progress.json",
+      "resume_state": "artifacts/rm6_canary/runtime_kr/novel_sample_resume_state.json",
+      "updated_at": "2026-08-08T00:48:09"
+    },
+    "evidence_quality": {
+      "both_pipelines_completed": true,
+      "valid_translation_output": true,
+      "live_progress_tracking": true,
+      "resume_capability": true,
+      "output_format": "Traditional Chinese novel"
+    },
+    "promotion_readiness": {
+      "evidence_complete": true,
+      "production_integration": "CONDITIONAL",
+      "legacy_archived": true,
+      "runtime_canonical": true,
+      "wiring_to_production_launcher": false,
+      "canary_code_path": "core/controlled_multi_chunk_translation_canary/"
+    },
+    "verdict": "Evidence complete, not yet promoted - requires wiring to production launcher and policy decision"
+  },
+  "d3_literary_regression": {
+    "current_baseline": {
+      "stage": "PS-03-integration",
+      "status": "warning",
+      "score": 78.0,
+      "date": "2026-08-24",
+      "report": "tests/literary/outputs/PS-03-integration/Literary_Quality_Report.md"
+    },
+    "recent_history": [
+      {"stage": "PS-03-smoke", "status": "failed", "score": 0.0, "date": "2026-08-14"},
+      {"stage": "PS-03", "status": "failed", "score": 0.0, "date": "2026-08-18"},
+      {"stage": "PS-02-integration", "status": "failed", "score": 0.0, "date": "2026-08-24"}
+    ],
+    "historical_baselines": [
+      {"stage": "TER-v1.x series", "status": "success", "score": 100.0, "notes": "Historical, old model"},
+      {"stage": "TE-v3.0-stage01/02", "status": "success", "score": 95.0, "notes": "Historical"},
+      {"stage": "TE-v5.2.x", "status": "mixed", "score": "95-96", "notes": "Historical"},
+      {"stage": "TE-v6.0-Stage10.1", "status": "success", "score": 95.0, "notes": "Historical"}
+    ],
+    "minimax_baseline": {
+      "exists": false,
+      "production_regression": false,
+      "smoke_test": false,
+      "quality_gate": false
+    },
+    "components": {
+      "golden_set": "EXISTS (tests/literary/Golden_Set/original_ko.txt)",
+      "quality_gate": "IMPLEMENTED (ntpe_literary_evaluation.py, ntpe_literary_regression.py)",
+      "character_consistency": "IMPLEMENTED (core/character_memory_v2/, core/entity_consistency/)",
+      "glossary_consistency": "IMPLEMENTED (core/glossary_builder/, locked dictionary)",
+      "korean_residue_detection": "IMPLEMENTED (max_korean_chars QA)",
+      "repeated_paragraph_detection": "IMPLEMENTED (max_repeated_lines QA)",
+      "translation_length_ratio": "IMPLEMENTED (min_length_ratio QA)",
+      "quality_score": "IMPLEMENTED (Literary_Quality_Report.md/json)"
+    },
+    "baseline_classification": {
+      "CURRENT_BASELINE": "PS-03-integration (78.0, warning)",
+      "HISTORICAL_BASELINE": "TER-v1.x series (100.0, success, old model)",
+      "FAILED_BASELINE": "PS-03-smoke, PS-03, PS-02-integration (0.0)",
+      "MISSING_BASELINE": "No clean SUCCESS baseline for minimaxai/minimax-m3"
+    },
+    "verdict": "No clean SUCCESS baseline for minimaxai/minimax-m3. Current best: PS-03-integration at 78.0 (WARNING). Requires new baseline run."
+  },
+  "d4_model_migration_closure": {
+    "scan_results": {
+      "old_model": "meta/llama-3.3-70b-instruct",
+      "new_model": "minimaxai/minimax-m3",
+      "classification": {
+        "CURRENT_PRODUCTION_DEFAULT": 0,
+        "CURRENT_PRODUCTION_FALLBACK": 0,
+        "CURRENT_PROVIDER_CONFIG": 0,
+        "CURRENT_LAUNCHER_CONFIG": 0,
+        "CURRENT_RUNTIME_CONFIG": 0,
+        "CURRENT_TEST": 40,
+        "HISTORICAL": 60,
+        "ARCHIVED": 25,
+        "GOVERNANCE_EVIDENCE": 15,
+        "LEGACY_COMPATIBILITY": 5,
+        "UNKNOWN": 0
+      },
+      "preserved_references": [
+        "core/translation_release/te_v6_release.py:18 (LEGACY_COMPATIBILITY)",
+        "tools/generate_te_v720_controlled_canary.py:73 (ARCHIVED)",
+        "tools/provider_controls/ntpe_single_real_provider_invocation.py:54 (ARCHIVED)",
+        "tests/ (40+ files) (CURRENT_TEST - historical baselines)",
+        "tests/fixtures/tic_batch*/ (HISTORICAL - TIC batch evidence)",
+        "archive/ (ARCHIVED)",
+        "manifests/ (HISTORICAL)",
+        "docs/releases/ (HISTORICAL)"
+      ]
+    },
+    "verdict": "0 CURRENT_PRODUCTION references to old model. All remaining correctly classified as historical/test/legacy."
+  },
+  "d5_user_flow": {
+    "steps": [
+      {"step": 1, "description": "Clone/download GitHub", "automated": true, "gap": "none"},
+      {"step": 2, "description": "Install dependencies", "automated": true, "gap": "requirements.txt exists"},
+      {"step": 3, "description": "Set API key", "automated": false, "gap": "Manual NVIDIA_API_KEY env var"},
+      {"step": 4, "description": "Prepare EPUB", "automated": false, "gap": "MAJOR: No EPUB CLI entry point"},
+      {"step": 5, "description": "EPUB → Text extraction", "automated": true, "gap": "Internal only (EpubExtractionBoundary)"},
+      {"step": 6, "description": "Text → Intake/Preparation", "automated": true, "gap": "Internal only (CanonicalBookIntakeAdapter)"},
+      {"step": 7, "description": "Chunking", "automated": true, "gap": "Internal only (book_chunking + book_segmentation)"},
+      {"step": 8, "description": "Translation", "automated": true, "gap": "Internal only (TranslationRuntime + TranslationEngine)"},
+      {"step": 9, "description": "Quality/QA", "automated": true, "gap": "Internal only (multi-phase QA)"},
+      {"step": 10, "description": "Output assembly", "automated": true, "gap": "Internal only (runtime_output.py)"},
+      {"step": 11, "description": "EPUB output", "automated": false, "gap": "Exporter exists but not wired to launcher"}
+    ],
+    "technical_risks": [
+      {"risk": "No EPUB CLI entry", "severity": "HIGH", "details": "User cannot directly translate EPUB"},
+      {"risk": "No minimax-m3 regression baseline", "severity": "HIGH", "details": "No quality evidence for new model"},
+      {"risk": "RM6 not promoted", "severity": "MEDIUM", "details": "Canary complete but not wired"},
+      {"risk": "No interactive setup", "severity": "LOW", "details": "Manual API key/env setup required"}
+    ],
+    "general_user_can_translate_epub": false
+  },
+  "github_product_gap": {
+    "production_code_in_github": true,
+    "config_files_in_github": true,
+    "epub_pipeline_in_github": true,
+    "launchers_in_github": true,
+    "tests_in_github": true,
+    "local_production_dependency_gap": false,
+    "feature_gaps": [
+      "EPUB CLI entry point (missing from GitHub)",
+      "minimaxai/minimax-m3 regression baseline (missing)",
+      "RM6 promotion wiring (missing)",
+      "Clean literary SUCCESS baseline (local has WARNING, GitHub has none)"
+    ]
+  },
+  "legacy_parallel_pipeline": {
+    "canonical_runtime": "core/translation_runtime/ + core/translation_engine/ (ACTIVE)",
+    "legacy_pipeline": "tools/legacy_pipeline_launchers/ (ARCHIVED)",
+    "canary_pipeline": "core/controlled_multi_chunk_translation_canary/ (VALIDATION ONLY)",
+    "rm6_canary": "artifacts/rm6_canary/ (COMPLETED EVIDENCE)",
+    "dual_track_divergence": false,
+    "verdict": "Single canonical runtime. Legacy fully archived. Canary is validation-only separate path."
+  },
+  "root_hygiene": {
+    "compliant": true,
+    "root_py_files": 7,
+    "root_txt_files": 2,
+    "prohibited_extensions": 0,
+    "one_shots_archived": true,
+    "legacy_launchers_archived": true
+  },
+  "validation": {
+    "ntpe_validate": "PASS_WITH_WARNINGS",
+    "warnings": [
+      "core.prompt_builder.prompt_builder: ModuleNotFoundError (pre-existing)"
+    ],
+    "git_diff_check": "3 CRLF warnings (pre-existing)",
+    "new_failures": 0,
+    "new_regressions": 0
+  },
+  "safety": {
+    "provider_calls": 0,
+    "network_calls": 0,
+    "real_translation_calls": 0,
+    "historical_artifacts_modified": 0,
+    "protected_worktree_modified": 0
+  },
+  "stop_conditions": {
+    "STOP-D-01_github_baseline_missing_dep": false,
+    "STOP-D-02_epub_pipeline_break": false,
+    "STOP-D-03_second_production_runtime": false,
+    "STOP-D-04_new_old_model_refs": false,
+    "STOP-D-05_rm6_major_arch_change": false,
+    "STOP-D-06_regression_needs_provider": false,
+    "STOP-D-07_protected_worktree_overlap": false,
+    "STOP-D-08_historical_evidence_deletion": false
+  },
+  "summary_answers": {
+    "epub_directly_usable": "NO - No CLI entry point",
+    "formal_epub_cli_exists": "NO",
+    "epub_connected_to_canonical": "YES - Internal pipeline complete",
+    "rm6_promotable": "CONDITIONAL - Evidence complete, wiring needed",
+    "literary_success_baseline": "NO - Best is WARNING (78.0)",
+    "minimax_regression_evidence": "NO",
+    "old_model_production_refs": 0,
+    "legacy_parallel_pipeline": "NO - Single canonical",
+    "github_complete_deps": "YES - Code complete, feature gaps exist"
+  },
+  "next_implementation_priority": [
+    {
+      "priority": 1,
+      "task": "EPUB CLI Entry Point",
+      "scope": "Add epub subcommand to ntpe_production_translate.py and/or ntpe_launcher.py wiring EpubExtractionBoundary -> CanonicalBookIntakeAdapter"
+    },
+    {
+      "priority": 2,
+      "task": "minimax-m3 Regression Baseline",
+      "scope": "Run PS-03 literary regression with new model to establish clean SUCCESS baseline"
+    },
+    {
+      "priority": 3,
+      "task": "RM6 Canary Promotion",
+      "scope": "Wire RM6 runtime pipeline into production launcher as optional quality tier"
+    },
+    {
+      "priority": 4,
+      "task": "Interactive Setup",
+      "scope": "Add ntpe config or setup wizard for API key, model, profile"
+    }
+  ],
+  "deliverables": {
+    "governance_doc": "docs/governance/repository/P0_FINAL_15_D_PRODUCTION_INTEGRATION_GAP_AUDIT.md",
+    "json_report": "artifacts/P0_FINAL_15_D_Production_Integration_Gap_Audit_Report.json"
+  },
+  "verdict": "PASS",
+  "next_phase": "P0-FINAL-15-E: EPUB CLI Entry Point Implementation (or user-selected priority)"
+}

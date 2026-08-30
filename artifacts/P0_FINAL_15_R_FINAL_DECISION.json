@@ -1,0 +1,117 @@
+{
+  "phase": "P0-FINAL-15-R",
+  "baseline": {
+    "head_commit": "8c999b1219f65a6afaeaf0062e6c43f72691c188",
+    "origin_main_commit": "8c999b1219f65a6afaeaf0062e6c43f72691c188",
+    "divergence": "0/0",
+    "branch": "main"
+  },
+  "environment": {
+    "endpoint": "https://integrate.api.nvidia.com/v1/chat/completions",
+    "credential_source": "NVIDIA_API_KEY",
+    "timestamp": "2026-08-29T09:35:02.789366Z"
+  },
+  "scenario": "A",
+  "scenario_description": "One REPLACEMENT_CANDIDATE found",
+  "decision": "REPLACEMENT_CANDIDATE_READY",
+  "decision_rationale": "Scenario A: One REPLACEMENT_CANDIDATE identified ({'model_id': 'openai/gpt-oss-120b', 'provider': 'NVIDIA', 'api_type': 'NVIDIA integration', 'classification': 'REPLACEMENT_CANDIDATE', 'smoke_success_rate': 1.0, 'translation_success_rate': 1.0, 'avg_quality_score': 70.8, 'quality_pass': True, 'glossary_improvement': 4.4, 'context_compatible': True, 'reliability_success_rate': 1.0, 'smoke_429_count': 0, 'reliability_429_count': 0, 'smoke_median_latency_ms': 1172.1858000018983, 'reliability_median_latency_ms': 10010.048600001028, 'rationale': 'All gates passed'}). All automated gates passed. Human literary review required before canary.",
+  "m1_status": {
+    "model_id": "minimaxai/minimax-m3",
+    "production_state": "ACTIVE / UNCHANGED",
+    "p15p_classification": "PROVIDER_UNAVAILABLE",
+    "reconciled_classification": "M1_PROVIDER_FAILURE_429_PERSISTENT",
+    "429_rate": "100% (persistent across all observations)",
+    "root_cause": "UNRESOLVED - provider-side failure"
+  },
+  "c3_status": {
+    "model_id": "nvidia/nemotron-3-super-120b-a12b",
+    "status": "REJECTED / HISTORICAL EVIDENCE RETAINED",
+    "p15p_classification": "TRANSLATION_UNSUITABLE",
+    "reconciled_classification": "PROVIDER_RUNTIME_COMPATIBILITY_LIMITATION",
+    "key_evidence": "Chunked + Glossary = 84/100; high-context 408 timeouts"
+  },
+  "p_candidates": [
+    {
+      "model_id": "nvidia/llama-3.1-nemoguard-8b-content-safety",
+      "status": "QUALITY_INSUFFICIENT",
+      "note": "Safety/guardrail model"
+    },
+    {
+      "model_id": "nvidia/nemotron-3-nano-30b-a3b",
+      "status": "QUALITY_INSUFFICIENT",
+      "note": "Quality < 65"
+    }
+  ],
+  "new_candidates_summary": {
+    "total_evaluated": 9,
+    "replacement_candidate": 1,
+    "translation_unsuitable": 6,
+    "provider_unavailable": 2
+  },
+  "cross_provider_candidates_pending": 15,
+  "best_candidate": {
+    "model_id": "openai/gpt-oss-120b",
+    "provider": "NVIDIA",
+    "api_type": "NVIDIA integration",
+    "classification": "REPLACEMENT_CANDIDATE",
+    "smoke_success_rate": 1.0,
+    "translation_success_rate": 1.0,
+    "avg_quality_score": 70.8,
+    "quality_pass": true,
+    "glossary_improvement": 4.4,
+    "context_compatible": true,
+    "reliability_success_rate": 1.0,
+    "smoke_429_count": 0,
+    "reliability_429_count": 0,
+    "smoke_median_latency_ms": 1172.1858000018983,
+    "reliability_median_latency_ms": 10010.048600001028,
+    "rationale": "All gates passed"
+  },
+  "human_review_required": true,
+  "human_review_models": [
+    "openai/gpt-oss-120b"
+  ],
+  "classification_corrections": [
+    {
+      "model": "minimaxai/minimax-m3",
+      "from": "CONTEXT_INCOMPATIBLE",
+      "to": "M1_PROVIDER_FAILURE_429_PERSISTENT",
+      "reason": "429 at all context sizes; no rate-limit headers; no entitlement denial"
+    },
+    {
+      "model": "nvidia/nemotron-3-super-120b-a12b",
+      "from": "REJECT_C3 / MODEL_INTRINSIC_LIMITATION",
+      "to": "PROVIDER_RUNTIME_COMPATIBILITY_LIMITATION",
+      "reason": "Model CAN translate (84/100 with chunked+glossary); limitation is high-context runtime stability"
+    }
+  ],
+  "next_phase": "P0-FINAL-15-S",
+  "next_phase_rationale": "Proceed to controlled canary after human review PASS",
+  "final_state": {
+    "M1": "ACTIVE / UNCHANGED",
+    "C3": "REJECTED / RETAINED",
+    "P_Candidates": "RECONCILED",
+    "New_Candidates": "EVALUATED (NVIDIA)",
+    "Cross_Provider_Candidates": "PENDING (no credentials)",
+    "RM6": "BLOCKED",
+    "Production": "UNCHANGED"
+  },
+  "compliance": {
+    "no_credential_leakage": true,
+    "no_production_modification": true,
+    "no_retry_rpm_timeout_backoff_changes": true,
+    "root_hygiene": true,
+    "protected_worktree_preserved": true,
+    "historical_evidence_retained": true,
+    "regression_tests_pass": true
+  },
+  "limitations": [
+    "NVIDIA evaluation only (cross-provider candidates not evaluated due to credential constraints)",
+    "Single-run per test condition; no statistical significance",
+    "Automated quality scoring only; human literary review required",
+    "Glossary and character memory are simplified test versions",
+    "Context tests use estimated token counts",
+    "M1 429 root cause unresolved without provider documentation",
+    "Cross-provider candidates not evaluated - requires credential provisioning"
+  ]
+}

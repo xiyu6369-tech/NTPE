@@ -1,0 +1,773 @@
+{
+  "audit_metadata": {
+    "audit_id": "PRE_MINIMAX_SURGICAL_SEPARATION",
+    "timestamp": "2026-08-29T17:01:12Z",
+    "repository": "D:\\Python\\NTPE",
+    "target_baseline": "8c999b1",
+    "current_head": "8c999b1",
+    "current_branch": "main",
+    "phase": "Phase 1 - Surgical Separation Planning"
+  },
+  "path_level_classification": {
+    "MODEL_ONLY": [
+      "config/default_config.json",
+      "config/launcher_product_defaults.json",
+      "config/models.json",
+      "core/adapters/production_submission_adapter.py",
+      "core/adaptive_context_authorized_provider_cli/config.py",
+      "core/adaptive_context_authorized_provider_cli/parser.py",
+      "core/adaptive_context_authorized_provider_harness/config.py",
+      "core/adaptive_context_controlled_provider_retry/config.py",
+      "core/adaptive_context_provider_execution_freeze/freeze.py",
+      "core/adaptive_context_real_provider_boundary/config.py",
+      "core/adaptive_context_real_provider_preflight/config.py",
+      "core/adaptive_context_real_provider_preflight/validator.py",
+      "core/adaptive_context_single_real_invocation/config.py",
+      "core/ai_provider/adapters.py",
+      "core/config.py",
+      "core/controlled_multi_chunk_translation_canary/policy.py",
+      "core/controlled_provider_routing/provider_profiles.py",
+      "core/controlled_provider_routing/routing_policy.py",
+      "core/controlled_translation_runtime_integration/policy.py",
+      "core/expansion/style_expansion_engine.py",
+      "core/launcher_product/config.py",
+      "core/launcher_product/model_catalog.py",
+      "core/lcr_production_shadow_hook/batch107_real_provider_validation.py",
+      "core/translation_quality_provider_canary/framework.py"
+    ],
+    "NON_MODEL_ONLY": [
+      "core/translation_runtime/runtime_speed_policy.py"
+    ],
+    "MIXED_MODEL_RUNTIME": [
+      "core/translation_engine/provider_runtime.py",
+      "core/translation_engine/translation_engine.py",
+      "lts/txt_translation_runtime.py",
+      "config/provider_config.json",
+      "ntpe_production_translate.py"
+    ],
+    "TEST_MODEL_COUPLED": [
+      "tests/unit/adapters/test_production_submission_adapter.py",
+      "tests/unit/test_controlled_provider_routing.py",
+      "tests/literary/outputs/PS-03-integration/Literary_Diff_Report.md",
+      "tests/literary/outputs/PS-03-integration/Literary_Quality_Report.json",
+      "tests/literary/outputs/PS-03-integration/Literary_Quality_Report.md",
+      "tests/literary/outputs/PS-03-smoke/Literary_Quality_Report.json",
+      "tests/literary/outputs/PS-03-smoke/Literary_Regression_Report.json",
+      "tests/literary/outputs/Regression_History.json",
+      "tests/literary/outputs/Regression_History.md"
+    ],
+    "REPOSITORY_CLEANUP": [
+      "artifacts/book_intake_stage28/book_intake_freeze_evidence.json",
+      "artifacts/book_preparation_stage34/book_preparation_freeze_evidence.json",
+      "artifacts/controlled_multi_chunk_translation_stage742/checkpoint-001.json",
+      "artifacts/controlled_multi_chunk_translation_stage742/chunk-001.translated.txt",
+      "artifacts/controlled_multi_chunk_translation_stage742/chunk-002.quality-diagnostic.json",
+      "artifacts/controlled_multi_chunk_translation_stage743_diagnostic/chunk-002.dialogue-diagnostic.json",
+      "artifacts/controlled_multi_chunk_translation_stage743_diagnostic/chunk-002.invalid-candidate.txt",
+      "artifacts/ntpe_v20_stage0_project_layout_consolidation/COMPATIBILITY_WRAPPERS.json",
+      "artifacts/ntpe_v20_stage0_project_layout_consolidation/EXCLUDED_TRACKED_FILES.json",
+      "artifacts/ntpe_v20_stage0_project_layout_consolidation/FINAL_ROOT_INVENTORY.json",
+      "artifacts/ntpe_v20_stage0_project_layout_consolidation/IMMUTABLE_PATH_EXCEPTIONS.json",
+      "artifacts/ntpe_v20_stage0_project_layout_consolidation/INITIAL_ROOT_INVENTORY.json",
+      "artifacts/ntpe_v20_stage0_project_layout_consolidation/MOVE_MAP.json",
+      "artifacts/ntpe_v20_stage0_project_layout_consolidation/RETAINED_ROOT_WRAPPERS.json",
+      "artifacts/ntpe_v20_stage0_project_layout_consolidation/VALIDATION_REPORT.json",
+      "artifacts/ntpe_v20_stage1_translation_launcher_product_foundation/COMMAND_BUILDER_EVIDENCE.json",
+      "artifacts/ntpe_v20_stage1_translation_launcher_product_foundation/GUI_SMOKE_EVIDENCE.json",
+      "artifacts/ntpe_v20_stage1_translation_launcher_product_foundation/LANGUAGE_DETECTION_EVIDENCE.json",
+      "artifacts/ntpe_v20_stage1_translation_launcher_product_foundation/MODEL_CATALOG.json",
+      "artifacts/ntpe_v20_stage1_translation_launcher_product_foundation/PROVIDER_CATALOG.json",
+      "artifacts/ntpe_v20_stage1_translation_launcher_product_foundation/VALIDATION_REPORT.json",
+      "artifacts/te_v6_0_final_validation/TE_V6_0_FINAL_VALIDATION.json",
+      "artifacts/te_v6_0_final_validation/TE_V6_0_FINAL_VALIDATION.md",
+      "artifacts/te_v71_stage111/TE_V71_STAGE111_TRANSLATION_DEFECTS.json",
+      "artifacts/te_v71_stage112/TE_V71_STAGE112_QUALITY_METRICS.json",
+      "artifacts/te_v71_stage112/TE_V71_STAGE112_QUALITY_SUMMARY.json",
+      "artifacts/te_v71_stage113/TE_V71_STAGE113_REVIEW.json",
+      "artifacts/te_v71_stage113/TE_V71_STAGE113_REVIEW_DEFECTS.json",
+      "artifacts/te_v71_stage113/TE_V71_STAGE113_REVIEW_METRICS.json",
+      "artifacts/te_v71_stage113/TE_V71_STAGE113_REVIEW_SUMMARY.json",
+      "artifacts/te_v71_stage114/TE_V71_STAGE114_PROMPT_IMPROVEMENT_PLAN.json",
+      "artifacts/te_v71_stage115/TE_V71_STAGE115_REVIEW_DECISION_CONTRACT.json",
+      "artifacts/te_v71_stage116/TE_V71_STAGE116_GOLDEN_CORPUS_GOVERNANCE.json",
+      "artifacts/te_v71_stage117/TE_V71_STAGE117_QUALITY_FRAMEWORK_INTEGRATION.json",
+      "artifacts/te_v71_stage118/TE_V71_STAGE118_TRANSLATION_QUALITY_FRAMEWORK_FREEZE.json",
+      "artifacts/te_v72_canary/baseline/run_summary.json",
+      "artifacts/te_v72_canary/canary_evidence.json",
+      "artifacts/te_v72_canary/candidate/run_summary.json",
+      "artifacts/te_v72_canary/comparison_report.json",
+      "artifacts/te_v72_canary/execution_summary.json",
+      "artifacts/te_v72_canary/performance_summary.json",
+      "artifacts/te_v72_canary/quality_review_template.json",
+      "artifacts/te_v72_canary_execution/baseline_output/canary-001-character-honorific.txt",
+      "artifacts/te_v72_canary_execution/baseline_output/canary-002-scene-pronoun.txt",
+      "artifacts/te_v72_canary_execution/canary_execution_evidence.json",
+      "artifacts/te_v72_canary_execution/candidate_output/canary-001-character-honorific.txt",
+      "artifacts/te_v72_canary_execution/candidate_output/canary-002-scene-pronoun.txt",
+      "artifacts/te_v72_canary_execution/execution_claim.json",
+      "artifacts/te_v72_canary_execution/execution_summary.json",
+      "artifacts/te_v72_canary_execution/manual_review.md",
+      "artifacts/te_v72_canary_execution/provider_metrics.json",
+      "artifacts/te_v72_canary_execution/quality_report.json",
+      "artifacts/te_v72_milestone_a/boundary_evidence.json",
+      "artifacts/te_v72_milestone_a/determinism_evidence.json",
+      "artifacts/te_v72_milestone_a/performance_evidence.json",
+      "artifacts/te_v72_milestone_a/prompt_budget_evidence.json",
+      "artifacts/te_v72_milestone_a/translation_quality_integration_evidence.json",
+      "artifacts/te_v72_prompt_canary_readiness/marker_integrity.json",
+      "artifacts/te_v72_prompt_canary_readiness/prompt_fingerprint.json",
+      "artifacts/te_v72_prompt_canary_readiness/prompt_layout.json",
+      "artifacts/te_v72_prompt_canary_readiness/readiness_summary.json",
+      "artifacts/te_v72_prompt_canary_readiness/reference_isolation.json",
+      "artifacts/te_v72_prompt_canary_readiness/token_budget.json",
+      "artifacts/te_v72_prompt_contract_preservation/baseline_prompt_snapshot.txt",
+      "artifacts/te_v72_prompt_contract_preservation/candidate_prompt_after_snapshot.txt",
+      "artifacts/te_v72_prompt_contract_preservation/candidate_prompt_before_snapshot.txt",
+      "artifacts/te_v72_prompt_contract_preservation/dynamic_section_scan_report.json",
+      "artifacts/te_v72_prompt_contract_preservation/prompt_contract_preservation_evidence.json",
+      "artifacts/te_v72_prompt_contract_preservation/prompt_ordering_diff.json",
+      "artifacts/te_v72_prompt_contract_preservation/serialization_invariants.json",
+      "artifacts/te_v72_prompt_contract_preservation/token_dilution_metrics.json",
+      "artifacts/te_v72_prompt_diagnostics/contamination_report.json",
+      "artifacts/te_v72_prompt_diagnostics/generate_diagnostics.py",
+      "artifacts/te_v72_prompt_diagnostics/prompt_diff.json",
+      "artifacts/te_v72_prompt_diagnostics/prompt_tree.json",
+      "artifacts/te_v72_prompt_diagnostics/root_cause_analysis.md",
+      "artifacts/te_v72_prompt_diagnostics/section_metrics.json",
+      "artifacts/te_v72_stage121/TE_V72_STAGE121_EVIDENCE_BASED_PROMPT_QUALITY_CANDIDATE.json",
+      "artifacts/te_v72_stage121/TE_V72_STAGE121_MANUAL_REVIEW_TEMPLATE.json",
+      "artifacts/te_v72_stage121/TE_V72_STAGE121_PROVIDER_EXECUTION_PACKAGE.json",
+      "artifacts/te_v72_stage122/TE_V72_STAGE122_AB_EXECUTION_PACKAGE.json",
+      "artifacts/te_v72_stage122/TE_V72_STAGE122_MANUAL_AB_REVIEW.json",
+      "artifacts/te_v72_stage122/baseline_prompt_profile.json",
+      "artifacts/te_v72_stage122/baseline_request.json",
+      "artifacts/te_v72_stage122/baseline_response.json",
+      "artifacts/te_v72_stage122/candidate_prompt_profile.json",
+      "artifacts/te_v72_stage122/candidate_request.json",
+      "artifacts/te_v72_stage122/candidate_response.json",
+      "artifacts/te_v72_stage1221/TE_V72_STAGE1221_CONTROLLED_AB_EXECUTION.json",
+      "artifacts/te_v72_stage1221/TE_V72_STAGE1221_MANUAL_AB_REVIEW.json",
+      "artifacts/te_v72_stage1221/baseline/execution_metadata.json",
+      "artifacts/te_v72_stage1221/baseline/prompt_profile.json",
+      "artifacts/te_v72_stage1221/baseline/raw_response.json",
+      "artifacts/te_v72_stage1221/baseline/request.json",
+      "artifacts/te_v72_stage1221/baseline/translation.txt",
+      "artifacts/te_v72_stage1221/candidate/execution_metadata.json",
+      "artifacts/te_v72_stage1221/candidate/prompt_profile.json",
+      "artifacts/te_v72_stage1221/candidate/raw_response.json",
+      "artifacts/te_v72_stage1221/candidate/request.json",
+      "artifacts/te_v72_stage1221/candidate/translation.txt",
+      "artifacts/te_v72_stage1222/TE_V72_STAGE1222_INDEPENDENT_PAIR_EXECUTION.json",
+      "artifacts/te_v72_stage1222/TE_V72_STAGE1222_MANUAL_AB_REVIEW.json",
+      "artifacts/te_v72_stage1222/baseline/execution_metadata.json",
+      "artifacts/te_v72_stage1222/baseline/prompt_profile.json",
+      "artifacts/te_v72_stage1222/baseline/raw_response.json",
+      "artifacts/te_v72_stage1222/baseline/request.json",
+      "artifacts/te_v72_stage1222/baseline/translation.txt",
+      "artifacts/te_v72_stage1222/candidate/execution_metadata.json",
+      "artifacts/te_v72_stage1222/candidate/prompt_profile.json",
+      "artifacts/te_v72_stage1222/candidate/raw_response.json",
+      "artifacts/te_v72_stage1222/candidate/request.json",
+      "artifacts/te_v72_stage1222/candidate/translation.txt",
+      "artifacts/te_v72_stage1223/TE_V72_STAGE1223_MANUAL_AB_REVIEW.json",
+      "artifacts/te_v72_stage1223/TE_V72_STAGE1223_MINIMAL_EXCERPT_AB_EXECUTION.json",
+      "artifacts/te_v72_stage1223/TE_V72_STAGE1223_SOURCE_EXCERPT_FREEZE.json",
+      "artifacts/te_v72_stage1223/baseline/execution_metadata.json",
+      "artifacts/te_v72_stage1223/baseline/prompt_profile.json",
+      "artifacts/te_v72_stage1223/baseline/raw_response.json",
+      "artifacts/te_v72_stage1223/baseline/request.json",
+      "artifacts/te_v72_stage1223/baseline/translation.txt",
+      "artifacts/te_v72_stage1223/candidate/execution_metadata.json",
+      "artifacts/te_v72_stage1223/candidate/prompt_profile.json",
+      "artifacts/te_v72_stage1223/candidate/raw_response.json",
+      "artifacts/te_v72_stage1223/candidate/request.json",
+      "artifacts/te_v72_stage1223/candidate/translation.txt",
+      "artifacts/te_v72_stage1256_prompt_verification_canary/activation_decision.json",
+      "artifacts/te_v72_stage1256_prompt_verification_canary/authorization_claim.json",
+      "artifacts/te_v72_stage1256_prompt_verification_canary/execution_summary.json",
+      "artifacts/te_v72_stage1256_prompt_verification_canary/failure_record.json",
+      "artifacts/te_v72_stage1256_prompt_verification_canary/preflight.json",
+      "artifacts/te_v72_stage1256a_claim_safe_corpus_binding_remediation/claim_lifecycle_validation.json",
+      "artifacts/te_v72_stage1256a_claim_safe_corpus_binding_remediation/corpus_identity_contract.json",
+      "artifacts/te_v72_stage1256a_claim_safe_corpus_binding_remediation/corpus_resolution_validation.json",
+      "artifacts/te_v72_stage1256a_claim_safe_corpus_binding_remediation/historical_stage1256_seal.json",
+      "artifacts/te_v72_stage1256a_claim_safe_corpus_binding_remediation/preflight_ordering_validation.json",
+      "artifacts/te_v72_stage1256a_claim_safe_corpus_binding_remediation/remediation_summary.json",
+      "artifacts/te_v72_stage1257_prompt_verification_canary/authorization_claim.json",
+      "artifacts/te_v72_stage1257_prompt_verification_canary/baseline_request.json",
+      "artifacts/te_v72_stage1257_prompt_verification_canary/baseline_response.json",
+      "artifacts/te_v72_stage1257_prompt_verification_canary/corpus_resolution.json",
+      "artifacts/te_v72_stage1257_prompt_verification_canary/execution_summary.json",
+      "artifacts/te_v72_stage1257_prompt_verification_canary/latency_comparison.json",
+      "artifacts/te_v72_stage1257_prompt_verification_canary/manual_review_package.json",
+      "artifacts/te_v72_stage1257_prompt_verification_canary/preflight.json",
+      "artifacts/te_v72_stage1257_prompt_verification_canary/provisional_activation_decision.json",
+      "artifacts/te_v72_stage1257_prompt_verification_canary/request_plan.json",
+      "artifacts/te_v72_stage1257_prompt_verification_canary/structural_validation.json",
+      "artifacts/te_v72_stage1257a_execution_evidence_sealing/claim_lifecycle.json",
+      "artifacts/te_v72_stage1257a_execution_evidence_sealing/final_activation_decision.json",
+      "artifacts/te_v72_stage1257a_execution_evidence_sealing/historical_execution_seal.json",
+      "artifacts/te_v72_stage1257a_execution_evidence_sealing/request_budget_accounting.json",
+      "artifacts/te_v72_stage1257a_execution_evidence_sealing/sealing_summary.json",
+      "artifacts/te_v72_stage1257a_execution_evidence_sealing/test_state_isolation.json",
+      "artifacts/te_v72_stage1258_candidate_structural_verification_canary/activation_contract.json",
+      "artifacts/te_v72_stage1258_candidate_structural_verification_canary/authorization_claim.json",
+      "artifacts/te_v72_stage1258_candidate_structural_verification_canary/candidate_request.json",
+      "artifacts/te_v72_stage1258_candidate_structural_verification_canary/candidate_response.json",
+      "artifacts/te_v72_stage1258_candidate_structural_verification_canary/claim_contract.json",
+      "artifacts/te_v72_stage1258_candidate_structural_verification_canary/corpus_resolution.json",
+      "artifacts/te_v72_stage1258_candidate_structural_verification_canary/execution_summary.json",
+      "artifacts/te_v72_stage1258_candidate_structural_verification_canary/final_activation_decision.json",
+      "artifacts/te_v72_stage1258_candidate_structural_verification_canary/preflight.json",
+      "artifacts/te_v72_stage1258_candidate_structural_verification_canary/preflight_template.json",
+      "artifacts/te_v72_stage1258_candidate_structural_verification_canary/preparation_summary.json",
+      "artifacts/te_v72_stage1258_candidate_structural_verification_canary/request_plan.json",
+      "artifacts/te_v72_stage1258_candidate_structural_verification_canary/structural_validation.json",
+      "artifacts/te_v72_stage1258_candidate_structural_verification_canary/structural_validation_contract.json",
+      "artifacts/te_v72_stage1258a_candidate_structural_failure_sealing/claim_lifecycle.json",
+      "artifacts/te_v72_stage1258a_candidate_structural_failure_sealing/historical_execution_seal.json",
+      "artifacts/te_v72_stage1258a_candidate_structural_failure_sealing/name_resolution_trace.json",
+      "artifacts/te_v72_stage1258a_candidate_structural_failure_sealing/prompt_name_mapping_evidence.json",
+      "artifacts/te_v72_stage1258a_candidate_structural_failure_sealing/remediation_decision.json",
+      "artifacts/te_v72_stage1258a_candidate_structural_failure_sealing/sealing_summary.json",
+      "artifacts/te_v72_stage1258a_candidate_structural_failure_sealing/structural_failure_classification.json",
+      "artifacts/te_v72_stage1259_name_resolution_contract_remediation/activation_contract.json",
+      "artifacts/te_v72_stage1259_name_resolution_contract_remediation/budget_evidence.json",
+      "artifacts/te_v72_stage1259_name_resolution_contract_remediation/conflict_resolution_contract.json",
+      "artifacts/te_v72_stage1259_name_resolution_contract_remediation/mapping_eligibility_evidence.json",
+      "artifacts/te_v72_stage1259_name_resolution_contract_remediation/name_resolution_contract.json",
+      "artifacts/te_v72_stage1259_name_resolution_contract_remediation/output_validation_extension.json",
+      "artifacts/te_v72_stage1259_name_resolution_contract_remediation/preparation_summary.json",
+      "artifacts/te_v72_stage1259_name_resolution_contract_remediation/prompt_rendering_candidate.json",
+      "artifacts/te_v72_stage1259_name_resolution_contract_remediation/source_inventory.json",
+      "artifacts/te_v72_stage1259_name_resolution_contract_remediation/unresolved_name_evidence.json",
+      "artifacts/te_v7_stage02/TE_V7_STAGE02_SHADOW_BENCHMARK.json",
+      "artifacts/te_v7_stage03/TE_V7_STAGE03_RUNTIME_SHADOW_BENCHMARK.json",
+      "artifacts/te_v7_stage04/TE_V7_STAGE04_PRODUCTION_SHADOW_VALIDATION.json",
+      "artifacts/te_v7_stage04/TE_V7_STAGE04_PRODUCTION_SHADOW_VALIDATION.jsonl",
+      "artifacts/te_v7_stage04/TE_V7_STAGE04_PRODUCTION_SHADOW_VALIDATION_FAILED_TIMEOUT.json",
+      "artifacts/te_v7_stage05/TE_V7_STAGE05_ACE_ACTIVE_CANARY_VALIDATION.json",
+      "artifacts/te_v7_stage06/TE_V7_STAGE06_CANARY_PRODUCTION_VALIDATION.json",
+      "artifacts/te_v7_stage06/TE_V7_STAGE06_CANARY_PRODUCTION_VALIDATION.jsonl",
+      "artifacts/te_v7_stage075/TE_V7_STAGE075_CANARY_AB_QUALITY_VALIDATION.json",
+      "artifacts/te_v7_stage081/TE_V7_STAGE081_PRODUCTION_ACTIVATION_POLICY.json",
+      "artifacts/te_v7_stage082/TE_V7_STAGE082_PROFILE_AWARE_CONTEXT_BUDGET.json",
+      "artifacts/te_v7_stage083/TE_V7_STAGE083_ADAPTIVE_CONTEXT_STRATEGY_SELECTION.json",
+      "artifacts/te_v7_stage084/TE_V7_STAGE084_PRODUCTION_ROLLBACK.json",
+      "artifacts/te_v7_stage084/TE_V7_STAGE084_PRODUCTION_ROLLOUT_METRICS.json",
+      "artifacts/te_v7_stage09/TE_V7_STAGE09_BASELINE.json",
+      "artifacts/te_v7_stage09/TE_V7_STAGE09_CANDIDATE.json",
+      "artifacts/te_v7_stage09/TE_V7_STAGE09_COMPARISON.json",
+      "artifacts/te_v7_stage09/TE_V7_STAGE09_READINESS.json",
+      "artifacts/te_v7_stage1010/TE_V7_STAGE1010_SINGLE_REAL_INVOCATION.json",
+      "artifacts/te_v7_stage10101/TE_V7_STAGE10101_CONTROLLED_RETRY.json",
+      "artifacts/te_v7_stage10101/review/TE_V7_STAGE10101_TRANSLATION_REVIEW.txt",
+      "artifacts/te_v7_stage108/TE_V7_STAGE108_FAKE_TRANSPORT_FREEZE.json",
+      "artifacts/te_v7_stage109/TE_V7_STAGE109_REAL_PROVIDER_PREFLIGHT.json",
+      "artifacts/tic_batch3/KNOWN_SUBJECT_SHIFT_HUMAN_REVIEW.json",
+      "artifacts/tic_batch3/MANUAL_EVIDENCE_INVENTORY.json",
+      "artifacts/tic_batch3/MANUAL_EVIDENCE_LINKS.json",
+      "artifacts/tic_batch3/TRANSLATION_ALIGNMENT_INDEX.json",
+      "artifacts/tic_batch3/TRANSLATION_ALIGNMENT_MANIFEST.json",
+      "artifacts/tic_batch3/TRANSLATION_ALIGNMENT_STATISTICS.json",
+      "artifacts/tic_batch3/TRANSLATION_ALIGNMENT_UNITS.json",
+      "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_D_RECONCILIATION.md",
+      "tools/one_shots/launcher_analyzer.py",
+      "tools/one_shots/launcher_character_db.py",
+      "tools/one_shots/launcher_coverage_test.py",
+      "tools/one_shots/launcher_expansion_plan.py",
+      "tools/one_shots/launcher_glossary.py",
+      "tools/one_shots/launcher_kb.py",
+      "tools/one_shots/launcher_memory.py",
+      "tools/one_shots/launcher_novel_prompt_test.py",
+      "tools/one_shots/launcher_profile.py",
+      "tools/one_shots/launcher_prompt_builder.py",
+      "tools/one_shots/launcher_quality_benchmark.py",
+      "tools/one_shots/launcher_retranslate_chunk.py",
+      "tools/one_shots/launcher_semantic_repair.py",
+      "tools/one_shots/launcher_semantic_test.py",
+      "tools/one_shots/launcher_structure_test.py",
+      "tools/one_shots/launcher_style_expansion.py",
+      "tools/one_shots/launcher_style_planner_test.py",
+      "tools/one_shots/write_narrative_part1.py",
+      "tools/one_shots/write_narrative_part2.py",
+      "tools/one_shots/write_override.py",
+      "tools/one_shots/write_p1.py",
+      "tools/one_shots/write_provider.py",
+      "tools/one_shots/write_provider2.py",
+      "tools/one_shots/write_report_part1.py",
+      "tools/one_shots/write_report_part2a.py",
+      "tools/one_shots/write_report_part2b.py",
+      "tools/one_shots/write_report_part3.py",
+      "tools/one_shots/write_scene_part2b.py",
+      "tools/one_shots/write_style_part1.py",
+      "tools/one_shots/write_style_part2.py"
+    ],
+    "NEW_FEATURE": [
+      "ntpe_production_translate.py"
+    ],
+    "UNKNOWN": []
+  },
+  "mixed_file_hunk_map": {
+    "core/translation_engine/provider_runtime.py": {
+      "total_hunks": 3,
+      "hunks": [
+        {
+          "hunk_id": 1,
+          "location": "Lines 42-49 (NON_RETRYABLE_PROVIDER_ERROR_PATTERNS)",
+          "diff": "+    \"408\",",
+          "classification": "KEEP_CURRENT",
+          "reason": "HTTP 408 classification as non-retryable is a runtime resilience improvement independent of model choice. Added after N1.5 closure per project decision.",
+          "depends_on_minimax": false
+        },
+        {
+          "hunk_id": 2,
+          "location": "Lines 187-196 (build_translation_provider_manager signature)",
+          "diff": "+    max_attempts: int | None = None,\n+    retry_base_delay_seconds: float | None = None,",
+          "classification": "KEEP_CURRENT",
+          "reason": "Dynamic retry configuration parameters - enables runtime override of retry policy. Independent of model.",
+          "depends_on_minimax": false
+        },
+        {
+          "hunk_id": 3,
+          "location": "Lines 220-231 (retry_policy construction)",
+          "diff": "+    max_attempts = max_attempts if max_attempts is not None else settings.retry_attempts\n+    retry_base_delay_seconds = retry_base_delay_seconds if retry_base_delay_seconds is not None else settings.retry_base_delay_seconds\n     retry_policy = RetryPolicy(\n-        max_attempts=settings.retry_attempts,\n-        base_delay_seconds=settings.retry_base_delay_seconds,\n+        max_attempts=max_attempts,\n+        base_delay_seconds=retry_base_delay_seconds,",
+          "classification": "KEEP_CURRENT",
+          "reason": "Uses dynamic params when provided, falls back to config. Pure runtime improvement.",
+          "depends_on_minimax": false
+        }
+      ]
+    },
+    "core/translation_engine/translation_engine.py": {
+      "total_hunks": 1,
+      "hunks": [
+        {
+          "hunk_id": 1,
+          "location": "Lines 213-221 (TranslationEngine.__call__ provider manager call)",
+          "diff": "+                max_attempts=metadata.get(\"provider_attempts\"),\n+                retry_base_delay_seconds=metadata.get(\"retry_base_seconds\"),",
+          "classification": "KEEP_CURRENT",
+          "reason": "Propagates retry config from metadata to provider layer. Enables per-request retry customization. Independent of model.",
+          "depends_on_minimax": false
+        }
+      ]
+    },
+    "lts/txt_translation_runtime.py": {
+      "total_hunks": 3,
+      "hunks": [
+        {
+          "hunk_id": 1,
+          "location": "Line 83 (DEFAULT_MODEL constant)",
+          "diff": "-DEFAULT_MODEL = \"meta/llama-3.3-70b-instruct\"\n+DEFAULT_MODEL = \"minimaxai/minimax-m3\"",
+          "classification": "REVERT_TO_8C999B1",
+          "reason": "Pure model reference change. Must revert to pre-Minimax default.",
+          "depends_on_minimax": true
+        },
+        {
+          "hunk_id": 2,
+          "location": "Lines 889-898 (metadata dict in _translate_txt_with_runtime_pipeline)",
+          "diff": "+                # Retry configuration for provider\n+                \"provider_attempts\": options.provider_attempts,\n+                \"retry_base_seconds\": options.retry_base_seconds,",
+          "classification": "KEEP_CURRENT",
+          "reason": "Adds retry config to chunk metadata for propagation to translation engine. Runtime improvement.",
+          "depends_on_minimax": false
+        },
+        {
+          "hunk_id": 3,
+          "location": "Lines 1075-1122 (result handling - incomplete status)",
+          "diff": "+    successful_chunks = sum(1 for r in records if r.get(\"status\") == \"success\")\n+    total_chunks = len(chunks)\n+    error_chunks = total_chunks - successful_chunks\n+\n+    if error_chunks > 0:\n+        return {\n+            \"status\": \"incomplete\",\n+            ...\n+        }\n\n     return {\n         \"status\": \"success\",\n         ...\n-            \"total_chunks\": len(chunks),\n-            \"error\": 0,\n+            \"total_chunks\": total_chunks,\n+            \"successful_chunks\": successful_chunks,\n+            \"failed_chunks\": 0,",
+          "classification": "KEEP_CURRENT",
+          "reason": "New 'incomplete' status for partial translation success + enhanced summary fields. Pure runtime improvement.",
+          "depends_on_minimax": false
+        }
+      ]
+    },
+    "config/provider_config.json": {
+      "total_hunks": 3,
+      "hunks": [
+        {
+          "hunk_id": 1,
+          "location": "Lines 2-6 (global retry_defaults)",
+          "diff": "  \"retry_defaults\": {\n    \"max_attempts\": 3,\n-    \"base_delay_seconds\": 0.0,\n+    \"base_delay_seconds\": 5.0,\n     \"backoff_factor\": 2.0\n   }",
+          "classification": "KEEP_CURRENT",
+          "reason": "Global retry defaults improved from 1 attempt/0 delay to 3 attempts/5s delay. Runtime resilience.",
+          "depends_on_minimax": false
+        },
+        {
+          "hunk_id": 2,
+          "location": "Lines 14-22 (NVIDIA provider retry_defaults)",
+          "diff": "    \"retry_defaults\": {\n-      \"max_attempts\": 1,\n-      \"base_delay_seconds\": 0.0,\n+      \"max_attempts\": 3,\n+      \"base_delay_seconds\": 5.0,\n       \"backoff_factor\": 2.0\n     }",
+          "classification": "KEEP_CURRENT",
+          "reason": "NVIDIA-specific retry defaults: 1→3 attempts, 0→5s base delay. Major resilience improvement.",
+          "depends_on_minimax": false
+        },
+        {
+          "hunk_id": 3,
+          "location": "Lines 34-38 (NVIDIA default_model)",
+          "diff": "    \"nvidia\": {\n      \"env_var\": \"NVIDIA_API_KEY\",\n-      \"default_model\": \"meta/llama-3.3-70b-instruct\"\n+      \"default_model\": \"minimaxai/minimax-m3\"\n    }",
+          "classification": "REVERT_TO_8C999B1",
+          "reason": "Pure model reference. Must revert to pre-Minimax default.",
+          "depends_on_minimax": true
+        }
+      ]
+    },
+    "ntpe_production_translate.py": {
+      "total_hunks": 3,
+      "hunks": [
+        {
+          "hunk_id": 1,
+          "location": "Lines 26-32 (imports)",
+          "diff": "+from core.adapters.epub_extraction_boundary import (\n+    EpubExtractionBoundary,\n+    EpubExtractionError,\n+    EpubExtractionResult,\n+    ExtractedTextIntakeRequest,\n+)\n+from core.adapters.canonical_book_intake_adapter import CanonicalBookIntakeAdapter, CanonicalIntakeResult",
+          "classification": "KEEP_CURRENT",
+          "reason": "EPUB feature imports. Independent of model - uses existing adapter infrastructure.",
+          "depends_on_minimax": false
+        },
+        {
+          "hunk_id": 2,
+          "location": "Line 99 (DEFAULT_MODEL constant)",
+          "diff": "-DEFAULT_MODEL = \"meta/llama-3.3-70b-instruct\"\n+DEFAULT_MODEL = \"minimaxai/minimax-m3\"",
+          "classification": "REVERT_TO_8C999B1",
+          "reason": "Pure model reference. Must revert to pre-Minimax default. EPUB feature uses this as default but is model-agnostic.",
+          "depends_on_minimax": true
+        },
+        {
+          "hunk_id": 3,
+          "location": "Lines 193-628 (epub subcommand + run_epub function)",
+          "diff": "+    epub = sub.add_parser(\"epub\", help=\"translate an EPUB file\")\n+    ...\n+def run_epub(args: argparse.Namespace) -> int:\n+    ...\n+    # Full EPUB translation pipeline implementation",
+          "classification": "KEEP_CURRENT",
+          "reason": "Complete new EPUB translation feature (~140 lines). Uses model parameter from CLI (model-agnostic). No Minimax-specific code.",
+          "depends_on_minimax": false
+        }
+      ]
+    }
+  },
+  "runtime_improvements_preservation_map": {
+    "total_improvements": 7,
+    "improvements": [
+      {
+        "id": "RI-01",
+        "name": "HTTP 408 Non-Retryable Classification",
+        "file": "core/translation_engine/provider_runtime.py",
+        "symbol": "NON_RETRYABLE_PROVIDER_ERROR_PATTERNS",
+        "hunk": 1,
+        "change": "Added \"408\" to non-retryable provider error patterns",
+        "dependency": "None - standalone pattern addition",
+        "related_test": "None explicitly (behavioral)",
+        "independent_from_minimax": true,
+        "action": "KEEP_CURRENT"
+      },
+      {
+        "id": "RI-02",
+        "name": "Dynamic Retry Configuration Parameters",
+        "file": "core/translation_engine/provider_runtime.py",
+        "symbol": "build_translation_provider_manager",
+        "hunk": 2,
+        "change": "Added max_attempts and retry_base_delay_seconds optional parameters",
+        "dependency": "Requires hunk 3 to use the parameters",
+        "related_test": "None explicitly",
+        "independent_from_minimax": true,
+        "action": "KEEP_CURRENT"
+      },
+      {
+        "id": "RI-03",
+        "name": "Dynamic Retry Parameter Usage in Provider Manager",
+        "file": "core/translation_engine/provider_runtime.py",
+        "symbol": "build_translation_provider_manager -> RetryPolicy",
+        "hunk": 3,
+        "change": "Uses dynamic params when provided, falls back to config settings",
+        "dependency": "Requires RI-02 parameters",
+        "related_test": "None explicitly",
+        "independent_from_minimax": true,
+        "action": "KEEP_CURRENT"
+      },
+      {
+        "id": "RI-04",
+        "name": "Retry Config Propagation from Metadata",
+        "file": "core/translation_engine/translation_engine.py",
+        "symbol": "TranslationEngine.__call__",
+        "hunk": 1,
+        "change": "Passes provider_attempts and retry_base_seconds from metadata to provider manager",
+        "dependency": "Requires RI-02/RI-03 in provider_runtime.py",
+        "related_test": "None explicitly",
+        "independent_from_minimax": true,
+        "action": "KEEP_CURRENT"
+      },
+      {
+        "id": "RI-05",
+        "name": "Balanced Profile Provider Attempts Increase",
+        "file": "core/translation_runtime/runtime_speed_policy.py",
+        "symbol": "_POLICIES[\"balanced\"].provider_attempts",
+        "hunk": 1,
+        "change": "provider_attempts: 2 → 3",
+        "dependency": "Used by runtime when speed=balanced",
+        "related_test": "Literary regression tests",
+        "independent_from_minimax": true,
+        "action": "KEEP_CURRENT"
+      },
+      {
+        "id": "RI-06",
+        "name": "Partial Translation Handling (incomplete status)",
+        "file": "lts/txt_translation_runtime.py",
+        "symbol": "_translate_txt_with_runtime_pipeline",
+        "hunk": 3,
+        "change": "Returns 'incomplete' status with chunk success/failure counts when some chunks fail",
+        "dependency": "Requires hunk 2 metadata for retry config",
+        "related_test": "Literary regression tests (partial success scenarios)",
+        "independent_from_minimax": true,
+        "action": "KEEP_CURRENT"
+      },
+      {
+        "id": "RI-07",
+        "name": "Retry Metadata in Chunk Pipeline + Enhanced Summary",
+        "file": "lts/txt_translation_runtime.py",
+        "symbol": "_translate_txt_with_runtime_pipeline",
+        "hunk": 2,
+        "change": "Adds provider_attempts and retry_base_seconds to chunk metadata; enhanced summary with successful_chunks/failed_chunks",
+        "dependency": "Feeds RI-04 propagation chain",
+        "related_test": "Literary regression tests",
+        "independent_from_minimax": true,
+        "action": "KEEP_CURRENT"
+      }
+    ],
+    "epub_preservation_assessment": {
+      "preserve": true,
+      "assessment": {
+        "epub_feature_is_model_agnostic": true,
+        "uses_minimax_specific_model_id": false,
+        "uses_minimax_specific_provider_changes": false,
+        "dependencies": [
+          "core.adapters.epub_extraction_boundary (existing)",
+          "core.adapters.canonical_book_intake_adapter (existing)",
+          "lts.txt_translation_runtime (existing, with runtime improvements preserved)",
+          "TranslationRuntime (existing)"
+        ],
+        "model_dependency": "Only uses DEFAULT_MODEL as fallback default for --model CLI arg; fully overridable via CLI/env",
+        "reconstruction_needed": false,
+        "risk_if_lost": "CRITICAL - Entire production EPUB translation capability",
+        "action": "KEEP_CURRENT (with DEFAULT_MODEL reverted to pre-Minimax value)"
+      }
+    },
+    "deleted_paths_assessment": {
+      "total_deleted": 218,
+      "categories": {
+        "intentional_repository_cleanup": {
+          "count": 200,
+          "description": "TE v6, v7, v71, v72 stage validation artifacts; book intake/preparation stages; NTPE v20 consolidation; TIC batch3 alignment data. Historical test/validation evidence.",
+          "should_restore": false,
+          "risk": "LOW - Not production code"
+        },
+        "obsolete_tool_removal": {
+          "count": 24,
+          "description": "tools/one_shots/launcher_*.py (13) + tools/one_shots/write_*.py (11). Development/debugging utilities.",
+          "should_restore": false,
+          "risk": "LOW - Not production code"
+        },
+        "governance_doc_cleanup": {
+          "count": 1,
+          "description": "P0_REPOSITORY_FINAL_CLEANUP_BATCH_D_RECONCILIATION.md - superseded by later governance docs",
+          "should_restore": false,
+          "risk": "LOW - Documentation only"
+        },
+        "potentially_accidental": {
+          "count": 2,
+          "files": [
+            "artifacts/rm6_canary/legacy_kr/novel_sample_live_progress.json",
+            "artifacts/rm6_canary/runtime_kr/novel_sample_live_progress.json"
+          ],
+          "description": "RM6 canary progress files - MODIFIED not deleted (show as modified in git status). These are active canary tracking files.",
+          "should_restore": true,
+          "risk": "MEDIUM - Active canary state"
+        }
+      }
+    },
+    "test_separation_map": {
+      "total_modified_tests": 9,
+      "classification": {
+        "minimax_specific_expectation": [
+          "tests/unit/adapters/test_production_submission_adapter.py",
+          "tests/unit/test_controlled_provider_routing.py"
+        ],
+        "minimax_stage_name_updates": [
+          "tests/literary/outputs/PS-03-integration/Literary_Diff_Report.md",
+          "tests/literary/outputs/PS-03-integration/Literary_Quality_Report.json",
+          "tests/literary/outputs/PS-03-integration/Literary_Quality_Report.md",
+          "tests/literary/outputs/PS-03-smoke/Literary_Quality_Report.json",
+          "tests/literary/outputs/PS-03-smoke/Literary_Regression_Report.json",
+          "tests/literary/outputs/Regression_History.json",
+          "tests/literary/outputs/Regression_History.md"
+        ],
+        "generic_runtime_resilience_coverage": [],
+        "epub_coverage": [],
+        "model_neutral_provider_behavior": []
+      },
+      "post_recovery_actions": {
+        "revert_to_baseline_expectations": [
+          "tests/unit/adapters/test_production_submission_adapter.py",
+          "tests/unit/test_controlled_provider_routing.py"
+        ],
+        "regenerate_literary_outputs": [
+          "tests/literary/outputs/PS-03-integration/*",
+          "tests/literary/outputs/PS-03-smoke/*",
+          "tests/literary/outputs/Regression_History.*"
+        ],
+        "preserve_generic_resilience_tests": "No separate generic resilience tests exist; literary regression suite covers runtime behavior. Must re-run after recovery to establish new baselines."
+      }
+    }
+  },
+  "proposed_recovery_allowlist": [
+    "core/translation_engine/provider_runtime.py",
+    "core/translation_engine/translation_engine.py",
+    "core/translation_runtime/runtime_speed_policy.py",
+    "lts/txt_translation_runtime.py",
+    "config/provider_config.json",
+    "ntpe_production_translate.py",
+    "core/adapters/epub_extraction_boundary.py",
+    "core/adapters/canonical_book_intake_adapter.py",
+    "tests/unit/adapters/test_production_submission_adapter.py",
+    "tests/unit/test_controlled_provider_routing.py"
+  ],
+  "proposed_recovery_denylist": [
+    "config/default_config.json",
+    "config/launcher_product_defaults.json",
+    "config/models.json",
+    "core/adapters/production_submission_adapter.py",
+    "core/adaptive_context_authorized_provider_cli/config.py",
+    "core/adaptive_context_authorized_provider_cli/parser.py",
+    "core/adaptive_context_authorized_provider_harness/config.py",
+    "core/adaptive_context_controlled_provider_retry/config.py",
+    "core/adaptive_context_provider_execution_freeze/freeze.py",
+    "core/adaptive_context_real_provider_boundary/config.py",
+    "core/adaptive_context_real_provider_preflight/config.py",
+    "core/adaptive_context_real_provider_preflight/validator.py",
+    "core/adaptive_context_single_real_invocation/config.py",
+    "core/ai_provider/adapters.py",
+    "core/config.py",
+    "core/controlled_multi_chunk_translation_canary/policy.py",
+    "core/controlled_provider_routing/provider_profiles.py",
+    "core/controlled_provider_routing/routing_policy.py",
+    "core/controlled_translation_runtime_integration/policy.py",
+    "core/expansion/style_expansion_engine.py",
+    "core/launcher_product/config.py",
+    "core/launcher_product/model_catalog.py",
+    "core/lcr_production_shadow_hook/batch107_real_provider_validation.py",
+    "core/translation_quality_provider_canary/framework.py"
+  ],
+  "files_requiring_reconstruction": {
+    "core/translation_engine/provider_runtime.py": "RECONSTRUCT - Keep hunks 1,2,3 (runtime); revert any model refs (none in this file)",
+    "core/translation_engine/translation_engine.py": "RECONSTRUCT - Keep hunk 1 (runtime); no model refs in this file",
+    "lts/txt_translation_runtime.py": "RECONSTRUCT - Revert hunk 1 (DEFAULT_MODEL); keep hunks 2,3 (runtime)",
+    "config/provider_config.json": "RECONSTRUCT - Revert hunk 3 (default_model); keep hunks 1,2 (retry defaults)",
+    "ntpe_production_translate.py": "RECONSTRUCT - Revert hunk 2 (DEFAULT_MODEL); keep hunks 1,3 (EPUB feature)"
+  },
+  "validation_plan_after_recovery": {
+    "phase_1_unit_tests": [
+      "pytest tests/unit/adapters/test_production_submission_adapter.py -v",
+      "pytest tests/unit/test_controlled_provider_routing.py -v",
+      "pytest tests/unit/ -k 'provider' -v"
+    ],
+    "phase_2_runtime_behavior": [
+      "Verify provider_runtime.py: 408 in NON_RETRYABLE_PROVIDER_ERROR_PATTERNS",
+      "Verify provider_runtime.py: build_translation_provider_manager accepts max_attempts/retry_base_delay_seconds",
+      "Verify translation_engine.py: passes provider_attempts/retry_base_seconds from metadata",
+      "Verify runtime_speed_policy.py: balanced profile has provider_attempts=3",
+      "Verify txt_translation_runtime.py: incomplete status returned on partial failure",
+      "Verify txt_translation_runtime.py: metadata includes provider_attempts/retry_base_seconds"
+    ],
+    "phase_3_config_validation": [
+      "Verify config/provider_config.json: global retry_defaults max_attempts=3, base_delay_seconds=5.0",
+      "Verify config/provider_config.json: NVIDIA retry_defaults max_attempts=3, base_delay_seconds=5.0",
+      "Verify config/provider_config.json: NVIDIA default_model = 'meta/llama-3.3-70b-instruct'",
+      "Verify config/models.json: NVIDIA default = 'meta/llama-3.3-70b-instruct'",
+      "Verify config/default_config.json: model = 'meta/llama-3.3-70b-instruct'"
+    ],
+    "phase_4_epub_feature": [
+      "Verify ntpe_production_translate.py: epub subcommand exists",
+      "Verify ntpe_production_translate.py: DEFAULT_MODEL = 'meta/llama-3.3-70b-instruct'",
+      "Test: python ntpe_production_translate.py epub --help",
+      "Test: python ntpe_production_translate.py epub test.epub output/ --dry-run"
+    ],
+    "phase_5_literary_regression": [
+      "Run full literary regression suite to establish new baselines",
+      "Verify Regression_History.json regenerates with pre-Minimax model",
+      "Confirm retry resilience improvements function with old model"
+    ]
+  },
+  "recovery_strategy_comparison": {
+    "strategy_A": {
+      "name": "Reset to 8c999b1 → Reapply Non-Model Patches",
+      "description": "git reset --hard 8c999b1, then apply 7 runtime improvement patches + EPUB feature patch",
+      "data_loss_risk": "HIGH - Working tree has 100 untracked files (P0-FINAL-15 reports) that would be orphaned",
+      "accidental_regression_risk": "MEDIUM - Patch application may miss context or have conflicts",
+      "change_traceability": "LOW - Patches lose original commit history and context",
+      "testability": "MEDIUM - Must re-run all tests after patch application",
+      "preserves_epub_runtime": "YES - If patches are complete and correct",
+      "effort": "High - Must create, validate, and apply 8+ patches"
+    },
+    "strategy_B": {
+      "name": "Preserve Working Tree → Surgically Revert Model-Specific Hunks",
+      "description": "Keep current working tree, use git checkout 8c999b1 -- <file> for MODEL_ONLY files, manually edit MIXED files to revert only model hunks",
+      "data_loss_risk": "NONE - Working tree preserved entirely",
+      "accidental_regression_risk": "LOW - Only targeted hunks reverted; runtime improvements untouched",
+      "change_traceability": "HIGH - Git history shows exact surgical changes",
+      "testability": "HIGH - Can test incrementally after each file",
+      "preserves_epub_runtime": "YES - EPUB feature never touched",
+      "effort": "Medium - 5 files need hunk-level editing, 23 MODEL_ONLY files reset"
+    },
+    "recommended_strategy": "Strategy B",
+    "rationale": "Strategy B has zero data loss risk (preserves all 100 untracked P0-FINAL-15 report artifacts), lower regression risk (surgical hunk-level changes only), better traceability (each change visible in git diff), and preserves EPUB/runtime improvements by construction. The 5 MIXED files have cleanly separable hunks. The 23 MODEL_ONLY files can be reset individually via 'git checkout 8c999b1 -- <file>' without affecting working tree."
+  },
+  "final_verdict": "SURGICAL_RECOVERY_READY",
+  "final_recommendation": {
+    "verdict": "SURGICAL_RECOVERY_READY",
+    "selected_strategy": "Strategy B - Preserve Working Tree → Surgically Revert Model-Specific Hunks",
+    "files_to_revert_completely": [
+      "config/default_config.json",
+      "config/launcher_product_defaults.json",
+      "config/models.json",
+      "core/adapters/production_submission_adapter.py",
+      "core/adaptive_context_authorized_provider_cli/config.py",
+      "core/adaptive_context_authorized_provider_cli/parser.py",
+      "core/adaptive_context_authorized_provider_harness/config.py",
+      "core/adaptive_context_controlled_provider_retry/config.py",
+      "core/adaptive_context_provider_execution_freeze/freeze.py",
+      "core/adaptive_context_real_provider_boundary/config.py",
+      "core/adaptive_context_real_provider_preflight/config.py",
+      "core/adaptive_context_real_provider_preflight/validator.py",
+      "core/adaptive_context_single_real_invocation/config.py",
+      "core/ai_provider/adapters.py",
+      "core/config.py",
+      "core/controlled_multi_chunk_translation_canary/policy.py",
+      "core/controlled_provider_routing/provider_profiles.py",
+      "core/controlled_provider_routing/routing_policy.py",
+      "core/controlled_translation_runtime_integration/policy.py",
+      "core/expansion/style_expansion_engine.py",
+      "core/launcher_product/config.py",
+      "core/launcher_product/model_catalog.py",
+      "core/lcr_production_shadow_hook/batch107_real_provider_validation.py",
+      "core/translation_quality_provider_canary/framework.py"
+    ],
+    "files_to_preserve_completely": [
+      "core/translation_runtime/runtime_speed_policy.py",
+      "artifacts/rm6_canary/legacy_kr/novel_sample_live_progress.json",
+      "artifacts/rm6_canary/runtime_kr/novel_sample_live_progress.json"
+    ],
+    "mixed_files_requiring_hunk_reconstruction": [
+      "core/translation_engine/provider_runtime.py",
+      "core/translation_engine/translation_engine.py",
+      "lts/txt_translation_runtime.py",
+      "config/provider_config.json",
+      "ntpe_production_translate.py"
+    ],
+    "preserved_runtime_improvements": [
+      "RI-01: HTTP 408 Non-Retryable Classification",
+      "RI-02: Dynamic Retry Configuration Parameters",
+      "RI-03: Dynamic Retry Parameter Usage in Provider Manager",
+      "RI-04: Retry Config Propagation from Metadata",
+      "RI-05: Balanced Profile Provider Attempts Increase (2→3)",
+      "RI-06: Partial Translation Handling (incomplete status)",
+      "RI-07: Retry Metadata in Chunk Pipeline + Enhanced Summary"
+    ],
+    "epub_preservation_status": "PRESERVE - EPUB feature is model-agnostic, uses existing adapters, only depends on DEFAULT_MODEL as CLI default (will be reverted to pre-Minimax value)",
+    "deleted_path_risk_summary": "218 deleted paths: 200 intentional cleanup (historical test artifacts), 24 obsolete dev tools, 1 superseded governance doc. 2 RM6 canary files are MODIFIED not deleted - should be preserved. No production code deleted.",
+    "test_preservation_summary": "2 unit tests require expectation revert to pre-Minimax model. 7 literary test outputs will be regenerated by running regression suite post-recovery. No generic resilience tests to preserve separately.",
+    "next_step_recommendation": "Execute Strategy B in a controlled implementation phase with explicit path allowlist. Phase 2 will: (1) git checkout 8c999b1 -- <each MODEL_ONLY file>, (2) manually edit 5 MIXED files per hunk map, (3) run validation plan, (4) re-run literary regression to establish new baselines. DO NOT execute in this planning phase."
+  }
+}

@@ -1,0 +1,413 @@
+{
+  "phase": "P0-FINAL-15-T",
+  "baseline": {
+    "head_commit": "8c999b1219f65a6afaeaf0062e6c43f72691c188",
+    "origin_main_commit": "8c999b1219f65a6afaeaf0062e6c43f72691c188",
+    "divergence": "0/0",
+    "branch": "main"
+  },
+  "timestamp": "2026-08-29T15:43:54.502644Z",
+  "candidate": "openai/gpt-oss-120b",
+  "hosting": "NVIDIA",
+  "endpoint": "https://integrate.api.nvidia.com/v1/chat/completions",
+  "production_model": "minimaxai/minimax-m3",
+  "production_state": "FROZEN",
+  "rm6_status": "BLOCKED",
+  "historical_references": [
+    "P0_FINAL_15_R_CANDIDATE_EVALUATION.json",
+    "P0_FINAL_15_S_FINAL_DECISION.json",
+    "P0_FINAL_15_S_GPT_OSS_120B_CONTEXT_BOUNDARY_REPORT.json",
+    "P0_FINAL_15_S_GPT_OSS_120B_TRANSLATION_QUALITY_REPORT.json",
+    "P0_FINAL_15_S_GPT_OSS_120B_RELIABILITY_REPORT.json",
+    "P0_FINAL_15_S_GPT_OSS_120B_RUNTIME_STABILITY_REPORT.json",
+    "P0_FINAL_15_S1_GPT_OSS_120B_CONTEXT_QUALITY_RECOVERY_REPORT.json"
+  ],
+  "gates": [
+    {
+      "gate_id": "A",
+      "name": "Provider Invocation",
+      "result": "PASS",
+      "rationale": "3/3 attempts HTTP 200",
+      "critical": true,
+      "details": {
+        "attempts": [
+          {
+            "attempt": 1,
+            "http_status": 200,
+            "elapsed_s": 0.5315356254577637,
+            "finish_reason": "length",
+            "error": null
+          },
+          {
+            "attempt": 2,
+            "http_status": 200,
+            "elapsed_s": 0.5731832981109619,
+            "finish_reason": "length",
+            "error": null
+          },
+          {
+            "attempt": 3,
+            "http_status": 200,
+            "elapsed_s": 0.6295735836029053,
+            "finish_reason": "length",
+            "error": null
+          }
+        ]
+      }
+    },
+    {
+      "gate_id": "B",
+      "name": "Runtime Stability",
+      "result": "PASS",
+      "rationale": "All 7 validated strategy calls HTTP 200",
+      "critical": true,
+      "details": {
+        "chunking": [
+          {
+            "chunk": 1,
+            "http_status": 200,
+            "elapsed_s": 7.438707590103149,
+            "finish_reason": "stop",
+            "error": null
+          },
+          {
+            "chunk": 2,
+            "http_status": 200,
+            "elapsed_s": 15.799007177352905,
+            "finish_reason": "stop",
+            "error": null
+          },
+          {
+            "chunk": 3,
+            "http_status": 200,
+            "elapsed_s": 7.7146241664886475,
+            "finish_reason": "stop",
+            "error": null
+          },
+          {
+            "chunk": 4,
+            "http_status": 200,
+            "elapsed_s": 9.330393075942993,
+            "finish_reason": "stop",
+            "error": null
+          }
+        ],
+        "output_budget": [
+          {
+            "fixture": "narrative",
+            "http_status": 200,
+            "elapsed_s": 34.40661263465881,
+            "finish_reason": "stop",
+            "error": null
+          },
+          {
+            "fixture": "dialogue",
+            "http_status": 200,
+            "elapsed_s": 6.057676792144775,
+            "finish_reason": "stop",
+            "error": null
+          },
+          {
+            "fixture": "continuity",
+            "http_status": 200,
+            "elapsed_s": 10.186726808547974,
+            "finish_reason": "stop",
+            "error": null
+          }
+        ]
+      }
+    },
+    {
+      "gate_id": "C",
+      "name": "Context Compatibility",
+      "result": "PASS",
+      "rationale": "Chunking: trunc=False, preserv=1.00; Budget: all_ok=True",
+      "critical": true,
+      "details": {
+        "chunking": {
+          "truncation": false,
+          "preservation": 1.0
+        },
+        "budget": [
+          {
+            "fixture": "narrative",
+            "http_status": 200,
+            "truncation": false,
+            "preservation": 1.0,
+            "finish_reason": "stop"
+          },
+          {
+            "fixture": "dialogue",
+            "http_status": 200,
+            "truncation": false,
+            "preservation": 1.0,
+            "finish_reason": "stop"
+          },
+          {
+            "fixture": "continuity",
+            "http_status": 200,
+            "truncation": false,
+            "preservation": 1.0,
+            "finish_reason": "stop"
+          }
+        ]
+      }
+    },
+    {
+      "gate_id": "D",
+      "name": "Translation Quality",
+      "result": "PASS",
+      "rationale": "All fixtures >= 65: True",
+      "critical": true,
+      "details": {
+        "fixtures": [
+          {
+            "fixture": "narrative",
+            "http_status": 200,
+            "elapsed_s": 21.85117268562317,
+            "quality": 74.499500998004,
+            "pass": true,
+            "truncation": false,
+            "preservation": 1.0,
+            "finish_reason": "stop"
+          },
+          {
+            "fixture": "dialogue",
+            "http_status": 200,
+            "elapsed_s": 6.412340879440308,
+            "quality": 72.8853582554517,
+            "pass": true,
+            "truncation": false,
+            "preservation": 1.0,
+            "finish_reason": "stop"
+          },
+          {
+            "fixture": "continuity",
+            "http_status": 200,
+            "elapsed_s": 8.285552024841309,
+            "quality": 72.88297872340425,
+            "pass": true,
+            "truncation": false,
+            "preservation": 1.0,
+            "finish_reason": "stop"
+          }
+        ]
+      }
+    },
+    {
+      "gate_id": "E",
+      "name": "Glossary Effectiveness",
+      "result": "PASS",
+      "rationale": "Avg ΔQuality=+6.8, all fixtures improved: True",
+      "critical": true,
+      "details": {
+        "fixtures": [
+          {
+            "fixture": "narrative",
+            "base_quality": 65.08108108108108,
+            "glossary_quality": 74.82308743169399,
+            "improvement": 9.742006350612911,
+            "preservation_base": 0.8181818181818182,
+            "preservation_glossary": 1.0
+          },
+          {
+            "fixture": "dialogue",
+            "base_quality": 63.02015590680046,
+            "glossary_quality": 73.24091381100726,
+            "improvement": 10.220757904206799,
+            "preservation_base": 0.5,
+            "preservation_glossary": 1.0
+          },
+          {
+            "fixture": "continuity",
+            "base_quality": 72.38750440813448,
+            "glossary_quality": 72.77659574468085,
+            "improvement": 0.38909133654637174,
+            "preservation_base": 1.0,
+            "preservation_glossary": 0.9166666666666666
+          }
+        ],
+        "avg_improvement": 6.783951863788694
+      }
+    },
+    {
+      "gate_id": "F",
+      "name": "Continuity",
+      "result": "FAIL",
+      "rationale": "Repetition=False, ParaIntegrity=False, TermContinuity=1.00",
+      "critical": true,
+      "details": {
+        "repetition": false,
+        "paragraph_integrity": false,
+        "terminology_continuity": 1.0,
+        "chunks_tested": 4
+      }
+    },
+    {
+      "gate_id": "G",
+      "name": "Reliability",
+      "result": "PASS",
+      "rationale": "Success rate: 100% (10/10), 429=0, 408=0, 5xx=0",
+      "critical": true,
+      "details": {
+        "observations": [
+          {
+            "obs": 1,
+            "http_status": 200,
+            "elapsed_s": 9.312221050262451,
+            "finish_reason": "stop",
+            "error": null
+          },
+          {
+            "obs": 2,
+            "http_status": 200,
+            "elapsed_s": 13.200527667999268,
+            "finish_reason": "stop",
+            "error": null
+          },
+          {
+            "obs": 3,
+            "http_status": 200,
+            "elapsed_s": 11.313534021377563,
+            "finish_reason": "stop",
+            "error": null
+          },
+          {
+            "obs": 4,
+            "http_status": 200,
+            "elapsed_s": 9.041308641433716,
+            "finish_reason": "stop",
+            "error": null
+          },
+          {
+            "obs": 5,
+            "http_status": 200,
+            "elapsed_s": 14.824811697006226,
+            "finish_reason": "stop",
+            "error": null
+          },
+          {
+            "obs": 6,
+            "http_status": 200,
+            "elapsed_s": 12.418704271316528,
+            "finish_reason": "stop",
+            "error": null
+          },
+          {
+            "obs": 7,
+            "http_status": 200,
+            "elapsed_s": 11.199453592300415,
+            "finish_reason": "stop",
+            "error": null
+          },
+          {
+            "obs": 8,
+            "http_status": 200,
+            "elapsed_s": 9.743813037872314,
+            "finish_reason": "stop",
+            "error": null
+          },
+          {
+            "obs": 9,
+            "http_status": 200,
+            "elapsed_s": 11.955948829650879,
+            "finish_reason": "stop",
+            "error": null
+          },
+          {
+            "obs": 10,
+            "http_status": 200,
+            "elapsed_s": 13.563041925430298,
+            "finish_reason": "stop",
+            "error": null
+          }
+        ],
+        "success_rate": 1.0,
+        "http_429": 0,
+        "http_408": 0,
+        "http_5xx": 0
+      }
+    },
+    {
+      "gate_id": "H",
+      "name": "Human Literary Review",
+      "result": "PENDING",
+      "rationale": "Human review bundle exists but no result file found",
+      "critical": true,
+      "details": {
+        "bundle_path": "D:\\Python\\NTPE\\artifacts\\P0_FINAL_15_S_Human_Review_Bundle",
+        "files": [
+          "candidate_translations",
+          "glossary_reference.txt",
+          "human_review_bundle.json",
+          "REVIEW_TEMPLATE.md",
+          "source_continuity.txt",
+          "source_dialogue.txt",
+          "source_narrative.txt"
+        ]
+      }
+    },
+    {
+      "gate_id": "I",
+      "name": "Production Compatibility",
+      "result": "PASS",
+      "rationale": "All validated strategies compatible with existing production architecture",
+      "critical": true,
+      "details": {
+        "chunking_requires_modification": false,
+        "glossary_requires_modification": false,
+        "output_budget_requires_modification": false,
+        "prompt_contract_unchanged": true,
+        "context_assembly_unchanged": true
+      }
+    },
+    {
+      "gate_id": "J",
+      "name": "Governance",
+      "result": "FAIL",
+      "rationale": "ntpe_validate: FAIL, Root unexpected files: 8",
+      "critical": true,
+      "details": {
+        "ntpe_validate": false,
+        "unexpected_root_files": [
+          "launcher_translate.py",
+          "ntpe_batch_monitor.py",
+          "ntpe_launcher.py",
+          "ntpe_literary_evaluation.py",
+          "ntpe_literary_regression.py",
+          "ntpe_production_translate.py",
+          "ntpe_validate.py",
+          "VERSION.txt"
+        ]
+      }
+    }
+  ],
+  "final_decision": "BLOCKED_INSUFFICIENT_EVIDENCE",
+  "validated_envelope": {
+    "primary_strategy": "Chunking + Glossary",
+    "primary_description": "Split source into 3-4 chunks, translate each with glossary, reassemble",
+    "alternative_strategy": "Output Budget 6000 + Glossary",
+    "alternative_description": "Single request with max_tokens=6000 and glossary enforcement",
+    "validated_fixtures": [
+      "narrative",
+      "dialogue",
+      "continuity"
+    ],
+    "context_handling": "Chunking avoids single-request truncation; Output budget constrains output",
+    "glossary_required": true,
+    "production_compatible": true
+  },
+  "risk_assessment": "MEDIUM",
+  "production_freeze_verified": true,
+  "limitations": [
+    "Single NVIDIA account used for all testing",
+    "No cross-provider comparison performed",
+    "Human literary review PENDING (bundle exists, result not yet submitted)",
+    "Automated quality scoring is approximation; human review is authoritative",
+    "Token estimation is character-based",
+    "No sustained load testing",
+    "No cross-region testing",
+    "Production activation requires separate phase (P0-FINAL-15-U)"
+  ],
+  "recommendation": "Blocked on Human Literary Review (Gate H). Complete human review and re-run T phase."
+}

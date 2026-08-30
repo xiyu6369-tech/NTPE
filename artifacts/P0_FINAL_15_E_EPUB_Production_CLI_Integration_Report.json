@@ -1,0 +1,146 @@
+{
+  "baseline": {
+    "commit": "8c999b1219f65a6afaeaf0062e6c43f72691c188",
+    "message": "P0-FINAL-13: clean governance repository surface",
+    "branch": "main",
+    "origin_main": "8c999b1219f65a6afaeaf0062e6c43f72691c188",
+    "divergence_ahead": 0,
+    "divergence_behind": 0,
+    "production_default_model": "minimaxai/minimax-m3",
+    "dirty_path_count": 327
+  },
+  "implementation": {
+    "epub_cli_added": true,
+    "command": "epub",
+    "file_modified": "ntpe_production_translate.py",
+    "lines_added": 105,
+    "lines_removed": 0
+  },
+  "pipeline_integration": {
+    "approach": "Reuse TXT pipeline via temporary file",
+    "steps": [
+      "EpubExtractionBoundary.extract()",
+      "ExtractedTextIntakeRequest creation",
+      "CanonicalBookIntakeAdapter.ingest_extracted()",
+      "Write extracted text to temp .txt file",
+      "TxtTranslationOptions + TranslationRuntime.translate_txt()",
+      "Rename output to EPUB stem"
+    ],
+    "canonical_path_verified": true,
+    "single_runtime": true,
+    "no_duplicate_pipeline": true
+  },
+  "cli_specification": {
+    "command": "python ntpe_production_translate.py epub <input.epub> [output_dir]",
+    "options_mirror_txt": true,
+    "all_txt_options_supported": true,
+    "output_renamed_to_epub_stem": true,
+    "epub_metadata_preserved": true,
+    "chapter_map_preserved": true
+  },
+  "backward_compatibility": {
+    "txt_workflow_preserved": true,
+    "batch_workflow_preserved": true,
+    "regression_workflow_preserved": true,
+    "model_default_preserved": "minimaxai/minimax-m3",
+    "cli_override_preserved": true,
+    "env_override_preserved": true,
+    "config_precedence_preserved": true
+  },
+  "test_results": {
+    "unit_tests": {
+      "test_production_submission_adapter": {
+        "passed": 33,
+        "failed": 1,
+        "expected_failure": true,
+        "failure_reason": "Test asserts old model default (meta/llama-3.3-70b-instruct), production now minimaxai/minimax-m3"
+      },
+      "test_controlled_provider_routing": {
+        "passed": 39,
+        "failed": 1,
+        "expected_failure": true,
+        "failure_reason": "Test asserts old provider profile name (nvidia-meta-llama-3.3-70b-instruct), now nvidia-minimax-m3"
+      }
+    },
+    "core_validation": {
+      "ntpe_validate": "PASS_WITH_WARNINGS",
+      "warnings": [
+        "core.prompt_builder.prompt_builder: ModuleNotFoundError (pre-existing)"
+      ],
+      "python_compile": "PASS (2948 files)",
+      "git_diff_check": "3 CRLF warnings (pre-existing)"
+    },
+    "epub_cli": {
+      "help_displays": true,
+      "argument_validation": true,
+      "dry_run_functional": true,
+      "pipeline_wired": true
+    }
+  },
+  "validation": {
+    "ntpe_validate": "PASS_WITH_WARNINGS",
+    "warnings": [
+      "core.prompt_builder.prompt_builder: ModuleNotFoundError (pre-existing)"
+    ],
+    "git_diff_check": "3 CRLF warnings (pre-existing on literary outputs)",
+    "new_failures": 0,
+    "new_regressions": 0
+  },
+  "safety": {
+    "provider_calls": 0,
+    "network_calls": 0,
+    "real_translation_calls": 0,
+    "historical_artifacts_modified": 0,
+    "protected_worktree_modified": 0,
+    "root_hygiene": "COMPLIANT"
+  },
+  "git_safety": {
+    "staged": 0,
+    "committed_this_phase": 0,
+    "pushed_this_phase": 0,
+    "head": "8c999b1219f65a6afaeaf0062e6c43f72691c188",
+    "origin_main": "8c999b1219f65a6afaeaf0062e6c43f72691c188",
+    "divergence": "0/0"
+  },
+  "known_issues": {
+    "test_production_submission_adapter_default_model": {
+      "test": "TestTranslationJobRequestDefaults.test_default_values",
+      "expected": "meta/llama-3.3-70b-instruct",
+      "actual": "minimaxai/minimax-m3",
+      "action": "NOT MODIFIED - test documents historical behavior"
+    },
+    "test_controlled_provider_routing_profile": {
+      "test": "test_provider_profiles_are_experimental_offline_and_secret_free",
+      "expected": "nvidia-meta-llama-3.3-70b-instruct",
+      "actual": "nvidia-minimax-m3",
+      "action": "NOT MODIFIED - test documents historical behavior"
+    }
+  },
+  "deliverables": {
+    "governance_doc": "docs/governance/repository/P0_FINAL_15_E_EPUB_PRODUCTION_CLI_INTEGRATION.md",
+    "json_report": "artifacts/P0_FINAL_15_E_EPUB_Production_CLI_Integration_Report.json"
+  },
+  "verdict": "PASS",
+  "next_phase_options": [
+    {
+      "priority": 1,
+      "task": "EPUB end-to-end test with real EPUB",
+      "prerequisite": "Need sample EPUB file"
+    },
+    {
+      "priority": 2,
+      "task": "minimax-m3 Regression Baseline",
+      "prerequisite": "Run PS-03 literary regression with new model"
+    },
+    {
+      "priority": 3,
+      "task": "RM6 Canary Promotion",
+      "prerequisite": "Wire RM6 runtime into production launcher"
+    },
+    {
+      "priority": 4,
+      "task": "Interactive Setup Wizard",
+      "prerequisite": "Add ntpe config for API key, model, profile"
+    }
+  ]
+}

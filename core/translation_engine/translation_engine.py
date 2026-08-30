@@ -213,6 +213,8 @@ class TranslationEngine:
                 api_url=self._get_api_url_from_request(metadata),
                 timeout=self._get_timeout_from_request(runtime_snapshot, char_count),
                 rpm_limit=self._get_rpm_limit_from_request(metadata),
+                max_attempts=metadata.get("provider_attempts"),
+                retry_base_delay_seconds=metadata.get("retry_base_seconds"),
             )
 
             append_log(self.logs_dir / "translation_engine_log.txt",

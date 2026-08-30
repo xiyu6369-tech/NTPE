@@ -1,0 +1,306 @@
+{
+  "head_commit": "8c999b1219f65a6afaeaf0062e6c43f72691c188",
+  "origin_main_commit": "8c999b1219f65a6afaeaf0062e6c43f72691c188",
+  "divergence": "0/0",
+  "branch": "main",
+  "python_version": "3.14.6",
+  "client_path": "core/translation_engine/nvidia_client.py",
+  "test_timestamp": "2026-08-26T20:14:14.201277Z",
+  "endpoint": "https://integrate.api.nvidia.com/v1/chat/completions",
+  "credential_present": true,
+  "credential_source": "NVIDIA_API_KEY",
+  "target_model": "minimaxai/minimax-m3",
+  "official_evidence": [
+    {
+      "source": "NVIDIA Model Catalog (build.nvidia.com)",
+      "url": "https://build.nvidia.com/minimaxai/minimax-m3",
+      "evidence_type": "MODEL_AVAILABILITY",
+      "content": "Model page shows 'Free Endpoint: Available' and 'Partner Endpoint: Available'. Official example uses POST https://integrate.api.nvidia.com/v1/chat/completions with model='minimaxai/minimax-m3'",
+      "relevance": "Confirms NVIDIA currently advertises M1 as available on the same endpoint NTPE uses",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "NVIDIA API Catalog Documentation",
+      "url": "https://docs.nvidia.com/nim/",
+      "evidence_type": "ENDPOINT_BEHAVIOR",
+      "content": "NVIDIA NIM hosted endpoints use OpenAI-compatible /v1/chat/completions. Free tier endpoints have rate limits. High demand may cause 429/503.",
+      "relevance": "Background on hosted endpoint behavior; not M1-specific",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "NVIDIA AI-Q Blueprint Troubleshooting",
+      "url": "https://docs.nvidia.com/aiq-blueprint/2.2.1/resources/troubleshooting.html",
+      "evidence_type": "ERROR_SEMANTICS",
+      "content": "Documents that hosted endpoints may return 429/503 under high demand. Does not specify model-specific 429 semantics.",
+      "relevance": "Background evidence; not M1-specific",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "NVIDIA /v1/models/{model_id} endpoint",
+      "url": "https://integrate.api.nvidia.com/v1/models/minimaxai/minimax-m3",
+      "evidence_type": "MODEL_ENDPOINT_SUPPORT",
+      "content": "Model detail endpoint returns 200: {\"id\": \"minimaxai/minimax-m3\", \"object\": \"model\", \"created\": 735790403, \"owned_by\": \"minimaxai\"}",
+      "relevance": "Confirms model exists in provider catalog and endpoint supports it",
+      "confidence": "HIGH"
+    }
+  ],
+  "m1_observations": [
+    {
+      "model": "minimaxai/minimax-m3",
+      "timestamp_utc": "2026-08-26T20:14:08.438923Z",
+      "http_status": 429,
+      "elapsed_ms": 164.28340000129538,
+      "response_body": "{\"status\":429,\"title\":\"Too Many Requests\"}",
+      "response_headers": {
+        "Date": "Wed, 26 Aug 2026 20:14:08 GMT",
+        "Content-Type": "application/problem+json",
+        "Content-Length": "42",
+        "Connection": "keep-alive",
+        "Vary": "Origin"
+      },
+      "provider_request_id": null,
+      "nvcf_headers": {
+        "Nvcf-Reqid": null,
+        "Nvcf-Status": null,
+        "Server": null
+      },
+      "rate_limit_headers": {
+        "Retry-After": null,
+        "RateLimit-Limit": null,
+        "RateLimit-Remaining": null,
+        "RateLimit-Reset": null,
+        "X-RateLimit-Limit": null,
+        "X-RateLimit-Remaining": null,
+        "X-RateLimit-Reset": null
+      }
+    },
+    {
+      "model": "minimaxai/minimax-m3",
+      "timestamp_utc": "2026-08-26T20:14:10.628355Z",
+      "http_status": 429,
+      "elapsed_ms": 144.5372000016505,
+      "response_body": "{\"status\":429,\"title\":\"Too Many Requests\"}",
+      "response_headers": {
+        "Date": "Wed, 26 Aug 2026 20:14:10 GMT",
+        "Content-Type": "application/problem+json",
+        "Content-Length": "42",
+        "Connection": "keep-alive",
+        "Vary": "Origin"
+      },
+      "provider_request_id": null,
+      "nvcf_headers": {
+        "Nvcf-Reqid": null,
+        "Nvcf-Status": null,
+        "Server": null
+      },
+      "rate_limit_headers": {
+        "Retry-After": null,
+        "RateLimit-Limit": null,
+        "RateLimit-Remaining": null,
+        "RateLimit-Reset": null,
+        "X-RateLimit-Limit": null,
+        "X-RateLimit-Remaining": null,
+        "X-RateLimit-Reset": null
+      }
+    }
+  ],
+  "m3_control": {
+    "model": "meta/llama-3.2-90b-vision-instruct",
+    "timestamp_utc": "2026-08-26T20:14:10.777061Z",
+    "http_status": 200,
+    "elapsed_ms": 3422.912999998516,
+    "response_body": "{\"id\":\"chatcmpl-a6f773bfedb24d0289af542e1aa7a498\",\"object\":\"chat.completion\",\"created\":1787775252,\"model\":\"meta/llama-3.2-90b-vision-instruct\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"reasoning_content\":null,\"content\":\"您好。这是測試。\",\"tool_calls\":[]},\"logprobs\":null,\"finish_reason\":\"stop\",\"stop_reason\":null}],\"usage\":{\"prompt_tokens\":61,\"total_tokens\":69,\"completion_tokens\":8,\"prompt_tokens_details\":null},\"prompt_logprobs\":null}",
+    "response_headers": {
+      "Date": "Wed, 26 Aug 2026 20:14:14 GMT",
+      "Content-Type": "application/json",
+      "Content-Length": "455",
+      "Connection": "keep-alive",
+      "Access-Control-Expose-Headers": "nvcf-reqid",
+      "Nvcf-Reqid": "b283e46a-613d-47e8-9cbf-40f60e56c05e",
+      "Nvcf-Status": "fulfilled",
+      "Server": "uvicorn",
+      "Vary": "Origin"
+    },
+    "provider_request_id": "chatcmpl-a6f773bfedb24d0289af542e1aa7a498",
+    "nvcf_headers": {
+      "Nvcf-Reqid": "b283e46a-613d-47e8-9cbf-40f60e56c05e",
+      "Nvcf-Status": "fulfilled",
+      "Server": "uvicorn"
+    },
+    "rate_limit_headers": {
+      "Retry-After": null,
+      "RateLimit-Limit": null,
+      "RateLimit-Remaining": null,
+      "RateLimit-Reset": null,
+      "X-RateLimit-Limit": null,
+      "X-RateLimit-Remaining": null,
+      "X-RateLimit-Reset": null
+    }
+  },
+  "differentials": [
+    {
+      "field": "http_status",
+      "m1_value": 429,
+      "m3_value": 200,
+      "m1_only": true,
+      "m3_only": true,
+      "significance": "M1 returns 429, M3 returns 200 - model-specific outcome"
+    },
+    {
+      "field": "provider_request_id",
+      "m1_value": null,
+      "m3_value": "chatcmpl-a6f773bfedb24d0289af542e1aa7a498",
+      "m1_only": true,
+      "m3_only": true,
+      "significance": "M3 has provider request ID, M1 does not - suggests request not processed"
+    },
+    {
+      "field": "nvcf_nvcf-reqid",
+      "m1_value": null,
+      "m3_value": "b283e46a-613d-47e8-9cbf-40f60e56c05e",
+      "m1_only": true,
+      "m3_only": true,
+      "significance": "M3 has Nvcf-Reqid, M1 does not - suggests M1 request doesn't reach NVCF layer"
+    },
+    {
+      "field": "nvcf_nvcf-status",
+      "m1_value": null,
+      "m3_value": "fulfilled",
+      "m1_only": true,
+      "m3_only": true,
+      "significance": "M3 has Nvcf-Status, M1 does not - suggests M1 request doesn't reach NVCF layer"
+    },
+    {
+      "field": "nvcf_server",
+      "m1_value": null,
+      "m3_value": "uvicorn",
+      "m1_only": true,
+      "m3_only": true,
+      "significance": "M3 has Server, M1 does not - suggests M1 request doesn't reach NVCF layer"
+    },
+    {
+      "field": "ratelimit_retry_after",
+      "m1_value": null,
+      "m3_value": null,
+      "m1_only": false,
+      "m3_only": false,
+      "significance": "Neither M1 nor M3 has rate limit headers - 429 is not standard rate limit response"
+    },
+    {
+      "field": "ratelimit_ratelimit_limit",
+      "m1_value": null,
+      "m3_value": null,
+      "m1_only": false,
+      "m3_only": false,
+      "significance": "Neither M1 nor M3 has rate limit headers - 429 is not standard rate limit response"
+    },
+    {
+      "field": "ratelimit_ratelimit_remaining",
+      "m1_value": null,
+      "m3_value": null,
+      "m1_only": false,
+      "m3_only": false,
+      "significance": "Neither M1 nor M3 has rate limit headers - 429 is not standard rate limit response"
+    },
+    {
+      "field": "ratelimit_ratelimit_reset",
+      "m1_value": null,
+      "m3_value": null,
+      "m1_only": false,
+      "m3_only": false,
+      "significance": "Neither M1 nor M3 has rate limit headers - 429 is not standard rate limit response"
+    },
+    {
+      "field": "ratelimit_x_ratelimit_limit",
+      "m1_value": null,
+      "m3_value": null,
+      "m1_only": false,
+      "m3_only": false,
+      "significance": "Neither M1 nor M3 has rate limit headers - 429 is not standard rate limit response"
+    },
+    {
+      "field": "ratelimit_x_ratelimit_remaining",
+      "m1_value": null,
+      "m3_value": null,
+      "m1_only": false,
+      "m3_only": false,
+      "significance": "Neither M1 nor M3 has rate limit headers - 429 is not standard rate limit response"
+    },
+    {
+      "field": "ratelimit_x_ratelimit_reset",
+      "m1_value": null,
+      "m3_value": null,
+      "m1_only": false,
+      "m3_only": false,
+      "significance": "Neither M1 nor M3 has rate limit headers - 429 is not standard rate limit response"
+    },
+    {
+      "field": "response_body_type",
+      "m1_value": "error",
+      "m3_value": "success",
+      "m1_only": true,
+      "m3_only": true,
+      "significance": "M1 returns error object, M3 returns chat completion"
+    },
+    {
+      "field": "error_detail",
+      "m1_value": null,
+      "m3_value": null,
+      "m1_only": false,
+      "m3_only": false,
+      "significance": "M1 has no detail field in error, M2 (from P0-15-J) had 'Function not found for account'"
+    },
+    {
+      "field": "elapsed_ms",
+      "m1_value": 164.28340000129538,
+      "m3_value": 3422.912999998516,
+      "m1_only": false,
+      "m3_only": false,
+      "significance": "M1 fast failure (164ms), M3 successful completion (3423ms)"
+    }
+  ],
+  "analysis": {
+    "model_specific": "M1 consistently 429, M3 consistently 200",
+    "availability": "UNCLEAR - NVIDIA advertises M1 as available but endpoint returns 429",
+    "account_policy": "M1 has no 'Function not found for account' signal (unlike M2)",
+    "quota": "UNCLEAR - no rate limit headers, no quota detail in body",
+    "transient": "NOT OBSERVED",
+    "provider_specific_behavior": "STRONG EVIDENCE - M1 fails with 429 while M3 succeeds on same endpoint/credential",
+    "nvcf_layer_reached": {
+      "m1": false,
+      "m3": true,
+      "interpretation": "M1 requests may not reach NVCF processing layer"
+    },
+    "provider_tracking": {
+      "m1": false,
+      "m3": true,
+      "interpretation": "M1 requests lack provider request ID"
+    },
+    "rate_limit_semantics": {
+      "m1_has_headers": false,
+      "m3_has_headers": false,
+      "interpretation": "429 lacks standard rate limit headers - not a standard quota signal"
+    }
+  },
+  "previous_classification": "MODEL_ACCOUNT_ENTITLEMENT_DIFFERENTIAL",
+  "current_classification": "M1_PROVIDER_SPECIFIC_429_UNRESOLVED",
+  "confidence": "MEDIUM",
+  "production_changes": {
+    "retry": false,
+    "backoff": false,
+    "rpm_limiter": false,
+    "routing": false,
+    "runtime": false
+  },
+  "model_replacement_eligible": true,
+  "model_replacement_reason": "M1 consistently fails with 429 while M3 succeeds; 429 lacks standard rate-limit semantics; M1 requests don't reach NVCF layer",
+  "rm6_promotion": "BLOCKED",
+  "limitations": [
+    "No official NVIDIA documentation on M1-specific 429 semantics",
+    "Cannot distinguish between model-specific saturation vs account/model policy expressed as 429",
+    "Temporal observation limited to 2 additional requests (non-stress)",
+    "Provider /v1/models shows availability but doesn't guarantee account access",
+    "No NVCF/deployment metadata in M1 429 response to diagnose routing",
+    "M2 404 shows account-level denial exists; M1 429 lacks equivalent signal"
+  ]
+}

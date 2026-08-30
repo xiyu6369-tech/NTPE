@@ -1,0 +1,88 @@
+{
+  "metadata": {
+    "task": "P0-FINAL-13-I",
+    "generated_at": "2026-08-25T18:00:00.000000",
+    "git_baseline": {
+      "head": "8c999b1219f65a6afaeaf0062e6c43f72691c188",
+      "origin_main": "8c999b1219f65a6afaeaf0062e6c43f72691c188",
+      "branch": "main",
+      "divergence": "0 0"
+    },
+    "post_p13_baseline": "8c999b1",
+    "overall_pass": true
+  },
+  "p0_final_13_commit_integrity": {
+    "commit_hash": "8c999b1",
+    "commit_message": "P0-FINAL-13: clean governance repository surface",
+    "expected_paths": 60,
+    "actual_paths": 60,
+    "unexpected_paths": 0,
+    "missing_paths": 0,
+    "protected_worktree_committed": 0,
+    "generated_outputs_committed": 0,
+    "historical_legacy_committed": 0,
+    "unknown_committed": 0
+  },
+  "local_worktree_handoff": {
+    "total_dirty_paths": 289,
+    "classification": {
+      "PROTECTED_WORKTREE_DELETED": 245,
+      "PROTECTED_WORKTREE_MODIFIED": 7,
+      "GENERATED_OUTPUT_MODIFIED": 5,
+      "HISTORICAL_LEGACY_UNTRACKED": 15,
+      "OTHER_CURRENT_WORK_UNTRACKED": 22,
+      "UNKNOWN": 0
+    },
+    "details": {
+      "PROTECTED_WORKTREE_DELETED": "Historical artifacts (artifacts/book_intake*, controlled_multi*, ntpe_v20*, te_v6*, te_v71*, te_v72*, tic_batch3*, te_v7_*, rm6_canary*), tools/one_shots/, tracked governance doc (P0_REPOSITORY_FINAL_CLEANUP_BATCH_D_RECONCILIATION.md)",
+      "PROTECTED_WORKTREE_MODIFIED": "artifacts/rm6_canary/*/novel_sample_live_progress.json (2), tests/literary/outputs/* (5)",
+      "GENERATED_OUTPUT_MODIFIED": "tests/literary/outputs/PS-03-*/*.json, Regression_History.*",
+      "HISTORICAL_LEGACY_UNTRACKED": "artifacts/DUMMY-TXT-02_*.json (3), artifacts/P0_FINAL_1[23]_*.json (12)",
+      "OTHER_CURRENT_WORK_UNTRACKED": "docs/governance/repository/P0_FINAL_13_*.md (11), docs/governance/repository/P0_FINAL_12_*.md (6), docs/governance/rm8/P0_STAGE5_*.md (3), tools/maintenance/p13_inventory.py, tools/monitoring/"
+    },
+    "overlap_with_p0_final_13_commit": 0
+  },
+  "critical_distinction": {
+    "github_baseline": "8c999b1 - Currently clean, downloadable, usable NTPE repository state on GitHub.",
+    "local_worktree": "289 dirty paths - Intentionally contains independent ongoing work. Not part of GitHub baseline. Must not be deleted.",
+    "relationship": "GitHub baseline is clean; local worktree intentionally contains independent ongoing work."
+  },
+  "root_hygiene": {
+    "unexpected_root_files": 0,
+    "ntpe_validate_py": "PASS WITH BASELINE WARNING",
+    "git_diff_check": "PASS",
+    "status": "PASS"
+  },
+  "runtime_safety": {
+    "provider_calls": 0,
+    "network_calls": 0,
+    "translation_calls": 0
+  },
+  "git_operations": {
+    "staged": 0,
+    "committed": 0,
+    "pushed": 0,
+    "reset": 0,
+    "clean": 0,
+    "restore": 0,
+    "stash": 0,
+    "force_push": 0
+  },
+  "handoff_baseline": {
+    "POST_P13_BASELINE": "8c999b1",
+    "github": "8c999b1",
+    "local_worktree_dirty_paths": 289,
+    "local_worktree_breakdown": {
+      "PROTECTED_WORKTREE": 252,
+      "GENERATED_OUTPUT": 5,
+      "HISTORICAL_LEGACY": 15,
+      "OTHER_CURRENT_WORK": 22
+    },
+    "relationship": "GitHub baseline is clean; local worktree intentionally contains independent ongoing work."
+  },
+  "deliverables": [
+    "docs/governance/repository/P0_FINAL_13_I_POST_P13_BASELINE_HANDOFF_AUDIT.md",
+    "artifacts/P0_FINAL_13_I_Post_P13_Baseline_Handoff_Audit_Report.json"
+  ],
+  "final_verdict": "PASS"
+}

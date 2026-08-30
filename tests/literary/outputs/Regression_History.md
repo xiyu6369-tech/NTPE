@@ -44,6 +44,15 @@
 | TE-v7.0-Stage06-CanaryProductionValidation | 0.0 | failed | `D:\Python\NTPE\tests\literary\outputs\TE-v7.0-Stage06-CanaryProductionValidation\Literary_Quality_Report.md` |
 | TE-v7.0-Stage07-CanaryResumeValidation | 0.0 | failed | `D:\Python\NTPE\tests\literary\outputs\TE-v7.0-Stage07-CanaryResumeValidation\Literary_Quality_Report.md` |
 | TE-v7.0-Stage07-CanaryChunk3Validation | 0.0 | failed | `D:\Python\NTPE\tests\literary\outputs\TE-v7.0-Stage07-CanaryChunk3Validation\Literary_Quality_Report.md` |
+| TER-v1-integration | 0.0 | failed | `D:\Python\NTPE\tests\literary\outputs\TER-v1-integration\Literary_Quality_Report.md` |
 | PS-03-smoke | 0.0 | failed | `D:\Python\NTPE\tests\literary\outputs\PS-03-smoke\Literary_Quality_Report.md` |
+| PS-03 | 0.0 | failed | `D:\Python\NTPE\tests\literary\outputs\PS-03\Literary_Quality_Report.md` |
+| PS-03-integration-minimax | 95.2 | success | `D:\Python\NTPE\tests\literary\outputs\PS-03-integration-minimax\Literary_Quality_Report.md` |
+| PS-03-integration-minimax-retry | 96.8 | success | `D:\Python\NTPE\tests\literary\outputs\PS-03-integration-minimax-retry\Literary_Quality_Report.md` |
+| PS-03-integration-minimax-retry2 | 0.0 | failed | `D:\Python\NTPE\tests\literary\outputs\PS-03-integration-minimax-retry2\Literary_Quality_Report.md` |
+| PS-03-integration-minimax-retry3 | 95.2 | success | `D:\Python\NTPE\tests\literary\outputs\PS-03-integration-minimax-retry3\Literary_Quality_Report.md` |
+| PS-03-integration-minimax-final | 95.2 | success | `D:\Python\NTPE\tests\literary\outputs\PS-03-integration-minimax-final\Literary_Quality_Report.md` |
+| PS-03-integration-minimax-final-explicit | 0.0 | failed | `D:\Python\NTPE\tests\literary\outputs\PS-03-integration-minimax-final-explicit\Literary_Quality_Report.md` |
+| PS-03-integration-minimax-live-verify | 50.0 | failed | `D:\Python\NTPE\tests\literary\outputs\PS-03-integration-minimax-live-verify\Literary_Quality_Report.md` |
 | PS-02-integration | 0.0 | failed | `D:\Python\NTPE\tests\literary\outputs\PS-02-integration\Literary_Quality_Report.md` |
 | PS-03-integration | 78.0 | warning | `D:\Python\NTPE\tests\literary\outputs\PS-03-integration\Literary_Quality_Report.md` |

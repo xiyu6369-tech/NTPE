@@ -1,0 +1,215 @@
+{
+  "metadata": {
+    "task": "P0-FINAL-13-D",
+    "generated_at": "2026-08-25T14:55:00.000000",
+    "git_baseline": {
+      "head": "76ea24f1e34c0f1796236de4d676404d7e45f00a",
+      "origin_main": "76ea24f1e34c0f1796236de4d676404d7e45f00a",
+      "branch": "main",
+      "divergence": "0 0"
+    },
+    "overall_pass": true
+  },
+  "scope": {
+    "KEEP_GITHUB_CANONICAL": 7,
+    "KEEP_GITHUB_SUPPORTING": 8,
+    "TOTAL_GITHUB_CANDIDATES": 15,
+    "NEEDS_EXPLICIT_DECISION": 1
+  },
+  "reference_statistics": {
+    "TOTAL_REFERENCES_ANALYZED": 1345,
+    "CURRENT_VALID_REFERENCE": 142,
+    "HISTORICAL_CONTEXT": 1203,
+    "LEGACY_REFERENCE_REQUIRING_REWRITE": 0,
+    "BROKEN_REFERENCE_SAFE_TO_REMOVE": 0,
+    "BROKEN_REFERENCE_REQUIRES_CONTENT_REWRITE": 0,
+    "UNKNOWN": 0
+  },
+  "github_cleanliness_decision": {
+    "can_enter_github_directly": true,
+    "files_requiring_rewrite": [],
+    "historical_references_allowed": "ALL ~1065+ broken refs in GitHub candidates are HISTORICAL_CONTEXT",
+    "current_operational_references": 0,
+    "unknown_references": 0
+  },
+  "p0_final_13_b_recommendation": {
+    "current_status": "NEEDS_EXPLICIT_DECISION",
+    "recommended": "LOCAL_AUDIT_EVIDENCE",
+    "reason": "Internal authority-reconciliation evidence is not required for a clean downloadable GitHub repository."
+  },
+  "per_document_analysis": [
+    {
+      "document": "artifacts/P0_FINAL_13_Post_R1_Worktree_Inventory_Report.json",
+      "disposition": "KEEP_GITHUB_CANONICAL",
+      "authority_role": "R1_GLOBAL_AUTHORITY",
+      "broken_refs_per_13c": 415,
+      "classifications": {
+        "HISTORICAL_CONTEXT": 326,
+        "CURRENT_VALID_REFERENCE": 2
+      }
+    },
+    {
+      "document": "docs/governance/repository/P0_FINAL_12_R1_A_PRODUCTION_REFERENCE_CLOSURE.md",
+      "disposition": "KEEP_GITHUB_CANONICAL",
+      "authority_role": "R1_GLOBAL_AUTHORITY",
+      "broken_refs_per_13c": 36,
+      "classifications": {
+        "HISTORICAL_CONTEXT": 28,
+        "CURRENT_VALID_REFERENCE": 12
+      }
+    },
+    {
+      "document": "docs/governance/repository/P0_FINAL_12_R1_B_TEST_FIXTURE_CLOSURE.md",
+      "disposition": "KEEP_GITHUB_CANONICAL",
+      "authority_role": "R1_GLOBAL_AUTHORITY",
+      "broken_refs_per_13c": 39,
+      "classifications": {
+        "HISTORICAL_CONTEXT": 14,
+        "CURRENT_VALID_REFERENCE": 4
+      }
+    },
+    {
+      "document": "docs/governance/repository/P0_FINAL_12_R1_C_TOOLS_REFERENCE_CLOSURE.md",
+      "disposition": "KEEP_GITHUB_CANONICAL",
+      "authority_role": "R1_GLOBAL_AUTHORITY",
+      "broken_refs_per_13c": 34,
+      "classifications": {
+        "HISTORICAL_CONTEXT": 11,
+        "CURRENT_VALID_REFERENCE": 6
+      }
+    },
+    {
+      "document": "docs/governance/repository/P0_FINAL_13_POST_R1_WORKTREE_INVENTORY.md",
+      "disposition": "KEEP_GITHUB_CANONICAL",
+      "authority_role": "R1_GLOBAL_AUTHORITY",
+      "broken_refs_per_13c": 326,
+      "classifications": {
+        "HISTORICAL_CONTEXT": 235,
+        "CURRENT_VALID_REFERENCE": 6
+      }
+    },
+    {
+      "document": "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_F6_FINAL_VERIFICATION.md",
+      "disposition": "KEEP_GITHUB_CANONICAL",
+      "authority_role": "PRIMARY_CANONICAL",
+      "broken_refs_per_13c": 20,
+      "classifications": {
+        "HISTORICAL_CONTEXT": 8,
+        "CURRENT_VALID_REFERENCE": 6
+      }
+    },
+    {
+      "document": "docs/governance/rm8/P0_STAGE5_FINAL_ACCEPTANCE_REVIEW.md",
+      "disposition": "KEEP_GITHUB_CANONICAL",
+      "authority_role": "PRIMARY_CANONICAL",
+      "broken_refs_per_13c": 15,
+      "classifications": {
+        "HISTORICAL_CONTEXT": 1,
+        "CURRENT_VALID_REFERENCE": 0
+      }
+    },
+    {
+      "document": "docs/governance/repository/P0_FINAL_12_B5_SCOPE_RECONCILIATION.md",
+      "disposition": "KEEP_GITHUB_SUPPORTING",
+      "authority_role": "N/A",
+      "broken_refs_per_13c": 52,
+      "classifications": {
+        "HISTORICAL_CONTEXT": 1,
+        "CURRENT_VALID_REFERENCE": 4
+      }
+    },
+    {
+      "document": "docs/governance/repository/P0_FINAL_12_B5_STAGED_SCOPE_RECONCILIATION.md",
+      "disposition": "KEEP_GITHUB_SUPPORTING",
+      "authority_role": "N/A",
+      "broken_refs_per_13c": 21,
+      "classifications": {
+        "HISTORICAL_CONTEXT": 7,
+        "CURRENT_VALID_REFERENCE": 0
+      }
+    },
+    {
+      "document": "docs/governance/repository/P0_FINAL_12_R1_E_COMMIT_BOUNDARY_AUDIT.md",
+      "disposition": "KEEP_GITHUB_SUPPORTING",
+      "authority_role": "R1_STAGE_AUTHORITY",
+      "broken_refs_per_13c": 10,
+      "classifications": {
+        "HISTORICAL_CONTEXT": 1,
+        "CURRENT_VALID_REFERENCE": 9
+      }
+    },
+    {
+      "document": "docs/governance/repository/P0_FINAL_12_R1_F_CURRENT_COMMIT_BOUNDARY_RECONCILIATION.md",
+      "disposition": "KEEP_GITHUB_SUPPORTING",
+      "authority_role": "R1_STAGE_AUTHORITY",
+      "broken_refs_per_13c": 55,
+      "classifications": {
+        "HISTORICAL_CONTEXT": 285,
+        "CURRENT_VALID_REFERENCE": 4
+      }
+    },
+    {
+      "document": "docs/governance/repository/P0_FINAL_12_R1_H_POST_COMMIT_INTEGRITY_VERIFICATION.md",
+      "disposition": "KEEP_GITHUB_SUPPORTING",
+      "authority_role": "R1_STAGE_AUTHORITY",
+      "broken_refs_per_13c": 2,
+      "classifications": {
+        "HISTORICAL_CONTEXT": 0,
+        "CURRENT_VALID_REFERENCE": 1
+      }
+    },
+    {
+      "document": "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_E_RESOLUTION.md",
+      "disposition": "KEEP_GITHUB_SUPPORTING",
+      "authority_role": "SECONDARY_CANONICAL",
+      "broken_refs_per_13c": 21,
+      "classifications": {
+        "HISTORICAL_CONTEXT": 0,
+        "CURRENT_VALID_REFERENCE": 3
+      }
+    },
+    {
+      "document": "docs/governance/rm8/P0_STAGE5_INTEGRATED_REVIEW.md",
+      "disposition": "KEEP_GITHUB_SUPPORTING",
+      "authority_role": "SECONDARY_CANONICAL",
+      "broken_refs_per_13c": 11,
+      "classifications": {
+        "HISTORICAL_CONTEXT": 2,
+        "CURRENT_VALID_REFERENCE": 0
+      }
+    },
+    {
+      "document": "docs/governance/rm8/P0_STAGE5_ROOT_LEVEL_INVENTORY.md",
+      "disposition": "KEEP_GITHUB_SUPPORTING",
+      "authority_role": "SECONDARY_CANONICAL",
+      "broken_refs_per_13c": 8,
+      "classifications": {
+        "HISTORICAL_CONTEXT": 0,
+        "CURRENT_VALID_REFERENCE": 1
+      }
+    }
+  ],
+  "validation": {
+    "ntpe_validate_py": "PASS WITH BASELINE WARNING",
+    "git_diff_check": "PASS",
+    "provider_calls": 0,
+    "network_calls": 0,
+    "translation_calls": 0,
+    "root_hygiene": "PASS"
+  },
+  "git_safety": {
+    "staged": 0,
+    "committed": 0,
+    "pushed": 0,
+    "head_unchanged": true,
+    "origin_main_unchanged": true
+  },
+  "protected_worktree": "PRESERVED",
+  "generated_outputs": "PRESERVED",
+  "unresolved_issues": [],
+  "deliverables": [
+    "docs/governance/repository/P0_FINAL_13_D_GITHUB_CANDIDATE_REFERENCE_HYGIENE_REVIEW.md",
+    "artifacts/P0_FINAL_13_D_GitHub_Candidate_Reference_Hygiene_Review_Report.json"
+  ],
+  "final_verdict": "PASS"
+}

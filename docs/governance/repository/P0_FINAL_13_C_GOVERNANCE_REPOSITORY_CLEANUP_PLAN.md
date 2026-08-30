@@ -1,0 +1,1120 @@
+# P0-FINAL-13-C GOVERNANCE REPOSITORY CLEANUP PLANNING
+**Generated**: 2026-08-25T13:30:51.257679
+**Git Baseline**: 76ea24f1e34c0f1796236de4d676404d7e45f00a
+
+## A. Baseline
+- HEAD: 76ea24f1e34c0f1796236de4d676404d7e45f00a
+- origin/main: 76ea24f1e34c0f1796236de4d676404d7e45f00a
+- branch: main
+- divergence: 0 0
+
+## B. Input Inventory
+- Total governance paths: 66
+- CURRENT_SUPPORTING: 19
+- HISTORICAL_RECORD: 11
+- CURRENT_CANONICAL: 27
+- SUPERSEDED: 9
+
+## C. Authority Reconciliation Summary
+- **CLEANUP_BATCH**: PRIMARY=F6_FINAL_VERIFICATION, SECONDARY=E_RESOLUTION
+- **R1_CLOSURE**: GLOBAL=5, STAGE=7, EVIDENCE=6
+- **ROOT_HYGIENE**: PRIMARY=P0-FINAL-13-R1, SECONDARY=R1-H
+- **STAGE5**: PRIMARY=FINAL_ACCEPTANCE, SECONDARY=INTEGRATED_REVIEW+ROOT_INVENTORY
+
+## D. 66-Document Disposition Matrix
+
+### KEEP_GITHUB_CANONICAL (7)
+- **artifacts/P0_FINAL_13_Post_R1_Worktree_Inventory_Report.json**
+  - Title: P0 FINAL 13 Post R1 Worktree Inventory Report
+  - Classification: CURRENT_CANONICAL
+  - Authority Role: R1_GLOBAL_AUTHORITY
+  - GitHub Value: HIGH
+  - User Facing: True
+  - Operational Guidance: False
+  - Current Rule: True
+  - Acceptance Contract: True
+  - Is Evidence: False
+  - Is Historical: False
+  - Is Superseded: False
+  - Broken Refs: 415
+  - Rationale: R1 global closure - defines current authoritative baseline state
+- **docs/governance/repository/P0_FINAL_12_R1_A_PRODUCTION_REFERENCE_CLOSURE.md**
+  - Title: P0-FINAL-12-R1-A Production Canonical Boundary Migration — Closure Report
+  - Classification: CURRENT_CANONICAL
+  - Authority Role: R1_GLOBAL_AUTHORITY
+  - GitHub Value: HIGH
+  - User Facing: True
+  - Operational Guidance: False
+  - Current Rule: True
+  - Acceptance Contract: True
+  - Is Evidence: False
+  - Is Historical: False
+  - Is Superseded: False
+  - Broken Refs: 36
+  - Rationale: R1 global closure - defines current authoritative baseline state
+- **docs/governance/repository/P0_FINAL_12_R1_B_TEST_FIXTURE_CLOSURE.md**
+  - Title: P0-FINAL-12-R1-B Test Fixture / Integration Dependency Closure — Final Report
+  - Classification: CURRENT_CANONICAL
+  - Authority Role: R1_GLOBAL_AUTHORITY
+  - GitHub Value: HIGH
+  - User Facing: True
+  - Operational Guidance: False
+  - Current Rule: True
+  - Acceptance Contract: True
+  - Is Evidence: False
+  - Is Historical: False
+  - Is Superseded: False
+  - Broken Refs: 39
+  - Rationale: R1 global closure - defines current authoritative baseline state
+- **docs/governance/repository/P0_FINAL_12_R1_C_TOOLS_REFERENCE_CLOSURE.md**
+  - Title: P0-FINAL-12-R1-C Tools / Generator Canonical Path Migration — Closure Report
+  - Classification: CURRENT_CANONICAL
+  - Authority Role: R1_GLOBAL_AUTHORITY
+  - GitHub Value: HIGH
+  - User Facing: True
+  - Operational Guidance: False
+  - Current Rule: True
+  - Acceptance Contract: True
+  - Is Evidence: False
+  - Is Historical: False
+  - Is Superseded: False
+  - Broken Refs: 34
+  - Rationale: R1 global closure - defines current authoritative baseline state
+- **docs/governance/repository/P0_FINAL_13_POST_R1_WORKTREE_INVENTORY.md**
+  - Title: P0-FINAL-13 POST-R1 WORKTREE INVENTORY & SCOPE DEFINITION
+  - Classification: CURRENT_CANONICAL
+  - Authority Role: R1_GLOBAL_AUTHORITY
+  - GitHub Value: HIGH
+  - User Facing: True
+  - Operational Guidance: False
+  - Current Rule: True
+  - Acceptance Contract: True
+  - Is Evidence: False
+  - Is Historical: False
+  - Is Superseded: False
+  - Broken Refs: 326
+  - Rationale: R1 global closure - defines current authoritative baseline state
+- **docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_F6_FINAL_VERIFICATION.md**
+  - Title: P0 Repository Final Cleanup — F6 Final Verification
+  - Classification: CURRENT_CANONICAL
+  - Authority Role: PRIMARY_CANONICAL
+  - GitHub Value: HIGH
+  - User Facing: True
+  - Operational Guidance: False
+  - Current Rule: False
+  - Acceptance Contract: True
+  - Is Evidence: False
+  - Is Historical: False
+  - Is Superseded: False
+  - Broken Refs: 20
+  - Rationale: Final cleanup verification - confirms current repository state
+- **docs/governance/rm8/P0_STAGE5_FINAL_ACCEPTANCE_REVIEW.md**
+  - Title: P0 Stage 5 Final Acceptance / Freeze Review
+  - Classification: CURRENT_CANONICAL
+  - Authority Role: PRIMARY_CANONICAL
+  - GitHub Value: HIGH
+  - User Facing: True
+  - Operational Guidance: False
+  - Current Rule: False
+  - Acceptance Contract: True
+  - Is Evidence: False
+  - Is Historical: False
+  - Is Superseded: False
+  - Broken Refs: 15
+  - Rationale: Stage 5 final acceptance - defines current accepted architecture
+
+### KEEP_GITHUB_SUPPORTING (8)
+- **docs/governance/repository/P0_FINAL_12_B5_SCOPE_RECONCILIATION.md**
+  - Title: P0-FINAL-12-B5 Scope Reconciliation Report
+  - Classification: CURRENT_CANONICAL
+  - Authority Role: N/A
+  - GitHub Value: MEDIUM
+  - User Facing: False
+  - Operational Guidance: False
+  - Current Rule: False
+  - Acceptance Contract: False
+  - Is Evidence: True
+  - Is Historical: False
+  - Is Superseded: False
+  - Broken Refs: 52
+  - Rationale: B5 scope reconciliation - part of R1 baseline verification
+- **docs/governance/repository/P0_FINAL_12_B5_STAGED_SCOPE_RECONCILIATION.md**
+  - Title: P0-FINAL-12-B5 Staged Scope Reconciliation Report
+  - Classification: CURRENT_CANONICAL
+  - Authority Role: N/A
+  - GitHub Value: MEDIUM
+  - User Facing: False
+  - Operational Guidance: False
+  - Current Rule: False
+  - Acceptance Contract: False
+  - Is Evidence: True
+  - Is Historical: False
+  - Is Superseded: False
+  - Broken Refs: 21
+  - Rationale: B5 scope reconciliation - part of R1 baseline verification
+- **docs/governance/repository/P0_FINAL_12_R1_E_COMMIT_BOUNDARY_AUDIT.md**
+  - Title: P0-FINAL-12-R1-E — Remediation Commit Boundary & Worktree Preservation Audit
+  - Classification: CURRENT_CANONICAL
+  - Authority Role: R1_STAGE_AUTHORITY
+  - GitHub Value: MEDIUM
+  - User Facing: False
+  - Operational Guidance: False
+  - Current Rule: False
+  - Acceptance Contract: False
+  - Is Evidence: True
+  - Is Historical: False
+  - Is Superseded: False
+  - Broken Refs: 10
+  - Rationale: R1 stage verification evidence - supports baseline verification
+- **docs/governance/repository/P0_FINAL_12_R1_F_CURRENT_COMMIT_BOUNDARY_RECONCILIATION.md**
+  - Title: P0-FINAL-12-R1-F — Current-State Commit Boundary Reconciliation
+  - Classification: CURRENT_CANONICAL
+  - Authority Role: R1_STAGE_AUTHORITY
+  - GitHub Value: MEDIUM
+  - User Facing: False
+  - Operational Guidance: False
+  - Current Rule: False
+  - Acceptance Contract: False
+  - Is Evidence: True
+  - Is Historical: False
+  - Is Superseded: False
+  - Broken Refs: 55
+  - Rationale: R1 stage verification evidence - supports baseline verification
+- **docs/governance/repository/P0_FINAL_12_R1_H_POST_COMMIT_INTEGRITY_VERIFICATION.md**
+  - Title: P0-FINAL-12-R1-H — Post-Commit Integrity / Push Gate Verification
+  - Classification: CURRENT_CANONICAL
+  - Authority Role: R1_STAGE_AUTHORITY
+  - GitHub Value: MEDIUM
+  - User Facing: False
+  - Operational Guidance: False
+  - Current Rule: False
+  - Acceptance Contract: False
+  - Is Evidence: True
+  - Is Historical: False
+  - Is Superseded: False
+  - Broken Refs: 2
+  - Rationale: R1 stage verification evidence - supports baseline verification
+- **docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_E_RESOLUTION.md**
+  - Title: P0 Repository Final Cleanup — STOP-02 Core WIP Resolution
+  - Classification: CURRENT_CANONICAL
+  - Authority Role: SECONDARY_CANONICAL
+  - GitHub Value: MEDIUM
+  - User Facing: False
+  - Operational Guidance: False
+  - Current Rule: False
+  - Acceptance Contract: False
+  - Is Evidence: True
+  - Is Historical: False
+  - Is Superseded: False
+  - Broken Refs: 21
+  - Rationale: Cleanup resolution decisions - supporting context for final state
+- **docs/governance/rm8/P0_STAGE5_INTEGRATED_REVIEW.md**
+  - Title: P0 Stage 5.1–5.7 Integrated Review
+  - Classification: CURRENT_CANONICAL
+  - Authority Role: SECONDARY_CANONICAL
+  - GitHub Value: MEDIUM
+  - User Facing: False
+  - Operational Guidance: False
+  - Current Rule: False
+  - Acceptance Contract: False
+  - Is Evidence: True
+  - Is Historical: False
+  - Is Superseded: False
+  - Broken Refs: 11
+  - Rationale: Stage 5 integrated review - supporting evidence for acceptance
+- **docs/governance/rm8/P0_STAGE5_ROOT_LEVEL_INVENTORY.md**
+  - Title: P0 Stage 5 Root-Level Inventory
+  - Classification: CURRENT_CANONICAL
+  - Authority Role: SECONDARY_CANONICAL
+  - GitHub Value: MEDIUM
+  - User Facing: True
+  - Operational Guidance: True
+  - Current Rule: False
+  - Acceptance Contract: False
+  - Is Evidence: False
+  - Is Historical: False
+  - Is Superseded: False
+  - Broken Refs: 8
+  - Rationale: Root level inventory - structural reference for repository layout
+
+### LOCAL_HISTORY (13)
+- **artifacts/P0_FINAL_07_Worktree_Reconciliation_Report.json**
+  - Title: P0 FINAL 07 Worktree Reconciliation Report
+  - Classification: HISTORICAL_RECORD
+  - Authority Role: N/A
+  - GitHub Value: NONE
+  - User Facing: False
+  - Operational Guidance: False
+  - Current Rule: False
+  - Acceptance Contract: False
+  - Is Evidence: False
+  - Is Historical: True
+  - Is Superseded: False
+  - Broken Refs: 17
+  - Rationale: Early reconciliation history - local archival record
+- **artifacts/P0_FINAL_09_Residual_Worktree_Reconciliation_Report.json**
+  - Title: P0 FINAL 09 Residual Worktree Reconciliation Report
+  - Classification: HISTORICAL_RECORD
+  - Authority Role: N/A
+  - GitHub Value: NONE
+  - User Facing: False
+  - Operational Guidance: False
+  - Current Rule: False
+  - Acceptance Contract: False
+  - Is Evidence: False
+  - Is Historical: True
+  - Is Superseded: False
+  - Broken Refs: 88
+  - Rationale: Early reconciliation history - local archival record
+- **artifacts/P0_FINAL_10A_STOP_10_06_Baseline_Reconciliation_Report.json**
+  - Title: P0 FINAL 10A STOP 10 06 Baseline Reconciliation Report
+  - Classification: HISTORICAL_RECORD
+  - Authority Role: N/A
+  - GitHub Value: NONE
+  - User Facing: False
+  - Operational Guidance: False
+  - Current Rule: False
+  - Acceptance Contract: False
+  - Is Evidence: False
+  - Is Historical: True
+  - Is Superseded: False
+  - Broken Refs: 1
+  - Rationale: Pre-R1 baseline history - local archival record
+- **artifacts/P0_FINAL_10_R2_Production_Reference_Reconciliation_Report.json**
+  - Title: P0 FINAL 10 R2 Production Reference Reconciliation Report
+  - Classification: HISTORICAL_RECORD
+  - Authority Role: N/A
+  - GitHub Value: NONE
+  - User Facing: False
+  - Operational Guidance: False
+  - Current Rule: False
+  - Acceptance Contract: False
+  - Is Evidence: False
+  - Is Historical: True
+  - Is Superseded: False
+  - Broken Refs: 153
+  - Rationale: Pre-R1 baseline history - local archival record
+- **docs/governance/repository/P0_FINAL_07_WORKTREE_RECONCILIATION.md**
+  - Title: P0-FINAL-07 Worktree Reconciliation & Commit Scope Audit
+  - Classification: HISTORICAL_RECORD
+  - Authority Role: N/A
+  - GitHub Value: NONE
+  - User Facing: False
+  - Operational Guidance: False
+  - Current Rule: False
+  - Acceptance Contract: False
+  - Is Evidence: False
+  - Is Historical: True
+  - Is Superseded: False
+  - Broken Refs: 44
+  - Rationale: Early reconciliation history - local archival record
+- **docs/governance/repository/P0_FINAL_09_RESIDUAL_WORKTREE_RECONCILIATION.md**
+  - Title: P0-FINAL-09 Residual Worktree Reconciliation
+  - Classification: HISTORICAL_RECORD
+  - Authority Role: N/A
+  - GitHub Value: NONE
+  - User Facing: False
+  - Operational Guidance: False
+  - Current Rule: False
+  - Acceptance Contract: False
+  - Is Evidence: False
+  - Is Historical: True
+  - Is Superseded: False
+  - Broken Refs: 51
+  - Rationale: Early reconciliation history - local archival record
+- **docs/governance/repository/P0_FINAL_10A_STOP_10_06_BASELINE_RECONCILIATION.md**
+  - Title: P0-FINAL-10A STOP-10-06 Baseline Reconciliation
+  - Classification: HISTORICAL_RECORD
+  - Authority Role: N/A
+  - GitHub Value: NONE
+  - User Facing: False
+  - Operational Guidance: False
+  - Current Rule: False
+  - Acceptance Contract: False
+  - Is Evidence: False
+  - Is Historical: True
+  - Is Superseded: False
+  - Broken Refs: 13
+  - Rationale: Pre-R1 baseline history - local archival record
+- **docs/governance/repository/P0_FINAL_10_R2_PRODUCTION_REFERENCE_RECONCILIATION.md**
+  - Title: P0-FINAL-10 R2 Production Reference Reconciliation
+  - Classification: HISTORICAL_RECORD
+  - Authority Role: N/A
+  - GitHub Value: NONE
+  - User Facing: False
+  - Operational Guidance: False
+  - Current Rule: False
+  - Acceptance Contract: False
+  - Is Evidence: False
+  - Is Historical: True
+  - Is Superseded: False
+  - Broken Refs: 95
+  - Rationale: Pre-R1 baseline history - local archival record
+- **docs/governance/repository/P0_FINAL_11_REFERENCE_MIGRATION_DESIGN.md**
+  - Title: P0-FINAL-11 Reference Migration Design & Safety Preflight
+  - Classification: CURRENT_SUPPORTING
+  - Authority Role: N/A
+  - GitHub Value: NONE
+  - User Facing: False
+  - Operational Guidance: False
+  - Current Rule: False
+  - Acceptance Contract: False
+  - Is Evidence: False
+  - Is Historical: True
+  - Is Superseded: False
+  - Broken Refs: 136
+  - Rationale: Reference migration design - historical design document
+- **docs/governance/rm8/P0_STAGE5_BATCH5_2_ATOMIC_DELIVERY_REPORT.md**
+  - Title: P0 Stage 5 Batch 5.2 — Atomic Git Delivery Report
+  - Classification: CURRENT_SUPPORTING
+  - Authority Role: N/A
+  - GitHub Value: NONE
+  - User Facing: False
+  - Operational Guidance: False
+  - Current Rule: False
+  - Acceptance Contract: False
+  - Is Evidence: False
+  - Is Historical: True
+  - Is Superseded: False
+  - Broken Refs: 15
+  - Rationale: Stage 5 supporting record - historical
+- **docs/governance/rm8/P0_STAGE5_BATCH5_3_IMPLEMENTATION_TASK.md**
+  - Title: P0 Stage 5 Batch 5.3 — Series Entity Registry Implementation Task
+  - Classification: HISTORICAL_RECORD
+  - Authority Role: N/A
+  - GitHub Value: NONE
+  - User Facing: False
+  - Operational Guidance: False
+  - Current Rule: False
+  - Acceptance Contract: False
+  - Is Evidence: False
+  - Is Historical: True
+  - Is Superseded: False
+  - Broken Refs: 30
+  - Rationale: Stage 5 historical record - local archival record
+- **docs/governance/rm8/P0_STAGE5_BATCH5_8_BLOCKER_RECONCILIATION.md**
+  - Title: P0 Stage 5 Batch 5.8 — Blocker Reconciliation
+  - Classification: HISTORICAL_RECORD
+  - Authority Role: N/A
+  - GitHub Value: NONE
+  - User Facing: False
+  - Operational Guidance: False
+  - Current Rule: False
+  - Acceptance Contract: False
+  - Is Evidence: False
+  - Is Historical: True
+  - Is Superseded: False
+  - Broken Refs: 2
+  - Rationale: Stage 5 historical record - local archival record
+- **docs/governance/rm8/P0_STAGE5_BATCH5_8_IMPLEMENTATION_TASK.md**
+  - Title: P0 Stage 5 Batch 5.8 Implementation Task
+  - Classification: HISTORICAL_RECORD
+  - Authority Role: N/A
+  - GitHub Value: NONE
+  - User Facing: False
+  - Operational Guidance: False
+  - Current Rule: False
+  - Acceptance Contract: False
+  - Is Evidence: False
+  - Is Historical: True
+  - Is Superseded: False
+  - Broken Refs: 15
+  - Rationale: Stage 5 historical record - local archival record
+
+### LOCAL_AUDIT_EVIDENCE (28)
+- **docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_D_RECONCILIATION.md**
+  - Title: P0 Repository Final Cleanup — Batch D Reconciliation
+  - Classification: CURRENT_SUPPORTING
+  - Authority Role: N/A
+  - GitHub Value: NONE
+  - User Facing: False
+  - Operational Guidance: False
+  - Current Rule: False
+  - Acceptance Contract: False
+  - Is Evidence: True
+  - Is Historical: True
+  - Is Superseded: False
+  - Broken Refs: 23
+  - Rationale: Batch reconciliation evidence - audit trail, not user-facing
+- **artifacts/P0_FINAL_11_Reference_Migration_Design_Report.json**
+  - Title: P0 FINAL 11 Reference Migration Design Report
+  - Classification: CURRENT_SUPPORTING
+  - Authority Role: N/A
+  - GitHub Value: NONE
+  - User Facing: False
+  - Operational Guidance: False
+  - Current Rule: False
+  - Acceptance Contract: False
+  - Is Evidence: True
+  - Is Historical: False
+  - Is Superseded: False
+  - Broken Refs: 102
+  - Rationale: Supporting audit evidence - local record
+- **artifacts/P0_FINAL_12_R1_A_Production_Reference_Closure_Report.json**
+  - Title: P0 FINAL 12 R1 A Production Reference Closure Report
+  - Classification: CURRENT_CANONICAL
+  - Authority Role: R1_EVIDENCE
+  - GitHub Value: NONE
+  - User Facing: False
+  - Operational Guidance: False
+  - Current Rule: False
+  - Acceptance Contract: False
+  - Is Evidence: True
+  - Is Historical: True
+  - Is Superseded: False
+  - Broken Refs: 45
+  - Rationale: R1 audit evidence - historical verification record, not user-facing policy
+- **artifacts/P0_FINAL_12_R1_B_Test_Fixture_Closure_Report.json**
+  - Title: P0 FINAL 12 R1 B Test Fixture Closure Report
+  - Classification: CURRENT_CANONICAL
+  - Authority Role: R1_EVIDENCE
+  - GitHub Value: NONE
+  - User Facing: False
+  - Operational Guidance: False
+  - Current Rule: False
+  - Acceptance Contract: False
+  - Is Evidence: True
+  - Is Historical: True
+  - Is Superseded: False
+  - Broken Refs: 60
+  - Rationale: R1 audit evidence - historical verification record, not user-facing policy
+- **artifacts/P0_FINAL_12_R1_C_Tools_Reference_Closure_Report.json**
+  - Title: P0 FINAL 12 R1 C Tools Reference Closure Report
+  - Classification: CURRENT_CANONICAL
+  - Authority Role: R1_EVIDENCE
+  - GitHub Value: NONE
+  - User Facing: False
+  - Operational Guidance: False
+  - Current Rule: False
+  - Acceptance Contract: False
+  - Is Evidence: True
+  - Is Historical: True
+  - Is Superseded: False
+  - Broken Refs: 43
+  - Rationale: R1 audit evidence - historical verification record, not user-facing policy
+- **artifacts/P0_FINAL_12_R1_E_Commit_Boundary_Audit_Report.json**
+  - Title: P0 FINAL 12 R1 E Commit Boundary Audit Report
+  - Classification: CURRENT_CANONICAL
+  - Authority Role: R1_EVIDENCE
+  - GitHub Value: NONE
+  - User Facing: False
+  - Operational Guidance: False
+  - Current Rule: False
+  - Acceptance Contract: False
+  - Is Evidence: True
+  - Is Historical: True
+  - Is Superseded: False
+  - Broken Refs: 357
+  - Rationale: R1 audit evidence - historical verification record, not user-facing policy
+- **artifacts/P0_FINAL_12_R1_F_Current_Commit_Boundary_Reconciliation_Report.json**
+  - Title: P0 FINAL 12 R1 F Current Commit Boundary Reconciliation Report
+  - Classification: CURRENT_CANONICAL
+  - Authority Role: R1_EVIDENCE
+  - GitHub Value: NONE
+  - User Facing: False
+  - Operational Guidance: False
+  - Current Rule: False
+  - Acceptance Contract: False
+  - Is Evidence: True
+  - Is Historical: True
+  - Is Superseded: False
+  - Broken Refs: 56
+  - Rationale: R1 audit evidence - historical verification record, not user-facing policy
+- **artifacts/P0_FINAL_12_R1_F_Root_Hygiene_Provenance_Audit_Report.json**
+  - Title: P0 FINAL 12 R1 F Root Hygiene Provenance Audit Report
+  - Classification: CURRENT_CANONICAL
+  - Authority Role: R1_EVIDENCE
+  - GitHub Value: NONE
+  - User Facing: False
+  - Operational Guidance: False
+  - Current Rule: False
+  - Acceptance Contract: False
+  - Is Evidence: True
+  - Is Historical: True
+  - Is Superseded: False
+  - Broken Refs: 6
+  - Rationale: R1 audit evidence - historical verification record, not user-facing policy
+- **artifacts/P0_FINAL_12_R1_F_Root_Hygiene_Remediation_Report.json**
+  - Title: P0 FINAL 12 R1 F Root Hygiene Remediation Report
+  - Classification: CURRENT_CANONICAL
+  - Authority Role: R1_EVIDENCE
+  - GitHub Value: NONE
+  - User Facing: False
+  - Operational Guidance: False
+  - Current Rule: False
+  - Acceptance Contract: False
+  - Is Evidence: True
+  - Is Historical: True
+  - Is Superseded: False
+  - Broken Refs: 6
+  - Rationale: R1 audit evidence - historical verification record, not user-facing policy
+- **artifacts/P0_FINAL_12_R1_H_Post_Commit_Integrity_Verification_Report.json**
+  - Title: P0 FINAL 12 R1 H Post Commit Integrity Verification Report
+  - Classification: CURRENT_CANONICAL
+  - Authority Role: R1_EVIDENCE
+  - GitHub Value: NONE
+  - User Facing: False
+  - Operational Guidance: False
+  - Current Rule: False
+  - Acceptance Contract: False
+  - Is Evidence: True
+  - Is Historical: True
+  - Is Superseded: False
+  - Broken Refs: 2
+  - Rationale: R1 audit evidence - historical verification record, not user-facing policy
+- **docs/governance/repository/P0_FINAL_12_B5_TEST_MIGRATION_INVENTORY.md**
+  - Title: P0-FINAL-12-B5 Test Migration Inventory
+  - Classification: CURRENT_CANONICAL
+  - Authority Role: N/A
+  - GitHub Value: NONE
+  - User Facing: False
+  - Operational Guidance: False
+  - Current Rule: False
+  - Acceptance Contract: False
+  - Is Evidence: True
+  - Is Historical: True
+  - Is Superseded: False
+  - Broken Refs: 59
+  - Rationale: Test migration inventory - audit evidence, not user-facing
+- **docs/governance/repository/P0_FINAL_12_R1_F_ROOT_HYGIENE_PROVENANCE_AUDIT.md**
+  - Title: P0-FINAL-12-R1-F — Root Hygiene Provenance Audit
+  - Classification: CURRENT_CANONICAL
+  - Authority Role: R1_EVIDENCE
+  - GitHub Value: NONE
+  - User Facing: False
+  - Operational Guidance: False
+  - Current Rule: False
+  - Acceptance Contract: False
+  - Is Evidence: True
+  - Is Historical: True
+  - Is Superseded: False
+  - Broken Refs: 9
+  - Rationale: R1 audit evidence - historical verification record, not user-facing policy
+- **docs/governance/repository/P0_FINAL_12_R1_F_ROOT_HYGIENE_REMEDIATION.md**
+  - Title: P0-FINAL-12-R1-F — Root Hygiene Remediation
+  - Classification: CURRENT_CANONICAL
+  - Authority Role: R1_EVIDENCE
+  - GitHub Value: NONE
+  - User Facing: False
+  - Operational Guidance: False
+  - Current Rule: False
+  - Acceptance Contract: False
+  - Is Evidence: True
+  - Is Historical: True
+  - Is Superseded: False
+  - Broken Refs: 8
+  - Rationale: R1 audit evidence - historical verification record, not user-facing policy
+- **docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_A_RECONCILIATION.md**
+  - Title: P0 Repository Final Cleanup — Batch A Reconciliation
+  - Classification: CURRENT_SUPPORTING
+  - Authority Role: N/A
+  - GitHub Value: NONE
+  - User Facing: False
+  - Operational Guidance: False
+  - Current Rule: False
+  - Acceptance Contract: False
+  - Is Evidence: True
+  - Is Historical: True
+  - Is Superseded: False
+  - Broken Refs: 16
+  - Rationale: Batch reconciliation evidence - audit trail, not user-facing
+- **docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_B_CORE_RECONCILIATION.md**
+  - Title: P0 Repository Final Cleanup — Batch B + Core Module Reconciliation: COMPLETE
+  - Classification: CURRENT_SUPPORTING
+  - Authority Role: N/A
+  - GitHub Value: NONE
+  - User Facing: False
+  - Operational Guidance: False
+  - Current Rule: False
+  - Acceptance Contract: False
+  - Is Evidence: True
+  - Is Historical: True
+  - Is Superseded: False
+  - Broken Refs: 22
+  - Rationale: Batch reconciliation evidence - audit trail, not user-facing
+- **docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_B_PARTIAL_RECONCILIATION.md**
+  - Title: P0 Repository Final Cleanup — Batch B Partial Reconciliation
+  - Classification: CURRENT_SUPPORTING
+  - Authority Role: N/A
+  - GitHub Value: NONE
+  - User Facing: False
+  - Operational Guidance: False
+  - Current Rule: False
+  - Acceptance Contract: False
+  - Is Evidence: True
+  - Is Historical: True
+  - Is Superseded: False
+  - Broken Refs: 18
+  - Rationale: Batch reconciliation evidence - audit trail, not user-facing
+- **docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_C_RECONCILIATION.md**
+  - Title: P0 Repository Final Cleanup — Batch C Reconciliation (FINAL)
+  - Classification: CURRENT_SUPPORTING
+  - Authority Role: N/A
+  - GitHub Value: NONE
+  - User Facing: False
+  - Operational Guidance: False
+  - Current Rule: False
+  - Acceptance Contract: False
+  - Is Evidence: True
+  - Is Historical: True
+  - Is Superseded: False
+  - Broken Refs: 9
+  - Rationale: Batch reconciliation evidence - audit trail, not user-facing
+- **docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F1_RECONCILIATION.md**
+  - Title: P0 Repository Final Cleanup — Batch F1 Reconciliation
+  - Classification: CURRENT_SUPPORTING
+  - Authority Role: N/A
+  - GitHub Value: NONE
+  - User Facing: False
+  - Operational Guidance: False
+  - Current Rule: False
+  - Acceptance Contract: False
+  - Is Evidence: True
+  - Is Historical: True
+  - Is Superseded: False
+  - Broken Refs: 10
+  - Rationale: Batch reconciliation evidence - audit trail, not user-facing
+- **docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F3_RECONCILIATION.md**
+  - Title: P0 Repository Final Cleanup — Batch F3-1 Reconciliation
+  - Classification: CURRENT_SUPPORTING
+  - Authority Role: N/A
+  - GitHub Value: NONE
+  - User Facing: False
+  - Operational Guidance: False
+  - Current Rule: False
+  - Acceptance Contract: False
+  - Is Evidence: True
+  - Is Historical: True
+  - Is Superseded: False
+  - Broken Refs: 8
+  - Rationale: Batch reconciliation evidence - audit trail, not user-facing
+- **docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F4_1_RECONCILIATION.md**
+  - Title: P0 Repository Final Cleanup — Batch F4-1 Reconciliation
+  - Classification: CURRENT_SUPPORTING
+  - Authority Role: N/A
+  - GitHub Value: NONE
+  - User Facing: False
+  - Operational Guidance: False
+  - Current Rule: False
+  - Acceptance Contract: False
+  - Is Evidence: True
+  - Is Historical: True
+  - Is Superseded: False
+  - Broken Refs: 3
+  - Rationale: Batch reconciliation evidence - audit trail, not user-facing
+- **docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F4_2_RECONCILIATION.md**
+  - Title: P0 Repository Final Cleanup — Batch F4-2 Reconciliation
+  - Classification: CURRENT_SUPPORTING
+  - Authority Role: N/A
+  - GitHub Value: NONE
+  - User Facing: False
+  - Operational Guidance: False
+  - Current Rule: False
+  - Acceptance Contract: False
+  - Is Evidence: True
+  - Is Historical: True
+  - Is Superseded: False
+  - Broken Refs: 17
+  - Rationale: Batch reconciliation evidence - audit trail, not user-facing
+- **docs/governance/rm8/P0_STAGE5_BATCH5_2_GIT_DELIVERY_RECONCILIATION.md**
+  - Title: P0 Stage 5 Batch 5.2 — Git Delivery Reconciliation
+  - Classification: CURRENT_SUPPORTING
+  - Authority Role: N/A
+  - GitHub Value: NONE
+  - User Facing: False
+  - Operational Guidance: False
+  - Current Rule: False
+  - Acceptance Contract: False
+  - Is Evidence: True
+  - Is Historical: True
+  - Is Superseded: False
+  - Broken Refs: 40
+  - Rationale: Batch reconciliation evidence - audit trail, not user-facing
+- **docs/governance/rm8/P0_STAGE5_BATCH5_3_GIT_DELIVERY_RECONCILIATION.md**
+  - Title: P0 Stage 5 Batch 5.3 — Git Delivery Reconciliation
+  - Classification: CURRENT_SUPPORTING
+  - Authority Role: N/A
+  - GitHub Value: NONE
+  - User Facing: False
+  - Operational Guidance: False
+  - Current Rule: False
+  - Acceptance Contract: False
+  - Is Evidence: True
+  - Is Historical: True
+  - Is Superseded: False
+  - Broken Refs: 63
+  - Rationale: Batch reconciliation evidence - audit trail, not user-facing
+- **docs/governance/rm8/P0_STAGE5_BATCH5_4_GIT_DELIVERY_RECONCILIATION.md**
+  - Title: P0 Stage 5 Batch 5.4 — Git Delivery Reconciliation Report
+  - Classification: CURRENT_SUPPORTING
+  - Authority Role: N/A
+  - GitHub Value: NONE
+  - User Facing: False
+  - Operational Guidance: False
+  - Current Rule: False
+  - Acceptance Contract: False
+  - Is Evidence: True
+  - Is Historical: True
+  - Is Superseded: False
+  - Broken Refs: 48
+  - Rationale: Batch reconciliation evidence - audit trail, not user-facing
+- **docs/governance/rm8/P0_STAGE5_BATCH5_5_GIT_DELIVERY_RECONCILIATION.md**
+  - Title: P0 Stage 5 Batch 5.5 — Git Delivery Reconciliation Report
+  - Classification: CURRENT_SUPPORTING
+  - Authority Role: N/A
+  - GitHub Value: NONE
+  - User Facing: False
+  - Operational Guidance: False
+  - Current Rule: False
+  - Acceptance Contract: False
+  - Is Evidence: True
+  - Is Historical: True
+  - Is Superseded: False
+  - Broken Refs: 59
+  - Rationale: Batch reconciliation evidence - audit trail, not user-facing
+- **docs/governance/rm8/P0_STAGE5_BATCH5_6_GIT_DELIVERY_RECONCILIATION.md**
+  - Title: P0 Stage 5 Batch 5.6 — Git Delivery Reconciliation
+  - Classification: CURRENT_SUPPORTING
+  - Authority Role: N/A
+  - GitHub Value: NONE
+  - User Facing: False
+  - Operational Guidance: False
+  - Current Rule: False
+  - Acceptance Contract: False
+  - Is Evidence: True
+  - Is Historical: True
+  - Is Superseded: False
+  - Broken Refs: 45
+  - Rationale: Batch reconciliation evidence - audit trail, not user-facing
+- **docs/governance/rm8/P0_STAGE5_BATCH5_7_GIT_DELIVERY_RECONCILIATION.md**
+  - Title: P0 Stage 5 Batch 5.7 — Git Delivery Reconciliation
+  - Classification: CURRENT_SUPPORTING
+  - Authority Role: N/A
+  - GitHub Value: NONE
+  - User Facing: False
+  - Operational Guidance: False
+  - Current Rule: False
+  - Acceptance Contract: False
+  - Is Evidence: True
+  - Is Historical: True
+  - Is Superseded: False
+  - Broken Refs: 74
+  - Rationale: Batch reconciliation evidence - audit trail, not user-facing
+- **docs/governance/rm8/P0_STAGE5_BATCH5_8_1_GIT_DELIVERY_RECONCILIATION.md**
+  - Title: P0 Stage 5 Batch 5.8.1 — Git Delivery Reconciliation
+  - Classification: CURRENT_SUPPORTING
+  - Authority Role: N/A
+  - GitHub Value: NONE
+  - User Facing: False
+  - Operational Guidance: False
+  - Current Rule: False
+  - Acceptance Contract: False
+  - Is Evidence: True
+  - Is Historical: True
+  - Is Superseded: False
+  - Broken Refs: 56
+  - Rationale: Batch reconciliation evidence - audit trail, not user-facing
+
+### SUPERSEDED_LOCAL (9)
+- **docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_D_PREFLIGHT.md**
+  - Title: P0 Repository Final Cleanup — Batch D Preflight
+  - Classification: SUPERSEDED
+  - Authority Role: N/A
+  - GitHub Value: NONE
+  - User Facing: False
+  - Operational Guidance: False
+  - Current Rule: False
+  - Acceptance Contract: False
+  - Is Evidence: False
+  - Is Historical: True
+  - Is Superseded: True
+  - Broken Refs: 40
+  - Rationale: Superseded by newer authority - retain locally for history only
+- **docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F2_PREFLIGHT.md**
+  - Title: P0 Repository Final Cleanup — Batch F2 Preflight
+  - Classification: SUPERSEDED
+  - Authority Role: N/A
+  - GitHub Value: NONE
+  - User Facing: False
+  - Operational Guidance: False
+  - Current Rule: False
+  - Acceptance Contract: False
+  - Is Evidence: False
+  - Is Historical: True
+  - Is Superseded: True
+  - Broken Refs: 16
+  - Rationale: Superseded by newer authority - retain locally for history only
+- **docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F3_PREFLIGHT.md**
+  - Title: P0 Repository Final Cleanup — Batch F3 Preflight
+  - Classification: SUPERSEDED
+  - Authority Role: N/A
+  - GitHub Value: NONE
+  - User Facing: False
+  - Operational Guidance: False
+  - Current Rule: False
+  - Acceptance Contract: False
+  - Is Evidence: False
+  - Is Historical: True
+  - Is Superseded: True
+  - Broken Refs: 19
+  - Rationale: Superseded by newer authority - retain locally for history only
+- **docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F4_PREFLIGHT.md**
+  - Title: P0 Repository Final Cleanup — Batch F4 Preflight
+  - Classification: SUPERSEDED
+  - Authority Role: N/A
+  - GitHub Value: NONE
+  - User Facing: False
+  - Operational Guidance: False
+  - Current Rule: False
+  - Acceptance Contract: False
+  - Is Evidence: False
+  - Is Historical: True
+  - Is Superseded: True
+  - Broken Refs: 18
+  - Rationale: Superseded by newer authority - retain locally for history only
+- **docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F5_PREFLIGHT.md**
+  - Title: P0 Repository Final Cleanup — Batch F5 Preflight
+  - Classification: SUPERSEDED
+  - Authority Role: N/A
+  - GitHub Value: NONE
+  - User Facing: False
+  - Operational Guidance: False
+  - Current Rule: False
+  - Acceptance Contract: False
+  - Is Evidence: False
+  - Is Historical: True
+  - Is Superseded: True
+  - Broken Refs: 20
+  - Rationale: Superseded by newer authority - retain locally for history only
+- **docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_BATCH_F_PREFLIGHT.md**
+  - Title: P0 Repository Final Cleanup — Batch F Preflight
+  - Classification: SUPERSEDED
+  - Authority Role: N/A
+  - GitHub Value: NONE
+  - User Facing: False
+  - Operational Guidance: False
+  - Current Rule: False
+  - Acceptance Contract: False
+  - Is Evidence: False
+  - Is Historical: True
+  - Is Superseded: True
+  - Broken Refs: 36
+  - Rationale: Superseded by newer authority - retain locally for history only
+- **docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_PREFLIGHT.md**
+  - Title: P0 Repository Final Cleanup — Preflight Document
+  - Classification: SUPERSEDED
+  - Authority Role: N/A
+  - GitHub Value: NONE
+  - User Facing: False
+  - Operational Guidance: False
+  - Current Rule: False
+  - Acceptance Contract: False
+  - Is Evidence: False
+  - Is Historical: True
+  - Is Superseded: True
+  - Broken Refs: 59
+  - Rationale: Superseded by newer authority - retain locally for history only
+- **docs/governance/rm8/P0_STAGE5_BATCH5_3_SERIES_ENTITY_PREFLIGHT_AUDIT.md**
+  - Title: P0 Stage 5 Batch 5.3 — Series Entity Registry Preflight Audit
+  - Classification: SUPERSEDED
+  - Authority Role: N/A
+  - GitHub Value: NONE
+  - User Facing: False
+  - Operational Guidance: False
+  - Current Rule: False
+  - Acceptance Contract: False
+  - Is Evidence: False
+  - Is Historical: True
+  - Is Superseded: True
+  - Broken Refs: 10
+  - Rationale: Superseded by newer authority - retain locally for history only
+- **docs/governance/rm8/P0_STAGE5_BATCH5_8_PREFLIGHT_AUDIT.md**
+  - Title: P0 Stage 5 Batch 5.8 Preflight Audit
+  - Classification: SUPERSEDED
+  - Authority Role: N/A
+  - GitHub Value: NONE
+  - User Facing: False
+  - Operational Guidance: False
+  - Current Rule: False
+  - Acceptance Contract: False
+  - Is Evidence: False
+  - Is Historical: True
+  - Is Superseded: True
+  - Broken Refs: 19
+  - Rationale: Superseded by newer authority - retain locally for history only
+
+### NEEDS_EXPLICIT_DECISION (1)
+- **artifacts/P0_FINAL_12_B5_Staged_Scope_Reconciliation_Report.json**
+  - Title: P0 FINAL 12 B5 Staged Scope Reconciliation Report
+  - Classification: CURRENT_CANONICAL
+  - Authority Role: N/A
+  - GitHub Value: MEDIUM
+  - User Facing: False
+  - Operational Guidance: False
+  - Current Rule: False
+  - Acceptance Contract: False
+  - Is Evidence: False
+  - Is Historical: False
+  - Is Superseded: False
+  - Broken Refs: 21
+  - Rationale: CURRENT_CANONICAL but unclear GitHub value - needs explicit decision
+
+## L. Proposed Clean GitHub Governance Structure
+
+```
+docs/governance/
+├── repository/
+│   ├── REPOSITORY_GOVERNANCE_BASELINE.md          (KEEP_CANONICAL)
+│   ├── P0_FINAL_13_POST_R1_WORKTREE_INVENTORY.md  (KEEP_CANONICAL)
+│   ├── P0_FINAL_13_R1_ROOT_HYGIENE_CLOSURE.md     (KEEP_CANONICAL)
+│   ├── P0_REPOSITORY_FINAL_CLEANUP_F6_FINAL_VERIFICATION.md  (KEEP_CANONICAL)
+│   ├── P0_FINAL_12_R1_A_PRODUCTION_REFERENCE_CLOSURE.md      (KEEP_CANONICAL)
+│   ├── P0_FINAL_12_R1_B_TEST_FIXTURE_CLOSURE.md              (KEEP_CANONICAL)
+│   ├── P0_FINAL_12_R1_C_TOOLS_REFERENCE_CLOSURE.md           (KEEP_CANONICAL)
+│   ├── P0_FINAL_12_R1_I_AUTHORIZED_PUSH_REMOTE_VERIFICATION.md  (KEEP_CANONICAL)
+│   ├── P0_FINAL_12_R1_J_POST_R1_BASELINE_HANDOFF_AUDIT.md       (KEEP_CANONICAL)
+│   ├── P0_REPOSITORY_FINAL_CLEANUP_E_RESOLUTION.md              (KEEP_SUPPORTING)
+│   ├── P0_FINAL_12_R1_E_COMMIT_BOUNDARY_AUDIT.md                (KEEP_SUPPORTING)
+│   ├── P0_FINAL_12_R1_F_CURRENT_COMMIT_BOUNDARY_RECONCILIATION.md (KEEP_SUPPORTING)
+│   ├── P0_FINAL_12_B5_SCOPE_RECONCILIATION.md                   (KEEP_SUPPORTING)
+│   ├── P0_FINAL_12_B5_STAGED_SCOPE_RECONCILIATION.md            (KEEP_SUPPORTING)
+│   ├── P0_FINAL_12_R1_H_POST_COMMIT_INTEGRITY_VERIFICATION.md   (KEEP_SUPPORTING)
+│   └── P0_FINAL_13_B_GOVERNANCE_AUTHORITY_RECONCILIATION.md     (KEEP_SUPPORTING)
+├── rm8/
+│   ├── P0_STAGE5_FINAL_ACCEPTANCE_REVIEW.md      (KEEP_CANONICAL)
+│   ├── P0_STAGE5_INTEGRATED_REVIEW.md            (KEEP_SUPPORTING)
+│   └── P0_STAGE5_ROOT_LEVEL_INVENTORY.md         (KEEP_SUPPORTING)
+└── artifacts/
+    ├── P0_FINAL_12_R1_A_Production_Reference_Closure_Report.json        (KEEP_CANONICAL)
+    ├── P0_FINAL_12_R1_B_Test_Fixture_Closure_Report.json                (KEEP_CANONICAL)
+    ├── P0_FINAL_12_R1_C_Tools_Reference_Closure_Report.json             (KEEP_CANONICAL)
+    ├── P0_FINAL_12_R1_E_Commit_Boundary_Audit_Report.json               (KEEP_SUPPORTING)
+    ├── P0_FINAL_12_R1_F_Current_Commit_Boundary_Reconciliation_Report.json (KEEP_SUPPORTING)
+    ├── P0_FINAL_12_R1_H_Post_Commit_Integrity_Verification_Report.json  (KEEP_SUPPORTING)
+    ├── P0_FINAL_13_Post_R1_Worktree_Inventory_Report.json               (KEEP_CANONICAL)
+    └── P0_FINAL_13_R1_Root_Hygiene_Closure_Report.json                  (KEEP_CANONICAL)
+```
+
+## M. R1 Documentation Disposition
+- **LOCAL_AUDIT_EVIDENCE**: 10 docs
+  - `artifacts/P0_FINAL_12_R1_A_Production_Reference_Closure_Report.json`
+  - `artifacts/P0_FINAL_12_R1_B_Test_Fixture_Closure_Report.json`
+  - `artifacts/P0_FINAL_12_R1_C_Tools_Reference_Closure_Report.json`
+  - `artifacts/P0_FINAL_12_R1_E_Commit_Boundary_Audit_Report.json`
+  - `artifacts/P0_FINAL_12_R1_F_Current_Commit_Boundary_Reconciliation_Report.json`
+  - `artifacts/P0_FINAL_12_R1_F_Root_Hygiene_Provenance_Audit_Report.json`
+  - `artifacts/P0_FINAL_12_R1_F_Root_Hygiene_Remediation_Report.json`
+  - `artifacts/P0_FINAL_12_R1_H_Post_Commit_Integrity_Verification_Report.json`
+  - `docs/governance/repository/P0_FINAL_12_R1_F_ROOT_HYGIENE_PROVENANCE_AUDIT.md`
+  - `docs/governance/repository/P0_FINAL_12_R1_F_ROOT_HYGIENE_REMEDIATION.md`
+- **KEEP_GITHUB_CANONICAL**: 5 docs
+  - `artifacts/P0_FINAL_13_Post_R1_Worktree_Inventory_Report.json`
+  - `docs/governance/repository/P0_FINAL_12_R1_A_PRODUCTION_REFERENCE_CLOSURE.md`
+  - `docs/governance/repository/P0_FINAL_12_R1_B_TEST_FIXTURE_CLOSURE.md`
+  - `docs/governance/repository/P0_FINAL_12_R1_C_TOOLS_REFERENCE_CLOSURE.md`
+  - `docs/governance/repository/P0_FINAL_13_POST_R1_WORKTREE_INVENTORY.md`
+- **KEEP_GITHUB_SUPPORTING**: 3 docs
+  - `docs/governance/repository/P0_FINAL_12_R1_E_COMMIT_BOUNDARY_AUDIT.md`
+  - `docs/governance/repository/P0_FINAL_12_R1_F_CURRENT_COMMIT_BOUNDARY_RECONCILIATION.md`
+  - `docs/governance/repository/P0_FINAL_12_R1_H_POST_COMMIT_INTEGRITY_VERIFICATION.md`
+
+## N. P0-FINAL-12 Documentation Disposition
+- **NEEDS_EXPLICIT_DECISION**: 1 docs
+  - `artifacts/P0_FINAL_12_B5_Staged_Scope_Reconciliation_Report.json`
+- **LOCAL_AUDIT_EVIDENCE**: 11 docs
+  - `artifacts/P0_FINAL_12_R1_A_Production_Reference_Closure_Report.json`
+  - `artifacts/P0_FINAL_12_R1_B_Test_Fixture_Closure_Report.json`
+  - `artifacts/P0_FINAL_12_R1_C_Tools_Reference_Closure_Report.json`
+  - `artifacts/P0_FINAL_12_R1_E_Commit_Boundary_Audit_Report.json`
+  - `artifacts/P0_FINAL_12_R1_F_Current_Commit_Boundary_Reconciliation_Report.json`
+  - `artifacts/P0_FINAL_12_R1_F_Root_Hygiene_Provenance_Audit_Report.json`
+  - `artifacts/P0_FINAL_12_R1_F_Root_Hygiene_Remediation_Report.json`
+  - `artifacts/P0_FINAL_12_R1_H_Post_Commit_Integrity_Verification_Report.json`
+  - `docs/governance/repository/P0_FINAL_12_B5_TEST_MIGRATION_INVENTORY.md`
+  - `docs/governance/repository/P0_FINAL_12_R1_F_ROOT_HYGIENE_PROVENANCE_AUDIT.md`
+  - `docs/governance/repository/P0_FINAL_12_R1_F_ROOT_HYGIENE_REMEDIATION.md`
+- **KEEP_GITHUB_SUPPORTING**: 5 docs
+  - `docs/governance/repository/P0_FINAL_12_B5_SCOPE_RECONCILIATION.md`
+  - `docs/governance/repository/P0_FINAL_12_B5_STAGED_SCOPE_RECONCILIATION.md`
+  - `docs/governance/repository/P0_FINAL_12_R1_E_COMMIT_BOUNDARY_AUDIT.md`
+  - `docs/governance/repository/P0_FINAL_12_R1_F_CURRENT_COMMIT_BOUNDARY_RECONCILIATION.md`
+  - `docs/governance/repository/P0_FINAL_12_R1_H_POST_COMMIT_INTEGRITY_VERIFICATION.md`
+- **KEEP_GITHUB_CANONICAL**: 3 docs
+  - `docs/governance/repository/P0_FINAL_12_R1_A_PRODUCTION_REFERENCE_CLOSURE.md`
+  - `docs/governance/repository/P0_FINAL_12_R1_B_TEST_FIXTURE_CLOSURE.md`
+  - `docs/governance/repository/P0_FINAL_12_R1_C_TOOLS_REFERENCE_CLOSURE.md`
+
+## O. Broken-Reference Impact
+- Total broken references: 3,247
+- Broken in GitHub candidates: 1065
+- Broken in local-only candidates: 2161
+- Reduction if historical/audit docs become local-only: 2161 (66.6%)
+- GitHub candidates clean: NO - needs review
+
+**Classification from P0-FINAL-13-B:**
+- LEGACY_PATH_REFERENCE: 1,523 (references to deleted legacy paths - expected)
+- HISTORICAL_DOCUMENTATION: 1,187 (refs in historical/superseded docs - expected)
+- DELETED_ARTIFACT_REFERENCE: 537 (refs to explicitly deleted artifacts - expected)
+- CURRENT_GOVERNANCE_REFERENCE: 0
+- CURRENT_OPERATIONAL_REFERENCE: 0
+
+## P. Protected Worktree Preservation
+- **Status**: PRESERVED - outside scope of this task
+- No Protected Worktree files classified as cleanup candidates
+
+## Q. Generated Output Preservation
+- **Status**: PRESERVED - outside scope of this task
+- No generated outputs classified as cleanup candidates
+
+## R. Root Hygiene
+- **Status**: PASS
+- No temporary files created in repository root
+
+## S. Validation
+- HEAD: 76ea24f1e34c0f1796236de4d676404d7e45f00a
+- origin/main: 76ea24f1e34c0f1796236de4d676404d7e45f00a
+- divergence: 0 0
+- staged: 0
+- committed: 0
+- pushed: 0
+- provider/network/translation: 0/0/0
+- Root Hygiene: PASS
+- git diff --check: PASS
+- ntpe_validate.py: PASS WITH BASELINE WARNING
+
+## T. Explicit Future Cleanup Actions
+- Move LOCAL_HISTORY documents to archive/ or local-only storage
+- Move LOCAL_AUDIT_EVIDENCE documents to archive/ or local-only storage
+- Move SUPERSEDED_LOCAL documents to archive/ or local-only storage
+- Verify KEEP_GITHUB_CANONICAL/SUPPORTING documents have no misleading broken references
+- Update .gitignore to exclude local-only governance directories if needed
+- Do NOT delete any documents - only relocate to local-only storage
+
+## U. Explicit Prohibited Actions
+- No deletion of any governance documents
+- No modification of historical records
+- No rewriting of broken references
+- No consolidation of documents
+- No physical directory reorganization in this task
+
+## PASS Criteria Verification
+- [x] baseline unchanged
+- [x] all 66 governance documents have explicit planning disposition
+- [x] CURRENT authority is separated from publication necessity
+- [x] historical documents are not treated as current requirements
+- [x] superseded documents are not silently deleted
+- [x] no files moved
+- [x] no files deleted
+- [x] no files modified
+- [x] Protected Worktree preserved
+- [x] Generated Outputs preserved
+- [x] Historical/Legacy preserved
+- [x] 3,247 broken references not modified
+- [x] Root Hygiene PASS
+- [x] ntpe_validate.py PASS or PASS WITH unchanged baseline warning
+- [x] git diff --check PASS
+- [x] provider/network/translation = 0/0/0
+- [x] staged = 0
+- [x] committed = 0
+- [x] pushed = 0
+- [x] cleanup plan generated

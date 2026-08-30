@@ -1,0 +1,377 @@
+{
+  "stage": "P0-FINAL-15-N",
+  "baseline_branch": "main",
+  "baseline_head": "8c999b1219f65a6afaeaf0062e6c43f72691c188",
+  "worktree": "D:\\Python\\NTPE",
+  "current_model": "minimaxai/minimax-m3",
+  "current_model_status": "PROVIDER_FAILURE_429",
+  "candidate_model": "nvidia/nemotron-3-super-120b-a12b",
+  "candidate_provider": "NVIDIA",
+  "candidate_account": "NVIDIA_API_KEY",
+  "shadow_status": "FAIL",
+  "shadow_cases": 9,
+  "shadow_failures": 1,
+  "shadow_results": [
+    {
+      "model": "nvidia/nemotron-3-super-120b-a12b",
+      "profile": "normal",
+      "fixture_name": "narrative",
+      "http_status": 200,
+      "success": true,
+      "elapsed_ms": 33397.28939999986,
+      "source_tokens": 166,
+      "prompt_tokens": 134,
+      "context_tokens": 0,
+      "glossary_tokens": 0,
+      "expected_output_tokens": 2000,
+      "total_estimated_tokens": 2300,
+      "model_context_limit": 128000,
+      "remaining_margin": 125700,
+      "token_measurement_method": "ESTIMATED",
+      "translation": "정태의感到困惑。\n\n然而事實上，這並不是他該困惑的事。被拋在異國的怪物般的男子無論如何都還是理智正常、算是理性的人，他會明白這種情況絕不是정태의故意造成的，他會理解的。\n\n然而，‘我從幾個月前就開始盼望、努力，經過千辛萬苦才爭取到的一週假期，卻因為那傢伙因工作而比預定晚回來，說要削減我的假期’這樣憤怒地主張著，把去鄰國工作的弟弟拋在一旁，只帶著정태의遠赴南國的孤島度假的카イル是否能平安無事讓我相當擔心。（如果카イル平時還是那樣理性的人，也不會幹出這種事，但因為他在出發前不久，因為弟弟燒毀了他珍藏的書而發狂到躺床三天，這也是主要原因。）\n\n無論如何，這座沒有直航班、必須乘坐小型飛機才能抵達的悠閒南國島嶼上的酒店",
+      "quality_score": 66.0,
+      "quality_status": "warning",
+      "error": null
+    },
+    {
+      "model": "nvidia/nemotron-3-super-120b-a12b",
+      "profile": "normal",
+      "fixture_name": "dialogue",
+      "http_status": 200,
+      "success": true,
+      "elapsed_ms": 4501.45110000085,
+      "source_tokens": 107,
+      "prompt_tokens": 134,
+      "context_tokens": 0,
+      "glossary_tokens": 0,
+      "expected_output_tokens": 2000,
+      "total_estimated_tokens": 2241,
+      "model_context_limit": 128000,
+      "remaining_margin": 125759,
+      "token_measurement_method": "ESTIMATED",
+      "translation": "\"真的沒事嗎?\" 民秀小心翼翼地問道。\n\n智賢點了點頭，勉強露出笑容。「嗯，沒事。只是...有點累罷了。」\n\n「不，你的眼神不對。發生什麼事了？告訴我。」\n\n智賢猶豫了一下，然後輕輕嘆了一口氣。\n\n「其實...明天有發表。因為還沒準備好。」\n\n民秀驚訝地睜大眼睛。「明天才剩一天啊？你為什麼現在才說？」\n\n「說了也沒用，幫不上忙。這是我的問題，我自己解決。」\n\n「別這樣說。我們是朋友啊，一起解決就好。」\n\n這句話讓智賢的眼眶發熱。",
+      "quality_score": 100.0,
+      "quality_status": "success",
+      "error": null
+    },
+    {
+      "model": "nvidia/nemotron-3-super-120b-a12b",
+      "profile": "normal",
+      "fixture_name": "continuity",
+      "http_status": 200,
+      "success": true,
+      "elapsed_ms": 7656.938799998898,
+      "source_tokens": 94,
+      "prompt_tokens": 134,
+      "context_tokens": 0,
+      "glossary_tokens": 0,
+      "expected_output_tokens": 2000,
+      "total_estimated_tokens": 2228,
+      "model_context_limit": 128000,
+      "remaining_margin": 125772,
+      "token_measurement_method": "ESTIMATED",
+      "translation": "김철수는擁有三十年經驗的偵探。他所負責的案件總是複雜重重，但他憑藉自己獨特的直覺，一路追查真相。他的夥伴이영희則完全相反，是個只靠邏輯與證據來破案的原則主義者。\n\n有一天，兩人被指派處理一起連續失踪案。김철수試圖從現場的微跡中尋找線索，이영희則分析受害者們的共同點。起初兩人對彼此的方法抱持懷疑，但很快就發現他們的做法其實互補。김철수의直覺引導了이영희的邏輯，而이영희的證據則支撐了김철수의推測。",
+      "quality_score": 88.0,
+      "quality_status": "success",
+      "error": null
+    },
+    {
+      "model": "nvidia/nemotron-3-super-120b-a12b",
+      "profile": "production_like",
+      "fixture_name": "narrative",
+      "http_status": 200,
+      "success": true,
+      "elapsed_ms": 51645.28080000309,
+      "source_tokens": 666,
+      "prompt_tokens": 134,
+      "context_tokens": 138,
+      "glossary_tokens": 0,
+      "expected_output_tokens": 4000,
+      "total_estimated_tokens": 4938,
+      "model_context_limit": 128000,
+      "remaining_margin": 123062,
+      "token_measurement_method": "ESTIMATED",
+      "translation": "正泰儀感到困惑。  \n\n然而，其實這並不是他該困惑的事。被丟在異國的怪物般男子，畢竟思維清晰，算是個理性的人，他一定會明白這種情況絕非正泰儀故意造成的。  \n\n「我好不容易才花了數月時間積累，經過千辛萬苦才爭取到的一週假期，卻因為那傢伙因工作而比預定晚回來，我不會讓他佔走我的假期」他憤怒地主張著，把去鄰國工作的弟弟拋在一旁，只帶著正泰儀遠赴南國小島度假。卡爾能否平安讓人十分擔心。（如果卡爾平時仍保持理性，他也不會這樣做，但因為在出發前不久，弟弟竟燒掉了卡爾珍藏的書，讓他氣得三天臥床不起，這也是主要原因。）  \n\n無論如何，這座只有乘坐小型飛機才能抵達、沒有直航的悠閒南國島嶼上的酒店大廳沙發上，正泰儀雖然現在還算開心，但擔心回到柏林後會發生什麼事，不禁嘆氣。  \n\n「不過現在先擔心也無濟於事，已經發生的事也無法改變……難得來這裡休息，如果只是整週嘆氣，那就太虧了。」  \n\n正泰儀最終得出理性的結論，點了點頭。  \n\n這座被深青玉色海洋環繞的島嶼極其美麗且悠閒。據卡爾在路上所說，這家酒店幾乎就像幾個財閥私人的別墅，一般觀光客進不來，因此不用擔心被他人注目，正是享受悠閒豐富假期的理想之地。  \n\n果不其然，正如他所言，自從昨天抵達此地以來，正泰儀除了看到這裡的管理人與員工之外，幾乎沒有其他人，甚至連用十個手指數也還有餘裕。  \n\n「人跡罕至的海灘散步也應該不錯。」  \n\n正泰儀「哎喲」一聲從座位上站起來。卡爾應該正在私人泳池旁的長椅上酣睡。（正泰儀知道，為了這個星期的假期，卡爾在來這裡前一天還熬夜工作，臉色憔悴。因此，他也不忍心反對卡爾堅持要來這裡的主張。）  \n\n從潟湖到海灘，當然近得一摔就鼻子碰到沙灘。如果只想在附近漫步，也可以走在延伸過海的木板橋上，但正泰儀打算慢慢繞島一圈，因而選擇了沙灘方向。據說這島很小，走個兩個小時左右就能繞一圈。  \n\n他只在過膝的短褲外隨便披了件寬鬆的襯衫，正打算從大廳離開時。  \n\n是否有新客人抵達？外面略有些嘈雜——雖然這裡極其安靜，連普通的說話聲都顯得格外響亮——兩三人走了進來。  \n\n正泰儀不由得停下腳步。耳邊傳來熟悉的德語。雖從聲音判斷並不是那傢伙來了，但他仍不由得屏住呼吸。  \n\n他那雖安靜卻帶著冷淡與官腔的語氣，正在說明原本應該與同伴一起來此，卻因故分開行動，而同伴預計將在一兩小時內到達。隨著他話音落下，這位德國人現身了。  \n\n他看起來就像連針尖都插不進去般毫無破綻。雖然表面沉穩穩重，但正泰儀憑藉著一點點直覺就能看出他經歷過許多艱辛，不禁皺起眉頭。一不小心去惹他，恐怕連骨頭都難以挑剔。最好盡量不要與他扯上關係。  \n\n正泰儀假裝沒看到他，繼續前行。反正也沒必要纏上他，就依照原計畫散步吧。  \n\n然而，就在這時，那男人的目光落在了正泰儀身上。正泰儀也不由得與他對視。  \n\n就在瞬間，他的表驟然變得凶惡。他以帶著寒光的眼神望著正泰儀，對著旁邊站著的秘書般人物冷冷地說：  \n\n「為什麼會有東亞人出現在這裡？我」",
+      "quality_score": 87.2,
+      "quality_status": "success",
+      "error": null
+    },
+    {
+      "model": "nvidia/nemotron-3-super-120b-a12b",
+      "profile": "production_like",
+      "fixture_name": "dialogue",
+      "http_status": 200,
+      "success": true,
+      "elapsed_ms": 12002.98290000137,
+      "source_tokens": 107,
+      "prompt_tokens": 134,
+      "context_tokens": 138,
+      "glossary_tokens": 0,
+      "expected_output_tokens": 4000,
+      "total_estimated_tokens": 4379,
+      "model_context_limit": 128000,
+      "remaining_margin": 123621,
+      "token_measurement_method": "ESTIMATED",
+      "translation": "\"真的沒事嗎?\" 民수小心翼翼地問道。\n\n地현點點頭，勉強地露出笑容。「嗯，沒事。只是…有點累而已。」\n\n「不，你的眼神看起來不對。發生什麼事？告訴我。」\n\n地현猶豫了一下，然後輕輕地嘆了一口氣。\n\n「其實…明天有發表。因為還沒準備好。」\n\n民수驚訝地睜大了眼睛。「明天才剩一天啊？為什麼現在才說？」\n\n「說了也沒用，因為你也幫不上忙。這是我的問題，我自己來解決。」\n\n「別這樣說。我們是朋友啊，一起解決就好啦。」\n\n那句話讓地현的眼眶發熱。",
+      "quality_score": 92.5,
+      "quality_status": "success",
+      "error": null
+    },
+    {
+      "model": "nvidia/nemotron-3-super-120b-a12b",
+      "profile": "production_like",
+      "fixture_name": "continuity",
+      "http_status": 200,
+      "success": true,
+      "elapsed_ms": 18953.26820000264,
+      "source_tokens": 94,
+      "prompt_tokens": 134,
+      "context_tokens": 138,
+      "glossary_tokens": 0,
+      "expected_output_tokens": 4000,
+      "total_estimated_tokens": 4366,
+      "model_context_limit": 128000,
+      "remaining_margin": 123634,
+      "token_measurement_method": "ESTIMATED",
+      "translation": "金哲秀是一名擁有三十年經驗的刑警。他所負責的案件總是複雜多變，但他憑藉自己獨特的直覺，一步步挖掘真相。他的夥伴李英姬則完全相反，是個只靠邏輯與證據來破案的原則主義者。\n\n有一天，兩人被指派處理一起連續失踪案。金哲秀試圖從現場的微跡中尋找線索，而李英姬則分析受害者的共同點。起初兩人對彼此的方法抱持懷疑，但很快他們發現彼此的做法其實互補。金哲秀的直覺引導了李英姬的邏輯，而李英姬的證據則支撐了金哲秀的推測。",
+      "quality_score": 100.0,
+      "quality_status": "success",
+      "error": null
+    },
+    {
+      "model": "nvidia/nemotron-3-super-120b-a12b",
+      "profile": "high_context",
+      "fixture_name": "narrative",
+      "http_status": 200,
+      "success": true,
+      "elapsed_ms": 47705.16349999889,
+      "source_tokens": 825,
+      "prompt_tokens": 134,
+      "context_tokens": 138,
+      "glossary_tokens": 0,
+      "expected_output_tokens": 6000,
+      "total_estimated_tokens": 7097,
+      "model_context_limit": 128000,
+      "remaining_margin": 120903,
+      "token_measurement_method": "ESTIMATED",
+      "translation": "정태의는 난감해하고 있었다.  \n\n그러나 실상 그것은 그가 난감해할 일은 아니었다. 먼 타국에 떼어놓고 온 괴물 같은 남자는 어쨌든 이지가 제대로 돌아가고 있는, 나름대로 이성적인 인간이었고, 그는 이 상황이 결코 정태의가 의도해서 벌어진 상황이 아니란 걸 이해해줄 것이다.  \n\n그러나, ‘몇 달 전부터 벼르고 별러서 천신만고 끝에 겨우 일주일 휴가를 뺐는데, 그놈이 일 때문에 예정보다 늦게 돌아온다고 해서 내 휴가를 깎아먹을 수는 없다’라고 분연히 주장하며, 이웃나라까지 일하러 간 동생을 내팽개치고 정태의만 홀랑 데리고 머나먼 남국의 섬으로 휴가를 와버린 카일이 무사할 수 있을지가 사뭇 걱정이 되었다. (카일도 평소의 이성적인 그였더라면 이런 짓을 막 벌이진 않았을 테지만, 일하러 떠나기 직전에 카일이 아끼던 책을 불살라버린 동생의 작태에 사흘을 앓아누울 정도로 광분했던 탓이 다분했다.)  \n\n어찌 되었든, 직통이라곤 없이 경비행기로 따로 들어와야 하는 이 여유로운 남국의 섬에 있는 호텔의 로비 소파에 앉아, 지금이야 좋지만 베를린으로 돌아간 뒤에 어떤 사단이 날지 그저 걱정스럽기만 한 정태의는 한숨을 쉬고 있었다.  \n\n“……하지만 지금 미리 걱정해본들 뭐 이미 벌어진 일은 어쩔 도리 없고……. 모처럼 쉬러 왔는데 한숨만 쉬며 일주일을 지내면 손해지.”  \n\n정태의는 결국 합리적인 결론을 내리고 고개를 끄덕였다.  \n\n짙은 청옥빛 바다로 둘러싸인 이 섬은 대단히 아름답고 한가로웠다. 오는 길에 카일에게 들은 바로는, 이곳의 호텔은 몇몇 재벌이 소유한 별장처럼 쓰이다시피 해 일반 관광객은 들어오지 못하기 때문에, 남의 눈에 띌 걱정 없이 한가롭고 넉넉한 휴가를 보내기에는 안성맞춤이라고 했다.  \n\n과연 그의 말마따나, 어제 이곳에 들어온 이후 정태의가 구경한 사람이라곤 이곳의 관리인과 직원 외에는 열 손가락으로 꼽고도 넉넉하게 남을 정도였다.  \n\n“인적 드문 바닷가 산책도 좋겠지.”  \n\n정태의는 어차, 하고 자리에서 일어섰다. 카일은 프라이빗풀 옆의 벤치에서 정신없이 잠들어 있을 터였다. (일주일의 휴가를 위해 그가 이곳에 오기 직전까지 밤을 새며 퀭한 얼굴로 일했다는 걸 정태의는 알고 있었다. 그래서, 그가 막무가내로 여기에 오겠다고 하는 주장을 차마 거스를 수 없었다.)  \n\n라군에서 바닷가는, 당연하다면 당연하지만, 엎어지면 코 닿을 거리였다. 근처만 서성이려면 바다 위로 뻗은 나무다리 위로 산책을 할 수도 있지만, 정태의는 천천히 섬을 한 바퀴 돌려보자고 생각하고 백사장 쪽을 택했다. 대충 걸어서 두어 시간이면 한 바퀴 다 돌 수 있을 정도로 작은 섬이라고 들었다.  \n\n무릎까지 오는 반바지 위에 넉넉한 셔츠 하나만 대충 걸치고, 그가 막 로비에서 나서려던 때였다.  \n\n새로운 손님이 왔는지, 바깥에서 약간 떠들썩하게―라고 해도 이곳이 워낙 조용해서, 단순한 말소리조차 그렇게 들릴 뿐이었지만―두세 명이 들어서고 있었다.  \n\n정태의는 저도 모르게 걸음을 멈추었다. 귀에 익은 독일어가 들렸다. 목소리를 들어보건대 결코 그놈이 온 건 아니었지만 그래도 반사적으로 숨을 멈추고 만다.  \n\n조용하지만 냉정하고 사무적인 말투는, 이곳에 같이 오기로 했던 동행과 따로 오게 되었다는 요지의 말을 하고 있었다. 그 동행도 한두 시간 안에 도착할 거라는 말을 하며, 그 독일인은 모습을 드러내었다.  \n\n바늘 끝 하나 들어가지 않을 듯, 빈틈이라곤 없어 보이는 남자였다. 침착하고 담담해 보이는 남자였지만, 눈치 하나만으로 인생 역경을 헤쳐온 정태의는 저도 모르게 눈살을 찌푸렸다. 자칫 잘못 건드렸다간 뼈도 추리기 힘들 듯한 인간이다. 가급적이면 엮이지 않는 게 좋을.  \n\n정태의는 못 본 척하고 걸음을 옮겼다. 굳이 엮일 일도 없을 테니, 하려던 대로 산책이나 하자.  \n\n그러나, 그때 남자의 시선이 정태의에게 멎었다. 엉겁결에 정태의도 그를 마주본다.  \n\n그 순간, 삽시에 그의 표정이 험악해졌다. 싸늘한 빛이 감도는 눈초리로 정태의를 바라보며, 남자는 바로 옆에 서 있던 비서 같은 사람에게 쌀쌀맞게 말했다.  \n\n“Why 동양인이 여기 있는 거지? 난 분명히 이곳의 지분을 갖고 있는 소유주 중에는 동양인이 없으며, 고용인 중에도 동양인이 없다는 사실을 확인받고서 여기에 왔는데.”  \n\n아, 그게 아니라 저분은 투숙객으로……하고 옆사람이 허둥지둥 변명을 한다. 남자는 굳이 더 말을 하지는 않았지만 매우 못마땅하고 언짢은 눈으로 정태의를 보다가 시선을 돌렸다. 찬바람이 불었다.  \n\n“…….”  \n\n정태의는 쓰게 입맛을 다시며 걸음을 옮겼다.  \n\n동양인을 멸시하는 백인우월주의자라면 여태 여럿 봤지만, 저렇게 극명하게 ‘나는 동양인은 꼴도 보기 싫다’라고 대놓고 주장하는 사람은 참 오랜만이다. 그래도 보통은 본인의 체면과 양식이 있으니 슬쩍 낯을 찌푸리거나 눈치만 주는 정도였는데.  \n\n정태의는 머리를 벅벅 긁으며 바닷가로 나갔다. 뭐 저 정도로 마음에 상처를 입거나 우울해질 리도 없어, 마음은 여전히 평화롭고 해맑았다.  \n\n아무래도 좋다. 어차피 그리 마주칠 일도 얽힐 일도 없으니 무슨 상관이람.",
+      "quality_score": 34.0,
+      "quality_status": "failed",
+      "error": null
+    },
+    {
+      "model": "nvidia/nemotron-3-super-120b-a12b",
+      "profile": "high_context",
+      "fixture_name": "dialogue",
+      "http_status": 200,
+      "success": true,
+      "elapsed_ms": 20236.617300000944,
+      "source_tokens": 107,
+      "prompt_tokens": 134,
+      "context_tokens": 138,
+      "glossary_tokens": 0,
+      "expected_output_tokens": 6000,
+      "total_estimated_tokens": 6379,
+      "model_context_limit": 128000,
+      "remaining_margin": 121621,
+      "token_measurement_method": "ESTIMATED",
+      "translation": "\"真的沒事嗎?\" 民수小心翼翼地問道。\n\n智賢點點頭，勉強露出笑容。「嗯，沒事。只是…有點累而已。」\n\n\"不，你的眼神不對。發生什麼事了？告訴我。\"\n\n智賢猶豫了一下，然後輕輕嘆了一口氣。\n\n\"其實是…明天要發表。因為還沒準備好。\"\n\n民수驚訝地睜大眼睛。「明天才剩一天了？你現在才說？」\n\n\"說了也幫不上忙。這是我的問題，我自己解決。\"\n\n\"別這樣說。我們是朋友啊。一起解決就好。\"\n\n這句話讓智賢的眼眶發熱。",
+      "quality_score": 97.0,
+      "quality_status": "success",
+      "error": null
+    },
+    {
+      "model": "nvidia/nemotron-3-super-120b-a12b",
+      "profile": "high_context",
+      "fixture_name": "continuity",
+      "http_status": 408,
+      "success": false,
+      "elapsed_ms": 60098.75660000034,
+      "source_tokens": 94,
+      "prompt_tokens": 134,
+      "context_tokens": 138,
+      "glossary_tokens": 0,
+      "expected_output_tokens": 6000,
+      "total_estimated_tokens": 6366,
+      "model_context_limit": 128000,
+      "remaining_margin": 121634,
+      "token_measurement_method": "ESTIMATED",
+      "translation": "",
+      "quality_score": 0.0,
+      "quality_status": "",
+      "error": "Timeout: HTTPSConnectionPool(host='integrate.api.nvidia.com', port=443): Read timed out. (read timeout=60)"
+    }
+  ],
+  "context_measurement_method": "ESTIMATED",
+  "context_production_like": "PASS",
+  "context_margin": 120903,
+  "translation_narrative": {
+    "score": 87.2,
+    "status": "PASS"
+  },
+  "translation_dialogue": {
+    "score": 100.0,
+    "status": "PASS"
+  },
+  "translation_continuity": {
+    "score": 100.0,
+    "status": "PASS"
+  },
+  "quality_literary": {
+    "score": 95.73333333333333,
+    "status": "PASS"
+  },
+  "quality_character": {
+    "score": 100.0,
+    "status": "PASS"
+  },
+  "quality_terminology": {
+    "score": 100.0,
+    "status": "PASS"
+  },
+  "quality_continuity": {
+    "score": 100.0,
+    "status": "PASS"
+  },
+  "human_review_status": "PENDING",
+  "human_review_result": "NOT_COMPLETED",
+  "reliability_4xx": {
+    "m1": 0,
+    "c3": 0
+  },
+  "reliability_429": {
+    "m1": 1,
+    "c3": 0
+  },
+  "reliability_5xx": {
+    "m1": 0,
+    "c3": 0
+  },
+  "reliability_timeout": {
+    "m1": 0,
+    "c3": 0
+  },
+  "reliability_median_latency": {
+    "m1": 1784.2,
+    "c3": 12116.2
+  },
+  "reliability_p95_latency": {
+    "m1": 1784.2,
+    "c3": 40448.5
+  },
+  "reliability_comparison": [
+    {
+      "metric": "success",
+      "m1_value": 2,
+      "c3_value": 5,
+      "comparison": "C3_BETTER"
+    },
+    {
+      "metric": "4xx",
+      "m1_value": 0,
+      "c3_value": 0,
+      "comparison": "SIMILAR"
+    },
+    {
+      "metric": "429",
+      "m1_value": 3,
+      "c3_value": 0,
+      "comparison": "C3_BETTER"
+    },
+    {
+      "metric": "5xx",
+      "m1_value": 0,
+      "c3_value": 0,
+      "comparison": "SIMILAR"
+    },
+    {
+      "metric": "timeout",
+      "m1_value": 0,
+      "c3_value": 0,
+      "comparison": "SIMILAR"
+    },
+    {
+      "metric": "median_latency_ms",
+      "m1_value": 1784.2,
+      "c3_value": 12116.2,
+      "comparison": "M1_BETTER"
+    },
+    {
+      "metric": "p95_latency_ms",
+      "m1_value": 1784.2,
+      "c3_value": 40448.5,
+      "comparison": "M1_BETTER"
+    }
+  ],
+  "provider_request_ids": [
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "provider_nvcf_ids": [
+    "29bf16d0-b177-415e-9cab-c94e625da82d",
+    "0335e4c0-71cd-46f9-97da-d0283e2d690c",
+    "",
+    "",
+    "",
+    "b187e0c2-4b90-4e2d-a12c-6cc3aef3b2a2",
+    "f625fbe6-8e10-4bd0-b1d9-0aed2775e494",
+    "18924133-cf90-498a-9aa0-5ed2c654fbed",
+    "ad1dfcb3-73ef-4562-97d3-7bb7e844e0e7",
+    "982a58a9-8c2c-48d6-a12e-e1b161f5ad36"
+  ],
+  "provider_other_metadata": {},
+  "canary_status": "FAIL",
+  "canary_scope": "internal_test_corpus",
+  "canary_rollback": "config_based_rollback_to_M1",
+  "c3_classification": "NOT_READY",
+  "decision": "REJECT_C3",
+  "production_changes": {
+    "model": false,
+    "routing": false,
+    "retry": false,
+    "backoff": false,
+    "rpm": false,
+    "chunk_size": false,
+    "runtime": false
+  },
+  "tests_diagnostic": {
+    "status": "FAIL"
+  },
+  "tests_regression": {
+    "status": "PENDING"
+  },
+  "tests_human_review": {
+    "status": "PENDING"
+  },
+  "tests_governance": {
+    "status": "PASS"
+  },
+  "tests_root_hygiene": {
+    "status": "PASS"
+  },
+  "tests_credential_protection": {
+    "status": "PASS"
+  },
+  "deliverables": [
+    "artifacts/P0_FINAL_15_N_NVIDIA_NEMOTRON_3_SUPER_CONTROLLED_CANARY_REPORT.json",
+    "docs/governance/repository/P0_FINAL_15_N_NVIDIA_NEMOTRON_3_SUPER_CONTROLLED_CANARY.md",
+    "tools/one_shots/p15n_nemotron_3_super_controlled_canary.py"
+  ],
+  "rm6_promotion": "BLOCKED",
+  "limitations": [
+    "Human literary review not completed (PENDING)",
+    "Token measurement uses character-based estimation (not exact tokenizer)",
+    "Limited reliability sample size (5 requests per model)",
+    "No sustained throughput testing",
+    "No cross-chunk continuity validation for chunked workflows",
+    "C3 long-term provider stability unknown"
+  ]
+}

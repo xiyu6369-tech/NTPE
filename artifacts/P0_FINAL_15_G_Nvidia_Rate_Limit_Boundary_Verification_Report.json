@@ -1,0 +1,251 @@
+{
+  "audit_id": "P0-FINAL-15-G-NVIDIA-RATE-LIMIT-BOUNDARY-VERIFICATION",
+  "timestamp": "2026-08-26T16:42:55Z",
+  "baseline_commit": "8c999b1",
+  "baseline_branch": "origin/main",
+  "divergence": "0/0",
+  "status": "AUDIT_IN_PROGRESS",
+  "core_question": "NVIDIA API key 官方 40 RPM 限制，與 NTPE 實際收到 HTTP 429 的原因是否一致",
+  "phase_a": {
+    "architecture_discovery": {
+      "rate_limiter_layers": 2,
+      "layers": [
+        {
+          "name": "NvidiaClient Global Limiter (HARD)",
+          "file": "core/translation_engine/nvidia_client.py",
+          "function": "_global_nvidia_rate_limit",
+          "limit_rpm": 40,
+          "window_seconds": 60,
+          "minimum_interval_seconds": 1.5,
+          "scope": "process-wide",
+          "state": "global deque _NVIDIA_REQUEST_TIMES",
+          "active": true,
+          "preventive": true,
+          "capped_at_40": true
+        },
+        {
+          "name": "ProviderManager Rate Limiter (SOFT)",
+          "file": "core/ai_provider/rate_limiter.py",
+          "class": "RateLimiter",
+          "default_max_calls": 1000000000,
+          "configured_max_calls": 1000000000,
+          "scope": "per-provider",
+          "active": false,
+          "reason": "Effectively disabled (10^9 calls)"
+        }
+      ]
+    },
+    "request_flow": {
+      "layers_in_order": [
+        "translate_package_with_retry (TXT runtime, outer retry)",
+        "ProviderManager.complete()",
+        "ProviderRuntimeExecutionPolicy.execute()",
+        "  rate_limiter.allow() -> ALWAYS TRUE (10^9)",
+        "  provider.complete() -> NvidiaTranslationProvider.complete()",
+        "    NvidiaClient.chat()",
+        "      _global_nvidia_rate_limit() -> ENFORCES 40 RPM",
+        "      requests.post() -> NVIDIA API"
+      ],
+      "retry_layers": [
+        {
+          "name": "TXT Runtime Retry",
+          "config": "provider_attempts / max_retries+1",
+          "default_attempts": 4,
+          "backoff": "5s, 10s, 20s"
+        },
+        {
+          "name": "ProviderManager Retry",
+          "config": "RetryPolicy.max_attempts",
+          "default_attempts": 3,
+          "backoff": "5s, 10s, 20s"
+        },
+        {
+          "name": "QA Retry (Legacy Path Only)",
+          "config": "qa_attempts",
+          "default_attempts": 4,
+          "multiplicative": true,
+          "theoretical_max_per_chunk": 16
+        }
+      ]
+    }
+  },
+  "phase_b": {
+    "live_evidence_prior_runs": {
+      "source": "P0-FINAL-15-F Live Regression",
+      "observed_pattern": {
+        "chunk_1": {
+          "attempts": 4,
+          "statuses": ["429", "429", "429", "429"],
+          "delays": [0, 5, 10, 20],
+          "total_elapsed_seconds": 66.2
+        },
+        "chunks_2_4": "Same pattern",
+        "requests_per_chunk": 4,
+        "estimated_rpm_per_chunk": 3.6,
+        "estimated_total_rpm_4_chunks": 14.4
+      }
+    }
+  },
+  "phase_c": {
+    "boundary_calculation": {
+      "client_limiter_guarantees": "≤40 requests per rolling 60-second window",
+      "observed_vs_guaranteed": {
+        "observed_peak_burst_rpm": 16,
+        "observed_rolling_60s_max_rpm": 14.5,
+        "guaranteed_max_rpm": 40,
+        "conclusion": "Client limiter SHOULD prevent 429 entirely"
+      },
+      "discrepancy": "429 observed despite client-side 40 RPM enforcement"
+    }
+  },
+  "phase_d": {
+    "response_evidence": {
+      "current_capture": {
+        "status_code": "CAPTURED",
+        "response_text": "TRUNCATED_1000_CHARS",
+        "headers": "NOT_CAPTURED"
+      },
+      "missing_metadata": {
+        "Retry-After": "NOT_PRESENT",
+        "RateLimit-Limit": "NOT_PRESENT",
+        "RateLimit-Remaining": "NOT_PRESENT",
+        "RateLimit-Reset": "NOT_PRESENT",
+        "x-ratelimit-*": "NOT_PRESENT",
+        "x-request-id": "NOT_PRESENT",
+        "full_error_body": "NOT_PRESENT"
+      },
+      "required_enhancement": "Add full header capture and complete error body to NvidiaClient"
+    }
+  },
+  "phase_e": {
+    "dimension_analysis": [
+      {
+        "dimension": "RPM (40 official)",
+        "evidence": "Client limiter enforces 40 RPM; observed ~14 RPM",
+        "status": "CONFIRMED_CLIENT_SIDE"
+      },
+      {
+        "dimension": "Token/minute",
+        "evidence": "Not tracked by NTPE",
+        "status": "UNKNOWN"
+      },
+      {
+        "dimension": "Concurrent requests",
+        "evidence": "Sequential chunks (no concurrency)",
+        "status": "NOT_APPLICABLE"
+      },
+      {
+        "dimension": "Model-specific quota",
+        "evidence": "minimax-m3 only; no evidence of per-model limit",
+        "status": "UNKNOWN"
+      },
+      {
+        "dimension": "Account/project quota",
+        "evidence": "Single API key; could have daily/monthly caps",
+        "status": "UNKNOWN"
+      },
+      {
+        "dimension": "Dynamic capacity",
+        "evidence": "NVIDIA 'degraded' errors seen; capacity varies",
+        "status": "LIKELY"
+      },
+      {
+        "dimension": "Unknown external factor",
+        "evidence": "429 despite client-side limiter",
+        "status": "CONFIRMED_EXTERNAL"
+      }
+    ]
+  },
+  "phase_f": {
+    "retry_multiplication": {
+      "two_layers_exist": true,
+      "runtime_pipeline_path": {
+        "multiplicative": false,
+        "reason": "Single provider call per chunk via RuntimeOrchestrator"
+      },
+      "legacy_path": {
+        "multiplicative": true,
+        "theoretical_max_per_chunk": 16,
+        "note": "THEORETICAL only - not active with runtime pipeline"
+      },
+      "current_default_pipeline": "runtime (NTPE_RUNTIME_PIPELINE=runtime)"
+    }
+  },
+  "phase_g": {
+    "rate_limiter_audit": {
+      "nvidia_client_global": {
+        "active": true,
+        "scope": "process-wide",
+        "limit": "40 RPM capped",
+        "window": "60s rolling",
+        "min_spacing": "1.5s",
+        "cross_chunk_shared": true,
+        "cross_retry_shared": true,
+        "concurrency_aware": false,
+        "knows_429": false,
+        "cooldown_on_429": "N/A (preventive)"
+      },
+      "provider_manager": {
+        "active": false,
+        "reason": "max_calls=10^9 (disabled)",
+        "scope": "per-provider",
+        "knows_429": false
+      },
+      "translation_runtime_retry": {
+        "type": "reactive",
+        "backoff": "5s -> 10s -> 20s",
+        "trigger": "is_retryable_error() detects '429'",
+        "scope": "per-chunk, per-attempt",
+        "cross_chunk": false
+      }
+    }
+  },
+  "phase_h": {
+    "verification_plan": {
+      "method": "Single-chunk test with enhanced telemetry",
+      "required_telemetry_additions": [
+        "Full response headers capture",
+        "Complete error body (not truncated)",
+        "Request/response timestamps",
+        "Client-side limiter state at request time"
+      ],
+      "stop_conditions": [
+        "Request rate exceeds 40 RPM",
+        "Hidden/background requests detected",
+        "429 persists across all retries for >=2 chunks",
+        "Need to modify retry policy to continue",
+        "Protected worktree modifications required"
+      ]
+    }
+  },
+  "current_evidence_summary": [
+    {"question": "Does NTPE enforce 40 RPM client-side?", "answer": "YES - NvidiaClient global limiter", "confidence": "HIGH"},
+    {"question": "Does client limiter prevent 429?", "answer": "SHOULD - but 429 observed", "confidence": "MEDIUM"},
+    {"question": "Is 40 RPM the only quota?", "answer": "UNKNOWN - likely not", "confidence": "LOW"},
+    {"question": "Are retries multiplicative?", "answer": "THEORETICAL ONLY - runtime path avoids", "confidence": "HIGH"},
+    {"question": "What triggers 429?", "answer": "EXTERNAL - not client-side RPM", "confidence": "HIGH"},
+    {"question": "Can we verify without more 429s?", "answer": "NO - need response headers", "confidence": "HIGH"}
+  ],
+  "recommendation": "Do NOT adjust retry policy yet. The 429 is NOT explained by 40 RPM. Must identify true quota dimension before designing production policy.",
+  "next_phase_options": [
+    "If token/minute: Add token tracking + pacing",
+    "If account concurrent: Coordinate across processes",
+    "If dynamic capacity: Implement capacity-aware backoff (capacity_retry_delay_seconds exists)",
+    "If unknown: Accept BLOCKED_EXTERNAL_PROVIDER as valid outcome"
+  ],
+  "deliverables": {
+    "audit_document": "docs/governance/repository/P0_FINAL_15_G_NVIDIA_RATE_LIMIT_BOUNDARY_VERIFICATION.md",
+    "machine_readable_report": "artifacts/P0_FINAL_15_G_Nvidia_Rate_Limit_Boundary_Verification_Report.json"
+  },
+  "key_file_references": {
+    "nvidia_client_global_limiter": "core/translation_engine/nvidia_client.py:16-39,68-75",
+    "nvidia_translation_provider": "core/translation_engine/provider_runtime.py:109-179",
+    "provider_manager": "core/ai_provider/manager.py:53-86",
+    "execution_policy": "core/ai_provider/execution_policy.py:74-136",
+    "rate_limiter_soft": "core/ai_provider/rate_limiter.py:8-42",
+    "retry_policy": "core/ai_provider/retry.py:9-28",
+    "txt_runtime_retry": "lts/txt_translation_runtime.py:373-611",
+    "build_provider_manager": "core/translation_engine/provider_runtime.py:182-240",
+    "translation_engine": "core/translation_engine/translation_engine.py:86-113"
+  }
+}

@@ -26,6 +26,13 @@ from core.production_runtime.manifest import (
 )
 from ntpe_literary_regression import LiteraryRegressionOptions, discover_test_sets, ensure_literary_structure, run_literary_regression
 from ntpe_literary_evaluation import evaluate_stage_outputs
+from core.adapters.epub_extraction_boundary import (
+    EpubExtractionBoundary,
+    EpubExtractionError,
+    EpubExtractionResult,
+    ExtractedTextIntakeRequest,
+)
+from core.adapters.canonical_book_intake_adapter import CanonicalBookIntakeAdapter, CanonicalIntakeResult
 
 ROOT = Path(__file__).resolve().parent
 if str(ROOT) not in sys.path:
@@ -185,6 +192,35 @@ def build_parser() -> argparse.ArgumentParser:
     batch.add_argument("--quality-delivery-v83", action="store_true", help="enable RM-8.3 delivery pipeline")
     batch.add_argument("--quality-delivery-formats-v83", nargs="+", default=["txt"], choices=["txt", "epub", "pdf"], help="output formats for RM-8.3 delivery (default: txt)")
     _add_quality_integration_v72_flags(batch)
+
+    epub = sub.add_parser("epub", help="translate an EPUB file")
+    epub.add_argument("input", help="input EPUB file path")
+    epub.add_argument("output", nargs="?", default="output", help="output directory")
+    epub.add_argument("--chunk-size", type=int, default=None)
+    epub.add_argument("--speed", choices=("fast", "balanced", "quality"), default=os.environ.get("NTPE_TRANSLATION_SPEED", "balanced"))
+    epub.add_argument("--model", default=DEFAULT_MODEL)
+    epub.add_argument("--fallback-models", default=os.environ.get("NTPE_FALLBACK_MODELS", ""), help="comma-separated fallback NVIDIA model IDs")
+    epub.add_argument("--glossary", default=None)
+    epub.add_argument("--character-memory", default=None)
+    epub.add_argument("--max-retries", type=int, default=3)
+    epub.add_argument("--provider-attempts", type=int, default=None, help="total provider request attempts; overrides speed-profile default")
+    epub.add_argument("--retry-base-seconds", type=float, default=5.0)
+    epub.add_argument("--qa-fail-policy", choices=("retry", "fail", "warn"), default="retry")
+    epub.add_argument("--min-length-ratio", type=float, default=0.25)
+    epub.add_argument("--max-korean-chars", type=int, default=3)
+    epub.add_argument("--max-repeated-lines", type=int, default=2)
+    epub.add_argument("--no-resume", action="store_true")
+    epub.add_argument("--no-qa", action="store_true")
+    epub.add_argument("--profile", choices=("fast", "balanced", "novel", "literary", "quality", "premium"), default=os.environ.get("NTPE_TRANSLATION_PROFILE", "literary"))
+    epub.add_argument("--simplified-chinese-policy", choices=("normalize", "warn", "fail"), default=os.environ.get("NTPE_SIMPLIFIED_CHINESE_POLICY", "normalize"))
+    epub.add_argument("--api-timeout", type=int, default=None, help="provider read timeout upper bound in seconds")
+    epub.add_argument("--api-connect-timeout", type=int, default=None, help="provider connect timeout in seconds")
+    epub.add_argument("--dry-run", action="store_true", help="build packages only; do not call NVIDIA API")
+    epub.add_argument("--no-progress", action="store_true", help="disable live NTPE progress messages")
+    epub.add_argument("--pipeline", choices=("runtime", "legacy"), default=os.environ.get("NTPE_RUNTIME_PIPELINE", "runtime"), help="translation pipeline mode; default: runtime (env: NTPE_RUNTIME_PIPELINE)")
+    epub.add_argument("--quality-delivery-v83", action="store_true", help="enable RM-8.3 delivery pipeline")
+    epub.add_argument("--quality-delivery-formats-v83", nargs="+", default=["txt"], choices=["txt", "epub", "pdf"], help="output formats for RM-8.3 delivery (default: txt)")
+    _add_quality_integration_v72_flags(epub)
 
     regression = sub.add_parser("regression", help="run literary regression corpus under tests/literary")
     regression.add_argument(
@@ -449,6 +485,142 @@ def run_batch(args: argparse.Namespace) -> int:
         quality_delivery_formats_v83=tuple(args.quality_delivery_formats_v83) if args.quality_delivery_formats_v83 else ("txt",),
     )
     return _print_result("NTPE Production Batch Translation", runtime.translate_batch(options))
+
+
+def run_epub(args: argparse.Namespace) -> int:
+    _apply_runtime_timeout_env(args)
+    _apply_provider_env(args)
+    pipeline_mode = getattr(args, "pipeline", None) or os.environ.get("NTPE_RUNTIME_PIPELINE", "runtime")
+    os.environ["NTPE_RUNTIME_PIPELINE"] = pipeline_mode
+
+    # Step 1: Extract EPUB
+    epub_path = _resolve(args.input)
+    if not epub_path.exists():
+        print(f"EPUB file not found: {epub_path}")
+        return 1
+    if epub_path.suffix.lower() != ".epub":
+        print(f"Input file is not an EPUB: {epub_path}")
+        return 1
+
+    print(f"NTPE Production EPUB Translation")
+    print(f"==================================")
+    print(f"Input: {epub_path}")
+    print(f"Output: {_resolve(args.output)}")
+
+    extractor = EpubExtractionBoundary()
+    try:
+        extraction_result: EpubExtractionResult = extractor.extract(epub_path)
+    except EpubExtractionError as e:
+        print(f"EPUB extraction failed: {e}")
+        if e.blocked:
+            return 1
+        # For manual_review_required, we could still proceed but warn
+        print(f"Warning: {e}")
+
+    # Step 2: Create intake request from extraction result
+    intake_request = ExtractedTextIntakeRequest(
+        source_path=extraction_result.source_path,
+        source_format="epub",
+        extracted_text=extraction_result.extracted_text,
+        original_file_hash=extraction_result.original_hash,
+        extracted_text_hash=extraction_result.extracted_hash,
+        epub_metadata=dict(extraction_result.metadata.raw) if extraction_result.metadata.raw else {},
+        chapter_map=extraction_result.chapter_map,
+        extraction_manifest=extraction_result.extraction_manifest,
+        extractor_version=extraction_result.extractor_version,
+        status=extraction_result.status,
+        warnings=extraction_result.warnings,
+    )
+
+    # Step 3: Process through canonical intake adapter
+    adapter = CanonicalBookIntakeAdapter()
+    try:
+        intake_result: CanonicalIntakeResult = adapter.ingest_extracted(intake_request)
+    except EpubExtractionError as e:
+        print(f"EPUB intake failed: {e}")
+        return 1
+
+    if not intake_result.submission_eligible:
+        print(f"EPUB intake not eligible for translation: {intake_result.status}")
+        for w in intake_result.warnings:
+            print(f"  Warning: {w}")
+        return 1
+
+    # Step 4: Write extracted text to a temporary file and use existing TXT pipeline
+    # This reuses the entire TXT translation pipeline (chunker, runtime, QA, etc.)
+    from lts.txt_translation_runtime import TxtTranslationOptions
+    import tempfile
+
+    output_dir = _resolve(args.output)
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    # Create temporary TXT file with extracted text
+    with tempfile.NamedTemporaryFile(mode='w', suffix='.txt', delete=False, encoding='utf-8') as tmp:
+        tmp.write(extraction_result.extracted_text)
+        tmp_path = Path(tmp.name)
+
+    try:
+        # Build options for TXT translation
+        options = TxtTranslationOptions(
+            input_path=tmp_path,
+            output_dir=output_dir,
+            chunk_size=max(300, args.chunk_size) if args.chunk_size is not None else 1000,
+            chunk_size_explicit=args.chunk_size is not None,
+            model=args.model,
+            resume=not args.no_resume,
+            dry_run=args.dry_run,
+            max_retries=max(0, args.max_retries),
+            provider_attempts=max(1, args.provider_attempts) if args.provider_attempts is not None else None,
+            retry_base_seconds=max(0.0, args.retry_base_seconds),
+            glossary_path=Path(args.glossary) if args.glossary else None,
+            character_memory_path=Path(args.character_memory) if args.character_memory else None,
+            qa_enabled=not args.no_qa,
+            qa_fail_policy=args.qa_fail_policy,
+            min_length_ratio=max(0.0, args.min_length_ratio),
+            max_korean_chars=max(0, args.max_korean_chars),
+            max_repeated_lines=max(0, args.max_repeated_lines),
+            quality_profile=args.profile,
+            simplified_chinese_policy=args.simplified_chinese_policy,
+            progress_enabled=not getattr(args, "no_progress", False),
+            speed=args.speed,
+            quality_integration_v72=args.quality_integration_v72,
+            quality_character_memory_v72=args.quality_character_memory_v72,
+            quality_context_scene_v72=args.quality_context_scene_v72,
+            quality_naturalness_v72=args.quality_naturalness_v72,
+            quality_integration_kill_switch_v72=args.quality_integration_kill_switch_v72,
+            quality_delivery_v83=args.quality_delivery_v83,
+            quality_delivery_formats_v83=tuple(args.quality_delivery_formats_v83) if args.quality_delivery_formats_v83 else ("txt",),
+        )
+
+        # Use existing TXT translation runtime
+        runtime = TranslationRuntime(root=ROOT)
+        result = runtime.translate_txt(options)
+
+        # Rename output file to use EPUB stem instead of temp file stem
+        if result.get("status") == "success":
+            original_output = Path(result.get("output", ""))
+            if original_output.exists():
+                # The output file is named after the temp file, rename it
+                new_output = output_dir / f"{epub_path.stem}{DEFAULT_OUTPUT_SUFFIX}.txt"
+                if original_output != new_output:
+                    import shutil
+                    shutil.move(str(original_output), str(new_output))
+                    result["output"] = str(new_output)
+
+        # Add EPUB-specific metadata to result
+        result["epub_metadata"] = intake_result.epub_metadata
+        result["chapter_map"] = [c.__dict__ for c in intake_result.chapter_map] if intake_result.chapter_map else None
+        result["extraction_status"] = extraction_result.status
+        result["extraction_warnings"] = extraction_result.warnings
+
+        return _print_result("NTPE Production EPUB Translation", result)
+
+    finally:
+        # Clean up temp file
+        try:
+            tmp_path.unlink()
+        except Exception:
+            pass
 
 
 def run_corpus(args: argparse.Namespace) -> int:

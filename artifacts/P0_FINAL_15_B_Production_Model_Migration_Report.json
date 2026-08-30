@@ -1,0 +1,190 @@
+{
+  "baseline": {
+    "commit": "8c999b1219f65a6afaeaf0062e6c43f72691c188",
+    "message": "P0-FINAL-13: clean governance repository surface",
+    "branch": "main",
+    "origin_main": "8c999b1219f65a6afaeaf0062e6c43f72691c188",
+    "divergence_ahead": 0,
+    "divergence_behind": 0
+  },
+  "migration": {
+    "old_model": "meta/llama-3.3-70b-instruct",
+    "new_model": "minimaxai/minimax-m3",
+    "canonical_files_modified": 9,
+    "files": [
+      {
+        "path": "config/launcher_product_defaults.json",
+        "field": "model_id",
+        "old_value": "meta/llama-3.3-70b-instruct",
+        "new_value": "minimaxai/minimax-m3"
+      },
+      {
+        "path": "config/default_config.json",
+        "field": "model",
+        "old_value": "meta/llama-3.3-70b-instruct",
+        "new_value": "minimaxai/minimax-m3"
+      },
+      {
+        "path": "config/models.json",
+        "field": "nvidia.default + nvidia.models[0]",
+        "old_value": "meta/llama-3.3-70b-instruct",
+        "new_value": "minimaxai/minimax-m3"
+      },
+      {
+        "path": "config/provider_config.json",
+        "field": "providers.nvidia.default_model",
+        "old_value": "meta/llama-3.3-70b-instruct",
+        "new_value": "minimaxai/minimax-m3"
+      },
+      {
+        "path": "core/launcher_product/config.py",
+        "field": "_BASE_CONFIG[\"model_id\"]",
+        "old_value": "meta/llama-3.3-70b-instruct",
+        "new_value": "minimaxai/minimax-m3"
+      },
+      {
+        "path": "core/launcher_product/model_catalog.py",
+        "field": "ModelDefinition.model_id + display_name",
+        "old_value": "meta/llama-3.3-70b-instruct / Llama 3.3 70B Instruct",
+        "new_value": "minimaxai/minimax-m3 / Minimax M3"
+      },
+      {
+        "path": "core/ai_provider/adapters.py",
+        "field": "ProviderAdapterConfig.default_model + models[0].id",
+        "old_value": "meta/llama-3.3-70b-instruct",
+        "new_value": "minimaxai/minimax-m3"
+      },
+      {
+        "path": "ntpe_production_translate.py",
+        "field": "DEFAULT_MODEL constant",
+        "old_value": "meta/llama-3.3-70b-instruct",
+        "new_value": "minimaxai/minimax-m3"
+      },
+      {
+        "path": "lts/txt_translation_runtime.py",
+        "field": "DEFAULT_MODEL constant",
+        "old_value": "meta/llama-3.3-70b-instruct",
+        "new_value": "minimaxai/minimax-m3"
+      }
+    ]
+  },
+  "configuration_precedence": {
+    "preserved": true,
+    "order": [
+      "CLI argument (--model)",
+      "Environment variable (NTPE_FALLBACK_MODELS)",
+      "Config files (launcher_product_defaults.json -> default_config.json -> models.json -> provider_config.json)",
+      "ProviderAdapterConfig.default_model",
+      "LauncherConfig._BASE_CONFIG",
+      "TxtTranslationOptions.DEFAULT_MODEL",
+      "ntpe_production_translate.py DEFAULT_MODEL"
+    ],
+    "cli_override_verified": true,
+    "env_override_verified": true
+  },
+  "production_default_verification": {
+    "ntpe_launcher.py": "minimaxai/minimax-m3",
+    "ntpe_production_translate.py": "minimaxai/minimax-m3",
+    "lts_txt_translation_runtime.py": "minimaxai/minimax-m3",
+    "core_translation_runtime_runtime.py": "minimaxai/minimax-m3 (delegates to LTS)",
+    "consistency": "PASS"
+  },
+  "model_catalog": {
+    "nvidia": {
+      "model_id": "minimaxai/minimax-m3",
+      "provider_id": "nvidia",
+      "display_name": "Minimax M3",
+      "enabled": true,
+      "experimental": false,
+      "recommended_for": ["literary", "balanced"]
+    },
+    "gemini": {
+      "model_id": "gemini-2.5-flash",
+      "provider_id": "gemini",
+      "display_name": "Gemini 2.5 Flash",
+      "enabled": false,
+      "experimental": true,
+      "recommended_for": ["planned"]
+    }
+  },
+  "provider_adapter": {
+    "nvidia_default_model": "minimaxai/minimax-m3",
+    "nvidia_models_list": ["minimaxai/minimax-m3"],
+    "accepts_new_model": true,
+    "no_hardcoded_restriction": true,
+    "fallback_behavior": "uses request.model or default_model correctly"
+  },
+  "old_model_reference_classification": {
+    "CURRENT_PRODUCTION_DEFAULT": {
+      "count": 0,
+      "status": "ELIMINATED"
+    },
+    "CURRENT_PRODUCTION_FALLBACK": {
+      "count": 0,
+      "status": "N/A (fallback list empty)"
+    },
+    "CURRENT_TEST_DEFAULT": {
+      "count": "~40",
+      "status": "PRESERVED (test fixtures)"
+    },
+    "HISTORICAL_EVIDENCE": {
+      "count": "~60",
+      "status": "PRESERVED (artifacts/, manifests/, docs/releases/)"
+    },
+    "LEGACY": {
+      "count": "~25",
+      "status": "PRESERVED (legacy modules)"
+    },
+    "DOCUMENTATION_HISTORY": {
+      "count": "~30",
+      "status": "PRESERVED (release docs)"
+    }
+  },
+  "validation": {
+    "ntpe_validate": "PASS_WITH_WARNINGS",
+    "warnings": [
+      "core.prompt_builder.prompt_builder: ModuleNotFoundError (pre-existing)"
+    ],
+    "git_diff_check": "3 CRLF warnings (pre-existing on literary outputs)",
+    "new_failures": 0,
+    "new_regressions": 0
+  },
+  "safety": {
+    "provider_calls": 0,
+    "network_calls": 0,
+    "real_translation_calls": 0,
+    "historical_artifacts_modified": 0,
+    "protected_worktree_modified": 0,
+    "root_hygiene": "COMPLIANT"
+  },
+  "stop_conditions": {
+    "STOP-P15B-01_production_default_in_gt_9_locations": false,
+    "STOP-P15B-02_precedence_changed": false,
+    "STOP-P15B-03_cli_override_broken": false,
+    "STOP-P15B-04_env_override_broken": false,
+    "STOP-P15B-05_adapter_fallbacks_to_old": false,
+    "STOP-P15B-06_unknown_restriction": false,
+    "STOP-P15B-07_historical_modified": false,
+    "STOP-P15B-08_protected_modified": false,
+    "STOP-P15B-09_unknown_reference": false,
+    "STOP-P15B-10_new_regression": false,
+    "STOP-P15B-11_new_validation_error": false,
+    "STOP-P15B-12_provider_call_required": false,
+    "STOP-P15B-13_non_migration_changes": false,
+    "STOP-P15B-14_root_hygiene_violation": false
+  },
+  "git_safety": {
+    "staged": 0,
+    "committed_this_phase": 0,
+    "pushed_this_phase": 0,
+    "head": "8c999b1219f65a6afaeaf0062e6c43f72691c188",
+    "origin_main": "8c999b1219f65a6afaeaf0062e6c43f72691c188",
+    "divergence": "0/0"
+  },
+  "verdict": "PASS",
+  "deliverables": {
+    "governance_doc": "docs/governance/repository/P0_FINAL_15_B_PRODUCTION_MODEL_MIGRATION.md",
+    "json_report": "artifacts/P0_FINAL_15_B_Production_Model_Migration_Report.json"
+  },
+  "next_phase": "P0-FINAL-15-C: Model Migration Validation / Reference Closure"
+}

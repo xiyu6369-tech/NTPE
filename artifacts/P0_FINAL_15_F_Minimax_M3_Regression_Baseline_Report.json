@@ -1,0 +1,207 @@
+{
+  "baseline": {
+    "commit": "8c999b1219f65a6afaeaf0062e6c43f72691c188",
+    "message": "P0-FINAL-13: clean governance repository surface",
+    "branch": "main",
+    "origin_main": "8c999b1219f65a6afaeaf0062e6c43f72691c188",
+    "divergence_ahead": 0,
+    "divergence_behind": 0,
+    "production_default_model": "minimaxai/minimax-m3",
+    "dirty_path_count": 331
+  },
+  "f1_test_inventory": {
+    "old_model": "meta/llama-3.3-70b-instruct",
+    "new_model": "minimaxai/minimax-m3",
+    "old_model_total_test_refs": 200,
+    "new_model_total_test_refs": 0,
+    "classification": {
+      "CURRENT_PRODUCTION_TEST": {
+        "count": 2,
+        "status": "REQUIRE UPDATE",
+        "items": [
+          {
+            "file": "tests/unit/adapters/test_production_submission_adapter.py",
+            "line": 532,
+            "test": "TestTranslationJobRequestDefaults.test_default_values",
+            "current_assertion": "assert request.model == \"meta/llama-3.3-70b-instruct\"",
+            "required_update": "minimaxai/minimax-m3",
+            "rationale": "Tests default production model"
+          },
+          {
+            "file": "tests/unit/test_controlled_provider_routing.py",
+            "line": 29,
+            "test": "test_provider_profiles_are_experimental_offline_and_secret_free",
+            "current_assertion": "assert {p.provider_id for p in pr.PROVIDER_PROFILES}=={\"nvidia-meta-llama-3.3-70b-instruct\",\"gemini-2.5-flash\"}",
+            "required_update": "nvidia-minimax-m3",
+            "rationale": "Tests provider profile catalog"
+          }
+        ]
+      },
+      "CURRENT_REGRESSION": {
+        "count": 15,
+        "status": "PRESERVE",
+        "description": "Integration tests validating historical TE v7.0/v7.2 stage behavior",
+        "files": [
+          "tests/integration/translation_engine_v700_stage10*.py",
+          "tests/integration/translation_engine_v720_stage12*.py",
+          "tests/integration/launcher_product/test_launcher_product_integration.py",
+          "tests/integration/lcr_batch108_provider_failure_characterization_integration_test.py",
+          "tests/unit/test_translation_quality_canary.py",
+          "tests/smoke/launcher_ter_v19_stability_repetition_guard_smoke_test.py",
+          "tests/stage_14/launcher_ai_provider_framework_test.py"
+        ]
+      },
+      "HISTORICAL_TEST": {
+        "count": 130,
+        "status": "PRESERVE",
+        "description": "Frozen baselines and historical evidence",
+        "locations": [
+          "tests/fixtures/tic_batch*/ (translation alignment evidence)",
+          "tests/fixtures/te_v7_stage*/ (stage execution records)",
+          "tests/fixtures/te_v7_stage1010*/ (stage 10.10/10.10.1 records)",
+          "tests/fixtures/tic_batch2/ (translation alignment index)"
+        ]
+      },
+      "LEGACY_TEST": {
+        "count": 10,
+        "status": "PRESERVE",
+        "description": "Beta/experimental tests using old model"
+      },
+      "EXPECTED_MODEL_SPECIFIC": {
+        "count": 5,
+        "status": "PRESERVE",
+        "description": "Tests explicitly checking old model behavior"
+      },
+      "NEEDS_UPDATE": {
+        "count": 2,
+        "status": "IDENTIFIED IN P0-FINAL-15-E",
+        "items": [
+          "tests/unit/adapters/test_production_submission_adapter.py:532",
+          "tests/unit/test_controlled_provider_routing.py:29"
+        ]
+      }
+    }
+  },
+  "f2_known_tests": {
+    "test_1": {
+      "file": "tests/unit/adapters/test_production_submission_adapter.py",
+      "line": 532,
+      "test_name": "TestTranslationJobRequestDefaults.test_default_values",
+      "classification": "CURRENT_PRODUCTION_TEST",
+      "current_assertion": "assert request.model == \"meta/llama-3.3-70b-instruct\"",
+      "required_update": "minimaxai/minimax-m3",
+      "action": "UPDATE",
+      "rationale": "Validates default production model; production default has changed"
+    },
+    "test_2": {
+      "file": "tests/unit/test_controlled_provider_routing.py",
+      "line": 29,
+      "test_name": "test_provider_profiles_are_experimental_offline_and_secret_free",
+      "classification": "CURRENT_PRODUCTION_TEST",
+      "current_assertion": "assert {p.provider_id for p in pr.PROVIDER_PROFILES}=={\"nvidia-meta-llama-3.3-70b-instruct\",\"gemini-2.5-flash\"}",
+      "required_update": "nvidia-minimax-m3",
+      "action": "UPDATE",
+      "rationale": "Validates provider profile catalog; provider ID changed with model migration"
+    }
+  },
+  "f3_literary_regression": {
+    "current_baseline": {
+      "stage": "PS-03-integration",
+      "status": "warning",
+      "score": 78.0,
+      "model": "llama-3.3",
+      "date": "2026-08-24"
+    },
+    "minimax_baseline": {
+      "exists": false,
+      "production_regression": false,
+      "smoke_test": false,
+      "quality_gate": false,
+      "required_checks": [
+        "Translation completes (all chunks)",
+        "QA / quality gate passes",
+        "Korean residue check passes",
+        "Repeated paragraphs check passes",
+        "Translation length ratio passes",
+        "Character consistency passes",
+        "Glossary consistency passes",
+        "Context continuity passes",
+        "Checkpoint / resume works"
+      ],
+      "provider_authorization_required": true,
+      "status": "NOT STARTED - Requires real Provider authorization"
+    }
+  },
+  "f4_reference_closure": {
+    "production_code": {
+      "CURRENT_PRODUCTION_DEFAULT": 0,
+      "CURRENT_PRODUCTION_FALLBACK": 0,
+      "CURRENT_PROVIDER_CONFIG": 0,
+      "CURRENT_LAUNCHER_CONFIG": 0,
+      "CURRENT_RUNTIME_CONFIG": 0,
+      "status": "ALL ELIMINATED"
+    },
+    "test_code": {
+      "CURRENT_PRODUCTION_TEST": 2,
+      "CURRENT_REGRESSION": 15,
+      "HISTORICAL_TEST": 130,
+      "LEGACY_TEST": 10,
+      "EXPECTED_MODEL_SPECIFIC": 5,
+      "status": "2 require update"
+    },
+    "new_model_production_refs": 26,
+    "new_model_test_refs": 0
+  },
+  "f5_safety": {
+    "rm6_promotion": false,
+    "epub_cli_modified": false,
+    "archive_modified": false,
+    "historical_modified": false,
+    "git_ops": false,
+    "protected_worktree_preserved": true,
+    "root_hygiene": "PASS"
+  },
+  "validation": {
+    "ntpe_validate": "PASS_WITH_WARNINGS",
+    "warnings": [
+      "core.prompt_builder.prompt_builder: ModuleNotFoundError (pre-existing)"
+    ],
+    "git_diff_check": "3 CRLF warnings (pre-existing)",
+    "new_failures": 0,
+    "new_regressions": 0
+  },
+  "provider_safety": {
+    "provider_calls": 0,
+    "network_calls": 0,
+    "real_translation_calls": 0
+  },
+  "pass_criteria": {
+    "old_model_current_production_refs": {
+      "target": 0,
+      "actual_production_code": 0,
+      "actual_test_code": 2,
+      "status": "PARTIAL - 2 tests need update"
+    },
+    "minimax_production_refs": "normal (26 files)",
+    "outdated_production_tests_handled": false,
+    "historical_tests_preserved": true,
+    "offline_tests_pass": "2 expected failures",
+    "regression_baseline_established": false,
+    "new_regressions": 0,
+    "provider_calls": 0,
+    "network_calls": 0,
+    "protected_worktree": "PRESERVED",
+    "root_hygiene": "PASS",
+    "git_operations": 0
+  },
+  "verdict": "BLOCKED (PARTIAL)",
+  "blocking_issues": [
+    "2 production tests still assert old model - need update per F-2",
+    "No minimax-m3 regression baseline - requires real Provider authorization per F-3"
+  ],
+  "deliverables": {
+    "governance_doc": "docs/governance/repository/P0_FINAL_15_F_MINIMAX_M3_REGRESSION_BASELINE.md",
+    "json_report": "artifacts/P0_FINAL_15_F_Minimax_M3_Regression_Baseline_Report.json"
+  },
+  "next_phase": "P0-FINAL-15-G: RM6 Canary Production Promotion (after F complete)"
+}

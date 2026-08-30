@@ -1,0 +1,251 @@
+{
+  "stage": "P0-FINAL-15-N3-A",
+  "baseline_branch": "main",
+  "baseline_head": "8c999b1219f65a6afaeaf0062e6c43f72691c188",
+  "worktree": "D:\\Python\\NTPE",
+  "candidate_model": "nvidia/nemotron-3-super-120b-a12b",
+  "boundary_results": [
+    {
+      "level_name": "context_50pct",
+      "target_percent": 50,
+      "context_chars": 415,
+      "estimated_tokens": 6684,
+      "source_chars": 1238,
+      "prompt_chars": 819,
+      "http_status": 200,
+      "success": true,
+      "elapsed_ms": 26782.068500000605,
+      "provider_request_id": null,
+      "nvcf_reqid": "16051e49-aa32-428e-a668-815a427ae147",
+      "nvcf_status": "fulfilled",
+      "translation": "정태의感到困惑。  \n\n然而其實這並不是他該感到困惑的事。那個被丟在異國的怪物般的男人，無論如何仍是頭腦清醒、具備理性的人，他一定會理解這種情況絕不是 정태의故意造成的。  \n\n然而，“我從幾個月前就費盡千辛萬苦才爭取到的一週假期，因為那家伙因工作而比預定晚回來，我不會讓他來削減我的假期”這樣義正言辭地主張著，把去鄰國工作的弟弟拋在一旁，只帶著 정태의一人飛往遙遠的南國島嶼度假的 카일，能否平安讓人感到相當擔心。（若不是因為卡일在出發前，因弟弟燒掉他珍藏的書而陷入三天狂躁的情況，否則以他平時的理性，也不會做出這種事。）  \n\n無論如何，這個沒有直航班機、必須坐小型飛機才能抵達的悠閒南國島嶼，正坐在酒店大堂沙發上的 정태의，雖然現在還不錯，但擔心回到柏林後可能會發生什麼事，不禁嘆了口氣。  \n\n“……不過現在再怎麼擔心也無法改變已經發生的事……難得來這裡休假，如果只是整天嘆氣，一週就白過了。”  \n\n정태의最終得出理性的結論，點了點頭。  \n\n這個被深邃碧玉色大海環繞的島嶼，極其美麗且悠閒。根據卡爾在路上告訴我的說法，這家酒店幾乎就像某些財閥的私人別墅，一般觀光客無法進入，因此可以不用擔心被人看到，悠閒地享受寬裕的假期，真是再適合不過了。  \n\n果然正如他所說的，自從昨天抵達此島以來， 정태의除了看到島上的管理人和員工之外，幾乎沒有遇到其他人，甚至連用十個手指頭數也還有剩餘。  \n\n“人煙稀少的海灘散步也很好啊。”  \n\n정태의“呃”一聲，從座位上站起來。卡爾應該正在私人泳池旁的長椅上酣睡。（幫他爭取這一週假期之前，他一直熬夜工作，眼睛都發黑， 정태의知道這點。因此，他也不忍心反對卡爾堅持要來這裡的主張。）  \n\n從潟湖到海灘其實相距甚近，說近也不為過，基本上一倒就能碰到。如果只想在附近漫步，其實可以沿著伸向海面的木橋散步，但 정태의卻打算慢慢繞島一圈，於是選擇了朝著白沙灘的方向前進。",
+      "quality_score": 59.6,
+      "quality_status": "failed",
+      "error": null,
+      "decision": "PASS"
+    },
+    {
+      "level_name": "context_60pct",
+      "target_percent": 60,
+      "context_chars": 415,
+      "estimated_tokens": 6767,
+      "source_chars": 1485,
+      "prompt_chars": 819,
+      "http_status": 200,
+      "success": true,
+      "elapsed_ms": 52997.31020000036,
+      "provider_request_id": null,
+      "nvcf_reqid": "b7a52802-b42e-432e-b924-0aa9f5693346",
+      "nvcf_status": "fulfilled",
+      "translation": "正泰宇感到困惑。  \n\n然而其實這並不是他該感到困惑的事。被拋在異國的怪物般的男人，無論如何都還是頭腦清晰、算是理性的人，他會明白這種情況絕不是正泰宇故意造成的。  \n\n然而，「我從幾個月前就開始努力、費盡千辛萬苦才爭取到的一週假期，因為那傢伙因工作而比預定晚回來，我不會讓他把我的假期縮短」地憤怒主張著，把去鄰國工作的弟弟拋在一旁，只帶著正泰宇一人跑去遙遠南海島度假的凱爾，是否能平安無事讓我感到相當擔心。（如果凱爾平時一向理性的話，也不會幹出這種事，但因為他在出發工作前，因弟弟毀掉他珍藏的書而發狂到躺床三天，這也是造成他這樣行為的主要原因。）  \n\n不管怎樣，坐在這個沒有直通航班、必須乘坐小型飛機才能抵達的悠閒南國島嶼酒店大堂沙發上，雖然現在還不錯，但正泰宇只是擔心返回柏林後可能會發生什麼事，不由得嘆了口氣。  \n\n「……不過現在提前擔心也無濟於事，已經發生的事也無法改變……難得來這裡休假，如果只是整天嘆氣度過一週，那就太虧了。」  \n\n正泰宇最終得出了一個理性的結論，點了點頭。  \n\n這座被深邃翠藍色大海環繞的島嶼極其美麗且悠閒。據凱爾在來的路上所說，這家酒店幾乎就像幾位財閥私人擁有的別墅，一般觀光客無法進入，因此可以不用擔心被人注目，悠閒且寬裕地度假，真是再合適不過了。  \n\n果然正如他所說，自從昨天抵達此地以來，正泰宇所看到的人除了這裡的管理人和員工之外，甚至連用十個手指數也數不完，顯然人非常稀少。  \n\n「人跡罕至的海灘散步也很好。」  \n\n正泰宇嘟囔著「唉」，從座位上站起來。凱爾一定正在私人泳池旁的長椅上昏睡。（正泰宇知道，為了這一週的假期，他在來這裡之前一直熬夜工作，臉色憔悴。因此，他也不忍心反對凱爾堅持要來這裡的主張。）  \n\n從潟湖到海灘其實很近，說近也不為過，一摔倒鼻子就能碰到沙灘。如果只是在附近漫步，也可以沿著伸向海面的木橋散步，但正泰宇想慢慢繞島一圈，於是選擇了沙灘方向。據說走走走，大約兩個小時就能走完一圈，這是個很小的島嶼。  \n\n他只穿著到膝的短褲，外加一件寬鬆的襯衫，正準備從大堂走出來。  \n\n不知道是否有新客人到來，外面稍微有些喧鬧——雖然這裡本來非常安靜，連簡單的說話聲都會被放大——但卻看到兩三人走了進來。  \n\n正泰宇不自覺地停下腳步。耳邊傳來熟悉的德語聲音。聽聲音來看，那傢伙絕對……",
+      "quality_score": 93.2,
+      "quality_status": "success",
+      "error": null,
+      "decision": "PASS"
+    },
+    {
+      "level_name": "context_70pct",
+      "target_percent": 70,
+      "context_chars": 415,
+      "estimated_tokens": 6849,
+      "source_chars": 1733,
+      "prompt_chars": 819,
+      "http_status": 200,
+      "success": true,
+      "elapsed_ms": 36264.2993999998,
+      "provider_request_id": null,
+      "nvcf_reqid": "d51ab757-e84e-4632-a466-4781f12b87b5",
+      "nvcf_status": "fulfilled",
+      "translation": "정태的感到困惑。  \n\n然而實際上那並不是他該困惑的事。被拋在異國的怪物般的男人無論如何都是思維正常、具備一定理性的人，他一定會明白這種情況絕非 정태的有意所致。  \n\n然而，「我從幾個月前就費盡周折、經過千辛萬苦才爭取到的一週假期，卻因那家伙因工作而比預定晚回來，說要削減我的假期」而憤怒地主張著，把去鄰國工作的弟弟拋在腦後，只帶著 정태的一人跑到遙遠的南海島嶼度假的 카일，能否平安無事，這讓我有些擔心。（如果卡일平時還是那個理性的人，也不會幹出這種事；但他在出發前三天，因為弟弟燒掉他珍藏的書而陷入極度憤怒，以致躺在床上三天，這也是主要原因。）  \n\n無論如何，在這個沒有直通航班、必須乘坐小型飛機才能抵達的悠閒南海島嶼上的酒店大廳沙發上，정태的雖然此刻感到不錯，但卻只為之後返回柏林可能發生的亂子而感到憂慮，不由得嘆了口氣。  \n\n「……不過現在提前擔心也無濟於事，已經發生的事也沒辦法改變……難得來這裡休息，若整個禮拜都只是嘆氣，那就太虧了。」  \n\n정태的最終得出理性的結論，點了點頭。  \n\n被深邃玉色大海環繞的這座島嶼極其美麗且悠閒。根據來時卡il所說，這家酒店幾乎就像某些財閥的私人別墅，一般觀光客不得入內，因此可以不用擔心被人看到，享受悠閒寬裕的假期，真是再適合不過。  \n\n果然正如他所言，自從昨天抵達此島以來，정태的所見到的人除了這裡的管理人與員工之外，連十個手指頭都數得過，仍有剩餘。  \n\n「在人跡罕至的海灘散步也應該不錯。」  \n\n정태的嗯了一声，從座位上站起來。卡il應該正在私人泳池旁的長椅上沉沉睡著。（為了這一週的假期，他來島前一天還在熬夜工作，眼神空洞，정태的知道這點。所以，他堅持要來這裡的主張，정태的也只能無力反駁。）  \n\n從潟湖到海灘，其實近在咫尺——只要一倒下，鼻子就能碰到海水。若只想在附近漫步，可以沿著伸展在海面上的木棧道散步，但정태的決定慢慢繞島一圈，因而選擇了沙灘方向。據說這島很小，走走大約兩個小時就能繞完一圈。  \n\n他只穿了一條到膝的短褲，外套一件寬鬆的襯衫，正準備從大廳走出來時。  \n\n外面似乎有新客人抵達，傳來稍微的喧鬧聲——雖然這裡本來就極其安靜，連普通的說話聲都顯得格外清晰——於是兩三人走了進來。  \n\n정태的不自覺地停下腳步。耳中傳來熟悉的德語聲音。雖從語氣判斷那不是他所期待的人出現，但他仍不由得屏住呼吸。  \n\n那個說話的人語氣雖靜但卻冷靜且帶點官腔，說明原本打算一起來這裡的同伴因故分開行動，並表示該同伴應該會在一兩個小時內到達。隨著這番話，那位德國人現身了。  \n\n他是一個看起來絲毫不留縫隙、連針尖都插不進去的男人。雖然表現得沉穩穩重，但정태的憑藉著一生中靠觀察細節度過難關的直覺，不禁皺起眉頭。",
+      "quality_score": 69.6,
+      "quality_status": "warning",
+      "error": null,
+      "decision": "PASS"
+    },
+    {
+      "level_name": "context_80pct",
+      "target_percent": 80,
+      "context_chars": 415,
+      "estimated_tokens": 6932,
+      "source_chars": 1980,
+      "prompt_chars": 819,
+      "http_status": 408,
+      "success": false,
+      "elapsed_ms": 60081.9690999997,
+      "provider_request_id": null,
+      "nvcf_reqid": null,
+      "nvcf_status": null,
+      "translation": "",
+      "quality_score": 0.0,
+      "quality_status": "",
+      "error": "Timeout: HTTPSConnectionPool(host='integrate.api.nvidia.com', port=443): Read timed out. (read timeout=60)",
+      "decision": "FAIL"
+    },
+    {
+      "level_name": "context_85pct",
+      "target_percent": 85,
+      "context_chars": 415,
+      "estimated_tokens": 6973,
+      "source_chars": 2104,
+      "prompt_chars": 819,
+      "http_status": 408,
+      "success": false,
+      "elapsed_ms": 60074.77479999943,
+      "provider_request_id": null,
+      "nvcf_reqid": null,
+      "nvcf_status": null,
+      "translation": "",
+      "quality_score": 0.0,
+      "quality_status": "",
+      "error": "Timeout: HTTPSConnectionPool(host='integrate.api.nvidia.com', port=443): Read timed out. (read timeout=60)",
+      "decision": "FAIL"
+    },
+    {
+      "level_name": "context_90pct",
+      "target_percent": 90,
+      "context_chars": 415,
+      "estimated_tokens": 7014,
+      "source_chars": 2228,
+      "prompt_chars": 819,
+      "http_status": 200,
+      "success": true,
+      "elapsed_ms": 45197.53679999849,
+      "provider_request_id": null,
+      "nvcf_reqid": "72ddb017-b68f-4713-b0ca-c6e8a4b6d68f",
+      "nvcf_status": "fulfilled",
+      "translation": "正泰義感到為難。  \n\n然而其實那並不是他該為難的事。被丟在異國的怪物般的男人總歸是思維正常、算得上理性的人，他會明白這種情況絕不是正泰義故意造成的。  \n\n不過，「我從幾個月前就費盡周折、經過千辛萬苦才爭取到的一週假期，結果那傢伙因工作比預定晚回來，竟想剝奪我的假期」而義正詞嚴地主張，把去鄰國工作的弟弟拋在腦後，只帶著正泰義遠赴南國小島度假的卡爾，能否平安無事，讓我有些擔心。（如果卡爾平時還是那個理性的人，也不會這樣做；但他剛要出發工作時，看到弟弟毀掉他珍藏的書而三天熬夜到幾乎崩潰，這也是主要原因。）  \n\n無論如何，這座只有透過輕型飛機才能抵達、沒有直通航班的南國島嶼酒店大堂沙發上，正泰義雖然此刻很開心，但擔心回到柏林後可能會發生什麼事，不由得嘆了口氣。  \n\n「……不過現在提前擔心也沒用，已經發生的事也無法改變。難得來這裡休息，如果整個禮拜都只是嘆氣，那就虧大了。」  \n\n正泰義終於得出理性的結論，點了點頭。  \n\n被深碧色海水環繞的這座島嶼極其美麗且悠閒。據卡爾在路上說，這家酒店幾乎像是某些財閥的私人別墅，一般觀光客進不來，因此不用擔心被人看到，正是悠閒豐盛假期的理想之地。  \n\n果然正如他所說，自從昨天抵達此島以來，正泰義所看到的人除了這裡的管理人和員工之外，連十根手指都數得過，還有餘裕。  \n\n「在人跡罕至的海灘散步也應該不錯。」  \n\n正泰義嗯了一聲，從座位上站起來。卡爾肯定正在私人泳池旁的長椅上沉沉睡著。（為了這一週的假期，他來島前一天還在熬夜工作，眼神空洞；正泰義知道這點，所以才不好意思阻止他堅持要來這裡的主張。）  \n\n從潟湖到海灘，當然很近，一倒就能碰到鼻子。如果只想在附近漫步，可以沿著伸向海面的木板道散步，但正泰義打算慢慢繞島一圈，因而選擇了沙灘方向。據說這島很小，走走大約兩個小時就能繞完一圈。  \n\n他只穿了一條到膝的短褲，外套一件寬鬆的襯衫，正要從大堂走出來時。  \n\n外面似乎有新客人抵達，稍微有些喧鬧——雖然這裡本來就很安靜，連簡單的說話聲都會被放大——兩三個人走了進來。  \n\n正泰義不自覺地停下腳步。耳中傳來熟悉的德語聲音。雖從語氣判斷那傢伙不會是這裡來的，但他仍不由得屏住呼吸。  \n\n那個說話的人雖聲音平靜卻帶著冷淡與官腔，說明原本打算一起來的同伴因故分開行動，且該同伴應該會在一兩個小時內到達。隨後，那個德語者現身了。  \n\n他是一個看起來絲毫不留空隙、連針尖都插不進去的男人。雖然表現得沉穩穩重，但正泰義憑藉一生中靠觀察細節度過難關的直覺，不禁皺起眉頭。一不小心去惹他，恐怕連骨頭都難以剔除。最好還是盡量不要與他扯上關係。  \n\n正泰義假裝沒看到，繼續前行。反正也沒必要去纏繞，就照原計畫好好散步吧。  \n\n然而就在這時，那名男子的視線落在了正泰義身上。正泰義也不由得與他對上眼神。  \n\n就在瞬間，他的表勢陡然變得兇惡。帶著冰冷光芒的眼神盯著正泰義，他對著身旁像秘書般的人冷冷地說：  \n\n「為什麼會有東洋人在這裡？我明確確認過，這裡的股東中沒有東洋人，僱員裡也沒有東洋人，才來的。」  \n\n旁邊的人慌忙解釋：「啊，不是那樣……這位是住客……」但男子並未多說什麼，只是用極為不悅、厭惡的眼神看了正泰義一眼，隨即移開目光。一陣冷風吹過。  \n\n「……」  \n\n正泰義苦澀地咂了咂嘴，繼續前行。  \n\n對東洋人的歧視——",
+      "quality_score": 85.6,
+      "quality_status": "success",
+      "error": null,
+      "decision": "PASS"
+    },
+    {
+      "level_name": "context_95pct",
+      "target_percent": 95,
+      "context_chars": 415,
+      "estimated_tokens": 7056,
+      "source_chars": 2352,
+      "prompt_chars": 819,
+      "http_status": 408,
+      "success": false,
+      "elapsed_ms": 60094.2498000004,
+      "provider_request_id": null,
+      "nvcf_reqid": null,
+      "nvcf_status": null,
+      "translation": "",
+      "quality_score": 0.0,
+      "quality_status": "",
+      "error": "Timeout: HTTPSConnectionPool(host='integrate.api.nvidia.com', port=443): Read timed out. (read timeout=60)",
+      "decision": "FAIL"
+    },
+    {
+      "level_name": "context_100pct",
+      "target_percent": 100,
+      "context_chars": 415,
+      "estimated_tokens": 7097,
+      "source_chars": 2476,
+      "prompt_chars": 819,
+      "http_status": 408,
+      "success": false,
+      "elapsed_ms": 60086.63110000089,
+      "provider_request_id": null,
+      "nvcf_reqid": null,
+      "nvcf_status": null,
+      "translation": "",
+      "quality_score": 0.0,
+      "quality_status": "",
+      "error": "Timeout: HTTPSConnectionPool(host='integrate.api.nvidia.com', port=443): Read timed out. (read timeout=60)",
+      "decision": "FAIL"
+    }
+  ],
+  "safe_boundary_percent": 90,
+  "failure_boundary_percent": 80,
+  "intermittent_zone": [],
+  "boundary_curve": {
+    "50%": {
+      "http_status": 200,
+      "success": true,
+      "elapsed_ms": 26782.068500000605,
+      "quality_score": 59.6,
+      "decision": "PASS"
+    },
+    "60%": {
+      "http_status": 200,
+      "success": true,
+      "elapsed_ms": 52997.31020000036,
+      "quality_score": 93.2,
+      "decision": "PASS"
+    },
+    "70%": {
+      "http_status": 200,
+      "success": true,
+      "elapsed_ms": 36264.2993999998,
+      "quality_score": 69.6,
+      "decision": "PASS"
+    },
+    "80%": {
+      "http_status": 408,
+      "success": false,
+      "elapsed_ms": 60081.9690999997,
+      "quality_score": 0.0,
+      "decision": "FAIL"
+    },
+    "85%": {
+      "http_status": 408,
+      "success": false,
+      "elapsed_ms": 60074.77479999943,
+      "quality_score": 0.0,
+      "decision": "FAIL"
+    },
+    "90%": {
+      "http_status": 200,
+      "success": true,
+      "elapsed_ms": 45197.53679999849,
+      "quality_score": 85.6,
+      "decision": "PASS"
+    },
+    "95%": {
+      "http_status": 408,
+      "success": false,
+      "elapsed_ms": 60094.2498000004,
+      "quality_score": 0.0,
+      "decision": "FAIL"
+    },
+    "100%": {
+      "http_status": 408,
+      "success": false,
+      "elapsed_ms": 60086.63110000089,
+      "quality_score": 0.0,
+      "decision": "FAIL"
+    }
+  },
+  "gate_a3_decision": "PASS",
+  "gate_a3_reason": "Safe boundary at 90% - sufficient for production context requirements",
+  "production_model": "minimaxai/minimax-m3 (M1)",
+  "production_routing": "M1 primary (unchanged)",
+  "tests_diagnostic": {
+    "status": "PASS"
+  },
+  "tests_governance": {
+    "exit_code": 1,
+    "output": "====================================\nNTPE Project Validation Report\n====================================\nRoot: D:\\Python\\NTPE\nElapsed: 32.92s\n------------------------------------\nRequired directories   PASS  5 directories found\nLegacy entrypoints     PASS  archive OK (3/3 legacy preserved)\nCore imports           PASS  7 required imports OK\nOptional imports       WARN  3 OK; warnings: core.prompt_builder.prompt_builder: ModuleNotFoundError: No module named 'core.prompt_builder.prompt_builder'\nPython compile         PASS  3361 Python files compile\nPython cache           PASS  No Python cache artifacts found\nTest inventory         PASS  896 pytest tests; 2 relocated verification wrappers\nRoot Python layout     FAIL  Unexpected root items: .venv\n------------------------------------\nFAILED: 1 failure(s), 1 warning(s)\n",
+    "status": "FAIL"
+  },
+  "tests_root_hygiene": {
+    "status": "PASS"
+  },
+  "tests_credential_protection": {
+    "status": "PASS"
+  },
+  "deliverables": [
+    "artifacts/P0_FINAL_15_N3_C3_CONTEXT_BOUNDARY_REPORT.json",
+    "docs/governance/repository/P0_FINAL_15_N3_C3_CONTEXT_BOUNDARY.md"
+  ],
+  "limitations": [
+    "Token measurement uses character-based estimation (not exact tokenizer)",
+    "Single request per boundary level (not repeated for stability)",
+    "Uses single narrative fixture - other fixture types may have different boundaries",
+    "Provider-side behavior may vary over time",
+    "Cannot definitively distinguish provider 408 vs gateway 408"
+  ]
+}

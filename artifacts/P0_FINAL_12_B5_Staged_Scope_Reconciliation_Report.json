@@ -1,0 +1,204 @@
+{
+  "baseline": {
+    "head": "2bedad883425978c1107d9b6e3fd9893bdd254a6",
+    "origin_main": "2bedad883425978c1107d9b6e3fd9893bdd254a6",
+    "branch": "main"
+  },
+  "comparison_timestamp": "2026-08-24T03:29:54+08:00",
+  "manifest_expected_paths": {
+    "test_files": 43,
+    "unique_test_files": 40,
+    "governance_files": 2,
+    "fixture_files_on_disk": 140,
+    "total_expected": 182
+  },
+  "actual_staged_paths": {
+    "test_files": 29,
+    "fixture_files": 134,
+    "governance_files": 2,
+    "total_staged": 165
+  },
+  "set_comparison": {
+    "expected_only_count": 17,
+    "staged_only_count": 0,
+    "intersection_count": 165,
+    "match": false
+  },
+  "detailed_analysis": {
+    "test_files": {
+      "expected_but_not_staged": [
+        {
+          "path": "tests/integration/lcr_batch107_pre_execution_package_integration_test.py",
+          "git_status": "unchanged (no diff from HEAD)",
+          "why_staged": "NOT staged - no modifications by B5",
+          "belongs_to_b5": false,
+          "reason": "Manifest incorrectly listed this as B5 test file; no changes from HEAD"
+        },
+        {
+          "path": "tests/integration/lcr_batch5_dual_pass_translation_integration_test.py",
+          "git_status": "unchanged (no diff from HEAD)",
+          "why_staged": "NOT staged - no modifications by B5",
+          "belongs_to_b5": false,
+          "reason": "Manifest incorrectly listed this as B5 test file; no changes from HEAD"
+        },
+        {
+          "path": "tests/integration/lcr_batch9_offline_golden_tic_validation_integration_test.py",
+          "git_status": "unchanged (no diff from HEAD)",
+          "why_staged": "NOT staged - no modifications by B5",
+          "belongs_to_b5": false,
+          "reason": "Manifest incorrectly listed this as B5 test file; no changes from HEAD"
+        },
+        {
+          "path": "tests/integration/tic_batch5_historical_human_evidence_expansion_test.py",
+          "git_status": "unchanged (no diff from HEAD)",
+          "why_staged": "NOT staged - no modifications by B5",
+          "belongs_to_b5": false,
+          "reason": "Manifest incorrectly listed this as B5 test file; no changes from HEAD"
+        },
+        {
+          "path": "tests/integration/tic_batch61_human_approval_regression_activation_test.py",
+          "git_status": "unchanged (no diff from HEAD)",
+          "why_staged": "NOT staged - no modifications by B5",
+          "belongs_to_b5": false,
+          "reason": "Manifest incorrectly listed this as B5 test file; no changes from HEAD"
+        },
+        {
+          "path": "tests/integration/tic_batch6_human_correction_root_cause_regression_test.py",
+          "git_status": "unchanged (no diff from HEAD)",
+          "why_staged": "NOT staged - no modifications by B5",
+          "belongs_to_b5": false,
+          "reason": "Manifest incorrectly listed this as B5 test file; no changes from HEAD"
+        },
+        {
+          "path": "tests/integration/tic_batch7_offline_translation_quality_gate_test.py",
+          "git_status": "unchanged (no diff from HEAD)",
+          "why_staged": "NOT staged - no modifications by B5",
+          "belongs_to_b5": false,
+          "reason": "Manifest incorrectly listed this as B5 test file; no changes from HEAD"
+        },
+        {
+          "path": "tests/performance/tic_batch7_offline_quality_gate_benchmark.py",
+          "git_status": "unchanged (no diff from HEAD)",
+          "why_staged": "NOT staged - no modifications by B5",
+          "belongs_to_b5": false,
+          "reason": "Manifest incorrectly listed this as B5 test file; no changes from HEAD"
+        },
+        {
+          "path": "tests/unit/controlled_multi_chunk_translation_canary/test_dialogue_normalization_stage745.py",
+          "git_status": "unchanged (no diff from HEAD)",
+          "why_staged": "NOT staged - no modifications by B5",
+          "belongs_to_b5": false,
+          "reason": "Manifest incorrectly listed this as B5 test file; already canonical import, no changes needed"
+        },
+        {
+          "path": "tests/unit/test_lcr_batch107_real_provider_validation.py",
+          "git_status": "unchanged (no diff from HEAD)",
+          "why_staged": "NOT staged - no modifications by B5",
+          "belongs_to_b5": false,
+          "reason": "Manifest incorrectly listed this as B5 test file; no changes from HEAD"
+        },
+        {
+          "path": "tests/unit/test_translation_quality_provider_canary.py",
+          "git_status": "unchanged (no diff from HEAD)",
+          "why_staged": "NOT staged - no modifications by B5",
+          "belongs_to_b5": false,
+          "reason": "Manifest incorrectly listed this as B5 test file; no changes from HEAD"
+        }
+      ],
+      "staged_and_expected": 29,
+      "staged_but_not_expected": 0,
+      "note": "Manifest listed 43 test files but 3 were duplicates (test_stage1256a, test_stage1257, test_stage1258 appear twice in list). 40 unique expected, but 11 have no changes from HEAD. Only 29 test files actually modified by B5 and staged."
+    },
+    "governance_files": {
+      "expected_but_not_staged": [],
+      "staged_and_expected": [
+        "artifacts/P0_FINAL_12_B5_Test_Migration_Implementation_Report.json",
+        "docs/governance/repository/P0_FINAL_12_B5_TEST_MIGRATION_IMPLEMENTATION.md"
+      ],
+      "staged_but_not_expected": 0,
+      "match": true
+    },
+    "fixture_files": {
+      "expected_but_not_staged": [
+        {
+          "path": "tests/fixtures/te_v72_canary/golden_corpus.json",
+          "git_status": "does not exist on disk",
+          "why_staged": "NOT staged - file does not exist",
+          "belongs_to_b5": false,
+          "reason": "Manifest fixture count included this but B5 migration never created it"
+        },
+        {
+          "path": "tests/fixtures/tic_batch1/TRANSLATION_CORPUS_MANIFEST.json",
+          "git_status": "does not exist on disk",
+          "why_staged": "NOT staged - file does not exist",
+          "belongs_to_b5": false,
+          "reason": "Manifest fixture count included this but B5 migration never created it"
+        },
+        {
+          "path": "tests/fixtures/tic_batch2/TRANSLATION_CASE_MANIFEST.json",
+          "git_status": "does not exist on disk",
+          "why_staged": "NOT staged - file does not exist",
+          "belongs_to_b5": false,
+          "reason": "Manifest fixture count included this but B5 migration never created it"
+        },
+        {
+          "path": "tests/fixtures/tic_batch3/TRANSLATION_ALIGNMENT_MANIFEST.json",
+          "git_status": "deleted (D artifacts/tic_batch3/TRANSLATION_ALIGNMENT_MANIFEST.json)",
+          "why_staged": "NOT staged - file was deleted from artifacts/, not created in fixtures",
+          "belongs_to_b5": false,
+          "reason": "This was a historical artifact deleted in R2, not a B5 fixture"
+        },
+        {
+          "path": "tests/fixtures/tic_batch4/FAILURE_CORPUS_MANIFEST.json",
+          "git_status": "does not exist on disk",
+          "why_staged": "NOT staged - file does not exist",
+          "belongs_to_b5": false,
+          "reason": "Manifest fixture count included this but B5 migration never created it"
+        },
+        {
+          "path": "tests/fixtures/tic_batch5/HISTORICAL_HUMAN_EVIDENCE_EXPANSION_MANIFEST.json",
+          "git_status": "does not exist on disk",
+          "why_staged": "NOT staged - file does not exist",
+          "belongs_to_b5": false,
+          "reason": "Manifest fixture count included this but B5 migration never created it"
+        }
+      ],
+      "staged_and_expected": 134,
+      "staged_but_not_expected": 0,
+      "note": "Manifest claimed 109 fixtures but 140 exist on disk (includes pre-existing). B5 created ~109 actual fixtures. 6 expected files don't exist (never created by B5). All 134 staged fixtures are legitimate B5 fixtures."
+    }
+  },
+  "discrepancies": {
+    "manifest_errors": [
+      "Manifest lists 43 test files but 3 are duplicates (test_stage1256a, test_stage1257, test_stage1258 listed twice) -> 40 unique",
+      "11 of 40 unique test files have NO changes from HEAD - they were never modified by B5 migration",
+      "Manifest claims 109 fixtures but 140 exist on disk (includes pre-existing fixture files from before B5)",
+      "6 fixture files in manifest expected list don't exist on disk (never created by B5)",
+      "Manifest fixture directories list includes files that are actually historical artifacts deleted in R2 (e.g., TRANSLATION_ALIGNMENT_MANIFEST.json)"
+    ],
+    "staged_scope_reality": {
+      "actual_b5_test_files_modified": 29,
+      "actual_b5_fixtures_created": 134,
+      "actual_b5_governance_files": 2,
+      "total_actual_b5_staged": 165
+    }
+  },
+  "conclusion": {
+    "expectation_match": false,
+    "reason": "Manifest overcounts B5 scope. 11 test files listed in manifest have no changes. 6 fixture files in manifest don't exist. Manifest fixture count (109) doesn't match actual fixture files on disk (140).",
+    "recommendation": "Staged scope (165 files) is correct for actual B5 work done. Manifest needs correction to match reality. Do NOT stage the 11 unmodified test files or the 6 non-existent fixtures."
+  },
+  "verification": {
+    "no_protected_worktree_staged": true,
+    "no_production_code_staged": true,
+    "no_frozen_contract_modifications_staged": true,
+    "no_historical_artifact_deletions_staged": true,
+    "no_tools_one_shots_staged": true,
+    "no_unknown_staged": true
+  },
+  "final_decision": {
+    "commit": "NO",
+    "push": "NO",
+    "pass": false
+  }
+}

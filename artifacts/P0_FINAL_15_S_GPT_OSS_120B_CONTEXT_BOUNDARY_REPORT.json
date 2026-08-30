@@ -1,0 +1,103 @@
+{
+  "head_commit": "8c999b1219f65a6afaeaf0062e6c43f72691c188",
+  "origin_main_commit": "8c999b1219f65a6afaeaf0062e6c43f72691c188",
+  "divergence": "0/0",
+  "branch": "main",
+  "python_version": "3.14.6",
+  "test_timestamp": "2026-08-29T10:23:23.082216Z",
+  "candidate_model": "openai/gpt-oss-120b",
+  "hosting_provider": "NVIDIA",
+  "endpoint": "https://integrate.api.nvidia.com/v1/chat/completions",
+  "credential_source": "NVIDIA_API_KEY",
+  "results": [
+    {
+      "level": "L1_normal",
+      "test_name": "context_L1_normal",
+      "estimated_input_tokens": 850,
+      "estimated_output_tokens": 4000,
+      "timestamp_utc": "2026-08-29T10:21:51.989139Z",
+      "http_status": 200,
+      "success": true,
+      "elapsed_ms": 13052.137999999104,
+      "provider_request_id": null,
+      "nvcf_reqid": null,
+      "nvcf_status": null,
+      "error": null,
+      "timeout": false,
+      "truncation_detected": false,
+      "corruption_detected": false
+    },
+    {
+      "level": "L2_large",
+      "test_name": "context_L2_large",
+      "estimated_input_tokens": 1675,
+      "estimated_output_tokens": 8000,
+      "timestamp_utc": "2026-08-29T10:22:53.672395Z",
+      "http_status": 200,
+      "success": true,
+      "elapsed_ms": 59681.716800001595,
+      "provider_request_id": null,
+      "nvcf_reqid": null,
+      "nvcf_status": null,
+      "error": null,
+      "timeout": false,
+      "truncation_detected": true,
+      "corruption_detected": false
+    },
+    {
+      "level": "L3_upper_bound",
+      "test_name": "context_L3_upper_bound",
+      "estimated_input_tokens": 3326,
+      "estimated_output_tokens": 16000,
+      "timestamp_utc": "2026-08-29T10:23:21.080105Z",
+      "http_status": 200,
+      "success": true,
+      "elapsed_ms": 25404.33639999901,
+      "provider_request_id": null,
+      "nvcf_reqid": null,
+      "nvcf_status": null,
+      "error": null,
+      "timeout": false,
+      "truncation_detected": false,
+      "corruption_detected": false
+    }
+  ],
+  "total_tests": 3,
+  "pass_count": 3,
+  "pass_rate": 1.0,
+  "by_level": {
+    "L1_normal": {
+      "pass": true,
+      "http_status": 200,
+      "elapsed_ms": 13052.137999999104,
+      "timeout": false,
+      "truncation": false,
+      "corruption": false
+    },
+    "L2_large": {
+      "pass": true,
+      "http_status": 200,
+      "elapsed_ms": 59681.716800001595,
+      "timeout": false,
+      "truncation": true,
+      "corruption": false
+    },
+    "L3_upper_bound": {
+      "pass": true,
+      "http_status": 200,
+      "elapsed_ms": 25404.33639999901,
+      "timeout": false,
+      "truncation": false,
+      "corruption": false
+    }
+  },
+  "gate_result": "FAIL",
+  "gate_rationale": "Context compatibility failure: 3/3 levels pass",
+  "limitations": [
+    "Token estimation is character-based approximation",
+    "Single run per context level (no repetition)",
+    "No streaming test",
+    "No token budget test with actual tokenizer",
+    "Production workload may differ from test fixtures"
+  ]
+}

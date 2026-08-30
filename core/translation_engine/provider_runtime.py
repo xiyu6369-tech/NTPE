@@ -42,6 +42,7 @@ RETRYABLE_PROVIDER_ERROR_PATTERNS = (
 NON_RETRYABLE_PROVIDER_ERROR_PATTERNS = (
     "401",
     "403",
+    "408",
     "unauthorized",
     "invalid api key",
     "permission denied",
@@ -187,6 +188,8 @@ def build_translation_provider_manager(
     api_url: str,
     timeout: int,
     rpm_limit: int,
+    max_attempts: int | None = None,
+    retry_base_delay_seconds: float | None = None,
 ) -> ProviderManager:
     config_layer = ProviderConfigLayer.load(root / "config" / "provider_config.json")
     settings = TranslationProviderSettings.load(root)
@@ -220,9 +223,11 @@ def build_translation_provider_manager(
         )
         fallback_names.append(name)
 
+    max_attempts = max_attempts if max_attempts is not None else settings.retry_attempts
+    retry_base_delay_seconds = retry_base_delay_seconds if retry_base_delay_seconds is not None else settings.retry_base_delay_seconds
     retry_policy = RetryPolicy(
-        max_attempts=settings.retry_attempts,
-        base_delay_seconds=settings.retry_base_delay_seconds,
+        max_attempts=max_attempts,
+        base_delay_seconds=retry_base_delay_seconds,
         backoff_factor=settings.retry_backoff_factor,
     )
     return ProviderManager(

@@ -1,0 +1,147 @@
+{
+  "audit_id": "P0_FINAL_15_F_CLOSURE_AUDIT",
+  "status": "PASS",
+  "date": "2026-08-25",
+  "baseline_commit": "8c999b1",
+  "baseline_commit_description": "HEAD = origin/main, 0/0 divergence",
+  "old_model_references": {
+    "meta/llama-3.3-70b-instruct": {
+      "total_matches": "100+ (truncated at 100)",
+      "classification": {
+        "CURRENT_PRODUCTION": 0,
+        "CURRENT_PRODUCTION_TEST": 0,
+        "HISTORICAL": "~80",
+        "ARCHIVED": "~20",
+        "GOVERNANCE": "~15",
+        "FIXTURE_BASELINE": "~8"
+      }
+    },
+    "nvidia-meta-llama-3.3-70b-instruct": {
+      "total_matches": 21,
+      "classification": {
+        "CURRENT_PRODUCTION": 0,
+        "CURRENT_PRODUCTION_TEST": 0,
+        "HISTORICAL": "~10",
+        "ARCHIVED": "~5",
+        "GOVERNANCE": "~6",
+        "FIXTURE_BASELINE": "~3"
+      }
+    }
+  },
+  "new_model_references": {
+    "minimaxai/minimax-m3": {
+      "total_matches": "100+ (truncated at 100)",
+      "production_code_locations": [
+        "ntpe_production_translate.py",
+        "lts/txt_translation_runtime.py",
+        "config/launcher_product_defaults.json",
+        "config/default_config.json",
+        "config/models.json",
+        "config/provider_config.json",
+        "core/launcher_product/config.py",
+        "core/launcher_product/model_catalog.py",
+        "core/ai_provider/adapters.py",
+        "core/controlled_provider_routing/provider_profiles.py",
+        "core/controlled_provider_routing/routing_policy.py",
+        "core/controlled_multi_chunk_translation_canary/policy.py",
+        "core/translation_quality_provider_canary/framework.py",
+        "core/adaptive_context_*/config.py",
+        "core/adapters/production_submission_adapter.py"
+      ],
+      "current_production_test_locations": [
+        "tests/unit/adapters/test_production_submission_adapter.py:532",
+        "tests/unit/test_controlled_provider_routing.py:20"
+      ]
+    },
+    "nvidia-minimax-m3": {
+      "total_matches": 17,
+      "production_code_locations": [
+        "core/controlled_provider_routing/routing_policy.py:6",
+        "core/controlled_provider_routing/provider_profiles.py:28"
+      ],
+      "current_production_test_locations": [
+        "tests/unit/test_controlled_provider_routing.py:20,29"
+      ]
+    }
+  },
+  "verification": {
+    "targeted_tests": {
+      "files": [
+        "tests/unit/adapters/test_production_submission_adapter.py",
+        "tests/unit/test_controlled_provider_routing.py"
+      ],
+      "test_count": 74,
+      "result": "74 passed in 1.17s"
+    },
+    "repository_validator": {
+      "available": false,
+      "note": "No dedicated repository_validator module; governance baseline validation via documentation cross-reference and manual audit"
+    },
+    "git_diff_check": {
+      "errors": 0,
+      "warnings": [
+        "CRLF/LF line-ending warnings in 4 files (pre-existing)"
+      ]
+    }
+  },
+  "root_hygiene": {
+    "violations": 4,
+    "violating_files": [
+      "ntpe_batch_monitor.py",
+      "ntpe_literary_evaluation.py",
+      "ntpe_literary_regression.py",
+      "ntpe_validate.py"
+    ],
+    "allowed_files": [
+      "launcher_translate.py",
+      "ntpe_launcher.py",
+      "ntpe_production_translate.py",
+      "requirements.txt",
+      "VERSION.txt"
+    ],
+    "note": "Pre-existing violations, tracked separately under repository governance"
+  },
+  "protected_worktree": {
+    "worktree_count": 1,
+    "worktrees": [
+      "D:/Python/NTPE 8c999b1 [main]"
+    ],
+    "overlap_detected": false,
+    "unauthorized_modifications": false
+  },
+  "stop_conditions": {
+    "CURRENT_PRODUCTION_old_model_refs": 0,
+    "CURRENT_PRODUCTION_TEST_old_model_refs": 0,
+    "new_regression": false,
+    "protected_worktree_overlap": false,
+    "root_hygiene_new_violation": false,
+    "provider_calls": 0,
+    "network_calls": 0,
+    "translation_calls": 0,
+    "staging": 0,
+    "commit": 0,
+    "push": 0,
+    "reset_clean_stash_restore": 0
+  },
+  "final_summary": {
+    "P0_FINAL_15_F_CLOSURE": "PASS",
+    "CURRENT_PRODUCTION_old_model_refs": 0,
+    "CURRENT_PRODUCTION_TEST_old_model_refs": 0,
+    "Targeted_tests": "74/74 PASS",
+    "Provider_calls": 0,
+    "Network_calls": 0,
+    "Translation_calls": 0,
+    "Staging": 0,
+    "Commit": 0,
+    "Push": 0
+  },
+  "outstanding_items": [
+    "Root Hygiene Violations (4 files) — Pre-existing, tracked separately",
+    "minimax-m3 Real Provider Regression Baseline — Requires explicit owner authorization for live Provider calls",
+    "minimax-m3 Smoke Test / Quality Gate — Requires real Provider calls"
+  ],
+  "artifacts_produced": [
+    "docs/governance/repository/P0_FINAL_15_F_CLOSURE_AUDIT.md",
+    "artifacts/P0_FINAL_15_F_Closure_Audit_Report.json"
+  ]
+}

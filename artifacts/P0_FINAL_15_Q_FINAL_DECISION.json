@@ -1,0 +1,136 @@
+{
+  "head_commit": "8c999b1219f65a6afaeaf0062e6c43f72691c188",
+  "origin_main_commit": "8c999b1219f65a6afaeaf0062e6c43f72691c188",
+  "divergence": "0/0",
+  "branch": "main",
+  "python_version": "3.14.6",
+  "test_timestamp": "2026-08-29T06:20:05.401868Z",
+  "scenario": "D",
+  "scenario_description": "No candidate passed full admission + early screening pipeline. All admitted candidates lack provider entitlement on this account.",
+  "m1_status": {
+    "model_id": "minimaxai/minimax-m3",
+    "production_state": "ACTIVE",
+    "classification": {
+      "p15p": "CONTEXT_INCOMPATIBLE",
+      "reconciled": "M1_PROVIDER_FAILURE_429_UNRESOLVED",
+      "changed": true
+    },
+    "evidence_summary": {
+      "consistent_429": true,
+      "all_context_levels": true,
+      "no_entitlement_denial": true,
+      "no_rate_limit_headers": true,
+      "context_correlation": false,
+      "root_cause": "UNRESOLVED"
+    },
+    "429_rate": "100% (8/8 observations across P15-I, P15-L, P15-P)",
+    "recommendation": "Retain as ACTIVE production model. Do not replace until root cause resolved."
+  },
+  "c3_status": {
+    "model_id": "nvidia/nemotron-3-super-120b-a12b",
+    "production_state": "REJECTED",
+    "classification": {
+      "p15p": "REJECT_C3 / MODEL_INTRINSIC_LIMITATION",
+      "reconciled": "PROVIDER_RUNTIME_COMPATIBILITY_LIMITATION",
+      "changed": true
+    },
+    "evidence_summary": {
+      "translation_capability_exists": true,
+      "chunked_glossary_quality": 84.0,
+      "high_context_timeout": true,
+      "single_request_fails": true,
+      "chunked_works": true,
+      "production_envelope_unproven": true
+    },
+    "recommendation": "Retain REJECTED status. Evidence retained for future reference. Not 'intrinsic limitation' since chunked+glossary achieves 84/100."
+  },
+  "p_candidates_status": [
+    {
+      "model_id": "nvidia/llama-3.1-nemoguard-8b-content-safety",
+      "p15p_classification": "QUALITY_INSUFFICIENT",
+      "reconciled": "QUALITY_INSUFFICIENT",
+      "changed": false,
+      "avg_quality": 54.0,
+      "note": "Safety/guardrail model, not general LLM - correctly excluded by admission filter"
+    },
+    {
+      "model_id": "nvidia/nemotron-3-nano-30b-a3b",
+      "p15p_classification": "QUALITY_INSUFFICIENT",
+      "reconciled": "QUALITY_INSUFFICIENT",
+      "changed": false,
+      "avg_quality": 57.0,
+      "note": "General LLM but automated quality < 65"
+    }
+  ],
+  "new_candidates_screened": 83,
+  "new_candidates_admitted": 39,
+  "candidate_pool": [
+    "01-ai/yi-large",
+    "ai21labs/jamba-1.5-large-instruct",
+    "deepseek-ai/deepseek-v4-flash-0731",
+    "deepseek-ai/deepseek-v4-pro-0813",
+    "google/gemma-2b",
+    "google/gemma-3-12b-it",
+    "google/gemma-3-4b-it",
+    "google/gemma-4-31b-it",
+    "google/recurrentgemma-2b",
+    "ibm/granite-3.0-3b-a800m-instruct",
+    "ibm/granite-3.0-8b-instruct",
+    "meta/llama2-70b",
+    "microsoft/phi-3.5-moe-instruct",
+    "minimaxai/minimax-m3",
+    "mistralai/mistral-7b-instruct-v0.3",
+    "mistralai/mistral-large",
+    "mistralai/mistral-large-2-instruct",
+    "mistralai/mistral-nemotron",
+    "mistralai/mixtral-8x22b-v0.1",
+    "nv-mistralai/mistral-nemo-12b-instruct",
+    "nvidia/llama-3.1-nemotron-51b-instruct",
+    "nvidia/llama-3.1-nemotron-70b-instruct",
+    "nvidia/llama-3.1-nemotron-ultra-253b-v1",
+    "nvidia/llama3-chatqa-1.5-70b",
+    "nvidia/mistral-nemo-minitron-8b-8k-instruct",
+    "nvidia/nemotron-3-nano-30b-a3b",
+    "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning",
+    "nvidia/nemotron-3-super-120b-a12b",
+    "nvidia/nemotron-3-ultra-550b-a55b",
+    "nvidia/nemotron-3.5-lightning-30b-a3b",
+    "nvidia/nemotron-4-340b-instruct",
+    "nvidia/nemotron-nano-3-30b-a3b",
+    "openai/gpt-oss-120b",
+    "openai/gpt-oss-20b",
+    "writer/palmyra-creative-122b",
+    "writer/palmyra-fin-70b-32k",
+    "writer/palmyra-med-70b",
+    "writer/palmyra-med-70b-32k",
+    "zyphra/zamba2-7b-instruct"
+  ],
+  "classification_corrections": [
+    {
+      "model": "minimaxai/minimax-m3",
+      "from": "CONTEXT_INCOMPATIBLE",
+      "to": "M1_PROVIDER_FAILURE_429_UNRESOLVED",
+      "reason": "429 occurs at ALL context sizes including small (~100 tokens). Not context-related. Root cause undetermined."
+    },
+    {
+      "model": "nvidia/nemotron-3-super-120b-a12b",
+      "from": "REJECT_C3 / MODEL_INTRINSIC_LIMITATION",
+      "to": "PROVIDER_RUNTIME_COMPATIBILITY_LIMITATION",
+      "reason": "Model CAN translate (84/100 with chunked+glossary). Limitation is high-context runtime stability, not intrinsic capability."
+    }
+  ],
+  "rm6_status": "BLOCKED",
+  "production_status": "UNCHANGED",
+  "limitations": [
+    "Shortlist evaluation limited to models with known provider access from P15-P",
+    "Most NVIDIA catalog models not entitled for this account (404 'Function not found for account')",
+    "Account entitlement cannot be queried via API; only observable via invocation attempts",
+    "M1 429 root cause not determined without provider documentation",
+    "C3 high-context timeout vs context boundary based on single-run observations",
+    "Automated quality scoring approximate; human literary review not performed",
+    "Glossary and character memory are simplified test versions",
+    "Provider availability may change over time; results are point-in-time"
+  ],
+  "next_phase": "NO_PHASE_R",
+  "next_phase_rationale": "No candidate with provider entitlement on this account. M1 remains ACTIVE. RM6 BLOCKED. Need new strategy: either different account, provider documentation review, or wait for model availability changes."
+}

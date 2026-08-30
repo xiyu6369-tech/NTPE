@@ -1,0 +1,275 @@
+{
+  "baseline": {
+    "commit": "8c999b1219f65a6afaeaf0062e6c43f72691c188",
+    "message": "P0-FINAL-13: clean governance repository surface",
+    "branch": "main",
+    "origin_main": "8c999b1219f65a6afaeaf0062e6c43f72691c188",
+    "divergence_ahead": 0,
+    "divergence_behind": 0,
+    "dirty_path_count": 306
+  },
+  "scan_results": {
+    "old_model": "meta/llama-3.3-70b-instruct",
+    "new_model": "minimaxai/minimax-m3",
+    "old_model_total_references": 200,
+    "new_model_total_references": 57,
+    "old_model_classification": {
+      "CURRENT_PRODUCTION_DEFAULT": {
+        "count": 20,
+        "status": "BLOCKED - MUST MIGRATE",
+        "locations": [
+          "core/adapters/production_submission_adapter.py:20",
+          "core/adapters/production_submission_adapter.py:129",
+          "core/adaptive_context_single_real_invocation/config.py:27",
+          "core/adaptive_context_real_provider_preflight/validator.py:107",
+          "core/adaptive_context_controlled_provider_retry/config.py:37",
+          "core/adaptive_context_real_provider_preflight/config.py:42",
+          "core/adaptive_context_real_provider_boundary/config.py:9",
+          "core/adaptive_context_real_provider_boundary/config.py:21",
+          "core/adaptive_context_provider_execution_freeze/freeze.py:86",
+          "core/adaptive_context_authorized_provider_harness/config.py:24",
+          "core/adaptive_context_authorized_provider_cli/parser.py:22",
+          "core/adaptive_context_authorized_provider_cli/config.py:21",
+          "core/controlled_provider_routing/provider_profiles.py:28",
+          "core/controlled_multi_chunk_translation_canary/policy.py:58",
+          "core/config.py:19",
+          "core/expansion/style_expansion_engine.py:38",
+          "core/translation_release/te_v6_release.py:18",
+          "core/translation_quality_provider_canary/framework.py:26",
+          "core/controlled_translation_runtime_integration/policy.py:22",
+          "core/lcr_production_shadow_hook/batch107_real_provider_validation.py:27"
+        ]
+      },
+      "CURRENT_PRODUCTION_FALLBACK": {
+        "count": 0,
+        "status": "PASS"
+      },
+      "CURRENT_PROVIDER_CONFIG": {
+        "count": 0,
+        "status": "PASS (JSON configs migrated)"
+      },
+      "CURRENT_LAUNCHER_CONFIG": {
+        "count": 0,
+        "status": "PASS (9 canonical migrated)"
+      },
+      "CURRENT_RUNTIME_CONFIG": {
+        "count": 0,
+        "status": "PASS (DEFAULT_MODEL constants migrated)"
+      },
+      "CURRENT_TEST": {
+        "count": 40,
+        "status": "PRESERVE (historical test baselines)",
+        "categories": [
+          "tests/integration/translation_engine_v700_stage*.py",
+          "tests/integration/translation_engine_v720_stage*.py",
+          "tests/unit/test_translation_quality_canary.py",
+          "tests/unit/test_controlled_provider_routing.py",
+          "tests/unit/adapters/test_production_submission_adapter.py",
+          "tests/stage_14/launcher_ai_provider_framework_test.py",
+          "tests/smoke/launcher_ter_v19_stability_repetition_guard_smoke_test.py",
+          "tests/integration/launcher_product/test_launcher_product_integration.py",
+          "tests/integration/lcr_batch108_provider_failure_characterization_integration_test.py"
+        ]
+      },
+      "HISTORICAL": {
+        "count": 60,
+        "status": "PRESERVE (historical evidence)",
+        "categories": [
+          "manifests/te_v600_final_release_manifest.json",
+          "manifests/ntpe_v20_stage1_translation_launcher_product_foundation_manifest.json",
+          "manifests/te_v720_*.json",
+          "archive/te_v7_historical/",
+          "archive/te_v72_historical/",
+          "archive/ntpe_v20_historical/",
+          "archive/te_v72_historical/te_v72_canary_execution/provider_metrics.json",
+          "tests/fixtures/tic_batch3/",
+          "tests/fixtures/tic_batch4/",
+          "tests/fixtures/tic_batch5/",
+          "docs/releases/te_v6_0/",
+          "docs/releases/te_v7_0/",
+          "docs/releases/te_v7_2/",
+          "archive/legacy_config/prompt_packages/*.json",
+          "archive/legacy/examples/*.json",
+          "archive/stage_tests/ntpe_te_v40_*.py",
+          "archive/stage_tests/ntpe_ter_v21_provider_degraded_fallback_test.py"
+        ]
+      },
+      "ARCHIVED": {
+        "count": 25,
+        "status": "PRESERVE (archived legacy modules)",
+        "locations": [
+          "engine/nvidia.py:7",
+          "tools/provider_controls/ntpe_single_real_provider_invocation.py:54",
+          "tools/generate_te_v720_controlled_canary.py:73",
+          "verification/release/ntpe_v20_stage1_translation_launcher_product_foundation_test.py:45"
+        ]
+      },
+      "GOVERNANCE_EVIDENCE": {
+        "count": 15,
+        "status": "PRESERVE (migration documentation)",
+        "locations": [
+          "docs/governance/repository/P0_FINAL_15_A_PRODUCTION_INTEGRATION_MODEL_INVENTORY.md",
+          "docs/governance/repository/P0_FINAL_15_B_PRODUCTION_MODEL_MIGRATION.md",
+          "artifacts/P0_FINAL_15_A_Production_Integration_Model_Inventory_Report.json",
+          "artifacts/P0_FINAL_15_B_Production_Model_Migration_Report.json"
+        ]
+      },
+      "LEGACY_COMPATIBILITY": {
+        "count": 5,
+        "status": "PRESERVE (legacy modules not in active production)",
+        "locations": [
+          "core/translation_release/te_v6_release.py:18",
+          "core/controlled_translation_runtime_integration/policy.py:22",
+          "core/lcr_production_shadow_hook/batch107_real_provider_validation.py:27"
+        ]
+      },
+      "UNKNOWN": {
+        "count": 0,
+        "status": "PASS"
+      }
+    }
+  },
+  "production_reference_closure": {
+    "canonical_9_files": {
+      "config/launcher_product_defaults.json": "MIGRATED",
+      "config/default_config.json": "MIGRATED",
+      "config/models.json": "MIGRATED",
+      "config/provider_config.json": "MIGRATED",
+      "core/launcher_product/config.py": "MIGRATED",
+      "core/launcher_product/model_catalog.py": "MIGRATED",
+      "core/ai_provider/adapters.py": "MIGRATED",
+      "ntpe_production_translate.py": "MIGRATED",
+      "lts/txt_translation_runtime.py": "MIGRATED"
+    },
+    "additional_core_references": {
+      "status": "NOT MIGRATED",
+      "count": 20,
+      "requires_remediation": true,
+      "locations": [
+        "core/adapters/production_submission_adapter.py:20,129",
+        "core/adaptive_context_single_real_invocation/config.py:27",
+        "core/adaptive_context_real_provider_preflight/validator.py:107",
+        "core/adaptive_context_controlled_provider_retry/config.py:37",
+        "core/adaptive_context_real_provider_preflight/config.py:42",
+        "core/adaptive_context_real_provider_boundary/config.py:9,21",
+        "core/adaptive_context_provider_execution_freeze/freeze.py:86",
+        "core/adaptive_context_authorized_provider_harness/config.py:24",
+        "core/adaptive_context_authorized_provider_cli/parser.py:22",
+        "core/adaptive_context_authorized_provider_cli/config.py:21",
+        "core/controlled_provider_routing/provider_profiles.py:28",
+        "core/controlled_multi_chunk_translation_canary/policy.py:58",
+        "core/config.py:19",
+        "core/expansion/style_expansion_engine.py:38",
+        "core/translation_release/te_v6_release.py:18",
+        "core/translation_quality_provider_canary/framework.py:26",
+        "core/controlled_translation_runtime_integration/policy.py:22",
+        "core/lcr_production_shadow_hook/batch107_real_provider_validation.py:27"
+      ],
+      "excluded_from_remediation": [
+        "core/translation_release/te_v6_release.py (historical v6 release)",
+        "core/controlled_translation_runtime_integration/policy.py (legacy integration)"
+      ]
+    }
+  },
+  "configuration_precedence": {
+    "preserved": true,
+    "cli_override": true,
+    "env_override": true,
+    "config_files": true,
+    "provider_adapter": true,
+    "launcher_config": true,
+    "lts_default": true,
+    "production_translate_default": true
+  },
+  "launcher_consistency": {
+    "ntpe_launcher.py": "minimaxai/minimax-m3",
+    "ntpe_production_translate.py": "minimaxai/minimax-m3",
+    "lts_txt_translation_runtime.py": "minimaxai/minimax-m3",
+    "core_translation_runtime_runtime.py": "minimaxai/minimax-m3 (delegates to LTS)",
+    "consistency": "PASS"
+  },
+  "provider_adapter": {
+    "nvidia_default_model": "minimaxai/minimax-m3",
+    "nvidia_models_list": ["minimaxai/minimax-m3"],
+    "accepts_minimax_m3": true,
+    "no_hardcoded_restriction": true,
+    "fallback_behavior": "correct"
+  },
+  "test_fixture_judgment": {
+    "preserve_historical_baselines": [
+      "tests/integration/translation_engine_v700_stage*.py",
+      "tests/integration/translation_engine_v720_stage*.py",
+      "tests/unit/test_translation_quality_canary.py",
+      "tests/unit/test_controlled_provider_routing.py",
+      "tests/unit/adapters/test_production_submission_adapter.py",
+      "tests/stage_14/launcher_ai_provider_framework_test.py",
+      "tests/smoke/launcher_ter_v19_stability_repetition_guard_smoke_test.py",
+      "tests/integration/launcher_product/test_launcher_product_integration.py",
+      "tests/integration/lcr_batch108_provider_failure_characterization_integration_test.py"
+    ],
+    "no_current_test_represents_production_default": true
+  },
+  "historical_preservation": {
+    "artifacts": "PRESERVED",
+    "archive": "PRESERVED",
+    "manifests": "PRESERVED",
+    "docs_releases": "PRESERVED",
+    "tests_fixtures": "PRESERVED",
+    "governance_docs": "PRESERVED"
+  },
+  "validation": {
+    "ntpe_validate": "PASS_WITH_WARNINGS",
+    "warnings": [
+      "core.prompt_builder.prompt_builder: ModuleNotFoundError (pre-existing)"
+    ],
+    "git_diff_check": "3 CRLF warnings (pre-existing)",
+    "new_failures": 0,
+    "new_regressions": 0
+  },
+  "safety": {
+    "provider_calls": 0,
+    "network_calls": 0,
+    "real_translation_calls": 0,
+    "historical_artifacts_modified": 0,
+    "protected_worktree_modified": 0,
+    "root_hygiene": "COMPLIANT"
+  },
+  "stop_conditions": {
+    "STOP-P15C-01_active_production_uses_old": true,
+    "STOP-P15C-02_fallback_uses_old": false,
+    "STOP-P15C-03_new_hardcoded_location": false,
+    "STOP-P15C-04_precedence_changed": false,
+    "STOP-P15C-05_cli_override_broken": false,
+    "STOP-P15C-06_env_override_broken": false,
+    "STOP-P15C-07_minimax_rejected": false,
+    "STOP-P15C-08_unknown_reference": false,
+    "STOP-P15C-09_historical_modified": false,
+    "STOP-P15C-10_protected_modified": false,
+    "STOP-P15C-11_new_validator_error": false,
+    "STOP-P15C-12_new_regressions": false,
+    "STOP-P15C-13_provider_call_required": false,
+    "STOP-P15C-14_root_hygiene_violation": false,
+    "STOP-P15C-15_scope_expansion": false
+  },
+  "git_safety": {
+    "staged": 0,
+    "committed_this_phase": 0,
+    "pushed_this_phase": 0,
+    "head": "8c999b1219f65a6afaeaf0062e6c43f72691c188",
+    "origin_main": "8c999b1219f65a6afaeaf0062e6c43f72691c188",
+    "divergence": "0/0"
+  },
+  "verdict": "BLOCKED (STOP-P15C-01)",
+  "deliverables": {
+    "governance_doc": "docs/governance/repository/P0_FINAL_15_C_MODEL_MIGRATION_REFERENCE_CLOSURE.md",
+    "json_report": "artifacts/P0_FINAL_15_C_Model_Migration_Reference_Closure_Report.json"
+  },
+  "remediation_required": {
+    "phase": "P0-FINAL-15-C-REMEDIATION",
+    "scope": "Migrate 18-20 additional core/ production references to minimaxai/minimax-m3",
+    "excluded": [
+      "core/translation_release/te_v6_release.py (historical v6 release)",
+      "core/controlled_translation_runtime_integration/policy.py (legacy integration)"
+    ]
+  }
+}

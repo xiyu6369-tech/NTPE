@@ -1,6 +1,0 @@
-{
-  "schema_version": "ntpe.stage0.immutable-path-exceptions.v1",
-  "count": 0,
-  "exceptions": [],
-  "note": "Historical Root Wrappers were retained in place; no immutable-path relocation exception was required."
-}

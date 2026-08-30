@@ -1,0 +1,79 @@
+{
+  "task": "P0-FINAL-13-R1",
+  "generated_at": "2026-08-25T12:10:03.827324",
+  "git_baseline": {
+    "head": "76ea24f1e34c0f1796236de4d676404d7e45f00a",
+    "origin_main": "76ea24f1e34c0f1796236de4d676404d7e45f00a",
+    "branch": "main",
+    "divergence": "0 0"
+  },
+  "root_artifact": {
+    "source": "p13_inventory.py",
+    "destination": "tools/maintenance/p13_inventory.py",
+    "pre_move_sha256": "56067E5C89647A982D6A1703C1EC3E7D7BD8E7BF74B29FD857BC204B42E8C7D4",
+    "post_move_sha256": "56067e5c89647a982d6a1703c1ec3e7d7bd8e7bf74b29fd857bc204b42e8c7d4",
+    "sha256_preserved": true,
+    "disposition": "moved_to_tools_maintenance",
+    "rationale": "P0-FINAL-13 audit script moved from repository root to tools/maintenance/ to resolve Root Hygiene violation while preserving as reusable maintenance tooling"
+  },
+  "root_hygiene": {
+    "before": {
+      "unexpected_root_files": 1,
+      "unexpected_root_dirs": 0,
+      "violating_file": "p13_inventory.py",
+      "status": "FAIL"
+    },
+    "after": {
+      "unexpected_root_files": 0,
+      "unexpected_root_dirs": 0,
+      "status": "PASS"
+    }
+  },
+  "worktree": {
+    "before": 326,
+    "after": 326,
+    "delta": 0,
+    "delta_reason": "File moved within worktree (root -> tools/maintenance/), total dirty path count unchanged"
+  },
+  "git": {
+    "head": "76ea24f1e34c0f1796236de4d676404d7e45f00a",
+    "origin_main": "76ea24f1e34c0f1796236de4d676404d7e45f00a",
+    "branch": "main",
+    "divergence": "0 0"
+  },
+  "validation": {
+    "ntpe_validate_py": {
+      "status": "PASS WITH WARNINGS",
+      "root_python_layout": "PASS",
+      "baseline_warning_preserved": "core.prompt_builder.prompt_builder ModuleNotFoundError",
+      "new_warnings": 0,
+      "new_errors": 0
+    },
+    "git_diff_check": {
+      "status": "PASS",
+      "warnings": "CRLF/LF line ending warnings for 3 test output files (pre-existing)"
+    }
+  },
+  "preservation": {
+    "protected_worktree": "unchanged",
+    "generated_outputs": "unchanged",
+    "historical_legacy": "unchanged",
+    "no_historical_artifacts_restored": true,
+    "no_unrelated_files_modified": true
+  },
+  "provider_network_translation": {
+    "provider": 0,
+    "network": 0,
+    "translation": 0
+  },
+  "git_operations": {
+    "staged": 0,
+    "committed": 0,
+    "pushed": 0
+  },
+  "deliverables": [
+    "docs/governance/repository/P0_FINAL_13_R1_ROOT_HYGIENE_CLOSURE.md",
+    "artifacts/P0_FINAL_13_R1_Root_Hygiene_Closure_Report.json"
+  ],
+  "unresolved_issues": []
+}

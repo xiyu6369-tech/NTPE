@@ -1,0 +1,13 @@
+Model: nvidia/riva-translate-4b-instruct-v2
+Fixture: continuity (continuity)
+HTTP Status: 200
+Tokens: 328
+Latency: 2215ms
+
+--- SOURCE ---
+김철수는 30년 경력의 형사였다. 그가 맡은 사건은 언제나 복잡했지만, 그는 특유의 직관으로 진실을 파헤쳐왔다. 그의 파트너 이영희는 그와 정반대였다. 논리와 증거만으로 사건을 풀어나가는 원칙주의자였다.
+
+어느 날, 두 사람은 연쇄 실종 사건을 맡게 되었다. 철수는 현장의 미세한 흔적에서 단서를 찾으려 했고, 영희는 피해자들의 공통점을 분석했다. 처음엔 서로의 방식을 불신했지만, 곧 그들의 접근법이 서로 보완됨을 깨달았다. 철수의 직관이 영희의 논리를 이끌었고, 영희의 증거가 철수의 추측을 뒷받침했다.
+
+--- TRANSLATION ---
+Kim Cheol-soo was a 30-year veteran detective. His cases were always complex, but he used his unique intuition to uncover the truth. His partner, Lee Young-hee, was the exact opposite. She was a principled investigator who relied solely on logic and evidence. One day, the two were assigned to a case of serial disappearances. Cheol-soo searched for clues in the subtle details at the scene, while Young-hee analyzed the commonalities among the victims. At first, they distrusted each other's methods, but soon they realized that their approaches complemented each other. Cheol-soo's intuition guided Young-hee's logic, and Young-hee's evidence supported Cheol-soo's conjectures.

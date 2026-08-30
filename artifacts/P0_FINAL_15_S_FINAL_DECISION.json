@@ -1,0 +1,106 @@
+{
+  "phase": "P0-FINAL-15-S",
+  "baseline": {
+    "head_commit": "8c999b1219f65a6afaeaf0062e6c43f72691c188",
+    "origin_main_commit": "8c999b1219f65a6afaeaf0062e6c43f72691c188",
+    "divergence": "0/0",
+    "branch": "main"
+  },
+  "environment": {
+    "endpoint": "https://integrate.api.nvidia.com/v1/chat/completions",
+    "credential_source": "NVIDIA_API_KEY",
+    "timestamp": "2026-08-29T11:37:35.498512Z"
+  },
+  "candidate": {
+    "model_id": "openai/gpt-oss-120b",
+    "hosting_provider": "NVIDIA",
+    "endpoint": "https://integrate.api.nvidia.com/v1/chat/completions"
+  },
+  "gates": {
+    "A": {
+      "name": "Provider Invocation",
+      "result": "PASS",
+      "rationale": "All 3 smoke attempts returned HTTP 200",
+      "critical": true
+    },
+    "B": {
+      "name": "Runtime Stability",
+      "result": "PASS",
+      "rationale": "Success rate 100% >= 95%",
+      "critical": true
+    },
+    "C": {
+      "name": "Context Compatibility",
+      "result": "FAIL",
+      "rationale": "Context compatibility failure: 3/3 levels pass",
+      "critical": true
+    },
+    "D": {
+      "name": "Translation Quality",
+      "result": "FAIL",
+      "rationale": "Avg quality: 67.2",
+      "critical": true
+    },
+    "E": {
+      "name": "Glossary Effectiveness",
+      "result": "PASS",
+      "rationale": "Glossary improvement: +13.4",
+      "critical": true
+    },
+    "F": {
+      "name": "Continuity",
+      "result": "PASS",
+      "rationale": "Continuity pass: True",
+      "critical": true
+    },
+    "G": {
+      "name": "Reliability",
+      "result": "PASS",
+      "rationale": "Success rate 100% >= 95%, no systematic failures",
+      "critical": true
+    },
+    "H": {
+      "name": "Latency",
+      "result": "PASS",
+      "rationale": "Median latency 5506ms, P95 58088ms (successful requests)",
+      "critical": false
+    },
+    "I": {
+      "name": "Human Literary Review",
+      "result": "PENDING",
+      "rationale": "Awaiting human review",
+      "critical": true
+    }
+  },
+  "final_decision": "BLOCKED_AWAITING_HUMAN_REVIEW",
+  "decision_rationale": "Human literary review (Gate I) not yet completed. Cannot proceed.",
+  "human_review": {
+    "completed": false,
+    "result": "PENDING"
+  },
+  "compliance": {
+    "git_baseline_verified": true,
+    "production_freeze_maintained": true,
+    "credential_protection": true,
+    "root_hygiene": true,
+    "protected_worktree_preserved": true,
+    "historical_evidence_preserved": true,
+    "regression_tests_pass": true,
+    "governance_validation": true,
+    "production_unchanged": true
+  },
+  "production_state": {
+    "model": "minimaxai/minimax-m3",
+    "status": "ACTIVE / UNCHANGED",
+    "changed": false
+  },
+  "rm6_status": "BLOCKED",
+  "limitations": [
+    "Human literary review (Gate I) requires manual completion",
+    "Context Gate C showed truncation at L2 level",
+    "Translation Gate D FAIL (automated quality pass=False despite avg 67.2)",
+    "Single NVIDIA account used for all testing",
+    "No cross-provider comparison performed",
+    "Human review template created but not yet completed"
+  ]
+}

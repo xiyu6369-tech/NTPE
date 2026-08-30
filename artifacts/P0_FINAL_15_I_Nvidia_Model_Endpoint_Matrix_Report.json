@@ -1,0 +1,254 @@
+{
+  "head_commit": "8c999b1219f65a6afaeaf0062e6c43f72691c188",
+  "origin_main_commit": "8c999b1219f65a6afaeaf0062e6c43f72691c188",
+  "divergence": "0/0",
+  "branch": "main",
+  "python_version": "3.14.6",
+  "client_path": "core/translation_engine/nvidia_client.py",
+  "test_timestamp": "2026-08-26T19:14:36.110617Z",
+  "endpoint": "https://integrate.api.nvidia.com/v1/chat/completions",
+  "credential_present": true,
+  "credential_source": "NVIDIA_API_KEY",
+  "models_tested": [
+    "minimaxai/minimax-m3",
+    "nvidia/llama-3.1-nemotron-70b-instruct",
+    "meta/llama-3.2-90b-vision-instruct"
+  ],
+  "models_unavailable": [],
+  "test_cases": [
+    {
+      "test_id": "I-01",
+      "timestamp_utc": "2026-08-26T19:14:27.997378Z",
+      "model": "minimaxai/minimax-m3",
+      "endpoint": "https://integrate.api.nvidia.com/v1/chat/completions",
+      "http_method": "POST",
+      "http_status": 429,
+      "success": false,
+      "elapsed_ms": 175.75070000020787,
+      "request_payload_shape": {
+        "model": "minimaxai/minimax-m3",
+        "messages_count": 2,
+        "temperature": 0.15,
+        "top_p": 0.85,
+        "max_tokens": 4000,
+        "stream": false
+      },
+      "response_body": "{\"status\":429,\"title\":\"Too Many Requests\"}",
+      "response_headers": {
+        "Date": "Wed, 26 Aug 2026 19:14:28 GMT",
+        "Content-Type": "application/problem+json",
+        "Content-Length": "42",
+        "Connection": "keep-alive",
+        "Vary": "Origin"
+      },
+      "request_id": null,
+      "retry_after": null,
+      "rate_limit_limit": null,
+      "rate_limit_remaining": null,
+      "rate_limit_reset": null,
+      "x_rate_limit_limit": null,
+      "x_rate_limit_remaining": null,
+      "x_rate_limit_reset": null,
+      "provider_request_id": null,
+      "client_limiter_rpm_limit": 40,
+      "client_limiter_observed_wait_ms": 0.00839999847812578,
+      "client_limiter_request_index": 1,
+      "exception_type": null,
+      "exception_message": null
+    },
+    {
+      "test_id": "I-02",
+      "timestamp_utc": "2026-08-26T19:14:28.174482Z",
+      "model": "nvidia/llama-3.1-nemotron-70b-instruct",
+      "endpoint": "https://integrate.api.nvidia.com/v1/chat/completions",
+      "http_method": "POST",
+      "http_status": 404,
+      "success": false,
+      "elapsed_ms": 160.15779999725055,
+      "request_payload_shape": {
+        "model": "nvidia/llama-3.1-nemotron-70b-instruct",
+        "messages_count": 2,
+        "temperature": 0.15,
+        "top_p": 0.85,
+        "max_tokens": 4000,
+        "stream": false
+      },
+      "response_body": "{\"status\":404,\"title\":\"Not Found\",\"detail\":\"Function '9b96341b-9791-4db9-a00d-4e43aa192a39': Not found for account '1V0ANVqp2OBpPKuHKGA1zY_YgNj09uy7yYnM52Boax4'\"}",
+      "response_headers": {
+        "Date": "Wed, 26 Aug 2026 19:14:29 GMT",
+        "Content-Type": "application/problem+json",
+        "Content-Length": "162",
+        "Connection": "keep-alive",
+        "Vary": "Origin"
+      },
+      "request_id": null,
+      "retry_after": null,
+      "rate_limit_limit": null,
+      "rate_limit_remaining": null,
+      "rate_limit_reset": null,
+      "x_rate_limit_limit": null,
+      "x_rate_limit_remaining": null,
+      "x_rate_limit_reset": null,
+      "provider_request_id": null,
+      "client_limiter_rpm_limit": 40,
+      "client_limiter_observed_wait_ms": 1323.2854999987467,
+      "client_limiter_request_index": 1,
+      "exception_type": null,
+      "exception_message": null
+    },
+    {
+      "test_id": "I-03",
+      "timestamp_utc": "2026-08-26T19:14:29.659414Z",
+      "model": "meta/llama-3.2-90b-vision-instruct",
+      "endpoint": "https://integrate.api.nvidia.com/v1/chat/completions",
+      "http_method": "POST",
+      "http_status": 200,
+      "success": true,
+      "elapsed_ms": 3452.958800000488,
+      "request_payload_shape": {
+        "model": "meta/llama-3.2-90b-vision-instruct",
+        "messages_count": 2,
+        "temperature": 0.15,
+        "top_p": 0.85,
+        "max_tokens": 4000,
+        "stream": false
+      },
+      "response_body": "{\"id\":\"chatcmpl-439fa62e3f124f03b090e07cd8fb4f2e\",\"object\":\"chat.completion\",\"created\":1787771672,\"model\":\"meta/llama-3.2-90b-vision-instruct\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"reasoning_content\":null,\"content\":\"你好。这是测试。\",\"tool_calls\":[]},\"logprobs\":null,\"finish_reason\":\"stop\",\"stop_reason\":null}],\"usage\":{\"prompt_tokens\":61,\"total_tokens\":68,\"completion_tokens\":7,\"prompt_tokens_details\":null},\"prompt_logprobs\":null}",
+      "response_headers": {
+        "Date": "Wed, 26 Aug 2026 19:14:34 GMT",
+        "Content-Type": "application/json",
+        "Content-Length": "455",
+        "Connection": "keep-alive",
+        "Access-Control-Expose-Headers": "nvcf-reqid",
+        "Nvcf-Reqid": "08dee51b-7b3a-45bb-9e94-06329e3793db",
+        "Nvcf-Status": "fulfilled",
+        "Server": "uvicorn",
+        "Vary": "Origin"
+      },
+      "request_id": null,
+      "retry_after": null,
+      "rate_limit_limit": null,
+      "rate_limit_remaining": null,
+      "rate_limit_reset": null,
+      "x_rate_limit_limit": null,
+      "x_rate_limit_remaining": null,
+      "x_rate_limit_reset": null,
+      "provider_request_id": "chatcmpl-439fa62e3f124f03b090e07cd8fb4f2e",
+      "client_limiter_rpm_limit": 40,
+      "client_limiter_observed_wait_ms": 1338.5478999989573,
+      "client_limiter_request_index": 1,
+      "exception_type": null,
+      "exception_message": null
+    },
+    {
+      "test_id": "I-04",
+      "timestamp_utc": "2026-08-26T19:14:34.454430Z",
+      "model": "minimaxai/minimax-m3",
+      "endpoint": "https://integrate.api.nvidia.com/v1/chat/completions",
+      "http_method": "POST",
+      "http_status": 429,
+      "success": false,
+      "elapsed_ms": 145.01430000018445,
+      "request_payload_shape": {
+        "model": "minimaxai/minimax-m3",
+        "messages_count": 2,
+        "temperature": 0.15,
+        "top_p": 0.85,
+        "max_tokens": 4000,
+        "stream": false
+      },
+      "response_body": "{\"status\":429,\"title\":\"Too Many Requests\"}",
+      "response_headers": {
+        "Date": "Wed, 26 Aug 2026 19:14:34 GMT",
+        "Content-Type": "application/problem+json",
+        "Content-Length": "42",
+        "Connection": "keep-alive",
+        "Vary": "Origin"
+      },
+      "request_id": null,
+      "retry_after": null,
+      "rate_limit_limit": null,
+      "rate_limit_remaining": null,
+      "rate_limit_reset": null,
+      "x_rate_limit_limit": null,
+      "x_rate_limit_remaining": null,
+      "x_rate_limit_reset": null,
+      "provider_request_id": null,
+      "client_limiter_rpm_limit": 40,
+      "client_limiter_observed_wait_ms": 0.020299998141126707,
+      "client_limiter_request_index": 2,
+      "exception_type": null,
+      "exception_message": null
+    },
+    {
+      "test_id": "I-05",
+      "timestamp_utc": "2026-08-26T19:14:34.601188Z",
+      "model": "nvidia/llama-3.1-nemotron-70b-instruct",
+      "endpoint": "https://integrate.api.nvidia.com/v1/chat/completions",
+      "http_method": "POST",
+      "http_status": 404,
+      "success": false,
+      "elapsed_ms": 154.24489999713842,
+      "request_payload_shape": {
+        "model": "nvidia/llama-3.1-nemotron-70b-instruct",
+        "messages_count": 2,
+        "temperature": 0.15,
+        "top_p": 0.85,
+        "max_tokens": 4000,
+        "stream": false
+      },
+      "response_body": "{\"status\":404,\"title\":\"Not Found\",\"detail\":\"Function '9b96341b-9791-4db9-a00d-4e43aa192a39': Not found for account '1V0ANVqp2OBpPKuHKGA1zY_YgNj09uy7yYnM52Boax4'\"}",
+      "response_headers": {
+        "Date": "Wed, 26 Aug 2026 19:14:36 GMT",
+        "Content-Type": "application/problem+json",
+        "Content-Length": "162",
+        "Connection": "keep-alive",
+        "Vary": "Origin"
+      },
+      "request_id": null,
+      "retry_after": null,
+      "rate_limit_limit": null,
+      "rate_limit_remaining": null,
+      "rate_limit_reset": null,
+      "x_rate_limit_limit": null,
+      "x_rate_limit_remaining": null,
+      "x_rate_limit_reset": null,
+      "provider_request_id": null,
+      "client_limiter_rpm_limit": 40,
+      "client_limiter_observed_wait_ms": 1353.7574000001769,
+      "client_limiter_request_index": 2,
+      "exception_type": null,
+      "exception_message": null
+    }
+  ],
+  "model_differential": {
+    "minimaxai/minimax-m3": {
+      "status_codes": [
+        429,
+        429
+      ],
+      "successes": 0,
+      "failures": 2
+    },
+    "nvidia/llama-3.1-nemotron-70b-instruct": {
+      "status_codes": [
+        404,
+        404
+      ],
+      "successes": 0,
+      "failures": 2
+    },
+    "meta/llama-3.2-90b-vision-instruct": {
+      "status_codes": [
+        200
+      ],
+      "successes": 1,
+      "failures": 0
+    }
+  },
+  "endpoint_constant": true,
+  "auth_constant": true,
+  "previous_classification": "UNKNOWN",
+  "current_classification": "NON_UNIFORM_PROVIDER_BEHAVIOR",
+  "rm6_promotion": "BLOCKED"
+}

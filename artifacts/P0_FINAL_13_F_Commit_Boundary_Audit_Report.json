@@ -1,0 +1,135 @@
+{
+  "metadata": {
+    "task": "P0-FINAL-13-F",
+    "generated_at": "2026-08-25T16:40:00.000000",
+    "git_baseline": {
+      "head": "76ea24f1e34c0f1796236de4d676404d7e45f00a",
+      "origin_main": "76ea24f1e34c0f1796236de4d676404d7e45f00a",
+      "branch": "main",
+      "divergence": "0 0"
+    },
+    "overall_pass": true
+  },
+  "github_governance": {
+    "expected": 15,
+    "actual": 15,
+    "missing": 0,
+    "unexpected": 0,
+    "documents": [
+      "artifacts/P0_FINAL_13_Post_R1_Worktree_Inventory_Report.json",
+      "docs/governance/repository/P0_FINAL_12_R1_A_PRODUCTION_REFERENCE_CLOSURE.md",
+      "docs/governance/repository/P0_FINAL_12_R1_B_TEST_FIXTURE_CLOSURE.md",
+      "docs/governance/repository/P0_FINAL_12_R1_C_TOOLS_REFERENCE_CLOSURE.md",
+      "docs/governance/repository/P0_FINAL_13_POST_R1_WORKTREE_INVENTORY.md",
+      "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_F6_FINAL_VERIFICATION.md",
+      "docs/governance/rm8/P0_STAGE5_FINAL_ACCEPTANCE_REVIEW.md",
+      "docs/governance/repository/P0_FINAL_12_B5_SCOPE_RECONCILIATION.md",
+      "docs/governance/repository/P0_FINAL_12_B5_STAGED_SCOPE_RECONCILIATION.md",
+      "docs/governance/repository/P0_FINAL_12_R1_E_COMMIT_BOUNDARY_AUDIT.md",
+      "docs/governance/repository/P0_FINAL_12_R1_F_CURRENT_COMMIT_BOUNDARY_RECONCILIATION.md",
+      "docs/governance/repository/P0_FINAL_12_R1_H_POST_COMMIT_INTEGRITY_VERIFICATION.md",
+      "docs/governance/repository/P0_REPOSITORY_FINAL_CLEANUP_E_RESOLUTION.md",
+      "docs/governance/rm8/P0_STAGE5_INTEGRATED_REVIEW.md",
+      "docs/governance/rm8/P0_STAGE5_ROOT_LEVEL_INVENTORY.md"
+    ]
+  },
+  "archive": {
+    "expected": 51,
+    "actual": 51,
+    "sha256_verified": 51,
+    "missing": 0,
+    "breakdown": {
+      "LOCAL_HISTORY": 13,
+      "LOCAL_AUDIT_EVIDENCE": 28,
+      "SUPERSEDED_LOCAL": 9,
+      "DECISION_LOCAL": 1
+    }
+  },
+  "archive_manifests": {
+    "expected": 4,
+    "actual": 4,
+    "total_entries": 51,
+    "manifests": [
+      {
+        "file": "archive/archive_manifest_governance_local_history.json",
+        "entries": 13
+      },
+      {
+        "file": "archive/archive_manifest_governance_local_audit.json",
+        "entries": 28
+      },
+      {
+        "file": "archive/archive_manifest_governance_superseded.json",
+        "entries": 9
+      },
+      {
+        "file": "archive/archive_manifest_governance_p13b.json",
+        "entries": 1
+      }
+    ]
+  },
+  "p0_final_13_e_evidence": {
+    "status": "PRESENT_AND_CONSISTENT",
+    "deliverables": [
+      "docs/governance/repository/P0_FINAL_13_E_GOVERNANCE_CLEANUP_EXECUTION.md",
+      "artifacts/P0_FINAL_13_E_Governance_Cleanup_Execution_Report.json"
+    ]
+  },
+  "candidate_classification": {
+    "CURRENT_P13_COMMIT_CANDIDATES": 60,
+    "MUST_NOT_STAGE_PROTECTED_WORKTREE": 297,
+    "MUST_NOT_STAGE_GENERATED_OUTPUT": 7,
+    "MUST_NOT_STAGE_HISTORICAL_LEGACY": 16,
+    "UNKNOWN": 0,
+    "candidates": {
+      "archive_manifests": 4,
+      "archive_governance_evidence": 51,
+      "p0_final_13_e_deliverables": 2,
+      "canonical_tracked": 3
+    }
+  },
+  "protected_worktree": {
+    "count": 297,
+    "overlap_with_candidates": 0,
+    "preserved": true
+  },
+  "generated_outputs": {
+    "count": 7,
+    "preserved": true
+  },
+  "validation": {
+    "ntpe_validate_py": "PASS WITH BASELINE WARNING",
+    "git_diff_check": "PASS",
+    "root_hygiene": "PASS",
+    "provider_calls": 0,
+    "network_calls": 0,
+    "translation_calls": 0
+  },
+  "git_safety": {
+    "staged": 0,
+    "committed": 0,
+    "pushed": 0,
+    "head_unchanged": true,
+    "origin_main_unchanged": true
+  },
+  "stop_conditions": {
+    "STOP-13-F-01": false,
+    "STOP-13-F-02": false,
+    "STOP-13-F-03": false,
+    "STOP-13-F-04": false,
+    "STOP-13-F-05": false,
+    "STOP-13-F-06": false,
+    "STOP-13-F-07": false,
+    "STOP-13-F-08": false,
+    "STOP-13-F-09": false,
+    "STOP-13-F-10": false,
+    "STOP-13-F-11": false,
+    "STOP-13-F-12": false
+  },
+  "unresolved_issues": [],
+  "deliverables": [
+    "docs/governance/repository/P0_FINAL_13_F_COMMIT_BOUNDARY_AUDIT.md",
+    "artifacts/P0_FINAL_13_F_Commit_Boundary_Audit_Report.json"
+  ],
+  "final_verdict": "PASS"
+}

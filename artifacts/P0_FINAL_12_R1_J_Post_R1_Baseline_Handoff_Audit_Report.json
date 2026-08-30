@@ -1,0 +1,146 @@
+{
+  "audit_id": "P0-FINAL-12-R1-J",
+  "audit_name": "Post-R1 Baseline & Handoff Audit",
+  "date": "2026-08-25",
+  "status": "PASS",
+  "authoritative_baseline": {
+    "head": "76ea24f1e34c0f1796236de4d676404d7e45f00a",
+    "origin_main": "76ea24f1e34c0f1796236de4d676404d7e45f00a",
+    "branch": "main",
+    "divergence": "0 0",
+    "all_verified": true
+  },
+  "r1_commit_closure": {
+    "committed_path_count": 41,
+    "unexpected_committed_paths": 0,
+    "missing_r1_paths": 0,
+    "commit_message_exact_match": true,
+    "parent_verified": "53e04767f9a1012641152e96786011fbb3b0e466"
+  },
+  "remote_synchronization": {
+    "head": "76ea24f1e34c0f1796236de4d676404d7e45f00a",
+    "origin_main": "76ea24f1e34c0f1796236de4d676404d7e45f00a",
+    "divergence": "0 0",
+    "synchronized": true
+  },
+  "working_tree_state": {
+    "dirty_count_before_r1j": 319,
+    "dirty_count_after_r1j": 321,
+    "tracked_deleted": 252,
+    "tracked_modified": 6,
+    "untracked": 63,
+    "total": 321
+  },
+  "r1i_preservation": {
+    "r1i_pre_push_count": 319,
+    "r1i_post_push_count": 319,
+    "current_count_before_r1j": 319,
+    "preserved": true,
+    "unexpected_mutation": 0
+  },
+  "r1i_deliverables": [
+    {
+      "path": "docs/governance/repository/P0_FINAL_12_R1_I_AUTHORIZED_PUSH_REMOTE_VERIFICATION.md",
+      "git_state": "untracked",
+      "classification": "R1_POST_PUSH_AUDIT_ARTIFACT"
+    },
+    {
+      "path": "artifacts/P0_FINAL_12_R1_I_Authorized_Push_Remote_Verification_Report.json",
+      "git_state": "untracked",
+      "classification": "R1_POST_PUSH_AUDIT_ARTIFACT"
+    }
+  ],
+  "boundary_preservation": {
+    "protected_worktree": {
+      "r1f_baseline": 290,
+      "current_tracked_deleted": 252,
+      "committed_in_r1": 4,
+      "preserved": true,
+      "accidentally_committed": 0
+    },
+    "unknown": {
+      "r1f_baseline": 34,
+      "current_untracked_unknown": 34,
+      "preserved": true,
+      "accidentally_committed": 0
+    },
+    "historical_artifact_restoration": 0
+  },
+  "post_r1_classification": {
+    "committed_r1": 41,
+    "protected_worktree": 252,
+    "unknown": 34,
+    "r1_post_push_audit_artifact": 2,
+    "other_current_dirty": 6,
+    "total": 321
+  },
+  "accidental_r1_leakage": {
+    "r1_paths_modified_post_commit": 0,
+    "details": "No committed R1 path appears in git diff --name-only HEAD"
+  },
+  "root_hygiene": {
+    "unexpected_root_files": 0,
+    "root_hygiene_pass": true
+  },
+  "repository_validation": {
+    "ntpe_validate": "PASS_WITH_WARNINGS",
+    "warning_details": "core.prompt_builder.prompt_builder ModuleNotFoundError (matches baseline)"
+  },
+  "regression_safety": {
+    "provider_invocations": 0,
+    "network_calls": 0,
+    "real_translation_calls": 0
+  },
+  "historical_artifact_protection": {
+    "restored": 0
+  },
+  "git_boundary": {
+    "git_diff_check": "PASS",
+    "head_equals_origin_main": true,
+    "local_ahead": 0,
+    "local_behind": 0
+  },
+  "r1i_artifact_handling": {
+    "artifacts_staged": false,
+    "artifacts_committed": false,
+    "artifacts_deleted": false,
+    "artifacts_moved": false,
+    "recorded_separately": true
+  },
+  "final_baseline_definition": {
+    "post_r1_baseline_commit": "76ea24f1e34c0f1796236de4d676404d7e45f00a",
+    "post_r1_remote_baseline": "76ea24f1e34c0f1796236de4d676404d7e45f00a",
+    "post_r1_branch": "main",
+    "remote_divergence": "0 / 0",
+    "r1_committed_paths": 41,
+    "r1_commit_unexpected_paths": 0,
+    "r1_commit_missing_paths": 0,
+    "provider_invocations": 0,
+    "network_calls": 0,
+    "real_translation_calls": 0
+  },
+  "handoff_rules": [
+    "76ea24f is the authoritative post-R1 Git baseline",
+    "origin/main is synchronized to 76ea24f",
+    "R1 commit is closed and must not be amended",
+    "Existing dirty worktree (321 paths) is NOT part of the R1 commit",
+    "Existing dirty worktree must NOT be reset/cleaned automatically",
+    "R1-I audit artifacts (2) remain uncommitted",
+    "Any future work must establish its own explicit commit boundary",
+    "No future agent may use git add . or git add -A",
+    "Protected Worktree (252 paths) remains protected until explicitly reclassified",
+    "UNKNOWN (34 paths) remains UNKNOWN until independently reconciled",
+    "Historical artifacts must not be restored merely to satisfy old paths",
+    "Future changes must be staged through an explicit allowlist"
+  ],
+  "pass_criteria": {
+    "all_29_satisfied": true
+  },
+  "unresolved_issues": [],
+  "deliverables": [
+    "docs/governance/repository/P0_FINAL_12_R1_J_POST_R1_BASELINE_HANDOFF_AUDIT.md",
+    "artifacts/P0_FINAL_12_R1_J_Post_R1_Baseline_Handoff_Audit_Report.json"
+  ],
+  "staged": false,
+  "committed": false
+}

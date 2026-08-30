@@ -1,0 +1,50 @@
+{
+  "remediation_id": "P0-FINAL-15-F",
+  "status": "COMPLETED",
+  "timestamp": "2026-08-25",
+  "migration": {
+    "model_id": {
+      "from": "meta/llama-3.3-70b-instruct",
+      "to": "minimaxai/minimax-m3"
+    },
+    "provider_id": {
+      "from": "nvidia-meta-llama-3.3-70b-instruct",
+      "to": "nvidia-minimax-m3"
+    }
+  },
+  "files_modified": [
+    {
+      "path": "tests/unit/adapters/test_production_submission_adapter.py",
+      "changes": 1,
+      "test_result": "34/34 PASSED"
+    },
+    {
+      "path": "tests/unit/test_controlled_provider_routing.py",
+      "changes": 2,
+      "test_result": "40/40 PASSED"
+    },
+    {
+      "path": "core/controlled_provider_routing/routing_policy.py",
+      "changes": 1,
+      "test_result": "N/A (source fix)"
+    }
+  ],
+  "authoritative_source": "core/controlled_provider_routing/provider_profiles.py",
+  "total_tests": 74,
+  "total_passed": 74,
+  "total_failed": 0,
+  "regressions": 0,
+  "issues_resolved": [
+    "String replacement exact formatting",
+    "Module name typo",
+    "Fixture defaults (evidence function)",
+    "Routing policy primary_provider_id sync"
+  ],
+  "root_cause": "DEFAULT_ROUTING_POLICY.primary_provider_id was stale, causing select_provider_route() to return 'primary_provider_missing'",
+  "compliance": {
+    "no_commits": true,
+    "no_pushes": true,
+    "all_tests_pass": true,
+    "no_regressions": true
+  }
+}

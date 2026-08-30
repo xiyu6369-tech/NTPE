@@ -2,7 +2,7 @@
 
 - Status: warning
 - Overall Score: 78.0/100
-- Previous Stage: `provider-v3-test`
+- Previous Stage: `test-retry-path`
 
 | Test Set | Exists | Score | Status | Key Notes |
 |---|---|---:|---|---|

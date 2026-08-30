@@ -1,0 +1,216 @@
+{
+  "audit_id": "P0-FINAL-15-F-RATE-LIMIT-RESILIENCE",
+  "timestamp": "2026-08-26T15:36:38Z",
+  "baseline_commit": "8c999b1",
+  "baseline_branch": "origin/main",
+  "status": "AUDIT_COMPLETE",
+  "core_question": "NTPE 現在面對 NVIDIA 429 時，究竟是「正常受控失敗」，還是「可以自動恢復」？",
+  "answer": "正常受控失敗",
+  "phase_a": {
+    "configuration": {
+      "provider_attempts": {
+        "source": "CLI --provider-attempts / speed profile / max_retries+1",
+        "default_value": "max_retries=3 -> 4 attempts",
+        "speed_profile_values": {
+          "fast": 2,
+          "balanced": 2,
+          "quality": 3
+        }
+      },
+      "retry_base_seconds": {
+        "source": "CLI --retry-base-seconds",
+        "default": 5.0
+      },
+      "max_retries": {
+        "source": "CLI --max-retries",
+        "default": 3
+      },
+      "NTPE_FALLBACK_MODELS": {
+        "source": "ENV var / CLI --fallback-models",
+        "default": "",
+        "configured": false
+      },
+      "NTPE_TIMEOUT_RETRY_DELAYS": {
+        "source": "ENV var",
+        "default": "5,15,30"
+      },
+      "NTPE_CAPACITY_RETRY_DELAYS": {
+        "source": "ENV var",
+        "default": "60,120,180"
+      }
+    },
+    "behavioral_answers": {
+      "q1_429_consumes_quota": {
+        "answer": true,
+        "evidence": "translate_package_with_retry() loop increments attempt per iteration; each iteration = 1 provider request"
+      },
+      "q2_rate_limiter_recalculates": {
+        "answer": false,
+        "evidence": "No client-side rate limiter class found; delays purely exponential backoff via retry_delay_seconds()"
+      },
+      "q3_max_attempts_includes_first": {
+        "answer": true,
+        "evidence": "Line 529: attempts = max(1, int(options.provider_attempts or (int(options.max_retries) + 1)))"
+      },
+      "q4_chunks_share_state": {
+        "answer": false,
+        "evidence": "New translate_package_with_retry() call per chunk; no cross-chunk rate-limit state"
+      },
+      "q5_fallback_implemented": {
+        "answer": false,
+        "evidence": "_provider_model_chain() builds list but _provider_model_for_attempt() rotates unconditionally; never triggered specifically on 429"
+      },
+      "q6_fallback_violates_default": {
+        "answer": "N/A",
+        "evidence": "Not implemented; would not violate if implemented correctly (primary remains minimaxai/minimax-m3)"
+      },
+      "q7_multi_layer_retry_excess": {
+        "answer": true,
+        "evidence": "Legacy path: QA attempts (up to 4) x provider attempts (up to 4) = up to 64 requests/chunk"
+      }
+    },
+    "current_retry_flow": {
+      "function": "translate_package_with_retry",
+      "file": "lts/txt_translation_runtime.py",
+      "lines": "528-611",
+      "default_attempts": 4,
+      "backoff_sequence": "5s, 10s, 20s (exponential)",
+      "capacity_backoff_sequence": "60s, 120s, 180s (for 429/503/resourceexhausted)",
+      "retryable_patterns": [
+        "503",
+        "429",
+        "400",
+        "resourceexhausted",
+        "degraded",
+        "cannot be invoked",
+        "rate limit",
+        "too many requests",
+        "service unavailable",
+        "timeout",
+        "temporarily unavailable"
+      ]
+    },
+    "worst_case_provider_requests": {
+      "balanced_profile_4_chunks": 8,
+      "legacy_path_max_4_chunks": 64,
+      "quality_profile_4_chunks": 12,
+      "with_fallback_theoretical": "Would multiply further (NOT WORKING)"
+    }
+  },
+  "phase_b": {
+    "strategies": {
+      "conservative": {
+        "recommended": true,
+        "provider_attempts": 2,
+        "retry_base_seconds": 10.0,
+        "backoff_sequence": "10s, 20s",
+        "fallback_enabled": false,
+        "worst_case_requests_per_chunk": 2,
+        "worst_case_wait_per_chunk_seconds": 30,
+        "four_chunks_total_requests": 8,
+        "four_chunks_max_wait_seconds": 120,
+        "rationale": "Acknowledges NVIDIA rate limit is external; minimizes quota consumption; fails fast with clear incomplete status"
+      },
+      "standard": {
+        "recommended": false,
+        "provider_attempts": 3,
+        "retry_base_seconds": 5.0,
+        "backoff_sequence": "5s, 10s, 20s",
+        "fallback_enabled": false,
+        "worst_case_requests_per_chunk": 3,
+        "worst_case_wait_per_chunk_seconds": 35,
+        "four_chunks_total_requests": 12,
+        "four_chunks_max_wait_seconds": 140,
+        "rationale": "Current default behavior; reasonable for transient 429"
+      },
+      "resilient": {
+        "recommended": false,
+        "provider_attempts": 3,
+        "retry_base_seconds": 5.0,
+        "backoff_sequence": "5s, 10s, 20s",
+        "fallback_enabled": true,
+        "fallback_models_count": 1,
+        "worst_case_requests_per_chunk": 6,
+        "worst_case_wait_per_chunk_seconds": "35s + fallback delays",
+        "four_chunks_total_requests": 24,
+        "rationale": "Only viable AFTER fallback model switching is implemented and tested"
+      }
+    }
+  },
+  "phase_c": {
+    "fallback_implementation_status": {
+      "CONFIGURED": true,
+      "IMPLEMENTED": false,
+      "INTEGRATED": false,
+      "TESTED": false,
+      "LIVE_VERIFIED": false
+    },
+    "evidence": {
+      "CONFIGURED": "NTPE_FALLBACK_MODELS env var accepted; CLI --fallback-models parsed",
+      "IMPLEMENTED": "_provider_model_for_attempt() rotates models but never triggered on 429",
+      "INTEGRATED": "No error-type-specific fallback logic in retry loop",
+      "TESTED": "No tests verify fallback activation on 429",
+      "LIVE_VERIFIED": "Never exercised against real NVIDIA 429"
+    },
+    "root_cause": "Retry loop rotates models on EVERY attempt regardless of error type. For 429, this means all models in chain get tried sequentially with no intelligence about whether NVIDIA-wide limit applies.",
+    "required_implementation": "Need _should_fallback_on_error() that distinguishes model-specific degradation (fallback helps) from provider-wide rate limit (fallback unlikely to help)"
+  },
+  "phase_d": {
+    "completeness_gate": {
+      "file": "lts/txt_translation_runtime.py",
+      "lines": "1081-1106",
+      "logic": "error_chunks > 0 -> status = 'incomplete'; NEVER 'success' with partial chunks",
+      "quality_score_override": false
+    },
+    "compliance_matrix": [
+      {"completed_chunks": 4, "total_chunks": 4, "status": "success", "quality_score": "Any", "gate_result": "PASS"},
+      {"completed_chunks": 3, "total_chunks": 4, "status": "incomplete", "quality_score": "95.2/100", "gate_result": "BLOCKED"},
+      {"completed_chunks": 2, "total_chunks": 4, "status": "incomplete", "quality_score": "Any", "gate_result": "BLOCKED"},
+      {"completed_chunks": 1, "total_chunks": 4, "status": "incomplete", "quality_score": "Any", "gate_result": "BLOCKED"},
+      {"completed_chunks": 0, "total_chunks": 4, "status": "incomplete", "quality_score": "N/A", "gate_result": "BLOCKED"}
+    ],
+    "note": "The 95.2/100 from partial runs is evidence only, not a baseline"
+  },
+  "phase_e": {
+    "required_observability_fields": [
+      "chunk",
+      "attempt",
+      "http_status",
+      "retry_delay",
+      "rate_limiter_delay",
+      "total_elapsed",
+      "completed_chunks",
+      "fallback_model",
+      "final_status"
+    ],
+    "decision_matrix": [
+      {"provider_behavior": "All chunks 200", "ntpe_result": "success 4/4", "classification": "PASS - New baseline"},
+      {"provider_behavior": "Transient 429 (recovers)", "ntpe_result": "success 4/4", "classification": "PASS - Resilience works"},
+      {"provider_behavior": "Sustained 429", "ntpe_result": "incomplete 0-3/4", "classification": "BLOCKED_EXTERNAL_PROVIDER"},
+      {"provider_behavior": "429 + fallback works", "ntpe_result": "success 4/4", "classification": "PASS (requires Phase C implementation)"},
+      {"provider_behavior": "Partial + high quality", "ntpe_result": "incomplete", "classification": "BLOCKED - Gate holds"}
+    ],
+    "stop_condition": "If NVIDIA sustains 429 across all retry attempts for >=2 chunks: STOP live testing; Record BLOCKED_EXTERNAL_PROVIDER; Do NOT consume additional quota"
+  },
+  "deliverables": {
+    "audit_document": "docs/governance/repository/P0_FINAL_15_F_RATE_LIMIT_RESILIENCE_AUDIT.md",
+    "machine_readable_report": "artifacts/P0_FINAL_15_F_Rate_Limit_Resilience_Audit_Report.json"
+  },
+  "final_recommendations": [
+    "Adopt Conservative Strategy (2 attempts, 10s base) for current NVIDIA 429 environment",
+    "Implement true fallback before claiming auto-recovery capability",
+    "Keep RM6 Promotion BLOCKED until rate-limit resilience scope complete",
+    "Accept BLOCKED_EXTERNAL_PROVIDER as valid outcome when NVIDIA sustains 429"
+  ],
+  "key_file_references": {
+    "is_retryable_error": "lts/txt_translation_runtime.py:373-375",
+    "retry_delay_seconds": "lts/txt_translation_runtime.py:378-379",
+    "capacity_retry_delay_seconds": "lts/txt_translation_runtime.py:402-414",
+    "provider_model_chain": "lts/txt_translation_runtime.py:461-476",
+    "provider_model_for_attempt": "lts/txt_translation_runtime.py:479-484",
+    "translate_package_with_retry": "lts/txt_translation_runtime.py:528-611",
+    "completeness_gate": "lts/txt_translation_runtime.py:1081-1106",
+    "cli_fallback_models": "ntpe_production_translate.py:139-140,169-170,201-202,237-238",
+    "provider_attempts_propagation": "ntpe_production_translate.py:423,463,573,722,827,1011"
+  }
+}

@@ -1,6 +1,6 @@
 # NTPE Literary Diff Report — PS-03-integration
 
-Previous Stage: `provider-v3-test`
+Previous Stage: `test-retry-path`
 
 ## Smoke_Set
 Diff skipped because one side is missing.

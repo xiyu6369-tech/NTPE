@@ -889,6 +889,9 @@ def _translate_txt_with_runtime_pipeline(
                 "character_memory_scope": character_memory_scope,
                 "context_memory_store": context_memory_store,
                 "context_memory_scope": context_memory_scope,
+                # Retry configuration for provider
+                "provider_attempts": options.provider_attempts,
+                "retry_base_seconds": options.retry_base_seconds,
                 # Character memory metadata for checkpoint verification
                 "character_memory_hash": None,  # Will be populated after save
                 "character_memory_snapshot_version": None,
@@ -1075,17 +1078,45 @@ def _translate_txt_with_runtime_pipeline(
 
     elapsed = time.time() - t0
 
+    successful_chunks = sum(1 for r in records if r.get("status") == "success")
+    total_chunks = len(chunks)
+    error_chunks = total_chunks - successful_chunks
+
+    if error_chunks > 0:
+        return {
+            "status": "incomplete",
+            "input": str(input_path),
+            "output": str(final_output) if not options.dry_run and any(translated_chunks) else "",
+            "output_dir": str(output_dir),
+            "chunk_total": total_chunks,
+            "chunk_successful": successful_chunks,
+            "chunk_failed": error_chunks,
+            "resume_state": str(resume_state_path),
+            "records": records,
+            "summary": {
+                "total_chunks": total_chunks,
+                "successful_chunks": successful_chunks,
+                "failed_chunks": error_chunks,
+                "elapsed_seconds": round(elapsed, 2),
+            },
+            "error": f"Translation incomplete: {successful_chunks}/{total_chunks} chunks succeeded",
+            "pipeline_mode": "runtime",
+            "orchestrator_version": orchestrator.version,
+            "session_id": session_id,
+        }
+
     return {
         "status": "success",
         "input": str(input_path),
         "output": str(final_output),
         "output_dir": str(output_dir),
-        "chunk_total": len(chunks),
+        "chunk_total": total_chunks,
         "resume_state": str(resume_state_path),
         "records": records,
         "summary": {
-            "total_chunks": len(chunks),
-            "error": 0,
+            "total_chunks": total_chunks,
+            "successful_chunks": successful_chunks,
+            "failed_chunks": 0,
             "elapsed_seconds": round(elapsed, 2),
         },
         "pipeline_mode": "runtime",
