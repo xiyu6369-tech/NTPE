@@ -1,0 +1,161 @@
+{
+  "phase": "3D.1",
+  "audit_type": "Retry_Timeout_Path",
+  "baseline_commit": "e0b60071777aa624b43ecf82d7c88c40da4a636c",
+  "retry_layers": [
+    {
+      "layer": 1,
+      "name": "ProviderManager Retry (Inner)",
+      "component": "core/ai_provider/manager.py:ProviderManager.complete()",
+      "policy": "RetryPolicy(max_attempts=3, base_delay_seconds=10.0, backoff_factor=2.0)",
+      "owner": "ProviderManager",
+      "scope": "Transient provider errors (503, 429, timeout, etc.)",
+      "retryable_patterns": "RETRYABLE_PROVIDER_ERROR_PATTERNS from provider_runtime.py",
+      "non_retryable_patterns": "NON_RETRYABLE_PROVIDER_ERROR_PATTERNS (includes 408)",
+      "max_attempts": 3,
+      "base_delay_seconds": 10.0,
+      "backoff_factor": 2.0,
+      "production_active": true,
+      "notes": "Configured via build_translation_provider_manager() with settings from provider_config.json"
+    },
+    {
+      "layer": 2,
+      "name": "RuntimeProviderAdapter Retry (Disabled by Default)",
+      "component": "core/translation_runtime/runtime_provider.py:RuntimeProviderAdapter.translate_package()",
+      "policy": "RuntimeProviderPolicy(max_retries=0, retry_base_seconds=0.0)",
+      "owner": "RuntimeProviderAdapter",
+      "scope": "Runtime-level retry wrapper around TranslationEngine",
+      "retryable_patterns": "RETRYABLE_PROVIDER_ERROR_PATTERNS",
+      "max_attempts": 1,
+      "base_delay_seconds": 0.0,
+      "backoff_factor": 2.0,
+      "production_active": false,
+      "notes": "Max retries = 0 means disabled; used only when explicitly configured"
+    },
+    {
+      "layer": 3,
+      "name": "LTS Runtime Retry (Outer - Chunk Level)",
+      "component": "lts/txt_translation_runtime.py:translate_package_with_retry()",
+      "policy": "provider_attempts = max_retries + 1 (default 4), model fallback chain via NTPE_FALLBACK_MODELS",
+      "owner": "txt_translation_runtime.translate_package_with_retry",
+      "scope": "Per-chunk retry with model rotation on failure",
+      "retryable_patterns": "is_retryable_error() - includes 503, 429, resourceexhausted, degraded, timeout",
+      "max_attempts": "configurable (default 4)",
+      "base_delay_seconds": "configurable (default 5.0)",
+      "backoff_factor": "exponential with timeout/capacity differentiation",
+      "production_active": true,
+      "notes": "Handles model fallback chain; calls engine.translate_package() which goes through ProviderManager"
+    },
+    {
+      "layer": 4,
+      "name": "QA Retry Loop (Legacy Branch Only)",
+      "component": "lts/txt_translation_runtime.py:translate_txt() legacy branch (lines 2055-2145)",
+      "policy": "qa_attempts = max_retries + 1 (when qa_fail_policy=retry), adaptive feedback, targeted retry, segment recovery",
+      "owner": "txt_translation_runtime.translate_txt (legacy)",
+      "scope": "Quality-driven retry with prompt adaptation",
+      "retryable_patterns": "QA issues trigger retry; not provider errors",
+      "max_attempts": "configurable (default 4)",
+      "base_delay_seconds": "N/A (prompt adaptation, not time-based)",
+      "production_active": true,
+      "notes": "Only in legacy pipeline branch (--pipeline=legacy); runtime pipeline uses quality gates"
+    }
+  ],
+  "retry_chain_analysis": {
+    "execution_order": "LTS retry (outer) → RuntimeProviderAdapter (disabled) → ProviderManager (inner)",
+    "nested_retry_detected": false,
+    "duplicate_retry_detected": false,
+    "legacy_retry_wrapper_detected": false,
+    "hidden_retry_detected": false,
+    "critical_duplicate_retry_path": false,
+    "explanation": "LTS retry wraps the entire engine call; ProviderManager retry handles transient provider errors within each attempt. No duplicate retries for same error class at same level."
+  },
+  "timeout_layers": [
+    {
+      "layer": 1,
+      "name": "Connect Timeout",
+      "source": "NTPE_API_CONNECT_TIMEOUT env var (default: 10s)",
+      "owner": "NvidiaClient",
+      "scope": "TCP connection establishment"
+    },
+    {
+      "layer": 2,
+      "name": "Read/Request Timeout",
+      "source": "NTPE_API_TIMEOUT env var / NTPE_CURRENT_API_TIMEOUT / --api-timeout CLI (default: 180s for literary)",
+      "owner": "NvidiaClient",
+      "scope": "Full request/response cycle"
+    },
+    {
+      "layer": 3,
+      "name": "Provider Timeout (Speed Policy)",
+      "source": "_effective_provider_timeout() - 90s first attempt for short chunks (<700 chars)",
+      "owner": "txt_translation_runtime",
+      "scope": "Per-attempt provider timeout calculation"
+    },
+    {
+      "layer": 4,
+      "name": "Runtime Orchestrator Timeout",
+      "source": "NTPE_RUNTIME_TIMEOUT env var",
+      "owner": "RuntimeOrchestrator",
+      "scope": "Overall orchestration timeout"
+    }
+  ],
+  "timeout_priority_chain": [
+    "1. Explicit CLI --api-timeout / --api-connect-timeout",
+    "2. NTPE_API_TIMEOUT_EXPLICIT=1 env (makes env vars authoritative)",
+    "3. NTPE_API_TIMEOUT / NTPE_API_CONNECT_TIMEOUT env vars",
+    "4. Speed policy calculation (_effective_provider_timeout)",
+    "5. NTPE_SHORT_CHUNK_FIRST_TIMEOUT env (90s default for short chunks)",
+    "6. NTPE_API_TIMEOUT default (60s) / NTPE_API_CONNECT_TIMEOUT default (10s)"
+  ],
+  "timeout_conflicts": {
+    "multiple_timeout_owners": true,
+    "cascading_behavior": "Proper priority chain confirmed - explicit CLI > explicit env > speed policy > defaults",
+    "legacy_timeout_override": false,
+    "too_short_legacy_timeout": false,
+    "conflicting_timeout_owners": "NONE"
+  },
+  "chunking_layers": [
+    {
+      "layer": "Launcher Default",
+      "value": 600,
+      "source": "config/launcher_product_defaults.json / core/launcher_product/config.py",
+      "override": "--chunk-size CLI"
+    },
+    {
+      "layer": "TXT Runtime Default",
+      "value": 1000,
+      "source": "lts/txt_translation_runtime.py:DEFAULT_CHUNK_SIZE",
+      "override": "--chunk-size CLI / TxtTranslationOptions.chunk_size"
+    },
+    {
+      "layer": "Legacy Config",
+      "value": 3000,
+      "source": "config/config.json",
+      "override": "--chunk-size CLI"
+    },
+    {
+      "layer": "Regression Default",
+      "value": 1000,
+      "source": "ntpe_production_translate.py regression subcommand",
+      "override": "--chunk-size CLI"
+    }
+  ],
+  "token_budget_layers": [
+    {
+      "layer": "max_output_tokens",
+      "default": "Dynamic: min(4096, max(512, chunk_size * 2))",
+      "source": "lts/txt_translation_runtime.py:get_max_output_tokens()",
+      "override": "model_profile.max_output_tokens in package"
+    }
+  ],
+  "summary": {
+    "retry_layers_total": 4,
+    "active_retry_layers": 2,
+    "nested_retry": false,
+    "duplicate_retry": false,
+    "timeout_layers_total": 4,
+    "conflicting_timeout_owners": false,
+    "chunking_sources": 4,
+    "all_configurable_via_cli_or_env": true
+  }
+}

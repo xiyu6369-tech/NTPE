@@ -1,0 +1,313 @@
+{
+  "phase": "3D.2",
+  "audit_type": "Legacy_Pipeline_Reference_Pre_Cleanup",
+  "baseline_commit": "e0b60071777aa624b43ecf82d7c88c40da4a636c",
+  "references": [
+    {
+      "file": "ntpe_production_translate.py",
+      "line": 158,
+      "symbol": "--pipeline argument (txt subcommand)",
+      "reference_type": "CLI_PRODUCTION_SELECTOR",
+      "production_reachable": true,
+      "historical": false,
+      "test_only": false,
+      "documentation": false,
+      "action": "REMOVE - remove 'legacy' from choices and default"
+    },
+    {
+      "file": "ntpe_production_translate.py",
+      "line": 191,
+      "symbol": "--pipeline argument (batch subcommand)",
+      "reference_type": "CLI_PRODUCTION_SELECTOR",
+      "production_reachable": true,
+      "historical": false,
+      "test_only": false,
+      "documentation": false,
+      "action": "REMOVE - remove 'legacy' from choices and default"
+    },
+    {
+      "file": "ntpe_production_translate.py",
+      "line": 220,
+      "symbol": "--pipeline argument (epub subcommand)",
+      "reference_type": "CLI_PRODUCTION_SELECTOR",
+      "production_reachable": true,
+      "historical": false,
+      "test_only": false,
+      "documentation": false,
+      "action": "REMOVE - remove 'legacy' from choices and default"
+    },
+    {
+      "file": "ntpe_production_translate.py",
+      "line": 411,
+      "symbol": "pipeline_mode = getattr(args, 'pipeline', None) or os.environ.get('NTPE_RUNTIME_PIPELINE', 'runtime') (run_txt)",
+      "reference_type": "ENV_VAR_PRODUCTION_SELECTOR",
+      "production_reachable": true,
+      "historical": false,
+      "test_only": false,
+      "documentation": false,
+      "action": "REMOVE - hardcode to 'runtime'"
+    },
+    {
+      "file": "ntpe_production_translate.py",
+      "line": 412,
+      "symbol": "os.environ['NTPE_RUNTIME_PIPELINE'] = pipeline_mode (run_txt)",
+      "reference_type": "ENV_VAR_SETTER",
+      "production_reachable": true,
+      "historical": false,
+      "test_only": false,
+      "documentation": false,
+      "action": "REMOVE - no longer needed"
+    },
+    {
+      "file": "ntpe_production_translate.py",
+      "line": 450,
+      "symbol": "pipeline_mode = getattr(args, 'pipeline', None) or os.environ.get('NTPE_RUNTIME_PIPELINE', 'runtime') (run_batch)",
+      "reference_type": "ENV_VAR_PRODUCTION_SELECTOR",
+      "production_reachable": true,
+      "historical": false,
+      "test_only": false,
+      "documentation": false,
+      "action": "REMOVE - hardcode to 'runtime'"
+    },
+    {
+      "file": "ntpe_production_translate.py",
+      "line": 451,
+      "symbol": "os.environ['NTPE_RUNTIME_PIPELINE'] = pipeline_mode (run_batch)",
+      "reference_type": "ENV_VAR_SETTER",
+      "production_reachable": true,
+      "historical": false,
+      "test_only": false,
+      "documentation": false,
+      "action": "REMOVE - no longer needed"
+    },
+    {
+      "file": "ntpe_production_translate.py",
+      "line": 493,
+      "symbol": "pipeline_mode = getattr(args, 'pipeline', None) or os.environ.get('NTPE_RUNTIME_PIPELINE', 'runtime') (run_epub)",
+      "reference_type": "ENV_VAR_PRODUCTION_SELECTOR",
+      "production_reachable": true,
+      "historical": false,
+      "test_only": false,
+      "documentation": false,
+      "action": "REMOVE - hardcode to 'runtime'"
+    },
+    {
+      "file": "ntpe_production_translate.py",
+      "line": 494,
+      "symbol": "os.environ['NTPE_RUNTIME_PIPELINE'] = pipeline_mode (run_epub)",
+      "reference_type": "ENV_VAR_SETTER",
+      "production_reachable": true,
+      "historical": false,
+      "test_only": false,
+      "documentation": false,
+      "action": "REMOVE - no longer needed"
+    },
+    {
+      "file": "lts/txt_translation_runtime.py",
+      "line": 614,
+      "symbol": "_pipeline_mode() function",
+      "reference_type": "LEGACY_PIPELINE_SELECTOR_FUNCTION",
+      "production_reachable": true,
+      "historical": false,
+      "test_only": false,
+      "documentation": false,
+      "action": "REMOVE - function no longer needed"
+    },
+    {
+      "file": "lts/txt_translation_runtime.py",
+      "line": 615,
+      "symbol": "_pipeline_mode() docstring: 'Return the active translation pipeline mode (runtime or legacy).'",
+      "reference_type": "DOCUMENTATION_IN_CODE",
+      "production_reachable": true,
+      "historical": false,
+      "test_only": false,
+      "documentation": true,
+      "action": "REMOVE - function removed"
+    },
+    {
+      "file": "lts/txt_translation_runtime.py",
+      "line": 1938,
+      "symbol": "if _pipeline_mode() == 'runtime': (legacy branch split)",
+      "reference_type": "LEGACY_BRANCH_CONDITION",
+      "production_reachable": true,
+      "historical": false,
+      "test_only": false,
+      "documentation": false,
+      "action": "REMOVE - legacy branch removed, runtime path becomes only path"
+    },
+    {
+      "file": "lts/txt_translation_runtime.py",
+      "lines": "1965-2145",
+      "symbol": "Legacy branch implementation in translate_txt()",
+      "reference_type": "LEGACY_EXECUTION_PATH",
+      "production_reachable": true,
+      "historical": false,
+      "test_only": false,
+      "documentation": false,
+      "action": "REMOVE - entire legacy branch"
+    }
+  ],
+  "test_references": [
+    {
+      "file": "tools/canary/run_canary.py",
+      "line": 64,
+      "symbol": "env['NTPE_RUNTIME_PIPELINE'] = mode",
+      "reference_type": "TEST_TOOL_SELECTOR",
+      "production_reachable": false,
+      "historical": false,
+      "test_only": true,
+      "documentation": false,
+      "action": "UPDATE - remove 'legacy' mode support or update tool"
+    },
+    {
+      "file": "tools/canary/run_entity_canary.py",
+      "line": 77,
+      "symbol": "env['NTPE_RUNTIME_PIPELINE'] = mode",
+      "reference_type": "TEST_TOOL_SELECTOR",
+      "production_reachable": false,
+      "historical": false,
+      "test_only": true,
+      "documentation": false,
+      "action": "UPDATE - remove 'legacy' mode support or update tool"
+    },
+    {
+      "file": "tools/canary/run_entity_canary.py",
+      "line": 610,
+      "symbol": "Verify legacy pipeline still works (docstring)",
+      "reference_type": "DOCUMENTATION_IN_CODE",
+      "production_reachable": false,
+      "historical": false,
+      "test_only": true,
+      "documentation": true,
+      "action": "UPDATE - remove legacy verification"
+    },
+    {
+      "file": "tools/canary/run_entity_canary.py",
+      "line": 782,
+      "symbol": "| Legacy pipeline works | **{legacy_compat['result']}**",
+      "reference_type": "TEST_REPORTING",
+      "production_reachable": false,
+      "historical": false,
+      "test_only": true,
+      "documentation": false,
+      "action": "UPDATE - remove legacy reporting"
+    },
+    {
+      "file": "tools/canary/run_entity_canary.py",
+      "line": 824,
+      "symbol": "failed_reasons.append('legacy pipeline failed')",
+      "reference_type": "TEST_LOGIC",
+      "production_reachable": false,
+      "historical": false,
+      "test_only": true,
+      "documentation": false,
+      "action": "UPDATE - remove legacy check"
+    },
+    {
+      "file": "tools/canary/run_entity_canary.py",
+      "line": 963,
+      "symbol": "print('[DEBUG] Starting legacy pipeline...', flush=True)",
+      "reference_type": "TEST_LOGIC",
+      "production_reachable": false,
+      "historical": false,
+      "test_only": true,
+      "documentation": false,
+      "action": "UPDATE - remove legacy debug"
+    },
+    {
+      "file": "tools/canary/run_canary.py",
+      "line": 353,
+      "symbol": "failed_reasons.append('legacy pipeline failed')",
+      "reference_type": "TEST_LOGIC",
+      "production_reachable": false,
+      "historical": false,
+      "test_only": true,
+      "documentation": false,
+      "action": "UPDATE - remove legacy check"
+    },
+    {
+      "file": "tests/unit/adapters/test_production_submission_adapter.py",
+      "line": 364,
+      "symbol": "assert call_kwargs['env']['NTPE_RUNTIME_PIPELINE'] == 'runtime'",
+      "reference_type": "UNIT_TEST_ASSERTION",
+      "production_reachable": false,
+      "historical": false,
+      "test_only": true,
+      "documentation": false,
+      "action": "UPDATE - assertion still valid (runtime is now only mode)"
+    },
+    {
+      "file": "tests/series/test_batch5_7_orchestration.py",
+      "line": 1030,
+      "symbol": "os.environ['NTPE_RUNTIME_PIPELINE'] = 'legacy'",
+      "reference_type": "INTEGRATION_TEST_LEGACY_MODE",
+      "production_reachable": false,
+      "historical": false,
+      "test_only": true,
+      "documentation": false,
+      "action": "REMOVE_TEST - tests explicitly exercising legacy pipeline behavior"
+    },
+    {
+      "file": "tests/series/test_batch5_7_orchestration.py",
+      "lines": "335,355,363,390,712,757,761,793,800,818,1049",
+      "symbol": "os.environ['NTPE_RUNTIME_PIPELINE'] = 'runtime' / pop",
+      "reference_type": "INTEGRATION_TEST_RUNTIME_MODE",
+      "production_reachable": false,
+      "historical": false,
+      "test_only": true,
+      "documentation": false,
+      "action": "KEEP - testing canonical runtime mode"
+    }
+  ],
+  "production_adapter_references": [
+    {
+      "file": "core/adapters/production_submission_adapter.py",
+      "line": 187,
+      "symbol": "env['NTPE_RUNTIME_PIPELINE'] = 'runtime'",
+      "reference_type": "PRODUCTION_ADAPTER_RUNTIME_ENFORCEMENT",
+      "production_reachable": true,
+      "historical": false,
+      "test_only": false,
+      "documentation": false,
+      "action": "UPDATE - remove env var setting (no longer needed) or keep as explicit enforcement"
+    },
+    {
+      "file": "core/adapters/production_submission_adapter.py",
+      "line": 222,
+      "symbol": "env['NTPE_RUNTIME_PIPELINE'] = 'runtime'",
+      "reference_type": "PRODUCTION_ADAPTER_RUNTIME_ENFORCEMENT",
+      "production_reachable": true,
+      "historical": false,
+      "test_only": false,
+      "documentation": false,
+      "action": "UPDATE - remove env var setting (no longer needed) or keep as explicit enforcement"
+    }
+  ],
+  "historical_references": [
+    {
+      "file": "archive/historical/audits/legacy_capability_recovery/batch1/generate_lcr_batch1_audit.py",
+      "line": 106,
+      "symbol": "legacy('dynamic_character_extraction', ...)",
+      "reference_type": "HISTORICAL_AUDIT",
+      "production_reachable": false,
+      "historical": true,
+      "test_only": false,
+      "documentation": false,
+      "action": "KEEP - historical evidence in archive/"
+    }
+  ],
+  "summary": {
+    "production_cli_selectors": 3,
+    "production_env_selectors": 6,
+    "legacy_pipeline_functions": 1,
+    "legacy_branch_conditions": 1,
+    "legacy_execution_path_lines": 181,
+    "test_tool_selectors": 6,
+    "test_assertions": 1,
+    "production_adapter_enforcements": 2,
+    "historical_references": 1,
+    "total_production_reachable": 13,
+    "total_test_only": 8,
+    "total_historical": 1
+  }
+}

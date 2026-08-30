@@ -1,0 +1,93 @@
+{
+  "phase": "3D.2",
+  "audit_type": "Execution_Path_Post_Cleanup",
+  "baseline_commit": "e0b60071777aa624b43ecf82d7c88c40da4a636c",
+  "canonical_production_paths": {
+    "TXT": {
+      "entry_point": "ntpe_production_translate.py:run_txt()",
+      "runtime": "lts/txt_translation_runtime.py:translate_txt()",
+      "pipeline": "_translate_txt_with_runtime_pipeline() (RuntimeOrchestrator)",
+      "engine": "core/translation_engine/translation_engine.py:TranslationEngine",
+      "provider_manager": "core/translation_engine/provider_runtime.py:build_translation_provider_manager()",
+      "provider": "core/translation_engine/provider_runtime.py:NvidiaTranslationProvider",
+      "client": "core/translation_engine/nvidia_client.py:NvidiaClient",
+      "model": "meta/llama-3.2-90b-vision-instruct",
+      "endpoint": "https://integrate.api.nvidia.com/v1/chat/completions",
+      "status": "CANONICAL"
+    },
+    "Batch": {
+      "entry_point": "ntpe_production_translate.py:run_batch()",
+      "runtime": "lts/batch_translation_runtime.py:translate_batch()",
+      "delegates_to": "lts/txt_translation_runtime.py:translate_txt()",
+      "pipeline": "_translate_txt_with_runtime_pipeline() (RuntimeOrchestrator)",
+      "engine": "core/translation_engine/translation_engine.py:TranslationEngine",
+      "provider_manager": "core/translation_engine/provider_runtime.py:build_translation_provider_manager()",
+      "provider": "core/translation_engine/provider_runtime.py:NvidiaTranslationProvider",
+      "client": "core/translation_engine/nvidia_client.py:NvidiaClient",
+      "model": "meta/llama-3.2-90b-vision-instruct",
+      "endpoint": "https://integrate.api.nvidia.com/v1/chat/completions",
+      "status": "CANONICAL"
+    },
+    "EPUB": {
+      "entry_point": "ntpe_production_translate.py:run_epub()",
+      "extraction": "core/adapters/epub_extraction_boundary.py:EpubExtractionBoundary",
+      "intake": "core/adapters/canonical_book_intake_adapter.py:CanonicalBookIntakeAdapter",
+      "temp_file": "tempfile.NamedTemporaryFile",
+      "delegates_to": "lts/txt_translation_runtime.py:translate_txt()",
+      "pipeline": "_translate_txt_with_runtime_pipeline() (RuntimeOrchestrator)",
+      "engine": "core/translation_engine/translation_engine.py:TranslationEngine",
+      "provider_manager": "core/translation_engine/provider_runtime.py:build_translation_provider_manager()",
+      "provider": "core/translation_engine/provider_runtime.py:NvidiaTranslationProvider",
+      "client": "core/translation_engine/nvidia_client.py:NvidiaClient",
+      "model": "meta/llama-3.2-90b-vision-instruct",
+      "endpoint": "https://integrate.api.nvidia.com/v1/chat/completions",
+      "status": "CANONICAL"
+    },
+    "Regression": {
+      "entry_point": "ntpe_production_translate.py:run_regression()",
+      "runtime": "ntpe_literary_regression.py:run_literary_regression()",
+      "delegates_to": "lts/txt_translation_runtime.py:translate_txt()",
+      "pipeline": "_translate_txt_with_runtime_pipeline() (RuntimeOrchestrator)",
+      "engine": "core/translation_engine/translation_engine.py:TranslationEngine",
+      "provider_manager": "core/translation_engine/provider_runtime.py:build_translation_provider_manager()",
+      "provider": "core/translation_engine/provider_runtime.py:NvidiaTranslationProvider",
+      "client": "core/translation_engine/nvidia_client.py:NvidiaClient",
+      "model": "meta/llama-3.2-90b-vision-instruct",
+      "endpoint": "https://integrate.api.nvidia.com/v1/chat/completions",
+      "status": "CANONICAL"
+    }
+  },
+  "legacy_paths_removed": {
+    "TXT_legacy": "REMOVED - was lts/txt_translation_runtime.py legacy branch (lines 1965-2617)",
+    "Batch_legacy": "REMOVED - was delegating to TXT legacy branch",
+    "EPUB_legacy": "REMOVED - was delegating to TXT legacy branch via run_txt() with --pipeline=legacy",
+    "pipeline_selector": "REMOVED - _pipeline_mode() function and --pipeline CLI flag",
+    "env_selector": "REMOVED - NTPE_RUNTIME_PIPELINE env var no longer read/set in production code"
+  },
+  "model_route_verification": {
+    "active_model": "meta/llama-3.2-90b-vision-instruct",
+    "rejected_models_production_reachable": 0,
+    "fallback_models_active": 0,
+    "model_override_points": "CLI --model only (per-invocation)"
+  },
+  "ri_preservation": {
+    "ri_01_408_non_retryable": "PASS",
+    "ri_02_dynamic_retry_config": "PASS",
+    "ri_03_dynamic_retry_usage": "PASS",
+    "ri_04_retry_metadata_propagation": "PASS",
+    "ri_05_balanced_profile_attempts_3": "PASS",
+    "ri_06_incomplete_handling": "PASS",
+    "ri_07_retry_metadata_enhanced_summary": "PASS",
+    "all_pass": true
+  },
+  "verification_status": {
+    "ntpe_validate": "PASS (core validation)",
+    "unit_tests": "PASS (113/113)",
+    "epub_canonical": true,
+    "txt_canonical": true,
+    "batch_canonical": true,
+    "model_unchanged": true,
+    "historical_preserved": true
+  },
+  "timestamp": "2026-08-30T17:55:38Z"
+}

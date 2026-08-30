@@ -1,0 +1,170 @@
+{
+  "phase": "3D.1",
+  "audit_type": "Legacy_Route_Closure",
+  "baseline_commit": "e0b60071777aa624b43ecf82d7c88c40da4a636c",
+  "legacy_routes": [
+    {
+      "legacy_component": "LTS Legacy Translation Pipeline Branch",
+      "legacy_path": "ntpe_production_translate.py:run_txt() → lts/txt_translation_runtime.py:translate_txt() legacy branch (lines 1965-2145)",
+      "reachable": true,
+      "entry_point": "CLI --pipeline=legacy or NTPE_RUNTIME_PIPELINE=legacy",
+      "trigger_condition": "Explicit user request via --pipeline legacy flag or NTPE_RUNTIME_PIPELINE=legacy env var",
+      "current_status": "ACTIVE_LEGACY_REACHABLE",
+      "risk_level": "HIGH",
+      "recommended_action": "Phase 3D.2: Remove legacy pipeline branch; deprecate --pipeline flag; make runtime the only path",
+      "evidence": [
+        "ntpe_production_translate.py:158,191,220 - --pipeline choices include 'legacy'",
+        "lts/txt_translation_runtime.py:614-616 - _pipeline_mode() reads NTPE_RUNTIME_PIPELINE",
+        "lts/txt_translation_runtime.py:1938-1963 - runtime branch vs legacy branch split",
+        "lts/txt_translation_runtime.py:1965-2145 - full legacy implementation with translate_package_with_retry"
+      ],
+      "differences_from_canonical": [
+        "Legacy builds prompt packages inline (build_prompt_package) vs RuntimeOrchestrator",
+        "Legacy uses translate_package_with_retry directly vs RuntimeProviderAdapter",
+        "Legacy has explicit QA retry loop (qa_attempts) vs runtime delegates to quality gates",
+        "Both converge on same TranslationEngine → provider_runtime → NvidiaClient"
+      ]
+    },
+    {
+      "legacy_component": "EPUB Legacy Pipeline Branch",
+      "legacy_path": "ntpe_production_translate.py:run_epub() → EpubExtractionBoundary → CanonicalBookIntakeAdapter → temp TXT → run_txt() with --pipeline=legacy",
+      "reachable": true,
+      "entry_point": "CLI epub subcommand with --pipeline=legacy",
+      "trigger_condition": "Explicit user request via --pipeline legacy flag",
+      "current_status": "ACTIVE_LEGACY_REACHABLE",
+      "risk_level": "HIGH",
+      "recommended_action": "Phase 3D.2: Remove legacy pipeline branch; EPUB always uses runtime path",
+      "evidence": [
+        "ntpe_production_translate.py:493-494 - run_epub reads pipeline mode",
+        "ntpe_production_translate.py:596 - run_epub calls run_txt with legacy path available"
+      ]
+    },
+    {
+      "legacy_component": "Batch Legacy Pipeline Branch",
+      "legacy_path": "ntpe_production_translate.py:run_batch() → lts/batch_translation_runtime.py:translate_batch() → translate_txt() with --pipeline=legacy",
+      "reachable": true,
+      "entry_point": "CLI batch subcommand with --pipeline=legacy",
+      "trigger_condition": "Explicit user request via --pipeline legacy flag",
+      "current_status": "ACTIVE_LEGACY_REACHABLE",
+      "risk_level": "HIGH",
+      "recommended_action": "Phase 3D.2: Remove legacy pipeline branch; batch always uses runtime path",
+      "evidence": [
+        "ntpe_production_translate.py:450-451 - run_batch reads pipeline mode",
+        "lts/batch_translation_runtime.py:445 - batch calls translate_txt which respects pipeline mode"
+      ]
+    },
+    {
+      "legacy_component": "Archive Stage Tests (ntpe_te_v40_*, ntpe_ter_v21_*)",
+      "legacy_path": "archive/stage_tests/*.py",
+      "reachable": false,
+      "entry_point": "NONE - not imported by production code",
+      "trigger_condition": "N/A - archive directory excluded from production imports",
+      "current_status": "HISTORICAL / ARCHIVE",
+      "risk_level": "INFO",
+      "recommended_action": "No action needed - already isolated in archive/",
+      "evidence": [
+        "archive/stage_tests/ntpe_te_v40_stage401_translation_reliability_baseline_test.py",
+        "archive/stage_tests/ntpe_te_v40_stage404_translation_failure_analyzer_test.py",
+        "archive/stage_tests/ntpe_te_v40_stage406_reliability_runtime_integration_adapter_test.py",
+        "archive/stage_tests/ntpe_te_v40_stage407_runtime_shadow_observation_test.py",
+        "archive/stage_tests/ntpe_ter_v21_provider_degraded_fallback_test.py"
+      ]
+    },
+    {
+      "legacy_component": "Beta/Stage Test Suites",
+      "legacy_path": "tests/stage_14/*, tests/beta_stage_07_6/*, tests/smoke/*",
+      "reachable": false,
+      "entry_point": "NONE - test-only modules",
+      "trigger_condition": "Only invoked via pytest",
+      "current_status": "TEST_ONLY",
+      "risk_level": "INFO",
+      "recommended_action": "No action needed - test infrastructure",
+      "evidence": [
+        "tests/stage_14/launcher_ai_provider_framework_test.py",
+        "tests/beta_stage_07_6/launcher_sdk_configuration_api_test.py",
+        "tests/smoke/launcher_ter_v19_stability_repetition_guard_smoke_test.py"
+      ]
+    },
+    {
+      "legacy_component": "Canary Tools (run_canary.py, run_entity_canary.py)",
+      "legacy_path": "tools/canary/run_canary.py, tools/canary/run_entity_canary.py",
+      "reachable": false,
+      "entry_point": "NONE - standalone CLI tools",
+      "trigger_condition": "Only invoked manually for validation",
+      "current_status": "TOOL_ONLY / VALIDATION_ONLY",
+      "risk_level": "INFO",
+      "recommended_action": "No action needed - validation tools",
+      "evidence": [
+        "tools/canary/run_canary.py:64 - sets NTPE_RUNTIME_PIPELINE=mode",
+        "tools/canary/run_entity_canary.py:77 - sets NTPE_RUNTIME_PIPELINE=mode"
+      ]
+    },
+    {
+      "legacy_component": "Controlled Runtime Adapter (core/controlled_runtime_adapter/adapter.py)",
+      "legacy_path": "core/controlled_runtime_adapter/adapter.py",
+      "reachable": false,
+      "entry_point": "NONE - only used in integration tests",
+      "trigger_condition": "Only imported by tests/integration/controlled_runtime_* tests",
+      "current_status": "TEST_ONLY / HISTORICAL",
+      "risk_level": "INFO",
+      "recommended_action": "No action needed - test infrastructure",
+      "evidence": [
+        "tests/integration/controlled_runtime_adapter_submission_test.py",
+        "tests/integration/controlled_runtime_execution_plan_adapter_test.py"
+      ]
+    },
+    {
+      "legacy_component": "Adaptive Context Shadow/Canary/Production Modules",
+      "legacy_path": "core/adaptive_context_runtime_shadow, core/adaptive_context_canary_*, core/adaptive_context_production_*",
+      "reachable": false,
+      "entry_point": "NONE - feature-gated behind quality_integration_v72 flags",
+      "trigger_condition": "Only active when --quality-integration-v72 and related flags explicitly enabled",
+      "current_status": "FEATURE_GATED / TEST_ONLY",
+      "risk_level": "LOW",
+      "recommended_action": "Monitor - only activates with explicit opt-in flags",
+      "evidence": [
+        "ntpe_production_translate.py:99 - install_txt_runtime_shadow_hook() (no-op-unless-shadow)",
+        "lts/txt_translation_runtime.py:674-686 - quality_context_scene_v72 gate",
+        "lts/txt_translation_runtime.py:694-704 - character_memory_v2 gate"
+      ]
+    },
+    {
+      "legacy_component": "Legacy QA Adapter (core/translation_quality_v5/legacy_qa_adapter.py)",
+      "legacy_path": "core/translation_quality_v5/legacy_qa_adapter.py → core/translation_quality_v5/unified_quality_gate.py",
+      "reachable": true,
+      "entry_point": "Active in runtime pipeline via attach_unified_report",
+      "trigger_condition": "Always active in runtime pipeline (not legacy branch)",
+      "current_status": "ACTIVE_PRODUCTION (unifies legacy QA with quality v5)",
+      "risk_level": "LOW",
+      "recommended_action": "No action - this is canonical unification layer, not legacy route",
+      "evidence": [
+        "core/translation_quality_v5/unified_quality_gate.py:101,135,147 - source='legacy_runtime_qa'",
+        "core/translation_discipline/runtime_integration.py:76 - runtime_qa = legacy or quality"
+      ]
+    },
+    {
+      "legacy_component": "Enterprise Config Center Legacy Preservation",
+      "legacy_path": "core/enterprise/config_center/profile_manager.py, migration.py, config_schema.py",
+      "reachable": false,
+      "entry_point": "NONE - enterprise config modules not used by production",
+      "trigger_condition": "Only if enterprise config center adopted",
+      "current_status": "UNUSED / PLANNING",
+      "risk_level": "INFO",
+      "recommended_action": "No action - unused modules",
+      "evidence": [
+        "profile_manager.py:15 - preserve_legacy: true (config only)",
+        "migration.py:17 - preserve_legacy: true (config only)"
+      ]
+    }
+  ],
+  "summary": {
+    "total_legacy_components": 10,
+    "production_reachable": 3,
+    "test_only": 3,
+    "archive_historical": 2,
+    "feature_gated": 1,
+    "unused": 1,
+    "critical_legacy_reachable": 3,
+    "note": "3 production-reachable legacy routes all gated by --pipeline=legacy flag (explicit opt-in)"
+  }
+}

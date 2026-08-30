@@ -1,0 +1,337 @@
+{
+  "phase": "3D.1",
+  "audit_type": "Production_Execution_Path_And_Legacy_Route_Closure",
+  "baseline": {
+    "commit": "e0b60071777aa624b43ecf82d7c88c40da4a636c",
+    "working_tree_clean": true,
+    "migration_commit": "e0b6007"
+  },
+  "canonical_production_path": {
+    "description": "Single canonical path confirmed for all production translation",
+    "entry_points": [
+      "ntpe_production_translate.py (CLI) - PRODUCTION_CANONICAL",
+      "core/translation_runtime/runtime.py (TranslationRuntime) - PRODUCTION_CANONICAL"
+    ],
+    "path_trace": [
+      "User Entry: CLI (txt/batch/epub/regression subcommands)",
+      "CLI Parser: ntpe_production_translate.py:build_parser()",
+      "Runtime: core/translation_runtime/runtime.py:TranslationRuntime",
+      "TXT/Batch: lts/txt_translation_runtime.py:translate_txt() / lts/batch_translation_runtime.py:translate_batch()",
+      "EPUB: ntpe_production_translate.py:run_epub() → extraction → run_txt()",
+      "Engine: core/translation_engine/translation_engine.py:TranslationEngine",
+      "Provider Manager: core/translation_engine/provider_runtime.py:build_translation_provider_manager()",
+      "Provider: core/translation_engine/provider_runtime.py:NvidiaTranslationProvider",
+      "Client: core/translation_engine/nvidia_client.py:NvidiaClient",
+      "NVIDIA API: https://integrate.api.nvidia.com/v1/chat/completions"
+    ],
+    "canonical_runtime": "lts/txt_translation_runtime.py (runtime pipeline mode)",
+    "canonical_engine": "core/translation_engine/translation_engine.py",
+    "canonical_provider": "core/translation_engine/provider_runtime.py",
+    "active_model": "meta/llama-3.2-90b-vision-instruct",
+    "status": "SINGLE_CANONICAL_PATH_CONFIRMED"
+  },
+  "production_translation_entry_points": {
+    "count": 4,
+    "entries": [
+      {
+        "name": "txt",
+        "file": "ntpe_production_translate.py",
+        "function": "run_txt",
+        "classification": "PRODUCTION_CANONICAL",
+        "pipeline_mode": "runtime (default) / legacy (optional)"
+      },
+      {
+        "name": "batch",
+        "file": "ntpe_production_translate.py",
+        "function": "run_batch",
+        "classification": "PRODUCTION_CANONICAL",
+        "pipeline_mode": "runtime (default) / legacy (optional)"
+      },
+      {
+        "name": "epub",
+        "file": "ntpe_production_translate.py",
+        "function": "run_epub",
+        "classification": "PRODUCTION_CANONICAL",
+        "pipeline_mode": "runtime (default) / legacy (optional)",
+        "note": "Extracts EPUB → temp TXT → delegates to run_txt()"
+      },
+      {
+        "name": "regression",
+        "file": "ntpe_production_translate.py",
+        "function": "run_regression",
+        "classification": "PRODUCTION_SECONDARY",
+        "note": "Literary regression testing; uses same runtime path"
+      }
+    ],
+    "legacy_reachable_entry_points": 0,
+    "test_only_entry_points": [
+      "tools/canary/run_canary.py",
+      "tools/canary/run_entity_canary.py",
+      "tests/integration/*",
+      "archive/stage_tests/*"
+    ]
+  },
+  "runtime_path_audit": {
+    "duplicate_translation_runtime": false,
+    "duplicate_provider_runtime": false,
+    "legacy_runtime_fallback": true,
+    "details": {
+      "canonical_runtime": "lts/txt_translation_runtime.py:_translate_txt_with_runtime_pipeline() (RuntimeOrchestrator path)",
+      "legacy_runtime": "lts/txt_translation_runtime.py:translate_txt() legacy branch (direct package building + translate_package_with_retry)",
+      "activation": "Via --pipeline flag or NTPE_RUNTIME_PIPELINE env var",
+      "default": "runtime",
+      "legacy_reachable": true,
+      "classification": "LEGACY_REACHABLE"
+    },
+    "parallel_runtime_implementations": [],
+    "wrapper_chains": [
+      "TranslationRuntime → RuntimeProviderAdapter → TranslationEngine"
+    ]
+  },
+  "provider_routing_audit": {
+    "old_provider_adapter": false,
+    "duplicate_nvidia_adapter": false,
+    "provider_fallback": true,
+    "details": {
+      "fallback_mechanism": "NTPE_FALLBACK_MODELS env var / --fallback-models CLI",
+      "default_fallbacks": "empty (none configured)",
+      "fallback_type": "NVIDIA model rotation within same provider",
+      "provider_selection": "Single NVIDIA provider (default_provider=nvidia)",
+      "model_selection": "Primary model from package model_profile; fallback chain rotates on retry"
+    },
+    "hidden_provider_selection": false,
+    "environment_override": "NTPE_FALLBACK_MODELS",
+    "metadata_override": "package.model_profile.model",
+    "runtime_override": "provider_attempts, retry_base_seconds",
+    "model_override": "--model CLI arg"
+  },
+  "model_override_audit": {
+    "active_production_path_resolves_to": "meta/llama-3.2-90b-vision-instruct",
+    "model_references_found": {
+      "meta/llama-3.2-90b-vision-instruct": "ACTIVE_PRODUCTION (56 locations migrated in Phase 3D)",
+      "meta/llama-3.3-70b-instruct": "HISTORICAL_ONLY (32 locations in archive/tests/historical artifacts)",
+      "minimaxai/minimax-m3": "HISTORICAL_ONLY (archive/tests)",
+      "nvidia/llama-3.1-nemotron-70b-instruct": "HISTORICAL_ONLY (archive/tests)",
+      "nvidia/riva-translate-4b-instruct-v2": "HISTORICAL_ONLY (archive/tests)"
+    },
+    "production_reachable_rejected_models": [],
+    "critical_legacy_model_route": false
+  },
+  "legacy_model_fallback_audit": {
+    "searched_models": [
+      "meta/llama-3.3-70b-instruct",
+      "minimaxai/minimax-m3",
+      "nvidia/llama-3.1-nemotron-70b-instruct",
+      "nvidia/riva-translate-4b-instruct-v2"
+    ],
+    "classification": {
+      "meta/llama-3.3-70b-instruct": "HISTORICAL_ONLY - only in archive/, P3A/P3B artifacts, and Stage 10.x historical validation tests",
+      "minimaxai/minimax-m3": "HISTORICAL_ONLY - only in archive/ and P15 diagnostic tools",
+      "nvidia/llama-3.1-nemotron-70b-instruct": "HISTORICAL_ONLY - only in P15 diagnostic tools",
+      "nvidia/riva-translate-4b-instruct-v2": "HISTORICAL_ONLY - only in P15 diagnostic tools"
+    },
+    "fallback_models_configurable": true,
+    "default_fallbacks": "none",
+    "production_reachable": false
+  },
+  "prompt_route_audit": {
+    "canonical_prompt_builder": "core/literary/LiteraryPromptBuilder",
+    "legacy_prompt_builder": false,
+    "duplicate_prompt_compiler": false,
+    "old_prompt_template": false,
+    "model_specific_prompt_branch": false,
+    "fallback_prompt": false,
+    "prompt_override": false,
+    "legacy_literary_path": false,
+    "prompt_contract_consistency": "SAME - both runtime and legacy paths use LiteraryPromptBuilder.build()"
+  },
+  "context_memory_route_audit": {
+    "canonical_context_path": "core/literary/LiteraryPromptBuilder → character_context + narrative_context + glossary_context",
+    "legacy_context_injection": false,
+    "duplicate_context_injection": false,
+    "context_fallback": false,
+    "old_knowledge_runtime": false,
+    "adaptive_context_modules": {
+      "core/character_memory_v2": "ACTIVE (used by runtime pipeline)",
+      "core/context_scene_memory": "FEATURE_GATED (quality_context_scene_v72 flag)",
+      "core/translation_quality_integration_v72": "FEATURE_GATED (quality_integration_v72 flag)"
+    },
+    "conflict_risk": "LOW - feature flags gate optional enhancements"
+  },
+  "retry_failure_path_audit": {
+    "retry_layers": [
+      {
+        "layer": "Provider Runtime",
+        "component": "core/translation_engine/provider_runtime.py:RetryPolicy",
+        "max_attempts": 3,
+        "owner": "ProviderManager",
+        "scope": "provider-level retries"
+      },
+      {
+        "layer": "Runtime Provider Adapter",
+        "component": "core/translation_runtime/runtime_provider.py:RuntimeProviderPolicy",
+        "max_retries": 0,
+        "owner": "RuntimeProviderAdapter",
+        "scope": "runtime-level retries (disabled by default)"
+      },
+      {
+        "layer": "LTS Runtime",
+        "component": "lts/txt_translation_runtime.py:translate_package_with_retry",
+        "provider_attempts": "configurable (max_retries + 1)",
+        "owner": "txt_translation_runtime",
+        "scope": "chunk-level retries with model fallback chain"
+      }
+    ],
+    "nested_retry": false,
+    "duplicate_retry": false,
+    "legacy_retry_wrapper": false,
+    "hidden_retry": false,
+    "critical_duplicate_retry_path": false,
+    "retry_chain": "LTS retry (outer) → RuntimeProviderAdapter retry (disabled) → ProviderManager retry (inner). LTS retry handles model fallback chain; ProviderManager handles transient errors.",
+    "retry_count_per_layer": "LTS: configurable; ProviderManager: 3; RuntimeProviderAdapter: 0",
+    "delay_strategy": "Exponential backoff with timeout/capacity differentiation"
+  },
+  "timeout_path_audit": {
+    "timeout_sources": [
+      {
+        "name": "connect_timeout",
+        "source": "NTPE_API_CONNECT_TIMEOUT env (default 10s)",
+        "owner": "NvidiaClient"
+      },
+      {
+        "name": "read_timeout",
+        "source": "NTPE_API_TIMEOUT env / NTPE_CURRENT_API_TIMEOUT / --api-timeout CLI (default 180s for literary)",
+        "owner": "NvidiaClient"
+      },
+      {
+        "name": "provider_timeout",
+        "source": "speed policy / _effective_provider_timeout (90s first attempt short chunk)",
+        "owner": "txt_translation_runtime"
+      },
+      {
+        "name": "runtime_timeout",
+        "source": "NTPE_RUNTIME_TIMEOUT env",
+        "owner": "RuntimeOrchestrator"
+      }
+    ],
+    "multiple_timeout_owners": true,
+    "legacy_timeout_override": false,
+    "cascading_behavior": "CLI explicit → env explicit → speed policy → defaults. Proper priority chain confirmed.",
+    "too_short_legacy_timeout": false
+  },
+  "chunking_token_path_audit": {
+    "chunking_sources": [
+      {
+        "name": "chunk_size",
+        "default": 1000 (TXT) / 600 (launcher) / 3000 (legacy config),
+        "owner": "TxtTranslationOptions / LauncherConfig",
+        "override": "--chunk-size CLI"
+      },
+      {
+        "name": "max_output_tokens",
+        "default": "dynamic based on chunk size (4096 max)",
+        "owner": "get_max_output_tokens() in txt_translation_runtime",
+        "override": "model_profile.max_output_tokens in package"
+      }
+    ],
+    "legacy_chunking": false,
+    "duplicate_chunking": false,
+    "cli_override": true,
+    "provider_specific_override": false,
+    "wrapper_level_defaults": false,
+    "entry_point_differences": "launcher defaults 600, TXT defaults 1000, legacy config 3000 - but all configurable"
+  },
+  "epub_path_audit": {
+    "path": "EPUB intake → EpubExtractionBoundary → CanonicalBookIntakeAdapter → temp TXT → run_txt() → canonical runtime",
+    "canonical_runtime": true,
+    "legacy_translation_path": false,
+    "bypasses_canonical": false,
+    "details": "EPUB extraction is pure parsing (no model). Translation delegates to TXT pipeline which uses canonical runtime when --pipeline=runtime (default)."
+  },
+  "txt_path_audit": {
+    "path": "TXT intake → split_text → build_prompt_package → translate_txt (runtime or legacy branch)",
+    "canonical_runtime": true,
+    "legacy_translation_path": false,
+    "runtime_legacy_convergence": "Both runtime and legacy branches use same TranslationEngine, same provider_runtime, same NvidiaClient",
+    "details": "Legacy branch only differs in prompt package construction (inline vs RuntimeOrchestrator). Both end at same TranslationEngine."
+  },
+  "wrapper_compatibility_audit": {
+    "wrappers": [
+      {
+        "name": "RuntimeProviderAdapter",
+        "file": "core/translation_runtime/runtime_provider.py",
+        "classification": "ACTIVE_PRODUCTION",
+        "purpose": "Makes TranslationEngine provider calls observable and replaceable"
+      },
+      {
+        "name": "TranslationRuntimeAdapter",
+        "file": "core/translation_runtime/adapter.py",
+        "classification": "ACTIVE_PRODUCTION",
+        "purpose": "Bridges PromptRuntime → TranslationEngine (RM-6.2.2)"
+      },
+      {
+        "name": "controlled_runtime_adapter",
+        "file": "core/controlled_runtime_adapter/adapter.py",
+        "classification": "TEST_ONLY / HISTORICAL",
+        "note": "Used in integration tests only"
+      },
+      {
+        "name": "ai_provider adapters",
+        "file": "core/ai_provider/adapters.py",
+        "classification": "ACTIVE_PRODUCTION",
+        "purpose": "Standard provider adapter configs (NVIDIA, OpenAI, Gemini, etc.)"
+      },
+      {
+        "name": "production_submission_adapter",
+        "file": "core/adapters/production_submission_adapter.py",
+        "classification": "ACTIVE_PRODUCTION",
+        "purpose": "CLI submission wrapper for production jobs"
+      },
+      {
+        "name": "legacy_qa_adapter",
+        "file": "core/translation_quality_v5/legacy_qa_adapter.py",
+        "classification": "ACTIVE_PRODUCTION (feature-gated)",
+        "purpose": "Unifies legacy QA with quality v5"
+      }
+    ],
+    "legacy_reachable_wrappers": 0
+  },
+  "adaptive_controlled_runtime_audit": {
+    "adaptive_context_modules": [
+      {
+        "name": "core/adaptive_context_runtime_shadow",
+        "classification": "TEST_ONLY / HISTORICAL",
+        "production_import": "only via install_txt_runtime_shadow_hook() which is no-op-unless-shadow"
+      },
+      {
+        "name": "core/adaptive_context_canary_*",
+        "classification": "TEST_ONLY",
+        "production_import": false
+      },
+      {
+        "name": "core/adaptive_context_production_*",
+        "classification": "TEST_ONLY / HISTORICAL",
+        "production_import": false
+      },
+      {
+        "name": "core/adaptive_context_activation_policy",
+        "classification": "FEATURE_GATED",
+        "production_import": "only when quality_integration_v72 flags enabled"
+      }
+    ],
+    "production_reachable": false,
+    "legacy_unreachable": true
+  },
+  "call_graph_summary": {
+    "entry_point": "ntpe_production_translate.py (CLI subcommands)",
+    "orchestrator": "TranslationRuntime (core/translation_runtime/runtime.py)",
+    "runtime": "lts/txt_translation_runtime.py (runtime pipeline) OR legacy branch",
+    "engine": "TranslationEngine (core/translation_engine/translation_engine.py)",
+    "prompt_builder": "LiteraryPromptBuilder (core/literary/__init__.py)",
+    "context_provider": "LiteraryPromptBuilder (character/narrative/glossary context)",
+    "provider_adapter": "NvidiaTranslationProvider (core/translation_engine/provider_runtime.py)",
+    "model": "meta/llama-3.2-90b-vision-instruct",
+    "retry_owner": "LTS translate_package_with_retry (outer) → ProviderManager (inner)",
+    "output_handler": "TranslationEngine → clean_translation_text → save_text"
+  }
+}

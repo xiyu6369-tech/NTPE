@@ -1,0 +1,90 @@
+{
+  "phase": "3D.2",
+  "review_type": "Human_Review_Package",
+  "baseline": "e0b60071777aa624b43ecf82d7c88c40da4a636c",
+  "current_state": "P3D2_LEGACY_CLOSED",
+  "review_date": "2026-08-30T19:25:20Z",
+  "changed_files": [
+    "ntpe_production_translate.py",
+    "lts/txt_translation_runtime.py",
+    "core/adapters/production_submission_adapter.py"
+  ],
+  "deleted_code_summary": {
+    "total_lines_removed": 695,
+    "total_lines_added": 26,
+    "net_lines_removed": 669,
+    "legacy_pipeline_branch_lines": 650,
+    "pipeline_selector_function_lines": 4,
+    "cli_flag_lines": 6,
+    "env_var_handler_lines": 12,
+    "production_adapter_env_lines": 2
+  },
+  "retained_code_summary": {
+    "canonical_runtime_path": "_translate_txt_with_runtime_pipeline() - FULLY PRESERVED",
+    "translation_engine": "TranslationEngine - NO CHANGES",
+    "provider_manager": "ProviderManager - NO CHANGES",
+    "provider_runtime": "NvidiaTranslationProvider - NO CHANGES",
+    "retry_mechanism": "FULLY PRESERVED (ProviderManager retry + RuntimeProviderAdapter + LTS retry)",
+    "timeout_policy": "FULLY PRESERVED",
+    "chunking_logic": "FULLY PRESERVED",
+    "context_memory": "FULLY PRESERVED (character_memory_v2, context_scene_memory)",
+    "model_resolution": "FULLY PRESERVED (meta/llama-3.2-90b-vision-instruct)",
+    "partial_handling": "FULLY PRESERVED (incomplete status, quality gates)",
+    "ri_01_408_non_retryable": "PRESERVED in provider_runtime.py",
+    "ri_02_dynamic_retry_config": "PRESERVED in TranslationProviderSettings",
+    "ri_03_dynamic_retry_usage": "PRESERVED in build_translation_provider_manager",
+    "ri_04_retry_metadata_propagation": "PRESERVED in TranslationProviderSettings.load()",
+    "ri_05_balanced_profile_attempts_3": "PRESERVED in provider_config.json max_attempts: 3",
+    "ri_06_incomplete_handling": "PRESERVED in txt_translation_runtime.py and batch_translation_runtime.py",
+    "ri_07_retry_metadata_enhanced_summary": "PRESERVED in batch_translation_runtime.py"
+  },
+  "legacy_selector_removed": {
+    "cli_flags": [
+      "ntpe_production_translate.py:158 --pipeline (txt subcommand)",
+      "ntpe_production_translate.py:191 --pipeline (batch subcommand)",
+      "ntpe_production_translate.py:220 --pipeline (epub subcommand)"
+    ],
+    "env_var_selectors": [
+      "ntpe_production_translate.py:411-412 (run_txt)",
+      "ntpe_production_translate.py:450-451 (run_batch)",
+      "ntpe_production_translate.py:493-494 (run_epub)"
+    ],
+    "pipeline_selector_function": "lts/txt_translation_runtime.py:_pipeline_mode() - REMOVED",
+    "legacy_branch_condition": "lts/txt_translation_runtime.py:1938 if _pipeline_mode() == 'runtime' - REMOVED",
+    "legacy_branch_implementation": "lts/txt_translation_runtime.py:1965-2617 - REMOVED (~650 lines)",
+    "production_adapter_env_enforcement": [
+      "core/adapters/production_submission_adapter.py:187 - REMOVED",
+      "core/adapters/production_submission_adapter.py:222 - REMOVED"
+    ]
+  },
+  "canonical_path_preserved": {
+    "txt_path": "CLI → TranslationRuntime → translate_txt() → _translate_txt_with_runtime_pipeline() → TranslationEngine → ProviderManager → NvidiaTranslationProvider → NvidiaClient → NVIDIA M3",
+    "epub_path": "CLI → run_epub() → EpubExtractionBoundary → CanonicalBookIntakeAdapter → temp TXT → translate_txt() → _translate_txt_with_runtime_pipeline()",
+    "batch_path": "CLI → run_batch() → translate_batch() → translate_txt() → _translate_txt_with_runtime_pipeline()",
+    "regression_path": "CLI → run_regression() → LiteraryRegressionOptions → translate_txt() → _translate_txt_with_runtime_pipeline()"
+  },
+  "legacy_selector_removed": true,
+  "canonical_path_preserved": true,
+  "epub_path_preserved": true,
+  "txt_path_preserved": true,
+  "batch_path_preserved": true,
+  "model_unchanged": true,
+  "provider_unchanged": true,
+  "runtime_invariants_unchanged": true,
+  "historical_evidence_untouched": true,
+  "test_results": {
+    "unit_tests": "113/113 PASS",
+    "ntpe_validate_core": "PASS (pre-existing .venv warning only)",
+    "ri_validation": "7/7 PASS",
+    "epub_canonical": "CONFIRMED",
+    "txt_canonical": "CONFIRMED",
+    "batch_canonical": "CONFIRMED"
+  },
+  "search_verification": {
+    "production_legacy_references": 0,
+    "historical_legacy_references": "PRESERVED in archive/, P3A/P3B artifacts, Stage 10.x tests",
+    "test_only_references": "tools/canary/ (test tools), tests/series/test_batch5_7_orchestration.py (explicit legacy test)"
+  },
+  "review_verdict": "P3D2_HUMAN_REVIEW_PASS",
+  "review_timestamp": "2026-08-30T19:25:20Z"
+}

@@ -1,0 +1,70 @@
+{
+  "phase": "3D.1",
+  "audit_type": "Production_Execution_Path_And_Legacy_Route_Closure",
+  "baseline": {
+    "commit": "e0b60071777aa624b43ecf82d7c88c40da4a636c",
+    "migration_commit": "e0b6007",
+    "working_tree_clean": true
+  },
+  "final_verdict": "P3D1_LEGACY_REACHABLE",
+  "canonical_production_path": "CLI → TranslationRuntime → lts/txt_translation_runtime.py (runtime pipeline) → TranslationEngine → ProviderManager → NvidiaTranslationProvider → NvidiaClient → NVIDIA M3",
+  "production_translation_entry_points": 4,
+  "canonical_runtime": "lts/txt_translation_runtime.py:_translate_txt_with_runtime_pipeline() (RuntimeOrchestrator path)",
+  "provider_path": "core/translation_engine/provider_runtime.py:build_translation_provider_manager() → NvidiaTranslationProvider",
+  "active_model": "meta/llama-3.2-90b-vision-instruct",
+  "rejected_eol_models_production_reachable": "NONE",
+  "legacy_production_routes": [
+    "LTS Legacy Pipeline Branch (--pipeline=legacy / NTPE_RUNTIME_PIPELINE=legacy)",
+    "EPUB Legacy Pipeline Branch (--pipeline=legacy)",
+    "Batch Legacy Pipeline Branch (--pipeline=legacy)"
+  ],
+  "duplicate_runtime": "NONE (single canonical runtime; legacy branch is explicit opt-in)",
+  "duplicate_retry": "NONE",
+  "conflicting_timeout": "NONE",
+  "legacy_prompt_route": "NONE",
+  "legacy_context_route": "NONE",
+  "epub_path": "CANONICAL (delegates to TXT runtime pipeline)",
+  "txt_path": "CANONICAL (runtime pipeline default; legacy branch gated by explicit flag)",
+  "m3_end_to_end_reachability": "PASS",
+  "production_path_count": 1,
+  "critical_risks": [
+    {
+      "id": "LEGACY_PIPELINE_BRANCH",
+      "severity": "HIGH",
+      "description": "Legacy translation pipeline branch remains production-reachable via --pipeline=legacy flag or NTPE_RUNTIME_PIPELINE=legacy env var. Three entry points (txt, batch, epub) can activate legacy branch.",
+      "trigger": "Explicit user request via --pipeline legacy flag",
+      "recommendation": "Phase 3D.2: Remove legacy branch; deprecate --pipeline flag; make runtime the only path"
+    }
+  ],
+  "recommended_next_action": "Phase 3D.2 Surgical Cleanup: Remove legacy pipeline branch from lts/txt_translation_runtime.py and --pipeline flag from ntpe_production_translate.py. Then proceed to P3E Live Golden Set Validation.",
+  "production_code_modified": false,
+  "config_modified": false,
+  "tests_modified": false,
+  "commit": "NONE",
+  "push": "NO",
+  "artifacts": [
+    "artifacts/p3d1_execution_path_audit/P3D1_EXECUTION_PATH_MATRIX.json",
+    "artifacts/p3d1_execution_path_audit/P3D1_LEGACY_ROUTE_MATRIX.json",
+    "artifacts/p3d1_execution_path_audit/P3D1_MODEL_ROUTE_MATRIX.json",
+    "artifacts/p3d1_execution_path_audit/P3D1_RETRY_TIMEOUT_PATH_MATRIX.json",
+    "docs/governance/repository/P3D1_PRODUCTION_EXECUTION_PATH_AUDIT.md"
+  ],
+  "repository_integrity": "PASS",
+  "questions_answered": {
+    "Q1_single_canonical_path": "YES - single canonical path confirmed (runtime pipeline), but legacy branch exists as explicit opt-in",
+    "Q2_txt_epub_same_runtime": "YES - EPUB delegates to TXT runtime; both use canonical runtime when --pipeline=runtime (default)",
+    "Q3_legacy_production_reachable": "YES - 3 legacy routes reachable via explicit --pipeline=legacy flag",
+    "Q4_duplicate_provider_path": "NO - single NVIDIA provider path",
+    "Q5_model_fallback_override": "NO - fallback configurable but none active; primary model fixed to M3",
+    "Q6_llama33_triggerable": "NO - all Llama 3.3 references in archive/historical only",
+    "Q7_minimax_triggerable": "NO - Minimax only in historical artifacts",
+    "Q8_other_rejected_models": "NO - all other models only in diagnostic tools/archive",
+    "Q9_nested_retry": "NO - retry layers properly separated (LTS outer, ProviderManager inner, RuntimeAdapter disabled)",
+    "Q10_conflicting_timeout": "NO - proper priority chain: CLI > env explicit > speed policy > defaults",
+    "Q11_legacy_prompt_path": "NO - both paths use same LiteraryPromptBuilder",
+    "Q12_legacy_context_path": "NO - canonical context path; adaptive modules feature-gated",
+    "Q13_adaptive_controlled_reachable": "NO - all feature-gated behind explicit opt-in flags",
+    "Q14_m3_end_to_end": "PASS - M3 request travels entry → runtime → engine → provider → NVIDIA M3 without fallback"
+  },
+  "timestamp": "2026-08-30T17:55:38Z"
+}

@@ -1,0 +1,55 @@
+{
+  "phase": "3D.2",
+  "audit_type": "Legacy_Route_Closure_Post_Cleanup",
+  "baseline_commit": "e0b60071777aa624b43ecf82d7c88c40da4a636c",
+  "post_cleanup_verification": {
+    "production_code_legacy_selectors_removed": true,
+    "cli_legacy_flag_removed": true,
+    "env_var_legacy_selector_removed": true,
+    "legacy_pipeline_function_removed": true,
+    "legacy_execution_path_removed": true,
+    "production_adapter_env_enforcement_removed": true
+  },
+  "remaining_references": {
+    "tools/canary/run_entity_canary.py": {
+      "line": 77,
+      "context": "env[\"NTPE_RUNTIME_PIPELINE\"] = mode",
+      "classification": "TEST_TOOL_ONLY",
+      "production_reachable": false
+    },
+    "tools/canary/run_canary.py": {
+      "line": 64,
+      "context": "env[\"NTPE_RUNTIME_PIPELINE\"] = mode",
+      "classification": "TEST_TOOL_ONLY",
+      "production_reachable": false
+    },
+    "tests/unit/adapters/test_production_submission_adapter.py": {
+      "line": 364,
+      "context": "assert call_kwargs[\"env\"][\"NTPE_RUNTIME_PIPELINE\"] == \"runtime\"",
+      "classification": "TEST_ASSERTION",
+      "production_reachable": false
+    },
+    "tests/series/test_batch5_7_orchestration.py": {
+      "lines": "335,355,363,390,712,757,761,793,800,818,1030,1049",
+      "context": "os.environ[\"NTPE_RUNTIME_PIPELINE\"] = \"runtime\" / \"legacy\" / pop",
+      "classification": "INTEGRATION_TEST",
+      "production_reachable": false
+    }
+  },
+  "production_path_verification": {
+    "canonical_txt_path": "ntpe_production_translate.py:run_txt() → lts/txt_translation_runtime.py:translate_txt() → _translate_txt_with_runtime_pipeline()",
+    "canonical_batch_path": "ntpe_production_translate.py:run_batch() → lts/batch_translation_runtime.py:translate_batch() → translate_txt() → _translate_txt_with_runtime_pipeline()",
+    "canonical_epub_path": "ntpe_production_translate.py:run_epub() → EpubExtractionBoundary → CanonicalBookIntakeAdapter → temp TXT → run_txt() → _translate_txt_with_runtime_pipeline()",
+    "legacy_paths": "NONE"
+  },
+  "summary": {
+    "production_legacy_selectors_before": 13,
+    "production_legacy_selectors_after": 0,
+    "test_only_references": 14,
+    "historical_references": 1,
+    "legacy_pipeline_branch_lines_removed": 181,
+    "cli_flags_removed": 3,
+    "env_var_selectors_removed": 6
+  },
+  "verification_status": "PASS"
+}

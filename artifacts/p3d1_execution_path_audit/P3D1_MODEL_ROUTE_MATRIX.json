@@ -1,0 +1,206 @@
+{
+  "phase": "3D.1",
+  "audit_type": "Model_Route_Closure",
+  "baseline_commit": "e0b60071777aa624b43ecf82d7c88c40da4a636c",
+  "migration_commit": "e0b6007",
+  "model_routes": [
+    {
+      "model_reference": "meta/llama-3.2-90b-vision-instruct",
+      "source_files": [
+        "config/provider_config.json",
+        "config/models.json",
+        "config/launcher_product_defaults.json",
+        "config/default_config.json",
+        "config/config.json",
+        "core/config.py",
+        "core/ai_provider/adapters.py",
+        "core/launcher_product/model_catalog.py",
+        "core/launcher_product/config.py",
+        "core/controlled_provider_routing/provider_profiles.py",
+        "core/controlled_provider_routing/routing_policy.py",
+        "core/controlled_multi_chunk_translation_canary/policy.py",
+        "core/controlled_translation_runtime_integration/policy.py",
+        "core/translation_quality_provider_canary/framework.py",
+        "core/adapters/production_submission_adapter.py",
+        "core/adaptive_context_authorized_provider_harness/config.py",
+        "core/adaptive_context_authorized_provider_cli/config.py",
+        "core/adaptive_context_authorized_provider_cli/parser.py",
+        "core/adaptive_context_single_real_invocation/config.py",
+        "core/adaptive_context_real_provider_preflight/config.py",
+        "core/adaptive_context_real_provider_preflight/validator.py",
+        "core/adaptive_context_real_provider_boundary/config.py",
+        "core/adaptive_context_controlled_provider_retry/config.py",
+        "core/adaptive_context_provider_execution_freeze/freeze.py",
+        "core/lcr_production_shadow_hook/batch107_real_provider_validation.py",
+        "core/translation_release/te_v6_release.py",
+        "core/expansion/style_expansion_engine.py",
+        "engine/nvidia.py",
+        "ntpe_production_translate.py",
+        "ntpe_literary_regression.py",
+        "lts/txt_translation_runtime.py",
+        "lts/batch_translation_runtime.py",
+        "profiles/passion_profile.json",
+        "tools/provider_controls/ntpe_single_real_provider_invocation.py",
+        "tools/generate_te_v720_controlled_canary.py",
+        "manifests/te_v600_final_release_manifest.json",
+        "manifests/ntpe_v20_stage1_translation_launcher_product_foundation_manifest.json",
+        "manifests/te_v720_stage1256_prompt_verification_canary_manifest.json",
+        "manifests/te_v720_stage1257_prompt_verification_canary_manifest.json",
+        "manifests/te_v720_authorized_provider_canary_manifest.json"
+      ],
+      "classification": "ACTIVE_PRODUCTION",
+      "production_reachable": true,
+      "historical": false,
+      "test_only": false,
+      "fallback": false,
+      "note": "Primary production model after Phase 3D migration"
+    },
+    {
+      "model_reference": "meta/llama-3.3-70b-instruct",
+      "source_files": [
+        "archive/stage_tests/ntpe_te_v40_stage401_translation_reliability_baseline_test.py",
+        "archive/stage_tests/ntpe_te_v40_stage404_translation_failure_analyzer_test.py",
+        "archive/stage_tests/ntpe_te_v40_stage406_reliability_runtime_integration_adapter_test.py",
+        "archive/stage_tests/ntpe_te_v40_stage407_runtime_shadow_observation_test.py",
+        "archive/stage_tests/ntpe_ter_v21_provider_degraded_fallback_test.py",
+        "tests/stage_14/launcher_ai_provider_framework_test.py",
+        "tests/smoke/launcher_ter_v19_stability_repetition_guard_smoke_test.py",
+        "tests/beta_stage_07_6/launcher_sdk_configuration_api_test.py",
+        "tests/unit/adapters/test_production_submission_adapter.py",
+        "tests/integration/translation_engine_v700_stage10101_provider_timeout_controlled_retry_test.py",
+        "tests/integration/translation_engine_v700_stage1010_single_real_provider_invocation_test.py",
+        "tests/integration/translation_engine_v700_stage104_real_provider_invocation_boundary_contract_test.py",
+        "tests/integration/translation_engine_v700_stage105_authorized_single_invocation_provider_harness_test.py",
+        "tests/integration/translation_engine_v700_stage106_authorized_provider_execution_cli_test.py",
+        "tests/integration/translation_engine_v700_stage107_provider_evidence_artifact_pipeline_test.py",
+        "tests/integration/translation_engine_v700_stage109_real_provider_execution_preflight_contract_test.py",
+        "artifacts/tic_batch2/TRANSLATION_CASES.json",
+        "artifacts/tic_batch2/TRANSLATION_CASE_INDEX.json",
+        "artifacts/tic_batch4/FAILURE_CORPUS_STATISTICS.json",
+        "artifacts/tic_batch4/FAILURE_CASE_INDEX.json",
+        "artifacts/tic_batch5/FAILURE_CORPUS_V2_STATISTICS.json",
+        "artifacts/tic_batch5/FAILURE_CASE_INDEX_V2.json",
+        "artifacts/pre_minimax_reconstructed_baseline_validation.json",
+        "artifacts/pre_minimax_surgical_separation_report.json",
+        "artifacts/pre_minimax_baseline_recovery_audit.json",
+        "artifacts/p3a_model_probe/P3A_MODEL_COMPATIBILITY_MATRIX.json",
+        "artifacts/p3b_model_comparison/P3B_MODEL_COMPARISON_REPORT.json",
+        "artifacts/p3b_model_comparison/P3B_MODEL_SCORECARD.json",
+        "artifacts/p3b_model_comparison/P3B_GOLDEN_SET_MANIFEST.json",
+        "tools/one_shots/p3a_model_compatibility_probe.py",
+        "tools/one_shots/p3a2_deepseek_v4_probe.py",
+        "tools/one_shots/p15i_nvidia_model_endpoint_matrix.py",
+        "tools/one_shots/p15j_nvidia_model_entitlement_diagnostic.py",
+        "tools/one_shots/p15k_nvidia_m1_429_semantics_diagnostic.py",
+        "tools/one_shots/p15l_nvidia_candidate_model_evaluation.py",
+        "tools/one_shots/p15m_nvidia_candidate_expansion.py",
+        "tools/one_shots/p15n1_5_ntpe_nvidia_provider_integration_boundary.py"
+      ],
+      "classification": "HISTORICAL_ONLY",
+      "production_reachable": false,
+      "historical": true,
+      "test_only": false,
+      "fallback": false,
+      "note": "All references in archive/, historical artifacts, and frozen Stage 10.x validation tests. No production code references remain after Phase 3D."
+    },
+    {
+      "model_reference": "minimaxai/minimax-m3",
+      "source_files": [
+        "artifacts/pre_minimax_reconstructed_baseline_validation.json",
+        "artifacts/pre_minimax_surgical_separation_report.json",
+        "artifacts/pre_minimax_baseline_recovery_audit.json",
+        "tools/one_shots/p15l_nvidia_candidate_model_evaluation.py",
+        "tools/one_shots/p15n1_5_ntpe_nvidia_provider_integration_boundary.py"
+      ],
+      "classification": "HISTORICAL_ONLY",
+      "production_reachable": false,
+      "historical": true,
+      "test_only": false,
+      "fallback": false,
+      "note": "Pre-Minimax baseline evidence; never in production config"
+    },
+    {
+      "model_reference": "nvidia/llama-3.1-nemotron-70b-instruct",
+      "source_files": [
+        "tools/one_shots/p15i_nvidia_model_endpoint_matrix.py",
+        "tools/one_shots/p15j_nvidia_model_entitlement_diagnostic.py",
+        "tools/one_shots/p15k_nvidia_m1_429_semantics_diagnostic.py",
+        "tools/one_shots/p15m_nvidia_candidate_expansion.py"
+      ],
+      "classification": "HISTORICAL_ONLY",
+      "production_reachable": false,
+      "historical": true,
+      "test_only": false,
+      "fallback": false,
+      "note": "P15 diagnostic tools only; never in production"
+    },
+    {
+      "model_reference": "nvidia/riva-translate-4b-instruct-v2",
+      "source_files": [
+        "tools/one_shots/p15j_nvidia_model_entitlement_diagnostic.py",
+        "tools/one_shots/p15k_nvidia_m1_429_semantics_diagnostic.py",
+        "tools/one_shots/p15l_nvidia_candidate_model_evaluation.py",
+        "tools/one_shots/p15m_nvidia_candidate_expansion.py"
+      ],
+      "classification": "HISTORICAL_ONLY",
+      "production_reachable": false,
+      "historical": true,
+      "test_only": false,
+      "fallback": false,
+      "note": "P15 diagnostic tools only; never in production"
+    },
+    {
+      "model_reference": "DeepSeek-V4 / DeepSeek-V3",
+      "source_files": [
+        "tools/one_shots/p3a2_deepseek_v4_probe.py"
+      ],
+      "classification": "HISTORICAL_ONLY",
+      "production_reachable": false,
+      "historical": true,
+      "test_only": false,
+      "fallback": false,
+      "note": "P3A.2 probe only; never in production"
+    }
+  ],
+  "fallback_model_configuration": {
+    "NTPE_FALLBACK_MODELS": "Environment variable for comma-separated fallback NVIDIA model IDs",
+    "CLI_flag": "--fallback-models",
+    "default": "empty (no fallbacks configured)",
+    "production_reachable": "CONFIGURABLE but NONE active",
+    "note": "Fallback chain rotates through configured models on retry; all must be NVIDIA models"
+  },
+  "model_override_points": [
+    {
+      "point": "CLI --model argument",
+      "default": "DEFAULT_MODEL constant (meta/llama-3.2-90b-vision-instruct)",
+      "reachable": true,
+      "scope": "Per-invocation override"
+    },
+    {
+      "point": "package.model_profile.model",
+      "default": "From TxtTranslationOptions / BatchTranslationOptions",
+      "reachable": true,
+      "scope": "Per-package override"
+    },
+    {
+      "point": "provider_config.json fallback_models",
+      "default": "empty array",
+      "reachable": true,
+      "scope": "Fallback chain (not primary model override)"
+    },
+    {
+      "point": "NTPE_FALLBACK_MODELS env var",
+      "default": "empty",
+      "reachable": true,
+      "scope": "Fallback chain only"
+    }
+  ],
+  "summary": {
+    "active_production_model": "meta/llama-3.2-90b-vision-instruct (56 locations migrated)",
+    "rejected_eol_models_production_reachable": 0,
+    "historical_models_preserved": 5,
+    "fallback_models_configurable_but_none_active": true,
+    "model_override_points_production_reachable": 4,
+    "critical_model_route_risk": false
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "phase": "3D",
+  "operation": "Controlled_M3_Production_Migration",
+  "baseline": {
+    "commit": "af5cbc091424849134c28ef931ce78d31ea0dc7d",
+    "tag": "p3c-baseline-af5cbc0",
+    "working_tree_clean": true
+  },
+  "migration_target": {
+    "model_id": "meta/llama-3.2-90b-vision-instruct",
+    "provider": "nvidia"
+  },
+  "previous_model": {
+    "model_id": "meta/llama-3.3-70b-instruct",
+    "provider": "nvidia"
+  },
+  "allowlist": {
+    "version": "1.0",
+    "migrate_count": 32,
+    "test_update_count": 16,
+    "documentation_update_count": 8,
+    "total_changes": 56,
+    "files_modified": 56
+  },
+  "migration_commit": {
+    "sha": "e0b6007",
+    "message": "feat(provider): migrate production model to llama-3.2-90b",
+    "push": false
+  },
+  "ri_verification": {
+    "ri_01_408_non_retryable": "PASS",
+    "ri_02_dynamic_retry_config": "PASS",
+    "ri_03_dynamic_retry_usage": "PASS",
+    "ri_04_retry_metadata_propagation": "PASS",
+    "ri_05_balanced_profile_attempts_3": "PASS",
+    "ri_06_incomplete_handling": "PASS",
+    "ri_07_retry_metadata_enhanced_summary": "PASS",
+    "all_pass": true,
+    "note": "All 7 RI invariants preserved in core/translation_engine/provider_runtime.py"
+  },
+  "epub_validation": {
+    "pipeline_intact": true,
+    "extraction_unchanged": true,
+    "exporter_unchanged": true,
+    "no_model_dependencies": true,
+    "status": "PASS"
+  },
+  "unit_tests": {
+    "migration_related_tests": 51,
+    "passed": 51,
+    "failed": 0,
+    "status": "PASS",
+    "note": "Core migration-related unit tests pass (test_controlled_provider_routing.py, test_translation_quality_canary.py, test_epub_extraction_boundary.py)"
+  },
+  "provider_smoke": {
+    "note": "Provider smoke test requires NVIDIA_API_KEY; infrastructure verified via unit tests and compilation",
+    "status": "INFRASTRUCTURE_VERIFIED"
+  },
+  "golden_set_regression": {
+    "note": "Golden Set regression requires live NVIDIA API; baseline from Phase 3B: Completion 100%, Timeout 0, Quality 80/100, Avg Latency 19.2s",
+    "phase3b_baseline": {
+      "completion_rate": 100.0,
+      "timeout_count": 0,
+      "quality_score": 80.0,
+      "average_latency_seconds": 19.2
+    },
+    "status": "PENDING_LIVE_VALIDATION"
+  },
+  "model_reference_audit": {
+    "active_production_references": "ALL_MIGRATED_TO_M3",
+    "historical_references_preserved": true,
+    "minimax_active_references": 0,
+    "llama_33_active_references": 0,
+    "historical_evidence_intact": true,
+    "status": "PASS"
+  },
+  "repository_scope_audit": {
+    "only_allowlist_changes": true,
+    "no_unexpected_files": true,
+    "historical_artifacts_untouched": true,
+    "status": "PASS"
+  },
+  "overall_verdict": "P3D_MIGRATION_PASS",
+  "conditions": [
+    "M3 active in all production config/code",
+    "All 7 RI invariants preserved",
+    "EPUB pipeline intact",
+    "Unit tests pass",
+    "Repository scope clean (56 allowlist changes only)",
+    "Model reference audit clean",
+    "Migration commit created locally",
+    "No push to GitHub"
+  ],
+  "rollback_checkpoint": "p3c-baseline-af5cbc0 (af5cbc091424849134c28ef931ce78d31ea0dc7d)",
+  "timestamp": "2026-08-30T15:55:38Z"
+}

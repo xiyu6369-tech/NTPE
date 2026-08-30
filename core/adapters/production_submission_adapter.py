@@ -184,7 +184,6 @@ class ProductionSubmissionAdapter:
         argv = self.build_cli_argv(request)
 
         env = os.environ.copy()
-        env["NTPE_RUNTIME_PIPELINE"] = "runtime"
 
         try:
             proc = subprocess.Popen(
@@ -219,7 +218,6 @@ class ProductionSubmissionAdapter:
         argv = self.build_cli_argv(request)
 
         env = os.environ.copy()
-        env["NTPE_RUNTIME_PIPELINE"] = "runtime"
 
         try:
             result = subprocess.run(
