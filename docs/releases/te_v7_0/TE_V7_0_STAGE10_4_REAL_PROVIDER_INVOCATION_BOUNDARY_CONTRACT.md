@@ -11,7 +11,7 @@ Stage 10.4 defines the isolated admission and invocation boundary required befor
 - Real mode also requires a separately supplied authorization identifier.
 - Credentials are resolved only from the allowlisted `NVIDIA_API_KEY` environment variable after admission. No API key field or CLI plaintext credential is accepted.
 - Provider URL is restricted to `https://integrate.api.nvidia.com/v1/chat/completions`.
-- Model is restricted to `meta/llama-3.3-70b-instruct`.
+- Model is restricted to `meta/llama-3.2-90b-vision-instruct`.
 - Execution is single-chunk only.
 - Each retry is passed through the Stage 10.2 attempt boundary and receives independent timing evidence.
 - timeout, HTTP 503, fallback and retry provenance remain visible in evidence.

@@ -17,7 +17,7 @@ class TranslationJobRequest:
     output_dir: Path
     quality_profile: str = "literary"
     speed: str = "balanced"
-    model: str = "meta/llama-3.3-70b-instruct"
+    model: str = "meta/llama-3.2-90b-vision-instruct"
     chunk_size: int = 1000
     resume: bool = True
     dry_run: bool = False
@@ -126,7 +126,7 @@ class ProductionSubmissionAdapter:
             argv.extend(["--chunk-size", str(request.chunk_size)])
         if request.speed != "balanced":
             argv.extend(["--speed", request.speed])
-        if request.model != "meta/llama-3.3-70b-instruct":
+        if request.model != "meta/llama-3.2-90b-vision-instruct":
             argv.extend(["--model", request.model])
         if not request.resume:
             argv.append("--no-resume")

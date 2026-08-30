@@ -16,7 +16,7 @@ DEFAULT_CONFIG: Dict[str, Any] = {
     "version": "1.0 Beta 1 Base",
     "provider": "nvidia",
     "api_key": "",
-    "model": "meta/llama-3.3-70b-instruct",
+    "model": "meta/llama-3.2-90b-vision-instruct",
     "timeout": 180,
     "rpm_limit": 40,
     "chunk_size": 3000,

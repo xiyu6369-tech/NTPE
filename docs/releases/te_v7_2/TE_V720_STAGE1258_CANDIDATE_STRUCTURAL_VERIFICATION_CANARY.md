@@ -19,7 +19,7 @@ No Prompt, Prompt Contract, Literary Prompt Builder, Provider layer, Runtime req
 
 ## Formal execution contract
 
-The future formal run is fixed to NVIDIA meta/llama-3.3-70b-instruct, Candidate arm only, one request, one attempt, no retry, no fallback, no cross-provider fallback, parallelism one, and no automatic rerun. Corpus resolution and request-plan construction occur before a new Stage 12.5.8 single-use claim is created.
+The future formal run is fixed to NVIDIA meta/llama-3.2-90b-vision-instruct, Candidate arm only, one request, one attempt, no retry, no fallback, no cross-provider fallback, parallelism one, and no automatic rerun. Corpus resolution and request-plan construction occur before a new Stage 12.5.8 single-use claim is created.
 
 Any failure in preflight steps 1–13 blocks before Provider execution with no claim and no request. After claim creation, the claim cannot be deleted, overwritten, or replayed, including after a timeout or local exception.
 

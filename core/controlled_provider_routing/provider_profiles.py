@@ -25,7 +25,7 @@ def _profile(provider_id, model_id, family, context_limit, output_limit, timeout
     return create_provider_profile(provider_id=provider_id,profile_version="1.0",model_id=model_id,provider_family=family,supported_source_languages=("ko","ja","en"),supported_target_languages=("zh-Hant",),context_limit=context_limit,output_limit=output_limit,supports_streaming=True,supports_json_mode=json_mode,expected_timeout_seconds=timeout,quality_contract_id=QUALITY_CONTRACT.contract_id,quality_contract_version=QUALITY_CONTRACT.version,prompt_contract_id="ntpe-literary-structured",prompt_contract_version="1.0",status="experimental")
 
 
-NVIDIA_PROFILE=_profile("nvidia-meta-llama-3.3-70b-instruct","meta/llama-3.3-70b-instruct","nvidia",131072,8192,180,True)
+NVIDIA_PROFILE=_profile("nvidia-meta-llama-3.2-90b-vision-instruct","meta/llama-3.2-90b-vision-instruct","nvidia",131072,8192,180,True)
 GEMINI_PROFILE=_profile("gemini-2.5-flash","gemini-2.5-flash","gemini",1048576,8192,120,True)
 PROVIDER_PROFILES=(NVIDIA_PROFILE,GEMINI_PROFILE)
 

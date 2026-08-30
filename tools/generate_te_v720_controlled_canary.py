@@ -70,7 +70,7 @@ def main() -> int:
     corpus_sha = _sha_file(CORPUS)
     glossary_sha = _fingerprint({"영희": "Yeong-hui", "민수": "Min-su"})
     configuration = CanaryConfiguration(
-        model="meta/llama-3.3-70b-instruct",
+        model="meta/llama-3.2-90b-vision-instruct",
         timeout_seconds=180,
         glossary_sha256=glossary_sha,
         profile="literary-ko-zh-TW",

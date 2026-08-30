@@ -8,7 +8,7 @@ TE v6.0 freezes the completed Translation Discipline, Translation Evidence, and 
 
 ## Frozen behavior
 
-- Provider: NVIDIA routing, `meta/llama-3.3-70b-instruct`, 40 RPM, timeout propagation, attempts, retry wait, 503 backpressure, request accounting, and budget remain unchanged.
+- Provider: NVIDIA routing, `meta/llama-3.2-90b-vision-instruct`, 40 RPM, timeout propagation, attempts, retry wait, 503 backpressure, request accounting, and budget remain unchanged.
 - Prompt: one injection source, discipline/adaptive feedback/naturalness feature flags, rollback, and token observability remain unchanged; eight active generation rules remain active.
 - Quality and retry: Quality v5, legacy adapter, unified gate, local repair, best attempt, completeness, repetition, unsupported-detail blocking, retry tiers, evidence requirement, fail-closed merge, and resume remain unchanged.
 - Evidence: offsets, monotonic alignment, confidence/reliability, evidence-to-retry, targeted merge, and audit are frozen. Unreliable evidence cannot authorize targeted retry.

@@ -83,7 +83,7 @@ def run_fake_transport_freeze(
     plans = tuple(
         ProviderAttemptPlan(
             attempt=index,
-            model="meta/llama-3.3-70b-instruct",
+            model="meta/llama-3.2-90b-vision-instruct",
             timeout_seconds=30 if index == 1 else 60,
             fallback_used=index > 1,
             estimated_input_tokens=100,

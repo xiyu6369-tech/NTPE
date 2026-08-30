@@ -51,7 +51,7 @@ def main() -> int:
         execution_authorization_token=token,
         execution_mode=args.execution_mode,
         session_id=args.session_id,
-        attempt_plan=(PreflightAttemptPlan(1, "meta/llama-3.3-70b-instruct", 30, False),),
+        attempt_plan=(PreflightAttemptPlan(1, "meta/llama-3.2-90b-vision-instruct", 30, False),),
         artifact_path=args.artifact_path,
         review_path=args.review_path,
     )

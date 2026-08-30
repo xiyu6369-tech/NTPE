@@ -42,7 +42,7 @@ def test_ntpe_v20_stage1_translation_launcher_product_foundation() -> None:
     models = model_catalog()
     assert [provider.provider_id for provider in providers] == ["nvidia", "gemini"]
     assert [model.model_id for model in models] == [
-        "meta/llama-3.3-70b-instruct",
+        "meta/llama-3.2-90b-vision-instruct",
         "gemini-2.5-flash",
     ]
     assert all(not provider.configured for provider in providers)

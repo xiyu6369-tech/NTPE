@@ -20,7 +20,7 @@
   },
   "model_profile": {
     "engine": "NVIDIA",
-    "model": "meta/llama-3.3-70b-instruct",
+    "model": "meta/llama-3.2-90b-vision-instruct",
     "api_url": "https://integrate.api.nvidia.com/v1/chat/completions",
     "context_window": 131072,
     "temperature": 0.15,

@@ -34,7 +34,7 @@ class ControlledProviderRetryConfig:
     execution_mode: str = "fake"
     provider: str = "nvidia"
     provider_url: str = "https://integrate.api.nvidia.com/v1/chat/completions"
-    model: str = "meta/llama-3.3-70b-instruct"
+    model: str = "meta/llama-3.2-90b-vision-instruct"
     invocation_id: str = "stage10101-controlled-retry-001"
     source_path: str = DEFAULT_SOURCE_PATH
     chunk_index: int = 1

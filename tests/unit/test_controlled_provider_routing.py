@@ -17,7 +17,7 @@ def timeout(**changes):
     values=dict(per_attempt_timeout_seconds=180,maximum_chunk_wall_clock_seconds=360,maximum_document_timeout_events=3,provider_timeout_history=(),timeout_risk_level="low");values.update(changes);return pr.ProviderTimeoutBudget(**values)
 
 
-def evidence(kind="read_timeout",count=1,provider="nvidia-meta-llama-3.3-70b-instruct",model="meta/llama-3.3-70b-instruct"):
+def evidence(kind="read_timeout",count=1,provider="nvidia-meta-llama-3.2-90b-vision-instruct",model="meta/llama-3.2-90b-vision-instruct"):
     return pr.ProviderFailureEvidence("e-"+kind,provider,model,kind,"prompt-v1",count,180 if "timeout" in kind else None,True,True,T0)
 
 
@@ -26,7 +26,7 @@ def routing_input(**changes):
 
 
 def test_provider_profiles_are_experimental_offline_and_secret_free():
-    assert {p.provider_id for p in pr.PROVIDER_PROFILES}=={"nvidia-meta-llama-3.3-70b-instruct","gemini-2.5-flash"}
+    assert {p.provider_id for p in pr.PROVIDER_PROFILES}=={"nvidia-meta-llama-3.2-90b-vision-instruct","gemini-2.5-flash"}
     for p in pr.PROVIDER_PROFILES:
         forbidden=("api"+"_key","author"+"ization","creden"+"tial","http"+"://","https"+"://","?"+"key=")
         text=repr(p).lower();assert p.status=="experimental" and not any(x in text for x in forbidden)

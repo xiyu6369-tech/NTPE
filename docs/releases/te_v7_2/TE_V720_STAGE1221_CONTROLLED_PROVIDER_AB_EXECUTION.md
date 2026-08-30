@@ -2,7 +2,7 @@
 
 ## Result
 
-The explicitly authorized execution used the frozen Stage 12.2 package and existing NVIDIA transport. Baseline was sent once with model `meta/llama-3.3-70b-instruct`, a 180-second timeout, zero retries, no fallback, an 800-token output limit and the exact `Golden_Set:1` source unit.
+The explicitly authorized execution used the frozen Stage 12.2 package and existing NVIDIA transport. Baseline was sent once with model `meta/llama-3.2-90b-vision-instruct`, a 180-second timeout, zero retries, no fallback, an 800-token output limit and the exact `Golden_Set:1` source unit.
 
 Baseline timed out after 180.305 seconds. The failure was preserved with `success=false`, `exception_category=timeout`, one network request and no translation. It was not retried.
 

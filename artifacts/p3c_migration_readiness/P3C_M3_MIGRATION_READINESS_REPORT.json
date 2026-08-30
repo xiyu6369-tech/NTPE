@@ -1,0 +1,108 @@
+{
+  "phase": "3C",
+  "audit_type": "M3_Production_Migration_Readiness",
+  "baseline": {
+    "commit": "af5cbc091424849134c28ef931ce78d31ea0dc7d",
+    "working_tree_clean": true,
+    "baseline_lock_verified": true
+  },
+  "candidate": {
+    "model_id": "meta/llama-3.2-90b-vision-instruct",
+    "provider": "nvidia",
+    "p3b_results": {
+      "completion_rate": 100.0,
+      "timeout_count": 0,
+      "quality_score": 80.0,
+      "average_latency_seconds": 19.2
+    }
+  },
+  "ri_preservation": {
+    "ri_01_408_non_retryable": "PASS",
+    "ri_02_dynamic_retry_config": "PASS",
+    "ri_03_dynamic_retry_usage": "PASS",
+    "ri_04_retry_metadata_propagation": "PASS",
+    "ri_05_balanced_profile_attempts_3": "PASS",
+    "ri_06_incomplete_handling": "PASS",
+    "ri_07_retry_metadata_enhanced_summary": "PASS",
+    "all_ri_pass": true
+  },
+  "epub_preservation": {
+    "pipeline_intact": true,
+    "no_model_specific_changes": true,
+    "epub_extraction_boundary": "core/adapters/epub_extraction_boundary.py",
+    "epub_exporter": "core/translation_release/exporters/epub_exporter.py",
+    "verification": "PASS"
+  },
+  "provider_compatibility": {
+    "provider_path": "NVIDIA",
+    "endpoint": "https://integrate.api.nvidia.com/v1/chat/completions",
+    "model_id_propagation": "verified",
+    "request_payload": "standard_openai_compatible",
+    "response_parsing": "standard",
+    "error_classification": "preserved",
+    "verification": "PASS"
+  },
+  "prompt_audit": {
+    "requires_modification": false,
+    "baseline_prompt_used": true,
+    "model_specific_workaround": "NONE",
+    "verification": "PASS"
+  },
+  "hardcode_audit": {
+    "llama_33_hardcoded": true,
+    "minimax_hardcoded": false,
+    "model_specific_prompt_branch": false,
+    "model_specific_retry_branch": false,
+    "model_specific_output_parser": false,
+    "model_specific_context_branch": false,
+    "model_specific_logic_flag": "NONE"
+  },
+  "timeout_retry_audit": {
+    "m3_latency_19_2s": true,
+    "baseline_settings_preserved": true,
+    "no_timeout_modification_required": true,
+    "verification": "PASS"
+  },
+  "test_audit": {
+    "unit_tests_needing_update": [
+      "tests/unit/test_controlled_provider_routing.py",
+      "tests/unit/test_translation_quality_canary.py"
+    ],
+    "integration_tests_needing_update": [
+      "tests/integration/translation_engine_v700_stage10101_provider_timeout_controlled_retry_test.py",
+      "tests/integration/translation_engine_v700_stage1010_single_real_provider_invocation_test.py",
+      "tests/integration/translation_engine_v700_stage104_real_provider_invocation_boundary_contract_test.py",
+      "tests/integration/translation_engine_v700_stage105_authorized_single_invocation_provider_harness_test.py",
+      "tests/integration/translation_engine_v700_stage106_authorized_provider_execution_cli_test.py",
+      "tests/integration/translation_engine_v700_stage107_provider_evidence_artifact_pipeline_test.py",
+      "tests/integration/translation_engine_v700_stage109_real_provider_execution_preflight_contract_test.py",
+      "tests/integration/translation_engine_v720_stage121_evidence_based_prompt_quality_candidate_test.py",
+      "tests/integration/translation_engine_v720_stage1221_controlled_provider_ab_execution_test.py",
+      "tests/integration/translation_engine_v720_stage1222_independent_pair_recovery_execution_test.py",
+      "tests/integration/translation_engine_v720_stage1223_minimal_excerpt_ab_quality_validation_test.py",
+      "tests/integration/translation_engine_v720_stage122_controlled_provider_ab_validation_test.py",
+      "tests/integration/launcher_product/test_launcher_product_integration.py",
+      "tests/integration/lcr_batch108_provider_failure_characterization_integration_test.py"
+    ],
+    "historical_tests_preserved": true,
+    "verification": "PASS"
+  },
+  "historical_evidence_protection": {
+    "p3a_reports_preserved": true,
+    "p3a1_closure_preserved": true,
+    "p3a2_deepseek_probe_preserved": true,
+    "p3b_comparison_preserved": true,
+    "pre_minimax_reports_preserved": true,
+    "verification": "PASS"
+  },
+  "rollback_strategy": {
+    "baseline_tag": "af5cbc0",
+    "checkpoint_method": "git tag",
+    "restoration_verified": "PENDING_3D",
+    "verification": "DEFINED"
+  },
+  "overall_verdict": "P3C_READY_FOR_MIGRATION",
+  "blockers": [],
+  "requires_review": [],
+  "timestamp": "2026-08-30T15:55:38Z"
+}

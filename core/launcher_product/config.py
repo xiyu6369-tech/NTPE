@@ -29,7 +29,7 @@ _BASE_CONFIG: dict[str, Any] = {
     "source_language": "auto",
     "target_language": "zh-Hant",
     "provider_id": "nvidia",
-    "model_id": "meta/llama-3.3-70b-instruct",
+    "model_id": "meta/llama-3.2-90b-vision-instruct",
     "translation_profile": "literary",
     "chunk_size": 600,
     "api_timeout": 180,

@@ -19,7 +19,7 @@ def build_parser() -> argparse.ArgumentParser:
         "--provider-url",
         default="https://integrate.api.nvidia.com/v1/chat/completions",
     )
-    parser.add_argument("--model", default="meta/llama-3.3-70b-instruct")
+    parser.add_argument("--model", default="meta/llama-3.2-90b-vision-instruct")
     parser.add_argument("--session-id", required=True)
     parser.add_argument("--source-fingerprint", required=True)
     parser.add_argument("--chunk-fingerprint", required=True)

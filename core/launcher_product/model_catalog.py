@@ -5,7 +5,7 @@ from .models import ModelDefinition
 
 MODELS = (
     ModelDefinition(
-        model_id="meta/llama-3.3-70b-instruct",
+        model_id="meta/llama-3.2-90b-vision-instruct",
         provider_id="nvidia",
         display_name="Llama 3.3 70B Instruct",
         enabled=True,

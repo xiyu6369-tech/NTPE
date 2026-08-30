@@ -17,7 +17,7 @@ def test_batch107_execution_result_is_characterized_read_only_without_provider_c
     after = FIXTURE.read_bytes()
     assert after == before and hashlib.sha256(after).hexdigest() == before_hash
     assert summary.execution_id == "lcr-batch107-tic-case-b2-8ae44c56c7ad3de4a6fd-chunk-000001"
-    assert summary.provider == "nvidia" and summary.model == "meta/llama-3.3-70b-instruct"
+    assert summary.provider == "nvidia" and summary.model == "meta/llama-3.2-90b-vision-instruct"
     assert summary.failure_type is FailureType.TIMEOUT
     assert summary.provider_request_count == summary.network_request_count == 1
     assert summary.batch108_provider_requests_added == 0

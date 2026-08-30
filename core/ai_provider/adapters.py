@@ -101,13 +101,13 @@ def build_standard_provider_configs() -> Dict[str, ProviderAdapterConfig]:
         "nvidia": ProviderAdapterConfig(
             name="nvidia",
             provider_type="nvidia",
-            default_model="meta/llama-3.3-70b-instruct",
+            default_model="meta/llama-3.2-90b-vision-instruct",
             base_url="https://integrate.api.nvidia.com/v1",
             capabilities=streaming_completion,
             models=_models(
                 "nvidia",
                 [
-                    {"id": "meta/llama-3.3-70b-instruct", "context_window": 131072, "supports_streaming": True},
+                    {"id": "meta/llama-3.2-90b-vision-instruct", "context_window": 131072, "supports_streaming": True},
                 ],
             ),
         ),

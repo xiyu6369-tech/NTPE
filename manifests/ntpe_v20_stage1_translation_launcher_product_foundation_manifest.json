@@ -32,7 +32,7 @@
     }
   ],
   "catalogued_models": [
-    "meta/llama-3.3-70b-instruct",
+    "meta/llama-3.2-90b-vision-instruct",
     "gemini-2.5-flash"
   ],
   "catalogued_providers": [

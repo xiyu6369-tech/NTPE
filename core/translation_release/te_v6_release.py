@@ -15,7 +15,7 @@ TE_V6_FROZEN_STAGES: Final[tuple[str, ...]] = (
 )
 
 PROVIDER_INVARIANTS: Final[tuple[str, ...]] = (
-    "nvidia-provider", "meta/llama-3.3-70b-instruct", "40-rpm-ceiling",
+    "nvidia-provider", "meta/llama-3.2-90b-vision-instruct", "40-rpm-ceiling",
     "timeout-propagation", "provider-attempts", "retry-wait", "503-backpressure",
     "provider-budget", "provider-request-accounting",
 )

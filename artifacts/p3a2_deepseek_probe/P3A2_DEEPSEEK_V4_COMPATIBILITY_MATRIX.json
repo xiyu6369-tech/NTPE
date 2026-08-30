@@ -1,0 +1,298 @@
+{
+  "head_commit": "af5cbc091424849134c28ef931ce78d31ea0dc7d",
+  "origin_main_commit": "8c999b1219f65a6afaeaf0062e6c43f72691c188",
+  "divergence": "0/1",
+  "branch": "main",
+  "python_version": "3.14.6",
+  "test_timestamp": "2026-08-30T15:00:45.988549Z",
+  "endpoint": "https://integrate.api.nvidia.com/v1/chat/completions",
+  "credential_present": true,
+  "credential_source": "NVIDIA_API_KEY",
+  "candidates": [
+    {
+      "model_id": "deepseek-ai/deepseek-v4-pro-0813",
+      "name": "DeepSeek V4 Pro (0813)",
+      "variant": "pro-0813",
+      "catalog_status": "UNKNOWN",
+      "model_family": "DeepSeek V4",
+      "model_type": "General Purpose LLM",
+      "context_info": "128K+ context, reasoning capable",
+      "availability_timestamp": "2026-08-30T14:58:45.161819Z",
+      "source_evidence": "NVIDIA catalog (DeepSeek hosted); v4-pro dated variant",
+      "notes": "DS-V4-PRO - Primary candidate; dated variant for stability"
+    },
+    {
+      "model_id": "deepseek-ai/deepseek-v4-flash-0731",
+      "name": "DeepSeek V4 Flash (0731)",
+      "variant": "flash-0731",
+      "catalog_status": "UNKNOWN",
+      "model_family": "DeepSeek V4",
+      "model_type": "Lightweight LLM",
+      "context_info": "128K+ context, optimized for speed",
+      "availability_timestamp": "2026-08-30T14:58:45.161819Z",
+      "source_evidence": "NVIDIA catalog (DeepSeek hosted); v4-flash dated variant",
+      "notes": "DS-V4-FLASH - Primary candidate; flash variant for throughput"
+    },
+    {
+      "model_id": "deepseek-ai/deepseek-v4-pro",
+      "name": "DeepSeek V4 Pro (base)",
+      "variant": "pro",
+      "catalog_status": "UNKNOWN",
+      "model_family": "DeepSeek V4",
+      "model_type": "General Purpose LLM",
+      "context_info": "128K+ context, reasoning capable",
+      "availability_timestamp": "2026-08-30T14:58:45.161819Z",
+      "source_evidence": "NVIDIA catalog (DeepSeek hosted); base v4-pro variant",
+      "notes": "DS-V4-PRO-BASE - Secondary candidate; only if primary unavailable"
+    },
+    {
+      "model_id": "deepseek-ai/deepseek-v4-flash",
+      "name": "DeepSeek V4 Flash (base)",
+      "variant": "flash",
+      "catalog_status": "UNKNOWN",
+      "model_family": "DeepSeek V4",
+      "model_type": "Lightweight LLM",
+      "context_info": "128K+ context, optimized for speed",
+      "availability_timestamp": "2026-08-30T14:58:45.161819Z",
+      "source_evidence": "NVIDIA catalog (DeepSeek hosted); base v4-flash variant",
+      "notes": "DS-V4-FLASH-BASE - Secondary candidate; only if primary unavailable"
+    }
+  ],
+  "verdicts": [
+    {
+      "model_id": "deepseek-ai/deepseek-v4-pro-0813",
+      "name": "DeepSeek V4 Pro (0813)",
+      "layer0": {
+        "head_commit": "af5cbc091424849134c28ef931ce78d31ea0dc7d",
+        "expected_commit": "af5cbc0",
+        "match": true,
+        "git_status": "?? artifacts/P3A1_RECONSTRUCTED_BASELINE_CLOSURE.json\n?? docs/governance/repository/P3A1_RECONSTRUCTED_BASELINE_CLOSURE.md\n?? tools/one_shots/p3a2_deepseek_v4_probe.py",
+        "contamination": false
+      },
+      "layer1": {
+        "model_id": "deepseek-ai/deepseek-v4-pro-0813",
+        "success": true,
+        "provider": "NVIDIA",
+        "catalog_status": "AVAILABLE",
+        "model_family": "DeepSeek V4",
+        "model_type": "General Purpose LLM",
+        "context_info": "128K+ context, reasoning capable",
+        "availability_timestamp": "2026-08-30T14:58:45.163338Z",
+        "source_evidence": "NVIDIA catalog (DeepSeek hosted); v4-pro dated variant",
+        "error": null
+      },
+      "layer2": {
+        "model_id": "deepseek-ai/deepseek-v4-pro-0813",
+        "timestamp_utc": "2026-08-30T14:58:45.163384Z",
+        "http_status": 408,
+        "elapsed_ms": 60321.46450001164,
+        "provider_request_id": null,
+        "nvcf_reqid": null,
+        "nvcf_status": null,
+        "response_body_preview": "",
+        "error_category": "TIMEOUT",
+        "retry_after_header": null,
+        "rate_limit_headers": {},
+        "request_accepted": false,
+        "response_present": false,
+        "error": "Timeout: HTTPSConnectionPool(host='integrate.api.nvidia.com', port=443): Read timed out. (read timeout=60)"
+      },
+      "layer3": null,
+      "layer4_results": [],
+      "final_verdict": "TIMEOUT_BLOCKED",
+      "failure_reason": "Timeout at Layer 2: Timeout: HTTPSConnectionPool(host='integrate.api.nvidia.com', port=443): Read timed out. (read timeout=60)",
+      "recommendations": []
+    },
+    {
+      "model_id": "deepseek-ai/deepseek-v4-flash-0731",
+      "name": "DeepSeek V4 Flash (0731)",
+      "layer0": {
+        "head_commit": "af5cbc091424849134c28ef931ce78d31ea0dc7d",
+        "expected_commit": "af5cbc0",
+        "match": true,
+        "git_status": "?? artifacts/P3A1_RECONSTRUCTED_BASELINE_CLOSURE.json\n?? docs/governance/repository/P3A1_RECONSTRUCTED_BASELINE_CLOSURE.md\n?? tools/one_shots/p3a2_deepseek_v4_probe.py",
+        "contamination": false
+      },
+      "layer1": {
+        "model_id": "deepseek-ai/deepseek-v4-flash-0731",
+        "success": true,
+        "provider": "NVIDIA",
+        "catalog_status": "AVAILABLE",
+        "model_family": "DeepSeek V4",
+        "model_type": "Lightweight LLM",
+        "context_info": "128K+ context, optimized for speed",
+        "availability_timestamp": "2026-08-30T14:59:45.484979Z",
+        "source_evidence": "NVIDIA catalog (DeepSeek hosted); v4-flash dated variant",
+        "error": null
+      },
+      "layer2": {
+        "model_id": "deepseek-ai/deepseek-v4-flash-0731",
+        "timestamp_utc": "2026-08-30T14:59:45.485023Z",
+        "http_status": 408,
+        "elapsed_ms": 60108.6581999989,
+        "provider_request_id": null,
+        "nvcf_reqid": null,
+        "nvcf_status": null,
+        "response_body_preview": "",
+        "error_category": "TIMEOUT",
+        "retry_after_header": null,
+        "rate_limit_headers": {},
+        "request_accepted": false,
+        "response_present": false,
+        "error": "Timeout: HTTPSConnectionPool(host='integrate.api.nvidia.com', port=443): Read timed out. (read timeout=60)"
+      },
+      "layer3": null,
+      "layer4_results": [],
+      "final_verdict": "TIMEOUT_BLOCKED",
+      "failure_reason": "Timeout at Layer 2: Timeout: HTTPSConnectionPool(host='integrate.api.nvidia.com', port=443): Read timed out. (read timeout=60)",
+      "recommendations": []
+    },
+    {
+      "model_id": "deepseek-ai/deepseek-v4-pro",
+      "name": "DeepSeek V4 Pro (base)",
+      "layer0": {
+        "head_commit": "af5cbc091424849134c28ef931ce78d31ea0dc7d",
+        "expected_commit": "af5cbc0",
+        "match": true,
+        "git_status": "?? artifacts/P3A1_RECONSTRUCTED_BASELINE_CLOSURE.json\n?? docs/governance/repository/P3A1_RECONSTRUCTED_BASELINE_CLOSURE.md\n?? tools/one_shots/p3a2_deepseek_v4_probe.py",
+        "contamination": false
+      },
+      "layer1": {
+        "model_id": "deepseek-ai/deepseek-v4-pro",
+        "success": true,
+        "provider": "NVIDIA",
+        "catalog_status": "AVAILABLE",
+        "model_family": "DeepSeek V4",
+        "model_type": "General Purpose LLM",
+        "context_info": "128K+ context, reasoning capable",
+        "availability_timestamp": "2026-08-30T15:00:45.593857Z",
+        "source_evidence": "NVIDIA catalog (DeepSeek hosted); base v4-pro variant",
+        "error": null
+      },
+      "layer2": {
+        "model_id": "deepseek-ai/deepseek-v4-pro",
+        "timestamp_utc": "2026-08-30T15:00:45.593913Z",
+        "http_status": 410,
+        "elapsed_ms": 136.7608000000473,
+        "provider_request_id": null,
+        "nvcf_reqid": null,
+        "nvcf_status": null,
+        "response_body_preview": "{\"type\":\"about:blank\",\"title\":\"Gone\",\"status\":410,\"detail\":\"The model 'deepseek-ai/deepseek-v4-pro' has reached its end of life on 2026-08-07T09:00:00Z and is no longer available.\"}\n",
+        "error_category": "GONE",
+        "retry_after_header": null,
+        "rate_limit_headers": {},
+        "request_accepted": true,
+        "response_present": true,
+        "error": "HTTP 410: {\"type\":\"about:blank\",\"title\":\"Gone\",\"status\":410,\"detail\":\"The model 'deepseek-ai/deepseek-v4-pro' has reached its end of life on 2026-08-07T09:00:00Z and is no longer available.\"}\n"
+      },
+      "layer3": null,
+      "layer4_results": [],
+      "final_verdict": "MODEL_EOL_OR_RETIRED",
+      "failure_reason": "Model/endpoint retired at Layer 2: HTTP 410: {\"type\":\"about:blank\",\"title\":\"Gone\",\"status\":410,\"detail\":\"The model 'deepseek-ai/deepseek-v4-pro' has reached its end of life on 2026-08-07T09:00:00Z and is no longer available.\"}\n",
+      "recommendations": []
+    },
+    {
+      "model_id": "deepseek-ai/deepseek-v4-flash",
+      "name": "DeepSeek V4 Flash (base)",
+      "layer0": {
+        "head_commit": "af5cbc091424849134c28ef931ce78d31ea0dc7d",
+        "expected_commit": "af5cbc0",
+        "match": true,
+        "git_status": "?? artifacts/P3A1_RECONSTRUCTED_BASELINE_CLOSURE.json\n?? docs/governance/repository/P3A1_RECONSTRUCTED_BASELINE_CLOSURE.md\n?? tools/one_shots/p3a2_deepseek_v4_probe.py",
+        "contamination": false
+      },
+      "layer1": {
+        "model_id": "deepseek-ai/deepseek-v4-flash",
+        "success": true,
+        "provider": "NVIDIA",
+        "catalog_status": "AVAILABLE",
+        "model_family": "DeepSeek V4",
+        "model_type": "Lightweight LLM",
+        "context_info": "128K+ context, optimized for speed",
+        "availability_timestamp": "2026-08-30T15:00:45.860427Z",
+        "source_evidence": "NVIDIA catalog (DeepSeek hosted); base v4-flash variant",
+        "error": null
+      },
+      "layer2": {
+        "model_id": "deepseek-ai/deepseek-v4-flash",
+        "timestamp_utc": "2026-08-30T15:00:45.860452Z",
+        "http_status": 410,
+        "elapsed_ms": 119.71980000089388,
+        "provider_request_id": null,
+        "nvcf_reqid": null,
+        "nvcf_status": null,
+        "response_body_preview": "{\"type\":\"about:blank\",\"title\":\"Gone\",\"status\":410,\"detail\":\"The model 'deepseek-ai/deepseek-v4-flash' has reached its end of life on 2026-08-07T09:00:00Z and is no longer available.\"}\n",
+        "error_category": "GONE",
+        "retry_after_header": null,
+        "rate_limit_headers": {},
+        "request_accepted": true,
+        "response_present": true,
+        "error": "HTTP 410: {\"type\":\"about:blank\",\"title\":\"Gone\",\"status\":410,\"detail\":\"The model 'deepseek-ai/deepseek-v4-flash' has reached its end of life on 2026-08-07T09:00:00Z and is no longer available.\"}\n"
+      },
+      "layer3": null,
+      "layer4_results": [],
+      "final_verdict": "MODEL_EOL_OR_RETIRED",
+      "failure_reason": "Model/endpoint retired at Layer 2: HTTP 410: {\"type\":\"about:blank\",\"title\":\"Gone\",\"status\":410,\"detail\":\"The model 'deepseek-ai/deepseek-v4-flash' has reached its end of life on 2026-08-07T09:00:00Z and is no longer available.\"}\n",
+      "recommendations": []
+    }
+  ],
+  "compatibility_matrix": {
+    "deepseek-ai/deepseek-v4-pro-0813": {
+      "provider": "NVIDIA",
+      "catalog": "PASS",
+      "endpoint": "FAIL (TIMEOUT)",
+      "generation": "FAIL",
+      "contract": {},
+      "verdict": "TIMEOUT_BLOCKED"
+    },
+    "deepseek-ai/deepseek-v4-flash-0731": {
+      "provider": "NVIDIA",
+      "catalog": "PASS",
+      "endpoint": "FAIL (TIMEOUT)",
+      "generation": "FAIL",
+      "contract": {},
+      "verdict": "TIMEOUT_BLOCKED"
+    },
+    "deepseek-ai/deepseek-v4-pro": {
+      "provider": "NVIDIA",
+      "catalog": "PASS",
+      "endpoint": "FAIL (GONE)",
+      "generation": "FAIL",
+      "contract": {},
+      "verdict": "MODEL_EOL_OR_RETIRED"
+    },
+    "deepseek-ai/deepseek-v4-flash": {
+      "provider": "NVIDIA",
+      "catalog": "PASS",
+      "endpoint": "FAIL (GONE)",
+      "generation": "FAIL",
+      "contract": {},
+      "verdict": "MODEL_EOL_OR_RETIRED"
+    }
+  },
+  "available_compatible": [],
+  "available_partial": [],
+  "available_incompatible": [],
+  "provider_unavailable": [],
+  "model_not_found": [],
+  "model_eol_or_retired": [
+    "deepseek-ai/deepseek-v4-pro",
+    "deepseek-ai/deepseek-v4-flash"
+  ],
+  "rate_limit_blocked": [],
+  "timeout_blocked": [
+    "deepseek-ai/deepseek-v4-pro-0813",
+    "deepseek-ai/deepseek-v4-flash-0731"
+  ],
+  "phase_verdict": "P3A2_PARTIAL",
+  "recommended_for_phase3b": [],
+  "excluded_from_phase3b": {
+    "deepseek-ai/deepseek-v4-pro-0813": "Timeout at Layer 2: Timeout: HTTPSConnectionPool(host='integrate.api.nvidia.com', port=443): Read timed out. (read timeout=60)",
+    "deepseek-ai/deepseek-v4-flash-0731": "Timeout at Layer 2: Timeout: HTTPSConnectionPool(host='integrate.api.nvidia.com', port=443): Read timed out. (read timeout=60)",
+    "deepseek-ai/deepseek-v4-pro": "Model/endpoint retired at Layer 2: HTTP 410: {\"type\":\"about:blank\",\"title\":\"Gone\",\"status\":410,\"detail\":\"The model 'deepseek-ai/deepseek-v4-pro' has reached its end of life on 2026-08-07T09:00:00Z and is no longer available.\"}\n",
+    "deepseek-ai/deepseek-v4-flash": "Model/endpoint retired at Layer 2: HTTP 410: {\"type\":\"about:blank\",\"title\":\"Gone\",\"status\":410,\"detail\":\"The model 'deepseek-ai/deepseek-v4-flash' has reached its end of life on 2026-08-07T09:00:00Z and is no longer available.\"}\n"
+  },
+  "baseline_integrity_pass": true,
+  "git_status": "?? artifacts/P3A1_RECONSTRUCTED_BASELINE_CLOSURE.json\n?? docs/governance/repository/P3A1_RECONSTRUCTED_BASELINE_CLOSURE.md\n?? tools/one_shots/p3a2_deepseek_v4_probe.py",
+  "git_diff_stat": ""
+}

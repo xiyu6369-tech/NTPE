@@ -4,7 +4,7 @@ import requests
 class NvidiaEngine:
     def __init__(self, config):
         self.api_key = config.get("api_key", "")
-        self.model = config.get("model", "meta/llama-3.3-70b-instruct")
+        self.model = config.get("model", "meta/llama-3.2-90b-vision-instruct")
         self.api_url = config.get(
             "api_url",
             "https://integrate.api.nvidia.com/v1/chat/completions",

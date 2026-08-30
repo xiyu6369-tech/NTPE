@@ -104,7 +104,7 @@ def _te_v6_invariants_valid(config: RealProviderPreflightConfig, root: Path) -> 
             return False
         if not {"08.1", "10.1.1", "11.6", "12.5"}.issubset(manifest.get("frozen_stages", ())):
             return False
-        if "meta/llama-3.3-70b-instruct" not in manifest.get("provider_invariants", ()):
+        if "meta/llama-3.2-90b-vision-instruct" not in manifest.get("provider_invariants", ()):
             return False
         for row in manifest.get("file_inventory", ()):
             path = root / row["path"]

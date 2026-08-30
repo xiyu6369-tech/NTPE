@@ -23,7 +23,7 @@ from core.production_runtime.manifest import get_te_v7_stage_path
 
 AUTHORIZATION_TOKEN = "AUTHORIZE_NTPE_TE_V72_STAGE1252_PROVIDER_CANARY"
 PROVIDER_URL = "https://integrate.api.nvidia.com/v1/chat/completions"
-ALLOWED_MODEL = "meta/llama-3.3-70b-instruct"
+ALLOWED_MODEL = "meta/llama-3.2-90b-vision-instruct"
 SELECTION_TIME = "2026-07-19T00:03:00Z"
 
 

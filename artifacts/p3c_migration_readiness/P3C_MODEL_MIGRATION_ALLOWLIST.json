@@ -1,0 +1,600 @@
+{
+  "phase": "3C",
+  "allowlist_type": "M3_Production_Migration",
+  "baseline_commit": "af5cbc091424849134c28ef931ce78d31ea0dc7d",
+  "current_active_model": "meta/llama-3.3-70b-instruct",
+  "target_model": "meta/llama-3.2-90b-vision-instruct",
+  "allowlist_version": "1.0",
+  "allowlist_hash": "sha256:pending_3d_generation",
+  "migration_scope": "Active production references only. Historical evidence, archive/, and P3A/P3B artifacts are explicitly excluded.",
+  "items": [
+    {
+      "file": "config/provider_config.json",
+      "classification": "MIGRATE",
+      "current_value": "meta/llama-3.3-70b-instruct",
+      "target_value": "meta/llama-3.2-90b-vision-instruct",
+      "reason": "NVIDIA provider default model configuration",
+      "risk": "LOW",
+      "validation": "Provider manager startup with new model ID"
+    },
+    {
+      "file": "config/models.json",
+      "classification": "MIGRATE",
+      "current_value": "meta/llama-3.3-70b-instruct",
+      "target_value": "meta/llama-3.2-90b-vision-instruct",
+      "reason": "Model catalog default and available models list for NVIDIA",
+      "risk": "LOW",
+      "validation": "Catalog lookup returns M3 as default and available"
+    },
+    {
+      "file": "config/launcher_product_defaults.json",
+      "classification": "MIGRATE",
+      "current_value": "meta/llama-3.3-70b-instruct",
+      "target_value": "meta/llama-3.2-90b-vision-instruct",
+      "reason": "Production launcher default model_id",
+      "risk": "LOW",
+      "validation": "Launcher uses M3 by default"
+    },
+    {
+      "file": "config/default_config.json",
+      "classification": "MIGRATE",
+      "current_value": "meta/llama-3.3-70b-instruct",
+      "target_value": "meta/llama-3.2-90b-vision-instruct",
+      "reason": "Core default configuration model",
+      "risk": "LOW",
+      "validation": "Config loads M3"
+    },
+    {
+      "file": "core/config.py",
+      "classification": "MIGRATE",
+      "current_value": "meta/llama-3.3-70b-instruct",
+      "target_value": "meta/llama-3.2-90b-vision-instruct",
+      "reason": "DEFAULT_CONFIG model fallback",
+      "risk": "LOW",
+      "validation": "Fallback uses M3"
+    },
+    {
+      "file": "ntpe_production_translate.py",
+      "classification": "MIGRATE",
+      "current_value": "meta/llama-3.3-70b-instruct",
+      "target_value": "meta/llama-3.2-90b-vision-instruct",
+      "reason": "CLI DEFAULT_MODEL constant for all subcommands",
+      "risk": "LOW",
+      "validation": "CLI --model default is M3"
+    },
+    {
+      "file": "lts/txt_translation_runtime.py",
+      "classification": "MIGRATE",
+      "current_value": "meta/llama-3.3-70b-instruct",
+      "target_value": "meta/llama-3.2-90b-vision-instruct",
+      "reason": "TXT runtime DEFAULT_MODEL constant",
+      "risk": "LOW",
+      "validation": "TXT runtime uses M3"
+    },
+    {
+      "file": "lts/batch_translation_runtime.py",
+      "classification": "MIGRATE",
+      "current_value": "meta/llama-3.3-70b-instruct",
+      "target_value": "meta/llama-3.2-90b-vision-instruct",
+      "reason": "Batch runtime imports DEFAULT_MODEL from txt runtime",
+      "risk": "LOW",
+      "validation": "Batch uses M3 via import chain"
+    },
+    {
+      "file": "engine/nvidia.py",
+      "classification": "MIGRATE",
+      "current_value": "meta/llama-3.3-70b-instruct",
+      "target_value": "meta/llama-3.2-90b-vision-instruct",
+      "reason": "Legacy NvidiaEngine default model",
+      "risk": "LOW",
+      "validation": "Legacy engine uses M3"
+    },
+    {
+      "file": "core/ai_provider/adapters.py",
+      "classification": "MIGRATE",
+      "current_value": "meta/llama-3.3-70b-instruct",
+      "target_value": "meta/llama-3.2-90b-vision-instruct",
+      "reason": "NVIDIA provider adapter default model and model list",
+      "risk": "LOW",
+      "validation": "Adapter discovers M3"
+    },
+    {
+      "file": "core/launcher_product/model_catalog.py",
+      "classification": "MIGRATE",
+      "current_value": "meta/llama-3.3-70b-instruct",
+      "target_value": "meta/llama-3.2-90b-vision-instruct",
+      "reason": "Launcher product model catalog entry",
+      "risk": "LOW",
+      "validation": "Catalog returns M3 definition"
+    },
+    {
+      "file": "core/launcher_product/config.py",
+      "classification": "MIGRATE",
+      "current_value": "meta/llama-3.3-70b-instruct",
+      "target_value": "meta/llama-3.2-90b-vision-instruct",
+      "reason": "Launcher base config default model_id",
+      "risk": "LOW",
+      "validation": "Launcher config uses M3"
+    },
+    {
+      "file": "core/controlled_provider_routing/provider_profiles.py",
+      "classification": "MIGRATE",
+      "current_value": "meta/llama-3.3-70b-instruct",
+      "target_value": "meta/llama-3.2-90b-vision-instruct",
+      "reason": "Controlled routing NVIDIA provider profile model_id",
+      "risk": "LOW",
+      "validation": "Routing uses M3 profile"
+    },
+    {
+      "file": "core/controlled_provider_routing/routing_policy.py",
+      "classification": "MIGRATE",
+      "current_value": "nvidia-meta-llama-3.3-70b-instruct",
+      "target_value": "nvidia-meta-llama-3.2-90b-vision-instruct",
+      "reason": "Default routing policy provider_id",
+      "risk": "LOW",
+      "validation": "Routing policy ID updated to M3"
+    },
+    {
+      "file": "core/controlled_multi_chunk_translation_canary/policy.py",
+      "classification": "MIGRATE",
+      "current_value": "meta/llama-3.3-70b-instruct",
+      "target_value": "meta/llama-3.2-90b-vision-instruct",
+      "reason": "Multi-chunk canary provider model",
+      "risk": "LOW",
+      "validation": "Canary uses M3"
+    },
+    {
+      "file": "core/controlled_translation_runtime_integration/policy.py",
+      "classification": "MIGRATE",
+      "current_value": "meta/llama-3.3-70b-instruct",
+      "target_value": "meta/llama-3.2-90b-vision-instruct",
+      "reason": "Controlled runtime integration provider model",
+      "risk": "LOW",
+      "validation": "Integration uses M3"
+    },
+    {
+      "file": "core/translation_quality_provider_canary/framework.py",
+      "classification": "MIGRATE",
+      "current_value": "meta/llama-3.3-70b-instruct",
+      "target_value": "meta/llama-3.2-90b-vision-instruct",
+      "reason": "Quality canary ALLOWED_MODEL constant",
+      "risk": "LOW",
+      "validation": "Canary allows M3"
+    },
+    {
+      "file": "core/adapters/production_submission_adapter.py",
+      "classification": "MIGRATE",
+      "current_value": "meta/llama-3.3-70b-instruct",
+      "target_value": "meta/llama-3.2-90b-vision-instruct",
+      "reason": "Production submission adapter default model and validation",
+      "risk": "LOW",
+      "validation": "Adapter uses and validates M3"
+    },
+    {
+      "file": "core/adaptive_context_authorized_provider_harness/config.py",
+      "classification": "MIGRATE",
+      "current_value": "meta/llama-3.3-70b-instruct",
+      "target_value": "meta/llama-3.2-90b-vision-instruct",
+      "reason": "Authorized provider harness config default model",
+      "risk": "LOW",
+      "validation": "Harness uses M3"
+    },
+    {
+      "file": "core/adaptive_context_authorized_provider_cli/config.py",
+      "classification": "MIGRATE",
+      "current_value": "meta/llama-3.3-70b-instruct",
+      "target_value": "meta/llama-3.2-90b-vision-instruct",
+      "reason": "Authorized CLI config default model",
+      "risk": "LOW",
+      "validation": "CLI uses M3"
+    },
+    {
+      "file": "core/adaptive_context_authorized_provider_cli/parser.py",
+      "classification": "MIGRATE",
+      "current_value": "meta/llama-3.3-70b-instruct",
+      "target_value": "meta/llama-3.2-90b-vision-instruct",
+      "reason": "Authorized CLI parser default model argument",
+      "risk": "LOW",
+      "validation": "Parser default is M3"
+    },
+    {
+      "file": "core/adaptive_context_single_real_invocation/config.py",
+      "classification": "MIGRATE",
+      "current_value": "meta/llama-3.3-70b-instruct",
+      "target_value": "meta/llama-3.2-90b-vision-instruct",
+      "reason": "Single invocation config default model",
+      "risk": "LOW",
+      "validation": "Invocation uses M3"
+    },
+    {
+      "file": "core/adaptive_context_real_provider_preflight/config.py",
+      "classification": "MIGRATE",
+      "current_value": "meta/llama-3.3-70b-instruct",
+      "target_value": "meta/llama-3.2-90b-vision-instruct",
+      "reason": "Real provider preflight config default model",
+      "risk": "LOW",
+      "validation": "Preflight uses M3"
+    },
+    {
+      "file": "core/adaptive_context_real_provider_preflight/validator.py",
+      "classification": "MIGRATE",
+      "current_value": "meta/llama-3.3-70b-instruct",
+      "target_value": "meta/llama-3.2-90b-vision-instruct",
+      "reason": "Preflight validator provider invariants check",
+      "risk": "LOW",
+      "validation": "Validator checks M3 in invariants"
+    },
+    {
+      "file": "core/adaptive_context_real_provider_boundary/config.py",
+      "classification": "MIGRATE",
+      "current_value": "meta/llama-3.3-70b-instruct",
+      "target_value": "meta/llama-3.2-90b-vision-instruct",
+      "reason": "Real provider boundary allowed models set and default model",
+      "risk": "LOW",
+      "validation": "Boundary allows M3"
+    },
+    {
+      "file": "core/adaptive_context_controlled_provider_retry/config.py",
+      "classification": "MIGRATE",
+      "current_value": "meta/llama-3.3-70b-instruct",
+      "target_value": "meta/llama-3.2-90b-vision-instruct",
+      "reason": "Controlled provider retry config default model",
+      "risk": "LOW",
+      "validation": "Retry config uses M3"
+    },
+    {
+      "file": "core/adaptive_context_provider_execution_freeze/freeze.py",
+      "classification": "MIGRATE",
+      "current_value": "meta/llama-3.3-70b-instruct",
+      "target_value": "meta/llama-3.2-90b-vision-instruct",
+      "reason": "Provider execution freeze model reference",
+      "risk": "LOW",
+      "validation": "Freeze uses M3"
+    },
+    {
+      "file": "core/lcr_production_shadow_hook/batch107_real_provider_validation.py",
+      "classification": "MIGRATE",
+      "current_value": "meta/llama-3.3-70b-instruct",
+      "target_value": "meta/llama-3.2-90b-vision-instruct",
+      "reason": "LCR production shadow hook MODEL constant",
+      "risk": "LOW",
+      "validation": "Shadow uses M3"
+    },
+    {
+      "file": "core/translation_release/te_v6_release.py",
+      "classification": "MIGRATE",
+      "current_value": "meta/llama-3.3-70b-instruct",
+      "target_value": "meta/llama-3.2-90b-vision-instruct",
+      "reason": "TE v6 release documentation model reference in tag list",
+      "risk": "LOW",
+      "validation": "Doc updated to M3"
+    },
+    {
+      "file": "core/expansion/style_expansion_engine.py",
+      "classification": "MIGRATE",
+      "current_value": "meta/llama-3.3-70b-instruct",
+      "target_value": "meta/llama-3.2-90b-vision-instruct",
+      "reason": "Style expansion engine default model parameter",
+      "risk": "LOW",
+      "validation": "Expansion uses M3"
+    },
+    {
+      "file": "profiles/passion_profile.json",
+      "classification": "MIGRATE",
+      "current_value": "meta/llama-3.3-70b-instruct",
+      "target_value": "meta/llama-3.2-90b-vision-instruct",
+      "reason": "Passion project profile model_profile.model",
+      "risk": "LOW",
+      "validation": "Project uses M3"
+    },
+    {
+      "file": "tools/provider_controls/ntpe_single_real_provider_invocation.py",
+      "classification": "MIGRATE",
+      "current_value": "meta/llama-3.3-70b-instruct",
+      "target_value": "meta/llama-3.2-90b-vision-instruct",
+      "reason": "Single provider invocation tool preflight attempt plan",
+      "risk": "LOW",
+      "validation": "Tool uses M3"
+    },
+    {
+      "file": "tools/generate_te_v720_controlled_canary.py",
+      "classification": "MIGRATE",
+      "current_value": "meta/llama-3.3-70b-instruct",
+      "target_value": "meta/llama-3.2-90b-vision-instruct",
+      "reason": "TE v720 canary generation default model",
+      "risk": "LOW",
+      "validation": "Canary uses M3"
+    },
+    {
+      "file": "manifests/te_v600_final_release_manifest.json",
+      "classification": "MIGRATE",
+      "current_value": "meta/llama-3.3-70b-instruct",
+      "target_value": "meta/llama-3.2-90b-vision-instruct",
+      "reason": "TE v6 final release manifest model",
+      "risk": "LOW",
+      "validation": "Manifest references M3"
+    },
+    {
+      "file": "manifests/ntpe_v20_stage1_translation_launcher_product_foundation_manifest.json",
+      "classification": "MIGRATE",
+      "current_value": "meta/llama-3.3-70b-instruct",
+      "target_value": "meta/llama-3.2-90b-vision-instruct",
+      "reason": "Stage 1 launcher foundation manifest model",
+      "risk": "LOW",
+      "validation": "Manifest references M3"
+    },
+    {
+      "file": "manifests/te_v720_stage1256_prompt_verification_canary_manifest.json",
+      "classification": "MIGRATE",
+      "current_value": "meta/llama-3.3-70b-instruct",
+      "target_value": "meta/llama-3.2-90b-vision-instruct",
+      "reason": "Stage 12.5.6 canary manifest model",
+      "risk": "LOW",
+      "validation": "Manifest references M3"
+    },
+    {
+      "file": "manifests/te_v720_stage1257_prompt_verification_canary_manifest.json",
+      "classification": "MIGRATE",
+      "current_value": "meta/llama-3.3-70b-instruct",
+      "target_value": "meta/llama-3.2-90b-vision-instruct",
+      "reason": "Stage 12.5.7 canary manifest model",
+      "risk": "LOW",
+      "validation": "Manifest references M3"
+    },
+    {
+      "file": "manifests/te_v720_authorized_provider_canary_manifest.json",
+      "classification": "MIGRATE",
+      "current_value": "meta/llama-3.3-70b-instruct",
+      "target_value": "meta/llama-3.2-90b-vision-instruct",
+      "reason": "Authorized provider canary manifest model",
+      "risk": "LOW",
+      "validation": "Manifest references M3"
+    },
+    {
+      "file": "tests/unit/test_controlled_provider_routing.py",
+      "classification": "TEST_UPDATE",
+      "current_value": "meta/llama-3.3-70b-instruct",
+      "target_value": "meta/llama-3.2-90b-vision-instruct",
+      "reason": "Unit test evidence helper default model and provider profile ID",
+      "risk": "LOW",
+      "validation": "Test passes with M3"
+    },
+    {
+      "file": "tests/unit/test_translation_quality_canary.py",
+      "classification": "TEST_UPDATE",
+      "current_value": "meta/llama-3.3-70b-instruct",
+      "target_value": "meta/llama-3.2-90b-vision-instruct",
+      "reason": "Quality canary test model constant",
+      "risk": "LOW",
+      "validation": "Test passes with M3"
+    },
+    {
+      "file": "tests/integration/translation_engine_v700_stage10101_provider_timeout_controlled_retry_test.py",
+      "classification": "TEST_UPDATE",
+      "current_value": "meta/llama-3.3-70b-instruct",
+      "target_value": "meta/llama-3.2-90b-vision-instruct",
+      "reason": "Stage 10.10.1 test MODEL constant",
+      "risk": "LOW",
+      "validation": "Test passes with M3"
+    },
+    {
+      "file": "tests/integration/translation_engine_v700_stage1010_single_real_provider_invocation_test.py",
+      "classification": "TEST_UPDATE",
+      "current_value": "meta/llama-3.3-70b-instruct",
+      "target_value": "meta/llama-3.2-90b-vision-instruct",
+      "reason": "Stage 10.10 test MODEL constant",
+      "risk": "LOW",
+      "validation": "Test passes with M3"
+    },
+    {
+      "file": "tests/integration/translation_engine_v700_stage104_real_provider_invocation_boundary_contract_test.py",
+      "classification": "TEST_UPDATE",
+      "current_value": "meta/llama-3.3-70b-instruct",
+      "target_value": "meta/llama-3.2-90b-vision-instruct",
+      "reason": "Stage 10.4 test MODEL constant",
+      "risk": "LOW",
+      "validation": "Test passes with M3"
+    },
+    {
+      "file": "tests/integration/translation_engine_v700_stage105_authorized_single_invocation_provider_harness_test.py",
+      "classification": "TEST_UPDATE",
+      "current_value": "meta/llama-3.3-70b-instruct",
+      "target_value": "meta/llama-3.2-90b-vision-instruct",
+      "reason": "Stage 10.5 test MODEL constant",
+      "risk": "LOW",
+      "validation": "Test passes with M3"
+    },
+    {
+      "file": "tests/integration/translation_engine_v700_stage106_authorized_provider_execution_cli_test.py",
+      "classification": "TEST_UPDATE",
+      "current_value": "meta/llama-3.3-70b-instruct",
+      "target_value": "meta/llama-3.2-90b-vision-instruct",
+      "reason": "Stage 10.6 test MODEL constant",
+      "risk": "LOW",
+      "validation": "Test passes with M3"
+    },
+    {
+      "file": "tests/integration/translation_engine_v700_stage107_provider_evidence_artifact_pipeline_test.py",
+      "classification": "TEST_UPDATE",
+      "current_value": "meta/llama-3.3-70b-instruct",
+      "target_value": "meta/llama-3.2-90b-vision-instruct",
+      "reason": "Stage 10.7 test MODEL constant",
+      "risk": "LOW",
+      "validation": "Test passes with M3"
+    },
+    {
+      "file": "tests/integration/translation_engine_v700_stage109_real_provider_execution_preflight_contract_test.py",
+      "classification": "TEST_UPDATE",
+      "current_value": "meta/llama-3.3-70b-instruct",
+      "target_value": "meta/llama-3.2-90b-vision-instruct",
+      "reason": "Stage 10.9 test MODEL constant",
+      "risk": "LOW",
+      "validation": "Test passes with M3"
+    },
+    {
+      "file": "tests/integration/translation_engine_v720_stage121_evidence_based_prompt_quality_candidate_test.py",
+      "classification": "TEST_UPDATE",
+      "current_value": "meta/llama-3.3-70b-instruct",
+      "target_value": "meta/llama-3.2-90b-vision-instruct",
+      "reason": "Stage 12.1 test settings assertion model",
+      "risk": "LOW",
+      "validation": "Test passes with M3"
+    },
+    {
+      "file": "tests/integration/translation_engine_v720_stage1221_controlled_provider_ab_execution_test.py",
+      "classification": "TEST_UPDATE",
+      "current_value": "meta/llama-3.3-70b-instruct",
+      "target_value": "meta/llama-3.2-90b-vision-instruct",
+      "reason": "Stage 12.2.1 test model assertion",
+      "risk": "LOW",
+      "validation": "Test passes with M3"
+    },
+    {
+      "file": "tests/integration/translation_engine_v720_stage1222_independent_pair_recovery_execution_test.py",
+      "classification": "TEST_UPDATE",
+      "current_value": "meta/llama-3.3-70b-instruct",
+      "target_value": "meta/llama-3.2-90b-vision-instruct",
+      "reason": "Stage 12.2.2 test model assertion",
+      "risk": "LOW",
+      "validation": "Test passes with M3"
+    },
+    {
+      "file": "tests/integration/translation_engine_v720_stage1223_minimal_excerpt_ab_quality_validation_test.py",
+      "classification": "TEST_UPDATE",
+      "current_value": "meta/llama-3.3-70b-instruct",
+      "target_value": "meta/llama-3.2-90b-vision-instruct",
+      "reason": "Stage 12.2.3 test model assertion",
+      "risk": "LOW",
+      "validation": "Test passes with M3"
+    },
+    {
+      "file": "tests/integration/translation_engine_v720_stage122_controlled_provider_ab_validation_test.py",
+      "classification": "TEST_UPDATE",
+      "current_value": "meta/llama-3.3-70b-instruct",
+      "target_value": "meta/llama-3.2-90b-vision-instruct",
+      "reason": "Stage 12.2 test model assertion",
+      "risk": "LOW",
+      "validation": "Test passes with M3"
+    },
+    {
+      "file": "tests/integration/launcher_product/test_launcher_product_integration.py",
+      "classification": "TEST_UPDATE",
+      "current_value": "meta/llama-3.3-70b-instruct",
+      "target_value": "meta/llama-3.2-90b-vision-instruct",
+      "reason": "Launcher product integration test model_id",
+      "risk": "LOW",
+      "validation": "Test passes with M3"
+    },
+    {
+      "file": "tests/integration/lcr_batch108_provider_failure_characterization_integration_test.py",
+      "classification": "TEST_UPDATE",
+      "current_value": "meta/llama-3.3-70b-instruct",
+      "target_value": "meta/llama-3.2-90b-vision-instruct",
+      "reason": "LCR batch108 test model assertion",
+      "risk": "LOW",
+      "validation": "Test passes with M3"
+    },
+    {
+      "file": "verification/release/ntpe_v20_stage1_translation_launcher_product_foundation_test.py",
+      "classification": "TEST_UPDATE",
+      "current_value": "meta/llama-3.3-70b-instruct",
+      "target_value": "meta/llama-3.2-90b-vision-instruct",
+      "reason": "Verification test model assertion",
+      "risk": "LOW",
+      "validation": "Test passes with M3"
+    },
+    {
+      "file": "docs/releases/te_v6_0/TE_V6_0_FINAL_RELEASE_FREEZE.md",
+      "classification": "DOCUMENTATION_UPDATE",
+      "current_value": "meta/llama-3.3-70b-instruct",
+      "target_value": "meta/llama-3.2-90b-vision-instruct",
+      "reason": "TE v6 release freeze documentation model reference",
+      "risk": "LOW",
+      "validation": "Doc updated to M3"
+    },
+    {
+      "file": "docs/releases/te_v7_0/TE_V7_0_STAGE10_4_REAL_PROVIDER_INVOCATION_BOUNDARY_CONTRACT.md",
+      "classification": "DOCUMENTATION_UPDATE",
+      "current_value": "meta/llama-3.3-70b-instruct",
+      "target_value": "meta/llama-3.2-90b-vision-instruct",
+      "reason": "TE v7.0 Stage 10.4 documentation model reference",
+      "risk": "LOW",
+      "validation": "Doc updated to M3"
+    },
+    {
+      "file": "docs/releases/te_v7_0/TE_V7_0_STAGE10_10_1_PROVIDER_TIMEOUT_CONTROLLED_RETRY.md",
+      "classification": "DOCUMENTATION_UPDATE",
+      "current_value": "meta/llama-3.3-70b-instruct",
+      "target_value": "meta/llama-3.2-90b-vision-instruct",
+      "reason": "TE v7.0 Stage 10.10.1 documentation model reference",
+      "risk": "LOW",
+      "validation": "Doc updated to M3"
+    },
+    {
+      "file": "docs/releases/te_v7_2/TE_V720_STAGE1221_CONTROLLED_PROVIDER_AB_EXECUTION.md",
+      "classification": "DOCUMENTATION_UPDATE",
+      "current_value": "meta/llama-3.3-70b-instruct",
+      "target_value": "meta/llama-3.2-90b-vision-instruct",
+      "reason": "TE v7.2 Stage 12.2.1 documentation model reference",
+      "risk": "LOW",
+      "validation": "Doc updated to M3"
+    },
+    {
+      "file": "docs/releases/te_v7_2/TE_V720_STAGE1222_INDEPENDENT_PAIR_RECOVERY_EXECUTION.md",
+      "classification": "DOCUMENTATION_UPDATE",
+      "current_value": "meta/llama-3.3-70b-instruct",
+      "target_value": "meta/llama-3.2-90b-vision-instruct",
+      "reason": "TE v7.2 Stage 12.2.2 documentation model reference",
+      "risk": "LOW",
+      "validation": "Doc updated to M3"
+    },
+    {
+      "file": "docs/releases/te_v7_2/TE_V720_STAGE1257_AUTHORIZED_PROMPT_VERIFICATION_CANARY.md",
+      "classification": "DOCUMENTATION_UPDATE",
+      "current_value": "meta/llama-3.3-70b-instruct",
+      "target_value": "meta/llama-3.2-90b-vision-instruct",
+      "reason": "TE v7.2 Stage 12.5.7 documentation model reference",
+      "risk": "LOW",
+      "validation": "Doc updated to M3"
+    },
+    {
+      "file": "docs/releases/te_v7_2/TE_V720_STAGE1258_CANDIDATE_STRUCTURAL_VERIFICATION_CANARY.md",
+      "classification": "DOCUMENTATION_UPDATE",
+      "current_value": "meta/llama-3.3-70b-instruct",
+      "target_value": "meta/llama-3.2-90b-vision-instruct",
+      "reason": "TE v7.2 Stage 12.5.8 documentation model reference",
+      "risk": "LOW",
+      "validation": "Doc updated to M3"
+    },
+    {
+      "file": "docs/governance/rm8/RM_8_PREFLIGHT_REPORT.md",
+      "classification": "DOCUMENTATION_UPDATE",
+      "current_value": "meta/llama-3.3-70b-instruct",
+      "target_value": "meta/llama-3.2-90b-vision-instruct",
+      "reason": "RM8 preflight report model references (3 occurrences)",
+      "risk": "LOW",
+      "validation": "Report updated to M3"
+    }
+  ],
+  "explicitly_excluded": [
+    "artifacts/tic_batch*/*.json",
+    "artifacts/pre_minimax_*.json",
+    "artifacts/p3a_model_probe/*.json",
+    "artifacts/p3b_model_comparison/*.json",
+    "artifacts/P0_FINAL_15_*.json",
+    "archive/**/*.py",
+    "docs/governance/repository/P3A*.md",
+    "docs/governance/repository/P3B*.md",
+    "docs/governance/repository/PRE_MINIMAX*.md",
+    "tools/one_shots/p3a*.py",
+    "tools/one_shots/p3b*.py",
+    "tools/one_shots/p15*.py"
+  ],
+  "summary": {
+    "migrate_count": 32,
+    "test_update_count": 16,
+    "documentation_update_count": 8,
+    "total_allowed_changes": 56
+  },
+  "timestamp": "2026-08-30T15:55:38Z"
+}

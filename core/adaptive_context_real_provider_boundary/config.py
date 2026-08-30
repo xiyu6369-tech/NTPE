@@ -6,7 +6,7 @@ BOUNDARY_VERSION = "7.0.0-stage10.4"
 ALLOWED_PROVIDER_URLS = frozenset({
     "https://integrate.api.nvidia.com/v1/chat/completions",
 })
-ALLOWED_MODELS = frozenset({"meta/llama-3.3-70b-instruct"})
+ALLOWED_MODELS = frozenset({"meta/llama-3.2-90b-vision-instruct"})
 ALLOWED_CREDENTIAL_ENV = {"nvidia": "NVIDIA_API_KEY"}
 
 
@@ -18,7 +18,7 @@ class RealProviderBoundaryConfig:
     authorization_id: str = ""
     provider: str = "nvidia"
     provider_url: str = "https://integrate.api.nvidia.com/v1/chat/completions"
-    model: str = "meta/llama-3.3-70b-instruct"
+    model: str = "meta/llama-3.2-90b-vision-instruct"
     credential_env: str = "NVIDIA_API_KEY"
     pair_id: str = ""
     run_kind: str = "baseline"

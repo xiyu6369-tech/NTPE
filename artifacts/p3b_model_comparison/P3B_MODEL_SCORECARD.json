@@ -1,0 +1,52 @@
+{
+  "baseline": "af5cbc091424849134c28ef931ce78d31ea0dc7d",
+  "timestamp": "2026-08-30T15:39:45.528734Z",
+  "candidates": [
+    "meta/llama-3.2-90b-vision-instruct",
+    "nvidia/riva-translate-4b-instruct-v2"
+  ],
+  "quality_scores": {
+    "M3": {
+      "semantic_fidelity": 84.7,
+      "literary_quality": 66.7,
+      "trad_chinese_quality": 91.2,
+      "character_consistency": 94.4,
+      "context_continuity": 94.4,
+      "terminology_glossary": 35.8,
+      "structural_compliance": 86.7,
+      "overall_quality": 80.0
+    },
+    "M4": {
+      "semantic_fidelity": 94.3,
+      "literary_quality": 0.0,
+      "trad_chinese_quality": 100.0,
+      "character_consistency": 85.7,
+      "context_continuity": 85.7,
+      "terminology_glossary": 4.1,
+      "structural_compliance": 80.0,
+      "overall_quality": 63.0
+    }
+  },
+  "runtime_metrics": {
+    "M3": {
+      "completion_rate": 100.0,
+      "timeout_rate": 0.0,
+      "retry_rate": 0.0,
+      "avg_latency_ms": 19197.0
+    },
+    "M4": {
+      "completion_rate": 38.9,
+      "timeout_rate": 0.0,
+      "retry_rate": 0.0,
+      "avg_latency_ms": 483.0
+    }
+  },
+  "production_suitability": {
+    "M3": "PRODUCTION_CANDIDATE",
+    "M4": "INCOMPATIBLE"
+  },
+  "phase_verdict": "P3B_CLEAR_WINNER",
+  "quality_winner": "M3",
+  "stability_winner": "M4",
+  "production_candidate": "M3"
+}

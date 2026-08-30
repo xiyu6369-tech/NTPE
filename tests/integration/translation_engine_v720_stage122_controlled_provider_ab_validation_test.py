@@ -66,7 +66,7 @@ def test_request_configurations_differ_only_by_candidate_flag() -> None:
 
 
 @pytest.mark.parametrize("field,expected", [
-    ("model", "meta/llama-3.3-70b-instruct"),
+    ("model", "meta/llama-3.2-90b-vision-instruct"),
     ("timeout_seconds", 180),
     ("max_retries", 0),
     ("attempt_limit", 1),

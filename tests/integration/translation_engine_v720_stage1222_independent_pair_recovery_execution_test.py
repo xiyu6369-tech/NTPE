@@ -91,7 +91,7 @@ def test_no_retry_or_fallback(arm: str) -> None:
 
 @pytest.mark.parametrize("field,expected", [
     ("source_sha256", SOURCE_SHA),
-    ("model", "meta/llama-3.3-70b-instruct"),
+    ("model", "meta/llama-3.2-90b-vision-instruct"),
     ("timeout_seconds", 180),
     ("max_output_tokens", 800),
     ("chunk_size", 600),

@@ -4,7 +4,7 @@
 
 Stage 12.2.2 created a new explicitly authorized execution record without modifying the historical Stage 12.2.1 timeout evidence. Baseline and Candidate used independent single-use harnesses in the required order, so Baseline failure did not prevent Candidate execution.
 
-Exactly two NVIDIA requests were made: one Baseline and one Candidate. Both used the frozen `Golden_Set:1` source, `meta/llama-3.3-70b-instruct`, a 180-second timeout, zero retries, no fallback, an 800-token output budget and a 600-character chunk size.
+Exactly two NVIDIA requests were made: one Baseline and one Candidate. Both used the frozen `Golden_Set:1` source, `meta/llama-3.2-90b-vision-instruct`, a 180-second timeout, zero retries, no fallback, an 800-token output budget and a 600-character chunk size.
 
 Baseline timed out after 180.096 seconds. Candidate then executed independently and timed out after 180.075 seconds. Neither arm produced translation text. Neither request was retried or replaced.
 

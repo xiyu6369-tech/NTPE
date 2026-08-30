@@ -39,7 +39,7 @@ class LiteraryRegressionOptions:
     chunk_size: int = 1000
     chunk_size_explicit: bool = False
     speed: str = "balanced"
-    model: str = "meta/llama-3.3-70b-instruct"
+    model: str = "meta/llama-3.2-90b-vision-instruct"
     dry_run: bool = False
     overwrite: bool = False
     resume: bool = True

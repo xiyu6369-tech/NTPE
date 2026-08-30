@@ -134,7 +134,7 @@ def test_fixed_prompt_components_are_identical(field: str) -> None:
 
 
 @pytest.mark.parametrize("field,expected", [
-    ("model", "meta/llama-3.3-70b-instruct"),
+    ("model", "meta/llama-3.2-90b-vision-instruct"),
     ("timeout_seconds", 180),
     ("max_output_tokens", 800),
     ("chunk_size", 600),

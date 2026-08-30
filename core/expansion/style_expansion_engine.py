@@ -35,7 +35,7 @@ class StyleExpansionEngine:
         translation_text: str,
         file_name: str,
         chunk_index: int,
-        model: str = "meta/llama-3.3-70b-instruct",
+        model: str = "meta/llama-3.2-90b-vision-instruct",
         max_output_tokens: int = 1600,
     ) -> dict:
         plan = self.planner.plan(source_text, translation_text)

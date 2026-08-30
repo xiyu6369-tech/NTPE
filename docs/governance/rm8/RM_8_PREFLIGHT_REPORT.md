@@ -179,7 +179,7 @@ Prompt Runtime (core/prompt_runtime)
         ↓
 Translation Runtime (core/translation_runtime)
   → builds TranslationRequest (immutable)
-  → executes with provider (meta/llama-3.3-70b-instruct)
+  → executes with provider (meta/llama-3.2-90b-vision-instruct)
   → QA validation (length, Korean chars, repetition)
         ↓
 Translation Engine (core/translation_engine)
@@ -443,7 +443,7 @@ Fresh Process (next run): Extract → Resolve → LEARNING source → Normalize 
 
 | Parameter | Value | Source |
 |-----------|-------|--------|
-| Primary Model | `meta/llama-3.3-70b-instruct` | `DEFAULT_MODEL` in ntpe_production_translate.py |
+| Primary Model | `meta/llama-3.2-90b-vision-instruct` | `DEFAULT_MODEL` in ntpe_production_translate.py |
 | API Endpoint | `https://integrate.api.nvidia.com/v1/chat/completions` | NVIDIA adapter config |
 | Timeout | 60s (base), 120s (short chunk first attempt) | `NTPE_API_TIMEOUT`, `NTPE_SHORT_CHUNK_FIRST_TIMEOUT` |
 | Retry Policy | 3 attempts, exponential backoff | `RetryPolicy` default |
@@ -454,7 +454,7 @@ Fresh Process (next run): Extract → Resolve → LEARNING source → Normalize 
 
 | Role | Model | Provider |
 |------|-------|----------|
-| **Translation (NTPE production)** | `meta/llama-3.3-70b-instruct` | NVIDIA API |
+| **Translation (NTPE production)** | `meta/llama-3.2-90b-vision-instruct` | NVIDIA API |
 | **Coding Agent (Kilo/Codex)** | `nvidia/nemotron-3-ultra-550b-a55b` | Kilo Gateway |
 
 **Critical:** These are completely separate. The coding agent model is **not** the NTPE translation model. RM-8 audit must not conflate them.

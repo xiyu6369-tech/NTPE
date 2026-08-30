@@ -24,7 +24,7 @@ class SingleRealInvocationConfig:
     execution_mode: str = "fake"
     provider: str = "nvidia"
     provider_url: str = "https://integrate.api.nvidia.com/v1/chat/completions"
-    model: str = "meta/llama-3.3-70b-instruct"
+    model: str = "meta/llama-3.2-90b-vision-instruct"
     session_id: str = "stage1010-single-session"
     source_path: str = "tests/literary/Golden_Set/original_ko.txt"
     chunk_index: int = 1

@@ -6,7 +6,7 @@ historical seal, authorization, corpus/hash, request-plan, and claim-eligibility
 before creation of the new single-use Stage 12.5.7 claim.
 
 The authorized execution is limited to one baseline request followed by one candidate request to
-NVIDIA `meta/llama-3.3-70b-instruct`. Retry, fallback, parallel execution, automatic rerun,
+NVIDIA `meta/llama-3.2-90b-vision-instruct`. Retry, fallback, parallel execution, automatic rerun,
 alternate corpus, Provider, or model are prohibited. Stage 12.5.6 historical evidence is immutable.
 
 Before ChatGPT manual review, activation is provisional and the gate remains

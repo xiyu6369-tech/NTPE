@@ -27,7 +27,7 @@ def _sha(value: str) -> str:
 
 def _configuration() -> CanaryConfiguration:
     return CanaryConfiguration(
-        model="meta/llama-3.3-70b-instruct",
+        model="meta/llama-3.2-90b-vision-instruct",
         timeout_seconds=180,
         glossary_sha256="a" * 64,
         profile="literary-ko-zh-TW",

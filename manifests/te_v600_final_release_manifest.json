@@ -38,7 +38,7 @@
   ],
   "provider_invariants": [
     "nvidia-provider",
-    "meta/llama-3.3-70b-instruct",
+    "meta/llama-3.2-90b-vision-instruct",
     "40-rpm-ceiling",
     "timeout-propagation",
     "provider-attempts",

@@ -80,7 +80,7 @@ from core.context_scene_memory import (
 # RM-8.3 Delivery import is lazy (inside function) to avoid circular import
 
 
-DEFAULT_MODEL = "meta/llama-3.3-70b-instruct"
+DEFAULT_MODEL = "meta/llama-3.2-90b-vision-instruct"
 DEFAULT_CHUNK_SIZE = 1000
 DEFAULT_OUTPUT_SUFFIX = "_zh"
 DEFAULT_MAX_RETRIES = 3

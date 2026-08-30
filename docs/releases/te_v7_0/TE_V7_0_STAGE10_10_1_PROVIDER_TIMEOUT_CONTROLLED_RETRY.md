@@ -26,7 +26,7 @@ Any future explicitly authorized retry is fixed to:
 - one new invocation identity and one controlled session;
 - one attempt only;
 - 180-second timeout;
-- `meta/llama-3.3-70b-instruct`;
+- `meta/llama-3.2-90b-vision-instruct`;
 - no fallback;
 - the existing Stage 10.4 NVIDIA endpoint allowlist;
 - environment-only `NVIDIA_API_KEY`.

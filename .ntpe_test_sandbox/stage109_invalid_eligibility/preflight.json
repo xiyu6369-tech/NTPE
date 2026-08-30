@@ -1,0 +1,32 @@
+{
+  "artifact_path_valid": true,
+  "attempt_plan_valid": false,
+  "authorization_recorded": true,
+  "baseline_created": false,
+  "boundary_enabled": true,
+  "candidate_created": false,
+  "comparison_executed": false,
+  "content_redacted": true,
+  "credential_available": true,
+  "eligible": false,
+  "endpoint_allowlisted": true,
+  "integrity": {
+    "algorithm": "sha256",
+    "payload_sha256": "2a2d0d6ed7420d39c838812ef975d17e5bcbe2d86a27ecbd56a8fbbef37169e4"
+  },
+  "model_allowlisted": false,
+  "network_requests": 0,
+  "production_launcher_unconnected": false,
+  "provider_executed": false,
+  "readiness_evaluated": false,
+  "real_provider_enabled": true,
+  "resume_excluded": true,
+  "single_chunk": true,
+  "single_session": true,
+  "stage": "TE-v7.0-Stage10.9",
+  "stage108_integrity_valid": false,
+  "status": "blocked_invalid_model",
+  "te_v6_invariants_valid": false,
+  "translation_output_generated": false,
+  "version": "7.0.0-stage10.9"
+}

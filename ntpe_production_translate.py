@@ -99,7 +99,7 @@ from core.adaptive_context_production_benchmark import (
 install_txt_runtime_shadow_hook()
 install_production_rollout_hook()
 
-DEFAULT_MODEL = "meta/llama-3.3-70b-instruct"
+DEFAULT_MODEL = "meta/llama-3.2-90b-vision-instruct"
 
 
 def _resolve(path: str | Path) -> Path:

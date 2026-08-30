@@ -143,7 +143,7 @@ def test_no_provider_or_runtime_settings_are_part_of_candidate_payload() -> None
 def test_execution_package_keeps_frozen_provider_settings() -> None:
     package = json.loads((ROOT / "tests/fixtures/te_v72_canary/TE_V72_STAGE121_PROVIDER_EXECUTION_PACKAGE.json").read_text(encoding="utf-8"))
     settings = package["provider_settings"]
-    assert settings == {"model":"meta/llama-3.3-70b-instruct", "timeout_seconds":180, "attempt_limit":1, "max_output_tokens":800, "chunk_size":600}
+    assert settings == {"model":"meta/llama-3.2-90b-vision-instruct", "timeout_seconds":180, "attempt_limit":1, "max_output_tokens":800, "chunk_size":600}
 
 
 def test_execution_package_is_non_executing() -> None:
