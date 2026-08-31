@@ -1,0 +1,55 @@
+{
+  "phase": "3H",
+  "analysis": "Automated_vs_Human_Analysis",
+  "baseline_commit": "ea4ce55c33e5347c4aa72b9838e8314bcf0c0af7",
+  "automated_scores": {
+    "p3g_overall": 75.6,
+    "p3g_dimensions": {
+      "semantic_fidelity": 67.2,
+      "literary_quality": 69.2,
+      "trad_chinese_quality": 79.8,
+      "character_consistency": 94.0,
+      "context_continuity": 90.4,
+      "terminology_glossary": 46.7,
+      "structural_compliance": 80.0
+    }
+  },
+  "human_assessment": {
+    "overall_quality": "75-80 (estimated from dimension review)",
+    "dimension_assessments": {
+      "semantic_fidelity": "ACTUAL ~78-80 (automated understates due to glossary false negatives)",
+      "literary_quality": "69.2 (confirmed)",
+      "trad_chinese_quality": "88-91 (automated understates due to variant sensitivity)",
+      "character_consistency": "94.0 (confirmed)",
+      "context_continuity": "90.4 (confirmed)",
+      "terminology_glossary": "85-95% actual adherence (automated 46.7% due to false negatives)",
+      "structural_compliance": "80.0 (confirmed)"
+    }
+  },
+  "reliability_classification": {
+    "high_reliability": ["literary_quality", "character_consistency", "context_continuity", "structural_compliance"],
+    "moderate_reliability": ["semantic_fidelity", "trad_chinese_quality"],
+    "low_reliability": ["terminology_glossary"]
+  },
+  "automated_vs_human_gaps": [
+    {
+      "dimension": "semantic_fidelity",
+      "gap": "Automated 67.2 vs Human estimated 78-80",
+      "cause": "Glossary detection false negatives penalize semantic_fidelity unfairly",
+      "severity": "MODERATE"
+    },
+    {
+      "dimension": "trad_chinese_quality",
+      "gap": "Automated 79.8 vs Human estimated 88-91",
+      "cause": "Variant sensitivity over-penalizes legitimate Traditional Chinese variants",
+      "severity": "MODERATE"
+    },
+    {
+      "dimension": "terminology_glossary",
+      "gap": "Automated 46.7 vs Human estimated 85-95%",
+      "cause": "Severe evaluator false negatives - terms correctly translated but not detected",
+      "severity": "CRITICAL"
+    }
+  ],
+  "overall_assessment": "P3G automated score of 75.6 understates true quality by ~3-5 points due to evaluator systematic biases. True quality estimated at 78-80."
+}

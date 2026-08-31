@@ -1,0 +1,60 @@
+{
+  "phase": "3I",
+  "audit": "Model_Decision_Audit",
+  "baseline_commit": "ea4ce55c33e5347c4aa72b9838e8314bcf0c0af7",
+  "model_decision_history": [
+    {
+      "model": "M0 (meta/llama-3.1-405b-instruct)",
+      "status": "EOL",
+      "reason": "Model end-of-life, no longer available on NVIDIA",
+      "phase_excluded": "P3A",
+      "production_reachable": false
+    },
+    {
+      "model": "M1 (meta/llama-3.1-nemotron-70b-instruct)",
+      "status": "EXCLUDED",
+      "reason": "429 rate limiting makes it unreliable for production",
+      "phase_excluded": "P3A",
+      "production_reachable": false
+    },
+    {
+      "model": "M2 (nvidia/nemotron-3-ultra)",
+      "status": "EXCLUDED",
+      "reason": "404 not available on NVIDIA endpoint",
+      "phase_excluded": "P3A",
+      "production_reachable": false
+    },
+    {
+      "model": "DeepSeek V4",
+      "status": "RETIRED",
+      "reason": "Timeout during probe, not viable for production",
+      "phase_excluded": "P3A.2",
+      "production_reachable": false
+    },
+    {
+      "model": "M4 (nvidia/riva-translate-4b-instruct-v2)",
+      "status": "EXCLUDED",
+      "reason": "Incompatible with literary translation quality requirements (P3B quality 63.0)",
+      "phase_excluded": "P3B",
+      "production_reachable": false
+    },
+    {
+      "model": "M3 (meta/llama-3.2-90b-vision-instruct)",
+      "status": "PRODUCTION_ACCEPTED",
+      "reason": "P3B winner (80.0 quality), P3G same-rubric 75.6, P3H human 78-80, 100% completion, 0 timeouts",
+      "phase_selected": "P3B",
+      "migrated": "P3D",
+      "validated": "P3E, P3G, P3H",
+      "production_reachable": true
+    }
+  ],
+  "active_model": "meta/llama-3.2-90b-vision-instruct",
+  "provider": "NVIDIA",
+  "excluded_models_production_reachable": false,
+  "verification": {
+    "active_model_in_config": true,
+    "excluded_models_in_production_config": false,
+    "no_unexpected_model_references_in_production_paths": true
+  },
+  "timestamp": "2026-08-31T15:34:33Z"
+}

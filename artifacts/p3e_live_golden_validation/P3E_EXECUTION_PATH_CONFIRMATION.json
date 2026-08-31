@@ -1,0 +1,31 @@
+{
+  "phase": "3E",
+  "confirmation": "Execution_Path",
+  "canonical_path": [
+    "User Entry: CLI (ntpe_production_translate.py subcommands)",
+    "CLI Parser: ntpe_production_translate.py:build_parser()",
+    "Runtime Facade: core/translation_runtime/runtime.py:TranslationRuntime",
+    "TXT Runtime: lts/txt_translation_runtime.py:translate_txt()",
+    "Runtime Pipeline: lts/txt_translation_runtime.py:_translate_txt_with_runtime_pipeline()",
+    "Translation Engine: core/translation_engine/translation_engine.py:TranslationEngine",
+    "Provider Manager: core/translation_engine/provider_runtime.py:build_translation_provider_manager()",
+    "NVIDIA Provider: core/translation_engine/provider_runtime.py:NvidiaTranslationProvider",
+    "NVIDIA Client: core/translation_engine/nvidia_client.py:NvidiaClient",
+    "NVIDIA API: https://integrate.api.nvidia.com/v1/chat/completions",
+    "Model: meta/llama-3.2-90b-vision-instruct"
+  ],
+  "legacy_route_invoked": false,
+  "legacy_checks": {
+    "pipeline_selector_removed": true,
+    "env_var_selector_removed": true,
+    "legacy_branch_removed": true,
+    "legacy_function_removed": true,
+    "env_var_enforcement_removed": true
+  },
+  "model_used": "meta/llama-3.2-90b-vision-instruct",
+  "provider": "NVIDIA",
+  "endpoint": "https://integrate.api.nvidia.com/v1/chat/completions",
+  "canonical_path_verified": true,
+  "verdict": "P3E_M3_POST_MIGRATION_VALIDATED",
+  "timestamp": "2026-08-31T03:50:00Z"
+}

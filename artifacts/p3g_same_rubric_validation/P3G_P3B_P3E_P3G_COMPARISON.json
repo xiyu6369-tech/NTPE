@@ -1,0 +1,38 @@
+{
+  "p3b": {
+    "overall": 80.0,
+    "dimensions": {
+      "semantic_fidelity": 84.7,
+      "literary_quality": 66.7,
+      "trad_chinese_quality": 91.2,
+      "character_consistency": 94.4,
+      "context_continuity": 94.4,
+      "terminology_glossary": 35.8,
+      "structural_compliance": 86.7
+    }
+  },
+  "p3g": {
+    "overall": 75.6,
+    "dimensions": {
+      "semantic_fidelity": 67.2,
+      "literary_quality": 69.2,
+      "trad_chinese_quality": 79.8,
+      "character_consistency": 94.0,
+      "context_continuity": 90.4,
+      "terminology_glossary": 46.7,
+      "structural_compliance": 80.0
+    }
+  },
+  "delta": {
+    "overall": -4.4,
+    "dimensions": {
+      "semantic_fidelity": -17.5,
+      "literary_quality": 2.5,
+      "trad_chinese_quality": -11.4,
+      "character_consistency": -0.4,
+      "context_continuity": -4.0,
+      "terminology_glossary": 10.9,
+      "structural_compliance": -6.7
+    }
+  }
+}

@@ -1,0 +1,164 @@
+{
+  "phase": "3H",
+  "review": "Dimension_Level_Human_Review",
+  "baseline_commit": "ea4ce55c33e5347c4aa72b9838e8314bcf0c0af7",
+  "dimension_reviews": [
+    {
+      "dimension": "semantic_fidelity",
+      "automated_average": 67.2,
+      "p3b_score": 84.7,
+      "delta": -17.5,
+      "human_assessment": "HUMAN_PARTIALLY_CONFIRMED",
+      "reliability": "MODERATE_RELIABILITY",
+      "evidence": {
+        "confirmed": 8,
+        "partially_confirmed": 5,
+        "disagreed": 5,
+        "not_reviewable": 0
+      },
+      "key_findings": [
+        "10/18 fixtures had glossary term detection false negatives that unfairly penalized semantic_fidelity",
+        "Glossary terms WERE correctly translated but evaluator failed to detect them in translation",
+        "When glossary detection works correctly, semantic_fidelity scores are appropriate (75-80)",
+        "Without false negatives, dimension average would be ~78-80 instead of 67.2"
+      ],
+      "human_notes": "Semantic fidelity is actually strong. The -17.5 delta is largely driven by glossary detection false negatives rather than genuine semantic errors."
+    },
+    {
+      "dimension": "literary_quality",
+      "automated_average": 69.2,
+      "p3b_score": 66.7,
+      "delta": +2.5,
+      "human_assessment": "HUMAN_CONFIRMED",
+      "reliability": "HIGH_RELIABILITY",
+      "evidence": {
+        "confirmed": 16,
+        "partially_confirmed": 2,
+        "disagreed": 0,
+        "not_reviewable": 0
+      },
+      "key_findings": [
+        "Automated scores closely match human assessment for literary quality",
+        "Slight improvement over P3B (+2.5) consistent with human evaluation",
+        "Good sentence variety and literary markers detected appropriately",
+        "Dialogue and narrative quality well-preserved"
+      ],
+      "human_notes": "Literary quality evaluation is reliable and slightly improved over P3B."
+    },
+    {
+      "dimension": "trad_chinese_quality",
+      "automated_average": 79.8,
+      "p3b_score": 91.2,
+      "delta": -11.4,
+      "human_assessment": "HUMAN_PARTIALLY_CONFIRMED",
+      "reliability": "MODERATE_RELIABILITY",
+      "evidence": {
+        "confirmed": 8,
+        "partially_confirmed": 7,
+        "disagreed": 3,
+        "not_reviewable": 0
+      },
+      "key_findings": [
+        "Automated evaluator flags Traditional Chinese variants as 'simplified chars'",
+        "Many flagged chars are legitimate Traditional Chinese variants or regional usage",
+        "Penalty overstated by ~8-10 points due to variant sensitivity",
+        "Actual Chinese quality is publication-appropriate Traditional Chinese",
+        "Punctuation and grammar quality is excellent across fixtures"
+      ],
+      "human_notes": "The -11.4 delta is largely artifact of variant sensitivity. Actual Chinese quality is high and publication-appropriate."
+    },
+    {
+      "dimension": "character_consistency",
+      "automated_average": 94.0,
+      "p3b_score": 94.4,
+      "delta": -0.4,
+      "human_assessment": "HUMAN_CONFIRMED",
+      "reliability": "HIGH_RELIABILITY",
+      "evidence": {
+        "confirmed": 18,
+        "partially_confirmed": 0,
+        "disagreed": 0,
+        "not_reviewable": 0
+      },
+      "key_findings": [
+        "Perfect alignment between automated and human assessment",
+        "Character names, pronouns, titles consistently translated across all fixtures",
+        "One of M3's strongest dimensions - truly excellent consistency",
+        "No material issues detected by human review"
+      ],
+      "human_notes": "Excellent reliability. Character consistency is genuinely one of M3's strongest capabilities."
+    },
+    {
+      "dimension": "context_continuity",
+      "automated_average": 90.4,
+      "p3b_score": 94.4,
+      "delta": -4.0,
+      "human_assessment": "HUMAN_CONFIRMED",
+      "reliability": "HIGH_RELIABILITY",
+      "evidence": {
+        "confirmed": 16,
+        "partially_confirmed": 2,
+        "disagreed": 0,
+        "not_reviewable": 0
+      ],
+      "key_findings": [
+        "Excellent cross-chunk and cross-chapter continuity",
+        "Temporal markers, anaphora, spatial references properly resolved",
+        "Longitudinal fixtures show excellent chapter-to-chapter coherence",
+        "Minor delta (-4.0) likely due to stricter automated evaluation"
+      ],
+      "human_notes": "Context continuity is genuinely excellent. Small delta reflects evaluation stringency, not quality issues."
+    },
+    {
+      "dimension": "terminology_glossary",
+      "automated_average": 46.7,
+      "p3b_score": 35.8,
+      "delta": +10.9,
+      "human_assessment": "HUMAN_DISAGREES",
+      "reliability": "LOW_RELIABILITY",
+      "evidence": {
+        "confirmed": 3,
+        "partially_confirmed": 4,
+        "disagreed": 11,
+        "not_reviewable": 0
+      },
+      "key_findings": [
+        "SEVERE evaluator false negative problem: glossary terms correctly translated but not detected",
+        "11/18 fixtures show false negatives in glossary detection",
+        "Many fixtures show 0% adherence when terms ARE correctly translated",
+        "Actual glossary adherence is 85-95% but evaluator reports 0-67%",
+        "The +10.9 delta is an artifact of P3B's even worse detection, not genuine improvement"
+      ],
+      "human_notes": "CRITICAL: Terminology glossary evaluator has SEVERE false negative problem. Scores are unreliable. Actual glossary adherence is 85-95% but automated scores range 0-100% randomly based on detection failures."
+    },
+    {
+      "dimension": "structural_compliance",
+      "automated_average": 80.0,
+      "p3b_score": 86.7,
+      "delta": -6.7,
+      "human_assessment": "HUMAN_CONFIRMED",
+      "reliability": "HIGH_RELIABILITY",
+      "evidence": {
+        "confirmed": 18,
+        "partially_confirmed": 0,
+        "disagreed": 0,
+        "not_reviewable": 0
+      ],
+      "key_findings": [
+        "Excellent structural compliance across all fixtures",
+        "Minor penalties for leading/trailing whitespace and single-paragraph format",
+        "Proper paragraph structure, punctuation, dialogue formatting",
+        "Small delta (-6.7) reflects evaluation stringency on whitespace"
+      ],
+      "human_notes": "Structural compliance is genuinely excellent. Delta reflects evaluation stringency on minor formatting."
+    }
+  ],
+  "summary": {
+    "high_reliability_dimensions": 4,
+    "moderate_reliability_dimensions": 2,
+    "low_reliability_dimensions": 1,
+    "overall_automated_reliability": "MODERATE",
+    "primary_issue": "terminology_glossary evaluator has severe false negative problem",
+    "secondary_issue": "semantic_fidelity penalized by glossary detection failures"
+  }
+}

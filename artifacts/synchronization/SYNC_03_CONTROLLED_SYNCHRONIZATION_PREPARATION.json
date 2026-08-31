@@ -1,0 +1,187 @@
+{
+  "phase": "SYNC-03",
+  "mode": "VERIFICATION",
+  "local_head": "ea4ce55c33e5347c4aa72b9838e8314bcf0c0af7",
+  "remote_head": "8c999b1219f65a6afaeaf0062e6c43f72691c188",
+  "working_tree": {
+    "status": "CLEAN_DELETIONS_PLUS_UNTRACKED",
+    "expected_changes": [
+      "DELETED: .ntpe_test_sandbox/stage109_invalid_eligibility/preflight.json (ROOT_HYGIENE_CLEANUP)",
+      "DELETED: ntpe_batch_monitor.py (TOOL_RELOCATION -> tools/one_shots/)",
+      "DELETED: ntpe_launcher.py (TOOL_RELOCATION -> tools/one_shots/)",
+      "DELETED: ntpe_validate.py (TOOL_RELOCATION -> tools/one_shots/)",
+      "UNTRACKED: artifacts/p3e_live_golden_validation/ (EXPECTED_P3I_ARTIFACT)",
+      "UNTRACKED: artifacts/p3f_quality_delta/ (EXPECTED_P3I_ARTIFACT)",
+      "UNTRACKED: artifacts/p3g_same_rubric_validation/ (EXPECTED_P3I_ARTIFACT)",
+      "UNTRACKED: artifacts/p3h_human_literary_review/ (EXPECTED_P3I_ARTIFACT)",
+      "UNTRACKED: artifacts/p3i_final_acceptance/ (EXPECTED_P3I_ARTIFACT)",
+      "UNTRACKED: artifacts/synchronization/ (EXPECTED_P3I_ARTIFACT - sync audit artifacts)",
+      "UNTRACKED: docs/governance/repository/P3E_LIVE_GOLDEN_VALIDATION.md (EXPECTED_P3I_DOCUMENT)",
+      "UNTRACKED: docs/governance/repository/P3F_M3_QUALITY_DELTA_INVESTIGATION.md (EXPECTED_P3I_DOCUMENT)",
+      "UNTRACKED: docs/governance/repository/P3G_SAME_RUBRIC_M3_QUALITY_REVALIDATION.md (EXPECTED_P3I_DOCUMENT)",
+      "UNTRACKED: docs/governance/repository/P3H_HUMAN_LITERARY_ACCEPTANCE_REVIEW.md (EXPECTED_P3I_DOCUMENT)",
+      "UNTRACKED: docs/governance/repository/P3I_FINAL_PRODUCTION_ACCEPTANCE.md (EXPECTED_P3I_DOCUMENT)",
+      "UNTRACKED: docs/governance/repository/ROOT_HYGIENE_01_CONTROLLED_CLEANUP.md (EXPECTED_P3I_DOCUMENT - hygiene audit)",
+      "UNTRACKED: docs/governance/repository/SYNC_01_PRE_SYNCHRONIZATION_AUDIT.md (EXPECTED_P3I_DOCUMENT - sync audit)",
+      "UNTRACKED: docs/governance/repository/SYNC_02_HISTORICAL_DRIFT_CLASSIFICATION.md (EXPECTED_P3I_DOCUMENT - sync audit)",
+      "UNTRACKED: memory/character_memory_lts.json (EXPECTED_PROJECT_FILE)",
+      "UNTRACKED: tools/one_shots/ntpe_batch_monitor.py (TOOL_RELOCATION)",
+      "UNTRACKED: tools/one_shots/ntpe_launcher.py (TOOL_RELOCATION)",
+      "UNTRACKED: tools/one_shots/ntpe_validate.py (TOOL_RELOCATION)"
+    ],
+    "unexpected_changes": []
+  },
+  "cache_cleanup": {
+    "status": "SAFE",
+    "removed_paths": [
+      "__pycache__/",
+      ".ntpe_test_sandbox/",
+      "backup/",
+      "logs/",
+      "output/",
+      "translated/",
+      "translation_cache/"
+    ],
+    "verification": "All confirmed as generated/temporary cache directories with no historical evidence, no source code, no production runtime requirements. Validation PASS after removal."
+  },
+  "tool_relocation": {
+    "status": "COMPLETED_WITH_REFERENCES",
+    "moved_tools": [
+      {
+        "tool": "ntpe_batch_monitor.py",
+        "from": "root",
+        "to": "tools/one_shots/",
+        "imports_in_production": 0,
+        "string_references": 0,
+        "status": "SAFE"
+      },
+      {
+        "tool": "ntpe_launcher.py",
+        "from": "root",
+        "to": "tools/one_shots/",
+        "imports_in_production": 0,
+        "string_references": 1,
+        "references": [
+          {
+            "file": "core/launcher_product/command_builder.py",
+            "line": 31,
+            "reference": "\"launcher_translate.py\"",
+            "type": "STRING_LITERAL",
+            "runtime_relevance": "NONE",
+            "production_relevance": "NONE",
+            "classification": "SAFE_STALE_REFERENCE"
+          }
+        ],
+        "status": "SAFE_STALE_REFERENCE"
+      },
+      {
+        "tool": "ntpe_validate.py",
+        "from": "root",
+        "to": "tools/one_shots/",
+        "imports_in_production": 0,
+        "string_references": 3,
+        "references": [
+          {
+            "file": "core/lcr_production_shadow/inventory.py",
+            "line": 19,
+            "reference": "\"ntpe_validate.py\"",
+            "type": "STRING_LITERAL",
+            "runtime_relevance": "SHADOW_READ_ONLY",
+            "production_relevance": "NONE",
+            "classification": "SAFE_STALE_REFERENCE"
+          },
+          {
+            "file": "core/enterprise/deployment_foundation.py",
+            "line": 56,
+            "reference": "(self.root / \"ntpe_validate.py\").exists()",
+            "type": "FILESYSTEM_CHECK",
+            "runtime_relevance": "DEPLOYMENT_VALIDATION",
+            "production_relevance": "NONE",
+            "classification": "ACTIVE_REFERENCE_REQUIRES_UPDATE"
+          },
+          {
+            "file": "core/translation_release/release_manifest.py",
+            "line": 34,
+            "reference": "\"python ntpe_validate.py\"",
+            "type": "COMMAND_STRING",
+            "runtime_relevance": "RELEASE_MANIFEST",
+            "production_relevance": "NONE",
+            "classification": "ACTIVE_REFERENCE_REQUIRES_UPDATE"
+          }
+        ],
+        "status": "ACTIVE_REFERENCES_REQUIRE_UPDATE"
+      }
+    ]
+  },
+  "production_entry_points": {
+    "ntpe_production_translate.py": "KEEP_ROOT_ENTRY_POINT",
+    "launcher_translate.py": "KEEP_ROOT_COMPATIBILITY_WRAPPER"
+  },
+  "production_import_blockers": [
+    {
+      "file": "ntpe_literary_evaluation.py",
+      "importers": ["ntpe_production_translate.py:28"],
+      "import_type": "DIRECT_PRODUCTION_IMPORT",
+      "status": "BLOCKED",
+      "action": "KEEP_ROOT_PENDING_REFACTOR"
+    },
+    {
+      "file": "ntpe_literary_regression.py",
+      "importers": ["ntpe_production_translate.py:27", "ntpe_literary_evaluation.py:14"],
+      "import_type": "DIRECT_PRODUCTION_IMPORT",
+      "status": "BLOCKED",
+      "action": "KEEP_ROOT_PENDING_REFACTOR"
+    }
+  ],
+  "p3i_evidence": {
+    "status": "PASS",
+    "artifacts": "INTACT",
+    "documents": "INTACT",
+    "governance": "INTACT"
+  },
+  "production_state": {
+    "provider": "NVIDIA",
+    "active_model": "meta/llama-3.2-90b-vision-instruct",
+    "canonical_path": "CONFIRMED",
+    "txt": "PASS",
+    "epub": "PASS",
+    "batch": "PASS"
+  },
+  "synchronization_candidate_set": {
+    "must_sync": [
+      "artifacts/p3e_live_golden_validation/",
+      "artifacts/p3f_quality_delta/",
+      "artifacts/p3g_same_rubric_validation/",
+      "artifacts/p3h_human_literary_review/",
+      "artifacts/p3i_final_acceptance/",
+      "artifacts/synchronization/",
+      "docs/governance/repository/P3E_LIVE_GOLDEN_VALIDATION.md",
+      "docs/governance/repository/P3F_M3_QUALITY_DELTA_INVESTIGATION.md",
+      "docs/governance/repository/P3G_SAME_RUBRIC_M3_QUALITY_REVALIDATION.md",
+      "docs/governance/repository/P3H_HUMAN_LITERARY_ACCEPTANCE_REVIEW.md",
+      "docs/governance/repository/P3I_FINAL_PRODUCTION_ACCEPTANCE.md",
+      "docs/governance/repository/ROOT_HYGIENE_01_CONTROLLED_CLEANUP.md",
+      "docs/governance/repository/SYNC_01_PRE_SYNCHRONIZATION_AUDIT.md",
+      "docs/governance/repository/SYNC_02_HISTORICAL_DRIFT_CLASSIFICATION.md",
+      "memory/character_memory_lts.json",
+      "tools/one_shots/ntpe_batch_monitor.py",
+      "tools/one_shots/ntpe_launcher.py",
+      "tools/one_shots/ntpe_validate.py"
+    ],
+    "keep_local": [],
+    "review_required": [
+      "ntpe_launcher.py string reference in core/launcher_product/command_builder.py:31",
+      "ntpe_validate.py filesystem check in core/enterprise/deployment_foundation.py:56",
+      "ntpe_validate.py command string in core/translation_release/release_manifest.py:34",
+      "ntpe_literary_evaluation.py import from ntpe_production_translate.py",
+      "ntpe_literary_regression.py imports from ntpe_production_translate.py and ntpe_literary_evaluation.py"
+    ]
+  },
+  "blocking_issues": [],
+  "review_required": [
+    "ACTIVE_REFERENCES_REQUIRE_UPDATE: 2 references to ntpe_validate.py in deployment_foundation and release_manifest",
+    "SAFE_STALE_REFERENCE: 1 reference to launcher_translate.py in command_builder (note: launcher_translate.py RETAINED in root)",
+    "PRODUCTION_IMPORT_BLOCKERS: 2 tools retained in root due to direct production imports"
+  ],
+  "recommended_next_stage": "SYNC-04"
+}

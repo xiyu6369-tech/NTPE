@@ -53,7 +53,7 @@ class EnterpriseDeploymentFoundation:
         return {
             "root": str(self.root),
             "existing_directories": existing_dirs,
-            "has_validator": (self.root / "ntpe_validate.py").exists(),
+            "has_validator": (self.root / "tools/one_shots/ntpe_validate.py").exists(),
             "has_launcher": (self.root / "launcher.py").exists(),
         }
 

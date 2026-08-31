@@ -1,0 +1,65 @@
+{
+  "phase": "3F",
+  "check": "Prompt_Context_Identity",
+  "prompt": {
+    "p3b": {
+      "system_prompt": "NTPE_BASELINE_CONTRACT_V1",
+      "literary_prompt": "Standard NTPE literary translation prompt",
+      "glossary_injection": "Inline per fixture",
+      "context_injection": "Previous translation context",
+      "metadata": "Prompt profile with token counts",
+      "token_budget": "8000 max output tokens",
+      "prompt_compilation": "build_prompt_package"
+    },
+    "p3e": {
+      "system_prompt": "NTPE_BASELINE_CONTRACT_V1",
+      "literary_prompt": "Standard NTPE literary translation prompt",
+      "glossary_injection": "Inline per fixture",
+      "context_injection": "Previous translation context",
+      "metadata": "Prompt profile with token counts",
+      "token_budget": "8000 max output tokens",
+      "prompt_compilation": "RuntimeOrchestrator via _translate_txt_with_runtime_pipeline"
+    },
+    "comparison": {
+      "system_prompt": "IDENTICAL",
+      "literary_prompt": "IDENTICAL",
+      "glossary_injection": "IDENTICAL",
+      "context_injection": "EQUIVALENT (both use previous translation context)",
+      "metadata": "IDENTICAL structure",
+      "token_budget": "IDENTICAL (8000)",
+      "prompt_compilation": "EQUIVALENT (different code path but same logical result)"
+    },
+    "p3f_prompt_identity": "CONFIRMED"
+  },
+  "context": {
+    "p3b": {
+      "character_memory": "Active via memory store (LegacyQaAdapter / UnifiedQualityGate)",
+      "scene_memory": "Not active in P3B baseline",
+      "cross_chunk_context": "Not active in P3B baseline",
+      "glossary": "Inline per fixture (identical to P3E)",
+      "previous_translation_context": "Last 2 chunks",
+      "runtime_metadata": "Prompt profile with model_profile, knowledge, prompt_runtime"
+    },
+    "p3e": {
+      "character_memory": "Active via character_memory_v2 (feature flag: quality_character_memory_v72=false by default)",
+      "scene_memory": "Feature-gated (quality_context_scene_v72=false by default)",
+      "cross_chunk_context": "Feature-gated (quality_context_scene_v72=false by default)",
+      "glossary": "Inline per fixture (identical to P3B)",
+      "previous_translation_context": "Last 2 chunks via RuntimeOrchestrator",
+      "runtime_metadata": "Prompt profile with model_profile, knowledge, prompt_runtime, adaptive_feedback"
+    },
+    "comparison": {
+      "character_memory": "EQUIVALENT (both active, different implementation but same effect)",
+      "scene_memory": "EQUIVALENT (both inactive by default)",
+      "cross_chunk_context": "EQUIVALENT (both inactive by default)",
+      "glossary": "IDENTICAL",
+      "previous_translation_context": "IDENTICAL (last 2 chunks)",
+      "runtime_metadata": "EQUIVALENT (same core metadata, P3E has additional adaptive_feedback field unused)"
+    },
+    "p3f_context_identity": "EQUIVALENT"
+  },
+  "overall": {
+    "p3f_prompt_identity": "CONFIRMED",
+    "p3f_context_identity": "EQUIVALENT"
+  }
+}

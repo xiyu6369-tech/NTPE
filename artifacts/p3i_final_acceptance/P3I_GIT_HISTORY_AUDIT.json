@@ -1,0 +1,67 @@
+{
+  "phase": "3I",
+  "audit": "Git_History_Audit",
+  "baseline_commit": "ea4ce55c33e5347c4aa72b9838e8314bcf0c0af7",
+  "commit_history": [
+    {
+      "commit": "8c999b1",
+      "short": "8c999b1",
+      "message": "P0-FINAL-13: clean governance repository surface",
+      "description": "Pre-Minimax historical reference; governance repository cleanup",
+      "role": "Historical reference point",
+      "phase": "Pre-P3A"
+    },
+    {
+      "commit": "af5cbc0",
+      "short": "af5cbc0",
+      "message": "chore: establish pre-minimax reconstructed baseline",
+      "description": "PRE-MINIMAX-RECONSTRUCTED-BASELINE established; Phase 3A baseline",
+      "role": "P3A/P3B/P3C baseline",
+      "phase": "P3A"
+    },
+    {
+      "commit": "e0b6007",
+      "short": "e0b6007",
+      "message": "feat(provider): migrate production model to llama-3.2-90b",
+      "description": "M3 controlled migration per P3C allowlist (56 changes: 32 MIGRATE, 16 TEST_UPDATE, 8 DOCUMENTATION_UPDATE)",
+      "role": "P3D migration commit",
+      "phase": "P3D"
+    },
+    {
+      "commit": "ea4ce55",
+      "short": "ea4ce55",
+      "message": "refactor(runtime): remove legacy translation pipeline",
+      "description": "P3D.2 legacy pipeline surgical closure; removed --pipeline=legacy, NTPE_RUNTIME_PIPELINE, _pipeline_mode(), legacy branch",
+      "role": "P3D.2 closure commit",
+      "phase": "P3D.2"
+    }
+  ],
+  "history_verification": {
+    "linear_history": true,
+    "no_rewrites": true,
+    "no_force_push": true,
+    "no_amend": true,
+    "no_rebase": true,
+    "commits_in_order": [
+      "8c999b1",
+      "af5cbc0",
+      "e0b6007",
+      "ea4ce55"
+    ]
+  },
+  "commit_integrity": {
+    "ea4ce55_parent": "e0b6007",
+    "e0b6007_parent": "af5cbc0",
+    "af5cbc0_parent": "8c999b1",
+    "all_parents_verified": true
+  },
+  "prohibited_actions_verified": {
+    "no_rewrite_history": true,
+    "no_force_push": true,
+    "no_amend": true,
+    "no_rebase": true,
+    "no_reset": true,
+    "no_clean": true
+  },
+  "timestamp": "2026-08-31T15:34:33Z"
+}

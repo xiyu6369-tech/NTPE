@@ -1,0 +1,14 @@
+{
+  "dimension_averages": {
+    "semantic_fidelity": 67.2,
+    "literary_quality": 69.2,
+    "trad_chinese_quality": 79.8,
+    "character_consistency": 94.0,
+    "context_continuity": 90.4,
+    "terminology_glossary": 46.7,
+    "structural_compliance": 80.0
+  },
+  "overall_weighted": 75.6,
+  "p3b_overall": 80.0,
+  "delta": -4.4
+}

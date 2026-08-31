@@ -1,0 +1,291 @@
+{
+  "phase": "SYNC-02",
+  "mode": "READ_ONLY",
+  "local_head": "ea4ce55c33e5347c4aa72b9838e8314bcf0c0af7",
+  "remote_head": "8c999b1219f65a6afaeaf0062e6c43f72691c188",
+  "topology": {
+    "classification": "AHEAD",
+    "remote_only_commits": [],
+    "local_only_commits": [
+      "af5cbc091424849134c28ef931ce78d31ea0dc7d",
+      "e0b60071777aa624b43ecf82d7c88c40da4a636c",
+      "ea4ce55c33e5347c4aa72b9838e8314bcf0c0af7"
+    ],
+    "common_ancestor": "8c999b1219f65a6afaeaf0062e6c43f72691c188"
+  },
+  "history_classification": [
+    {
+      "commit": "af5cbc091424849134c28ef931ce78d31ea0dc7d",
+      "short_sha": "af5cbc0",
+      "timestamp": "2026-08-30T10:50:07+08:00",
+      "author": "Joing <你的 GitHub 註冊信箱>",
+      "subject": "chore: establish pre-minimax reconstructed baseline",
+      "files_changed": 495,
+      "insertions": 122554,
+      "deletions": 113968,
+      "parent": "8c999b1219f65a6afaeaf0062e6c43f72691c188",
+      "classification": "CANONICAL_MIGRATION_HISTORY",
+      "relationship": "RECONSTRUCTED_BASELINE",
+      "p3i_phase": "P3C",
+      "details": "Restored 23 MODEL_ONLY files to pre-Minimax baseline, surgically edited 5 MIXED files preserving 7 runtime improvements (RI-01..RI-07), removed 218 historical test artifacts and 24 obsolete tools"
+    },
+    {
+      "commit": "e0b60071777aa624b43ecf82d7c88c40da4a636c",
+      "short_sha": "e0b6007",
+      "timestamp": "2026-08-31T01:37:26+08:00",
+      "author": "Joing <你的 GitHub 註冊信箱>",
+      "subject": "feat(provider): migrate production model to llama-3.2-90b",
+      "files_changed": 70,
+      "insertions": 7676,
+      "deletions": 63,
+      "parent": "af5cbc091424849134c28ef931ce78d31ea0dc7d",
+      "classification": "CANONICAL_MIGRATION_HISTORY",
+      "relationship": "MIGRATION_COMMIT",
+      "p3i_phase": "P3D",
+      "details": "Migrated active production model from meta/llama-3.3-70b-instruct to meta/llama-3.2-90b-vision-instruct per Phase 3C allowlist (56 approved changes: 32 MIGRATE, 16 TEST_UPDATE, 8 DOCUMENTATION_UPDATE). RI-01..RI-07 preserved."
+    },
+    {
+      "commit": "ea4ce55c33e5347c4aa72b9838e8314bcf0c0af7",
+      "short_sha": "ea4ce55",
+      "timestamp": "2026-08-31T03:28:15+08:00",
+      "author": "Joing <你的 GitHub 註冊信箱>",
+      "subject": "refactor(runtime): remove legacy translation pipeline",
+      "files_changed": 19,
+      "insertions": 2771,
+      "deletions": 695,
+      "parent": "e0b60071777aa624b43ecf82d7c88c40da4a636c",
+      "classification": "CANONICAL_ACCEPTANCE_HISTORY",
+      "relationship": "FINAL_CLOSURE",
+      "p3i_phase": "P3D.2/P3I",
+      "details": "Removed legacy translation pipeline, confirmed legacy routes NONE, canonical path CONFIRMED, P3I production acceptance achieved"
+    }
+  ],
+  "untracked_review": [
+    {
+      "path": "artifacts/p3e_live_golden_validation/",
+      "file_type": "DIR",
+      "size": "DIR",
+      "category": "P3I_ARTIFACT",
+      "reason": "Phase 3E live golden validation artifacts",
+      "action": "KEEP_UNTRACKED"
+    },
+    {
+      "path": "artifacts/p3f_quality_delta/",
+      "file_type": "DIR",
+      "size": "DIR",
+      "category": "P3I_ARTIFACT",
+      "reason": "Phase 3F quality delta investigation artifacts",
+      "action": "KEEP_UNTRACKED"
+    },
+    {
+      "path": "artifacts/p3g_same_rubric_validation/",
+      "file_type": "DIR",
+      "size": "DIR",
+      "category": "P3I_ARTIFACT",
+      "reason": "Phase 3G same rubric quality revalidation artifacts",
+      "action": "KEEP_UNTRACKED"
+    },
+    {
+      "path": "artifacts/p3h_human_literary_review/",
+      "file_type": "DIR",
+      "size": "DIR",
+      "category": "P3I_ARTIFACT",
+      "reason": "Phase 3H human literary review artifacts",
+      "action": "KEEP_UNTRACKED"
+    },
+    {
+      "path": "artifacts/p3i_final_acceptance/",
+      "file_type": "DIR",
+      "size": "DIR",
+      "category": "P3I_ARTIFACT",
+      "reason": "Phase 3I final acceptance artifacts (11 JSON files)",
+      "action": "KEEP_UNTRACKED"
+    },
+    {
+      "path": "docs/governance/repository/P3E_LIVE_GOLDEN_VALIDATION.md",
+      "file_type": "FILE",
+      "size": "6.5 KB",
+      "category": "P3I_GOVERNANCE_DOCUMENT",
+      "reason": "Phase 3E governance document",
+      "action": "KEEP_UNTRACKED"
+    },
+    {
+      "path": "docs/governance/repository/P3F_M3_QUALITY_DELTA_INVESTIGATION.md",
+      "file_type": "FILE",
+      "size": "9.8 KB",
+      "category": "P3I_GOVERNANCE_DOCUMENT",
+      "reason": "Phase 3F governance document",
+      "action": "KEEP_UNTRACKED"
+    },
+    {
+      "path": "docs/governance/repository/P3G_SAME_RUBRIC_M3_QUALITY_REVALIDATION.md",
+      "file_type": "FILE",
+      "size": "9.0 KB",
+      "category": "P3I_GOVERNANCE_DOCUMENT",
+      "reason": "Phase 3G governance document",
+      "action": "KEEP_UNTRACKED"
+    },
+    {
+      "path": "docs/governance/repository/P3H_HUMAN_LITERARY_ACCEPTANCE_REVIEW.md",
+      "file_type": "FILE",
+      "size": "7.7 KB",
+      "category": "P3I_GOVERNANCE_DOCUMENT",
+      "reason": "Phase 3H governance document",
+      "action": "KEEP_UNTRACKED"
+    },
+    {
+      "path": "docs/governance/repository/P3I_FINAL_PRODUCTION_ACCEPTANCE.md",
+      "file_type": "FILE",
+      "size": "8.9 KB",
+      "category": "P3I_GOVERNANCE_DOCUMENT",
+      "reason": "Phase 3I final production acceptance governance document",
+      "action": "KEEP_UNTRACKED"
+    },
+    {
+      "path": "memory/character_memory_lts.json",
+      "file_type": "FILE",
+      "size": "973 B",
+      "category": "EXPECTED_PROJECT_FILE",
+      "reason": "Character memory LTS data file - project data",
+      "action": "KEEP_UNTRACKED"
+    }
+  ],
+  "root_hygiene": {
+    "status": "REVIEW_REQUIRED",
+    "violations": [
+      {
+        "path": "__pycache__/",
+        "type": "DIR",
+        "size": "DIR",
+        "violation": "Python bytecode cache directory in repository root",
+        "classification": "ROOT_HYGIENE_VIOLATION",
+        "action": "REMOVE_REQUIRES_AUTHORIZATION"
+      },
+      {
+        "path": ".ntpe_test_sandbox/",
+        "type": "DIR",
+        "size": "DIR",
+        "violation": "Test sandbox directory in repository root",
+        "classification": "ROOT_HYGIENE_VIOLATION",
+        "action": "REMOVE_REQUIRES_AUTHORIZATION"
+      },
+      {
+        "path": "backup/",
+        "type": "DIR",
+        "size": "DIR",
+        "violation": "Backup directory with translation outputs in repository root",
+        "classification": "ROOT_HYGIENE_VIOLATION",
+        "action": "REMOVE_REQUIRES_AUTHORIZATION"
+      },
+      {
+        "path": "logs/",
+        "type": "DIR",
+        "size": "DIR",
+        "violation": "Logs directory in repository root",
+        "classification": "ROOT_HYGIENE_VIOLATION",
+        "action": "REMOVE_REQUIRES_AUTHORIZATION"
+      },
+      {
+        "path": "output/",
+        "type": "DIR",
+        "size": "DIR",
+        "violation": "Output directory in repository root",
+        "classification": "ROOT_HYGIENE_VIOLATION",
+        "action": "REMOVE_REQUIRES_AUTHORIZATION"
+      },
+      {
+        "path": "translated/",
+        "type": "DIR",
+        "size": "DIR",
+        "violation": "Translation output directory in repository root",
+        "classification": "ROOT_HYGIENE_VIOLATION",
+        "action": "REMOVE_REQUIRES_AUTHORIZATION"
+      },
+      {
+        "path": "translation_cache/",
+        "type": "DIR",
+        "size": "DIR",
+        "violation": "Translation cache directory in repository root",
+        "classification": "ROOT_HYGIENE_VIOLATION",
+        "action": "REMOVE_REQUIRES_AUTHORIZATION"
+      },
+      {
+        "path": "launcher_translate.py",
+        "type": "FILE",
+        "size": "328 B",
+        "violation": "One-shot launcher script in repository root",
+        "classification": "ROOT_HYGIENE_VIOLATION",
+        "action": "MOVE_TO_TOOLS_ONE_SHOTS"
+      },
+      {
+        "path": "ntpe_batch_monitor.py",
+        "type": "FILE",
+        "size": "341 B",
+        "violation": "Monitoring tool in repository root",
+        "classification": "ROOT_HYGIENE_VIOLATION",
+        "action": "MOVE_TO_TOOLS_ONE_SHOTS"
+      },
+      {
+        "path": "ntpe_launcher.py",
+        "type": "FILE",
+        "size": "9.7 KB",
+        "violation": "Launcher script in repository root",
+        "classification": "ROOT_HYGIENE_VIOLATION",
+        "action": "MOVE_TO_TOOLS_ONE_SHOTS"
+      },
+      {
+        "path": "ntpe_literary_evaluation.py",
+        "type": "FILE",
+        "size": "14.5 KB",
+        "violation": "Evaluation tool in repository root",
+        "classification": "ROOT_HYGIENE_VIOLATION",
+        "action": "MOVE_TO_TOOLS_ONE_SHOTS"
+      },
+      {
+        "path": "ntpe_literary_regression.py",
+        "type": "FILE",
+        "size": "9.5 KB",
+        "violation": "Regression tool in repository root",
+        "classification": "ROOT_HYGIENE_VIOLATION",
+        "action": "MOVE_TO_TOOLS_ONE_SHOTS"
+      },
+      {
+        "path": "ntpe_production_translate.py",
+        "type": "FILE",
+        "size": "65.6 KB",
+        "violation": "Production translate script in repository root (legitimate entry point)",
+        "classification": "REVIEW_REQUIRED",
+        "action": "REVIEW_REQUIRED"
+      },
+      {
+        "path": "ntpe_validate.py",
+        "type": "FILE",
+        "size": "11.3 KB",
+        "violation": "Validation tool in repository root",
+        "classification": "ROOT_HYGIENE_VIOLATION",
+        "action": "MOVE_TO_TOOLS_ONE_SHOTS"
+      }
+    ],
+    "review_items": [
+      "ntpe_production_translate.py - legitimate production entry point, may need to remain in root as compatibility wrapper",
+      "__pycache__/, .ntpe_test_sandbox/, backup/, logs/, output/, translated/, translation_cache/ - generated/temporary directories requiring cleanup",
+      "All launcher/evaluation/regression/validation tools - should be in tools/one_shots/ per governance baseline"
+    ]
+  },
+  "p3i_evidence": {
+    "integrity": "PASS"
+  },
+  "production_state": {
+    "provider": "NVIDIA",
+    "active_model": "meta/llama-3.2-90b-vision-instruct",
+    "canonical_path": "CONFIRMED",
+    "legacy_routes": "NONE"
+  },
+  "blocking_issues": [],
+  "review_required": [
+    "ROOT_HYGIENE: 14 violations in repository root requiring authorized cleanup (7 directories, 7 scripts)",
+    "ntpe_production_translate.py: Legitimate production entry point - needs decision on root vs tools/ location",
+    "REMOTE_TOPOLOGY: Local ahead by 3 canonical commits; push pending authorization"
+  ],
+  "recommended_next_stage": "ROOT_HYGIENE_CLEANUP"
+}

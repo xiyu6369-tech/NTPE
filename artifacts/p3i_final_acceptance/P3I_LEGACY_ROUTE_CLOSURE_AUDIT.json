@@ -1,0 +1,80 @@
+{
+  "phase": "3I",
+  "audit": "Legacy_Route_Closure_Audit",
+  "baseline_commit": "ea4ce55c33e5347c4aa72b9838e8314bcf0c0af7",
+  "p3d1_verdict": "P3D1_LEGACY_REACHABLE",
+  "p3d2_verdict": "P3D2_LEGACY_CLOSED",
+  "legacy_routes_removed": [
+    {
+      "component": "CLI --pipeline=legacy flag",
+      "files": [
+        "ntpe_production_translate.py:158 (txt subcommand)",
+        "ntpe_production_translate.py:191 (batch subcommand)",
+        "ntpe_production_translate.py:220 (epub subcommand)"
+      ],
+      "action": "REMOVED - choices now only 'runtime', default 'runtime'",
+      "status": "REMOVED"
+    },
+    {
+      "component": "Environment variable NTPE_RUNTIME_PIPELINE selector",
+      "files": [
+        "ntpe_production_translate.py:411-412 (run_txt)",
+        "ntpe_production_translate.py:450-451 (run_batch)",
+        "ntpe_production_translate.py:493-494 (run_epub)"
+      ],
+      "action": "REMOVED - no longer reads/sets NTPE_RUNTIME_PIPELINE",
+      "status": "REMOVED"
+    },
+    {
+      "component": "Legacy pipeline selector function",
+      "files": [
+        "lts/txt_translation_runtime.py:614-616 (_pipeline_mode function)"
+      ],
+      "action": "REMOVED - function deleted entirely",
+      "status": "REMOVED"
+    },
+    {
+      "component": "Legacy execution branch in translate_txt()",
+      "files": [
+        "lts/txt_translation_runtime.py:1938-1963 (legacy branch condition and implementation)",
+        "lts/txt_translation_runtime.py:1965-2617 (entire legacy branch ~650 lines)"
+      ],
+      "action": "REMOVED - runtime pipeline is now the only path",
+      "status": "REMOVED"
+    },
+    {
+      "component": "Production submission adapter env enforcement",
+      "files": [
+        "core/adapters/production_submission_adapter.py:187",
+        "core/adapters/production_submission_adapter.py:222"
+      ],
+      "action": "REMOVED - no longer sets NTPE_RUNTIME_PIPELINE env var",
+      "status": "REMOVED"
+    }
+  ],
+  "remaining_references": {
+    "test_tools": [
+      "tools/canary/run_canary.py",
+      "tools/canary/run_entity_canary.py"
+    ],
+    "test_files": [
+      "tests/series/test_batch5_7_orchestration.py"
+    ],
+    "historical_documentation": [
+      "docs/governance/repository/P3D1_PRODUCTION_EXECUTION_PATH_AUDIT.md",
+      "docs/governance/repository/P3D2_LEGACY_PIPELINE_CLOSURE.md"
+    ]
+  },
+  "verification": {
+    "production_legacy_selectors_removed": true,
+    "cli_legacy_flag_removed": true,
+    "env_var_legacy_selector_removed": true,
+    "legacy_pipeline_function_removed": true,
+    "legacy_execution_path_removed": true,
+    "production_adapter_env_enforcement_removed": true,
+    "canonical_paths_preserved": true,
+    "canonical_runtime_only": true
+  },
+  "production_legacy_routes": "NONE",
+  "timestamp": "2026-08-31T15:34:33Z"
+}

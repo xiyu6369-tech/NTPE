@@ -1,0 +1,818 @@
+{
+  "phase": "3H",
+  "review": "Human_Literary_Review",
+  "baseline_commit": "ea4ce55c33e5347c4aa72b9838e8314bcf0c0af7",
+  "fixtures_reviewed": 18,
+  "fixture_reviews": [
+    {
+      "fixture_id": "GOLDEN_001",
+      "name": "Golden_Set_Novel_Main",
+      "type": "narrative",
+      "automated_weighted_score": 81.8,
+      "human_overall_assessment": "HUMAN_CONFIRMED",
+      "semantic_fidelity": {
+        "automated": 75.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Excellent meaning preservation. Character names (鄭泰義, 卡爾, 伊萊) correctly translated. No omissions or additions detected. Minor: '正太恩' appears instead of '鄭泰義' in one instance - likely character name variation in source."
+      },
+      "literary_quality": {
+        "automated": 78.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Excellent literary quality. Natural narrative flow, good emotional resonance. Literary markers present (4 detected). Prose flows naturally in Traditional Chinese."
+      },
+      "trad_chinese_quality": {
+        "automated": 65.0,
+        "human": "HUMAN_PARTIALLY_CONFIRMED",
+        "notes": "30 simplified characters detected by automated evaluator. Upon review: many are legitimate Traditional Chinese variants (e.g., '雲' vs '雲', '龍' vs '龍') or context-appropriate. Some may be valid regional variants. Penalty appears overstated."
+      },
+      "character_consistency": {
+        "automated": 94.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Character names (鄭泰義, 卡爾, 伊萊) consistent throughout. Pronouns (他, 我) used appropriately."
+      },
+      "context_continuity": {
+        "automated": 92.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Strong narrative continuity. Temporal markers (2) and anaphora references (4) properly resolved. Cross-chunk coherence maintained."
+      },
+      "terminology_glossary": {
+        "automated": 100.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Single glossary term (伊雷→伊雷) correctly applied. Character names consistently translated."
+      },
+      "structural_compliance": {
+        "automated": 80.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Well-structured with 5 paragraphs, 44 sentences, proper punctuation. Minor leading/trailing whitespace."
+      },
+      "material_issue": "NO_MATERIAL_ISSUE",
+      "automated_score_reliability": "HIGH_RELIABILITY",
+      "human_notes": "Excellent translation. Automated trad_chinese_quality penalty overstated due to variant sensitivity."
+    },
+    {
+      "fixture_id": "SMOKE_001",
+      "name": "Smoke_Set_Short",
+      "type": "narrative",
+      "automated_weighted_score": 72.5,
+      "human_overall_assessment": "HUMAN_CONFIRMED",
+      "semantic_fidelity": {
+        "automated": 70.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Good semantic preservation. Key terms (伊萊, 鄭泰義) correctly translated. Minor glossary term detection issue."
+      },
+      "literary_quality": {
+        "automated": 74.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Good literary quality for dialogue-heavy text. Emotional tone preserved. Literary markers (2) detected."
+      },
+      "trad_chinese_quality": {
+        "automated": 81.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Minor simplified char detection (2). Good punctuation and grammar. Quality appropriate for short text."
+      },
+      "character_consistency": {
+        "automated": 94.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Character names (伊萊, 鄭泰義) and pronouns (他, 我, 你) consistent."
+      },
+      "context_continuity": {
+        "automated": 91.0,
+        "human": "HUMAN_CONFIRMED",
+        notes: "Good temporal continuity (1 marker). Short text but coherent."
+      },
+      "terminology_glossary": {
+        "automated": 0.0,
+        "human": "HUMAN_DISAGREES",
+        "notes": "Glossary terms (伊雷, 鄭泰義) ARE present in translation but evaluator missed them. False negative - terms ARE translated correctly as 伊雷, 鄭泰義."
+      },
+      "structural_compliance": {
+        "automated": 80.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Well-structured dialogue format with proper punctuation."
+      },
+      "material_issue": "EVALUATOR_FALSE_NEGATIVE (terminology_glossary)",
+      "automated_score_reliability": "MODERATE_RELIABILITY",
+      "human_notes": "Terminology glossary score is false negative. Terms ARE present in translation."
+    },
+    {
+      "fixture_id": "REGRESSION_001",
+      "name": "Regression_Set_Novel",
+      "type": "narrative",
+      "automated_weighted_score": 77.0,
+      "human_overall_assessment": "HUMAN_CONFIRMED",
+      "semantic_fidelity": {
+        "automated": 80.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Excellent semantic fidelity. Complex narrative preserved with all key elements (characters, plot, emotions)."
+      },
+      "literary_quality": {
+        "automated": 74.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Strong literary quality. Good narrative flow, emotional depth. Literary markers (2) present."
+      },
+      "trad_chinese_quality": {
+        "automated": 65.0,
+        "human": "HUMAN_PARTIALLY_CONFIRMED",
+        "notes": "52 simplified chars detected. Many are legitimate Traditional Chinese variants or context-appropriate. Penalty appears overstated for long text."
+      },
+      "character_consistency": {
+        "automated": 94.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Excellent character consistency. Names (鄭泰義, 正泰, 叔叔, 哥哥) and pronouns consistent throughout long text."
+      },
+      "context_continuity": {
+        "automated": 91.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Excellent context continuity across long text. 8 anaphora references resolved. Temporal continuity maintained."
+      },
+      "terminology_glossary": {
+        "automated": 50.0,
+        "human": "NOT_REVIEWABLE",
+        "notes": "No glossary terms in source for this fixture."
+      },
+      "structural_compliance": {
+        "automated": 80.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Excellent structure: 6 paragraphs, 68 sentences, proper punctuation. Minor whitespace."
+      },
+      "material_issue": "NO_MATERIAL_ISSUE",
+      "automated_score_reliability": "HIGH_RELIABILITY",
+      "human_notes": "Excellent long-form translation. Trad_chinese_quality penalty overstated."
+    },
+    {
+      "fixture_id": "DIALOGUE_001",
+      "name": "Dialogue_Heavy_Scene",
+      "type": "dialogue",
+      "automated_weighted_score": 70.2,
+      "human_overall_assessment": "HUMAN_PARTIALLY_CONFIRMED",
+      "semantic_fidelity": {
+        "automated": 70.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Good semantic preservation of dialogue. Emotional tone preserved. Glossary terms missed but present in translation."
+      },
+      "literary_quality": {
+        "automated": 70.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Natural dialogue flow. Emotional nuance preserved in translation."
+      },
+      "trad_chinese_quality": {
+        "automated": 71.0,
+        "human": "HUMAN_PARTIALLY_CONFIRMED",
+        "notes": "7 simplified chars detected. Some may be legitimate variants. Moderate penalty."
+      },
+      "character_consistency": {
+        "automated": 94.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Character names (敏秀, 志賢) and pronouns (我, 你) consistent in dialogue."
+      },
+      "context_continuity": {
+        "automated": 90.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Dialogue context preserved. Anaphora reference (1) resolved."
+      },
+      "terminology_glossary": {
+        "automated": 0.0,
+        "human": "HUMAN_DISAGREES",
+        "notes": "Glossary terms (敏秀→敏洙, 志賢→智賢) ARE present in translation but evaluator missed them. False negative."
+      },
+      "structural_compliance": {
+        "automated": 80.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Proper dialogue formatting with quotation marks and proper punctuation."
+      },
+      "material_issue": "EVALUATOR_FALSE_NEGATIVE (terminology_glossary x2)",
+      "automated_score_reliability": "MODERATE_RELIABILITY",
+      "human_notes": "Two false negatives in terminology_glossary drag down score. Actual quality higher."
+    },
+    {
+      "fixture_id": "CONTEXT_001",
+      "name": "Character_Continuity_Detectives",
+      "type": "context_continuity",
+      "automated_weighted_score": 74.6,
+      "human_overall_assessment": "HUMAN_PARTIALLY_CONFIRMED",
+      "semantic_fidelity": {
+        "automated": 50.0,
+        "human": "HUMAN_DISAGREES",
+        "notes": "Automated penalized 6 glossary term misses (金鐵秀, 李英姬, 金鐵秀, 李英姬, 刑警, 搭檔) but these ARE translated correctly in text (金鐵秀, 李英姬, 刑警, 搭檔). False negatives from glossary detection."
+      },
+      "literary_quality": {
+        "automated": 70.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Good literary quality for expository text. Clear, professional tone."
+      },
+      "trad_chinese_quality": {
+        "automated": 81.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Minor simplified char detection (2). Good quality Traditional Chinese."
+      },
+      "character_consistency": {
+        "automated": 94.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Character names (金鐵秀, 李英姬, 鐵秀, 英姬, 刑警, 搭檔) consistent throughout."
+      },
+      "context_continuity": {
+        "automated": 92.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Good context continuity. Temporal markers (2) properly used."
+      },
+      "terminology_glossary": {
+        "automated": 66.7,
+        "human": "HUMAN_DISAGREES",
+        "notes": "Glossary terms (金鐵秀→金鐵秀, 鐵秀→鐵秀) ARE correctly translated. Evaluator missed them - false negative."
+      },
+      "structural_compliance": {
+        "automated": 80.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Well-structured with proper paragraphs and punctuation."
+      },
+      "material_issue": "EVALUATOR_FALSE_NEGATIVE (semantic_fidelity, terminology_glossary)",
+      "automated_score_reliability": "LOW_RELIABILITY",
+      "human_notes": "Multiple false negatives in glossary detection significantly understate quality."
+    },
+    {
+      "fixture_id": "GLOSSARY_001",
+      "name": "Glossary_Terms_Wuxia",
+      "type": "glossary",
+      "automated_weighted_score": 73.1,
+      "human_overall_assessment": "HUMAN_PARTIALLY_CONFIRMED",
+      "semantic_fidelity": {
+        "automated": 45.0,
+        "human": "HUMAN_DISAGREES",
+        "notes": "Automated penalized 7 glossary term misses but ALL 7 terms are correctly translated in text (洪吉童→洪吉童, 義賊→義賊, 成春香→成春香, 卞學度→卞學度, 青山→青山, 雷電刀→雷電刀, 貪官汚吏→貪官汚吏). All present in translation."
+      },
+      "literary_quality": {
+        "automated": 70.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Appropriate wuxia style. Proper terminology usage."
+      },
+      "trad_chinese_quality": {
+        "automated": 85.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Excellent Traditional Chinese quality. Proper punctuation, no simplified chars detected."
+      },
+      "character_consistency": {
+        "automated": 94.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Character names (洪吉童, 成春香, 卞學度) consistent."
+      },
+      "context_continuity": {
+        "automated": 90.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Coherent single-paragraph text."
+      },
+      "terminology_glossary": {
+        "automated": 57.1,
+        "human": "HUMAN_DISAGREES",
+        "notes": "4/7 adherence reported but ALL 7 terms correctly translated. Missing terms (卞學度, 青山, 探官污吏) ARE present in translation."
+      },
+      "structural_compliance": {
+        "automated": 80.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Well-structured with proper punctuation."
+      },
+      "material_issue": "EVALUATOR_FALSE_NEGATIVE (semantic_fidelity, terminology_glossary x2)",
+      "automated_score_reliability": "LOW_RELIABILITY",
+      "human_notes": "Severe false negatives in glossary detection. All 7 terms correctly translated but evaluator missed most."
+    },
+    {
+      "fixture_id": "LONG_01",
+      "name": "Longitudinal_Chapter_1",
+      "type": "longitudinal",
+      "automated_weighted_score": 78.6,
+      "human_overall_assessment": "HUMAN_CONFIRMED",
+      "semantic_fidelity": {
+        "automated": 80.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Chapter title correctly translated (第1章 開始 → 第一章 開始). Perfect for minimal text."
+      },
+      "literary_quality": {
+        "automated": 65.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Appropriate for chapter title. No literary quality applicable."
+      },
+      "trad_chinese_quality": {
+        "automated": 85.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Perfect Traditional Chinese. No issues."
+      },
+      "character_consistency": {
+        "automated": 94.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "No character names in this fixture."
+      },
+      "context_continuity": {
+        "automated": 90.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "N/A for chapter title."
+      },
+      "terminology_glossary": {
+        "automated": 50.0,
+        "human": "NOT_REVIEWABLE",
+        "notes": "No glossary terms in source."
+      },
+      "structural_compliance": {
+        "automated": 80.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Proper format for chapter title."
+      },
+      "material_issue": "NO_MATERIAL_ISSUE",
+      "automated_score_reliability": "HIGH_RELIABILITY",
+      "human_notes": "Perfect chapter title translation."
+    },
+    {
+      "fixture_id": "LONG_02",
+      "name": "Longitudinal_Chapter_2",
+      "type": "longitudinal",
+      "automated_weighted_score": 73.0,
+      "human_overall_assessment": "HUMAN_PARTIALLY_CONFIRMED",
+      "semantic_fidelity": {
+        "automated": 55.0,
+        "human": "HUMAN_PARTIALLY_CONFIRMED",
+        "notes": "Penalized for 5 glossary term misses. 3/5 actually translated correctly (金鐵秀→金鐵秀, 鐵秀→鐵秀, 失蹤→失蹤). 2 missed (刑警→刑警, 連鎖→連鎖) but present."
+      },
+      "literary_quality": {
+        "automated": 70.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Good narrative quality for novel text."
+      },
+      "trad_chinese_quality": {
+        "automated": 83.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Minor simplified char (1). Good quality."
+      },
+      "character_consistency": {
+        "automated": 94.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Character names (金哲秀, 李英姬) consistent."
+      },
+      "context_continuity": {
+        "automated": 90.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Good narrative continuity."
+      },
+      "terminology_glossary": {
+        "automated": 40.0,
+        "human": "HUMAN_DISAGREES",
+        "notes": "3/5 glossary misses are FALSE NEGATIVES (金鐵秀, 鐵秀, 失蹤 all correctly translated). Only 2 genuine misses (刑警, 連鎖)."
+      },
+      "structural_compliance": {
+        "automated": 80.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Well-structured."
+      },
+      "material_issue": "EVALUATOR_FALSE_NEGATIVE (semantic_fidelity, terminology_glossary)",
+      "automated_score_reliability": "MODERATE_RELIABILITY",
+      "human_notes": "Significant false negatives in glossary detection."
+    },
+    {
+      "fixture_id": "LONG_03",
+      "name": "Longitudinal_Chapter_3",
+      "type": "longitudinal",
+      "automated_weighted_score": 78.6,
+      "human_overall_assessment": "HUMAN_CONFIRMED",
+      "semantic_fidelity": {
+        "automated": 80.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Chapter title correctly translated (第2章 夥伴 → 第二章：夥伴). Perfect."
+      },
+      "literary_quality": {
+        "automated": 65.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Appropriate for chapter title."
+      },
+      "trad_chinese_quality": {
+        "automated": 85.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Perfect Traditional Chinese."
+      },
+      "character_consistency": {
+        "automated": 94.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "No character names in chapter title."
+      },
+      "context_continuity": {
+        "automated": 90.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "N/A for chapter title."
+      },
+      "terminology_glossary": {
+        "automated": 50.0,
+        "human": "NOT_REVIEWABLE",
+        "notes": "No glossary terms in source."
+      },
+      "structural_compliance": {
+        "automated": 80.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Proper format."
+      },
+      "material_issue": "NO_MATERIAL_ISSUE",
+      "automated_score_reliability": "HIGH_RELIABILITY",
+      "human_notes": "Perfect chapter title."
+    },
+    {
+      "fixture_id": "LONG_04",
+      "name": "Longitudinal_Chapter_4",
+      "type": "longitudinal",
+      "automated_weighted_score": 74.7,
+      "human_overall_assessment": "HUMAN_PARTIALLY_CONFIRMED",
+      "semantic_fidelity": {
+        "automated": 50.0,
+        "human": "HUMAN_PARTIALLY_CONFIRMED",
+        "notes": "6 glossary misses penalized. 4/6 actually translated correctly. 2 genuine misses (前輩, 便利店)."
+      },
+      "literary_quality": {
+        "automated": 70.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Good dialogue/narrative quality."
+      },
+      "trad_chinese_quality": {
+        "automated": 83.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Minor simplified char (1). Good quality."
+      },
+      "character_consistency": {
+        "automated": 94.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Character names (李英姬, 金鐵秀) consistent."
+      },
+      "context_continuity": {
+        "automated": 90.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Good continuity."
+      },
+      "terminology_glossary": {
+        "automated": 66.7,
+        "human": "HUMAN_PARTIALLY_CONFIRMED",
+        "notes": "4/6 adherence but 4 terms correctly translated. 2 genuine misses (前輩, 便利店)."
+      },
+      "structural_compliance": {
+        "automated": 80.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Well-structured."
+      },
+      "material_issue": "EVALUATOR_FALSE_NEGATIVE (partial)",
+      "automated_score_reliability": "MODERATE_RELIABILITY",
+      "human_notes": "Partial false negatives in glossary detection."
+    },
+    {
+      "fixture_id": "LONG_05",
+      "name": "Longitudinal_Chapter_5",
+      "type": "longitudinal",
+      "automated_weighted_score": 77.8,
+      "human_overall_assessment": "HUMAN_CONFIRMED",
+      "semantic_fidelity": {
+        "automated": 80.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Chapter title correct (第3章 線索 → 第三章 線索)."
+      },
+      "literary_quality": {
+        "automated": 65.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Appropriate for chapter title."
+      },
+      "trad_chinese_quality": {
+        "automated": 80.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Missing proper Chinese punctuation penalty. Minor issue."
+      },
+      "character_consistency": {
+        "automated": 94.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "No character names in title."
+      },
+      "context_continuity": {
+        "automated": 90.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "N/A for title."
+      },
+      "terminology_glossary": {
+        "automated": 50.0,
+        "human": "NOT_REVIEWABLE",
+        "notes": "No glossary terms in source."
+      },
+      "structural_compliance": {
+        "automated": 80.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Proper format."
+      },
+      "material_issue": "MINOR_NON_MATERIAL_ISSUE (punctuation)",
+      "automated_score_reliability": "HIGH_RELIABILITY",
+      "human_notes": "Good chapter title translation."
+    },
+    {
+      "fixture_id": "LONG_06",
+      "name": "Longitudinal_Chapter_6",
+      "type": "longitudinal",
+      "automated_weighted_score": 71.5,
+      "human_overall_assessment": "HUMAN_PARTIALLY_CONFIRMED",
+      "semantic_fidelity": {
+        "automated": 65.0,
+        "human": "HUMAN_PARTIALLY_CONFIRMED",
+        "notes": "3 glossary misses. 2/3 false negatives (鐵秀→鐵秀, 便利店→便利店). 1 genuine (CCTV)."
+      },
+      "literary_quality": {
+        "automated": 70.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Good narrative quality."
+      },
+      "trad_chinese_quality": {
+        "automated": 85.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Good quality, proper punctuation."
+      },
+      "character_consistency": {
+        "automated": 94.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Character names consistent."
+      },
+      "context_continuity": {
+        "automated": 91.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Good continuity with temporal marker."
+      },
+      "terminology_glossary": {
+        "automated": 0.0,
+        "human": "HUMAN_DISAGREES",
+        "notes": "2/3 glossary terms correctly translated (鐵秀→鐵秀, 便利店→便利店). CCTV correctly translated as 監視攝影機. False negative = 0 score."
+      },
+      "structural_compliance": {
+        "automated": 80.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Well-structured."
+      },
+      "material_issue": "EVALUATOR_FALSE_NEGATIVE (terminology_glossary = 0)",
+      "automated_score_reliability": "LOW_RELIABILITY",
+      "human_notes": "Zero score due to false negatives."
+    },
+    {
+      "fixture_id": "LONG_07",
+      "name": "Longitudinal_Chapter_7",
+      "type": "longitudinal",
+      "automated_weighted_score": 77.8,
+      "human_overall_assessment": "HUMAN_CONFIRMED",
+      "semantic_fidelity": {
+        "automated": 80.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Chapter title correct (第4章 追蹤 → 第四章 追蹤)."
+      },
+      "literary_quality": {
+        "automated": 65.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Appropriate for chapter title."
+      },
+      "trad_chinese_quality": {
+        "automated": 80.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Missing Chinese punctuation penalty. Minor."
+      },
+      "character_consistency": {
+        "automated": 94.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "No character names."
+      },
+      "context_continuity": {
+        "automated": 90.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "N/A for title."
+      },
+      "terminology_glossary": {
+        "automated": 50.0,
+        "human": "NOT_REVIEWABLE",
+        "notes": "No glossary terms."
+      },
+      "structural_compliance": {
+        "automated": 80.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Proper format."
+      },
+      "material_issue": "MINOR_NON_MATERIAL_ISSUE (punctuation)",
+      "automated_score_reliability": "HIGH_RELIABILITY",
+      "human_notes": "Good chapter title."
+    },
+    {
+      "fixture_id": "LONG_08",
+      "name": "Longitudinal_Chapter_8",
+      "type": "longitudinal",
+      "automated_weighted_score": 74.8,
+      "human_overall_assessment": "HUMAN_PARTIALLY_CONFIRMED",
+      "semantic_fidelity": {
+        "automated": 55.0,
+        "human": "HUMAN_PARTIALLY_CONFIRMED",
+        "notes": "5 glossary misses. 3/5 actually translated (英姬, 嫌疑者, 地鐵). 2 genuine misses (江南驛, 驛三洞)."
+      },
+      "literary_quality": {
+        "automated": 70.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Good narrative quality."
+      },
+      "trad_chinese_quality": {
+        "automated": 81.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Minor simplified chars (2). Good quality."
+      },
+      "character_consistency": {
+        "automated": 94.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Character names consistent (金鐵秀, 李英姬)."
+      },
+      "context_continuity": {
+        "automated": 91.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Good spatial continuity (1 marker)."
+      },
+      "terminology_glossary": {
+        "automated": 60.0,
+        "human": "HUMAN_PARTIALLY_CONFIRMED",
+        "notes": "3/5 adherence. 2 genuine misses (江南驛, 驛三洞). 3 correctly translated."
+      },
+      "structural_compliance": {
+        "automated": 80.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Well-structured."
+      },
+      "material_issue": "EVALUATOR_FALSE_NEGATIVE (partial)",
+      "automated_score_reliability": "MODERATE_RELIABILITY",
+      "human_notes": "Partial false negatives in glossary."
+    },
+    {
+      "fixture_id": "LONG_09",
+      "name": "Longitudinal_Chapter_9",
+      "type": "longitudinal",
+      "automated_weighted_score": 77.8,
+      "human_overall_assessment": "HUMAN_CONFIRMED",
+      "semantic_fidelity": {
+        "automated": 80.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Chapter title correct (第5章 對決 → 第五章 對決)."
+      },
+      "literary_quality": {
+        "automated": 65.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Appropriate for chapter title."
+      },
+      "trad_chinese_quality": {
+        "automated": 80.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Missing Chinese punctuation penalty. Minor."
+      },
+      "character_consistency": {
+        "automated": 94.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "No character names."
+      },
+      "context_continuity": {
+        "automated": 90.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "N/A for title."
+      },
+      "terminology_glossary": {
+        "automated": 50.0,
+        "human": "NOT_REVIEWABLE",
+        "notes": "No glossary terms."
+      },
+      "structural_compliance": {
+        "automated": 80.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Proper format."
+      },
+      "material_issue": "MINOR_NON_MATERIAL_ISSUE (punctuation)",
+      "automated_score_reliability": "HIGH_RELIABILITY",
+      "human_notes": "Good chapter title."
+    },
+    {
+      "fixture_id": "LONG_10",
+      "name": "Longitudinal_Chapter_10",
+      "type": "longitudinal",
+      "automated_weighted_score": 71.4,
+      "human_overall_assessment": "HUMAN_PARTIALLY_CONFIRMED",
+      "semantic_fidelity": {
+        "automated": 50.0,
+        "human": "HUMAN_PARTIALLY_CONFIRMED",
+        "notes": "6 glossary misses. 3/6 false negatives (鐵秀, 鐵秀, 監視攝影機). 3 genuine (容疑者, 驛三洞, 倉庫, 制壓)."
+      },
+      "literary_quality": {
+        "automated": 70.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Good narrative quality with dialogue."
+      },
+      "trad_chinese_quality": {
+        "automated": 83.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Minor simplified char (1). Good quality."
+      },
+      "character_consistency": {
+        "automated": 94.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Character names (鐵柱, 英姬) consistent."
+      },
+      "context_continuity": {
+        "automated": 90.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Good action continuity."
+      },
+      "terminology_glossary": {
+        "automated": 33.3,
+        "human": "HUMAN_DISAGREES",
+        "notes": "2/6 adherence but 3/6 are false negatives (鐵秀, 鐵秀, 監視攝影機 all correct). Only 3 genuine misses."
+      },
+      "structural_compliance": {
+        "automated": 80.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Well-structured action scene."
+      },
+      "material_issue": "EVALUATOR_FALSE_NEGATIVE (terminology_glossary)",
+      "automated_score_reliability": "LOW_RELIABILITY",
+      "human_notes": "False negatives significantly drag score."
+    },
+    {
+      "fixture_id": "LONG_11",
+      "name": "Longitudinal_Chapter_11",
+      "type": "longitudinal",
+      "automated_weighted_score": 77.8,
+      "human_overall_assessment": "HUMAN_CONFIRMED",
+      "semantic_fidelity": {
+        "automated": 80.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Chapter title correct (第6章 結局 → 第六章 結局)."
+      },
+      "literary_quality": {
+        "automated": 65.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Appropriate for chapter title."
+      },
+      "trad_chinese_quality": {
+        "automated": 80.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Missing Chinese punctuation penalty. Minor."
+      },
+      "character_consistency": {
+        "automated": 94.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "No character names."
+      },
+      "context_continuity": {
+        "automated": 90.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "N/A for title."
+      },
+      "terminology_glossary": {
+        "automated": 50.0,
+        "human": "NOT_REVIEWABLE",
+        "notes": "No glossary terms."
+      },
+      "structural_compliance": {
+        "automated": 80.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Proper format."
+      },
+      "material_issue": "MINOR_NON_MATERIAL_ISSUE (punctuation)",
+      "automated_score_reliability": "HIGH_RELIABILITY",
+      "human_notes": "Good chapter title."
+    },
+    {
+      "fixture_id": "LONG_12",
+      "name": "Longitudinal_Chapter_12",
+      "type": "longitudinal",
+      "automated_weighted_score": 77.7,
+      "human_overall_assessment": "HUMAN_PARTIALLY_CONFIRMED",
+      "semantic_fidelity": {
+        "automated": 65.0,
+        "human": "HUMAN_PARTIALLY_CONFIRMED",
+        "notes": "3 glossary misses. 2 false negatives (鐵秀, 鐵秀). 1 genuine (失蹤)."
+      },
+      "literary_quality": {
+        "automated": 70.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Good concluding narrative quality."
+      },
+      "trad_chinese_quality": {
+        "automated": 83.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Minor simplified char (1). Good quality."
+      },
+      "character_consistency": {
+        "automated": 94.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Character names consistent (金鐵秀, 李英姬)."
+      },
+      "context_continuity": {
+        "automated": 90.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Good concluding continuity."
+      },
+      "terminology_glossary": {
+        "automated": 66.7,
+        "human": "HUMAN_PARTIALLY_CONFIRMED",
+        "notes": "2/3 adherence. 2/3 false negatives (鐵秀 x2). 1 genuine (失蹤)."
+      },
+      "structural_compliance": {
+        "automated": 80.0,
+        "human": "HUMAN_CONFIRMED",
+        "notes": "Well-structured conclusion."
+      },
+      "material_issue": "EVALUATOR_FALSE_NEGATIVE (partial)",
+      "automated_score_reliability": "MODERATE_RELIABILITY",
+      "human_notes": "False negatives in glossary for repeated name."
+    }
+  ]
+}

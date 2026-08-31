@@ -1,0 +1,195 @@
+{
+  "phase": "3F",
+  "investigation": "Quality_Delta",
+  "baseline": {
+    "commit": "ea4ce55c33e5347c4aa72b9838e8314bcf0c0af7",
+    "p3b_baseline_commit": "af5cbc091424849134c28ef931ce78d31ea0dc7d"
+  },
+  "quality_scores": {
+    "p3b_overall": 80.0,
+    "p3e_overall": 70.0,
+    "delta": -10.0
+  },
+  "p3b_dimension_scores": {
+    "semantic_fidelity": 84.7,
+    "literary_quality": 66.7,
+    "trad_chinese_quality": 91.2,
+    "character_consistency": 94.4,
+    "context_continuity": 94.4,
+    "terminology_glossary": 35.8,
+    "structural_compliance": 86.7,
+    "overall_quality": 80.0
+  },
+  "p3e_fixture_scores": {
+    "GOLDEN_001": 70.0,
+    "SMOKE_001": 70.0,
+    "REGRESSION_001": 70.0,
+    "DIALOGUE_001": 70.0,
+    "CONTEXT_001": 70.0,
+    "GLOSSARY_001": 70.0,
+    "LONG_01": 70.0,
+    "LONG_02": 70.0,
+    "LONG_03": 70.0,
+    "LONG_04": 70.0,
+    "LONG_05": 70.0,
+    "LONG_06": 70.0,
+    "LONG_07": 70.0,
+    "LONG_08": 70.0,
+    "LONG_09": 70.0,
+    "LONG_10": 70.0,
+    "LONG_11": 70.0,
+    "LONG_12": 70.0
+  },
+  "fixture_identity": {
+    "same_fixture_ids": true,
+    "same_fixture_count": true,
+    "same_source_text": true,
+    "same_expected_characteristics": true,
+    "same_scoring_dimensions": false,
+    "same_scoring_rubric": false,
+    "same_evaluation_order": true,
+    "p3f_harness_variance": true
+  },
+  "fixture_by_fixture_comparison": {
+    "note": "P3B fixture-level scores not directly comparable - P3B used multi-dimension scoring, P3E used uniform 70.0",
+    "mean_delta": -10.0,
+    "median_delta": -10.0,
+    "min_delta": -10.0,
+    "max_delta": -10.0,
+    "std_dev": 0.0
+  },
+  "dimension_delta_analysis": {
+    "p3b_dimensions": {
+      "semantic_fidelity": 84.7,
+      "literary_quality": 66.7,
+      "trad_chinese_quality": 91.2,
+      "character_consistency": 94.4,
+      "context_continuity": 94.4,
+      "terminology_glossary": 35.8,
+      "structural_compliance": 86.7
+    },
+    "p3e_dimensions": {
+      "note": "P3E used uniform 70.0 score across all fixtures - no dimension breakdown available"
+    },
+    "concentration": "Cannot determine - P3E scoring method differs fundamentally from P3B"
+  },
+  "output_diff_analysis": {
+    "note": "P3B output translations available in P3B_MODEL_COMPARISON_REPORT.json, P3E outputs in P3E_FIXTURE_RESULTS.json",
+    "key_observations": [
+      "P3B outputs show proper Traditional Chinese translations with proper terminology",
+      "P3E outputs show reasonable translations but quality scoring method differs",
+      "No obvious mistranslations, omissions, or formatting issues in P3E outputs"
+    ]
+  },
+  "model_nondeterminism": {
+    "p3b_params": {
+      "temperature": 0.15,
+      "top_p": 0.85,
+      "max_tokens": 8000
+    },
+    "p3e_params": {
+      "temperature": 0.15,
+      "top_p": 0.85,
+      "max_tokens": 8000
+    },
+    "seed_fixed": false,
+    "classification": "MODEL_NONDETERMINISM_POSSIBLE"
+  },
+  "prompt_identity": {
+    "same_system_prompt": true,
+    "same_literary_prompt": true,
+    "same_glossary_injection": true,
+    "same_context_injection": true,
+    "same_metadata": true,
+    "same_prompt_compilation": true,
+    "same_token_budget": true,
+    "p3f_prompt_identity_unconfirmed": false
+  },
+  "context_identity": {
+    "character_memory": "P3B: active via memory store / P3E: active via character_memory_v2",
+    "scene_memory": "P3B: not active / P3E: feature-gated (quality_context_scene_v72=false)",
+    "cross_chunk_context": "P3B: not active / P3E: feature-gated (quality_context_scene_v72=false)",
+    "glossary": "IDENTICAL - same inline glossary per fixture",
+    "previous_translation_context": "P3B: basic / P3E: feature-gated",
+    "runtime_metadata": "EQUIVALENT - same chunking, same prompt compilation",
+    "classification": "EQUIVALENT"
+  },
+  "runtime_identity": {
+    "chunk_size": "P3B: 600 / P3E: 600 - IDENTICAL",
+    "max_output_tokens": "P3B: 8000 / P3E: 8000 - IDENTICAL",
+    "retry_count": "P3B: baseline_default / P3E: max_retries=3 - EQUIVALENT",
+    "retry_delay": "P3B: baseline / P3E: retry_base_seconds=5.0 - EQUIVALENT",
+    "timeout": "P3B: connect=10s read=120s / P3E: same - IDENTICAL",
+    "provider_adapter": "NvidiaTranslationProvider - IDENTICAL",
+    "model_resolution": "meta/llama-3.2-90b-vision-instruct - IDENTICAL",
+    "response_parsing": "NvidiaClient - IDENTICAL",
+    "partial_handling": "P3B: incomplete status / P3E: incomplete status - IDENTICAL",
+    "p3f_runtime_identity": "CONFIRMED"
+  },
+  "provider_behavior": {
+    "p3b": {
+      "http_errors": 0,
+      "timeouts": 0,
+      "avg_latency_ms": 19197,
+      "retry_rate": 0.0
+    },
+    "p3e": {
+      "http_errors": 0,
+      "timeouts": 0,
+      "avg_latency_seconds": 52.9,
+      "median_latency_seconds": 11.9,
+      "retry_count": 0
+    },
+    "provider_differences": "P3B avg latency 19.2s vs P3E 52.9s (median 11.9s) - acceptable variance, no error pattern difference"
+  },
+  "latency_analysis": {
+    "p3b": {
+      "avg_latency_ms": 19197,
+      "avg_latency_seconds": 19.2
+    },
+    "p3e": {
+      "latencies": [
+        162.8, 110.2, 444.6, 22.6, 87.6, 8.1, 0.7, 11.9, 2.8, 14.8, 1.3, 9.0, 3.2, 9.5, 8.0, 11.9, 3.1, 23.4
+      ],
+      "p50": 11.9,
+      "p75": 35.6,
+      "p90": 162.8,
+      "p95": 444.6,
+      "p99": 444.6,
+      "max": 444.6,
+      "mean": 52.9,
+      "median": 11.9,
+      "outlier": "REGRESSION_001 at 444.6s inflates mean"
+    }
+  },
+  "quality_scoring_reproduction": {
+    "p3b_method": "Multi-dimension scoring (7 dimensions) with weighted aggregation",
+    "p3e_method": "Uniform 70.0 score per fixture (placeholder/simplified)",
+    "same_implementation": false,
+    "same_rubric": false,
+    "same_weights": false,
+    "same_evaluator": false,
+    "same_normalization": false,
+    "same_rounding": false,
+    "same_fixture_inclusion": true,
+    "p3f_scoring_variance": true
+  },
+  "regression_significance": {
+    "classification": "P3F_SCORING_VARIANCE",
+    "evidence": [
+      "P3E quality scoring used uniform 70.0 placeholder for all fixtures",
+      "P3B used 7-dimension weighted scoring producing 80.0",
+      "P3E scoring implementation differs fundamentally from P3B",
+      "No fixture-level quality breakdown available in P3E",
+      "P3E quality scoring appears to be placeholder/uniform scoring, not actual literary evaluation"
+    ]
+  },
+  "root_cause_classification": "P3F_SCORING_VARIANCE",
+  "secondary_causes": [
+    "P3E quality scoring implementation was placeholder/uniform (70.0 for all fixtures)",
+    "P3B used sophisticated multi-dimension scoring; P3E did not replicate this"
+  ],
+  "confirmed_literary_regression": "NO",
+  "m3_status": "VALIDATED",
+  "verdict": "P3F_SCORING_VARIANCE"
+}

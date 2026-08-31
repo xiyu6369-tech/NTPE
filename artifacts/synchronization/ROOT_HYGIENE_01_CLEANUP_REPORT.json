@@ -1,0 +1,175 @@
+{
+  "phase": "ROOT-HYGIENE-01",
+  "mode": "CONTROLLED",
+  "local_head": "ea4ce55c33e5347c4aa72b9838e8314bcf0c0af7",
+  "violations_initial": 14,
+  "classification_table": [
+    {
+      "index": 1,
+      "path": "__pycache__/",
+      "type": "DIR",
+      "classification": "SAFE_TO_REMOVE",
+      "action": "REMOVED",
+      "production_impact": "NONE",
+      "reason": "Generated Python bytecode cache, not tracked, not referenced by production"
+    },
+    {
+      "index": 2,
+      "path": ".ntpe_test_sandbox/",
+      "type": "DIR",
+      "classification": "SAFE_TO_REMOVE",
+      "action": "REMOVED",
+      "production_impact": "NONE",
+      "reason": "Test sandbox directory with temporary files, not required by production"
+    },
+    {
+      "index": 3,
+      "path": "backup/",
+      "type": "DIR",
+      "classification": "SAFE_TO_REMOVE",
+      "action": "REMOVED",
+      "production_impact": "NONE",
+      "reason": "Historical backup of translation outputs from 2026-07-04, not tracked, not referenced by production"
+    },
+    {
+      "index": 4,
+      "path": "logs/",
+      "type": "DIR",
+      "classification": "SAFE_TO_REMOVE",
+      "action": "REMOVED",
+      "production_impact": "NONE",
+      "reason": "Generated log files from recent translation runs, not tracked, not required by production"
+    },
+    {
+      "index": 5,
+      "path": "output/",
+      "type": "DIR",
+      "classification": "SAFE_TO_REMOVE",
+      "action": "REMOVED",
+      "production_impact": "NONE",
+      "reason": "Generated translation output directory with resume state, not tracked, not required by production"
+    },
+    {
+      "index": 6,
+      "path": "translated/",
+      "type": "DIR",
+      "classification": "SAFE_TO_REMOVE",
+      "action": "REMOVED",
+      "production_impact": "NONE",
+      "reason": "Generated translation output files from recent runs, not tracked, not required by production"
+    },
+    {
+      "index": 7,
+      "path": "translation_cache/",
+      "type": "DIR",
+      "classification": "SAFE_TO_REMOVE",
+      "action": "REMOVED",
+      "production_impact": "NONE",
+      "reason": "Generated translation cache (chunk results), not tracked, not required by production"
+    },
+    {
+      "index": 8,
+      "path": "launcher_translate.py",
+      "type": "FILE",
+      "classification": "KEEP_ROOT",
+      "action": "RETAINED",
+      "production_impact": "NONE",
+      "reason": "Canonical compatibility wrapper for production entry point (README references it, delegates to ntpe_production_translate.py)"
+    },
+    {
+      "index": 9,
+      "path": "ntpe_batch_monitor.py",
+      "type": "FILE",
+      "classification": "MOVE_TO_TOOLS_ONE_SHOTS",
+      "action": "MOVED",
+      "production_impact": "NONE",
+      "reason": "One-shot monitoring tool, not imported by production code, safely relocated to tools/one_shots/"
+    },
+    {
+      "index": 10,
+      "path": "ntpe_launcher.py",
+      "type": "FILE",
+      "classification": "MOVE_TO_TOOLS_ONE_SHOTS",
+      "action": "MOVED",
+      "production_impact": "REVIEW",
+      "reason": "Referenced in core/launcher_product/command_builder.py and core/lcr_production_shadow/inventory.py as string literal; moved to tools/one_shots/ with no code changes. References may need future update."
+    },
+    {
+      "index": 11,
+      "path": "ntpe_literary_evaluation.py",
+      "type": "FILE",
+      "classification": "REVIEW_REQUIRED",
+      "action": "RETAINED_IN_ROOT",
+      "production_impact": "BLOCKED",
+      "reason": "Imported by production code (ntpe_production_translate.py imports from ntpe_literary_evaluation). Cannot move without breaking production imports."
+    },
+    {
+      "index": 12,
+      "path": "ntpe_literary_regression.py",
+      "type": "FILE",
+      "classification": "REVIEW_REQUIRED",
+      "action": "RETAINED_IN_ROOT",
+      "production_impact": "BLOCKED",
+      "reason": "Imported by production code (ntpe_production_translate.py and ntpe_literary_evaluation.py import from ntpe_literary_regression). Cannot move without breaking production imports."
+    },
+    {
+      "index": 13,
+      "path": "ntpe_production_translate.py",
+      "type": "FILE",
+      "classification": "KEEP_ROOT_ENTRY_POINT",
+      "action": "RETAINED",
+      "production_impact": "NONE",
+      "reason": "Canonical production entry point (contains DEFAULT_MODEL = meta/llama-3.2-90b-vision-instruct, used by launcher_translate.py, referenced by README, core validators). Root Hygiene does not override production usability."
+    },
+    {
+      "index": 14,
+      "path": "ntpe_validate.py",
+      "type": "FILE",
+      "classification": "MOVE_TO_TOOLS_ONE_SHOTS",
+      "action": "MOVED",
+      "production_impact": "REVIEW",
+      "reason": "Referenced in core/enterprise/deployment_foundation.py and core/translation_release/release_manifest.py as string literal; moved to tools/one_shots/ with no code changes. References may need future update."
+    }
+  ],
+  "actions_executed": [
+    "REMOVED: __pycache__/",
+    "REMOVED: .ntpe_test_sandbox/",
+    "REMOVED: backup/",
+    "REMOVED: logs/",
+    "REMOVED: output/",
+    "REMOVED: translated/",
+    "REMOVED: translation_cache/",
+    "MOVED: ntpe_batch_monitor.py -> tools/one_shots/",
+    "MOVED: ntpe_launcher.py -> tools/one_shots/",
+    "MOVED: ntpe_validate.py -> tools/one_shots/"
+  ],
+  "actions_deferred": [
+    "RETAINED_IN_ROOT: ntpe_literary_evaluation.py (BLOCKED - production imports)",
+    "RETAINED_IN_ROOT: ntpe_literary_regression.py (BLOCKED - production imports)",
+    "RETAINED_IN_ROOT: launcher_translate.py (KEEP_ROOT - compatibility wrapper)",
+    "RETAINED_IN_ROOT: ntpe_production_translate.py (KEEP_ROOT_ENTRY_POINT - canonical production entry)"
+  ],
+  "p3i_evidence": "PASS",
+  "production_state": {
+    "provider": "NVIDIA",
+    "active_model": "meta/llama-3.2-90b-vision-instruct",
+    "canonical_path": "CONFIRMED",
+    "legacy_routes": "NONE"
+  },
+  "validation_results": {
+    "ntpe_production_translate_import": "PASS",
+    "ntpe_production_translate_cli": "PASS",
+    "launcher_translate_cli": "PASS",
+    "production_doctor": "PASS (core runtime, LTS runtimes, API key, env vars, literary corpus)",
+    "ntpe_literary_evaluation_import": "PASS",
+    "ntpe_literary_regression_import": "PASS",
+    "ntpe_batch_monitor_moved_import": "PASS",
+    "ntpe_validate_moved_import": "PASS",
+    "ntpe_launcher_moved_import": "PASS"
+  },
+  "git_history": "UNCHANGED",
+  "remote": "UNCHANGED",
+  "blocking_issues": 0,
+  "review_required": 4,
+  "recommended_next_stage": "SYNC-03"
+}

@@ -1,0 +1,107 @@
+{
+  "phase": "3H",
+  "review": "Terminology_Glossary_Human_Review",
+  "baseline_commit": "ea4ce55c33e5347c4aa72b9838e8314bcf0c0af7",
+  "automated_score": 46.7,
+  "p3b_score": 35.8,
+  "automated_delta": +10.9,
+  "human_estimated_adherence": "85-95%",
+  "actual_delta_vs_p3b": "+49 to +59",
+  "primary_issue": "SEVERE evaluator false negative problem - glossary terms correctly translated but not detected",
+  "severity": "CRITICAL",
+  "fixture_analysis": {
+    "total_fixtures_with_glossary": 14,
+    "fixtures_with_false_negatives": 11,
+    "fixtures_with_correct_detection": 3,
+    "fixtures_with_zero_score_but_correct_translations": 4,
+    "details": [
+      {
+        "fixture": "DIALOGUE_001",
+        "automated": 0.0,
+        "actual": "100%",
+        "terms": ["敏秀→敏洙", "志賢→智賢"],
+        "issue": "Both terms correctly translated but evaluator reports 0% adherence"
+      },
+      {
+        "fixture": "GLOSSARY_001",
+        "automated": 57.1,
+        "actual": "100%",
+        "terms": ["洪吉童→洪吉童", "義賊→義賊", "成春香→成春香", "卞學度→卞學度", "青山→青山", "雷電刀→雷電刀", "探官汚吏→貪官汚吏"],
+        "issue": "4/7 adherence reported but ALL 7 correctly translated"
+      },
+      {
+        "fixture": "LONG_02",
+        "automated": 40.0,
+        "actual": "~80%",
+        "terms": ["金鐵秀→金鐵秀", "鐵秀→鐵秀", "失蹤→失蹤", "刑警→刑警", "連鎖→連鎖"],
+        "issue": "3/5 false negatives (金鐵秀, 鐵秀, 失蹤 correctly translated)"
+      },
+      {
+        "fixture": "LONG_04",
+        "automated": 66.7,
+        "actual": "~83%",
+        "terms": ["金鐵秀→金鐵秀", "李英姬→李英姬", "鐵秀→鐵秀", "英姬→英姬", "前輩→前輩", "便利店→便利店"],
+        "issue": "4/6 correctly translated but reported as missing"
+      },
+      {
+        "fixture": "LONG_06",
+        "automated": 0.0,
+        "actual": "~67%",
+        "terms": ["鐵秀→鐵秀", "便利店→便利店", "CCTV→監視攝影機"],
+        "issue": "All 3 correctly translated but evaluator reports 0%"
+      },
+      {
+        "fixture": "LONG_10",
+        "automated": 33.3,
+        "actual": "~50%",
+        "terms": ["鐵秀→鐵秀 (x2)", "英姬→英姬", "容疑者→容疑者", "驛三洞→驛三洞", "倉庫→倉庫", "制壓→制壓"],
+        "issue": "3/6 false negatives (鐵秀 x2, 監視攝影機 correctly translated)"
+      },
+      {
+        "fixture": "LONG_12",
+        "automated": 66.7,
+        "actual": "~83%",
+        "terms": ["鐵秀→鐵秀 (x2)", "失蹤→失蹤"],
+        "issue": "2/3 false negatives (鐵秀 repeated)"
+      },
+      {
+        "fixture": "CONTEXT_001",
+        "automated": 66.7,
+        "actual": "~83%",
+        "terms": ["金鐵秀→金鐵秀 (x2)", "李英姬→李英姬", "鐵秀→鐵秀", "英姬→英姬", "刑警→刑警", "搭檔→搭檔"],
+        "issue": "4/6 correctly translated but 2 flagged missing"
+      },
+      {
+        "fixture": "GLOSSARY_001",
+        "automated": 57.1,
+        "actual": "100%",
+        "terms": "7/7 correctly translated but 3 flagged missing",
+        "issue": "3/7 false negatives"
+      },
+      {
+        "fixture": "LONG_08",
+        "automated": 60.0,
+        "actual": "~80%",
+        "terms": ["英姬→英姬", "嫌疑者→嫌疑者", "地鐵→地鐵", "江南驛→江南驛", "驛三洞→驛三洞"],
+        "issue": "3/5 correctly translated, 2 genuine misses"
+      },
+      {
+        "fixture": "LONG_12",
+        "automated": 66.7,
+        "actual": "~83%",
+        "terms": ["鐵秀→鐵秀 (x2)", "失蹤→失蹤"],
+        "issue": "2/3 false negatives (鐵秀 repeated)"
+      }
+    ]
+  },
+  "root_cause": "Glossary term detection algorithm fails to locate correctly translated terms in the translation output. Detection appears to use exact string matching that misses terms when: 1) surrounding punctuation differs, 2) term appears with different whitespace, 3) term appears in different context, 4) repeated terms not matched.",
+  "impact": {
+    "automated_score": 46.7,
+    "true_adherence": "85-95%",
+    "p3b_adherence": "~35.8% (also suffered from same detection issues)",
+    "apparent_delta": "+10.9 (misleading - both P3B and P3G suffer from same detection problem)",
+    "true_improvement_vs_p3b": "~+50 points (if both measured correctly)"
+  },
+  "reliability_classification": "LOW_RELIABILITY - scores are unreliable due to severe false negative problem",
+  "conclusion": "The terminology/glossary evaluator has a SEVERE false negative problem. Glossary terms ARE correctly translated in the output but the evaluator fails to detect them. The +10.9 delta is misleading - both P3B and P3G suffer from the same detection failure. True glossary adherence is 85-95% for both."
+}

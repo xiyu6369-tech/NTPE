@@ -31,7 +31,7 @@ def build_release_manifest(project_root: str | Path, files: Iterable[str]) -> di
         "evidence_invariants": list(EVIDENCE_INVARIANTS), "naturalness_invariants": list(NATURALNESS_INVARIANTS),
         "production_validation": validation["production_validation"],
         "freeze_readiness": {"ready": True, "blockers": []},
-        "validation_commands": ["python ntpe_te_v600_final_release_freeze_test.py", "python -m pytest -q tests/integration/translation_engine_v600_final_release_freeze_test.py tests/integration/translation_engine_v600_final_import_api_test.py", "python ntpe_validate.py", "git diff --check"],
+        "validation_commands": ["python ntpe_te_v600_final_release_freeze_test.py", "python -m pytest -q tests/integration/translation_engine_v600_final_release_freeze_test.py tests/integration/translation_engine_v600_final_import_api_test.py", "python tools/one_shots/ntpe_validate.py", "git diff --check"],
         "file_inventory": inventory, "git_commit": "<pending>", "tag": "<pending: te-v6.0.0>",
     }
 

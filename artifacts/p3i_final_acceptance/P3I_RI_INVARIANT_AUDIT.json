@@ -1,0 +1,80 @@
+{
+  "phase": "3I",
+  "audit": "RI_Invariant_Audit",
+  "baseline_commit": "ea4ce55c33e5347c4aa72b9838e8314bcf0c0af7",
+  "ri_invariants": [
+    {
+      "id": "RI-01",
+      "name": "HTTP 408 Non-Retryable Classification",
+      "location": "core/translation_engine/provider_runtime.py:45",
+      "status": "PASS",
+      "evidence": "408 in NON_RETRYABLE_PROVIDER_ERROR_PATTERNS",
+      "p3b_status": "PASS",
+      "p3h_status": "PASS"
+    },
+    {
+      "id": "RI-02",
+      "name": "Dynamic Retry Config Parameters",
+      "location": "core/translation_engine/provider_runtime.py:62-64",
+      "status": "PASS",
+      "evidence": "retry_attempts, retry_base_delay_seconds, retry_backoff_factor in TranslationProviderSettings",
+      "p3b_status": "PASS",
+      "p3h_status": "PASS"
+    },
+    {
+      "id": "RI-03",
+      "name": "Dynamic Retry Parameter Usage",
+      "location": "core/translation_engine/provider_runtime.py:103-105",
+      "status": "PASS",
+      "evidence": "Settings loaded from config via TranslationProviderSettings.load()",
+      "p3b_status": "PASS",
+      "p3h_status": "PASS"
+    },
+    {
+      "id": "RI-04",
+      "name": "Retry Config Propagation from Metadata",
+      "location": "core/translation_engine/translation_engine.py:217; core/translation_engine/provider_runtime.py:build_translation_provider_manager",
+      "status": "PASS",
+      "evidence": "Metadata retry propagation via TranslationProviderSettings.load() and build_translation_provider_manager",
+      "p3b_status": "PASS",
+      "p3h_status": "PASS"
+    },
+    {
+      "id": "RI-05",
+      "name": "Balanced Profile Attempts 2 → 3",
+      "location": "config/provider_config.json: max_attempts",
+      "status": "PASS",
+      "evidence": "max_attempts: 3 in provider_config.json for balanced profile",
+      "p3b_status": "PASS",
+      "p3h_status": "PASS"
+    },
+    {
+      "id": "RI-06",
+      "name": "Partial Translation Handling / 'incomplete'",
+      "location": "lts/txt_translation_runtime.py:1087; lts/batch_translation_runtime.py:273-274",
+      "status": "PASS",
+      "evidence": "'incomplete' status handling in txt_translation_runtime.py and batch_translation_runtime.py",
+      "p3b_status": "PASS",
+      "p3h_status": "PASS"
+    },
+    {
+      "id": "RI-07",
+      "name": "Retry Metadata + Enhanced Summary",
+      "location": "lts/batch_translation_runtime.py:245-247,273-274",
+      "status": "PASS",
+      "evidence": "Retry metadata and enhanced summary in batch_translation_runtime.py",
+      "p3b_status": "PASS",
+      "p3h_status": "PASS"
+    }
+  ],
+  "summary": {
+    "total_ri": 7,
+    "pass": 7,
+    "fail": 0,
+    "regression": 0,
+    "p3b_all_pass": true,
+    "p3h_all_pass": true,
+    "all_ri_preserved": true
+  },
+  "timestamp": "2026-08-31T15:34:33Z"
+}

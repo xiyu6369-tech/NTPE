@@ -1,0 +1,34 @@
+{
+  "phase": "3F",
+  "classification": "Root_Cause",
+  "primary_cause": "P3F_SCORING_VARIANCE",
+  "evidence": [
+    "P3B used sophisticated 7-dimension weighted scoring (semantic_fidelity, literary_quality, trad_chinese_quality, character_consistency, context_continuity, terminology_glossary, structural_compliance) producing aggregate 80.0",
+    "P3E quality scoring used uniform 70.0 placeholder for all 18 fixtures - no dimension breakdown, no rubric, no weighted aggregation",
+    "P3E fixture results show quality_score: 70.0 for ALL 18 fixtures identically",
+    "P3B scorecard shows detailed dimension breakdown (semantic_fidelity: 84.7, literary_quality: 66.7, etc.) producing weighted 80.0",
+    "P3E quality scoring implementation appears to be placeholder/uniform scoring, not actual literary evaluation",
+    "P3E quality scoring did not replicate P3B multi-dimension scoring methodology"
+  ],
+  "secondary_causes": [
+    "P3E quality scoring implementation was placeholder/uniform (70.0 for all fixtures)",
+    "P3B used sophisticated multi-dimension scoring; P3E did not replicate this"
+  ],
+  "excluded_causes": {
+    "P3F_FIXTURE_VARIANCE": "Same fixture IDs, same count, same source text, same manifest",
+    "P3F_PROMPT_VARIANCE": "Prompt identity confirmed - same prompts, same compilation",
+    "P3F_CONTEXT_VARIANCE": "Context equivalent - same glossary, same previous context, same memory defaults",
+    "P3F_RUNTIME_VARIANCE": "Runtime identity confirmed - same chunk size, timeouts, retry, provider, model",
+    "P3F_MODEL_NONDETERMINISM": "Temperature/top_p identical; but scoring variance is primary",
+    "P3F_PROVIDER_VARIANCE": "Provider behavior identical - 0 errors, 0 timeouts, same endpoint",
+    "P3F_CONFIRMED_QUALITY_REGRESSION": "No evidence - outputs look reasonable, stability perfect"
+  },
+  "regression_significance": {
+    "classification": "P3F_SCORING_VARIANCE",
+    "confidence": "HIGH",
+    "explanation": "The 10-point delta is entirely attributable to P3E using a uniform 70.0 placeholder score instead of replicating P3B's multi-dimension scoring methodology. The actual translation quality (as evidenced by 100% completion, 0 errors, reasonable outputs) appears consistent."
+  },
+  "confirmed_literary_regression": "NO",
+  "m3_status": "VALIDATED",
+  "verdict": "P3F_SCORING_VARIANCE"
+}

@@ -1,0 +1,46 @@
+{
+  "phase": "3F",
+  "check": "Runtime_Identity",
+  "p3b_runtime": {
+    "commit": "af5cbc0",
+    "chunk_size": 600,
+    "max_output_tokens": 8000,
+    "retry_policy": "baseline_default",
+    "retry_base_seconds": "configured in provider_config.json",
+    "connect_timeout": 10,
+    "read_timeout": 120,
+    "provider": "NVIDIA",
+    "endpoint": "https://integrate.api.nvidia.com/v1/chat/completions",
+    "model": "meta/llama-3.2-90b-vision-instruct",
+    "response_parsing": "NvidiaClient",
+    "partial_handling": "incomplete status preserved",
+    "runtime_path": "Legacy pipeline available but runtime path used"
+  },
+  "p3e_runtime": {
+    "commit": "ea4ce55",
+    "chunk_size": 600,
+    "max_output_tokens": 8000,
+    "retry_policy": "max_retries=3, retry_base_seconds=5.0",
+    "connect_timeout": 10,
+    "read_timeout": 120,
+    "provider": "NVIDIA",
+    "endpoint": "https://integrate.api.nvidia.com/v1/chat/completions",
+    "model": "meta/llama-3.2-90b-vision-instruct",
+    "response_parsing": "NvidiaClient",
+    "partial_handling": "incomplete status preserved",
+    "runtime_path": "Canonical runtime pipeline only (legacy removed)"
+  },
+  "comparison": {
+    "chunk_size": "IDENTICAL (600)",
+    "max_output_tokens": "IDENTICAL (8000)",
+    "retry_policy": "EQUIVALENT (baseline_default vs max_retries=3+retry_base=5)",
+    "timeouts": "IDENTICAL (connect=10s, read=120s)",
+    "provider": "IDENTICAL (NVIDIA)",
+    "endpoint": "IDENTICAL",
+    "model": "IDENTICAL (meta/llama-3.2-90b-vision-instruct)",
+    "response_parsing": "IDENTICAL (NvidiaClient)",
+    "partial_handling": "IDENTICAL",
+    "runtime_path": "EQUIVALENT (both used runtime pipeline; P3B had legacy available but not used)"
+  },
+  "p3f_runtime_identity": "CONFIRMED"
+}

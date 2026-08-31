@@ -1,0 +1,902 @@
+[
+  {
+    "fixture_id": "CONTEXT_001",
+    "name": "Character_Continuity_Detectives",
+    "type": "context_continuity",
+    "dimensions": [
+      {
+        "name": "semantic_fidelity",
+        "score": 50.0,
+        "weight": 0.2,
+        "evidence": "Length ratio OK (0.70); Missing glossary term: 김철수; Missing glossary term: 이영희; Missing glossary term: 철수; Missing glossary term: 영희; Missing glossary term: 형사; Missing glossary term: 파트너"
+      },
+      {
+        "name": "literary_quality",
+        "score": 70.0,
+        "weight": 0.15,
+        "evidence": "Good sentence length variety"
+      },
+      {
+        "name": "trad_chinese_quality",
+        "score": 81.0,
+        "weight": 0.15,
+        "evidence": "Simplified chars detected: 2; Proper punctuation used"
+      },
+      {
+        "name": "character_consistency",
+        "score": 94.0,
+        "weight": 0.15,
+        "evidence": "Pronouns used: {'他': 1, '她': 1}; Character names consistent with glossary"
+      },
+      {
+        "name": "context_continuity",
+        "score": 92.0,
+        "weight": 0.1,
+        "evidence": "Temporal markers: 2"
+      },
+      {
+        "name": "terminology_glossary",
+        "score": 66.7,
+        "weight": 0.1,
+        "evidence": "Glossary adherence: 4/6 (67%); Missing: ['김철수->金鐵秀 missing', '철수->鐵秀 missing']"
+      },
+      {
+        "name": "structural_compliance",
+        "score": 80.0,
+        "weight": 0.15,
+        "evidence": "Single paragraph; Sentences: 6; Punctuation marks: 6; Leading/trailing whitespace"
+      }
+    ],
+    "weighted_score": 74.6
+  },
+  {
+    "fixture_id": "DIALOGUE_001",
+    "name": "Dialogue_Heavy_Scene",
+    "type": "dialogue",
+    "dimensions": [
+      {
+        "name": "semantic_fidelity",
+        "score": 70.0,
+        "weight": 0.2,
+        "evidence": "Length ratio OK (0.73); Missing glossary term: 민수; Missing glossary term: 지현"
+      },
+      {
+        "name": "literary_quality",
+        "score": 70.0,
+        "weight": 0.15,
+        "evidence": "Good sentence length variety"
+      },
+      {
+        "name": "trad_chinese_quality",
+        "score": 71.0,
+        "weight": 0.15,
+        "evidence": "Simplified chars detected: 7; Proper punctuation used"
+      },
+      {
+        "name": "character_consistency",
+        "score": 94.0,
+        "weight": 0.15,
+        "evidence": "Pronouns used: {'我': 1, '你': 1}; Character names consistent with glossary"
+      },
+      {
+        "name": "context_continuity",
+        "score": 90.0,
+        "weight": 0.1,
+        "evidence": "Anaphora references: 1"
+      },
+      {
+        "name": "terminology_glossary",
+        "score": 0.0,
+        "weight": 0.1,
+        "evidence": "Glossary adherence: 0/2 (0%); Missing: ['민수->敏洙 missing', '지현->智賢 missing']"
+      },
+      {
+        "name": "structural_compliance",
+        "score": 80.0,
+        "weight": 0.15,
+        "evidence": "Single paragraph; Sentences: 19; Punctuation marks: 33; Leading/trailing whitespace"
+      }
+    ],
+    "weighted_score": 70.2
+  },
+  {
+    "fixture_id": "GLOSSARY_001",
+    "name": "Glossary_Terms_Wuxia",
+    "type": "glossary",
+    "dimensions": [
+      {
+        "name": "semantic_fidelity",
+        "score": 45.0,
+        "weight": 0.2,
+        "evidence": "Length ratio OK (0.57); Missing glossary term: 홍길동; Missing glossary term: 의적; Missing glossary term: 성춘향; Missing glossary term: 변학도; Missing glossary term: 청산; Missing glossary term: 뇌전도; Missing glossary term: 탐관오리"
+      },
+      {
+        "name": "literary_quality",
+        "score": 70.0,
+        "weight": 0.15,
+        "evidence": "Good sentence length variety"
+      },
+      {
+        "name": "trad_chinese_quality",
+        "score": 85.0,
+        "weight": 0.15,
+        "evidence": "Proper punctuation used"
+      },
+      {
+        "name": "character_consistency",
+        "score": 94.0,
+        "weight": 0.15,
+        "evidence": "Pronouns used: {'他': 1}; Character names consistent with glossary"
+      },
+      {
+        "name": "context_continuity",
+        "score": 90.0,
+        "weight": 0.1,
+        "evidence": ""
+      },
+      {
+        "name": "terminology_glossary",
+        "score": 57.1,
+        "weight": 0.1,
+        "evidence": "Glossary adherence: 4/7 (57%); Missing: ['변학도->卞學度 missing', '청산->青山 missing', '탐관오리->貪官汚吏 missing']"
+      },
+      {
+        "name": "structural_compliance",
+        "score": 80.0,
+        "weight": 0.15,
+        "evidence": "Single paragraph; Sentences: 3; Punctuation marks: 3; Leading/trailing whitespace"
+      }
+    ],
+    "weighted_score": 73.1
+  },
+  {
+    "fixture_id": "GOLDEN_001",
+    "name": "Golden_Set_Novel_Main",
+    "type": "narrative",
+    "dimensions": [
+      {
+        "name": "semantic_fidelity",
+        "score": 75.0,
+        "weight": 0.2,
+        "evidence": "Length ratio OK (0.55); Missing glossary term: 정태의"
+      },
+      {
+        "name": "literary_quality",
+        "score": 78.0,
+        "weight": 0.15,
+        "evidence": "Good sentence length variety; Literary markers: 4"
+      },
+      {
+        "name": "trad_chinese_quality",
+        "score": 65.0,
+        "weight": 0.15,
+        "evidence": "Simplified chars detected: 30; Proper punctuation used"
+      },
+      {
+        "name": "character_consistency",
+        "score": 94.0,
+        "weight": 0.15,
+        "evidence": "Pronouns used: {'他': 1, '我': 1}; Character names consistent with glossary"
+      },
+      {
+        "name": "context_continuity",
+        "score": 92.0,
+        "weight": 0.1,
+        "evidence": "Temporal markers: 2; Anaphora references: 4"
+      },
+      {
+        "name": "terminology_glossary",
+        "score": 100.0,
+        "weight": 0.1,
+        "evidence": "Glossary adherence: 1/1 (100%)"
+      },
+      {
+        "name": "structural_compliance",
+        "score": 80.0,
+        "weight": 0.15,
+        "evidence": "Paragraphs: 5; Sentences: 44; Punctuation marks: 60; Leading/trailing whitespace"
+      }
+    ],
+    "weighted_score": 81.8
+  },
+  {
+    "fixture_id": "LONG_01",
+    "name": "Longitudinal_Chapter_1",
+    "type": "longitudinal",
+    "dimensions": [
+      {
+        "name": "semantic_fidelity",
+        "score": 80.0,
+        "weight": 0.2,
+        "evidence": "Length ratio OK (1.17)"
+      },
+      {
+        "name": "literary_quality",
+        "score": 65.0,
+        "weight": 0.15,
+        "evidence": ""
+      },
+      {
+        "name": "trad_chinese_quality",
+        "score": 85.0,
+        "weight": 0.15,
+        "evidence": "Proper punctuation used"
+      },
+      {
+        "name": "character_consistency",
+        "score": 94.0,
+        "weight": 0.15,
+        "evidence": "Character names consistent with glossary"
+      },
+      {
+        "name": "context_continuity",
+        "score": 90.0,
+        "weight": 0.1,
+        "evidence": ""
+      },
+      {
+        "name": "terminology_glossary",
+        "score": 50.0,
+        "weight": 0.1,
+        "evidence": "No glossary terms in source"
+      },
+      {
+        "name": "structural_compliance",
+        "score": 80.0,
+        "weight": 0.15,
+        "evidence": "Single paragraph; Sentences: 1; Punctuation marks: 1; Leading/trailing whitespace"
+      }
+    ],
+    "weighted_score": 78.6
+  },
+  {
+    "fixture_id": "LONG_02",
+    "name": "Longitudinal_Chapter_2",
+    "type": "longitudinal",
+    "dimensions": [
+      {
+        "name": "semantic_fidelity",
+        "score": 55.0,
+        "weight": 0.2,
+        "evidence": "Length ratio OK (0.61); Missing glossary term: 김철수; Missing glossary term: 철수; Missing glossary term: 형사; Missing glossary term: 실종; Missing glossary term: 연쇄"
+      },
+      {
+        "name": "literary_quality",
+        "score": 70.0,
+        "weight": 0.15,
+        "evidence": "Good sentence length variety"
+      },
+      {
+        "name": "trad_chinese_quality",
+        "score": 83.0,
+        "weight": 0.15,
+        "evidence": "Simplified chars detected: 1; Proper punctuation used"
+      },
+      {
+        "name": "character_consistency",
+        "score": 94.0,
+        "weight": 0.15,
+        "evidence": "Character names consistent with glossary"
+      },
+      {
+        "name": "context_continuity",
+        "score": 90.0,
+        "weight": 0.1,
+        "evidence": ""
+      },
+      {
+        "name": "terminology_glossary",
+        "score": 40.0,
+        "weight": 0.1,
+        "evidence": "Glossary adherence: 2/5 (40%); Missing: ['김철수->金鐵秀 missing', '철수->鐵秀 missing', '연쇄->連鎖 missing']"
+      },
+      {
+        "name": "structural_compliance",
+        "score": 80.0,
+        "weight": 0.15,
+        "evidence": "Single paragraph; Sentences: 4; Punctuation marks: 6; Leading/trailing whitespace"
+      }
+    ],
+    "weighted_score": 73.0
+  },
+  {
+    "fixture_id": "LONG_03",
+    "name": "Longitudinal_Chapter_3",
+    "type": "longitudinal",
+    "dimensions": [
+      {
+        "name": "semantic_fidelity",
+        "score": 80.0,
+        "weight": 0.2,
+        "evidence": "Length ratio OK (1.00)"
+      },
+      {
+        "name": "literary_quality",
+        "score": 65.0,
+        "weight": 0.15,
+        "evidence": ""
+      },
+      {
+        "name": "trad_chinese_quality",
+        "score": 85.0,
+        "weight": 0.15,
+        "evidence": "Proper punctuation used"
+      },
+      {
+        "name": "character_consistency",
+        "score": 94.0,
+        "weight": 0.15,
+        "evidence": "Character names consistent with glossary"
+      },
+      {
+        "name": "context_continuity",
+        "score": 90.0,
+        "weight": 0.1,
+        "evidence": ""
+      },
+      {
+        "name": "terminology_glossary",
+        "score": 50.0,
+        "weight": 0.1,
+        "evidence": "No glossary terms in source"
+      },
+      {
+        "name": "structural_compliance",
+        "score": 80.0,
+        "weight": 0.15,
+        "evidence": "Single paragraph; Sentences: 1; Punctuation marks: 1; Leading/trailing whitespace"
+      }
+    ],
+    "weighted_score": 78.6
+  },
+  {
+    "fixture_id": "LONG_04",
+    "name": "Longitudinal_Chapter_4",
+    "type": "longitudinal",
+    "dimensions": [
+      {
+        "name": "semantic_fidelity",
+        "score": 50.0,
+        "weight": 0.2,
+        "evidence": "Length ratio OK (0.54); Missing glossary term: 김철수; Missing glossary term: 이영희; Missing glossary term: 철수; Missing glossary term: 영희; Missing glossary term: 선배; Missing glossary term: 편의점"
+      },
+      {
+        "name": "literary_quality",
+        "score": 70.0,
+        "weight": 0.15,
+        "evidence": "Good sentence length variety"
+      },
+      {
+        "name": "trad_chinese_quality",
+        "score": 83.0,
+        "weight": 0.15,
+        "evidence": "Simplified chars detected: 1; Proper punctuation used"
+      },
+      {
+        "name": "character_consistency",
+        "score": 94.0,
+        "weight": 0.15,
+        "evidence": "Character names consistent with glossary"
+      },
+      {
+        "name": "context_continuity",
+        "score": 90.0,
+        "weight": 0.1,
+        "evidence": ""
+      },
+      {
+        "name": "terminology_glossary",
+        "score": 66.7,
+        "weight": 0.1,
+        "evidence": "Glossary adherence: 4/6 (67%); Missing: ['선배->前輩 missing', '편의점->便利店 missing']"
+      },
+      {
+        "name": "structural_compliance",
+        "score": 80.0,
+        "weight": 0.15,
+        "evidence": "Single paragraph; Sentences: 3; Punctuation marks: 4; Leading/trailing whitespace"
+      }
+    ],
+    "weighted_score": 74.7
+  },
+  {
+    "fixture_id": "LONG_05",
+    "name": "Longitudinal_Chapter_5",
+    "type": "longitudinal",
+    "dimensions": [
+      {
+        "name": "semantic_fidelity",
+        "score": 80.0,
+        "weight": 0.2,
+        "evidence": "Length ratio OK (1.17)"
+      },
+      {
+        "name": "literary_quality",
+        "score": 65.0,
+        "weight": 0.15,
+        "evidence": ""
+      },
+      {
+        "name": "trad_chinese_quality",
+        "score": 80.0,
+        "weight": 0.15,
+        "evidence": "Missing proper Chinese punctuation"
+      },
+      {
+        "name": "character_consistency",
+        "score": 94.0,
+        "weight": 0.15,
+        "evidence": "Character names consistent with glossary"
+      },
+      {
+        "name": "context_continuity",
+        "score": 90.0,
+        "weight": 0.1,
+        "evidence": ""
+      },
+      {
+        "name": "terminology_glossary",
+        "score": 50.0,
+        "weight": 0.1,
+        "evidence": "No glossary terms in source"
+      },
+      {
+        "name": "structural_compliance",
+        "score": 80.0,
+        "weight": 0.15,
+        "evidence": "Single paragraph; Sentences: 1; Leading/trailing whitespace"
+      }
+    ],
+    "weighted_score": 77.8
+  },
+  {
+    "fixture_id": "LONG_06",
+    "name": "Longitudinal_Chapter_6",
+    "type": "longitudinal",
+    "dimensions": [
+      {
+        "name": "semantic_fidelity",
+        "score": 65.0,
+        "weight": 0.2,
+        "evidence": "Length ratio OK (0.54); Missing glossary term: 철수; Missing glossary term: 편의점; Missing glossary term: CCTV"
+      },
+      {
+        "name": "literary_quality",
+        "score": 70.0,
+        "weight": 0.15,
+        "evidence": "Good sentence length variety"
+      },
+      {
+        "name": "trad_chinese_quality",
+        "score": 85.0,
+        "weight": 0.15,
+        "evidence": "Proper punctuation used"
+      },
+      {
+        "name": "character_consistency",
+        "score": 94.0,
+        "weight": 0.15,
+        "evidence": "Pronouns used: {'他': 1}; Character names consistent with glossary"
+      },
+      {
+        "name": "context_continuity",
+        "score": 91.0,
+        "weight": 0.1,
+        "evidence": "Temporal markers: 1"
+      },
+      {
+        "name": "terminology_glossary",
+        "score": 0.0,
+        "weight": 0.1,
+        "evidence": "Glossary adherence: 0/3 (0%); Missing: ['철수->鐵秀 missing', '편의점->便利店 missing', 'CCTV->監視攝影機 missing']"
+      },
+      {
+        "name": "structural_compliance",
+        "score": 80.0,
+        "weight": 0.15,
+        "evidence": "Single paragraph; Sentences: 3; Punctuation marks: 3; Leading/trailing whitespace"
+      }
+    ],
+    "weighted_score": 71.5
+  },
+  {
+    "fixture_id": "LONG_07",
+    "name": "Longitudinal_Chapter_7",
+    "type": "longitudinal",
+    "dimensions": [
+      {
+        "name": "semantic_fidelity",
+        "score": 80.0,
+        "weight": 0.2,
+        "evidence": "Length ratio OK (1.17)"
+      },
+      {
+        "name": "literary_quality",
+        "score": 65.0,
+        "weight": 0.15,
+        "evidence": ""
+      },
+      {
+        "name": "trad_chinese_quality",
+        "score": 80.0,
+        "weight": 0.15,
+        "evidence": "Missing proper Chinese punctuation"
+      },
+      {
+        "name": "character_consistency",
+        "score": 94.0,
+        "weight": 0.15,
+        "evidence": "Character names consistent with glossary"
+      },
+      {
+        "name": "context_continuity",
+        "score": 90.0,
+        "weight": 0.1,
+        "evidence": ""
+      },
+      {
+        "name": "terminology_glossary",
+        "score": 50.0,
+        "weight": 0.1,
+        "evidence": "No glossary terms in source"
+      },
+      {
+        "name": "structural_compliance",
+        "score": 80.0,
+        "weight": 0.15,
+        "evidence": "Single paragraph; Sentences: 1; Leading/trailing whitespace"
+      }
+    ],
+    "weighted_score": 77.8
+  },
+  {
+    "fixture_id": "LONG_08",
+    "name": "Longitudinal_Chapter_8",
+    "type": "longitudinal",
+    "dimensions": [
+      {
+        "name": "semantic_fidelity",
+        "score": 55.0,
+        "weight": 0.2,
+        "evidence": "Length ratio OK (0.68); Missing glossary term: 영희; Missing glossary term: 용의자; Missing glossary term: 지하철; Missing glossary term: 강남역; Missing glossary term: 역삼동"
+      },
+      {
+        "name": "literary_quality",
+        "score": 70.0,
+        "weight": 0.15,
+        "evidence": "Good sentence length variety"
+      },
+      {
+        "name": "trad_chinese_quality",
+        "score": 81.0,
+        "weight": 0.15,
+        "evidence": "Simplified chars detected: 2; Proper punctuation used"
+      },
+      {
+        "name": "character_consistency",
+        "score": 94.0,
+        "weight": 0.15,
+        "evidence": "Pronouns used: {'他': 1}; Character names consistent with glossary"
+      },
+      {
+        "name": "context_continuity",
+        "score": 91.0,
+        "weight": 0.1,
+        "evidence": "Spatial markers: 1"
+      },
+      {
+        "name": "terminology_glossary",
+        "score": 60.0,
+        "weight": 0.1,
+        "evidence": "Glossary adherence: 3/5 (60%); Missing: ['용의자->容疑者 missing', '강남역->江南驛 missing']"
+      },
+      {
+        "name": "structural_compliance",
+        "score": 80.0,
+        "weight": 0.15,
+        "evidence": "Single paragraph; Sentences: 4; Punctuation marks: 5; Leading/trailing whitespace"
+      }
+    ],
+    "weighted_score": 74.8
+  },
+  {
+    "fixture_id": "LONG_09",
+    "name": "Longitudinal_Chapter_9",
+    "type": "longitudinal",
+    "dimensions": [
+      {
+        "name": "semantic_fidelity",
+        "score": 80.0,
+        "weight": 0.2,
+        "evidence": "Length ratio OK (1.17)"
+      },
+      {
+        "name": "literary_quality",
+        "score": 65.0,
+        "weight": 0.15,
+        "evidence": ""
+      },
+      {
+        "name": "trad_chinese_quality",
+        "score": 80.0,
+        "weight": 0.15,
+        "evidence": "Missing proper Chinese punctuation"
+      },
+      {
+        "name": "character_consistency",
+        "score": 94.0,
+        "weight": 0.15,
+        "evidence": "Character names consistent with glossary"
+      },
+      {
+        "name": "context_continuity",
+        "score": 90.0,
+        "weight": 0.1,
+        "evidence": ""
+      },
+      {
+        "name": "terminology_glossary",
+        "score": 50.0,
+        "weight": 0.1,
+        "evidence": "No glossary terms in source"
+      },
+      {
+        "name": "structural_compliance",
+        "score": 80.0,
+        "weight": 0.15,
+        "evidence": "Single paragraph; Sentences: 1; Leading/trailing whitespace"
+      }
+    ],
+    "weighted_score": 77.8
+  },
+  {
+    "fixture_id": "LONG_10",
+    "name": "Longitudinal_Chapter_10",
+    "type": "longitudinal",
+    "dimensions": [
+      {
+        "name": "semantic_fidelity",
+        "score": 50.0,
+        "weight": 0.2,
+        "evidence": "Length ratio OK (0.79); Missing glossary term: 철수; Missing glossary term: 영희; Missing glossary term: 용의자; Missing glossary term: 역삼동; Missing glossary term: 창고; Missing glossary term: 제압"
+      },
+      {
+        "name": "literary_quality",
+        "score": 70.0,
+        "weight": 0.15,
+        "evidence": "Good sentence length variety"
+      },
+      {
+        "name": "trad_chinese_quality",
+        "score": 83.0,
+        "weight": 0.15,
+        "evidence": "Simplified chars detected: 1; Proper punctuation used"
+      },
+      {
+        "name": "character_consistency",
+        "score": 94.0,
+        "weight": 0.15,
+        "evidence": "Character names consistent with glossary"
+      },
+      {
+        "name": "context_continuity",
+        "score": 90.0,
+        "weight": 0.1,
+        "evidence": ""
+      },
+      {
+        "name": "terminology_glossary",
+        "score": 33.3,
+        "weight": 0.1,
+        "evidence": "Glossary adherence: 2/6 (33%); Missing: ['철수->鐵秀 missing', '용의자->容疑者 missing', '역삼동->驛三洞 missing']"
+      },
+      {
+        "name": "structural_compliance",
+        "score": 80.0,
+        "weight": 0.15,
+        "evidence": "Single paragraph; Sentences: 5; Punctuation marks: 7; Leading/trailing whitespace"
+      }
+    ],
+    "weighted_score": 71.4
+  },
+  {
+    "fixture_id": "LONG_11",
+    "name": "Longitudinal_Chapter_11",
+    "type": "longitudinal",
+    "dimensions": [
+      {
+        "name": "semantic_fidelity",
+        "score": 80.0,
+        "weight": 0.2,
+        "evidence": "Length ratio OK (1.17)"
+      },
+      {
+        "name": "literary_quality",
+        "score": 65.0,
+        "weight": 0.15,
+        "evidence": ""
+      },
+      {
+        "name": "trad_chinese_quality",
+        "score": 80.0,
+        "weight": 0.15,
+        "evidence": "Missing proper Chinese punctuation"
+      },
+      {
+        "name": "character_consistency",
+        "score": 94.0,
+        "weight": 0.15,
+        "evidence": "Character names consistent with glossary"
+      },
+      {
+        "name": "context_continuity",
+        "score": 90.0,
+        "weight": 0.1,
+        "evidence": ""
+      },
+      {
+        "name": "terminology_glossary",
+        "score": 50.0,
+        "weight": 0.1,
+        "evidence": "No glossary terms in source"
+      },
+      {
+        "name": "structural_compliance",
+        "score": 80.0,
+        "weight": 0.15,
+        "evidence": "Single paragraph; Sentences: 1; Leading/trailing whitespace"
+      }
+    ],
+    "weighted_score": 77.8
+  },
+  {
+    "fixture_id": "LONG_12",
+    "name": "Longitudinal_Chapter_12",
+    "type": "longitudinal",
+    "dimensions": [
+      {
+        "name": "semantic_fidelity",
+        "score": 65.0,
+        "weight": 0.2,
+        "evidence": "Length ratio OK (0.69); Missing glossary term: 철수; Missing glossary term: 영희; Missing glossary term: 실종"
+      },
+      {
+        "name": "literary_quality",
+        "score": 70.0,
+        "weight": 0.15,
+        "evidence": "Good sentence length variety"
+      },
+      {
+        "name": "trad_chinese_quality",
+        "score": 83.0,
+        "weight": 0.15,
+        "evidence": "Simplified chars detected: 1; Proper punctuation used"
+      },
+      {
+        "name": "character_consistency",
+        "score": 94.0,
+        "weight": 0.15,
+        "evidence": "Pronouns used: {'你': 1}; Character names consistent with glossary"
+      },
+      {
+        "name": "context_continuity",
+        "score": 90.0,
+        "weight": 0.1,
+        "evidence": ""
+      },
+      {
+        "name": "terminology_glossary",
+        "score": 66.7,
+        "weight": 0.1,
+        "evidence": "Glossary adherence: 2/3 (67%); Missing: ['철수->鐵秀 missing']"
+      },
+      {
+        "name": "structural_compliance",
+        "score": 80.0,
+        "weight": 0.15,
+        "evidence": "Single paragraph; Sentences: 7; Punctuation marks: 11; Leading/trailing whitespace"
+      }
+    ],
+    "weighted_score": 77.7
+  },
+  {
+    "fixture_id": "REGRESSION_001",
+    "name": "Regression_Set_Novel",
+    "type": "narrative",
+    "dimensions": [
+      {
+        "name": "semantic_fidelity",
+        "score": 80.0,
+        "weight": 0.2,
+        "evidence": "Length ratio OK (0.58)"
+      },
+      {
+        "name": "literary_quality",
+        "score": 74.0,
+        "weight": 0.15,
+        "evidence": "Good sentence length variety; Literary markers: 2"
+      },
+      {
+        "name": "trad_chinese_quality",
+        "score": 65.0,
+        "weight": 0.15,
+        "evidence": "Simplified chars detected: 52; Proper punctuation used"
+      },
+      {
+        "name": "character_consistency",
+        "score": 94.0,
+        "weight": 0.15,
+        "evidence": "Pronouns used: {'他': 1, '我': 1, '你': 1}; Character names consistent with glossary"
+      },
+      {
+        "name": "context_continuity",
+        "score": 91.0,
+        "weight": 0.1,
+        "evidence": "Temporal markers: 1; Anaphora references: 8"
+      },
+      {
+        "name": "terminology_glossary",
+        "score": 50.0,
+        "weight": 0.1,
+        "evidence": "No glossary terms in source"
+      },
+      {
+        "name": "structural_compliance",
+        "score": 80.0,
+        "weight": 0.15,
+        "evidence": "Paragraphs: 6; Sentences: 68; Punctuation marks: 109; Leading/trailing whitespace"
+      }
+    ],
+    "weighted_score": 77.0
+  },
+  {
+    "fixture_id": "SMOKE_001",
+    "name": "Smoke_Set_Short",
+    "type": "narrative",
+    "dimensions": [
+      {
+        "name": "semantic_fidelity",
+        "score": 70.0,
+        "weight": 0.2,
+        "evidence": "Length ratio OK (0.55); Missing glossary term: 일레이; Missing glossary term: 정태의"
+      },
+      {
+        "name": "literary_quality",
+        "score": 74.0,
+        "weight": 0.15,
+        "evidence": "Good sentence length variety; Literary markers: 2"
+      },
+      {
+        "name": "trad_chinese_quality",
+        "score": 81.0,
+        "weight": 0.15,
+        "evidence": "Simplified chars detected: 2; Proper punctuation used"
+      },
+      {
+        "name": "character_consistency",
+        "score": 94.0,
+        "weight": 0.15,
+        "evidence": "Pronouns used: {'他': 1, '我': 1, '你': 1}; Character names consistent with glossary"
+      },
+      {
+        "name": "context_continuity",
+        "score": 91.0,
+        "weight": 0.1,
+        "evidence": "Temporal markers: 1"
+      },
+      {
+        "name": "terminology_glossary",
+        "score": 0.0,
+        "weight": 0.1,
+        "evidence": "Glossary adherence: 0/2 (0%); Missing: ['일레이->伊雷 missing', '정태의->鄭泰義 missing']"
+      },
+      {
+        "name": "structural_compliance",
+        "score": 80.0,
+        "weight": 0.15,
+        "evidence": "Single paragraph; Sentences: 10; Punctuation marks: 18; Leading/trailing whitespace"
+      }
+    ],
+    "weighted_score": 72.5
+  }
+]

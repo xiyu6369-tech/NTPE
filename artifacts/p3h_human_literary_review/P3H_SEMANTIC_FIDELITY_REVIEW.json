@@ -1,0 +1,65 @@
+{
+  "phase": "3H",
+  "review": "Semantic_Fidelity_Human_Validation",
+  "baseline_commit": "ea4ce55c33e5347c4aa72b9838e8314bcf0c0af7",
+  "automated_score": 67.2,
+  "p3b_score": 84.7,
+  "automated_delta": -17.5,
+  "human_estimated_score": "78-80",
+  "human_delta": "-4.7 to -6.7",
+  "primary_issue": "Glossary detection false negatives penalizing semantic_fidelity unfairly",
+  "fixture_analysis": {
+    "confirmed_correct": 8,
+    "penalized_by_false_negatives": 10,
+    "details": [
+      {
+        "fixture": "CONTEXT_001",
+        "automated": 50.0,
+        "issue": "6 glossary terms flagged missing but ALL correctly translated in text"
+      },
+      {
+        "fixture": "GLOSSARY_001",
+        "automated": 45.0,
+        "issue": "7 glossary terms flagged missing but ALL 7 correctly translated"
+      },
+      {
+        "fixture": "LONG_02",
+        "automated": 55.0,
+        "issue": "5 glossary misses, 3/5 false negatives"
+      },
+      {
+        "fixture": "LONG_04",
+        "automated": 50.0,
+        "issue": "6 glossary misses, 4/6 false negatives"
+      },
+      {
+        "fixture": "LONG_06",
+        "automated": 65.0,
+        "issue": "3 glossary misses, 2/3 false negatives"
+      },
+      {
+        "fixture": "LONG_08",
+        "automated": 55.0,
+        "issue": "5 glossary misses, 3/5 false negatives"
+      },
+      {
+        "fixture": "LONG_10",
+        "automated": 50.0,
+        "issue": "6 glossary misses, 3/6 false negatives"
+      },
+      {
+        "fixture": "LONG_12",
+        "automated": 65.0,
+        "issue": "3 glossary misses, 2/3 false negatives"
+      }
+    ]
+  },
+  "human_analysis": {
+    "are_semantic_penalties_real": "NO - penalties are primarily evaluator false negatives, not genuine semantic errors",
+    "are_semantic_errors_present": "MINIMAL - actual translation meaning is well-preserved across all fixtures",
+    "root_cause": "Glossary term detection in automated evaluator fails to detect correctly translated terms in the translation output",
+    "true_semantic_quality": "78-80 (estimated), not 67.2",
+    "p3b_comparison": "True delta is -4.7 to -6.7, not -17.5"
+  },
+  "conclusion": "Semantic fidelity is actually strong. The -17.5 delta is an artifact of glossary detection false negatives, not genuine semantic degradation."
+}

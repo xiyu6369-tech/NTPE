@@ -1,0 +1,60 @@
+{
+  "phase": "3I",
+  "audit": "Canonical_Path_Audit",
+  "baseline_commit": "ea4ce55c33e5347c4aa72b9838e8314bcf0c0af7",
+  "canonical_paths": {
+    "TXT": {
+      "status": "PASS",
+      "path": "CLI → TranslationRuntime → lts/txt_translation_runtime.py → _translate_txt_with_runtime_pipeline() → TranslationEngine → ProviderManager → NvidiaTranslationProvider → NvidiaClient → NVIDIA M3",
+      "entry_point": "ntpe_production_translate.py:run_txt()",
+      "runtime": "lts/txt_translation_runtime.py:translate_txt()",
+      "pipeline": "_translate_txt_with_runtime_pipeline() (RuntimeOrchestrator)",
+      "engine": "core/translation_engine/translation_engine.py:TranslationEngine",
+      "provider_manager": "core/translation_engine/provider_runtime.py:build_translation_provider_manager()",
+      "provider": "core/translation_engine/provider_runtime.py:NvidiaTranslationProvider",
+      "client": "core/translation_engine/nvidia_client.py:NvidiaClient",
+      "model": "meta/llama-3.2-90b-vision-instruct",
+      "endpoint": "https://integrate.api.nvidia.com/v1/chat/completions"
+    },
+    "Batch": {
+      "status": "PASS",
+      "path": "CLI → TranslationRuntime → lts/batch_translation_runtime.py:translate_batch() → lts/txt_translation_runtime.py:translate_txt() → _translate_txt_with_runtime_pipeline() → (same as TXT)",
+      "entry_point": "ntpe_production_translate.py:run_batch()",
+      "runtime": "lts/batch_translation_runtime.py:translate_batch()",
+      "delegates_to": "lts/txt_translation_runtime.py:translate_txt()",
+      "converges_on": "Same canonical TXT pipeline"
+    },
+    "EPUB": {
+      "status": "PASS",
+      "path": "CLI → EpubExtractionBoundary → CanonicalBookIntakeAdapter → temp TXT → run_txt() → (same as TXT)",
+      "entry_point": "ntpe_production_translate.py:run_epub()",
+      "extraction": "core/adapters/epub_extraction_boundary.py:EpubExtractionBoundary",
+      "intake": "core/adapters/canonical_book_intake_adapter.py:CanonicalBookIntakeAdapter",
+      "temp_file": "tempfile.NamedTemporaryFile",
+      "delegates_to": "lts/txt_translation_runtime.py:translate_txt()",
+      "converges_on": "Same canonical TXT pipeline"
+    },
+    "Regression": {
+      "status": "PASS",
+      "path": "CLI → LiteraryRegressionOptions → translate_txt() → (same as TXT)",
+      "entry_point": "ntpe_production_translate.py:run_regression()",
+      "delegates_to": "lts/txt_translation_runtime.py:translate_txt()",
+      "converges_on": "Same canonical TXT pipeline"
+    }
+  },
+  "convergence": {
+    "all_paths_converge": true,
+    "single_canonical_runtime": "lts/txt_translation_runtime.py:_translate_txt_with_runtime_pipeline()",
+    "legacy_paths": "NONE",
+    "duplicate_runtime": "NONE"
+  },
+  "verification": {
+    "txt_canonical": true,
+    "batch_canonical": true,
+    "epub_canonical": true,
+    "regression_canonical": true,
+    "legacy_routes_removed": true,
+    "single_canonical_path_confirmed": true
+  },
+  "timestamp": "2026-08-31T15:34:33Z"
+}
