@@ -521,7 +521,7 @@ def run_epub(args: argparse.Namespace) -> int:
         epub_metadata=dict(extraction_result.metadata.raw) if extraction_result.metadata.raw else {},
         chapter_map=extraction_result.chapter_map,
         extraction_manifest=extraction_result.extraction_manifest,
-        extractor_version=extraction_result.extractor_version,
+        extractor_version=extraction_result.extraction_manifest.extractor_version,
         status=extraction_result.status,
         warnings=extraction_result.warnings,
     )
