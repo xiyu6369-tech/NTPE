@@ -1,0 +1,165 @@
+from __future__ import annotations
+
+from PySide6.QtCore import Qt, Signal
+from PySide6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QLabel, QPushButton, QFrame
+from PySide6.QtGui import QFont
+
+from ..resources.translations import Strings
+
+
+class HomePage(QWidget):
+    """首頁 - 歡迎畫面與主要動作入口"""
+    
+    # 導航信號
+    navigate_to_project = Signal()
+    navigate_to_import_txt = Signal()
+    navigate_to_import_epub = Signal()
+    
+    def __init__(self, parent: QWidget | None = None):
+        super().__init__(parent)
+        self._setup_ui()
+    
+    def _setup_ui(self) -> None:
+        layout = QVBoxLayout(self)
+        layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        layout.setSpacing(24)
+        layout.setContentsMargins(48, 48, 48, 48)
+        
+        # 標題區塊
+        title_label = QLabel(Strings.APP_TITLE)
+        title_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        title_font = QFont()
+        title_font.setPointSize(28)
+        title_font.setWeight(QFont.Weight.Bold)
+        title_label.setFont(title_font)
+        layout.addWidget(title_label)
+        
+        # 副標題
+        subtitle = QLabel(Strings.HOME_DESCRIPTION)
+        subtitle.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        subtitle_font = QFont()
+        subtitle_font.setPointSize(14)
+        subtitle.setFont(subtitle_font)
+        subtitle.setStyleSheet("color: #666666;")
+        layout.addWidget(subtitle)
+        
+        layout.addSpacing(32)
+        
+        # 動作按鈕區塊
+        actions_frame = QFrame()
+        actions_frame.setFrameStyle(QFrame.Shape.StyledPanel)
+        actions_layout = QVBoxLayout(actions_frame)
+        actions_layout.setSpacing(16)
+        actions_layout.setContentsMargins(32, 24, 32, 24)
+        
+        # 匯入 TXT 按鈕
+        btn_import_txt = self._create_action_button(
+            Strings.HOME_ACTION_IMPORT_TXT,
+            "匯入純文字檔案進行翻譯",
+            self._on_import_txt
+        )
+        actions_layout.addWidget(btn_import_txt)
+        
+        # 匯入 EPUB 按鈕
+        btn_import_epub = self._create_action_button(
+            Strings.HOME_ACTION_IMPORT_EPUB,
+            "匯入 EPUB 電子書進行翻譯",
+            self._on_import_epub
+        )
+        actions_layout.addWidget(btn_import_epub)
+        
+        # 新增專案按鈕
+        btn_new_project = self._create_action_button(
+            Strings.HOME_ACTION_NEW_PROJECT,
+            "建立新的翻譯專案",
+            self._on_new_project
+        )
+        actions_layout.addWidget(btn_new_project)
+        
+        # 開啟專案按鈕
+        btn_open_project = self._create_action_button(
+            Strings.HOME_ACTION_OPEN_PROJECT,
+            "開啟現有翻譯專案",
+            self._on_open_project
+        )
+        actions_layout.addWidget(btn_open_project)
+        
+        layout.addWidget(actions_frame)
+        layout.addStretch()
+        
+        # 底部版本資訊
+        version_label = QLabel("NTPE Translation Studio v0.1.0")
+        version_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        version_label.setStyleSheet("color: #999999; font-size: 11px;")
+        layout.addWidget(version_label)
+    
+    def _create_action_button(self, title: str, description: str, callback) -> QPushButton:
+        """建立主要動作按鈕"""
+        btn = QPushButton()
+        btn.setFixedHeight(64)
+        btn.setCursor(Qt.CursorShape.PointingHandCursor)
+        btn.clicked.connect(callback)
+        
+        btn_layout = QHBoxLayout(btn)
+        btn_layout.setContentsMargins(24, 12, 24, 12)
+        btn_layout.setSpacing(16)
+        
+        # 標題與描述
+        text_layout = QVBoxLayout()
+        text_layout.setSpacing(4)
+        
+        title_label = QLabel(title)
+        title_font = QFont()
+        title_font.setPointSize(16)
+        title_font.setWeight(QFont.Weight.DemiBold)
+        title_label.setFont(title_font)
+        text_layout.addWidget(title_label)
+        
+        desc_label = QLabel(description)
+        desc_label.setStyleSheet("color: #666666;")
+        desc_font = QFont()
+        desc_font.setPointSize(11)
+        desc_label.setFont(desc_font)
+        text_layout.addWidget(desc_label)
+        
+        btn_layout.addLayout(text_layout)
+        btn_layout.addStretch()
+        
+        # 箭頭指示
+        arrow = QLabel("→")
+        arrow_font = QFont()
+        arrow_font.setPointSize(20)
+        arrow.setFont(arrow_font)
+        arrow.setStyleSheet("color: #999999;")
+        btn_layout.addWidget(arrow)
+        
+        # 樣式
+        btn.setStyleSheet("""
+            QPushButton {
+                background-color: #f8f9fa;
+                border: 1px solid #dee2e6;
+                border-radius: 8px;
+                text-align: left;
+            }
+            QPushButton:hover {
+                background-color: #e9ecef;
+                border-color: #adb5bd;
+            }
+            QPushButton:pressed {
+                background-color: #dee2e6;
+            }
+        """)
+        
+        return btn
+    
+    def _on_import_txt(self) -> None:
+        self.navigate_to_import_txt.emit()
+    
+    def _on_import_epub(self) -> None:
+        self.navigate_to_import_epub.emit()
+    
+    def _on_new_project(self) -> None:
+        self.navigate_to_project.emit()
+    
+    def _on_open_project(self) -> None:
+        self.navigate_to_project.emit()
