@@ -1,7 +1,9 @@
 from __future__ import annotations
 
+from pathlib import Path
+
 from PySide6.QtCore import Qt, Signal
-from PySide6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QLabel, QPushButton, QFrame
+from PySide6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QLabel, QPushButton, QFrame, QFileDialog, QMessageBox
 from PySide6.QtGui import QFont
 
 from ..resources.translations import Strings
@@ -14,9 +16,11 @@ class HomePage(QWidget):
     navigate_to_project = Signal()
     navigate_to_import_txt = Signal()
     navigate_to_import_epub = Signal()
+    txt_imported = Signal(dict)  # 成功匯入後發出書籍資訊
     
     def __init__(self, parent: QWidget | None = None):
         super().__init__(parent)
+        self._intake_adapter = None
         self._setup_ui()
     
     def _setup_ui(self) -> None:
@@ -153,7 +157,77 @@ class HomePage(QWidget):
         return btn
     
     def _on_import_txt(self) -> None:
-        self.navigate_to_import_txt.emit()
+        """處理 TXT 匯入 - 使用 CanonicalBookIntakeAdapter"""
+        # 開啟檔案選擇器
+        file_path, _ = QFileDialog.getOpenFileName(
+            self,
+            Strings.TXT_IMPORT_DIALOG_TITLE,
+            "",
+            Strings.TXT_FILE_FILTER,
+        )
+        
+        if not file_path:
+            # 使用者取消
+            return
+        
+        source_path = Path(file_path)
+        
+        try:
+            # 延遲導入以避免 circular import
+            from core.adapters.canonical_book_intake_adapter import CanonicalBookIntakeAdapter
+            
+            if self._intake_adapter is None:
+                self._intake_adapter = CanonicalBookIntakeAdapter()
+            
+            # 執行 canonical TXT intake
+            result = self._intake_adapter.process_path(source_path)
+            
+            if result.status in ("ready", "ready_with_warnings"):
+                # 匯入成功
+                book_info = self._build_book_info(result, source_path)
+                QMessageBox.information(
+                    self,
+                    Strings.TXT_IMPORT_SUCCESS_TITLE,
+                    Strings.TXT_IMPORT_SUCCESS_MSG.format(
+                        title=book_info.get("title", Strings.UNKNOWN),
+                        source=book_info.get("source", str(source_path)),
+                        chars=book_info.get("chars", 0),
+                        encoding=book_info.get("encoding", Strings.UNKNOWN),
+                    ),
+                )
+                self.txt_imported.emit(book_info)
+            else:
+                # 匯入失敗或有問題
+                error_msg = Strings.TXT_IMPORT_FAILED_MSG.format(
+                    status=result.status,
+                    warnings="; ".join(result.warnings) if result.warnings else Strings.NO_DETAILS,
+                )
+                QMessageBox.warning(
+                    self,
+                    Strings.TXT_IMPORT_FAILED_TITLE,
+                    error_msg,
+                )
+                
+        except Exception as e:
+            QMessageBox.critical(
+                self,
+                Strings.TXT_IMPORT_ERROR_TITLE,
+                Strings.TXT_IMPORT_ERROR_MSG.format(error=str(e)),
+            )
+    
+    def _build_book_info(self, result, source_path: Path) -> dict:
+        """從 canonical intake result 建立書籍資訊"""
+        intake_result = result.intake_result
+        book_info = {
+            "title": intake_result.file_name or source_path.stem,
+            "source": str(source_path),
+            "chars": intake_result.text_length,
+            "encoding": intake_result.encoding,
+            "status": result.status,
+            "warnings": list(result.warnings),
+            "submission_eligible": result.submission_eligible,
+        }
+        return book_info
     
     def _on_import_epub(self) -> None:
         self.navigate_to_import_epub.emit()

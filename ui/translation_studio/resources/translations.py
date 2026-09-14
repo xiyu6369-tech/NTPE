@@ -17,6 +17,18 @@ class Strings:
     HOME_ACTION_NEW_PROJECT = "新增專案"
     HOME_ACTION_OPEN_PROJECT = "開啟專案"
     
+    # TXT Import
+    TXT_IMPORT_DIALOG_TITLE = "選擇 TXT 檔案"
+    TXT_FILE_FILTER = "文字檔案 (*.txt)"
+    TXT_IMPORT_SUCCESS_TITLE = "匯入成功"
+    TXT_IMPORT_SUCCESS_MSG = "書名：{title}\n來源檔案：{source}\n內容長度：{chars} 字元\n編碼：{encoding}"
+    TXT_IMPORT_FAILED_TITLE = "匯入失敗"
+    TXT_IMPORT_FAILED_MSG = "狀態：{status}\n警告：{warnings}"
+    TXT_IMPORT_ERROR_TITLE = "匯入錯誤"
+    TXT_IMPORT_ERROR_MSG = "發生錯誤：{error}"
+    UNKNOWN = "未知"
+    NO_DETAILS = "無詳細資訊"
+    
     # Project Page
     PROJECT_TITLE = "專案管理"
     PROJECT_LIST_EMPTY = "尚無專案，請從首頁建立新專案"
