@@ -230,7 +230,112 @@ class HomePage(QWidget):
         return book_info
     
     def _on_import_epub(self) -> None:
-        self.navigate_to_import_epub.emit()
+        """處理 EPUB 匯入 - 使用 EpubExtractionBoundary"""
+        # 開啟檔案選擇器
+        file_path, _ = QFileDialog.getOpenFileName(
+            self,
+            Strings.EPUB_IMPORT_DIALOG_TITLE,
+            "",
+            Strings.EPUB_FILE_FILTER,
+        )
+        
+        if not file_path:
+            # 使用者取消
+            return
+        
+        source_path = Path(file_path)
+        
+        try:
+            # 延遲導入以避免 circular import
+            from core.adapters.epub_extraction_boundary import EpubExtractionBoundary, EpubExtractionError
+            
+            extractor = EpubExtractionBoundary()
+            extraction_result = None
+            
+            try:
+                extraction_result = extractor.extract(source_path)
+            except EpubExtractionError as e:
+                if e.blocked:
+                    QMessageBox.critical(
+                        self,
+                        Strings.EPUB_IMPORT_ERROR_TITLE,
+                        Strings.EPUB_IMPORT_ERROR_MSG.format(error=str(e)),
+                    )
+                    return
+                # manual_review_required: warn but continue
+                QMessageBox.warning(
+                    self,
+                    Strings.EPUB_IMPORT_ERROR_TITLE,
+                    Strings.EPUB_IMPORT_ERROR_MSG.format(error=str(e)),
+                )
+                # For non-blocked errors, we need to attempt extraction again or return
+                # Since extraction failed, we cannot proceed
+                return
+            
+            if extraction_result is None:
+                return
+            
+            if extraction_result.status in ("success", "partial"):
+                # 匯入成功
+                book_info = self._build_epub_book_info(extraction_result, source_path)
+                QMessageBox.information(
+                    self,
+                    Strings.EPUB_IMPORT_SUCCESS_TITLE,
+                    Strings.EPUB_IMPORT_SUCCESS_MSG.format(
+                        title=book_info.get("title", Strings.UNKNOWN),
+                        source=book_info.get("source", str(source_path)),
+                        chapters=book_info.get("chapters", 0),
+                        chars=book_info.get("chars", 0),
+                    ),
+                )
+                self.txt_imported.emit(book_info)
+            else:
+                # 匯入失敗
+                error_msg = Strings.EPUB_IMPORT_FAILED_MSG.format(
+                    status=extraction_result.status,
+                    warnings="; ".join(extraction_result.warnings) if extraction_result.warnings else Strings.NO_DETAILS,
+                )
+                QMessageBox.warning(
+                    self,
+                    Strings.EPUB_IMPORT_FAILED_TITLE,
+                    error_msg,
+                )
+                
+        except Exception as e:
+            QMessageBox.critical(
+                self,
+                Strings.EPUB_IMPORT_ERROR_TITLE,
+                Strings.EPUB_IMPORT_ERROR_MSG.format(error=str(e)),
+            )
+    
+    def _build_epub_book_info(self, extraction_result, source_path: Path) -> dict:
+        """從 EPUB extraction result 建立書籍資訊"""
+        metadata = extraction_result.metadata
+        chapter_map = extraction_result.chapter_map
+        
+        # 計算線性章節數（用於顯示）
+        linear_chapters = sum(1 for ch in chapter_map if ch.is_linear)
+        total_chapters = len(chapter_map)
+        
+        book_info = {
+            "title": metadata.title or source_path.stem,
+            "source": str(source_path),
+            "chapters": total_chapters,
+            "linear_chapters": linear_chapters,
+            "chars": len(extraction_result.extracted_text),
+            "encoding": "utf-8",
+            "status": extraction_result.status,
+            "warnings": list(extraction_result.warnings),
+            "metadata": {
+                "title": metadata.title,
+                "author": metadata.author,
+                "language": metadata.language,
+                "identifier": metadata.identifier,
+                "publisher": metadata.publisher,
+                "date": metadata.date,
+            },
+        }
+        return book_info
     
     def _on_new_project(self) -> None:
         self.navigate_to_project.emit()

@@ -29,6 +29,16 @@ class Strings:
     UNKNOWN = "未知"
     NO_DETAILS = "無詳細資訊"
     
+    # EPUB Import
+    EPUB_IMPORT_DIALOG_TITLE = "選擇 EPUB 檔案"
+    EPUB_FILE_FILTER = "EPUB 電子書 (*.epub)"
+    EPUB_IMPORT_SUCCESS_TITLE = "匯入成功"
+    EPUB_IMPORT_SUCCESS_MSG = "書名：{title}\n來源檔案：{source}\n章節數：{chapters}\n內容長度：{chars} 字元"
+    EPUB_IMPORT_FAILED_TITLE = "匯入失敗"
+    EPUB_IMPORT_FAILED_MSG = "狀態：{status}\n警告：{warnings}"
+    EPUB_IMPORT_ERROR_TITLE = "匯入錯誤"
+    EPUB_IMPORT_ERROR_MSG = "發生錯誤：{error}"
+    
     # Project Page
     PROJECT_TITLE = "專案管理"
     PROJECT_LIST_EMPTY = "尚無專案，請從首頁建立新專案"
