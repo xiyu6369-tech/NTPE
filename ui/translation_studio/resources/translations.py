@@ -34,6 +34,8 @@ class Strings:
     EPUB_FILE_FILTER = "EPUB 電子書 (*.epub)"
     EPUB_IMPORT_SUCCESS_TITLE = "匯入成功"
     EPUB_IMPORT_SUCCESS_MSG = "書名：{title}\n來源檔案：{source}\n章節數：{chapters}\n內容長度：{chars} 字元"
+    EPUB_IMPORT_PARTIAL_TITLE = "部分匯入"
+    EPUB_IMPORT_PARTIAL_MSG = "EPUB 部分解析完成，但有部分內容無法完全解析。\n書名：{title}\n來源檔案：{source}\n解析章節數：{chapters}\n內容長度：{chars} 字元\n警告：{warnings}"
     EPUB_IMPORT_FAILED_TITLE = "匯入失敗"
     EPUB_IMPORT_FAILED_MSG = "狀態：{status}\n警告：{warnings}"
     EPUB_IMPORT_ERROR_TITLE = "匯入錯誤"
