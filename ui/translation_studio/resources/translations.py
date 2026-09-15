@@ -4,11 +4,11 @@
 class Strings:
     # Application
     APP_TITLE = "NTPE 翻譯工作室"
-    
+
     # Navigation
     NAV_HOME = "首頁"
     NAV_PROJECT = "專案"
-    
+
     # Home Page
     HOME_WELCOME = "歡迎使用 NTPE 翻譯工作室"
     HOME_DESCRIPTION = "專業的小說翻譯工具，支援 TXT 與 EPUB 格式"
@@ -16,7 +16,7 @@ class Strings:
     HOME_ACTION_IMPORT_EPUB = "匯入 EPUB"
     HOME_ACTION_NEW_PROJECT = "新增專案"
     HOME_ACTION_OPEN_PROJECT = "開啟專案"
-    
+
     # TXT Import
     TXT_IMPORT_DIALOG_TITLE = "選擇 TXT 檔案"
     TXT_FILE_FILTER = "文字檔案 (*.txt)"
@@ -28,7 +28,7 @@ class Strings:
     TXT_IMPORT_ERROR_MSG = "發生錯誤：{error}"
     UNKNOWN = "未知"
     NO_DETAILS = "無詳細資訊"
-    
+
     # EPUB Import
     EPUB_IMPORT_DIALOG_TITLE = "選擇 EPUB 檔案"
     EPUB_FILE_FILTER = "EPUB 電子書 (*.epub)"
@@ -40,7 +40,7 @@ class Strings:
     EPUB_IMPORT_FAILED_MSG = "狀態：{status}\n警告：{warnings}"
     EPUB_IMPORT_ERROR_TITLE = "匯入錯誤"
     EPUB_IMPORT_ERROR_MSG = "發生錯誤：{error}"
-    
+
     # Project Page
     PROJECT_TITLE = "專案管理"
     PROJECT_LIST_EMPTY = "尚無專案，請從首頁建立新專案"
@@ -51,7 +51,19 @@ class Strings:
     PROJECT_ACTION_DELETE = "刪除"
     PROJECT_ACTION_RESUME = "繼續"
     PROJECT_ACTION_VIEW = "檢視"
-    
+    PROJECT_ACTION_PREVIEW = "預覽內容"
+
+    # Preview
+    PREVIEW_TITLE = "內容預覽"
+    PREVIEW_TXT_LABEL = "原文內容"
+    PREVIEW_EPUB_LABEL = "章節內容"
+    PREVIEW_NO_CONTENT = "無可預覽的內容"
+    PREVIEW_PARTIAL_WARNING = "⚠ 部分匯入：部分內容無法完全解析"
+    PREVIEW_WARNINGS = "警告：{warnings}"
+    PREVIEW_TRUNCATED = "... (內容過長，僅顯示前 {chars} 字元)"
+    PREVIEW_FULL = "完整內容"
+    PREVIEW_CLOSE = "關閉"
+
     # Common
     BTN_BACK = "返回"
     BTN_CLOSE = "關閉"
@@ -60,18 +72,18 @@ class Strings:
     BTN_SAVE = "儲存"
     BTN_OPEN = "開啟"
     BTN_BROWSE = "瀏覽"
-    
+
     # Status
     STATUS_READY = "就緒"
     STATUS_LOADING = "載入中..."
     STATUS_ERROR = "發生錯誤"
-    
+
     # Messages
     MSG_CONFIRM_DELETE = "確定要刪除此專案嗎？此操作無法復原。"
     MSG_CONFIRM_CLOSE = "確定要關閉應用程式嗎？"
     MSG_FILE_NOT_FOUND = "找不到指定的檔案。"
     MSG_INVALID_FORMAT = "不支援的檔案格式。"
-    
+
     # Placeholders
     PLACEHOLDER_NOT_IMPLEMENTED = "此功能尚未實作，將在後續版本提供。"
     PLACEHOLDER_COMING_SOON = "即將推出"

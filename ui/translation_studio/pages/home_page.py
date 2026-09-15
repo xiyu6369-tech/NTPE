@@ -227,6 +227,8 @@ class HomePage(QWidget):
             "status": result.status,
             "warnings": list(result.warnings),
             "submission_eligible": result.submission_eligible,
+            # Preview content
+            "preview_text": intake_result.text,
         }
         return book_info
 
@@ -358,6 +360,19 @@ class HomePage(QWidget):
                 "publisher": metadata.publisher,
                 "date": metadata.date,
             },
+            # Preview content
+            "preview_text": extraction_result.extracted_text,
+            "chapter_map": [
+                {
+                    "index": ch.index,
+                    "title": ch.title,
+                    "start_offset": ch.start_offset,
+                    "end_offset": ch.end_offset,
+                    "word_count": ch.word_count,
+                    "is_linear": ch.is_linear,
+                }
+                for ch in chapter_map
+            ],
         }
         return book_info
 
