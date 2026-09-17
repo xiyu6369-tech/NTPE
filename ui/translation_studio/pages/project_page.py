@@ -1,10 +1,14 @@
 from __future__ import annotations
 
-from PySide6.QtCore import Qt, Signal
-from PySide6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QLabel, QPushButton, QTableWidget, QTableWidgetItem, QHeaderView, QAbstractItemView, QDialog, QVBoxLayout, QScrollArea, QTextEdit, QDialogButtonBox, QTabWidget, QFrame
+from pathlib import Path
+
+from PySide6.QtCore import Qt, Signal, QTimer
+from PySide6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QLabel, QPushButton, QTableWidget, QTableWidgetItem, QHeaderView, QAbstractItemView, QDialog, QVBoxLayout, QScrollArea, QTextEdit, QDialogButtonBox, QTabWidget, QFrame, QMessageBox
 from PySide6.QtGui import QFont
 
 from ..resources.translations import Strings
+from ..translation_worker import TranslationRunner
+from lts.txt_translation_runtime import TxtTranslationOptions
 
 
 class PreviewDialog(QDialog):
@@ -153,6 +157,8 @@ class ProjectPage(QWidget):
     def __init__(self, parent: QWidget | None = None):
         super().__init__(parent)
         self._projects = []  # 專案資料列表
+        self._translation_runner: TranslationRunner | None = None
+        self._current_translation_row: int | None = None
         self._setup_ui()
 
     def _setup_ui(self) -> None:
@@ -219,6 +225,32 @@ class ProjectPage(QWidget):
             }
         """)
         toolbar.addWidget(self.btn_preview)
+
+        # 開始翻譯按鈕
+        self.btn_translate = QPushButton(Strings.PROJECT_ACTION_TRANSLATE)
+        self.btn_translate.setFixedHeight(36)
+        self.btn_translate.setCursor(Qt.CursorShape.PointingHandCursor)
+        self.btn_translate.setEnabled(False)
+        self.btn_translate.clicked.connect(self._on_translate)
+        self.btn_translate.setStyleSheet("""
+            QPushButton {
+                background-color: #198754;
+                color: white;
+                border: none;
+                border-radius: 6px;
+                padding: 0 20px;
+                font-size: 13px;
+                font-weight: 600;
+            }
+            QPushButton:hover:enabled {
+                background-color: #157347;
+            }
+            QPushButton:disabled {
+                background-color: #dee2e6;
+                color: #adb5bd;
+            }
+        """)
+        toolbar.addWidget(self.btn_translate)
 
         # 新增專案按鈕
         btn_new = QPushButton("新增專案")
@@ -369,8 +401,25 @@ class ProjectPage(QWidget):
                 # 只有有預覽內容才啟用預覽按鈕
                 has_preview = bool(project.get("preview_text", "").strip())
                 self.btn_preview.setEnabled(has_preview)
+
+                # 只有 TXT 專案且有有效來源且未在翻譯中才啟用翻譯按鈕
+                is_txt = not bool(project.get("chapter_map"))
+                has_source = bool(project.get("source", "").strip())
+                not_translating = self._current_translation_row != row
+                self.btn_translate.setEnabled(is_txt and has_source and not_translating)
+
+                if not is_txt:
+                    self.btn_translate.setToolTip(Strings.TRANSLATION_NOT_SUPPORTED_EPUB)
+                elif not has_source:
+                    self.btn_translate.setToolTip(Strings.TRANSLATION_NO_VALID_SOURCE)
+                elif not not_translating:
+                    self.btn_translate.setToolTip(Strings.TRANSLATION_ALREADY_RUNNING)
+                else:
+                    self.btn_translate.setToolTip("")
                 return
         self.btn_preview.setEnabled(False)
+        self.btn_translate.setEnabled(False)
+        self.btn_translate.setToolTip("")
 
     def _on_preview(self) -> None:
         """開啟預覽對話框"""
@@ -387,3 +436,228 @@ class ProjectPage(QWidget):
         # TODO: 實作新增專案對話框
         from PySide6.QtWidgets import QMessageBox
         QMessageBox.information(self, "提示", Strings.PLACEHOLDER_NOT_IMPLEMENTED)
+
+    def _on_translate(self) -> None:
+        """啟動翻譯"""
+        row = self.table.currentRow()
+        if not (0 <= row < len(self._projects)):
+            return
+
+        project = self._projects[row]
+
+        # 檢查是否為 TXT 專案
+        if project.get("chapter_map"):
+            QMessageBox.warning(self, "提示", Strings.TRANSLATION_NOT_SUPPORTED_EPUB)
+            return
+
+        # 檢查是否有有效來源
+        source = project.get("source", "")
+        if not source:
+            QMessageBox.warning(self, "提示", Strings.TRANSLATION_NO_VALID_SOURCE)
+            return
+
+        # 檢查是否已經在翻譯
+        if self._current_translation_row == row:
+            QMessageBox.information(self, "提示", Strings.TRANSLATION_ALREADY_RUNNING)
+            return
+
+        # 建立翻譯選項
+        source_path = Path(source)
+        output_dir = Path("output") / source_path.stem
+        output_dir.mkdir(parents=True, exist_ok=True)
+
+        options = TxtTranslationOptions(
+            input_path=source_path,
+            output_dir=output_dir,
+            chunk_size=1000,
+            model="meta/llama-3.2-90b-vision-instruct",
+            project_name=project.get("name", "NTPE Novel Translation"),
+            source_language="ko",
+            target_language="zh-TW",
+            resume=True,
+            dry_run=False,
+            max_retries=3,
+            retry_base_seconds=5.0,
+            glossary_path=None,
+            character_memory_path=None,
+            strict_lock_terms=True,
+            qa_enabled=True,
+            qa_fail_policy="retry",
+            min_length_ratio=0.18,
+            max_korean_chars=2,
+            max_repeated_lines=2,
+            output_formatter_enabled=True,
+            taiwan_traditional_normalization=True,
+            quality_profile="literary",
+            previous_context_chars=700,
+            simplified_chinese_policy="normalize",
+            progress_enabled=True,
+            speed="balanced",
+            quality_v5_enabled=True,
+            quality_v5_report_enabled=True,
+            quality_integration_v72=False,
+            quality_character_memory_v72=False,
+            quality_context_scene_v72=False,
+            quality_naturalness_v72=False,
+            quality_integration_kill_switch_v72=False,
+            quality_delivery_v83=False,
+            quality_delivery_formats_v83=("txt",),
+        )
+
+        # 更新 UI 狀態
+        self._current_translation_row = row
+        self._update_project_status(row, Strings.TRANSLATION_STATUS_PREPARING, "0%")
+        self.btn_translate.setEnabled(False)
+        self.btn_preview.setEnabled(False)
+
+        # 啟動翻譯 worker
+        root_path = Path(__file__).resolve().parents[2]
+        self._translation_runner = TranslationRunner(options, root_path)
+        self._translation_runner.start(
+            on_progress=self._on_translation_progress,
+            on_finished=self._on_translation_finished,
+            on_error=self._on_translation_error,
+        )
+
+    def _on_translation_progress(self, progress: dict) -> None:
+        """處理翻譯進度更新"""
+        if self._current_translation_row is None:
+            return
+
+        status = progress.get("status", "")
+        chunk_total = progress.get("chunk_total", 0)
+        chunk_completed = progress.get("chunk_completed", 0)
+        message = progress.get("message", "")
+
+        if status == "preparing":
+            progress_text = "準備中..."
+        elif status == "running":
+            if chunk_total > 0:
+                progress_text = Strings.TRANSLATION_PROGRESS_FORMAT.format(
+                    completed=chunk_completed, total=chunk_total
+                )
+            else:
+                progress_text = "翻譯中..."
+        elif status == "completed":
+            progress_text = Strings.TRANSLATION_PROGRESS_FORMAT.format(
+                completed=chunk_completed, total=chunk_total
+            )
+        elif status == "incomplete":
+            chunk_failed = progress.get("chunk_failed", 0)
+            progress_text = f"未完成：{chunk_completed}/{chunk_total} 成功，{chunk_failed} 失敗"
+        elif status == "failed":
+            progress_text = "失敗"
+        else:
+            progress_text = message or status
+
+        self._update_project_status(self._current_translation_row, message, progress_text)
+
+    def _on_translation_finished(self, result: dict) -> None:
+        """處理翻譯完成"""
+        if self._current_translation_row is None:
+            return
+
+        row = self._current_translation_row
+        status = result.get("status", "unknown")
+
+        if status == "success":
+            output = result.get("output", "")
+            chunk_total = result.get("chunk_total", 0)
+            chunk_successful = result.get("chunk_successful", 0)
+            session_id = result.get("session_id", "")
+
+            self._update_project_status(
+                row,
+                Strings.TRANSLATION_STATUS_COMPLETED,
+                Strings.TRANSLATION_CHUNKS_SUCCESSFUL.format(
+                    successful=chunk_successful, total=chunk_total
+                ),
+            )
+
+            # 顯示完成訊息
+            QMessageBox.information(
+                self,
+                Strings.TRANSLATION_STATUS_COMPLETED,
+                f"翻譯完成！\n\n"
+                f"輸出位置：{output}\n"
+                f"成功區塊：{chunk_successful} / {chunk_total}\n"
+                f"Session ID：{session_id}",
+            )
+
+        elif status == "incomplete":
+            chunk_total = result.get("chunk_total", 0)
+            chunk_successful = result.get("chunk_successful", 0)
+            chunk_failed = result.get("chunk_failed", 0)
+            error = result.get("error", "未知錯誤")
+
+            self._update_project_status(
+                row,
+                Strings.TRANSLATION_STATUS_INCOMPLETE,
+                f"{chunk_successful}/{chunk_total} 成功",
+            )
+
+            QMessageBox.warning(
+                self,
+                Strings.TRANSLATION_STATUS_INCOMPLETE,
+                f"翻譯未完成\n\n"
+                f"成功：{chunk_successful} / {chunk_total}\n"
+                f"失敗：{chunk_failed}\n"
+                f"錯誤：{error}",
+            )
+
+        else:
+            error = result.get("error", "未知錯誤")
+            self._update_project_status(
+                row,
+                Strings.TRANSLATION_STATUS_FAILED,
+                "失敗",
+            )
+            QMessageBox.critical(
+                self,
+                Strings.TRANSLATION_STATUS_FAILED,
+                f"{Strings.TRANSLATION_ERROR_PREFIX}{error}",
+            )
+
+        # 重置狀態
+        self._current_translation_row = None
+        self._translation_runner = None
+        self._update_selection_buttons()
+
+    def _on_translation_error(self, error: str) -> None:
+        """處理翻譯錯誤"""
+        if self._current_translation_row is None:
+            return
+
+        row = self._current_translation_row
+        self._update_project_status(
+            row,
+            Strings.TRANSLATION_STATUS_FAILED,
+            "錯誤",
+        )
+        QMessageBox.critical(
+            self,
+            Strings.TRANSLATION_STATUS_FAILED,
+            f"{Strings.TRANSLATION_ERROR_PREFIX}{error}",
+        )
+
+        self._current_translation_row = None
+        self._translation_runner = None
+        self._update_selection_buttons()
+
+    def _update_project_status(self, row: int, status: str, progress: str) -> None:
+        """更新專案列表中的狀態和進度"""
+        if 0 <= row < len(self._projects):
+            self._projects[row]["status"] = status
+            self._projects[row]["progress"] = progress
+
+            status_item = self.table.item(row, 2)
+            progress_item = self.table.item(row, 3)
+
+            if status_item:
+                status_item.setText(status)
+            if progress_item:
+                progress_item.setText(progress)
+
+    def _update_selection_buttons(self) -> None:
+        """更新選擇相關按鈕狀態"""
+        self._on_selection_changed()

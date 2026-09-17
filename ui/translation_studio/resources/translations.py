@@ -78,6 +78,24 @@ class Strings:
     STATUS_LOADING = "載入中..."
     STATUS_ERROR = "發生錯誤"
 
+    # Translation
+    PROJECT_ACTION_TRANSLATE = "開始翻譯"
+    TRANSLATION_STATUS_PREPARING = "準備翻譯"
+    TRANSLATION_STATUS_RUNNING = "翻譯中"
+    TRANSLATION_STATUS_COMPLETED = "翻譯完成"
+    TRANSLATION_STATUS_FAILED = "翻譯失敗"
+    TRANSLATION_STATUS_INCOMPLETE = "翻譯未完成"
+    TRANSLATION_PROGRESS_FORMAT = "已完成 {completed} / {total}"
+    TRANSLATION_OUTPUT_LABEL = "輸出位置"
+    TRANSLATION_CHUNKS_SUCCESSFUL = "成功區塊：{successful} / {total}"
+    TRANSLATION_MODEL_LABEL = "翻譯模型"
+    TRANSLATION_TARGET_LANG_LABEL = "目標語言"
+    TRANSLATION_SOURCE_FILE_LABEL = "來源檔案"
+    TRANSLATION_NOT_SUPPORTED_EPUB = "EPUB 專案暫不支援直接啟動翻譯"
+    TRANSLATION_NO_VALID_SOURCE = "無有效 TXT 來源，無法啟動翻譯"
+    TRANSLATION_ALREADY_RUNNING = "翻譯已在進行中"
+    TRANSLATION_ERROR_PREFIX = "翻譯錯誤："
+
     # Messages
     MSG_CONFIRM_DELETE = "確定要刪除此專案嗎？此操作無法復原。"
     MSG_CONFIRM_CLOSE = "確定要關閉應用程式嗎？"
