@@ -41,6 +41,8 @@ class ChapterBoundary:
     word_count: int = 0
     landmark_type: str | None = None
     status: str = "linear"
+    body_start_offset: int | None = None
+    body_end_offset: int | None = None
 
 
 @dataclass(frozen=True)

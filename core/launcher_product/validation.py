@@ -48,21 +48,29 @@ def validate_launcher_config(
     inspection = None
 
     if not config.input_path.strip():
-        blockers.append(_issue("input_file_missing", "請選擇要翻譯的 TXT 小說檔案。", "input_path"))
+        blockers.append(_issue("input_file_missing", "請選擇要翻譯的檔案。", "input_path"))
     else:
         input_path = Path(config.input_path)
         if not input_path.exists():
             blockers.append(_issue("input_file_missing", "找不到選取的輸入檔案。", "input_path"))
         elif input_path.is_dir():
             blockers.append(_issue("input_path_is_directory", "輸入位置必須是檔案，不可以是資料夾。", "input_path"))
-        elif input_path.suffix.lower() != ".txt":
-            blockers.append(_issue("unsupported_file_type", "Stage 1 目前只支援 TXT 檔案。", "input_path"))
+        elif input_path.suffix.lower() not in (".txt", ".epub"):
+            blockers.append(_issue("unsupported_file_type", "目前只支援 TXT 和 EPUB 檔案。", "input_path"))
         else:
-            inspection = inspect_text_file(input_path)
-            if not inspection.readable:
-                blockers.append(_issue("unreadable_encoding", inspection.error_message, "input_path"))
-            elif inspection.suspected_mojibake:
-                blockers.append(_issue("suspected_mojibake", "檔案內容可能包含亂碼，請確認文字編碼。", "input_path"))
+            # For TXT files, inspect encoding and content
+            if input_path.suffix.lower() == ".txt":
+                inspection = inspect_text_file(input_path)
+                if not inspection.readable:
+                    blockers.append(_issue("unreadable_encoding", inspection.error_message, "input_path"))
+                elif inspection.suspected_mojibake:
+                    blockers.append(_issue("suspected_mojibake", "檔案內容可能包含亂碼，請確認文字編碼。", "input_path"))
+                # Check for empty content
+                elif input_path.stat().st_size == 0:
+                    blockers.append(_issue("input_file_empty", "輸入檔案為空，無法翻譯。", "input_path"))
+            else:
+                # For EPUB, just check it's a valid file
+                inspection = None
 
     output_issue = _validate_output_directory(config.output_directory)
     if output_issue:

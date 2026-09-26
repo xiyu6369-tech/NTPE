@@ -1074,8 +1074,31 @@ def _translate_txt_with_runtime_pipeline(
     elapsed = time.time() - t0
 
     successful_chunks = sum(1 for r in records if r.get("status") == "success")
+    dry_run_chunks = sum(1 for r in records if r.get("status") == "dry_run")
     total_chunks = len(chunks)
     error_chunks = total_chunks - successful_chunks
+
+    if options.dry_run and dry_run_chunks == total_chunks:
+        return {
+            "status": "dry_run",
+            "input": str(input_path),
+            "output": "",
+            "output_dir": str(output_dir),
+            "chunk_total": total_chunks,
+            "chunk_successful": 0,
+            "chunk_failed": 0,
+            "resume_state": str(resume_state_path),
+            "records": records,
+            "summary": {
+                "total_chunks": total_chunks,
+                "successful_chunks": 0,
+                "failed_chunks": 0,
+                "elapsed_seconds": round(elapsed, 2),
+            },
+            "pipeline_mode": "runtime",
+            "orchestrator_version": orchestrator.version,
+            "session_id": session_id,
+        }
 
     if error_chunks > 0:
         return {

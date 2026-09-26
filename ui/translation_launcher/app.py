@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import tkinter as tk
 from dataclasses import replace
+from pathlib import Path
 from tkinter import filedialog, messagebox, ttk
 
 from core.launcher_product.config import load_launcher_config
@@ -68,6 +69,8 @@ class TranslationLauncherApp:
         controls.grid(row=10, column=0, columnspan=3, sticky="ew", pady=10)
         ttk.Button(controls, text="Validate", command=self._validate).pack(side="left", padx=4)
         ttk.Button(controls, text="Preview", command=self._preview).pack(side="left", padx=4)
+        self.dry_run_button = ttk.Button(controls, text="Dry-Run", command=self._start_dry_run, state="disabled")
+        self.dry_run_button.pack(side="left", padx=4)
         self.start_button = ttk.Button(controls, text="Start Translation", command=self._start, state="disabled")
         self.start_button.pack(side="left", padx=4)
         ttk.Label(controls, text=self.window_model.start_disabled_reason).pack(side="left", padx=8)
@@ -78,7 +81,7 @@ class TranslationLauncherApp:
         input_entry.focus_set()
         output_entry.selection_clear()
 
-    def _config(self) -> LauncherConfig:
+    def _config(self, *, dry_run: bool = True) -> LauncherConfig:
         base = load_launcher_config()
         return replace(
             base,
@@ -93,7 +96,7 @@ class TranslationLauncherApp:
             api_timeout=int(str(self.variables["api_timeout"].get())),
             resume_enabled=bool(self.variables["resume_enabled"].get()),
             overwrite=bool(self.variables["overwrite"].get()),
-            dry_run=True,
+            dry_run=dry_run,
         )
 
     def _write_status(self, text: str) -> None:
@@ -125,12 +128,20 @@ class TranslationLauncherApp:
             lines = ["Ready" if result.ready else "Blocked"]
             lines.extend(issue.message for issue in result.blocking_reasons)
             self._write_status("\n".join(lines))
+            # Enable start button when validation passes and input/output are set
+            has_input = bool(self.variables["input_path"].get().strip())
+            has_output = bool(self.variables["output_directory"].get().strip())
+            ready = result.ready and has_input and has_output
+            self.start_button.config(state="normal" if ready else "disabled")
+            self.dry_run_button.config(state="normal" if ready else "disabled")
         except (TypeError, ValueError):
             self._write_status("Chunk size 與 Timeout 必須是整數。")
+            self.start_button.config(state="disabled")
+            self.dry_run_button.config(state="disabled")
 
     def _preview(self) -> None:
         try:
-            result = self.controller.preview(self._config())
+            result = self.controller.preview(self._config(dry_run=True))
             lines = [result.command_preview, "Ready" if result.validation_result.ready else "Blocked"]
             lines.extend(issue.message for issue in result.validation_result.blocking_reasons)
             self._write_status("\n".join(lines))
@@ -138,7 +149,123 @@ class TranslationLauncherApp:
             self._write_status("Chunk size 與 Timeout 必須是整數。")
 
     def _start(self) -> None:
-        messagebox.showinfo("NTPE Stage 1", self.window_model.start_disabled_reason)
+        config = self._config(dry_run=False)
+        root_path = Path(__file__).resolve().parents[2]
+
+        # Disable start button during translation
+        self.start_button.config(state="disabled")
+        self._write_status("啟動翻譯...")
+
+        def on_progress(progress: dict) -> None:
+            self.root.after(0, lambda: self._on_translation_progress(progress))
+
+        def on_finished(result: dict) -> None:
+            self.root.after(0, lambda: self._on_translation_finished(result))
+
+        def on_error(error: str) -> None:
+            self.root.after(0, lambda: self._on_translation_error(error))
+
+        self._translation_runner = self.controller.start_translation(
+            config=config,
+            root_path=root_path,
+            on_progress=on_progress,
+            on_finished=on_finished,
+            on_error=on_error,
+        )
+
+    def _start_dry_run(self) -> None:
+        config = self._config(dry_run=True)
+        root_path = Path(__file__).resolve().parents[2]
+
+        # Disable buttons during dry-run
+        self.start_button.config(state="disabled")
+        self.dry_run_button.config(state="disabled")
+        self._write_status("啟動 Dry-Run...")
+
+        def on_progress(progress: dict) -> None:
+            self.root.after(0, lambda: self._on_translation_progress(progress))
+
+        def on_finished(result: dict) -> None:
+            self.root.after(0, lambda: self._on_translation_finished(result))
+
+        def on_error(error: str) -> None:
+            self.root.after(0, lambda: self._on_translation_error(error))
+
+        self._translation_runner = self.controller.start_translation(
+            config=config,
+            root_path=root_path,
+            on_progress=on_progress,
+            on_finished=on_finished,
+            on_error=on_error,
+        )
+
+    def _on_translation_progress(self, progress: dict) -> None:
+        status = progress.get("status", "")
+        message = progress.get("message", "")
+        chunk_total = progress.get("chunk_total", 0)
+        chunk_completed = progress.get("chunk_completed", 0)
+
+        if status == "preparing":
+            self._write_status(f"準備中：{message}")
+        elif status == "running":
+            if chunk_total > 0:
+                self._write_status(f"翻譯中：{chunk_completed}/{chunk_total} - {message}")
+            else:
+                self._write_status(f"翻譯中：{message}")
+        elif status == "completed":
+            self._write_status(f"完成：{message}")
+        elif status == "incomplete":
+            chunk_failed = progress.get("chunk_failed", 0)
+            self._write_status(f"未完成：{chunk_completed}/{chunk_total} 成功，{chunk_failed} 失敗")
+        elif status == "dry_run":
+            self._write_status(f"Dry-Run 已完成：{message}")
+        elif status == "failed":
+            error = progress.get("error", "Unknown error")
+            self._write_status(f"失敗：{error}")
+        else:
+            self._write_status(message or status)
+
+    def _on_translation_finished(self, result: dict) -> None:
+        status = result.get("status", "unknown")
+        output = result.get("output", "")
+        chunk_total = result.get("chunk_total", 0)
+        chunk_successful = result.get("chunk_successful", 0)
+
+        if status == "success":
+            self._write_status(f"翻譯完成！\n輸出：{output}\n成功區塊：{chunk_successful}/{chunk_total}")
+            messagebox.showinfo(
+                "翻譯完成",
+                f"翻譯成功完成！\n\n輸出位置：{output}\n成功區塊：{chunk_successful}/{chunk_total}",
+            )
+        elif status == "incomplete":
+            chunk_failed = result.get("chunk_failed", 0)
+            error = result.get("error", "未知錯誤")
+            self._write_status(f"翻譯未完成：{chunk_successful}/{chunk_total} 成功，{chunk_failed} 失敗")
+            messagebox.showwarning(
+                "翻譯未完成",
+                f"翻譯未完全成功\n\n成功：{chunk_successful}/{chunk_total}\n失敗：{chunk_failed}\n錯誤：{error}",
+            )
+        elif status == "dry_run":
+            self._write_status(f"Dry-Run 已完成\n無正式翻譯輸出")
+            messagebox.showinfo(
+                "Dry-Run 完成",
+                "Dry-Run 已完成。\n未產生正式翻譯輸出。",
+            )
+        else:
+            error = result.get("error", "未知錯誤")
+            self._write_status(f"翻譯失敗：{error}")
+            messagebox.showerror("翻譯失敗", f"翻譯過程發生錯誤：{error}")
+
+        # Re-enable buttons
+        self.start_button.config(state="normal")
+        self.dry_run_button.config(state="normal")
+        self._translation_runner = None
+
+    def _on_translation_error(self, error: str) -> None:
+        self._write_status(f"錯誤：{error}")
+        messagebox.showerror("翻譯錯誤", f"翻譯過程發生錯誤：{error}")
+        self.start_button.config(state="normal")
+        self._translation_runner = None
 
 
 def run() -> int:

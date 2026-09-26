@@ -57,6 +57,12 @@ def detect_source_language(text: str) -> LanguageDetectionResult:
     kana_ratio = kana_count / signal_total
     latin_ratio = counts["latin"] / signal_total
 
+    # For very short text, use more lenient thresholds
+    # Short text with high Hangul ratio should be detected as Korean
+    if signal_total <= 10 and counts["hangul"] >= 1 and hangul_ratio >= 0.80:
+        confidence = min(0.95, 0.50 + hangul_ratio * 0.45)
+        return LanguageDetectionResult("ko", round(confidence, 4), signals, len(text), False)
+
     if counts["hangul"] >= 3 and hangul_ratio >= 0.30:
         confidence = min(0.99, 0.60 + hangul_ratio * 0.39)
         return LanguageDetectionResult("ko", round(confidence, 4), signals, len(text), False)

@@ -1118,6 +1118,8 @@ def main(argv: Iterable[str] | None = None) -> int:
         return run_txt(args)
     if args.command == "batch":
         return run_batch(args)
+    if args.command == "epub":
+        return run_epub(args)
     parser.print_help()
     return 1
 

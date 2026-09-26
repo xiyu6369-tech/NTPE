@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import re
 from collections.abc import Mapping
+from pathlib import Path
 
 from .config import translation_profiles
 from .models import CommandBuildResult, LauncherConfig
@@ -26,10 +27,14 @@ def build_translation_command(
     profiles = {profile.profile_id: profile for profile in translation_profiles()}
     profile = profiles.get(config.translation_profile)
     runtime_profile = profile.runtime_value if profile and profile.runtime_value else config.translation_profile
+    
+    is_epub = Path(config.input_path).suffix.lower() == ".epub"
+    subcommand = "epub" if is_epub else "txt"
+    
     arguments = [
         "python",
         "launcher_translate.py",
-        "txt",
+        subcommand,
         config.input_path,
         config.output_directory,
         "--chunk-size",
