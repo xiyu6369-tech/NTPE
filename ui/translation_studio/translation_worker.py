@@ -9,7 +9,7 @@ from PySide6.QtCore import QObject, QThread, Signal, QTimer
 
 
 class TranslationWorker(QObject):
-    """Worker for running canonical TXT translation in background thread."""
+    """Worker for running canonical TXT/EPUB translation in background thread."""
 
     progress_updated = Signal(dict)
     translation_finished = Signal(dict)
@@ -26,6 +26,12 @@ class TranslationWorker(QObject):
         self._poll_timer.timeout.connect(self._poll_progress)
         self._cancelled = False
         self._finished = False
+        self._is_epub = self._detect_epub_options(options)
+
+    def _detect_epub_options(self, options: Any) -> bool:
+        """Detect if options are for EPUB translation."""
+        from core.epub_translation.runtime.adapter import EpubTranslationOptions
+        return isinstance(options, EpubTranslationOptions)
 
     def run(self) -> None:
         """Execute translation in background thread."""
@@ -34,16 +40,29 @@ class TranslationWorker(QObject):
 
             self._runtime = TranslationRuntime(root=self._root_path)
 
+            # Determine live progress path based on input type
+            if self._is_epub:
+                input_stem = self._options.translation_input.source_epub_path.stem
+                output_dir = self._options.translation_input.source_epub_path.parent / "output" / "epub_translation" / (self._options.translation_input.metadata.identifier or "unknown")
+            else:
+                input_stem = self._options.input_path.stem
+                output_dir = self._options.output_dir
+
+            output_dir.mkdir(parents=True, exist_ok=True)
+
             self._live_progress_path = (
-                self._options.output_dir
-                / f"{self._options.input_path.stem}_live_progress.json"
+                output_dir
+                / f"{input_stem}_live_progress.json"
             )
 
             self.progress_updated.emit({"status": "preparing", "message": "準備翻譯..."})
 
             self._poll_timer.start()
 
-            result = self._runtime.translate_txt(self._options)
+            if self._is_epub:
+                result = self._runtime_epub_translate(self._options)
+            else:
+                result = self._runtime.translate_txt(self._options)
 
             self._poll_timer.stop()
             self._emit_final_progress(result)
@@ -57,6 +76,79 @@ class TranslationWorker(QObject):
                 self.translation_error.emit(str(e))
         finally:
             self._finished = True
+
+    def _runtime_epub_translate(self, options: Any) -> dict:
+        """Execute EPUB translation using canonical EPUB runtime."""
+        from core.epub_translation.runtime.adapter import translate_epub_translation_input
+        from core.epub_translation.runtime.epub_packager import pack_epub_resource_aware, EpubPackagingInput
+        from core.epub_translation.reader_chapter_map import build_epub_reader_chapter_map_with_metadata
+
+        # Run EPUB translation
+        translation_result = translate_epub_translation_input(options, root=self._root_path)
+
+        # If translation successful, package into EPUB
+        if translation_result.aggregate_status in ("success", "incomplete"):
+            # Build reader chapter map
+            reader_result = build_epub_reader_chapter_map_with_metadata(
+                translation_result=translation_result,
+                translation_input=options.translation_input,
+            )
+
+            # Package EPUB
+            output_dir = options.translation_input.source_epub_path.parent / "output" / "epub_translation" / (options.translation_input.metadata.identifier or "unknown")
+            output_dir.mkdir(parents=True, exist_ok=True)
+            output_path = output_dir / f"{options.translation_input.source_epub_path.stem}_zh.epub"
+
+            packaging_input = EpubPackagingInput(
+                reader_chapter_map_result=reader_result,
+                translation_input=options.translation_input,
+                translation_result=translation_result,
+            )
+
+            packaging_result = pack_epub_resource_aware(
+                packaging_input=packaging_input,
+                output_path=output_path,
+            )
+
+            # Return result compatible with UI expectations
+            return {
+                "status": "success" if packaging_result.success else "incomplete",
+                "input": str(options.translation_input.source_epub_path),
+                "output": str(packaging_result.output_path) if packaging_result.output_path else "",
+                "output_dir": str(output_dir),
+                "chunk_total": translation_result.total_chunks,
+                "chunk_successful": translation_result.success_count,
+                "chunk_failed": translation_result.failed_count,
+                "error": packaging_result.error_message,
+                "summary": {
+                    "total_chunks": translation_result.total_chunks,
+                    "successful_chunks": translation_result.success_count,
+                    "failed_chunks": translation_result.failed_count,
+                    "chapter_count": translation_result.total_chapters,
+                },
+                "pipeline_mode": "epub",
+                "session_id": translation_result.session_id,
+            }
+        else:
+            # Translation failed
+            return {
+                "status": "failed",
+                "input": str(options.translation_input.source_epub_path),
+                "output": "",
+                "output_dir": str(options.translation_input.source_epub_path.parent),
+                "chunk_total": translation_result.total_chunks,
+                "chunk_successful": translation_result.success_count,
+                "chunk_failed": translation_result.failed_count,
+                "error": "EPUB translation failed",
+                "summary": {
+                    "total_chunks": translation_result.total_chunks,
+                    "successful_chunks": translation_result.success_count,
+                    "failed_chunks": translation_result.failed_count,
+                    "chapter_count": translation_result.total_chapters,
+                },
+                "pipeline_mode": "epub",
+                "session_id": translation_result.session_id,
+            }
 
     def _poll_progress(self) -> None:
         """Poll live progress JSON file."""

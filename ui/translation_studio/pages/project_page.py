@@ -9,6 +9,16 @@ from PySide6.QtGui import QFont
 from ..resources.translations import Strings
 from ..translation_worker import TranslationRunner
 from lts.txt_translation_runtime import TxtTranslationOptions
+from core.epub_translation.runtime.adapter import EpubTranslationOptions
+from core.adapters.epub_extraction_boundary import EpubExtractionBoundary
+from core.adapters.canonical_book_intake_adapter import CanonicalBookIntakeAdapter
+from core.adapters.epub_extraction_boundary import ExtractedTextIntakeRequest
+from core.epub_translation.chunking import chunk_epub_translation_input, ChunkingOptions
+from core.epub_translation.contract import (
+    EpubTranslationInput, EpubMetadata, EpubChapterBoundary,
+    ResourceRef, TocEntry, ExtractionManifest
+)
+from types import MappingProxyType
 
 
 class PreviewDialog(QDialog):
@@ -445,11 +455,6 @@ class ProjectPage(QWidget):
 
         project = self._projects[row]
 
-        # 檢查是否為 TXT 專案
-        if project.get("chapter_map"):
-            QMessageBox.warning(self, "提示", Strings.TRANSLATION_NOT_SUPPORTED_EPUB)
-            return
-
         # 檢查是否有有效來源
         source = project.get("source", "")
         if not source:
@@ -466,18 +471,178 @@ class ProjectPage(QWidget):
         output_dir = Path("output") / source_path.stem
         output_dir.mkdir(parents=True, exist_ok=True)
 
-        options = TxtTranslationOptions(
-            input_path=source_path,
-            output_dir=output_dir,
-            chunk_size=1000,
+        is_epub = bool(project.get("chapter_map"))
+
+        if is_epub:
+            options = self._build_epub_options(project, source_path, output_dir)
+        else:
+            options = TxtTranslationOptions(
+                input_path=source_path,
+                output_dir=output_dir,
+                chunk_size=1000,
+                model="meta/llama-3.2-90b-vision-instruct",
+                project_name=project.get("name", "NTPE Novel Translation"),
+                source_language="ko",
+                target_language="zh-TW",
+                resume=True,
+                dry_run=False,
+                max_retries=3,
+                retry_base_seconds=5.0,
+                glossary_path=None,
+                character_memory_path=None,
+                strict_lock_terms=True,
+                qa_enabled=True,
+                qa_fail_policy="retry",
+                min_length_ratio=0.18,
+                max_korean_chars=2,
+                max_repeated_lines=2,
+                output_formatter_enabled=True,
+                taiwan_traditional_normalization=True,
+                quality_profile="literary",
+                previous_context_chars=700,
+                simplified_chinese_policy="normalize",
+                progress_enabled=True,
+                speed="balanced",
+                quality_v5_enabled=True,
+                quality_v5_report_enabled=True,
+                quality_integration_v72=False,
+                quality_character_memory_v72=False,
+                quality_context_scene_v72=False,
+                quality_naturalness_v72=False,
+                quality_integration_kill_switch_v72=False,
+                quality_delivery_v83=False,
+                quality_delivery_formats_v83=("txt",),
+            )
+
+        # 更新 UI 狀態
+        self._current_translation_row = row
+        self._update_project_status(row, Strings.TRANSLATION_STATUS_PREPARING, "0%")
+        self.btn_translate.setEnabled(False)
+        self.btn_preview.setEnabled(False)
+
+        # 啟動翻譯 worker
+        root_path = Path(__file__).resolve().parents[2]
+        self._translation_runner = TranslationRunner(options, root_path)
+        self._translation_runner.start(
+            on_progress=self._on_translation_progress,
+            on_finished=self._on_translation_finished,
+            on_error=self._on_translation_error,
+        )
+
+    def _build_epub_options(self, project: dict, source_path: Path, output_dir: Path):
+        """Build EPUB translation options from project data."""
+        # Step 1: Extract EPUB
+        extractor = EpubExtractionBoundary()
+        extraction_result = extractor.extract(source_path)
+
+        # Step 2: Create intake request
+        intake_request = ExtractedTextIntakeRequest(
+            source_path=extraction_result.source_path,
+            source_format="epub",
+            extracted_text=extraction_result.extracted_text,
+            original_file_hash=extraction_result.original_hash,
+            extracted_text_hash=extraction_result.extracted_hash,
+            epub_metadata=dict(extraction_result.metadata.raw) if extraction_result.metadata.raw else {},
+            chapter_map=extraction_result.chapter_map,
+            extraction_manifest=extraction_result.extraction_manifest,
+            extractor_version=extraction_result.extraction_manifest.extractor_version,
+            status=extraction_result.status,
+            warnings=extraction_result.warnings,
+        )
+
+        # Step 3: Process through canonical intake adapter
+        adapter = CanonicalBookIntakeAdapter()
+        intake_result = adapter.ingest_extracted(intake_request)
+
+        if not intake_result.submission_eligible:
+            raise ValueError(f"EPUB intake not eligible for translation: {intake_result.status}")
+
+        # Step 4: Build EpubTranslationInput from intake result
+        epub_metadata = EpubMetadata(
+            title=intake_result.epub_metadata.get("title") if intake_result.epub_metadata else None,
+            author=intake_result.epub_metadata.get("author") if intake_result.epub_metadata else None,
+            language=intake_result.epub_metadata.get("language") if intake_result.epub_metadata else None,
+            identifier=intake_result.epub_metadata.get("identifier") if intake_result.epub_metadata else None,
+            publisher=intake_result.epub_metadata.get("publisher") if intake_result.epub_metadata else None,
+            date=intake_result.epub_metadata.get("date") if intake_result.epub_metadata else None,
+            raw=MappingProxyType(dict(intake_result.epub_metadata.get("raw", {})) if intake_result.epub_metadata else {}),
+        )
+
+        chapter_map = tuple(
+            EpubChapterBoundary(
+                index=cb.index,
+                spine_position=cb.spine_position,
+                title=cb.title,
+                source_href=cb.source_href,
+                start_offset=cb.start_offset,
+                end_offset=cb.end_offset,
+                is_linear=cb.is_linear,
+                word_count=cb.word_count,
+                body_start_offset=cb.body_start_offset,
+                body_end_offset=cb.body_end_offset,
+                landmark_type=cb.landmark_type,
+                status=cb.status,
+                toc_level=cb.toc_level,
+            )
+            for cb in (intake_result.chapter_map or ())
+        )
+
+        resources = tuple(
+            ResourceRef(
+                type=rr.type,
+                href=rr.href,
+                chapter_index=rr.chapter_index,
+                metadata=MappingProxyType(dict(rr.metadata)),
+            )
+            for rr in (intake_result.resource_refs or ())
+        )
+
+        extraction_manifest = None
+        if intake_result.extraction_manifest:
+            extraction_manifest = ExtractionManifest(
+                extractor_version=intake_result.extraction_manifest.extractor_version,
+                extracted_at=intake_result.extraction_manifest.extracted_at,
+                chapter_count=intake_result.extraction_manifest.chapter_count,
+                total_characters=intake_result.extraction_manifest.total_characters,
+                total_words=intake_result.extraction_manifest.total_words,
+                warnings=intake_result.extraction_manifest.warnings,
+                resources=resources,
+                spine_item_count=intake_result.extraction_manifest.spine_item_count,
+                nav_toc_entries=intake_result.extraction_manifest.nav_toc_entries,
+                encoding_used=intake_result.extraction_manifest.encoding_used,
+                parsing_duration_ms=intake_result.extraction_manifest.parsing_duration_ms,
+                fixed_layout=intake_result.extraction_manifest.fixed_layout,
+            )
+
+        translation_input = EpubTranslationInput(
+            source_epub_path=source_path,
+            original_hash=extraction_result.original_hash,
+            extraction_status=extraction_result.status,
+            warnings=extraction_result.warnings,
+            metadata=epub_metadata,
+            chapter_map=chapter_map,
+            resources=resources,
+            toc_entries=(),
+            fixed_layout_info=intake_result.extraction_manifest.fixed_layout if intake_result.extraction_manifest else None,
+            extraction_manifest=extraction_manifest,
+        )
+
+        # Step 5: Chunk the translation input
+        chunking_options = ChunkingOptions(chunk_size=1000)
+        chunks = chunk_epub_translation_input(translation_input, extraction_result.extracted_text, chunking_options)
+
+        # Step 6: Build EPUB translation options
+        return EpubTranslationOptions(
+            translation_input=translation_input,
+            chunks=chunks,
             model="meta/llama-3.2-90b-vision-instruct",
-            project_name=project.get("name", "NTPE Novel Translation"),
+            project_name=project.get("name", "NTPE EPUB Translation"),
             source_language="ko",
             target_language="zh-TW",
             resume=True,
             dry_run=False,
             max_retries=3,
-            retry_base_seconds=5.0,
+            retry_base_seconds=10.0,
             glossary_path=None,
             character_memory_path=None,
             strict_lock_terms=True,
@@ -493,30 +658,6 @@ class ProjectPage(QWidget):
             simplified_chinese_policy="normalize",
             progress_enabled=True,
             speed="balanced",
-            quality_v5_enabled=True,
-            quality_v5_report_enabled=True,
-            quality_integration_v72=False,
-            quality_character_memory_v72=False,
-            quality_context_scene_v72=False,
-            quality_naturalness_v72=False,
-            quality_integration_kill_switch_v72=False,
-            quality_delivery_v83=False,
-            quality_delivery_formats_v83=("txt",),
-        )
-
-        # 更新 UI 狀態
-        self._current_translation_row = row
-        self._update_project_status(row, Strings.TRANSLATION_STATUS_PREPARING, "0%")
-        self.btn_translate.setEnabled(False)
-        self.btn_preview.setEnabled(False)
-
-        # 啟動翻譯 worker
-        root_path = Path(__file__).resolve().parents[2]
-        self._translation_runner = TranslationRunner(options, root_path)
-        self._translation_runner.start(
-            on_progress=self._on_translation_progress,
-            on_finished=self._on_translation_finished,
-            on_error=self._on_translation_error,
         )
 
     def _on_translation_progress(self, progress: dict) -> None:
