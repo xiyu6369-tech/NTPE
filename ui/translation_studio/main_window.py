@@ -150,7 +150,7 @@ class MainWindow(QMainWindow):
         """處理 TXT 匯入結果，加入專案列表"""
         title = book_info.get("title", "未知標題")
         source = book_info.get("source", "")
-        self.project_page.add_project(name=title, source=source, status="已匯入", progress="0%")
+        self.project_page.add_project(name=title, source=source, status="已匯入", progress="0%", book_info=book_info)
         self._navigate_to("project")
 
     def _on_epub_imported(self, book_info: dict) -> None:
@@ -159,7 +159,7 @@ class MainWindow(QMainWindow):
         source = book_info.get("source", "")
         chapters = book_info.get("chapters", 0)
         status = "已匯入" if book_info.get("status") == "success" else "部分匯入"
-        self.project_page.add_project(name=title, source=source, status=status, progress="0%")
+        self.project_page.add_project(name=title, source=source, status=status, progress="0%", book_info=book_info)
         self._navigate_to("project")
 
     def closeEvent(self, event) -> None:

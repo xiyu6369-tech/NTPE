@@ -14,8 +14,8 @@ class Strings:
     HOME_DESCRIPTION = "專業的小說翻譯工具，支援 TXT 與 EPUB 格式"
     HOME_ACTION_IMPORT_TXT = "匯入 TXT"
     HOME_ACTION_IMPORT_EPUB = "匯入 EPUB"
-    HOME_ACTION_NEW_PROJECT = "新增專案"
-    HOME_ACTION_OPEN_PROJECT = "開啟專案"
+    HOME_ACTION_NEW_PROJECT = "新增專案（尚未支援）"
+    HOME_ACTION_OPEN_PROJECT = "開啟專案（尚未支援）"
 
     # TXT Import
     TXT_IMPORT_DIALOG_TITLE = "選擇 TXT 檔案"
@@ -52,6 +52,7 @@ class Strings:
     PROJECT_ACTION_RESUME = "繼續"
     PROJECT_ACTION_VIEW = "檢視"
     PROJECT_ACTION_PREVIEW = "預覽內容"
+    PROJECT_ACTION_NEW = "新增專案（尚未支援）"
 
     # Preview
     PREVIEW_TITLE = "內容預覽"
@@ -85,6 +86,7 @@ class Strings:
     TRANSLATION_STATUS_COMPLETED = "翻譯完成"
     TRANSLATION_STATUS_FAILED = "翻譯失敗"
     TRANSLATION_STATUS_INCOMPLETE = "翻譯未完成"
+    TRANSLATION_STATUS_DRY_RUN = "Dry-Run 已完成"
     TRANSLATION_PROGRESS_FORMAT = "已完成 {completed} / {total}"
     TRANSLATION_OUTPUT_LABEL = "輸出位置"
     TRANSLATION_CHUNKS_SUCCESSFUL = "成功區塊：{successful} / {total}"
@@ -105,6 +107,7 @@ class Strings:
     # Placeholders
     PLACEHOLDER_NOT_IMPLEMENTED = "此功能尚未實作，將在後續版本提供。"
     PLACEHOLDER_COMING_SOON = "即將推出"
+    UNSUPPORTED_FEATURE_TOOLTIP = "此功能尚未支援，將在後續版本提供。"
 
 
 # 字串對照表（用於檢查無英文標籤）

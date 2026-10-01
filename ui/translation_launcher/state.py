@@ -19,6 +19,8 @@ class LauncherWindowModel:
     api_timeout: int
     resume_enabled: bool
     overwrite: bool
+    overwrite_enabled: bool
+    overwrite_disabled_reason: str
     validate_enabled: bool
     preview_enabled: bool
     start_enabled: bool
@@ -40,6 +42,10 @@ def build_window_model() -> LauncherWindowModel:
         api_timeout=config.api_timeout,
         resume_enabled=config.resume_enabled,
         overwrite=config.overwrite,
+        # Backend has no overwrite runtime: validation always rejects overwrite
+        # (``overwrite_not_integrated``). The UI must reflect this as unavailable.
+        overwrite_enabled=False,
+        overwrite_disabled_reason="尚未支援：現有繁中翻譯 CLI 沒有 overwrite 參數。",
         validate_enabled=True,
         preview_enabled=True,
         start_enabled=False,

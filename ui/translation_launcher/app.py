@@ -63,7 +63,14 @@ class TranslationLauncherApp:
         add_labeled_entry(frame, 7, "Chunk size", self.variables["chunk_size"])
         add_labeled_entry(frame, 8, "Timeout", self.variables["api_timeout"])
         ttk.Checkbutton(frame, text="Resume", variable=self.variables["resume_enabled"]).grid(row=9, column=0, sticky="w", padx=6)
-        ttk.Checkbutton(frame, text="Overwrite", variable=self.variables["overwrite"]).grid(row=9, column=1, sticky="w", padx=6)
+        overwrite_text = "Overwrite" if self.window_model.overwrite_enabled else "Overwrite（尚未支援）"
+        self.overwrite_check = ttk.Checkbutton(frame, text=overwrite_text, variable=self.variables["overwrite"])
+        if not self.window_model.overwrite_enabled:
+            # Backend has no overwrite runtime; never present it as a usable option.
+            self.overwrite_check.state(["disabled"])
+            self.variables["overwrite"].set(False)
+            self.overwrite_check.configure(takefocus=False)
+        self.overwrite_check.grid(row=9, column=1, sticky="w", padx=6)
 
         controls = ttk.Frame(frame)
         controls.grid(row=10, column=0, columnspan=3, sticky="ew", pady=10)
@@ -95,7 +102,8 @@ class TranslationLauncherApp:
             chunk_size=int(str(self.variables["chunk_size"].get())),
             api_timeout=int(str(self.variables["api_timeout"].get())),
             resume_enabled=bool(self.variables["resume_enabled"].get()),
-            overwrite=bool(self.variables["overwrite"].get()),
+            # Never emit an unsupported overwrite request from the UI.
+            overwrite=bool(self.variables["overwrite"].get()) if self.window_model.overwrite_enabled else False,
             dry_run=dry_run,
         )
 

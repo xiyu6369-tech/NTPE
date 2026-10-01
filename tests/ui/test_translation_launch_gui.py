@@ -91,7 +91,7 @@ def run_gui_verification():
         assert project_page.btn_translate.isEnabled()
         print("[OK] 4. TXT 專案的翻譯按鈕可啟用")
         
-        # Test EPUB project blocking
+        # Test EPUB project support
         epub_book_info = {
             "title": "Test EPUB",
             "source": "input/test.epub",
@@ -111,10 +111,10 @@ def run_gui_verification():
         project_page.table.selectRow(1)
         QTest.qWait(100)
         
-        # Verify translate button is disabled for EPUB
-        assert not project_page.btn_translate.isEnabled()
-        assert "EPUB 專案暫不支援直接啟動翻譯" in project_page.btn_translate.toolTip()
-        print("[OK] 5. EPUB 專案的翻譯按鈕正確禁用並顯示提示")
+        # Verify translate button is enabled for EPUB
+        assert project_page.btn_translate.isEnabled()
+        assert project_page.btn_translate.toolTip() == ""
+        print("[OK] 5. EPUB 專案的翻譯按鈕正確啟用")
         
         # Go back to TXT project
         project_page.table.selectRow(0)
@@ -175,13 +175,13 @@ def run_gui_verification():
         assert project_page._current_translation_row is None  # Should not start second
         print("[OK] 9. 重複點擊不會建立第二個翻譯 job")
         
-        # Test EPUB still blocked
+        # Test EPUB remains launchable
         project_page.table.selectRow(1)
         QTest.qWait(100)
-        assert not project_page.btn_translate.isEnabled()
+        assert project_page.btn_translate.isEnabled()
         project_page.table.selectRow(0)
         QTest.qWait(100)
-        print("[OK] 10. EPUB 專案在翻譯後仍正確禁用")
+        print("[OK] 10. EPUB 專案在翻譯後仍正確啟用")
         
         print("\n" + "=" * 60)
         print("所有 GUI 驗證項目通過！")

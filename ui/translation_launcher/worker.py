@@ -107,6 +107,33 @@ class TranslationWorker:
         # Run EPUB translation
         translation_result = translate_epub_translation_input(options, root=self._root_path)
 
+        # Dry-run: canonical runtime already skipped provider calls. Do NOT package
+        # a (bogus) EPUB; report an explicit dry_run terminal state instead.
+        if getattr(options, "dry_run", False):
+            return {
+                "status": "dry_run",
+                "input": str(options.translation_input.source_epub_path),
+                "output": "",
+                "output_dir": str(
+                    options.translation_input.source_epub_path.parent
+                    / "output"
+                    / "epub_translation"
+                    / (options.translation_input.metadata.identifier or "unknown")
+                ),
+                "chunk_total": translation_result.total_chunks,
+                "chunk_successful": translation_result.success_count,
+                "chunk_failed": translation_result.failed_count,
+                "error": "",
+                "summary": {
+                    "total_chunks": translation_result.total_chunks,
+                    "successful_chunks": translation_result.success_count,
+                    "failed_chunks": translation_result.failed_count,
+                    "chapter_count": translation_result.total_chapters,
+                },
+                "pipeline_mode": "epub",
+                "session_id": translation_result.session_id,
+            }
+
         # If translation successful, package into EPUB
         if translation_result.aggregate_status in ("success", "incomplete"):
             # Build reader chapter map

@@ -1129,6 +1129,7 @@ def _translate_txt_with_runtime_pipeline(
         "output": str(final_output),
         "output_dir": str(output_dir),
         "chunk_total": total_chunks,
+        "chunk_successful": successful_chunks,
         "resume_state": str(resume_state_path),
         "records": records,
         "summary": {

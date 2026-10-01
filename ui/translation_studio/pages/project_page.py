@@ -262,12 +262,14 @@ class ProjectPage(QWidget):
         """)
         toolbar.addWidget(self.btn_translate)
 
-        # 新增專案按鈕
-        btn_new = QPushButton("新增專案")
-        btn_new.setFixedHeight(36)
-        btn_new.setCursor(Qt.CursorShape.PointingHandCursor)
-        btn_new.clicked.connect(self._on_new_project)
-        btn_new.setStyleSheet("""
+        # 新增專案按鈕 — 專案持久化尚未支援，明確呈現為不可用
+        self.btn_new_project = QPushButton(Strings.PROJECT_ACTION_NEW)
+        self.btn_new_project.setFixedHeight(36)
+        self.btn_new_project.setCursor(Qt.CursorShape.PointingHandCursor)
+        self.btn_new_project.clicked.connect(self._on_new_project)
+        self.btn_new_project.setEnabled(False)
+        self.btn_new_project.setToolTip(Strings.UNSUPPORTED_FEATURE_TOOLTIP)
+        self.btn_new_project.setStyleSheet("""
             QPushButton {
                 background-color: #0d6efd;
                 color: white;
@@ -283,8 +285,12 @@ class ProjectPage(QWidget):
             QPushButton:pressed {
                 background-color: #0a58ca;
             }
+            QPushButton:disabled {
+                background-color: #dee2e6;
+                color: #adb5bd;
+            }
         """)
-        toolbar.addWidget(btn_new)
+        toolbar.addWidget(self.btn_new_project)
 
         layout.addLayout(toolbar)
 
@@ -412,15 +418,12 @@ class ProjectPage(QWidget):
                 has_preview = bool(project.get("preview_text", "").strip())
                 self.btn_preview.setEnabled(has_preview)
 
-                # 只有 TXT 專案且有有效來源且未在翻譯中才啟用翻譯按鈕
-                is_txt = not bool(project.get("chapter_map"))
+                # 支援的專案類型（TXT 與 EPUB）：有有效來源且未在翻譯中即可啟用
                 has_source = bool(project.get("source", "").strip())
                 not_translating = self._current_translation_row != row
-                self.btn_translate.setEnabled(is_txt and has_source and not_translating)
+                self.btn_translate.setEnabled(has_source and not_translating)
 
-                if not is_txt:
-                    self.btn_translate.setToolTip(Strings.TRANSLATION_NOT_SUPPORTED_EPUB)
-                elif not has_source:
+                if not has_source:
                     self.btn_translate.setToolTip(Strings.TRANSLATION_NO_VALID_SOURCE)
                 elif not not_translating:
                     self.btn_translate.setToolTip(Strings.TRANSLATION_ALREADY_RUNNING)
@@ -443,9 +446,8 @@ class ProjectPage(QWidget):
         self.navigate_home.emit()
 
     def _on_new_project(self) -> None:
-        # TODO: 實作新增專案對話框
-        from PySide6.QtWidgets import QMessageBox
-        QMessageBox.information(self, "提示", Strings.PLACEHOLDER_NOT_IMPLEMENTED)
+        # 專案持久化尚未支援；按鈕已停用，不呈現任何假成功流程。
+        return
 
     def _on_translate(self) -> None:
         """啟動翻譯"""
@@ -468,14 +470,18 @@ class ProjectPage(QWidget):
 
         # 建立翻譯選項
         source_path = Path(source)
-        output_dir = Path("output") / source_path.stem
-        output_dir.mkdir(parents=True, exist_ok=True)
 
         is_epub = bool(project.get("chapter_map"))
 
         if is_epub:
-            options = self._build_epub_options(project, source_path, output_dir)
+            # EPUB 的最終輸出路徑由 canonical EPUB runtime / packager 決定
+            # （source-adjacent，見 translation_worker._runtime_epub_translate），
+            # 並非由 UI 指定，因此不傳入任何 UI output path。
+            options = self._build_epub_options(project, source_path)
         else:
+            # TXT 使用 UI 決定的專案輸出資料夾。
+            output_dir = Path("output") / source_path.stem
+            output_dir.mkdir(parents=True, exist_ok=True)
             options = TxtTranslationOptions(
                 input_path=source_path,
                 output_dir=output_dir,
@@ -521,7 +527,8 @@ class ProjectPage(QWidget):
         self.btn_preview.setEnabled(False)
 
         # 啟動翻譯 worker
-        root_path = Path(__file__).resolve().parents[2]
+        # 專案根目錄：repo root (parents[3] 從 ui/translation_studio/pages/ 往上三層)
+        root_path = Path(__file__).resolve().parents[3]
         self._translation_runner = TranslationRunner(options, root_path)
         self._translation_runner.start(
             on_progress=self._on_translation_progress,
@@ -529,8 +536,13 @@ class ProjectPage(QWidget):
             on_error=self._on_translation_error,
         )
 
-    def _build_epub_options(self, project: dict, source_path: Path, output_dir: Path):
-        """Build EPUB translation options from project data."""
+    def _build_epub_options(self, project: dict, source_path: Path):
+        """Build EPUB translation options from project data.
+
+        The EPUB output destination is owned by the canonical EPUB runtime and
+        packager (source-adjacent); the UI does not select it, so no output
+        path is accepted or forwarded here.
+        """
         # Step 1: Extract EPUB
         extractor = EpubExtractionBoundary()
         extraction_result = extractor.extract(source_path)
@@ -686,6 +698,8 @@ class ProjectPage(QWidget):
         elif status == "incomplete":
             chunk_failed = progress.get("chunk_failed", 0)
             progress_text = f"未完成：{chunk_completed}/{chunk_total} 成功，{chunk_failed} 失敗"
+        elif status == "dry_run":
+            progress_text = Strings.TRANSLATION_STATUS_DRY_RUN
         elif status == "failed":
             progress_text = "失敗"
         else:
@@ -744,6 +758,18 @@ class ProjectPage(QWidget):
                 f"成功：{chunk_successful} / {chunk_total}\n"
                 f"失敗：{chunk_failed}\n"
                 f"錯誤：{error}",
+            )
+
+        elif status == "dry_run":
+            self._update_project_status(
+                row,
+                Strings.TRANSLATION_STATUS_DRY_RUN,
+                "Dry-Run",
+            )
+            QMessageBox.information(
+                self,
+                Strings.TRANSLATION_STATUS_DRY_RUN,
+                "Dry-Run 已完成，未執行正式翻譯，也未產生正式輸出。",
             )
 
         else:

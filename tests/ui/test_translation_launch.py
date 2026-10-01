@@ -64,8 +64,8 @@ def test_valid_txt_project_can_launch(project_page, valid_txt_project):
     assert project_page._current_translation_row is None
 
 
-def test_epub_project_cannot_launch(project_page):
-    """Test that EPUB project cannot enter TXT translation path."""
+def test_epub_project_can_launch(project_page):
+    """Test that an EPUB project is allowed to launch translation."""
     book_info = {
         "title": "Test EPUB",
         "source": "input/test.epub",
@@ -87,9 +87,9 @@ def test_epub_project_cannot_launch(project_page):
     # Select the EPUB project
     project_page.table.selectRow(0)
 
-    # Verify translate button is disabled for EPUB project
-    assert not project_page.btn_translate.isEnabled(), "Translate button should be disabled for EPUB project"
-    assert "EPUB 專案暫不支援直接啟動翻譯" in project_page.btn_translate.toolTip()
+    # Verify translate button is enabled for EPUB project
+    assert project_page.btn_translate.isEnabled(), "Translate button should be enabled for EPUB project"
+    assert project_page.btn_translate.toolTip() == ""
 
 
 def test_invalid_source_cannot_launch(project_page):

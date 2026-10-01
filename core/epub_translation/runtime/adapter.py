@@ -42,6 +42,16 @@ from core.translation_quality_v5.best_attempt import select_best_attempt
 from core.translation_runtime.runtime_qa import RuntimeQAPolicy, analyze_runtime_quality
 
 
+def _save_epub_live_progress(path: Path, payload: dict) -> None:
+    """Write EPUB live progress to JSON file. Silent on failure (never breaks translation)."""
+    try:
+        import json
+        path.write_text(json.dumps(payload, ensure_ascii=False), encoding="utf-8")
+    except Exception:
+        # Live progress must never break translation.
+        pass
+
+
 DEFAULT_MODEL = "meta/llama-3.2-90b-vision-instruct"
 DEFAULT_CHUNK_SIZE = 2000
 DEFAULT_MAX_RETRIES = 3
@@ -308,8 +318,11 @@ def translate_epub_translation_input(
     resume_state["chunk_total"] = len(chunks)
     resume_state["updated_at"] = _now_iso()
 
+    total_chunks = len(chunks)
+    completed_chunks = 0
+
     # Live progress
-    live_progress_path = output_dir / f"{translation_input.source_epub_path.stem}_epub_live_progress.json"
+    live_progress_path = output_dir / f"{translation_input.source_epub_path.stem}_live_progress.json"
 
     # Start runtime session
     session = orchestrator.start_session(metadata={
@@ -588,6 +601,14 @@ def translate_epub_translation_input(
             }
             _save_json(resume_state_path, resume_state)
 
+            completed_chunks += 1
+            _save_epub_live_progress(live_progress_path, {
+                "status": "running",
+                "chunk_total": total_chunks,
+                "chunk_completed": completed_chunks,
+                "message": f"processing chunk {chunk.chunk_id} ({completed_chunks}/{total_chunks})",
+            })
+
             # Update prev_chunk_text for next iteration
             prev_chunk_text = chunk.source_text
 
@@ -619,6 +640,14 @@ def translate_epub_translation_input(
         save_character_memory(character_memory_store, get_memory_file_path(output_dir, compute_book_identity(translation_input.source_epub_path, options.project_name)))
     if enable_cross_chunk_context and context_memory_store is not None:
         save_context_memory(context_memory_store, get_context_memory_file_path(output_dir, compute_book_identity(translation_input.source_epub_path, options.project_name)))
+
+    # Final live progress
+    _save_epub_live_progress(live_progress_path, {
+        "status": "completed",
+        "chunk_total": total_chunks,
+        "chunk_completed": total_chunks,
+        "message": f"翻譯完成：{total_chunks}/{total_chunks}",
+    })
 
     # Assemble final translation result
     translation_result = _assemble_translation_result(

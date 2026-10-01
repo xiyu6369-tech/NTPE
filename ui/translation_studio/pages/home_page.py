@@ -73,21 +73,25 @@ class HomePage(QWidget):
         )
         actions_layout.addWidget(btn_import_epub)
 
-        # 新增專案按鈕
-        btn_new_project = self._create_action_button(
+        # 新增專案按鈕 — 專案持久化尚未支援，明確呈現為不可用
+        self.btn_new_project = self._create_action_button(
             Strings.HOME_ACTION_NEW_PROJECT,
             "建立新的翻譯專案",
             self._on_new_project
         )
-        actions_layout.addWidget(btn_new_project)
+        self.btn_new_project.setEnabled(False)
+        self.btn_new_project.setToolTip(Strings.UNSUPPORTED_FEATURE_TOOLTIP)
+        actions_layout.addWidget(self.btn_new_project)
 
-        # 開啟專案按鈕
-        btn_open_project = self._create_action_button(
+        # 開啟專案按鈕 — 專案持久化尚未支援，明確呈現為不可用
+        self.btn_open_project = self._create_action_button(
             Strings.HOME_ACTION_OPEN_PROJECT,
             "開啟現有翻譯專案",
             self._on_open_project
         )
-        actions_layout.addWidget(btn_open_project)
+        self.btn_open_project.setEnabled(False)
+        self.btn_open_project.setToolTip(Strings.UNSUPPORTED_FEATURE_TOOLTIP)
+        actions_layout.addWidget(self.btn_open_project)
 
         layout.addWidget(actions_frame)
         layout.addStretch()
@@ -377,7 +381,9 @@ class HomePage(QWidget):
         return book_info
 
     def _on_new_project(self) -> None:
-        self.navigate_to_project.emit()
+        # 專案持久化尚未支援；按鈕已停用，不呈現任何假成功流程。
+        return
 
     def _on_open_project(self) -> None:
-        self.navigate_to_project.emit()
+        # 專案持久化尚未支援；按鈕已停用，不呈現任何假成功流程。
+        return
