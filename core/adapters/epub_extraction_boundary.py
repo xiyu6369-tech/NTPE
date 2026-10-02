@@ -175,7 +175,14 @@ class EpubExtractionBoundary:
 
             opf_dir = posixpath.dirname(opf_path) if opf_path else ""
 
-            all_spine_items = linear_items + supplementary_items
+            # Canonical reading order is the EPUB spine itemref order
+            # (`spine_position`). Partitioning by `linear` must not reorder
+            # interspersed linear="no" items; emit every spine item in
+            # ascending spine_position so ordering matches the canonical key.
+            all_spine_items = sorted(
+                linear_items + supplementary_items,
+                key=lambda it: it["spine_position"],
+            )
 
             for item in all_spine_items:
                 chapter_index += 1
