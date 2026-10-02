@@ -930,6 +930,11 @@ def pack_epub_resource_aware(
                 media_type="application/xhtml+xml",
                 content=xhtml_content.encode("utf-8"),
             )
+            # Preserve the source spine's non-linear semantics. `is_linear` is
+            # already carried on translation_input.chapter_map; epublib emits
+            # linear="no" for items whose is_linear is False. Ordering/identity
+            # are unaffected.
+            chapter_item.is_linear = bool(input_chapter.is_linear)
             book.add_item(chapter_item)
 
             chapter_items.append(chapter_item)

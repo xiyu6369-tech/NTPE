@@ -418,18 +418,19 @@ def test_s11_04_final_epub_spine_order_and_resource_mapping(tmp_path: Path) -> N
     assert any(Path(n).name == "img.png" for n in data["names"])
 
 
-def test_s11_04_final_epub_linear_attribute_observation(tmp_path: Path) -> None:
-    """Records current packaging behaviour for the ``linear`` attribute.
+def test_s11_04_final_epub_linear_attribute_preserved(tmp_path: Path) -> None:
+    """Final EPUB preserves source non-linear spine semantics (DEF-1 fixed).
 
-    S11-04 ordering scope: the final spine ORDER is canonical (verified above).
-    This test documents that the packager does not currently emit ``linear="no"``
-    in the output EPUB (all spine itemrefs default to linear). This is recorded as
-    an independent finding (DEF-1) in the S11-04 report and is NOT fixed here.
+    S11-05 identified, and S11-06 repaired, the loss of ``linear="no"`` during
+    packaging. The final spine order remains canonical (verified above); this test
+    now guards the repaired linear semantics: nav and linear chapters omit the
+    attribute (default ``yes``); the two supplementary chapters are ``linear="no"``.
+    Before the S11-06 repair every attribute was ``None`` (DEF-1).
     """
     output = run_direct_pipeline(tmp_path)
     data = read_final_epub(output)
     linear_attrs = [linear for _idref, linear in data["spine"]]
-    assert all(linear is None for linear in linear_attrs), linear_attrs
+    assert linear_attrs == [None, None, "no", None, "no", None], linear_attrs
 
 
 # ===========================================================================
