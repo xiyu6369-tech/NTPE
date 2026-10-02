@@ -114,6 +114,23 @@ _NESTED_ARCHIVE_SIGNATURES = [b"PK\x03\x04", b"PK\x05\x06", b"PK\x07\x08"]
 _EXTRACTOR_VERSION = "epub-extraction-v1.0.0"
 
 
+def _canonical_entry_href(href: str, doc_dir: str) -> str:
+    """Canonicalize a nav/NCX href into the chapter source-href space.
+
+    Mirrors the chapter ``full_href`` normalization
+    (``posixpath.normpath(posixpath.join(opf_dir, manifest_href))``): the fragment
+    is stripped and the path is resolved against the containing navigation/NCX
+    document directory, so TOC keys match manifest-resolved chapter hrefs
+    regardless of where the navigation document lives.
+    """
+    base = (href or "").split("#")[0]
+    if not base:
+        return ""
+    if doc_dir:
+        return posixpath.normpath(posixpath.join(doc_dir, base))
+    return posixpath.normpath(base)
+
+
 class EpubExtractionBoundary:
     def __init__(self):
         self.extractor_version = _EXTRACTOR_VERSION
@@ -203,7 +220,7 @@ class EpubExtractionBoundary:
 
                 # Use extracted title if available, otherwise fall back to TOC/generated
                 title = extracted_title or self._resolve_chapter_title_fallback(
-                    item, toc_map, chapter_index
+                    full_href, toc_map, chapter_index
                 )
 
                 marker = f"=== CHAPTER {chapter_index}: {title or 'Untitled'} ===\n"
@@ -229,10 +246,10 @@ class EpubExtractionBoundary:
                     start_offset=start_offset,
                     end_offset=end_offset,
                     source_href=full_href,
-                    toc_level=toc_map.get(href, {}).get("level", 0),
+                    toc_level=toc_map.get(full_href, {}).get("level", 0),
                     is_linear=is_linear,
                     word_count=word_count,
-                    landmark_type=toc_map.get(href, {}).get("landmark"),
+                    landmark_type=toc_map.get(full_href, {}).get("landmark"),
                     status=status,
                     body_start_offset=body_start_offset,
                     body_end_offset=body_end_offset,
@@ -440,9 +457,17 @@ class EpubExtractionBoundary:
         nav_root = etree.fromstring(nav_content_bytes)
         toc_entries: list[dict[str, Any]] = []
         landmarks: list[dict[str, Any]] = []
+        nav_dir = posixpath.dirname(nav_full_path)
 
+        # EPUB 3 TOC is a standard ordered list inside the nav element
+        # (nav > ol > li), optionally preceded by a heading. Traverse the
+        # list itself; _parse_nav_ol handles nested ol elements.
         for nav in nav_root.xpath("//xhtml:nav[@epub:type='toc']", namespaces=ns):
-            self._parse_nav_ol(nav, toc_entries, level=0, ns=ns)
+            for ol in nav.xpath("./xhtml:ol", namespaces=ns):
+                self._parse_nav_ol(ol, toc_entries, level=0, ns=ns)
+
+        for entry in toc_entries:
+            entry["href"] = _canonical_entry_href(entry["href"], nav_dir)
 
         for nav in nav_root.xpath("//xhtml:nav[@epub:type='landmarks']", namespaces=ns):
             for li in nav.xpath(".//xhtml:li/xhtml:a", namespaces=ns):
@@ -504,6 +529,10 @@ class EpubExtractionBoundary:
         for np in ncx_root.xpath("//ncx:navMap/ncx:navPoint", namespaces=ns):
             parse_navpoint(np, 0)
 
+        ncx_dir = posixpath.dirname(ncx_full_path)
+        for entry in toc_entries:
+            entry["href"] = _canonical_entry_href(entry["href"], ncx_dir)
+
         return toc_entries, warnings
 
     def _build_toc_map(
@@ -518,10 +547,15 @@ class EpubExtractionBoundary:
         all_toc = nav_toc + ncx_toc
 
         for entry in all_toc:
-            href = entry["href"]
-            base_href = href.split("#")[0]
+            base_href = entry["href"].split("#")[0]
+            if not base_href:
+                continue
+            # Reject empty/whitespace labels; the first non-empty title wins.
+            title = (entry.get("title") or "").strip()
+            if not title:
+                continue
             if base_href not in toc_map:
-                toc_map[base_href] = {"title": entry["title"], "level": entry["level"]}
+                toc_map[base_href] = {"title": title, "level": entry["level"]}
 
         for item in spine_items:
             item_id = item["idref"]
@@ -1123,13 +1157,13 @@ class EpubExtractionBoundary:
 
     def _resolve_chapter_title(
         self,
-        spine_item: dict[str, Any],
+        source_href: str,
         toc_map: dict[str, dict[str, Any]],
         chapter_text: str,
         chapter_index: int,
     ) -> str | None:
         """Legacy method - kept for compatibility. Use _extract_title_from_doc + _resolve_chapter_title_fallback instead."""
-        return self._resolve_chapter_title_fallback(spine_item, toc_map, chapter_index)
+        return self._resolve_chapter_title_fallback(source_href, toc_map, chapter_index)
 
     def _extract_title_from_doc(self, doc: html.HtmlElement) -> str | None:
         """Extract chapter title from parsed document using precedence:
@@ -1162,19 +1196,21 @@ class EpubExtractionBoundary:
 
     def _resolve_chapter_title_fallback(
         self,
-        spine_item: dict[str, Any],
+        source_href: str | None,
         toc_map: dict[str, dict[str, Any]],
         chapter_index: int,
     ) -> str | None:
         """Fallback title resolution when no title extracted from document:
-        1. Mapped nav/NCX TOC title
+        1. Mapped nav/NCX TOC title for the canonical source href
         2. Generated 'Chapter N'
+        Empty/whitespace TOC labels are rejected and fall through.
         """
-        href = spine_item.get("href", "")
-        base_href = href.split("#")[0]
+        base_href = (source_href or "").split("#")[0]
+        entry = toc_map.get(base_href) if base_href else None
+        title = (entry.get("title") or "").strip() if entry else ""
 
-        if base_href in toc_map:
-            return toc_map[base_href]["title"]
+        if title:
+            return title
 
         return f"Chapter {chapter_index}"
 

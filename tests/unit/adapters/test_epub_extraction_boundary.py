@@ -70,8 +70,8 @@ def _create_minimal_epub(tmp_path: Path) -> Path:
   <body>
     <nav epub:type="toc">
       <ol>
-        <li><a href="ch1.xhtml">Chapter One</a></li>
-        <li><a href="ch2.xhtml">Chapter Two</a></li>
+        <li><a href="ch1.xhtml">Nav One</a></li>
+        <li><a href="ch2.xhtml">Nav Two</a></li>
       </ol>
     </nav>
   </body>
@@ -167,13 +167,66 @@ class TestEpubExtractionBoundary:
         assert chapter_text.startswith("=== CHAPTER 1:")
         assert chapter_text.endswith("\n")
 
-    def test_chapter_title_precedence_nav_toc(self, tmp_path: Path):
-        """Test chapter title precedence: nav TOC title wins."""
+    def test_chapter_title_precedence_document_heading_over_nav_toc(self, tmp_path: Path):
+        """Document headings outrank the nav TOC label (fallback, not primary).
+
+        The fixture's nav labels ("Nav One"/"Nav Two") differ from the document
+        h1 headings ("Chapter One"/"Chapter Two") so the precedence is genuinely
+        exercised: the document heading must win.
+        """
         epub_path = _create_minimal_epub(tmp_path)
         result = self.boundary.extract(epub_path)
 
         ch1 = result.chapter_map[0]
-        assert ch1.title == "Chapter One"  # From nav TOC
+        assert ch1.title == "Chapter One"  # document h1, not "Nav One"
+
+    def test_chapter_title_fallback_to_nav_toc_when_no_document_title(self, tmp_path: Path):
+        """Nav TOC label is used when the chapter document has no higher-priority title."""
+        epub_path = tmp_path / "nav_fallback.epub"
+        with zipfile.ZipFile(epub_path, "w") as zf:
+            zf.writestr("META-INF/container.xml", """<?xml version="1.0"?>
+<container version="1.0" xmlns="urn:oasis:names:tc:opendocument:xmlns:container">
+  <rootfiles>
+    <rootfile full-path="OEBPS/content.opf" media-type="application/oebps-package+xml"/>
+  </rootfiles>
+</container>""")
+            zf.writestr("OEBPS/content.opf", """<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns="http://www.idpf.org/2007/opf" version="3.0" unique-identifier="bookid">
+  <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <dc:title>Test</dc:title>
+    <dc:identifier id="bookid">urn:uuid:123</dc:identifier>
+    <dc:language>en</dc:language>
+  </metadata>
+  <manifest>
+    <item id="nav" href="nav.xhtml" media-type="application/xhtml+xml" properties="nav"/>
+    <item id="ch1" href="ch1.xhtml" media-type="application/xhtml+xml"/>
+  </manifest>
+  <spine>
+    <itemref idref="ch1" linear="yes"/>
+  </spine>
+</package>""")
+            zf.writestr("OEBPS/nav.xhtml", """<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+  <body>
+    <nav epub:type="toc">
+      <h2>Contents</h2>
+      <ol>
+        <li><a href="ch1.xhtml">Chapter From Nav</a></li>
+      </ol>
+    </nav>
+  </body>
+</html>""")
+            zf.writestr("OEBPS/ch1.xhtml", """<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head></head>
+  <body>
+    <p>Just content, no title elements.</p>
+  </body>
+</html>""")
+
+        result = self.boundary.extract(epub_path)
+        assert result.chapter_map[0].title == "Chapter From Nav"
+        assert result.extraction_manifest.nav_toc_entries == 1
 
     def test_chapter_title_fallback_to_h1(self, tmp_path: Path):
         """Test chapter title falls back to first h1 when no TOC."""
