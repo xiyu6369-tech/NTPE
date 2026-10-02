@@ -16,6 +16,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from core.adapters.epub_extraction_boundary import EpubExtractionBoundary
+from core.epub_translation.runtime.adapter import EpubTranslationOptions
 from core.reader_project.manager import ReaderProjectManager
 from core.reader_project.recovery import check_recovery_eligibility
 from ui.translation_studio.project_view_model import build_card_model
@@ -118,12 +119,11 @@ def test_epub_project_persists_across_restart(qapp, tmp_path, manager, opener, p
 # ---------------------------------------------------------------------------
 # EPUB-04..EPUB-06 — Translation entry / translation / output
 #
-# These are FORMALLY DEFERRED: the production EPUB entry routes correctly, but
-# canonical EPUB options building currently cannot complete because the
-# canonical extraction boundary does not populate chapter body offsets required
-# by canonical chunking. This is a pre-existing capability gap, not an S9-07
-# regression (all prior EPUB launch tests mocked `_build_epub_options`).
-# We assert the real behaviour instead of masking it with a fake route.
+# The production EPUB entry runs the real extraction -> intake -> chunking
+# path. S9-07 originally recorded an F1 capability gap here (extraction did not
+# populate chapter body offsets). S10-02 repaired the extraction contract, so
+# the canonical entry now builds EpubTranslationOptions end-to-end. The runner
+# remains faked so no provider/network/real translation occurs.
 # ---------------------------------------------------------------------------
 
 def test_epub_translation_entry_routes_to_canonical_epub_options(qapp, tmp_path, manager, opener, page):
@@ -133,11 +133,13 @@ def test_epub_translation_entry_routes_to_canonical_epub_options(qapp, tmp_path,
     page.table.selectRow(0)
 
     FakeTranslationRunner.reset()
-    # No runner may be started; the canonical entry raises the documented gap
-    # rather than fabricating options or falling back to the TXT runtime.
-    with pytest.raises(ValueError, match="body offsets"):
+    with patch(_RUNNER, FakeTranslationRunner):
         page._on_translate()
-    assert FakeTranslationRunner.last() is None
+
+    runner = FakeTranslationRunner.last()
+    assert runner is not None, "canonical EPUB entry must build options and start the runner"
+    assert isinstance(runner.options, EpubTranslationOptions)
+    assert runner.options.chunks, "real extraction output must yield canonical EPUB chunks"
 
     # routing is still EPUB (not TXT): the project is registered as epub
     assert manager.load(pid).source.format == "epub"
@@ -149,11 +151,13 @@ def test_epub_translation_entry_does_not_fall_back_to_txt(qapp, tmp_path, manage
     page.add_project(name=info["title"], source=str(source), book_info=info)
     page.table.selectRow(0)
 
+    FakeTranslationRunner.reset()
     with patch(_RUNNER, FakeTranslationRunner):
-        with pytest.raises(ValueError):
-            page._on_translate()
-    # never started a TXT runtime
-    assert FakeTranslationRunner.last() is None
+        page._on_translate()
+    # canonical EPUB options were used; never started a TXT runtime
+    runner = FakeTranslationRunner.last()
+    assert runner is not None
+    assert isinstance(runner.options, EpubTranslationOptions)
 
 
 # ---------------------------------------------------------------------------

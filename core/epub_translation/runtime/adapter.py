@@ -32,6 +32,7 @@ from core.epub_translation.contract import (
     EpubChapterResult,
     EpubTranslationResult,
 )
+from core.epub_translation.output_layout import epub_output_dir
 from core.translation_engine.translation_engine import TranslationEngine
 from core.runtime_orchestrator.manager import RuntimeOrchestrator
 from core.runtime_orchestrator.models import RuntimeExecutionResult
@@ -272,8 +273,7 @@ def translate_epub_translation_input(
     validate_chunk_ownership(translation_input, chunks)
 
     # Setup output directory
-    book_id = translation_input.metadata.identifier or "unknown"
-    output_dir = root_path / "output" / "epub_translation" / book_id
+    output_dir = epub_output_dir(root_path, translation_input.metadata.identifier)
     output_dir.mkdir(parents=True, exist_ok=True)
 
     # Load locked dictionary

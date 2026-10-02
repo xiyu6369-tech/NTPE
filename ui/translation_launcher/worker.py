@@ -6,6 +6,8 @@ import time
 from pathlib import Path
 from typing import Any, Callable, Optional
 
+from core.epub_translation.output_layout import epub_output_dir
+
 
 class TranslationWorker:
     """Worker for running canonical TXT/EPUB translation in background thread (Tkinter version)."""
@@ -52,7 +54,10 @@ class TranslationWorker:
             # Determine live progress path based on input type
             if self._is_epub:
                 input_stem = self._options.translation_input.source_epub_path.stem
-                output_dir = self._options.translation_input.source_epub_path.parent / "output" / "epub_translation" / (self._options.translation_input.metadata.identifier or "unknown")
+                output_dir = epub_output_dir(
+                    self._options.translation_input.source_epub_path.parent,
+                    self._options.translation_input.metadata.identifier,
+                )
             else:
                 input_stem = self._options.input_path.stem
                 output_dir = self._options.output_dir
@@ -115,10 +120,10 @@ class TranslationWorker:
                 "input": str(options.translation_input.source_epub_path),
                 "output": "",
                 "output_dir": str(
-                    options.translation_input.source_epub_path.parent
-                    / "output"
-                    / "epub_translation"
-                    / (options.translation_input.metadata.identifier or "unknown")
+                    epub_output_dir(
+                        options.translation_input.source_epub_path.parent,
+                        options.translation_input.metadata.identifier,
+                    )
                 ),
                 "chunk_total": translation_result.total_chunks,
                 "chunk_successful": translation_result.success_count,
@@ -143,7 +148,10 @@ class TranslationWorker:
             )
 
             # Package EPUB
-            output_dir = options.translation_input.source_epub_path.parent / "output" / "epub_translation" / (options.translation_input.metadata.identifier or "unknown")
+            output_dir = epub_output_dir(
+                options.translation_input.source_epub_path.parent,
+                options.translation_input.metadata.identifier,
+            )
             output_dir.mkdir(parents=True, exist_ok=True)
             output_path = output_dir / f"{options.translation_input.source_epub_path.stem}_zh.epub"
 

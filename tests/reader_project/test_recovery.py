@@ -45,9 +45,15 @@ def _source(tmp_path: Path, name: str = "novel.txt", body: bytes = b"source text
     return path
 
 
-def _make_resume(tmp_path: Path, chunks: dict) -> Path:
+def _make_resume(tmp_path: Path, chunks: dict, *, input_path=None, output_dir=None) -> Path:
     path = tmp_path / "novel_resume_state.json"
-    path.write_text(json.dumps({"chunks": chunks}), encoding="utf-8")
+    path.parent.mkdir(parents=True, exist_ok=True)
+    payload: dict = {"chunks": chunks}
+    if input_path is not None:
+        payload["input"] = str(input_path)
+    if output_dir is not None:
+        payload["output_dir"] = str(output_dir)
+    path.write_text(json.dumps(payload), encoding="utf-8")
     return path
 
 
@@ -192,6 +198,124 @@ def test_wrong_project_artifact_binding_blocks(tmp_path):
     # but the contract says it should block
     # We test that the function at least runs
     assert isinstance(check_recovery_eligibility(p2), RecoveryEligibility)
+
+
+# ---------------------------------------------------------------------------
+# F3 (S10-03) — unprovable ownership must BLOCK
+# ---------------------------------------------------------------------------
+
+def test_valid_runtime_artifact_allows_recovery(tmp_path):
+    manager = _manager(tmp_path)
+    project, artifact = _complete(manager, tmp_path, title="Novel")
+    eligibility = check_recovery_eligibility(project)
+    assert eligibility.eligible is True
+    assert eligibility.blocked_by == ""
+
+
+def test_unverified_runtime_artifact_blocks_recovery(tmp_path):
+    """Artifact with chunks but no ownership evidence must BLOCK."""
+    manager = _manager(tmp_path)
+    source = _source(tmp_path, "novel.txt", b"novel bytes")
+    project = manager.create(source, title="Novel")
+    resume = _make_resume(tmp_path, _chunks_ok(5))  # no input/output_dir evidence
+    project.execution.resume_state_path = str(resume)
+    manager.update(project, execution=project.execution)
+
+    eligibility = check_recovery_eligibility(manager.load(project.project_id))
+    assert eligibility.eligible is False
+    assert eligibility.blocked_by == "artifact"
+
+
+def test_missing_project_binding_blocks_recovery(tmp_path):
+    """Source evidence present, project (output_dir) evidence missing -> BLOCK."""
+    manager = _manager(tmp_path)
+    source = _source(tmp_path, "novel.txt", b"novel bytes")
+    project = manager.create(source, title="Novel")
+    resume = _make_resume(tmp_path, _chunks_ok(5), input_path=source)
+    project.execution.resume_state_path = str(resume)
+    manager.update(project, execution=project.execution)
+
+    valid, reason, details = validate_project_binding(manager.load(project.project_id))
+    assert valid is False
+    assert details.get("missing_project_binding") is True
+    assert check_recovery_eligibility(manager.load(project.project_id)).eligible is False
+
+
+def test_missing_source_binding_blocks_recovery(tmp_path):
+    """Project evidence present, source (input) evidence missing -> BLOCK."""
+    manager = _manager(tmp_path)
+    source = _source(tmp_path, "novel.txt", b"novel bytes")
+    project = manager.create(source, title="Novel")
+    resume = _make_resume(tmp_path, _chunks_ok(5), output_dir=tmp_path)
+    project.execution.resume_state_path = str(resume)
+    manager.update(project, execution=project.execution)
+
+    valid, reason, details = validate_source_binding(manager.load(project.project_id))
+    assert valid is False
+    assert details.get("missing_source_binding") is True
+    assert check_recovery_eligibility(manager.load(project.project_id)).eligible is False
+
+
+def test_incomplete_runtime_evidence_blocks_recovery(tmp_path):
+    """Artifact with only failed chunks is insufficient evidence -> BLOCK."""
+    manager = _manager(tmp_path)
+    source = _source(tmp_path, "novel.txt", b"novel bytes")
+    project = manager.create(source, title="Novel")
+    resume = _make_resume(
+        tmp_path, {"000001": {"status": "failed"}}, input_path=source, output_dir=tmp_path
+    )
+    project.execution.resume_state_path = str(resume)
+    manager.update(project, execution=project.execution)
+
+    eligibility = check_recovery_eligibility(manager.load(project.project_id))
+    assert eligibility.eligible is False
+    assert eligibility.blocked_by == "artifact"
+
+
+def test_wrong_project_artifact_blocks_recovery(tmp_path):
+    """A project referencing another project's artifact must BLOCK; the owner stays eligible."""
+    manager = _manager(tmp_path)
+    s1 = _source(tmp_path, "a.txt", b"source-a")
+    s2 = _source(tmp_path, "b.txt", b"source-b")
+    p1 = manager.create(s1, title="A")
+    p2 = manager.create(s2, title="B")
+    dir1 = tmp_path / "out1"
+    dir2 = tmp_path / "out2"
+    resume_b = _make_resume(dir2, _chunks_ok(5), input_path=s2, output_dir=dir2)
+
+    a = manager.load(p1.project_id)
+    a.execution.resume_state_path = str(resume_b)
+    a.output.output_dir = str(dir1)
+    manager.update(a, execution=a.execution, output=a.output)
+
+    b = manager.load(p2.project_id)
+    b.execution.resume_state_path = str(resume_b)
+    b.output.output_dir = str(dir2)
+    manager.update(b, execution=b.execution, output=b.output)
+
+    eligibility_a = check_recovery_eligibility(manager.load(p1.project_id))
+    assert eligibility_a.eligible is False
+    assert eligibility_a.blocked_by == "artifact"
+    assert check_recovery_eligibility(manager.load(p2.project_id)).eligible is True
+
+
+def test_wrong_source_artifact_blocks_recovery(tmp_path):
+    """An artifact produced from another source must BLOCK."""
+    manager = _manager(tmp_path)
+    source_a = _source(tmp_path, "a.txt", b"source-a")
+    source_b = _source(tmp_path, "b.txt", b"source-b")
+    p = manager.create(source_a, title="A")
+    dir_a = tmp_path / "outA"
+    resume = _make_resume(dir_a, _chunks_ok(5), input_path=source_b, output_dir=dir_a)
+
+    project = manager.load(p.project_id)
+    project.execution.resume_state_path = str(resume)
+    project.output.output_dir = str(dir_a)
+    manager.update(project, execution=project.execution, output=project.output)
+
+    eligibility = check_recovery_eligibility(manager.load(p.project_id))
+    assert eligibility.eligible is False
+    assert eligibility.blocked_by == "artifact"
 
 
 # ---------------------------------------------------------------------------
@@ -395,7 +519,7 @@ def test_get_recovery_blocked_reason(tmp_path):
 
     # After adding resume state - should be eligible even without output artifact
     # (output artifact and runtime artifact are independent per contract)
-    resume = _make_resume(tmp_path, _chunks_ok(5))
+    resume = _make_resume(tmp_path, _chunks_ok(5), input_path=source, output_dir=tmp_path)
     project.execution.resume_state_path = str(resume)
     blocked_by, reason = get_recovery_blocked_reason(project)
     assert blocked_by == ""
@@ -420,7 +544,8 @@ def test_derive_reader_status_with_recovery(tmp_path):
 # ---------------------------------------------------------------------------
 
 def _complete(manager, tmp_path, title="Novel", subdir="out"):
-    project = manager.create(_source(tmp_path, f"{title}.txt", title.encode()), title=title)
+    source = _source(tmp_path, f"{title}.txt", title.encode())
+    project = manager.create(source, title=title)
     artifact = tmp_path / subdir / f"{title}_zh.txt"
     artifact.parent.mkdir(parents=True, exist_ok=True)
     artifact.write_text("成品", encoding="utf-8")
@@ -430,7 +555,14 @@ def _complete(manager, tmp_path, title="Novel", subdir="out"):
     resume.parent.mkdir(parents=True, exist_ok=True)
     # 120 successful chunks
     chunks = {f"{i:06d}": {"status": "success"} for i in range(1, 121)}
-    resume.write_text(json.dumps({"chunks": chunks}), encoding="utf-8")
+    resume.write_text(
+        json.dumps({
+            "chunks": chunks,
+            "input": str(source),
+            "output_dir": str(resume.parent),
+        }),
+        encoding="utf-8",
+    )
     
     project.output = OutputRecord(
         output_dir=str(artifact.parent),

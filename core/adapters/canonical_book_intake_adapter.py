@@ -34,6 +34,53 @@ class SourceIdentity:
     modified_time: float
 
 
+# Canonical EPUB metadata key aliases. Extraction may expose either plain keys
+# or namespace-qualified OPF/DC names (e.g.
+# "http://purl.org/dc/elements/1.1/:title"); both must collapse to one
+# canonical plain-key representation shared by intake, contract, and packaging.
+_METADATA_KEY_ALIASES: dict[str, tuple[str, ...]] = {
+    "title": ("title",),
+    "author": ("creator", "author"),
+    "language": ("language",),
+    "identifier": ("identifier",),
+    "publisher": ("publisher",),
+    "date": ("date",),
+}
+
+
+def _metadata_localname(key: str) -> str:
+    """Reduce an XML/OPF metadata key to its lowercase local name."""
+    return key.rsplit(":", 1)[-1].rsplit("/", 1)[-1].strip().lower()
+
+
+def _lookup_metadata_value(source: dict[str, Any], aliases: tuple[str, ...]) -> Any:
+    for alias in aliases:
+        if alias in source:
+            return source[alias]
+    for key, value in source.items():
+        if isinstance(key, str) and _metadata_localname(key) in aliases:
+            return value
+    return None
+
+
+def build_canonical_epub_metadata(epub_metadata: dict[str, Any] | None) -> dict[str, Any]:
+    """Canonical extraction -> intake metadata mapping.
+
+    Accepts extraction metadata keyed by plain names or namespace-qualified
+    OPF/DC names and returns the single canonical plain-key representation
+    (``title``/``author``/``language``/``identifier``/``publisher``/``date``)
+    plus the original ``raw`` metadata for provenance.
+    """
+    source = dict(epub_metadata) if epub_metadata else {}
+    canonical: dict[str, Any] = {
+        key: _lookup_metadata_value(source, aliases)
+        for key, aliases in _METADATA_KEY_ALIASES.items()
+    }
+    raw = source.get("raw")
+    canonical["raw"] = dict(raw) if isinstance(raw, dict) else source
+    return canonical
+
+
 @dataclass(frozen=True)
 class CanonicalIntakeRequest:
     source_path: Path
@@ -143,15 +190,7 @@ class CanonicalBookIntakeAdapter:
             modified_time=request.source_path.stat().st_mtime if request.source_path.exists() else 0.0,
         )
 
-        epub_metadata = {
-            "title": request.epub_metadata.get("title"),
-            "author": request.epub_metadata.get("author"),
-            "language": request.epub_metadata.get("language"),
-            "identifier": request.epub_metadata.get("identifier"),
-            "publisher": request.epub_metadata.get("publisher"),
-            "date": request.epub_metadata.get("date"),
-            "raw": request.epub_metadata.get("raw", {}),
-        }
+        epub_metadata = build_canonical_epub_metadata(request.epub_metadata)
 
         custom_processor = BookIntakeProcessor(
             source_reader=_ExtractedTextSourceReader(

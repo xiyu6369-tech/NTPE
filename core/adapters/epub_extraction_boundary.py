@@ -205,6 +205,14 @@ class EpubExtractionBoundary:
                 start_offset = current_offset
                 end_offset = current_offset + len(full_chapter_text)
 
+                # Body offsets are pure chapter content (marker-free, no trailing newline).
+                # All three quantities share one coordinate space because
+                # full_chapter_text == marker + chapter_text + "\n":
+                #   [start_offset, end_offset)        marker + body + "\n"
+                #   [body_start_offset, body_end_offset)  body only
+                body_start_offset = start_offset + len(marker)
+                body_end_offset = body_start_offset + len(chapter_text)
+
                 word_count = len(chapter_text.split())
 
                 chapter_boundary = ChapterBoundary(
@@ -219,6 +227,8 @@ class EpubExtractionBoundary:
                     word_count=word_count,
                     landmark_type=toc_map.get(href, {}).get("landmark"),
                     status=status,
+                    body_start_offset=body_start_offset,
+                    body_end_offset=body_end_offset,
                 )
                 chapter_map.append(chapter_boundary)
                 extracted_parts.append(full_chapter_text)

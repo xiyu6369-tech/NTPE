@@ -198,7 +198,14 @@ def validate_runtime_artifact(project: ReaderProject) -> tuple[bool, str, dict]:
 
 
 def validate_project_binding(project: ReaderProject) -> tuple[bool, str, dict]:
-    """Validate runtime artifact belongs to this project."""
+    """Validate runtime artifact belongs to this project.
+
+    S10-03 F3 (S9-06 contract §6): ownership must be *provable*. The runtime
+    artifact records the output directory it was produced in; that directory
+    must match the artifact's own location and, when the project records an
+    output directory, must match it too. A runtime artifact that carries no
+    ownership evidence is treated as unverifiable and therefore blocks recovery.
+    """
     exec_rec = project.execution
     if not exec_rec.resume_state_path:
         return True, "", {}
@@ -207,27 +214,51 @@ def validate_project_binding(project: ReaderProject) -> tuple[bool, str, dict]:
     if not path.exists():
         return True, "", {}
 
-    # The resume state is stored in project-owned output directory
-    # or in the runtime checkpoints directory. For Project-level validation,
-    # we verify the project owns the output directory.
-    output_rec = project.output
-    if output_rec.output_dir:
-        resume_path = Path(exec_rec.resume_state_path)
-        try:
-            # Check if resume state is within project output directory
-            output_dir = Path(output_rec.output_dir).resolve()
-            if output_dir in resume_path.parents or output_dir == resume_path.parent:
-                return True, "", {"project_bound": True}
-        except (OSError, ValueError):
-            pass
+    resume_data, error = read_resume_state(path)
+    if error or resume_data is None:
+        return False, "cannot read resume state for project binding", {"read_error": error}
 
-    # If we can't verify binding, it's not necessarily an error (EPUB is source-adjacent)
-    # but we record it
-    return True, "", {"project_binding_unverified": True}
+    artifact_output_dir = resume_data.get("output_dir")
+    if not artifact_output_dir:
+        return False, "runtime artifact lacks project ownership evidence", {
+            "missing_project_binding": True,
+        }
+
+    try:
+        artifact_dir = Path(str(artifact_output_dir)).resolve()
+        resume_dir = path.resolve().parent
+    except (OSError, ValueError) as exc:
+        return False, f"cannot validate project binding: {exc}", {"binding_error": str(exc)}
+
+    if artifact_dir != resume_dir:
+        return False, "runtime artifact output_dir does not match its location", {
+            "project_binding_mismatch": True,
+            "artifact_output_dir": str(artifact_dir),
+            "resume_dir": str(resume_dir),
+        }
+
+    if project.output.output_dir:
+        try:
+            project_dir = Path(project.output.output_dir).resolve()
+        except (OSError, ValueError) as exc:
+            return False, f"cannot validate project binding: {exc}", {"binding_error": str(exc)}
+        if project_dir != artifact_dir:
+            return False, "runtime artifact belongs to a different project output directory", {
+                "project_binding_mismatch": True,
+                "project_output_dir": str(project_dir),
+                "artifact_output_dir": str(artifact_dir),
+            }
+
+    return True, "", {"project_bound": True}
 
 
 def validate_source_binding(project: ReaderProject) -> tuple[bool, str, dict]:
-    """Validate runtime artifact source identity matches project source."""
+    """Validate runtime artifact source identity matches project source.
+
+    S10-03 F3 (S9-06 contract §6): the resume state records the input path it
+    was produced from. That evidence must exist and resolve to the project's
+    source. Missing evidence is unverifiable and blocks recovery.
+    """
     exec_rec = project.execution
     if not exec_rec.resume_state_path:
         return True, "", {}
@@ -236,7 +267,6 @@ def validate_source_binding(project: ReaderProject) -> tuple[bool, str, dict]:
     if not path.exists():
         return True, "", {}
 
-    # Read resume state and check source hashes match project source
     resume_data, error = read_resume_state(path)
     if error or resume_data is None:
         return False, "cannot read resume state for source binding", {"read_error": error}
@@ -245,16 +275,30 @@ def validate_source_binding(project: ReaderProject) -> tuple[bool, str, dict]:
     if not chunks:
         return True, "", {}
 
-    # Check if any chunk has source_hash that doesn't match project source
-    # Note: We can't directly compare without knowing chunk boundaries,
-    # but we can verify the resume state exists and is parsable
-    project_hash = project.source.hash
-    project_identity_kind = project.source.identity_kind
+    recorded_input = resume_data.get("input")
+    if not recorded_input:
+        return False, "runtime artifact lacks source ownership evidence", {
+            "missing_source_binding": True,
+        }
+    if not project.source.path:
+        return False, "project source path is missing", {"missing_source_binding": True}
 
-    # Record the binding check attempt
+    try:
+        recorded = Path(str(recorded_input)).resolve()
+        expected = Path(project.source.path).resolve()
+    except (OSError, ValueError) as exc:
+        return False, f"cannot validate source binding: {exc}", {"binding_error": str(exc)}
+
+    if recorded != expected:
+        return False, "resume state was produced from a different source", {
+            "source_binding_mismatch": True,
+            "recorded_input": str(recorded),
+            "project_source": str(expected),
+        }
+
     return True, "", {
-        "project_source_hash": project_hash,
-        "project_identity_kind": project_identity_kind,
+        "project_source_hash": project.source.hash,
+        "project_identity_kind": project.source.identity_kind,
         "binding_checked": True,
     }
 

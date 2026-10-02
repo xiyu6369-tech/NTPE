@@ -31,10 +31,13 @@ _RUNNER = "ui.translation_studio.pages.project_page.TranslationRunner"
 _MSGBOX = "ui.translation_studio.pages.project_page.QMessageBox"
 
 
-def _write_resume(out_dir: Path, stem: str, chunks: dict) -> Path:
+def _write_resume(out_dir: Path, stem: str, chunks: dict, *, input_path=None) -> Path:
     out_dir.mkdir(parents=True, exist_ok=True)
     path = out_dir / f"{stem}_resume_state.json"
-    path.write_text(json.dumps({"chunks": chunks}), encoding="utf-8")
+    payload: dict = {"chunks": chunks, "output_dir": str(out_dir)}
+    if input_path is not None:
+        payload["input"] = str(input_path)
+    path.write_text(json.dumps(payload), encoding="utf-8")
     return path
 
 
@@ -231,6 +234,7 @@ def test_txt_recovery_routes_to_existing_resume(qapp, tmp_path, manager, opener,
     resume = _write_resume(
         out_dir, source.stem,
         {**{f"{i:06d}": {"status": "success"} for i in range(1, 4)}, "000004": {"status": "failed"}},
+        input_path=source,
     )
     stored.execution.resume_state_path = str(resume)
     stored.book.total_units = 10
@@ -256,7 +260,7 @@ def test_txt_source_changed_blocks_recovery(qapp, tmp_path, manager, opener, pag
     pid = page.add_project(name="Novel", source=str(source), book_info=build_txt_book_info(source))
     stored = manager.load(pid)
     out_dir = manager.store.home / "output" / pid
-    resume = _write_resume(out_dir, source.stem, {f"{i:06d}": {"status": "success"} for i in range(1, 4)})
+    resume = _write_resume(out_dir, source.stem, {f"{i:06d}": {"status": "success"} for i in range(1, 4)}, input_path=source)
     stored.execution.resume_state_path = str(resume)
     manager.update(stored, execution=stored.execution)
     page.refresh_projects()
@@ -282,7 +286,7 @@ def test_txt_source_missing_blocks_recovery(qapp, tmp_path, manager, opener, pag
     pid = page.add_project(name="Novel", source=str(source), book_info=build_txt_book_info(source))
     stored = manager.load(pid)
     out_dir = manager.store.home / "output" / pid
-    resume = _write_resume(out_dir, source.stem, {f"{i:06d}": {"status": "success"} for i in range(1, 4)})
+    resume = _write_resume(out_dir, source.stem, {f"{i:06d}": {"status": "success"} for i in range(1, 4)}, input_path=source)
     stored.execution.resume_state_path = str(resume)
     manager.update(stored, execution=stored.execution)
     page.refresh_projects()
