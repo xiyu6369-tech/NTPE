@@ -4,8 +4,10 @@ Verifies that the UI truthfully reflects currently supported capability:
 
 * Test A — Overwrite is presented as unavailable while the backend lacks an
   overwrite runtime (and validation still rejects it).
-* Test B — New Project no longer fakes a placeholder-led workflow.
-* Test C — Open Project no longer fakes a placeholder-led workflow.
+* Test B — New Project is now a real lifecycle (S9-04): actionable, creates a
+  persistent Project, result observable in the library.
+* Test C — Open Project is now a real action (S9-04): actionable and emits the
+  navigation/lifecycle request (no fake/placeholder workflow).
 * Test D — Production model display metadata matches the real model ID.
 * Test E — Canonical TXT translation launch is unchanged.
 * Test F — Canonical EPUB direct launch (S8-01) is unchanged.
@@ -102,46 +104,59 @@ def test_a_overwrite_ui_checkbox_disabled_and_never_emits():
 
 
 # ---------------------------------------------------------------------------
-# Test B — New Project honesty
+# Test B — New Project (migrated to real S9-04 lifecycle contract)
 # ---------------------------------------------------------------------------
 
-def test_b_new_project_unavailable(qapp):
+def test_b_new_project_is_actionable_and_persistent(qapp, tmp_path):
+    """S9-04 migration: New Project is enabled and performs a real lifecycle.
+
+    Replaces the former S8 "disabled + no-op" assertion with higher-value
+    assertions: the control is actionable AND the result is persisted/observable.
+    """
+    from core.reader_project.manager import ReaderProjectManager
+
+    manager = ReaderProjectManager(home=tmp_path / "NTPE_HOME")
+    source = tmp_path / "book.txt"
+    source.write_bytes("본문".encode("utf-8"))
+
     page = ProjectPage()
     try:
-        assert not page.btn_new_project.isEnabled(), "New Project must be disabled (no persistence)"
-        assert page.btn_new_project.toolTip().strip() != ""
-        assert not page.btn_new_project.toolTip().startswith("TODO")
+        page.set_project_manager(manager)
+        assert page.btn_new_project.isEnabled(), "New Project must be actionable (S9-04)"
+        assert "尚未支援" not in page.btn_new_project.toolTip()
 
-        # The handler must not fall through to a placeholder dialog.
-        with patch("ui.translation_studio.pages.project_page.QMessageBox") as mock_msgbox:
-            page._on_new_project()
-            assert not mock_msgbox.information.called
+        with patch(
+            "ui.translation_studio.pages.project_page.QFileDialog.getOpenFileName",
+            return_value=(str(source), ""),
+        ):
+            project_id = page.new_project()
+
+        assert project_id is not None
+        assert manager.exists(project_id), "New Project must persist"
+        assert page.table.rowCount() == 1, "created project must appear in library"
     finally:
         page.close()
 
 
 # ---------------------------------------------------------------------------
-# Test C — Open Project honesty
+# Test C — Open Project (migrated to real S9-04 action contract)
 # ---------------------------------------------------------------------------
 
-def _action_button_label_text(button) -> str:
-    """Home action buttons render their title in child QLabels, not button text."""
-    labels = button.findChildren(QLabel)
-    return " ".join(label.text() for label in labels)
-
-
-def test_c_open_project_unavailable(qapp):
+def test_c_open_project_is_actionable(qapp):
+    """S9-04 migration: Open/New on Home are enabled and emit real requests."""
     home = HomePage()
     try:
-        assert not home.btn_open_project.isEnabled(), "Open Project must be disabled (no persistence)"
-        assert "尚未支援" in _action_button_label_text(home.btn_open_project)
-        assert home.btn_open_project.toolTip().strip() != ""
-        assert not home.btn_new_project.isEnabled()
-        assert "尚未支援" in _action_button_label_text(home.btn_new_project)
+        assert home.btn_open_project.isEnabled(), "Open Project must be actionable (S9-04)"
+        assert home.btn_new_project.isEnabled(), "New Project must be actionable (S9-04)"
 
-        # Handlers must be no-ops (no navigation that implies an opened project).
+        emitted = {"open": False, "new": False}
+        home.open_project_requested.connect(lambda: emitted.__setitem__("open", True))
+        home.new_project_requested.connect(lambda: emitted.__setitem__("new", True))
+
         home._on_open_project()
         home._on_new_project()
+
+        assert emitted == {"open": True, "new": True}
     finally:
         home.close()
 

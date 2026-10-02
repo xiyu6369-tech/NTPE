@@ -16,6 +16,8 @@ class HomePage(QWidget):
     navigate_to_project = Signal()
     navigate_to_import_txt = Signal()
     navigate_to_import_epub = Signal()
+    new_project_requested = Signal()   # S9-04：真實新增專案
+    open_project_requested = Signal()  # S9-04：開啟我的小說
     txt_imported = Signal(dict)  # TXT 匯入成功後發出書籍資訊
     epub_imported = Signal(dict)  # EPUB 匯入成功/部分成功後發出書籍資訊
 
@@ -73,24 +75,20 @@ class HomePage(QWidget):
         )
         actions_layout.addWidget(btn_import_epub)
 
-        # 新增專案按鈕 — 專案持久化尚未支援，明確呈現為不可用
+        # 新增專案按鈕 — S9-04：真實建立持久化 Project
         self.btn_new_project = self._create_action_button(
             Strings.HOME_ACTION_NEW_PROJECT,
             "建立新的翻譯專案",
             self._on_new_project
         )
-        self.btn_new_project.setEnabled(False)
-        self.btn_new_project.setToolTip(Strings.UNSUPPORTED_FEATURE_TOOLTIP)
         actions_layout.addWidget(self.btn_new_project)
 
-        # 開啟專案按鈕 — 專案持久化尚未支援，明確呈現為不可用
+        # 開啟專案按鈕 — S9-04：前往我的小說卡片庫
         self.btn_open_project = self._create_action_button(
             Strings.HOME_ACTION_OPEN_PROJECT,
             "開啟現有翻譯專案",
             self._on_open_project
         )
-        self.btn_open_project.setEnabled(False)
-        self.btn_open_project.setToolTip(Strings.UNSUPPORTED_FEATURE_TOOLTIP)
         actions_layout.addWidget(self.btn_open_project)
 
         layout.addWidget(actions_frame)
@@ -381,9 +379,9 @@ class HomePage(QWidget):
         return book_info
 
     def _on_new_project(self) -> None:
-        # 專案持久化尚未支援；按鈕已停用，不呈現任何假成功流程。
-        return
+        # S9-04：交由 MainWindow 導向真實 New Project lifecycle
+        self.new_project_requested.emit()
 
     def _on_open_project(self) -> None:
-        # 專案持久化尚未支援；按鈕已停用，不呈現任何假成功流程。
-        return
+        # S9-04：前往我的小說卡片庫
+        self.open_project_requested.emit()

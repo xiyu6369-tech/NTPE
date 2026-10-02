@@ -14,8 +14,8 @@ class Strings:
     HOME_DESCRIPTION = "專業的小說翻譯工具，支援 TXT 與 EPUB 格式"
     HOME_ACTION_IMPORT_TXT = "匯入 TXT"
     HOME_ACTION_IMPORT_EPUB = "匯入 EPUB"
-    HOME_ACTION_NEW_PROJECT = "新增專案（尚未支援）"
-    HOME_ACTION_OPEN_PROJECT = "開啟專案（尚未支援）"
+    HOME_ACTION_NEW_PROJECT = "新增專案"
+    HOME_ACTION_OPEN_PROJECT = "開啟專案"
 
     # TXT Import
     TXT_IMPORT_DIALOG_TITLE = "選擇 TXT 檔案"
@@ -43,16 +43,48 @@ class Strings:
 
     # Project Page
     PROJECT_TITLE = "專案管理"
+    PROJECT_LIBRARY_TITLE = "我的小說"
     PROJECT_LIST_EMPTY = "尚無專案，請從首頁建立新專案"
+    PROJECT_LIBRARY_EMPTY = "還沒有任何小說專案。點選「新增專案」開始翻譯。"
     PROJECT_COLUMN_NAME = "專案名稱"
     PROJECT_COLUMN_SOURCE = "來源檔案"
     PROJECT_COLUMN_STATUS = "狀態"
     PROJECT_COLUMN_PROGRESS = "進度"
     PROJECT_ACTION_DELETE = "刪除"
-    PROJECT_ACTION_RESUME = "繼續"
+    PROJECT_ACTION_RESUME = "繼續翻譯"
+    PROJECT_ACTION_START = "開始翻譯"
     PROJECT_ACTION_VIEW = "檢視"
     PROJECT_ACTION_PREVIEW = "預覽內容"
-    PROJECT_ACTION_NEW = "新增專案（尚未支援）"
+    PROJECT_ACTION_NEW = "新增專案"
+    PROJECT_ACTION_REFRESH = "重新整理"
+    PROJECT_NEW_DIALOG_TITLE = "選擇小說檔案"
+    PROJECT_FILE_FILTER = "小說檔案 (*.txt *.epub)"
+    PROJECT_NEW_FAILED_TITLE = "無法新增專案"
+    PROJECT_NEW_FAILED_MSG = "建立專案失敗：{error}"
+    PROJECT_SOURCE_MISSING = "來源檔案不存在或已移動"
+    PROJECT_DELETE_CONFIRM_TITLE = "刪除專案"
+    PROJECT_DELETE_CONFIRM_MSG = "確定要刪除「{title}」這個專案嗎？此操作無法復原，且不會影響其他專案。"
+
+    # Completion & Output (S9-05)
+    RESULT_OPEN = "開啟成品"
+    RESULT_REVEAL = "開啟資料夾"
+    RESULT_UNAVAILABLE_TITLE = "結果無法開啟"
+    RESULT_UNAVAILABLE_MSG = "找不到這個專案的結果檔案，可能已被移動或刪除。"
+    RESULT_OPEN_FAILED_TITLE = "開啟失敗"
+    RESULT_OPEN_FAILED_MSG = "無法開啟結果檔案或資料夾。"
+    RESULT_MISSING_NOTE = "結果檔案不存在"
+
+    # Recovery & Source Integrity (S9-06)
+    RECOVERY_BLOCKED_TITLE = "無法恢復"
+    RECOVERY_BLOCKED_REASON = "無法繼續翻譯："
+    RECOVERY_BLOCKED_SOURCE_MISSING = "來源檔案不存在或已移動"
+    RECOVERY_BLOCKED_SOURCE_CHANGED = "來源檔案已變更，無法安全恢復"
+    RECOVERY_BLOCKED_ARTIFACT_MISSING = "復原資料遺失或不完整"
+    RECOVERY_BLOCKED_ARTIFACT_WRONG_SOURCE = "復原資料不屬於此來源檔案"
+    RECOVERY_BLOCKED_ARTIFACT_WRONG_PROJECT = "復原資料不屬於此專案"
+    RECOVERY_BLOCKED_STATE_UNRECOVERABLE = "復原狀態不足，無法安全繼續"
+    RECOVERY_BLOCKED_PROJECT_MISSING = "專案不存在"
+    RECOVERY_BLOCKED_SOURCE_IDENTITY_INVALID = "來源身份無法驗證"
 
     # Preview
     PREVIEW_TITLE = "內容預覽"

@@ -45,6 +45,17 @@ class MainWindow(QMainWindow):
         self.stack.addWidget(self.home_page)      # index 0
         self.stack.addWidget(self.project_page)   # index 1
 
+        # S9: 讀者專案庫 — 啟動時還原既有 Project（「我的小說」）
+        self._project_manager = None
+        try:
+            from core.reader_project.manager import ReaderProjectManager
+
+            self._project_manager = ReaderProjectManager()
+            self.project_page.set_project_manager(self._project_manager)
+            self.project_page.refresh_projects()
+        except Exception:
+            self._project_manager = None
+
         # 設定預設頁面
         self.stack.setCurrentIndex(0)
         self._update_nav_selection(0)
@@ -112,6 +123,9 @@ class MainWindow(QMainWindow):
         self.home_page.navigate_to_project.connect(lambda: self._navigate_to("project"))
         self.home_page.navigate_to_import_txt.connect(lambda: self._on_import_action("txt"))
         self.home_page.navigate_to_import_epub.connect(lambda: self._on_import_action("epub"))
+        # S9-04：真實 New / Open Project
+        self.home_page.new_project_requested.connect(self._on_home_new_project)
+        self.home_page.open_project_requested.connect(lambda: self._navigate_to("project"))
         self.project_page.navigate_home.connect(lambda: self._navigate_to("home"))
         # Import result signals
         self.home_page.txt_imported.connect(self._on_txt_imported)
@@ -145,6 +159,11 @@ class MainWindow(QMainWindow):
         from PySide6.QtWidgets import QMessageBox
         msg = f"{format_type.upper()} 匯入功能尚未實作，將在後續版本提供。"
         QMessageBox.information(self, "提示", msg)
+
+    def _on_home_new_project(self) -> None:
+        """S9-04：首頁「新增專案」→ 真實建立持久化 Project。"""
+        self._navigate_to("project")
+        self.project_page.new_project()
 
     def _on_txt_imported(self, book_info: dict) -> None:
         """處理 TXT 匯入結果，加入專案列表"""

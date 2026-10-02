@@ -3,11 +3,14 @@ from __future__ import annotations
 from pathlib import Path
 
 from PySide6.QtCore import Qt, Signal, QTimer
-from PySide6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QLabel, QPushButton, QTableWidget, QTableWidgetItem, QHeaderView, QAbstractItemView, QDialog, QVBoxLayout, QScrollArea, QTextEdit, QDialogButtonBox, QTabWidget, QFrame, QMessageBox
+from PySide6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QLabel, QPushButton, QTableWidget, QTableWidgetItem, QHeaderView, QAbstractItemView, QDialog, QVBoxLayout, QScrollArea, QTextEdit, QDialogButtonBox, QTabWidget, QFrame, QMessageBox, QFileDialog
 from PySide6.QtGui import QFont
 
 from ..resources.translations import Strings
 from ..translation_worker import TranslationRunner
+from ..widgets.project_card import ProjectCard
+from ..project_view_model import build_card_model
+from ..result_opener import ResultOpener, SystemResultOpener
 from lts.txt_translation_runtime import TxtTranslationOptions
 from core.epub_translation.runtime.adapter import EpubTranslationOptions
 from core.adapters.epub_extraction_boundary import EpubExtractionBoundary
@@ -19,6 +22,11 @@ from core.epub_translation.contract import (
     ResourceRef, TocEntry, ExtractionManifest
 )
 from types import MappingProxyType
+
+from core.reader_project.manager import ReaderProjectManager
+from core.reader_project.models import ReaderProject
+from core.reader_project.state import derive_state
+from core.reader_project import labels as ReaderLabels
 
 
 class PreviewDialog(QDialog):
@@ -167,6 +175,10 @@ class ProjectPage(QWidget):
     def __init__(self, parent: QWidget | None = None):
         super().__init__(parent)
         self._projects = []  # 專案資料列表
+        self._persisted_ids: list[str | None] = []  # 對應的持久化專案 ID（未持久化為 None）
+        self._cards: dict[str, ProjectCard] = {}  # 我的小說卡片，依 project_id 索引
+        self._project_manager: ReaderProjectManager | None = None
+        self._result_opener: ResultOpener = SystemResultOpener()
         self._translation_runner: TranslationRunner | None = None
         self._current_translation_row: int | None = None
         self._setup_ui()
@@ -201,7 +213,7 @@ class ProjectPage(QWidget):
         toolbar.addWidget(btn_back)
 
         # 頁面標題
-        title = QLabel(Strings.PROJECT_TITLE)
+        title = QLabel(Strings.PROJECT_LIBRARY_TITLE)
         title_font = QFont()
         title_font.setPointSize(20)
         title_font.setWeight(QFont.Weight.Bold)
@@ -262,13 +274,11 @@ class ProjectPage(QWidget):
         """)
         toolbar.addWidget(self.btn_translate)
 
-        # 新增專案按鈕 — 專案持久化尚未支援，明確呈現為不可用
+        # 新增專案按鈕 — S9-04：真實建立持久化 Project
         self.btn_new_project = QPushButton(Strings.PROJECT_ACTION_NEW)
         self.btn_new_project.setFixedHeight(36)
         self.btn_new_project.setCursor(Qt.CursorShape.PointingHandCursor)
         self.btn_new_project.clicked.connect(self._on_new_project)
-        self.btn_new_project.setEnabled(False)
-        self.btn_new_project.setToolTip(Strings.UNSUPPORTED_FEATURE_TOOLTIP)
         self.btn_new_project.setStyleSheet("""
             QPushButton {
                 background-color: #0d6efd;
@@ -294,7 +304,21 @@ class ProjectPage(QWidget):
 
         layout.addLayout(toolbar)
 
-        # 專案列表表格
+        # 我的小說卡片庫（S9-04）
+        self.card_container = QWidget()
+        self.card_layout = QVBoxLayout(self.card_container)
+        self.card_layout.setContentsMargins(0, 0, 0, 0)
+        self.card_layout.setSpacing(12)
+        self.card_layout.addStretch()
+
+        self.card_scroll = QScrollArea()
+        self.card_scroll.setWidgetResizable(True)
+        self.card_scroll.setFrameShape(QFrame.Shape.NoFrame)
+        self.card_scroll.setWidget(self.card_container)
+        layout.addWidget(self.card_scroll)
+
+        # 專案列表表格（S8 相容層：維持既有 translation workspace / 測試介面，
+        # 不作為可視呈現；實際呈現為上方卡片庫）
         self.table = QTableWidget()
         self.table.setColumnCount(4)
         self.table.setHorizontalHeaderLabels([
@@ -348,12 +372,13 @@ class ProjectPage(QWidget):
         """)
 
         layout.addWidget(self.table)
+        self.table.setVisible(False)
 
         # 連接選擇變更信號
         self.table.selectionModel().selectionChanged.connect(self._on_selection_changed)
 
         # 空狀態提示
-        self.empty_label = QLabel(Strings.PROJECT_LIST_EMPTY)
+        self.empty_label = QLabel(Strings.PROJECT_LIBRARY_EMPTY)
         self.empty_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.empty_label.setStyleSheet("color: #999999; font-size: 14px; padding: 48px;")
         self.empty_label.hide()
@@ -364,11 +389,36 @@ class ProjectPage(QWidget):
     def _update_empty_state(self) -> None:
         """更新空狀態顯示"""
         is_empty = len(self._projects) == 0
-        self.table.setVisible(not is_empty)
+        self.card_scroll.setVisible(not is_empty)
         self.empty_label.setVisible(is_empty)
+        self.table.setVisible(False)
 
-    def add_project(self, name: str, source: str, status: str = "待處理", progress: str = "0%", book_info: dict | None = None) -> None:
-        """新增專案到列表"""
+    def add_project(self, name: str, source: str, status: str = "待處理", progress: str = "0%", book_info: dict | None = None) -> str | None:
+        """新增專案到列表。
+
+        若已注入 ReaderProjectManager 且來源檔案實際存在，會建立持久化 Project
+        （S9-03/S9-04）。來源不存在時維持既有記憶體內行為。
+        """
+        project_id = self._maybe_persist_project(name, source)
+        if project_id and self._project_manager is not None:
+            # 以持久化資料為唯一來源重建卡片庫（S9-04 §4.1）
+            self.refresh_projects()
+            self._select_project(project_id)
+            return project_id
+        self._append_row(name, source, status, progress, book_info, project_id)
+        self._update_empty_state()
+        self._update_selection_buttons()
+        return project_id
+
+    def _append_row(
+        self,
+        name: str,
+        source: str,
+        status: str,
+        progress: str,
+        book_info: dict | None,
+        project_id: str | None,
+    ) -> None:
         row = self.table.rowCount()
         self.table.insertRow(row)
 
@@ -403,8 +453,443 @@ class ProjectPage(QWidget):
             project_data.update(book_info)
 
         self._projects.append(project_data)
+        self._persisted_ids.append(project_id)
 
         self._update_empty_state()
+
+    # -- Reader Project persistence (S9-03 / S9-04) -----------------------
+
+    def set_project_manager(self, manager: ReaderProjectManager | None) -> None:
+        """注入 ReaderProjectManager（測試可注入臨時 home）。"""
+        self._project_manager = manager
+
+    def set_result_opener(self, opener: ResultOpener | None) -> None:
+        """注入 ResultOpener（測試使用 fake，避免啟動真實 OS 應用）。"""
+        self._result_opener = opener or SystemResultOpener()
+
+    def refresh_projects(self) -> None:
+        """從持久化儲存區重新載入「我的小說」卡片庫。
+
+        不新增、不刪除任何 Project；只呈現既有資料。載入失敗不影響 UI。
+        """
+        if self._project_manager is None:
+            return
+        try:
+            projects = self._project_manager.list_projects()
+        except Exception:
+            return
+
+        self._clear_library()
+        for project in projects:
+            self._add_persisted_project(project)
+        self._update_empty_state()
+        self._update_selection_buttons()
+
+    def _clear_library(self) -> None:
+        self.table.setRowCount(0)
+        self._projects = []
+        self._persisted_ids = []
+        for card in self._cards.values():
+            self.card_layout.removeWidget(card)
+            card.setParent(None)
+            card.deleteLater()
+        self._cards = {}
+
+    def _add_persisted_project(self, project: ReaderProject) -> None:
+        try:
+            model = build_card_model(project)
+        except Exception:
+            return
+        self._append_row(
+            name=model.title,
+            source=project.source.path,
+            status=model.status_label,
+            progress=model.progress_label,
+            book_info={
+                "title": model.title,
+                "source": project.source.path,
+                "format": project.source.format,
+            },
+            project_id=project.project_id,
+        )
+        card = ProjectCard(model)
+        card.selected.connect(self._on_card_selected)
+        card.action_requested.connect(self._on_card_action)
+        card.delete_requested.connect(self._on_delete_project)
+        card.open_result_requested.connect(self._on_open_result)
+        card.reveal_folder_requested.connect(self._on_reveal_folder)
+        card.resume_requested.connect(self._on_resume)
+        self.card_layout.insertWidget(self.card_layout.count() - 1, card)
+        self._cards[project.project_id] = card
+
+    # -- Project card actions (S9-04) -------------------------------------
+
+    def _row_for_project_id(self, project_id: str) -> int:
+        for index, pid in enumerate(self._persisted_ids):
+            if pid == project_id:
+                return index
+        return -1
+
+    def _select_project(self, project_id: str) -> None:
+        row = self._row_for_project_id(project_id)
+        if row >= 0:
+            self.table.selectRow(row)
+            self._highlight_card(row)
+
+    def _highlight_card(self, row: int) -> None:
+        current = self._persisted_id_for_row(row)
+        for project_id, card in self._cards.items():
+            card.set_selected(project_id == current)
+
+    def _on_card_selected(self, project_id: str) -> None:
+        self._select_project(project_id)
+
+    def _on_card_action(self, project_id: str) -> None:
+        row = self._row_for_project_id(project_id)
+        if row < 0:
+            return
+        self.table.selectRow(row)
+        self._highlight_card(row)
+        self._on_translate()
+
+    def _on_delete_project(self, project_id: str) -> None:
+        manager = self._project_manager
+        if manager is None:
+            return
+        row = self._row_for_project_id(project_id)
+        if row >= 0 and self._current_translation_row == row:
+            QMessageBox.information(
+                self, Strings.PROJECT_DELETE_CONFIRM_TITLE, Strings.TRANSLATION_ALREADY_RUNNING
+            )
+            return
+        title = self._projects[row]["name"] if 0 <= row < len(self._projects) else project_id
+        reply = QMessageBox.question(
+            self,
+            Strings.PROJECT_DELETE_CONFIRM_TITLE,
+            Strings.PROJECT_DELETE_CONFIRM_MSG.format(title=title),
+            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
+            QMessageBox.StandardButton.No,
+        )
+        if reply != QMessageBox.StandardButton.Yes:
+            return
+        try:
+            manager.delete(project_id, confirm=True)
+        except Exception as exc:
+            QMessageBox.warning(self, Strings.PROJECT_DELETE_CONFIRM_TITLE, str(exc))
+            return
+        self.refresh_projects()
+
+    # -- Completion / Output UX (S9-05) -----------------------------------
+
+    def _artifact_path_for(self, project_id: str) -> str | None:
+        manager = self._project_manager
+        if manager is None:
+            return None
+        try:
+            project = manager.load(project_id)
+        except Exception:
+            return None
+        artifact = project.output.artifact_path
+        if not artifact:
+            return None
+        return str(artifact)
+
+    def _on_open_result(self, project_id: str) -> None:
+        """Open the Project-owned output artifact. Never mutates Project state."""
+        artifact = self._artifact_path_for(project_id)
+        if not artifact or not Path(artifact).is_file():
+            QMessageBox.information(
+                self,
+                Strings.RESULT_UNAVAILABLE_TITLE,
+                Strings.RESULT_UNAVAILABLE_MSG,
+            )
+            return
+        ok = False
+        try:
+            ok = bool(self._result_opener.open_path(artifact))
+        except Exception:
+            ok = False
+        if not ok:
+            QMessageBox.warning(
+                self,
+                Strings.RESULT_OPEN_FAILED_TITLE,
+                Strings.RESULT_OPEN_FAILED_MSG,
+            )
+
+    def _on_reveal_folder(self, project_id: str) -> None:
+        """Reveal the Project-owned output folder. Never mutates Project state."""
+        artifact = self._artifact_path_for(project_id)
+        target = artifact
+        if not target or not Path(target).exists():
+            manager = self._project_manager
+            try:
+                target = manager.load(project_id).output.output_dir if manager else None
+            except Exception:
+                target = None
+        if not target or not Path(target).exists():
+            QMessageBox.information(
+                self,
+                Strings.RESULT_UNAVAILABLE_TITLE,
+                Strings.RESULT_UNAVAILABLE_MSG,
+            )
+            return
+        ok = False
+        try:
+            ok = bool(self._result_opener.reveal_folder(target))
+        except Exception:
+            ok = False
+        if not ok:
+            QMessageBox.warning(
+                self,
+                Strings.RESULT_OPEN_FAILED_TITLE,
+                Strings.RESULT_OPEN_FAILED_MSG,
+            )
+
+    # -- Recovery Action (S9-06) -----------------------------------------------
+
+    def _on_resume(self, project_id: str) -> None:
+        """恢復翻譯 - 真正的 Recovery action，呼叫既有 runtime resume"""
+        row = self._row_for_project_id(project_id)
+        if row < 0:
+            return
+
+        project = self._projects[row]
+        source = project.get("source", "")
+        if not source:
+            QMessageBox.warning(self, "提示", Strings.TRANSLATION_NO_VALID_SOURCE)
+            return
+
+        # 檢查是否已經在翻譯
+        if self._current_translation_row == row:
+            QMessageBox.information(self, "提示", Strings.TRANSLATION_ALREADY_RUNNING)
+            return
+
+        # 檢查 Recovery eligibility
+        if self._project_manager is not None:
+            blocked_by, reason = self._project_manager.get_recovery_blocked_reason(project_id)
+            if blocked_by:
+                QMessageBox.warning(
+                    self,
+                    Strings.RECOVERY_BLOCKED_TITLE,
+                    f"{Strings.RECOVERY_BLOCKED_REASON}: {reason}",
+                )
+                return
+        else:
+            # 沒有 manager 不應有 resume action
+            QMessageBox.warning(self, "提示", Strings.RECOVERY_BLOCKED_REASON + "專案管理器未就緒")
+            return
+
+        # S9-06: 真正的 Recovery action - 呼叫既有 runtime resume (resume=True)
+        source_path = Path(source) if (source := project.get("source", "")) else None
+        if not source_path:
+            QMessageBox.warning(self, "提示", Strings.TRANSLATION_NO_VALID_SOURCE)
+            return
+
+        is_epub = bool(project.get("chapter_map")) or project.get("format") == "epub"
+
+        if is_epub:
+            options = self._build_epub_options(project, source_path)
+        else:
+            output_dir = self._txt_output_dir(row, source_path)
+            output_dir.mkdir(parents=True, exist_ok=True)
+            options = TxtTranslationOptions(
+                input_path=source_path,
+                output_dir=output_dir,
+                chunk_size=1000,
+                model="meta/llama-3.2-90b-vision-instruct",
+                project_name=project.get("name", "NTPE Novel Translation"),
+                source_language="ko",
+                target_language="zh-TW",
+                resume=True,  # 明確啟用 resume
+                dry_run=False,
+                max_retries=3,
+                retry_base_seconds=5.0,
+                glossary_path=None,
+                character_memory_path=None,
+                strict_lock_terms=True,
+                qa_enabled=True,
+                qa_fail_policy="retry",
+                min_length_ratio=0.18,
+                max_korean_chars=2,
+                max_repeated_lines=2,
+                output_formatter_enabled=True,
+                taiwan_traditional_normalization=True,
+                quality_profile="literary",
+                previous_context_chars=700,
+                simplified_chinese_policy="normalize",
+                progress_enabled=True,
+                speed="balanced",
+                quality_v5_enabled=True,
+                quality_v5_report_enabled=True,
+                quality_integration_v72=False,
+                quality_character_memory_v72=False,
+                quality_context_scene_v72=False,
+                quality_naturalness_v72=False,
+                quality_integration_kill_switch_v72=False,
+                quality_delivery_v83=False,
+                quality_delivery_formats_v83=("txt",),
+            )
+
+        # 更新 UI 狀態
+        self._current_translation_row = row
+        self._update_project_status(row, Strings.TRANSLATION_STATUS_PREPARING, "0%")
+        self.btn_translate.setEnabled(False)
+        self.btn_preview.setEnabled(False)
+
+        # 啟動翻譯 worker
+        root_path = Path(__file__).resolve().parents[3]
+        self._translation_runner = TranslationRunner(options, root_path)
+        self._translation_runner.start(
+            on_progress=self._on_translation_progress,
+            on_finished=self._on_translation_finished,
+            on_error=self._on_translation_error,
+        )
+
+    def new_project(self) -> str | None:
+        """真實 New Project lifecycle：選檔 → canonical Project → persist → reload。"""
+        if self._project_manager is None:
+            QMessageBox.warning(
+                self,
+                Strings.PROJECT_NEW_FAILED_TITLE,
+                Strings.PROJECT_NEW_FAILED_MSG.format(error="no project manager"),
+            )
+            return None
+        file_path, _ = QFileDialog.getOpenFileName(
+            self,
+            Strings.PROJECT_NEW_DIALOG_TITLE,
+            "",
+            Strings.PROJECT_FILE_FILTER,
+        )
+        if not file_path:
+            return None
+        source_path = Path(file_path)
+        try:
+            fmt = source_path.suffix.lower().lstrip(".")
+            if fmt not in ("txt", "epub"):
+                raise ValueError(f"unsupported source format: {source_path.suffix}")
+            project = self._project_manager.create(
+                source_path, title=source_path.stem, format=fmt
+            )
+        except Exception as exc:
+            QMessageBox.warning(
+                self,
+                Strings.PROJECT_NEW_FAILED_TITLE,
+                Strings.PROJECT_NEW_FAILED_MSG.format(error=str(exc)),
+            )
+            return None
+        self.refresh_projects()
+        self._select_project(project.project_id)
+        return project.project_id
+
+    def _maybe_persist_project(self, name: str, source: str) -> str | None:
+        manager = self._project_manager
+        if manager is None or not source:
+            return None
+        try:
+            source_path = Path(source)
+        except (TypeError, ValueError):
+            return None
+        if not source_path.is_file():
+            return None
+        if self._source_already_bound(str(source_path.resolve())):
+            return None
+        try:
+            project = manager.create(source_path, title=name or source_path.stem)
+            return project.project_id
+        except Exception:
+            return None
+
+    def _source_already_bound(self, resolved_source: str) -> bool:
+        for project_data in self._projects:
+            existing = project_data.get("source", "")
+            if not existing:
+                continue
+            try:
+                if str(Path(existing).resolve()) == resolved_source:
+                    return True
+            except (TypeError, ValueError):
+                continue
+        return False
+
+    def _persisted_id_for_row(self, row: int) -> str | None:
+        if 0 <= row < len(self._persisted_ids):
+            return self._persisted_ids[row]
+        return None
+
+    def _txt_output_dir(self, row: int, source_path: Path) -> Path:
+        """決定 TXT 輸出資料夾。
+
+        持久化專案使用專案專屬、非 CWD 相對的絕對路徑（S9 §19）；
+        未持久化列維持既有相對路徑。
+        """
+        project_id = self._persisted_id_for_row(row)
+        manager = self._project_manager
+        if project_id and manager is not None:
+            try:
+                project = manager.load(project_id)
+                if project.output.output_dir:
+                    return Path(project.output.output_dir)
+            except Exception:
+                pass
+            return manager.store.home / "output" / project_id
+        return Path("output") / source_path.stem
+
+    def _resume_state_path_for(self, project: ReaderProject, result: dict) -> str | None:
+        explicit = result.get("resume_state")
+        if explicit:
+            return str(explicit)
+        output_dir = result.get("output_dir") or project.output.output_dir
+        if not output_dir:
+            return None
+        stem = Path(project.source.path).stem
+        if project.source.format == "epub":
+            return str(Path(output_dir) / f"{stem}_epub_resume_state.json")
+        return str(Path(output_dir) / f"{stem}_resume_state.json")
+
+    def _persist_translation_result(self, row: int, result: dict) -> None:
+        """將 runtime 回傳的實際 artifact/resume 參照寫回持久化 Project。
+
+        只作為 runtime 結果的參照保存，不由 UI 猜測輸出路徑（S9 §14）。
+        """
+        project_id = self._persisted_id_for_row(row)
+        manager = self._project_manager
+        if not project_id or manager is None:
+            return
+        try:
+            project = manager.load(project_id)
+            project.execution.resume_state_path = self._resume_state_path_for(project, result)
+            output = result.get("output") or ""
+            if output:
+                project.output.artifact_path = str(output)
+                project.output.output_dir = str(result.get("output_dir") or "")
+                project.output.artifact_kind = project.source.format
+                project.output.available = Path(output).is_file()
+            project.state = derive_state(project)
+            manager.update(
+                project,
+                execution=project.execution,
+                output=project.output,
+                state=project.state,
+            )
+            # 以持久化資料重建卡片庫（S9-04 §4.1）
+            self.refresh_projects()
+            self._select_project(project_id)
+        except Exception:
+            pass
+
+    def _set_row_reader_status(self, row: int, state) -> None:
+        if not (0 <= row < len(self._projects)):
+            return
+        status_text = ReaderLabels.reader_status_label(state.reader_status)
+        progress_text = ReaderLabels.progress_text(state.completed_units, state.total_units)
+        self._projects[row]["status"] = status_text
+        self._projects[row]["progress"] = progress_text
+        status_item = self.table.item(row, 2)
+        progress_item = self.table.item(row, 3)
+        if status_item:
+            status_item.setText(status_text)
+        if progress_item:
+            progress_item.setText(progress_text)
 
 
     def _on_selection_changed(self) -> None:
@@ -429,10 +914,12 @@ class ProjectPage(QWidget):
                     self.btn_translate.setToolTip(Strings.TRANSLATION_ALREADY_RUNNING)
                 else:
                     self.btn_translate.setToolTip("")
+                self._highlight_card(row)
                 return
         self.btn_preview.setEnabled(False)
         self.btn_translate.setEnabled(False)
         self.btn_translate.setToolTip("")
+        self._highlight_card(-1)
 
     def _on_preview(self) -> None:
         """開啟預覽對話框"""
@@ -446,11 +933,11 @@ class ProjectPage(QWidget):
         self.navigate_home.emit()
 
     def _on_new_project(self) -> None:
-        # 專案持久化尚未支援；按鈕已停用，不呈現任何假成功流程。
-        return
+        # S9-04：真實 New Project lifecycle（選檔 → 建立持久化 Project）
+        self.new_project()
 
     def _on_translate(self) -> None:
-        """啟動翻譯"""
+        """啟動翻譯 (Normal Translation - 不受 Recovery eligibility 限制)"""
         row = self.table.currentRow()
         if not (0 <= row < len(self._projects)):
             return
@@ -468,10 +955,19 @@ class ProjectPage(QWidget):
             QMessageBox.information(self, "提示", Strings.TRANSLATION_ALREADY_RUNNING)
             return
 
+        # S9-06: Normal translation 不受 Recovery eligibility 限制
+        # 新專案 (無 runtime artifact) 仍可正常開始翻譯
+        # Recovery eligibility 只控制 Recovery action，不影響 Normal Translation
+
+        # 檢查是否已經在翻譯
+        if self._current_translation_row == row:
+            QMessageBox.information(self, "提示", Strings.TRANSLATION_ALREADY_RUNNING)
+            return
+
         # 建立翻譯選項
         source_path = Path(source)
 
-        is_epub = bool(project.get("chapter_map"))
+        is_epub = bool(project.get("chapter_map")) or project.get("format") == "epub"
 
         if is_epub:
             # EPUB 的最終輸出路徑由 canonical EPUB runtime / packager 決定
@@ -480,7 +976,7 @@ class ProjectPage(QWidget):
             options = self._build_epub_options(project, source_path)
         else:
             # TXT 使用 UI 決定的專案輸出資料夾。
-            output_dir = Path("output") / source_path.stem
+            output_dir = self._txt_output_dir(row, source_path)
             output_dir.mkdir(parents=True, exist_ok=True)
             options = TxtTranslationOptions(
                 input_path=source_path,
@@ -785,6 +1281,8 @@ class ProjectPage(QWidget):
                 f"{Strings.TRANSLATION_ERROR_PREFIX}{error}",
             )
 
+        self._persist_translation_result(row, result)
+
         # 重置狀態
         self._current_translation_row = None
         self._translation_runner = None
@@ -807,9 +1305,33 @@ class ProjectPage(QWidget):
             f"{Strings.TRANSLATION_ERROR_PREFIX}{error}",
         )
 
+        self._mark_persisted_failed(row)
+
         self._current_translation_row = None
         self._translation_runner = None
         self._update_selection_buttons()
+
+    def _mark_persisted_failed(self, row: int) -> None:
+        project_id = self._persisted_id_for_row(row)
+        manager = self._project_manager
+        if not project_id or manager is None:
+            return
+        try:
+            from core.reader_project.models import ReaderStatus, StateRecord
+
+            project = manager.load(project_id)
+            project.state = StateRecord(
+                reader_status=ReaderStatus.FAILED.value,
+                completed_units=project.state.completed_units,
+                total_units=project.state.total_units,
+                current_unit=project.state.current_unit,
+                last_error="翻譯失敗",
+            )
+            manager.update(project, state=project.state)
+            self.refresh_projects()
+            self._select_project(project_id)
+        except Exception:
+            pass
 
     def _update_project_status(self, row: int, status: str, progress: str) -> None:
         """更新專案列表中的狀態和進度"""
