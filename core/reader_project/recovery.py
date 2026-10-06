@@ -337,6 +337,55 @@ def validate_runtime_state_recoverable(project: ReaderProject) -> tuple[bool, st
     return True, "", {"has_resumable": True}
 
 
+def validate_glossary_binding(project: ReaderProject) -> tuple[bool, str, dict]:
+    """Validate the active project glossary matches the runtime artifact (S12-02).
+
+    Feature-off (no glossary attached and no glossary recorded in the artifact)
+    leaves existing recovery behaviour unchanged. When a glossary is attached, the
+    project-owned snapshot must be intact and its identity must match the runtime
+    artifact; otherwise recovery is blocked so a run can never silently resume with
+    different terminology.
+    """
+    from .glossary import GlossaryError, is_active, verify_snapshot_file
+
+    exec_rec = project.execution
+    artifact_hash: str | None = None
+    if exec_rec.resume_state_path:
+        path = Path(exec_rec.resume_state_path)
+        if path.exists():
+            resume_data, error = read_resume_state(path)
+            if error is None and resume_data is not None:
+                artifact_hash = resume_data.get("glossary_hash")
+
+    record = project.glossary
+    if not is_active(project) or record is None:
+        if artifact_hash:
+            return False, "glossary configuration removed since the translation run", {
+                "glossary_removed": True,
+            }
+        return True, "", {}
+
+    try:
+        verify_snapshot_file(record)
+    except GlossaryError as exc:
+        return False, f"active glossary integrity failed: {exc}", {
+            "glossary_integrity": True,
+            "error": str(exc),
+        }
+
+    if not artifact_hash:
+        return False, "runtime artifact lacks glossary identity evidence", {
+            "missing_glossary_hash": True,
+        }
+    if artifact_hash != record.content_hash:
+        return False, "glossary changed since the translation run", {
+            "glossary_mismatch": True,
+            "artifact_hash": artifact_hash,
+            "project_hash": record.content_hash,
+        }
+    return True, "", {"glossary_bound": True, "glossary_hash": record.content_hash}
+
+
 def check_recovery_eligibility(project: ReaderProject) -> RecoveryEligibility:
     """Full recovery eligibility check per canonical contract.
 
@@ -410,7 +459,18 @@ def check_recovery_eligibility(project: ReaderProject) -> RecoveryEligibility:
             details={"check": "source_binding", "error": reason, **details},
         )
 
-    # 7. Runtime state recoverable
+    # 7. Active glossary identity matches the runtime artifact (S12-02)
+    valid, reason, details = validate_glossary_binding(project)
+    if not valid:
+        return RecoveryEligibility(
+            eligible=False,
+            project_id=pid,
+            reason=f"Glossary binding invalid: {reason}",
+            blocked_by="glossary",
+            details={"check": "glossary_binding", "error": reason, **details},
+        )
+
+    # 8. Runtime state recoverable
     valid, reason, details = validate_runtime_state_recoverable(project)
     if not valid:
         return RecoveryEligibility(

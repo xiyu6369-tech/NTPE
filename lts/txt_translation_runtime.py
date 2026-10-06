@@ -121,6 +121,7 @@ class TxtTranslationOptions:
     max_retries: int = DEFAULT_MAX_RETRIES
     retry_base_seconds: float = DEFAULT_RETRY_BASE_SECONDS
     glossary_path: Path | None = None
+    glossary_hash: str | None = None
     character_memory_path: Path | None = None
     strict_lock_terms: bool = True
     qa_enabled: bool = True
@@ -1965,6 +1966,7 @@ def translate_txt(options: TxtTranslationOptions, root: str | Path | None = None
     _resume_state["input"] = str(input_path)
     _resume_state["output_dir"] = str(output_dir)
     _resume_state["chunk_total"] = len(chunks)
+    _resume_state["glossary_hash"] = getattr(options, "glossary_hash", None)
     _resume_state["updated_at"] = now_iso()
     save_resume_state(_resume_path, _resume_state)
     return _translate_txt_with_runtime_pipeline(

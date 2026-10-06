@@ -107,6 +107,42 @@ class ProjectStore:
         directory.rmdir()
         return True
 
+    def glossary_dir(self, project_id: str) -> Path:
+        return self.project_dir(project_id) / "glossary"
+
+    def glossary_snapshot_path(self, project_id: str, content_hash: str) -> Path:
+        """Path for a project-owned glossary snapshot.
+
+        ``content_hash`` is restricted to hex so a record can never escape the
+        project directory.
+        """
+        safe = str(content_hash).strip().lower()
+        if not safe or any(ch not in "0123456789abcdef" for ch in safe):
+            raise ValueError(f"invalid glossary content_hash: {content_hash!r}")
+        return self.glossary_dir(project_id) / f"{safe}.json"
+
+    def write_glossary_snapshot(
+        self, project_id: str, content_hash: str, payload: dict[str, Any]
+    ) -> Path:
+        """Atomically write the project-owned glossary snapshot (reuses _atomic_write_json)."""
+        path = self.glossary_snapshot_path(project_id, content_hash)
+        _atomic_write_json(path, payload)
+        return path
+
+    def delete_glossary_snapshots(self, project_id: str, keep: Path | None = None) -> None:
+        """Remove glossary snapshots except ``keep`` (best-effort, project-scoped only)."""
+        directory = self.glossary_dir(project_id)
+        if not directory.is_dir():
+            return
+        keep_resolved = keep.resolve() if keep is not None else None
+        for child in sorted(directory.glob("*.json")):
+            try:
+                if keep_resolved is not None and child.resolve() == keep_resolved:
+                    continue
+                child.unlink()
+            except OSError:
+                pass
+
     def list_project_files(self) -> list[Path]:
         if not self.projects_root.is_dir():
             return []

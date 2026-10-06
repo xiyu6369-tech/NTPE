@@ -243,6 +243,60 @@ class OutputRecord:
 
 
 @dataclass
+class GlossaryRecord:
+    """Project-scoped Glossary attachment (S12-02, schema v1 additive extension).
+
+    ``stored_path`` points at the project-owned atomic snapshot; ``entries`` /
+    ``aliases`` carry the normalized content so the record is self-describing.
+    """
+
+    mode: str = "none"  # "none" | "project_file"
+    glossary_id: str = ""
+    content_hash: str = ""
+    format: str = ""
+    original_path: str = ""
+    stored_path: str = ""
+    term_count: int = 0
+    entries: dict[str, str] = field(default_factory=dict)
+    aliases: dict[str, str] = field(default_factory=dict)
+    imported_at: str = ""
+    source_hash_at_import: str | None = None
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "mode": self.mode,
+            "glossary_id": self.glossary_id,
+            "content_hash": self.content_hash,
+            "format": self.format,
+            "original_path": self.original_path,
+            "stored_path": self.stored_path,
+            "term_count": self.term_count,
+            "entries": dict(self.entries),
+            "aliases": dict(self.aliases),
+            "imported_at": self.imported_at,
+            "source_hash_at_import": self.source_hash_at_import,
+        }
+
+    @classmethod
+    def from_dict(cls, data: dict[str, Any]) -> "GlossaryRecord":
+        entries = data.get("entries")
+        aliases = data.get("aliases")
+        return cls(
+            mode=_clean_str(data.get("mode"), "none"),
+            glossary_id=_clean_str(data.get("glossary_id")),
+            content_hash=_clean_str(data.get("content_hash")),
+            format=_clean_str(data.get("format")),
+            original_path=_clean_str(data.get("original_path")),
+            stored_path=_clean_str(data.get("stored_path")),
+            term_count=_clean_int(data.get("term_count")),
+            entries=dict(entries) if isinstance(entries, dict) else {},
+            aliases=dict(aliases) if isinstance(aliases, dict) else {},
+            imported_at=_clean_str(data.get("imported_at")),
+            source_hash_at_import=_clean_opt_str(data.get("source_hash_at_import")),
+        )
+
+
+@dataclass
 class ReaderProject:
     """The persistent reader-facing project unit."""
 
@@ -253,6 +307,7 @@ class ReaderProject:
     state: StateRecord = field(default_factory=StateRecord)
     execution: ExecutionRecord = field(default_factory=ExecutionRecord)
     output: OutputRecord = field(default_factory=OutputRecord)
+    glossary: GlossaryRecord | None = None
     project_schema_version: int = SCHEMA_VERSION
     created_at: str = ""
     updated_at: str = ""
@@ -271,10 +326,12 @@ class ReaderProject:
             "state": self.state.to_dict(),
             "execution": self.execution.to_dict(),
             "output": self.output.to_dict(),
+            "glossary": self.glossary.to_dict() if self.glossary is not None else None,
         }
 
     @classmethod
     def from_dict(cls, data: dict[str, Any]) -> "ReaderProject":
+        glossary = data.get("glossary")
         return cls(
             project_id=_clean_str(data.get("project_id")),
             source=SourceRecord.from_dict(data.get("source") or {}),
@@ -283,6 +340,7 @@ class ReaderProject:
             state=StateRecord.from_dict(data.get("state") or {}),
             execution=ExecutionRecord.from_dict(data.get("execution") or {}),
             output=OutputRecord.from_dict(data.get("output") or {}),
+            glossary=GlossaryRecord.from_dict(glossary) if isinstance(glossary, dict) else None,
             project_schema_version=_clean_int(
                 data.get("project_schema_version"), SCHEMA_VERSION
             ),

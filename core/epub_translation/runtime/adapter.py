@@ -79,6 +79,7 @@ class EpubTranslationOptions:
     max_retries: int = DEFAULT_MAX_RETRIES
     retry_base_seconds: float = DEFAULT_RETRY_BASE_SECONDS
     glossary_path: Path | None = None
+    glossary_hash: str | None = None
     character_memory_path: Path | None = None
     strict_lock_terms: bool = True
     qa_enabled: bool = True
@@ -316,6 +317,7 @@ def translate_epub_translation_input(
     resume_state["input"] = str(translation_input.source_epub_path)
     resume_state["output_dir"] = str(output_dir)
     resume_state["chunk_total"] = len(chunks)
+    resume_state["glossary_hash"] = getattr(options, "glossary_hash", None)
     resume_state["updated_at"] = _now_iso()
 
     total_chunks = len(chunks)

@@ -183,6 +183,55 @@ class ReaderProjectManager:
         self.store.write(updated.project_id, updated.to_dict())
         return updated
 
+    # -- glossary (S12-02) -------------------------------------------------
+
+    def attach_glossary(self, project: ReaderProject, source_path: str | Path) -> ReaderProject:
+        """Validate/import a glossary, store a project-owned snapshot, attach it.
+
+        The snapshot is written first (content-hash named, atomic); the project
+        record is updated only afterwards, so a failure never leaves the project
+        pointing at a partially written snapshot. Old snapshots are collected only
+        after the new project state is persisted.
+        """
+        from .glossary import build_record_for_file, persist_snapshot
+
+        record = build_record_for_file(source_path)
+        record = persist_snapshot(self.store, project.project_id, record)
+
+        updated = replace(project, glossary=record)
+        now = _now_iso()
+        updated.updated_at = now
+        updated.last_activity_at = now
+        self.store.write(updated.project_id, updated.to_dict())
+
+        self.store.delete_glossary_snapshots(project.project_id, keep=Path(record.stored_path))
+        return updated
+
+    def replace_glossary(self, project: ReaderProject, source_path: str | Path) -> ReaderProject:
+        """Replace the attached glossary atomically (same path as attach)."""
+        return self.attach_glossary(project, source_path)
+
+    def detach_glossary(self, project: ReaderProject) -> ReaderProject:
+        """Clear the glossary attachment; unrelated project state is untouched."""
+        if project.glossary is not None:
+            self.store.delete_glossary_snapshots(project.project_id, keep=None)
+        updated = replace(project, glossary=None)
+        now = _now_iso()
+        updated.updated_at = now
+        updated.last_activity_at = now
+        self.store.write(updated.project_id, updated.to_dict())
+        return updated
+
+    def glossary_option_path(self, project: ReaderProject) -> Path | None:
+        from .glossary import glossary_option_path
+
+        return glossary_option_path(project)
+
+    def resolve_glossary(self, project: ReaderProject) -> dict[str, str]:
+        from .glossary import resolve_active_glossary
+
+        return resolve_active_glossary(project)
+
     # -- list / delete -----------------------------------------------------
 
     def list_projects(self) -> list[ReaderProject]:
