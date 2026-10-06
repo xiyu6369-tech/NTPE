@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import logging
 from pathlib import Path
 
 from PySide6.QtCore import Qt, Signal, QTimer
@@ -27,6 +28,10 @@ from core.reader_project.manager import ReaderProjectManager
 from core.reader_project.models import ReaderProject
 from core.reader_project.state import derive_state
 from core.reader_project import labels as ReaderLabels
+from core.reader_project import glossary as GlossaryAPI
+from core.reader_project.glossary import GlossaryError
+
+logger = logging.getLogger(__name__)
 
 
 class PreviewDialog(QDialog):
@@ -304,6 +309,47 @@ class ProjectPage(QWidget):
 
         layout.addLayout(toolbar)
 
+        # 詞彙表 section（S12-03）：reader-facing Glossary workflow。
+        # 狀態一律由 ReaderProject.glossary 經 backend API 推導，UI 不保存權威狀態。
+        self.glossary_frame = QFrame()
+        self.glossary_frame.setObjectName("glossaryFrame")
+        self.glossary_frame.setStyleSheet("""
+            QFrame#glossaryFrame {
+                background-color: #f8f9fa;
+                border: 1px solid #dee2e6;
+                border-radius: 8px;
+            }
+        """)
+        glossary_layout = QHBoxLayout(self.glossary_frame)
+        glossary_layout.setContentsMargins(16, 10, 16, 10)
+        glossary_layout.setSpacing(12)
+
+        self.lbl_glossary_title = QLabel(Strings.GLOSSARY_TITLE)
+        title_font = QFont()
+        title_font.setWeight(QFont.Weight.Bold)
+        self.lbl_glossary_title.setFont(title_font)
+        glossary_layout.addWidget(self.lbl_glossary_title)
+
+        self.lbl_glossary_status = QLabel(Strings.GLOSSARY_STATUS_NONE)
+        self.lbl_glossary_status.setStyleSheet("color: #495057; font-size: 13px;")
+        glossary_layout.addWidget(self.lbl_glossary_status)
+
+        glossary_layout.addStretch()
+
+        self.btn_glossary_import = QPushButton(Strings.GLOSSARY_ACTION_IMPORT)
+        self.btn_glossary_replace = QPushButton(Strings.GLOSSARY_ACTION_REPLACE)
+        self.btn_glossary_detach = QPushButton(Strings.GLOSSARY_ACTION_DETACH)
+        for button in (self.btn_glossary_import, self.btn_glossary_replace, self.btn_glossary_detach):
+            button.setFixedHeight(32)
+            button.setCursor(Qt.CursorShape.PointingHandCursor)
+            button.setEnabled(False)
+            glossary_layout.addWidget(button)
+        self.btn_glossary_import.clicked.connect(self._on_glossary_import)
+        self.btn_glossary_replace.clicked.connect(self._on_glossary_import)
+        self.btn_glossary_detach.clicked.connect(self._on_glossary_detach)
+
+        layout.addWidget(self.glossary_frame)
+
         # 我的小說卡片庫（S9-04）
         self.card_container = QWidget()
         self.card_layout = QVBoxLayout(self.card_container)
@@ -484,6 +530,7 @@ class ProjectPage(QWidget):
             self._add_persisted_project(project)
         self._update_empty_state()
         self._update_selection_buttons()
+        self._refresh_glossary_panel(None)
 
     def _clear_library(self) -> None:
         self.table.setRowCount(0)
@@ -535,6 +582,7 @@ class ProjectPage(QWidget):
         if row >= 0:
             self.table.selectRow(row)
             self._highlight_card(row)
+            self._refresh_glossary_panel(row)
 
     def _highlight_card(self, row: int) -> None:
         current = self._persisted_id_for_row(row)
@@ -704,7 +752,6 @@ class ProjectPage(QWidget):
                 dry_run=False,
                 max_retries=3,
                 retry_base_seconds=5.0,
-                glossary_path=None,
                 character_memory_path=None,
                 strict_lock_terms=True,
                 qa_enabled=True,
@@ -729,6 +776,13 @@ class ProjectPage(QWidget):
                 quality_delivery_v83=False,
                 quality_delivery_formats_v83=("txt",),
             )
+
+        try:
+            options = self._bind_project_glossary(row, options)
+        except GlossaryError as exc:
+            logger.warning("cannot launch recovery with active glossary: %s", exc)
+            QMessageBox.warning(self, Strings.GLOSSARY_INVALID_TITLE, Strings.GLOSSARY_INVALID_MSG)
+            return
 
         # 更新 UI 狀態
         self._current_translation_row = row
@@ -834,6 +888,134 @@ class ProjectPage(QWidget):
             return manager.store.home / "output" / project_id
         return Path("output") / source_path.stem
 
+    # -- Glossary (S12-03) -------------------------------------------------
+
+    def _load_current_project(self, row: int | None) -> ReaderProject | None:
+        if row is None or row < 0:
+            return None
+        project_id = self._persisted_id_for_row(row)
+        manager = self._project_manager
+        if not project_id or manager is None:
+            return None
+        try:
+            return manager.load(project_id)
+        except Exception:
+            return None
+
+    def _refresh_glossary_panel(self, row: int | None) -> None:
+        """Render glossary status/buttons from the authoritative Project state."""
+        project = self._load_current_project(row)
+        if project is None:
+            self.lbl_glossary_status.setText(Strings.GLOSSARY_STATUS_NONE)
+            self.btn_glossary_import.setEnabled(False)
+            self.btn_glossary_replace.setEnabled(False)
+            self.btn_glossary_detach.setEnabled(False)
+            return
+
+        record = project.glossary
+        if record is None or record.mode != GlossaryAPI.MODE_PROJECT_FILE:
+            self.lbl_glossary_status.setText(Strings.GLOSSARY_STATUS_NONE)
+            self.btn_glossary_import.setEnabled(True)
+            self.btn_glossary_replace.setEnabled(False)
+            self.btn_glossary_detach.setEnabled(False)
+            return
+
+        try:
+            GlossaryAPI.resolve_active_glossary(project)
+            name = Path(record.original_path).name or record.glossary_id
+            self.lbl_glossary_status.setText(
+                Strings.GLOSSARY_STATUS_ACTIVE.format(name=name, count=record.term_count)
+            )
+        except GlossaryError as exc:
+            logger.warning("active glossary is unusable: %s", exc)
+            self.lbl_glossary_status.setText(Strings.GLOSSARY_STATUS_INVALID)
+
+        self.btn_glossary_import.setEnabled(True)
+        self.btn_glossary_replace.setEnabled(True)
+        self.btn_glossary_detach.setEnabled(True)
+
+    def _on_glossary_import(self) -> None:
+        """Import (or, when one is active, replace) the current project glossary."""
+        row = self.table.currentRow()
+        project = self._load_current_project(row)
+        manager = self._project_manager
+        if project is None or manager is None:
+            return
+
+        file_path, _ = QFileDialog.getOpenFileName(
+            self,
+            Strings.GLOSSARY_IMPORT_DIALOG_TITLE,
+            "",
+            Strings.GLOSSARY_FILE_FILTER,
+        )
+        if not file_path:
+            return
+
+        replacing = project.glossary is not None and project.glossary.mode == GlossaryAPI.MODE_PROJECT_FILE
+        try:
+            if replacing:
+                manager.replace_glossary(project, file_path)
+            else:
+                manager.attach_glossary(project, file_path)
+        except GlossaryError as exc:
+            logger.warning("glossary import failed: %s", exc)
+            QMessageBox.warning(
+                self,
+                Strings.GLOSSARY_IMPORT_FAILED_TITLE,
+                Strings.GLOSSARY_IMPORT_FAILED_MSG.format(error=str(exc)),
+            )
+            # Backend state is authoritative; the previous glossary (if any) is intact.
+            self.refresh_projects()
+            self._select_project(project.project_id)
+            return
+
+        self.refresh_projects()
+        self._select_project(project.project_id)
+        self._refresh_glossary_panel(self.table.currentRow())
+
+    def _on_glossary_detach(self) -> None:
+        """Detach the active glossary after confirmation."""
+        row = self.table.currentRow()
+        project = self._load_current_project(row)
+        manager = self._project_manager
+        if project is None or manager is None or project.glossary is None:
+            return
+
+        name = Path(project.glossary.original_path).name or project.glossary.glossary_id
+        reply = QMessageBox.question(
+            self,
+            Strings.GLOSSARY_DETACH_CONFIRM_TITLE,
+            Strings.GLOSSARY_DETACH_CONFIRM_MSG.format(name=name),
+            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
+            QMessageBox.StandardButton.No,
+        )
+        if reply != QMessageBox.StandardButton.Yes:
+            return
+
+        try:
+            manager.detach_glossary(project)
+        except GlossaryError as exc:
+            logger.warning("glossary detach failed: %s", exc)
+            QMessageBox.warning(self, Strings.GLOSSARY_INVALID_TITLE, Strings.GLOSSARY_INVALID_MSG)
+            self.refresh_projects()
+            self._select_project(project.project_id)
+            return
+
+        self.refresh_projects()
+        self._select_project(project.project_id)
+        self._refresh_glossary_panel(self.table.currentRow())
+
+    def _bind_project_glossary(self, row: int, options):
+        """Bind the current project's glossary onto canonical options (S12-03).
+
+        Raises :class:`GlossaryError` if the project has an active but unusable
+        glossary; callers must block the launch rather than translate silently.
+        """
+        project = self._load_current_project(row)
+        if project is None:
+            return options
+        return GlossaryAPI.apply_glossary_to_options(project, options)
+
     def _resume_state_path_for(self, project: ReaderProject, result: dict) -> str | None:
         explicit = result.get("resume_state")
         if explicit:
@@ -915,11 +1097,13 @@ class ProjectPage(QWidget):
                 else:
                     self.btn_translate.setToolTip("")
                 self._highlight_card(row)
+                self._refresh_glossary_panel(row)
                 return
         self.btn_preview.setEnabled(False)
         self.btn_translate.setEnabled(False)
         self.btn_translate.setToolTip("")
         self._highlight_card(-1)
+        self._refresh_glossary_panel(None)
 
     def _on_preview(self) -> None:
         """開啟預覽對話框"""
@@ -990,7 +1174,6 @@ class ProjectPage(QWidget):
                 dry_run=False,
                 max_retries=3,
                 retry_base_seconds=5.0,
-                glossary_path=None,
                 character_memory_path=None,
                 strict_lock_terms=True,
                 qa_enabled=True,
@@ -1015,6 +1198,13 @@ class ProjectPage(QWidget):
                 quality_delivery_v83=False,
                 quality_delivery_formats_v83=("txt",),
             )
+
+        try:
+            options = self._bind_project_glossary(row, options)
+        except GlossaryError as exc:
+            logger.warning("cannot launch translation with active glossary: %s", exc)
+            QMessageBox.warning(self, Strings.GLOSSARY_INVALID_TITLE, Strings.GLOSSARY_INVALID_MSG)
+            return
 
         # 更新 UI 狀態
         self._current_translation_row = row
@@ -1151,7 +1341,6 @@ class ProjectPage(QWidget):
             dry_run=False,
             max_retries=3,
             retry_base_seconds=10.0,
-            glossary_path=None,
             character_memory_path=None,
             strict_lock_terms=True,
             qa_enabled=True,

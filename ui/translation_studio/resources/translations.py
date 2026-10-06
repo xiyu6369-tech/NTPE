@@ -65,6 +65,23 @@ class Strings:
     PROJECT_DELETE_CONFIRM_TITLE = "刪除專案"
     PROJECT_DELETE_CONFIRM_MSG = "確定要刪除「{title}」這個專案嗎？此操作無法復原，且不會影響其他專案。"
 
+    # Glossary (S12-03)
+    GLOSSARY_TITLE = "詞彙表"
+    GLOSSARY_STATUS_NONE = "未設定"
+    GLOSSARY_STATUS_ACTIVE = "已啟用：{name}（{count} 個詞條）"
+    GLOSSARY_STATUS_INVALID = "無法使用"
+    GLOSSARY_ACTION_IMPORT = "匯入詞彙表"
+    GLOSSARY_ACTION_REPLACE = "替換"
+    GLOSSARY_ACTION_DETACH = "解除"
+    GLOSSARY_FILE_FILTER = "詞彙表 (*.txt *.json)"
+    GLOSSARY_IMPORT_DIALOG_TITLE = "選擇詞彙表檔案"
+    GLOSSARY_IMPORT_FAILED_TITLE = "詞彙表匯入失敗"
+    GLOSSARY_IMPORT_FAILED_MSG = "無法匯入詞彙表：{error}"
+    GLOSSARY_DETACH_CONFIRM_TITLE = "解除詞彙表"
+    GLOSSARY_DETACH_CONFIRM_MSG = "確定要解除「{name}」詞彙表嗎？之後翻譯將不再套用此詞彙表。"
+    GLOSSARY_INVALID_TITLE = "詞彙表無法使用"
+    GLOSSARY_INVALID_MSG = "目前專案的詞彙表內容已損壞或遺失，請重新匯入或解除。"
+
     # Completion & Output (S9-05)
     RESULT_OPEN = "開啟成品"
     RESULT_REVEAL = "開啟資料夾"
