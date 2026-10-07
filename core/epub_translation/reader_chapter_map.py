@@ -16,7 +16,7 @@ from core.epub_translation.contract import (
     EpubTranslationResult,
     EpubChapterResult,
 )
-from core.translation_release.reader_structure.models import ChapterBoundary, ReaderChapterMap
+from core.epub_translation.reader_models import ChapterBoundary, ReaderChapterMap
 
 
 class ReaderChapterMapBuildError(ValueError):

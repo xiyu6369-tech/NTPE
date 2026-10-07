@@ -1,25 +1,14 @@
+"""Compatibility re-export for legacy ``translation_release`` importers.
+
+S13-07 moved the canonical definitions of ``ChapterBoundary`` and ``ReaderChapterMap``
+to ``core.epub_translation.reader_models`` so that canonical EPUB production no longer
+depends on the legacy ``translation_release`` namespace. This module re-exports the
+canonical classes (single implementation, no duplicate definition) for the remaining
+legacy delivery / reader_structure importers and legacy tests.
+"""
+
 from __future__ import annotations
 
-from dataclasses import dataclass
+from core.epub_translation.reader_models import ChapterBoundary, ReaderChapterMap
 
-
-@dataclass(frozen=True)
-class ChapterBoundary:
-    """Immutable chapter boundary mapping for RM-8.4 Reader Packaging Layer.
-
-    Position units: Python Unicode string code-point offsets (0-based, end-exclusive).
-    """
-
-    chapter_id: str
-    chapter_order: int
-    chapter_title: str
-    start_position: int
-    end_position: int
-    scene_ids: tuple[str, ...]
-
-
-@dataclass(frozen=True)
-class ReaderChapterMap:
-    """Immutable ordered chapter mapping container for RM-8.4 Reader Packaging Layer."""
-
-    chapters: tuple[ChapterBoundary, ...]
+__all__ = ["ChapterBoundary", "ReaderChapterMap"]
