@@ -40,7 +40,6 @@ from core.translation_runtime.models import TranslationRequest
 from core.character_memory_v2 import MemoryStore, load_or_create_character_memory, save_character_memory, get_memory_file_path, compute_book_identity
 from core.context_scene_memory import ContextMemoryStore, load_or_create_context_memory, save_context_memory, get_context_memory_file_path
 from core.translation_quality_v5.best_attempt import select_best_attempt
-from core.translation_runtime.runtime_qa import RuntimeQAPolicy, analyze_runtime_quality
 
 
 def _save_epub_live_progress(path: Path, payload: dict) -> None:

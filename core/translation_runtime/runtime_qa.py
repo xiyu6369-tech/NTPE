@@ -7,7 +7,6 @@ from typing import Any, Mapping, Sequence
 from core.translation_engine.context_intelligence import detect_unnatural_phrases
 
 
-NATURALNESS_GUARD_CODE = "NATURALNESS_GUARD"
 KOREAN_RE = re.compile(r"[\u1100-\u11ff\u3130-\u318f\uac00-\ud7a3]")
 _SENTENCE_RE = re.compile(r"[^。！？!?]+[。！？!?]?")
 _DIALOGUE_QUOTE_RE = re.compile(r"[“”]|(?<![A-Za-z0-9])\"[^\"\n]{1,200}\"")
@@ -282,45 +281,3 @@ def classify_literary_quality_hits(naturalness_hits: list[dict[str, Any]]) -> di
         "other_naturalness_hits": other,
         "literary_quality_hit_count": len(lit),
     }
-
-
-def should_soft_fail_naturalness(qa_report: Mapping[str, Any], speed: str | None) -> bool:
-    """Return True when final QA failure is only balanced-mode naturalness."""
-    if str(speed or "").strip().lower() != "balanced":
-        return False
-    issues = qa_report.get("issues", []) if isinstance(qa_report, Mapping) else []
-    naturalness_errors = 0
-    hard_errors = 0
-    for issue in issues if isinstance(issues, list) else []:
-        if not isinstance(issue, Mapping):
-            continue
-        if issue.get("severity", "error") != "error":
-            continue
-        if issue.get("code") == NATURALNESS_GUARD_CODE:
-            naturalness_errors += 1
-        else:
-            hard_errors += 1
-    return naturalness_errors > 0 and hard_errors == 0
-
-
-def soft_fail_naturalness_report(qa_report: Mapping[str, Any], speed: str | None) -> dict[str, Any]:
-    """Downgrade balanced naturalness-only final QA failure to a warning report."""
-    report = dict(qa_report)
-    if not should_soft_fail_naturalness(report, speed):
-        return report
-    downgraded_issues: list[Any] = []
-    issues = report.get("issues", [])
-    for issue in issues if isinstance(issues, list) else []:
-        if isinstance(issue, Mapping) and issue.get("code") == NATURALNESS_GUARD_CODE:
-            item = dict(issue)
-            item["severity"] = "warning"
-            item["retry_worthy"] = False
-            item["soft_failed"] = True
-            downgraded_issues.append(item)
-        else:
-            downgraded_issues.append(issue)
-    report["issues"] = downgraded_issues
-    report["passed"] = True
-    report["status"] = "pass_with_warning"
-    report["passed_with_warning"] = True
-    return report

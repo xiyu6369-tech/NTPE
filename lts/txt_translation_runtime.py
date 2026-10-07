@@ -29,7 +29,7 @@ from core.prompt_compiler import (
     render_adaptive_feedback_block,
 )
 from core.prompt_compiler.rules import enabled_discipline_rules, render_discipline_block
-from core.translation_runtime.runtime_qa import RuntimeQAPolicy, analyze_runtime_quality, soft_fail_naturalness_report
+from core.translation_runtime.runtime_qa import RuntimeQAPolicy, analyze_runtime_quality
 from core.translation_quality_v5.runtime_integration import run_quality_v5_phase1, merge_quality_v5_into_runtime_qa
 from core.translation_quality_v5.unified_quality_gate import attach_unified_report
 from core.translation_discipline import (
@@ -1415,11 +1415,6 @@ def analyze_translation_quality(source_text: str, translated_text: str, options:
     )
 
 
-def qa_retry_delay_seconds(attempt: int, base_seconds: float) -> float:
-    # QA retry uses a softer delay than provider-limit retry.
-    return min(retry_delay_seconds(attempt, base_seconds), 30.0)
-
-
 def _extract_pairs(data) -> dict[str, str]:
     pairs: dict[str, str] = {}
     if isinstance(data, dict):
@@ -1737,13 +1732,6 @@ def save_partial_translation_output(
     }
     save_json(partial_manifest, payload)
     return {"partial_output": str(partial_output), "partial_manifest": str(partial_manifest)}
-
-
-def has_retry_worthy_naturalness_issue(qa_report: dict) -> bool:
-    for issue in qa_report.get("issues", []) if isinstance(qa_report, dict) else []:
-        if isinstance(issue, dict) and issue.get("code") == "NATURALNESS_GUARD" and issue.get("retry_worthy"):
-            return True
-    return False
 
 
 def _segment_recovery_provider_attempts() -> int:
