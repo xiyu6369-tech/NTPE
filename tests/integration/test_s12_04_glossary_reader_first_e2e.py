@@ -323,16 +323,16 @@ def test_s12_04_epub_option_binding_and_canonical_glossary(qapp, tmp_path):
 
 
 def test_s12_04_epub_real_adapter_chunk_validation_defect_evidence(qapp, tmp_path):
-    """Records a PRE-EXISTING production defect (unrelated to glossary).
+    """Affected real-adapter path, re-verified after the S12-06 repair.
 
-    ``chunk_epub_translation_input`` emits chapter-body-relative ``body_start_offset``
-    while ``validate_epub_translation_chunk`` requires it to be marker-inclusive
-    absolute, so the real ``translate_epub_translation_input`` rejects canonical chunks
-    for any chapter that has a marker prefix. Prior S9/S10/S11 E2E injected a
-    deterministic adapter runtime and therefore never exercised this. S12-04 does not
-    fix production; it records the evidence.
+    S12-04 recorded a pre-existing defect: ``chunk_epub_translation_input`` emits
+    chapter-body-relative ``body_start_offset`` while ``validate_epub_translation_chunk``
+    wrongly required marker-inclusive absolute, so the real
+    ``translate_epub_translation_input`` rejected canonical chunks for any marker-prefixed
+    chapter. S12-06 repaired the validator's cross-space comparison, so the real adapter
+    now proceeds past the offset gate. The full persisted-E2E read-back remains deferred
+    to S12-07; only the offset-gate flip is asserted here.
     """
-    from core.epub_translation.contract.validation import ContractValidationError
     from ui.translation_studio.translation_worker import TranslationWorker
 
     home = tmp_path / "NTPE_HOME"
@@ -345,9 +345,9 @@ def test_s12_04_epub_real_adapter_chunk_validation_defect_evidence(qapp, tmp_pat
         options = _launch(page, home, runner_cls=_CaptureOnlyRunner)
 
         with patch(_ORCH_EXECUTE, _fake_orchestrator_execute):
-            with pytest.raises(ContractValidationError) as exc:
-                TranslationWorker(options, home)._runtime_epub_translate(options)
-        assert "body_start_offset" in str(exc.value)
+            result = TranslationWorker(options, home)._runtime_epub_translate(options)
+        # The real adapter ran (no ContractValidationError from the offset gate).
+        assert result["status"] in {"success", "incomplete"}
     finally:
         page.close()
 

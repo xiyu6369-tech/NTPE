@@ -192,15 +192,18 @@ def validate_epub_translation_chunk(chunk: EpubTranslationChunk) -> None:
         raise ContractValidationError(
             f"chunk body_end_offset ({chunk.body_end_offset}) < body_start_offset ({chunk.body_start_offset})"
         )
-    # Body offsets must be within extracted range
-    if chunk.body_start_offset < chunk.extracted_start_offset:
-        raise ContractValidationError(
-            f"chunk body_start_offset ({chunk.body_start_offset}) < extracted_start_offset ({chunk.extracted_start_offset})"
-        )
-    if chunk.body_end_offset > chunk.extracted_end_offset:
-        raise ContractValidationError(
-            f"chunk body_end_offset ({chunk.body_end_offset}) > extracted_end_offset ({chunk.extracted_end_offset})"
-        )
+    # body_* are chapter-body-relative; extracted_* are absolute in extracted_text.
+    # They are distinct coordinate spaces, so their raw positions must NOT be
+    # compared. Both ranges describe the same chapter-body segment, so the
+    # same-contract invariant is equal range length (mirrors
+    # EpubTranslationChunk.__post_init__).
+    body_range = chunk.body_end_offset - chunk.body_start_offset
+    if body_range != 0:
+        extracted_range = chunk.extracted_end_offset - chunk.extracted_start_offset
+        if body_range != extracted_range:
+            raise ContractValidationError(
+                f"chunk body range ({body_range}) must equal extracted range ({extracted_range})"
+            )
 
 
 def validate_epub_chunk_result(result: EpubChunkResult) -> None:
